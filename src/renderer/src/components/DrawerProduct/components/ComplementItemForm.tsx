@@ -28,7 +28,7 @@ export const ComplementItemForm: React.FC = () => {
 							}}
 						/>
 					}
-					type="ghost"
+					type="default"
 				/>
 			</div>
 			<Form layout="vertical">

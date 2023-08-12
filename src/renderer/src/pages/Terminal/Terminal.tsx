@@ -42,7 +42,7 @@ export const Terminal: React.FC = () => {
 			>
 				<Button
 					size="large"
-					type="ghost"
+					type="default"
 					onClick={() => navigate('/comandas/')}
 				>
 					Voltar

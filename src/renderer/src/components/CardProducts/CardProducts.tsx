@@ -71,7 +71,7 @@ export const CardProducts: React.FC<CardProductsProps> = ({
 				}
 				actions={[
 					<Button
-						type="ghost"
+						type="default"
 						key={data.id}
 						icon={
 							<EditOutlined
@@ -88,7 +88,7 @@ export const CardProducts: React.FC<CardProductsProps> = ({
 					</Button>,
 					<Button
 						key={data.id}
-						type="ghost"
+						type="default"
 						loading={isLoading}
 						icon={<DeleteOutlined key="deleted" style={{ color: 'red' }} />}
 						onClick={handleDeleteProduct}

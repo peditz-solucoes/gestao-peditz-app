@@ -146,7 +146,7 @@ export const SideBar: React.FC<SideBarProps> = ({ collapsed }) => {
 			>
 				{collapsed ? (
 					<img
-						src="/peditz.jpeg"
+						src="resources/logo-branca.png"
 						alt="Peditz"
 						style={{
 							width: '80px',

@@ -52,7 +52,7 @@ export const ComplementForm: React.FC<DataProductComplementProps> = ({
 									}}
 								/>
 							}
-							type="ghost"
+							type="default"
 						/>
 					</Space>
 					<Space
