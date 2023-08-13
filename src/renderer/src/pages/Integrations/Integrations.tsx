@@ -20,7 +20,7 @@ export const Integrations: React.FC = () => {
               color: 'rgba(0, 0, 0, 0.54)'
             }}
           >
-            Habilite e edite preferências das integrações com o Peditz
+            Estou testando o auto updater
           </p>
         </div>
         <S.Title>

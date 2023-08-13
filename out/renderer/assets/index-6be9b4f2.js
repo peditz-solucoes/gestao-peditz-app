@@ -10108,7 +10108,7 @@ function useLinkClickHandler(to, _temp) {
     }
   }, [location, navigate, path2, replaceProp, state, target, to, preventScrollReset, relative]);
 }
-const Container$d = st.div`
+const Container$e = st.div`
   width: 100%;
   height: 100vh;
   display: flex;
@@ -11284,6 +11284,26 @@ wrapperRaf.cancel = function(id2) {
   cleanup(realId);
   return caf(realId);
 };
+function throttleByAnimationFrame(fn) {
+  let requestId;
+  const later = (args) => () => {
+    requestId = null;
+    fn.apply(void 0, _toConsumableArray(args));
+  };
+  const throttled = function() {
+    if (requestId == null) {
+      for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
+        args[_key] = arguments[_key];
+      }
+      requestId = wrapperRaf(later(args));
+    }
+  };
+  throttled.cancel = () => {
+    wrapperRaf.cancel(requestId);
+    requestId = null;
+  };
+  return throttled;
+}
 function murmur2(str) {
   var h2 = 0;
   var k2, i2 = 0, len = str.length;
@@ -14180,7 +14200,7 @@ function getAlphaColor$1(frontColor, backgroundColor) {
     a: 1
   }).toRgbString();
 }
-var __rest$1b = globalThis && globalThis.__rest || function(s2, e2) {
+var __rest$1f = globalThis && globalThis.__rest || function(s2, e2) {
   var t2 = {};
   for (var p2 in s2)
     if (Object.prototype.hasOwnProperty.call(s2, p2) && e2.indexOf(p2) < 0)
@@ -14195,7 +14215,7 @@ var __rest$1b = globalThis && globalThis.__rest || function(s2, e2) {
 function formatToken(derivativeToken) {
   const {
     override
-  } = derivativeToken, restToken = __rest$1b(derivativeToken, ["override"]);
+  } = derivativeToken, restToken = __rest$1f(derivativeToken, ["override"]);
   const overrideTokens = Object.assign({}, override);
   Object.keys(seedToken$1).forEach((token2) => {
     delete overrideTokens[token2];
@@ -14349,7 +14369,7 @@ function formatToken(derivativeToken) {
   }), overrideTokens);
   return aliasToken;
 }
-var __rest$1a = globalThis && globalThis.__rest || function(s2, e2) {
+var __rest$1e = globalThis && globalThis.__rest || function(s2, e2) {
   var t2 = {};
   for (var p2 in s2)
     if (Object.prototype.hasOwnProperty.call(s2, p2) && e2.indexOf(p2) < 0)
@@ -14365,7 +14385,7 @@ const getComputedToken2 = (originToken, overrideToken, theme2) => {
   const derivativeToken = theme2.getDerivativeToken(originToken);
   const {
     override
-  } = overrideToken, components = __rest$1a(overrideToken, ["override"]);
+  } = overrideToken, components = __rest$1e(overrideToken, ["override"]);
   let mergedDerivativeToken = Object.assign(Object.assign({}, derivativeToken), {
     override
   });
@@ -14375,7 +14395,7 @@ const getComputedToken2 = (originToken, overrideToken, theme2) => {
       let [key, value] = _ref;
       const {
         theme: componentTheme
-      } = value, componentTokens = __rest$1a(value, ["theme"]);
+      } = value, componentTokens = __rest$1e(value, ["theme"]);
       let mergedComponentToken = componentTokens;
       if (componentTheme) {
         mergedComponentToken = getComputedToken2(Object.assign(Object.assign({}, mergedDerivativeToken), componentTokens), {
@@ -15533,7 +15553,7 @@ function MotionWrapper(props) {
   }
   return children;
 }
-const useStyle$A = (iconPrefixCls, csp) => {
+const useStyle$B = (iconPrefixCls, csp) => {
   const [theme2, token2] = useToken$2();
   return useStyleRegister({
     theme: theme2,
@@ -15549,8 +15569,8 @@ const useStyle$A = (iconPrefixCls, csp) => {
     })
   }]);
 };
-const useStyle$B = useStyle$A;
-var __rest$19 = globalThis && globalThis.__rest || function(s2, e2) {
+const useStyle$C = useStyle$B;
+var __rest$1d = globalThis && globalThis.__rest || function(s2, e2) {
   var t2 = {};
   for (var p2 in s2)
     if (Object.prototype.hasOwnProperty.call(s2, p2) && e2.indexOf(p2) < 0)
@@ -15693,7 +15713,7 @@ const ProviderChildren = (props) => {
   const iconPrefixCls = customIconPrefixCls || parentContext.iconPrefixCls || defaultIconPrefixCls;
   const shouldWrapSSR = iconPrefixCls !== parentContext.iconPrefixCls;
   const csp = customCsp || parentContext.csp;
-  const wrapSSR = useStyle$B(iconPrefixCls, csp);
+  const wrapSSR = useStyle$C(iconPrefixCls, csp);
   const mergedTheme = useTheme(theme2, parentContext.theme);
   const baseConfig = {
     csp,
@@ -15809,7 +15829,7 @@ const ProviderChildren = (props) => {
       algorithm,
       token: token2,
       components
-    } = _a, rest = __rest$19(_a, ["algorithm", "token", "components"]);
+    } = _a, rest = __rest$1d(_a, ["algorithm", "token", "components"]);
     const themeObj = algorithm && (!Array.isArray(algorithm) || algorithm.length > 0) ? createTheme(algorithm) : defaultTheme;
     const parsedComponents = {};
     Object.entries(components || {}).forEach((_ref2) => {
@@ -16637,7 +16657,7 @@ const genActionStyle = (token2) => {
   };
 };
 const genAlertStyle = (token2) => [genBaseStyle$b(token2), genTypeStyle(token2), genActionStyle(token2)];
-const useStyle$z = genComponentStyleHook("Alert", (token2) => {
+const useStyle$A = genComponentStyleHook("Alert", (token2) => {
   const {
     fontSizeHeading3
   } = token2;
@@ -16648,7 +16668,7 @@ const useStyle$z = genComponentStyleHook("Alert", (token2) => {
   });
   return [genAlertStyle(alertToken)];
 });
-var __rest$18 = globalThis && globalThis.__rest || function(s2, e2) {
+var __rest$1c = globalThis && globalThis.__rest || function(s2, e2) {
   var t2 = {};
   for (var p2 in s2)
     if (Object.prototype.hasOwnProperty.call(s2, p2) && e2.indexOf(p2) < 0)
@@ -16719,7 +16739,7 @@ const Alert$2 = (props) => {
     closeText,
     closeIcon,
     action
-  } = props, otherProps = __rest$18(props, ["description", "prefixCls", "message", "banner", "className", "rootClassName", "style", "onMouseEnter", "onMouseLeave", "onClick", "afterClose", "showIcon", "closable", "closeText", "closeIcon", "action"]);
+  } = props, otherProps = __rest$1c(props, ["description", "prefixCls", "message", "banner", "className", "rootClassName", "style", "onMouseEnter", "onMouseLeave", "onClick", "afterClose", "showIcon", "closable", "closeText", "closeIcon", "action"]);
   const [closed, setClosed] = reactExports.useState(false);
   const ref = reactExports.useRef(null);
   const {
@@ -16728,7 +16748,7 @@ const Alert$2 = (props) => {
     alert
   } = reactExports.useContext(ConfigContext);
   const prefixCls = getPrefixCls("alert", customizePrefixCls);
-  const [wrapSSR, hashId] = useStyle$z(prefixCls);
+  const [wrapSSR, hashId] = useStyle$A(prefixCls);
   const handleClose = (e2) => {
     var _a;
     setClosed(true);
@@ -17933,7 +17953,7 @@ const genMessageStyle = (token2) => {
     }
   ];
 };
-const useStyle$y = genComponentStyleHook("Message", (token2) => {
+const useStyle$z = genComponentStyleHook("Message", (token2) => {
   const combinedToken = merge$1(token2, {
     height: 150
   });
@@ -17945,7 +17965,7 @@ const useStyle$y = genComponentStyleHook("Message", (token2) => {
 }), {
   clientOnly: true
 });
-var __rest$17 = globalThis && globalThis.__rest || function(s2, e2) {
+var __rest$1b = globalThis && globalThis.__rest || function(s2, e2) {
   var t2 = {};
   for (var p2 in s2)
     if (Object.prototype.hasOwnProperty.call(s2, p2) && e2.indexOf(p2) < 0)
@@ -17975,19 +17995,19 @@ const PureContent = (_ref) => {
     className: classNames(`${prefixCls}-custom-content`, `${prefixCls}-${type4}`)
   }, icon || TypeIcon[type4], /* @__PURE__ */ reactExports.createElement("span", null, children));
 };
-const PurePanel$a = (props) => {
+const PurePanel$c = (props) => {
   const {
     prefixCls: staticPrefixCls,
     className,
     type: type4,
     icon,
     content
-  } = props, restProps = __rest$17(props, ["prefixCls", "className", "type", "icon", "content"]);
+  } = props, restProps = __rest$1b(props, ["prefixCls", "className", "type", "icon", "content"]);
   const {
     getPrefixCls
   } = reactExports.useContext(ConfigContext);
   const prefixCls = staticPrefixCls || getPrefixCls("message");
-  const [, hashId] = useStyle$y(prefixCls);
+  const [, hashId] = useStyle$z(prefixCls);
   return /* @__PURE__ */ reactExports.createElement(Notify, Object.assign({}, restProps, {
     prefixCls,
     className: classNames(className, hashId, `${prefixCls}-notice-pure-panel`),
@@ -18000,7 +18020,7 @@ const PurePanel$a = (props) => {
     }, content)
   }));
 };
-const PurePanel$b = PurePanel$a;
+const PurePanel$d = PurePanel$c;
 function getMotion$2(prefixCls, transitionName) {
   return {
     motionName: transitionName !== null && transitionName !== void 0 ? transitionName : `${prefixCls}-move-up`
@@ -18020,7 +18040,7 @@ function wrapPromiseFn(openFn) {
   result.promise = closePromise;
   return result;
 }
-var __rest$16 = globalThis && globalThis.__rest || function(s2, e2) {
+var __rest$1a = globalThis && globalThis.__rest || function(s2, e2) {
   var t2 = {};
   for (var p2 in s2)
     if (Object.prototype.hasOwnProperty.call(s2, p2) && e2.indexOf(p2) < 0)
@@ -18051,7 +18071,7 @@ const Holder = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     message: message2
   } = reactExports.useContext(ConfigContext);
   const prefixCls = staticPrefixCls || getPrefixCls("message");
-  const [, hashId] = useStyle$y(prefixCls);
+  const [, hashId] = useStyle$z(prefixCls);
   const getStyle2 = () => ({
     left: "50%",
     transform: "translateX(-50%)",
@@ -18116,7 +18136,7 @@ function useInternalMessage(messageConfig) {
         className,
         style: style2,
         onClose
-      } = config, restConfig = __rest$16(config, ["content", "icon", "type", "key", "className", "style", "onClose"]);
+      } = config, restConfig = __rest$1a(config, ["content", "icon", "type", "key", "className", "style", "onClose"]);
       let mergedKey = key;
       if (mergedKey === void 0 || mergedKey === null) {
         keyIndex += 1;
@@ -18679,7 +18699,7 @@ const genWaveStyle = (token2) => {
     }
   };
 };
-const useStyle$x = genComponentStyleHook("Wave", (token2) => [genWaveStyle(token2)]);
+const useStyle$y = genComponentStyleHook("Wave", (token2) => [genWaveStyle(token2)]);
 function isNotGrey(color) {
   const match2 = (color || "").match(/rgba?\((\d*), (\d*), (\d*)(, [\d.]*)?\)/);
   if (match2 && match2[1] && match2[2] && match2[3]) {
@@ -18865,7 +18885,7 @@ const Wave = (props) => {
   } = reactExports.useContext(ConfigContext);
   const containerRef = reactExports.useRef(null);
   const prefixCls = getPrefixCls("wave");
-  const [, hashId] = useStyle$x(prefixCls);
+  const [, hashId] = useStyle$y(prefixCls);
   const showWave = useWave(containerRef, classNames(prefixCls, hashId), component);
   React.useEffect(() => {
     const node2 = containerRef.current;
@@ -18961,12 +18981,12 @@ const genSpaceStyle = (token2) => {
     }
   };
 };
-const useStyle$w = genComponentStyleHook("Space", (token2) => [genSpaceStyle(token2), genSpaceCompactStyle$1(token2)], () => ({}), {
+const useStyle$x = genComponentStyleHook("Space", (token2) => [genSpaceStyle(token2), genSpaceCompactStyle$1(token2)], () => ({}), {
   // Space component don't apply extra font style
   // https://github.com/ant-design/ant-design/issues/40315
   resetStyle: false
 });
-var __rest$15 = globalThis && globalThis.__rest || function(s2, e2) {
+var __rest$19 = globalThis && globalThis.__rest || function(s2, e2) {
   var t2 = {};
   for (var p2 in s2)
     if (Object.prototype.hasOwnProperty.call(s2, p2) && e2.indexOf(p2) < 0)
@@ -19014,7 +19034,7 @@ const NoCompactStyle = (_ref) => {
 const CompactItem = (_a) => {
   var {
     children
-  } = _a, otherProps = __rest$15(_a, ["children"]);
+  } = _a, otherProps = __rest$19(_a, ["children"]);
   return /* @__PURE__ */ reactExports.createElement(SpaceCompactItemContext.Provider, {
     value: otherProps
   }, children);
@@ -19032,10 +19052,10 @@ const Compact = (props) => {
     className,
     rootClassName,
     children
-  } = props, restProps = __rest$15(props, ["size", "direction", "block", "prefixCls", "className", "rootClassName", "children"]);
+  } = props, restProps = __rest$19(props, ["size", "direction", "block", "prefixCls", "className", "rootClassName", "children"]);
   const mergedSize = useSize$1((ctx) => size !== null && size !== void 0 ? size : ctx);
   const prefixCls = getPrefixCls("space-compact", customizePrefixCls);
-  const [wrapSSR, hashId] = useStyle$w(prefixCls);
+  const [wrapSSR, hashId] = useStyle$x(prefixCls);
   const clx = classNames(prefixCls, hashId, {
     [`${prefixCls}-rtl`]: directionConfig === "rtl",
     [`${prefixCls}-block`]: block,
@@ -19145,7 +19165,7 @@ const LoadingIcon = (props) => {
   });
 };
 const LoadingIcon$1 = LoadingIcon;
-var __rest$14 = globalThis && globalThis.__rest || function(s2, e2) {
+var __rest$18 = globalThis && globalThis.__rest || function(s2, e2) {
   var t2 = {};
   for (var p2 in s2)
     if (Object.prototype.hasOwnProperty.call(s2, p2) && e2.indexOf(p2) < 0)
@@ -19167,7 +19187,7 @@ const ButtonGroup = (props) => {
     prefixCls: customizePrefixCls,
     size,
     className
-  } = props, others = __rest$14(props, ["prefixCls", "size", "className"]);
+  } = props, others = __rest$18(props, ["prefixCls", "size", "className"]);
   const prefixCls = getPrefixCls("btn-group", customizePrefixCls);
   const [, , hashId] = useToken$2();
   let sizeCls = "";
@@ -19732,7 +19752,7 @@ const genBlockButtonStyle = (token2) => {
     }
   };
 };
-const useStyle$v = genComponentStyleHook("Button", (token2) => {
+const useStyle$w = genComponentStyleHook("Button", (token2) => {
   const {
     controlTmpOutline,
     paddingContentHorizontal
@@ -19761,7 +19781,7 @@ const useStyle$v = genComponentStyleHook("Button", (token2) => {
     genCompactItemVerticalStyle(token2)
   ];
 });
-var __rest$13 = globalThis && globalThis.__rest || function(s2, e2) {
+var __rest$17 = globalThis && globalThis.__rest || function(s2, e2) {
   var t2 = {};
   for (var p2 in s2)
     if (Object.prototype.hasOwnProperty.call(s2, p2) && e2.indexOf(p2) < 0)
@@ -19818,7 +19838,7 @@ const InternalButton = (props, ref) => {
     htmlType = "button",
     classNames: customClassNames,
     style: customStyle = {}
-  } = props, rest = __rest$13(props, ["loading", "prefixCls", "type", "danger", "shape", "size", "styles", "disabled", "className", "rootClassName", "children", "icon", "ghost", "block", "htmlType", "classNames", "style"]);
+  } = props, rest = __rest$17(props, ["loading", "prefixCls", "type", "danger", "shape", "size", "styles", "disabled", "className", "rootClassName", "children", "icon", "ghost", "block", "htmlType", "classNames", "style"]);
   const {
     getPrefixCls,
     autoInsertSpaceInButton,
@@ -19826,7 +19846,7 @@ const InternalButton = (props, ref) => {
     button
   } = reactExports.useContext(ConfigContext);
   const prefixCls = getPrefixCls("btn", customizePrefixCls);
-  const [wrapSSR, hashId] = useStyle$v(prefixCls);
+  const [wrapSSR, hashId] = useStyle$w(prefixCls);
   const disabled = reactExports.useContext(DisabledContext$1);
   const mergedDisabled = customDisabled !== null && customDisabled !== void 0 ? customDisabled : disabled;
   const groupSize = reactExports.useContext(GroupSizeContext);
@@ -20417,7 +20437,7 @@ var Panel$1 = /* @__PURE__ */ React.forwardRef(function(props, ref) {
     "aria-hidden": "true"
   }));
 });
-var Content$2 = /* @__PURE__ */ reactExports.forwardRef(function(props, ref) {
+var Content$4 = /* @__PURE__ */ reactExports.forwardRef(function(props, ref) {
   var prefixCls = props.prefixCls, title = props.title, style2 = props.style, className = props.className, visible = props.visible, forceRender = props.forceRender, destroyOnClose = props.destroyOnClose, motionName = props.motionName, ariaId = props.ariaId, onVisibleChanged = props.onVisibleChanged, mousePosition2 = props.mousePosition;
   var dialogRef = reactExports.useRef();
   var _React$useState = reactExports.useState(), _React$useState2 = _slicedToArray(_React$useState, 2), transformOrigin = _React$useState2[0], setTransformOrigin = _React$useState2[1];
@@ -20451,7 +20471,7 @@ var Content$2 = /* @__PURE__ */ reactExports.forwardRef(function(props, ref) {
     }));
   });
 });
-Content$2.displayName = "Content";
+Content$4.displayName = "Content";
 function Mask$1(props) {
   var prefixCls = props.prefixCls, style2 = props.style, visible = props.visible, maskProps = props.maskProps, motionName = props.motionName;
   return /* @__PURE__ */ reactExports.createElement(CSSMotion, {
@@ -20576,7 +20596,7 @@ function Dialog(props) {
     }, wrapStyle), {}, {
       display: !animatedVisible ? "none" : null
     })
-  }, wrapProps), /* @__PURE__ */ reactExports.createElement(Content$2, _extends$1({}, props, {
+  }, wrapProps), /* @__PURE__ */ reactExports.createElement(Content$4, _extends$1({}, props, {
     onMouseDown: onContentMouseDown,
     onMouseUp: onContentMouseUp,
     ref: contentRef,
@@ -24691,7 +24711,7 @@ const genWireframeStyle$1 = (token2) => {
     }
   };
 };
-const useStyle$u = genComponentStyleHook("Modal", (token2) => {
+const useStyle$v = genComponentStyleHook("Modal", (token2) => {
   const headerPaddingVertical = token2.padding;
   const headerFontSize = token2.fontSizeHeading5;
   const headerLineHeight = token2.lineHeightHeading5;
@@ -24721,7 +24741,7 @@ const useStyle$u = genComponentStyleHook("Modal", (token2) => {
   contentBg: token2.colorBgElevated,
   titleColor: token2.colorTextHeading
 }));
-var __rest$12 = globalThis && globalThis.__rest || function(s2, e2) {
+var __rest$16 = globalThis && globalThis.__rest || function(s2, e2) {
   var t2 = {};
   for (var p2 in s2)
     if (Object.prototype.hasOwnProperty.call(s2, p2) && e2.indexOf(p2) < 0)
@@ -24782,10 +24802,10 @@ const Modal$2 = (props) => {
     visible,
     width = 520,
     footer
-  } = props, restProps = __rest$12(props, ["prefixCls", "className", "rootClassName", "open", "wrapClassName", "centered", "getContainer", "closeIcon", "closable", "focusTriggerAfterClose", "style", "visible", "width", "footer"]);
+  } = props, restProps = __rest$16(props, ["prefixCls", "className", "rootClassName", "open", "wrapClassName", "centered", "getContainer", "closeIcon", "closable", "focusTriggerAfterClose", "style", "visible", "width", "footer"]);
   const prefixCls = getPrefixCls("modal", customizePrefixCls);
   const rootPrefixCls = getPrefixCls();
-  const [wrapSSR, hashId] = useStyle$u(prefixCls);
+  const [wrapSSR, hashId] = useStyle$v(prefixCls);
   const wrapClassNameExtended = classNames(wrapClassName, {
     [`${prefixCls}-centered`]: !!centered,
     [`${prefixCls}-wrap-rtl`]: direction === "rtl"
@@ -24968,7 +24988,7 @@ const ConfirmDialog = (props) => {
 const ConfirmDialog$1 = ConfirmDialog;
 const destroyFns = [];
 const destroyFns$1 = destroyFns;
-var __rest$11 = globalThis && globalThis.__rest || function(s2, e2) {
+var __rest$15 = globalThis && globalThis.__rest || function(s2, e2) {
   var t2 = {};
   for (var p2 in s2)
     if (Object.prototype.hasOwnProperty.call(s2, p2) && e2.indexOf(p2) < 0)
@@ -25015,7 +25035,7 @@ function confirm$2(config) {
       cancelText,
       prefixCls: customizePrefixCls,
       getContainer: getContainer2
-    } = _a, props = __rest$11(_a, ["okText", "cancelText", "prefixCls", "getContainer"]);
+    } = _a, props = __rest$15(_a, ["okText", "cancelText", "prefixCls", "getContainer"]);
     clearTimeout(timeoutId);
     timeoutId = setTimeout(() => {
       const runtimeLocale2 = getConfirmLocale();
@@ -25108,7 +25128,7 @@ function modalGlobalConfig(_ref) {
   } = _ref;
   defaultRootPrefixCls = rootPrefixCls;
 }
-var __rest$10 = globalThis && globalThis.__rest || function(s2, e2) {
+var __rest$14 = globalThis && globalThis.__rest || function(s2, e2) {
   var t2 = {};
   for (var p2 in s2)
     if (Object.prototype.hasOwnProperty.call(s2, p2) && e2.indexOf(p2) < 0)
@@ -25125,7 +25145,7 @@ const HookModal = (_a, ref) => {
   var {
     afterClose: hookAfterClose,
     config
-  } = _a, restProps = __rest$10(_a, ["afterClose", "config"]);
+  } = _a, restProps = __rest$14(_a, ["afterClose", "config"]);
   const [open2, setOpen] = reactExports.useState(true);
   const [innerConfig, setInnerConfig] = reactExports.useState(config);
   const {
@@ -29606,7 +29626,7 @@ const genSharedEmptyStyle = (token2) => {
     }
   };
 };
-const useStyle$t = genComponentStyleHook("Empty", (token2) => {
+const useStyle$u = genComponentStyleHook("Empty", (token2) => {
   const {
     componentCls,
     controlHeightLG
@@ -29619,7 +29639,7 @@ const useStyle$t = genComponentStyleHook("Empty", (token2) => {
   });
   return [genSharedEmptyStyle(emptyToken)];
 });
-var __rest$$ = globalThis && globalThis.__rest || function(s2, e2) {
+var __rest$13 = globalThis && globalThis.__rest || function(s2, e2) {
   var t2 = {};
   for (var p2 in s2)
     if (Object.prototype.hasOwnProperty.call(s2, p2) && e2.indexOf(p2) < 0)
@@ -29643,14 +29663,14 @@ const Empty = (_a) => {
     children,
     imageStyle,
     style: style2
-  } = _a, restProps = __rest$$(_a, ["className", "rootClassName", "prefixCls", "image", "description", "children", "imageStyle", "style"]);
+  } = _a, restProps = __rest$13(_a, ["className", "rootClassName", "prefixCls", "image", "description", "children", "imageStyle", "style"]);
   const {
     getPrefixCls,
     direction,
     empty
   } = reactExports.useContext(ConfigContext);
   const prefixCls = getPrefixCls("empty", customizePrefixCls);
-  const [wrapSSR, hashId] = useStyle$t(prefixCls);
+  const [wrapSSR, hashId] = useStyle$u(prefixCls);
   const [locale2] = useLocale$1("Empty");
   const des = typeof description !== "undefined" ? description : locale2 === null || locale2 === void 0 ? void 0 : locale2.description;
   const alt = typeof des === "string" ? des : "empty";
@@ -30586,7 +30606,7 @@ function getIcons(_ref) {
     removeIcon: mergedRemoveIcon
   };
 }
-var __rest$_ = globalThis && globalThis.__rest || function(s2, e2) {
+var __rest$12 = globalThis && globalThis.__rest || function(s2, e2) {
   var t2 = {};
   for (var p2 in s2)
     if (Object.prototype.hasOwnProperty.call(s2, p2) && e2.indexOf(p2) < 0)
@@ -30622,7 +30642,7 @@ const InternalSelect = (_a, ref) => {
     direction: propDirection,
     style: style2,
     allowClear
-  } = _a, props = __rest$_(_a, ["prefixCls", "bordered", "className", "rootClassName", "getPopupContainer", "popupClassName", "dropdownClassName", "listHeight", "placement", "listItemHeight", "size", "disabled", "notFoundContent", "status", "builtinPlacements", "dropdownMatchSelectWidth", "popupMatchSelectWidth", "direction", "style", "allowClear"]);
+  } = _a, props = __rest$12(_a, ["prefixCls", "bordered", "className", "rootClassName", "getPopupContainer", "popupClassName", "dropdownClassName", "listHeight", "placement", "listItemHeight", "size", "disabled", "notFoundContent", "status", "builtinPlacements", "dropdownMatchSelectWidth", "popupMatchSelectWidth", "direction", "style", "allowClear"]);
   const {
     getPopupContainer: getContextPopupContainer,
     getPrefixCls,
@@ -30741,11 +30761,11 @@ const InternalSelect = (_a, ref) => {
   })));
 };
 const Select = /* @__PURE__ */ reactExports.forwardRef(InternalSelect);
-const PurePanel$9 = genPurePanel(Select);
+const PurePanel$b = genPurePanel(Select);
 Select.SECRET_COMBOBOX_MODE_DO_NOT_USE = SECRET_COMBOBOX_MODE_DO_NOT_USE;
 Select.Option = Option$1;
 Select.OptGroup = OptGroup;
-Select._InternalPanelDoNotUseOrYouWillBeFired = PurePanel$9;
+Select._InternalPanelDoNotUseOrYouWillBeFired = PurePanel$b;
 const Select$1 = Select;
 const responsiveArray = ["xxl", "xl", "lg", "md", "sm", "xs"];
 const getResponsiveMap = (token2) => ({
@@ -30959,7 +30979,7 @@ const genGroupStyle$1 = (token2) => {
     }
   };
 };
-const useStyle$s = genComponentStyleHook("Avatar", (token2) => {
+const useStyle$t = genComponentStyleHook("Avatar", (token2) => {
   const {
     colorTextLightSolid,
     colorTextPlaceholder
@@ -30994,7 +31014,7 @@ const useStyle$s = genComponentStyleHook("Avatar", (token2) => {
     groupBorderColor: colorBorderBg
   };
 });
-var __rest$Z = globalThis && globalThis.__rest || function(s2, e2) {
+var __rest$11 = globalThis && globalThis.__rest || function(s2, e2) {
   var t2 = {};
   for (var p2 in s2)
     if (Object.prototype.hasOwnProperty.call(s2, p2) && e2.indexOf(p2) < 0)
@@ -31063,7 +31083,7 @@ const InternalAvatar = (props, ref) => {
     draggable,
     children,
     crossOrigin
-  } = props, others = __rest$Z(props, ["prefixCls", "shape", "size", "src", "srcSet", "icon", "className", "rootClassName", "alt", "draggable", "children", "crossOrigin"]);
+  } = props, others = __rest$11(props, ["prefixCls", "shape", "size", "src", "srcSet", "icon", "className", "rootClassName", "alt", "draggable", "children", "crossOrigin"]);
   const size = customSize === "default" ? avatarCtx === null || avatarCtx === void 0 ? void 0 : avatarCtx.size : customSize;
   const needResponsive = Object.keys(typeof size === "object" ? size || {} : {}).some((key) => ["xs", "sm", "md", "lg", "xl", "xxl"].includes(key));
   const screens = useBreakpoint(needResponsive);
@@ -31081,7 +31101,7 @@ const InternalAvatar = (props, ref) => {
     } : {};
   }, [screens, size]);
   const prefixCls = getPrefixCls("avatar", customizePrefixCls);
-  const [wrapSSR, hashId] = useStyle$s(prefixCls);
+  const [wrapSSR, hashId] = useStyle$t(prefixCls);
   const sizeCls = classNames({
     [`${prefixCls}-lg`]: size === "large",
     [`${prefixCls}-sm`]: size === "small"
@@ -31830,7 +31850,7 @@ const genTooltipStyle = (token2) => {
     }
   ];
 };
-const useStyle$r = (prefixCls, injectStyle) => {
+const useStyle$s = (prefixCls, injectStyle) => {
   const useOriginHook = genComponentStyleHook("Tooltip", (token2) => {
     if (injectStyle === false) {
       return [];
@@ -31893,7 +31913,7 @@ function parseColor(prefixCls, color) {
     arrowStyle
   };
 }
-const PurePanel$7 = (props) => {
+const PurePanel$9 = (props) => {
   const {
     prefixCls: customizePrefixCls,
     className,
@@ -31906,7 +31926,7 @@ const PurePanel$7 = (props) => {
     getPrefixCls
   } = reactExports.useContext(ConfigContext);
   const prefixCls = getPrefixCls("tooltip", customizePrefixCls);
-  const [wrapSSR, hashId] = useStyle$r(prefixCls, true);
+  const [wrapSSR, hashId] = useStyle$s(prefixCls, true);
   const colorInfo = parseColor(prefixCls, color);
   const arrowContentStyle = colorInfo.arrowStyle;
   const formattedOverlayInnerStyle = Object.assign(Object.assign({}, overlayInnerStyle), colorInfo.overlayStyle);
@@ -31922,8 +31942,8 @@ const PurePanel$7 = (props) => {
     overlayInnerStyle: formattedOverlayInnerStyle
   }), title)));
 };
-const PurePanel$8 = PurePanel$7;
-var __rest$Y = globalThis && globalThis.__rest || function(s2, e2) {
+const PurePanel$a = PurePanel$9;
+var __rest$10 = globalThis && globalThis.__rest || function(s2, e2) {
   var t2 = {};
   for (var p2 in s2)
     if (Object.prototype.hasOwnProperty.call(s2, p2) && e2.indexOf(p2) < 0)
@@ -32061,7 +32081,7 @@ const Tooltip2 = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     mouseLeaveDelay = 0.1,
     overlayStyle,
     rootClassName
-  } = props, otherProps = __rest$Y(props, ["getPopupContainer", "placement", "mouseEnterDelay", "mouseLeaveDelay", "overlayStyle", "rootClassName"]);
+  } = props, otherProps = __rest$10(props, ["getPopupContainer", "placement", "mouseEnterDelay", "mouseLeaveDelay", "overlayStyle", "rootClassName"]);
   const prefixCls = getPrefixCls("tooltip", customizePrefixCls);
   const rootPrefixCls = getPrefixCls();
   const injectFromPopover = props["data-popover-inject"];
@@ -32072,7 +32092,7 @@ const Tooltip2 = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
   const child = getDisabledCompatibleChildren(isValidElement(children) && !isFragment(children) ? children : /* @__PURE__ */ reactExports.createElement("span", null, children), prefixCls);
   const childProps = child.props;
   const childCls = !childProps.className || typeof childProps.className === "string" ? classNames(childProps.className, openClassName || `${prefixCls}-open`) : childProps.className;
-  const [wrapSSR, hashId] = useStyle$r(prefixCls, !injectFromPopover);
+  const [wrapSSR, hashId] = useStyle$s(prefixCls, !injectFromPopover);
   const colorInfo = parseColor(prefixCls, color);
   const arrowContentStyle = colorInfo.arrowStyle;
   const formattedOverlayInnerStyle = Object.assign(Object.assign({}, overlayInnerStyle), colorInfo.overlayStyle);
@@ -32107,7 +32127,7 @@ const Tooltip2 = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     className: childCls
   }) : child));
 });
-Tooltip2._InternalPanelDoNotUseOrYouWillBeFired = PurePanel$8;
+Tooltip2._InternalPanelDoNotUseOrYouWillBeFired = PurePanel$a;
 const Tooltip$1 = Tooltip2;
 const genBaseStyle$8 = (token2) => {
   const {
@@ -32240,7 +32260,7 @@ const genWireframeStyle = (token2) => {
     }
   };
 };
-const useStyle$q = genComponentStyleHook("Popover", (token2) => {
+const useStyle$r = genComponentStyleHook("Popover", (token2) => {
   const {
     colorBgElevated,
     colorText,
@@ -32259,7 +32279,7 @@ const useStyle$q = genComponentStyleHook("Popover", (token2) => {
 }), {
   deprecatedTokens: [["width", "minWidth"]]
 });
-var __rest$X = globalThis && globalThis.__rest || function(s2, e2) {
+var __rest$$ = globalThis && globalThis.__rest || function(s2, e2) {
   var t2 = {};
   for (var p2 in s2)
     if (Object.prototype.hasOwnProperty.call(s2, p2) && e2.indexOf(p2) < 0)
@@ -32301,22 +32321,22 @@ const RawPurePanel = (props) => {
     prefixCls
   }), children || getOverlay(prefixCls, title, content)));
 };
-const PurePanel$6 = (props) => {
+const PurePanel$8 = (props) => {
   const {
     prefixCls: customizePrefixCls
-  } = props, restProps = __rest$X(props, ["prefixCls"]);
+  } = props, restProps = __rest$$(props, ["prefixCls"]);
   const {
     getPrefixCls
   } = reactExports.useContext(ConfigContext);
   const prefixCls = getPrefixCls("popover", customizePrefixCls);
-  const [wrapSSR, hashId] = useStyle$q(prefixCls);
+  const [wrapSSR, hashId] = useStyle$r(prefixCls);
   return wrapSSR(/* @__PURE__ */ reactExports.createElement(RawPurePanel, Object.assign({}, restProps, {
     prefixCls,
     hashId
   })));
 };
-const PopoverPurePanel = PurePanel$6;
-var __rest$W = globalThis && globalThis.__rest || function(s2, e2) {
+const PopoverPurePanel = PurePanel$8;
+var __rest$_ = globalThis && globalThis.__rest || function(s2, e2) {
   var t2 = {};
   for (var p2 in s2)
     if (Object.prototype.hasOwnProperty.call(s2, p2) && e2.indexOf(p2) < 0)
@@ -32351,12 +32371,12 @@ const Popover = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     mouseEnterDelay = 0.1,
     mouseLeaveDelay = 0.1,
     overlayStyle = {}
-  } = props, otherProps = __rest$W(props, ["prefixCls", "title", "content", "overlayClassName", "placement", "trigger", "mouseEnterDelay", "mouseLeaveDelay", "overlayStyle"]);
+  } = props, otherProps = __rest$_(props, ["prefixCls", "title", "content", "overlayClassName", "placement", "trigger", "mouseEnterDelay", "mouseLeaveDelay", "overlayStyle"]);
   const {
     getPrefixCls
   } = reactExports.useContext(ConfigContext);
   const prefixCls = getPrefixCls("popover", customizePrefixCls);
-  const [wrapSSR, hashId] = useStyle$q(prefixCls);
+  const [wrapSSR, hashId] = useStyle$r(prefixCls);
   const rootPrefixCls = getPrefixCls();
   const overlayCls = classNames(overlayClassName, hashId);
   return wrapSSR(/* @__PURE__ */ reactExports.createElement(Tooltip$1, Object.assign({
@@ -32413,7 +32433,7 @@ const Group$5 = (props) => {
   } = props;
   const prefixCls = getPrefixCls("avatar", customizePrefixCls);
   const groupPrefixCls = `${prefixCls}-group`;
-  const [wrapSSR, hashId] = useStyle$s(prefixCls);
+  const [wrapSSR, hashId] = useStyle$t(prefixCls);
   const cls = classNames(groupPrefixCls, {
     [`${groupPrefixCls}-rtl`]: direction === "rtl"
   }, className, rootClassName, hashId);
@@ -32453,6 +32473,15 @@ const Group$6 = Group$5;
 const Avatar = InternalAvatar$1;
 Avatar.Group = Group$6;
 const Avatar$1 = Avatar;
+var VerticalAlignTopOutlined$2 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M859.9 168H164.1c-4.5 0-8.1 3.6-8.1 8v60c0 4.4 3.6 8 8.1 8h695.8c4.5 0 8.1-3.6 8.1-8v-60c0-4.4-3.6-8-8.1-8zM518.3 355a8 8 0 00-12.6 0l-112 141.7a7.98 7.98 0 006.3 12.9h73.9V848c0 4.4 3.6 8 8 8h60c4.4 0 8-3.6 8-8V509.7H624c6.7 0 10.4-7.7 6.3-12.9L518.3 355z" } }] }, "name": "vertical-align-top", "theme": "outlined" };
+const VerticalAlignTopOutlinedSvg = VerticalAlignTopOutlined$2;
+var VerticalAlignTopOutlined = function VerticalAlignTopOutlined2(props, ref) {
+  return /* @__PURE__ */ reactExports.createElement(AntdIcon, _extends$1({}, props, {
+    ref,
+    icon: VerticalAlignTopOutlinedSvg
+  }));
+};
+const VerticalAlignTopOutlined$1 = /* @__PURE__ */ reactExports.forwardRef(VerticalAlignTopOutlined);
 const antStatusProcessing = new Keyframe("antStatusProcessing", {
   "0%": {
     transform: "scale(0.8)",
@@ -32781,7 +32810,7 @@ const genSharedBadgeStyle = (token2) => {
     })
   };
 };
-const useStyle$p = genComponentStyleHook("Badge", (token2) => {
+const useStyle$q = genComponentStyleHook("Badge", (token2) => {
   const {
     fontSize,
     lineHeight,
@@ -32846,7 +32875,7 @@ const Ribbon = (props) => {
     [`${prefixCls}-rtl`]: direction === "rtl",
     [`${prefixCls}-color-${color}`]: colorInPreset
   }, className);
-  const [wrapSSR, hashId] = useStyle$p(prefixCls);
+  const [wrapSSR, hashId] = useStyle$q(prefixCls);
   const colorStyle = {};
   const cornerColorStyle = {};
   if (color && !colorInPreset) {
@@ -32888,7 +32917,7 @@ function UnitNumber(_ref) {
     })
   }, value);
 }
-function getOffset$3(start, end, unit) {
+function getOffset$5(start, end, unit) {
   let index2 = start;
   let offset2 = 0;
   while ((index2 + 10) % 10 !== end) {
@@ -32948,7 +32977,7 @@ function SingleNumber(props) {
     });
     const unit = prevCount < count ? 1 : -1;
     offsetStyle = {
-      transform: `translateY(${-getOffset$3(prevValue, value, unit)}00%)`
+      transform: `translateY(${-getOffset$5(prevValue, value, unit)}00%)`
     };
   }
   return /* @__PURE__ */ reactExports.createElement("span", {
@@ -32957,7 +32986,7 @@ function SingleNumber(props) {
     onTransitionEnd
   }, unitNodes);
 }
-var __rest$V = globalThis && globalThis.__rest || function(s2, e2) {
+var __rest$Z = globalThis && globalThis.__rest || function(s2, e2) {
   var t2 = {};
   for (var p2 in s2)
     if (Object.prototype.hasOwnProperty.call(s2, p2) && e2.indexOf(p2) < 0)
@@ -32980,7 +33009,7 @@ const ScrollNumber = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     show,
     component: Component = "sup",
     children
-  } = props, restProps = __rest$V(props, ["prefixCls", "count", "className", "motionClassName", "style", "title", "show", "component", "children"]);
+  } = props, restProps = __rest$Z(props, ["prefixCls", "count", "className", "motionClassName", "style", "title", "show", "component", "children"]);
   const {
     getPrefixCls
   } = reactExports.useContext(ConfigContext);
@@ -33017,7 +33046,7 @@ const ScrollNumber = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
   }), numberNodes);
 });
 const ScrollNumber$1 = ScrollNumber;
-var __rest$U = globalThis && globalThis.__rest || function(s2, e2) {
+var __rest$Y = globalThis && globalThis.__rest || function(s2, e2) {
   var t2 = {};
   for (var p2 in s2)
     if (Object.prototype.hasOwnProperty.call(s2, p2) && e2.indexOf(p2) < 0)
@@ -33050,14 +33079,14 @@ const InternalBadge = (props, ref) => {
     classNames: classNames$1,
     styles,
     showZero = false
-  } = props, restProps = __rest$U(props, ["prefixCls", "scrollNumberPrefixCls", "children", "status", "text", "color", "count", "overflowCount", "dot", "size", "title", "offset", "style", "className", "rootClassName", "classNames", "styles", "showZero"]);
+  } = props, restProps = __rest$Y(props, ["prefixCls", "scrollNumberPrefixCls", "children", "status", "text", "color", "count", "overflowCount", "dot", "size", "title", "offset", "style", "className", "rootClassName", "classNames", "styles", "showZero"]);
   const {
     getPrefixCls,
     direction,
     badge
   } = reactExports.useContext(ConfigContext);
   const prefixCls = getPrefixCls("badge", customizePrefixCls);
-  const [wrapSSR, hashId] = useStyle$p(prefixCls);
+  const [wrapSSR, hashId] = useStyle$q(prefixCls);
   const numberedDisplayCount = count > overflowCount ? `${overflowCount}+` : count;
   const isZero = numberedDisplayCount === "0" || numberedDisplayCount === 0;
   const ignoreCount = count === null || isZero && !showZero;
@@ -33481,7 +33510,7 @@ function getFocusNodeList(node2) {
 }
 var LEFT = KeyCode$1.LEFT, RIGHT = KeyCode$1.RIGHT, UP = KeyCode$1.UP, DOWN = KeyCode$1.DOWN, ENTER = KeyCode$1.ENTER, ESC = KeyCode$1.ESC, HOME = KeyCode$1.HOME, END = KeyCode$1.END;
 var ArrowKeys = [UP, DOWN, LEFT, RIGHT];
-function getOffset$2(mode, isRootLevel, isRtl, which) {
+function getOffset$4(mode, isRootLevel, isRtl, which) {
   var _inline, _horizontal, _vertical, _offsets;
   var prev2 = "prev";
   var next2 = "next";
@@ -33614,7 +33643,7 @@ function useAccessibility(mode, activeKey, isRtl, id2, containerRef, getKeys, ge
       var activeElement = key2element.get(activeKey);
       var focusMenuElement = getFocusElement(activeElement, elements);
       var focusMenuKey = element2key.get(focusMenuElement);
-      var offsetObj = getOffset$2(mode, getKeyPath(focusMenuKey, true).length === 1, isRtl, which);
+      var offsetObj = getOffset$4(mode, getKeyPath(focusMenuKey, true).length === 1, isRtl, which);
       if (!offsetObj && which !== HOME && which !== END) {
         return;
       }
@@ -34923,7 +34952,7 @@ const genLayoutStyle = (token2) => {
     }
   };
 };
-const useStyle$o = genComponentStyleHook("Layout", (token2) => {
+const useStyle$p = genComponentStyleHook("Layout", (token2) => {
   const {
     colorText,
     controlHeightSM,
@@ -34952,7 +34981,7 @@ const useStyle$o = genComponentStyleHook("Layout", (token2) => {
     colorBgTrigger: "#002140"
   };
 });
-var __rest$T = globalThis && globalThis.__rest || function(s2, e2) {
+var __rest$X = globalThis && globalThis.__rest || function(s2, e2) {
   var t2 = {};
   for (var p2 in s2)
     if (Object.prototype.hasOwnProperty.call(s2, p2) && e2.indexOf(p2) < 0)
@@ -34991,12 +35020,12 @@ const Basic = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     suffixCls,
     className,
     tagName: TagName
-  } = props, others = __rest$T(props, ["prefixCls", "suffixCls", "className", "tagName"]);
+  } = props, others = __rest$X(props, ["prefixCls", "suffixCls", "className", "tagName"]);
   const {
     getPrefixCls
   } = reactExports.useContext(ConfigContext);
   const prefixCls = getPrefixCls("layout", customizePrefixCls);
-  const [wrapSSR, hashId] = useStyle$o(prefixCls);
+  const [wrapSSR, hashId] = useStyle$p(prefixCls);
   const prefixWithSuffixCls = suffixCls ? `${prefixCls}-${suffixCls}` : prefixCls;
   return wrapSSR(/* @__PURE__ */ reactExports.createElement(TagName, Object.assign({
     className: classNames(customizePrefixCls || prefixWithSuffixCls, className, hashId),
@@ -35016,14 +35045,14 @@ const BasicLayout = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     hasSider,
     tagName: Tag2,
     style: style2
-  } = props, others = __rest$T(props, ["prefixCls", "className", "rootClassName", "children", "hasSider", "tagName", "style"]);
+  } = props, others = __rest$X(props, ["prefixCls", "className", "rootClassName", "children", "hasSider", "tagName", "style"]);
   const passedProps = omit(others, ["suffixCls"]);
   const {
     getPrefixCls,
     layout
   } = reactExports.useContext(ConfigContext);
   const prefixCls = getPrefixCls("layout", customizePrefixCls);
-  const [wrapSSR, hashId] = useStyle$o(prefixCls);
+  const [wrapSSR, hashId] = useStyle$p(prefixCls);
   const classString = classNames(prefixCls, {
     [`${prefixCls}-has-sider`]: typeof hasSider === "boolean" ? hasSider : siders.length > 0,
     [`${prefixCls}-rtl`]: direction === "rtl"
@@ -35060,13 +35089,13 @@ const Footer$2 = generator({
   tagName: "footer",
   displayName: "Footer"
 })(Basic);
-const Content$1 = generator({
+const Content$3 = generator({
   suffixCls: "content",
   tagName: "main",
   displayName: "Content"
 })(Basic);
 const InternalLayout = Layout$2;
-var __rest$S = globalThis && globalThis.__rest || function(s2, e2) {
+var __rest$W = globalThis && globalThis.__rest || function(s2, e2) {
   var t2 = {};
   for (var p2 in s2)
     if (Object.prototype.hasOwnProperty.call(s2, p2) && e2.indexOf(p2) < 0)
@@ -35112,7 +35141,7 @@ const Sider$1 = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     breakpoint,
     onCollapse,
     onBreakpoint
-  } = props, otherProps = __rest$S(props, ["prefixCls", "className", "trigger", "children", "defaultCollapsed", "theme", "style", "collapsible", "reverseArrow", "width", "collapsedWidth", "zeroWidthTriggerStyle", "breakpoint", "onCollapse", "onBreakpoint"]);
+  } = props, otherProps = __rest$W(props, ["prefixCls", "className", "trigger", "children", "defaultCollapsed", "theme", "style", "collapsible", "reverseArrow", "width", "collapsedWidth", "zeroWidthTriggerStyle", "breakpoint", "onCollapse", "onBreakpoint"]);
   const {
     siderHook
   } = reactExports.useContext(LayoutContext);
@@ -35227,7 +35256,7 @@ const Sider$1 = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
   }, renderSider());
 });
 const Sider$2 = Sider$1;
-var __rest$R = globalThis && globalThis.__rest || function(s2, e2) {
+var __rest$V = globalThis && globalThis.__rest || function(s2, e2) {
   var t2 = {};
   for (var p2 in s2)
     if (Object.prototype.hasOwnProperty.call(s2, p2) && e2.indexOf(p2) < 0)
@@ -35244,7 +35273,7 @@ const MenuDivider = (props) => {
     prefixCls: customizePrefixCls,
     className,
     dashed
-  } = props, restProps = __rest$R(props, ["prefixCls", "className", "dashed"]);
+  } = props, restProps = __rest$V(props, ["prefixCls", "className", "dashed"]);
   const {
     getPrefixCls
   } = reactExports.useContext(ConfigContext);
@@ -35377,7 +35406,7 @@ var EllipsisOutlined = function EllipsisOutlined2(props, ref) {
   }));
 };
 const EllipsisOutlined$1 = /* @__PURE__ */ reactExports.forwardRef(EllipsisOutlined);
-var __rest$Q = globalThis && globalThis.__rest || function(s2, e2) {
+var __rest$U = globalThis && globalThis.__rest || function(s2, e2) {
   var t2 = {};
   for (var p2 in s2)
     if (Object.prototype.hasOwnProperty.call(s2, p2) && e2.indexOf(p2) < 0)
@@ -35393,7 +35422,7 @@ const OverrideContext = /* @__PURE__ */ reactExports.createContext(null);
 const OverrideProvider = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
   const {
     children
-  } = props, restProps = __rest$Q(props, ["children"]);
+  } = props, restProps = __rest$U(props, ["children"]);
   const override = reactExports.useContext(OverrideContext);
   const context = reactExports.useMemo(() => Object.assign(Object.assign({}, override), restProps), [
     override,
@@ -35410,7 +35439,7 @@ const OverrideProvider = /* @__PURE__ */ reactExports.forwardRef((props, ref) =>
   })));
 });
 const OverrideContext$1 = OverrideContext;
-var __rest$P = globalThis && globalThis.__rest || function(s2, e2) {
+var __rest$T = globalThis && globalThis.__rest || function(s2, e2) {
   var t2 = {};
   for (var p2 in s2)
     if (Object.prototype.hasOwnProperty.call(s2, p2) && e2.indexOf(p2) < 0)
@@ -35430,7 +35459,7 @@ function convertItemsToNodes$1(list) {
         children,
         key,
         type: type4
-      } = _a, restProps = __rest$P(_a, ["label", "children", "key", "type"]);
+      } = _a, restProps = __rest$T(_a, ["label", "children", "key", "type"]);
       const mergedKey = key !== null && key !== void 0 ? key : `tmp-${index2}`;
       if (children || type4 === "group") {
         if (type4 === "group") {
@@ -36261,7 +36290,7 @@ const getBaseStyle = (token2) => {
     }
   ];
 };
-const useStyle$n = (prefixCls, injectStyle) => {
+const useStyle$o = (prefixCls, injectStyle) => {
   const useOriginHook = genComponentStyleHook("Menu", (token2) => {
     if (injectStyle === false) {
       return [];
@@ -36453,7 +36482,7 @@ const useStyle$n = (prefixCls, injectStyle) => {
   });
   return useOriginHook(prefixCls);
 };
-var __rest$O = globalThis && globalThis.__rest || function(s2, e2) {
+var __rest$S = globalThis && globalThis.__rest || function(s2, e2) {
   var t2 = {};
   for (var p2 in s2)
     if (Object.prototype.hasOwnProperty.call(s2, p2) && e2.indexOf(p2) < 0)
@@ -36492,7 +36521,7 @@ const InternalMenu = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     selectable,
     onClick,
     overflowedIndicatorPopupClassName
-  } = props, restProps = __rest$O(props, ["prefixCls", "className", "style", "theme", "expandIcon", "_internalDisableMenuItemTitleTooltip", "inlineCollapsed", "siderCollapsed", "items", "children", "rootClassName", "mode", "selectable", "onClick", "overflowedIndicatorPopupClassName"]);
+  } = props, restProps = __rest$S(props, ["prefixCls", "className", "style", "theme", "expandIcon", "_internalDisableMenuItemTitleTooltip", "inlineCollapsed", "siderCollapsed", "items", "children", "rootClassName", "mode", "selectable", "onClick", "overflowedIndicatorPopupClassName"]);
   const passedProps = omit(restProps, ["collapsedWidth"]);
   const mergedChildren = useItems$2(items2) || children;
   (_a = overrideObj.validator) === null || _a === void 0 ? void 0 : _a.call(overrideObj, {
@@ -36521,7 +36550,7 @@ const InternalMenu = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     }
   };
   const prefixCls = getPrefixCls("menu", customizePrefixCls || overrideObj.prefixCls);
-  const [wrapSSR, hashId] = useStyle$n(prefixCls, !override);
+  const [wrapSSR, hashId] = useStyle$o(prefixCls, !override);
   const menuClassName = classNames(`${prefixCls}-${theme2}`, menu === null || menu === void 0 ? void 0 : menu.className, className);
   let mergedExpandIcon;
   if (typeof expandIcon === "function") {
@@ -36857,7 +36886,7 @@ const genBaseStyle$7 = (token2) => {
     [initSlideMotion(token2, "slide-up"), initSlideMotion(token2, "slide-down"), initMoveMotion(token2, "move-up"), initMoveMotion(token2, "move-down"), initZoomMotion(token2, "zoom-big")]
   ];
 };
-const useStyle$m = genComponentStyleHook("Dropdown", (token2, _ref) => {
+const useStyle$n = genComponentStyleHook("Dropdown", (token2, _ref) => {
   let {
     rootPrefixCls
   } = _ref;
@@ -36939,7 +36968,7 @@ const Dropdown$2 = (props) => {
     return placement;
   }, [placement, direction]);
   const prefixCls = getPrefixCls("dropdown", customizePrefixCls);
-  const [wrapSSR, hashId] = useStyle$m(prefixCls);
+  const [wrapSSR, hashId] = useStyle$n(prefixCls);
   const {
     token: token2
   } = theme.useToken();
@@ -37031,8 +37060,8 @@ function postPureProps(props) {
     }
   });
 }
-const PurePanel$5 = genPurePanel(Dropdown$2, "dropdown", (prefixCls) => prefixCls, postPureProps);
-const WrapPurePanel = (props) => /* @__PURE__ */ reactExports.createElement(PurePanel$5, Object.assign({}, props), /* @__PURE__ */ reactExports.createElement("span", null));
+const PurePanel$7 = genPurePanel(Dropdown$2, "dropdown", (prefixCls) => prefixCls, postPureProps);
+const WrapPurePanel = (props) => /* @__PURE__ */ reactExports.createElement(PurePanel$7, Object.assign({}, props), /* @__PURE__ */ reactExports.createElement("span", null));
 Dropdown$2._InternalPanelDoNotUseOrYouWillBeFired = WrapPurePanel;
 const InternalDropdown = Dropdown$2;
 const BreadcrumbSeparator = (_ref) => {
@@ -37050,7 +37079,7 @@ const BreadcrumbSeparator = (_ref) => {
 };
 BreadcrumbSeparator.__ANT_BREADCRUMB_SEPARATOR = true;
 const BreadcrumbSeparator$1 = BreadcrumbSeparator;
-var __rest$N = globalThis && globalThis.__rest || function(s2, e2) {
+var __rest$R = globalThis && globalThis.__rest || function(s2, e2) {
   var t2 = {};
   for (var p2 in s2)
     if (Object.prototype.hasOwnProperty.call(s2, p2) && e2.indexOf(p2) < 0)
@@ -37076,7 +37105,7 @@ function renderItem(prefixCls, item, children, href) {
   const {
     className,
     onClick
-  } = item, restItem = __rest$N(item, ["className", "onClick"]);
+  } = item, restItem = __rest$R(item, ["className", "onClick"]);
   const passedProps = Object.assign(Object.assign({}, pickAttrs(restItem, {
     data: true,
     aria: true
@@ -37103,7 +37132,7 @@ function useItemRender(prefixCls, itemRender) {
   };
   return mergedItemRender;
 }
-var __rest$M = globalThis && globalThis.__rest || function(s2, e2) {
+var __rest$Q = globalThis && globalThis.__rest || function(s2, e2) {
   var t2 = {};
   for (var p2 in s2)
     if (Object.prototype.hasOwnProperty.call(s2, p2) && e2.indexOf(p2) < 0)
@@ -37131,7 +37160,7 @@ const InternalBreadcrumbItem = (props) => {
       if (menu) {
         const _a = menu || {}, {
           items: items2
-        } = _a, menuProps = __rest$M(_a, ["items"]);
+        } = _a, menuProps = __rest$Q(_a, ["items"]);
         mergeDropDownProps.menu = Object.assign(Object.assign({}, menuProps), {
           items: items2 === null || items2 === void 0 ? void 0 : items2.map((_a2, index2) => {
             var {
@@ -37139,7 +37168,7 @@ const InternalBreadcrumbItem = (props) => {
               title,
               label,
               path: path2
-            } = _a2, itemProps = __rest$M(_a2, ["key", "title", "label", "path"]);
+            } = _a2, itemProps = __rest$Q(_a2, ["key", "title", "label", "path"]);
             let mergedLabel = label !== null && label !== void 0 ? label : title;
             if (path2) {
               mergedLabel = /* @__PURE__ */ reactExports.createElement("a", {
@@ -37174,7 +37203,7 @@ const BreadcrumbItem = (props) => {
     prefixCls: customizePrefixCls,
     children,
     href
-  } = props, restProps = __rest$M(props, ["prefixCls", "children", "href"]);
+  } = props, restProps = __rest$Q(props, ["prefixCls", "children", "href"]);
   const {
     getPrefixCls
   } = reactExports.useContext(ConfigContext);
@@ -37262,7 +37291,7 @@ const genBreadcrumbStyle = (token2) => {
     })
   };
 };
-const useStyle$l = genComponentStyleHook("Breadcrumb", (token2) => {
+const useStyle$m = genComponentStyleHook("Breadcrumb", (token2) => {
   const BreadcrumbToken = merge$1(token2, {});
   return [genBreadcrumbStyle(BreadcrumbToken)];
 }, (token2) => ({
@@ -37274,7 +37303,7 @@ const useStyle$l = genComponentStyleHook("Breadcrumb", (token2) => {
   separatorColor: token2.colorTextDescription,
   separatorMargin: token2.marginXS
 }));
-var __rest$L = globalThis && globalThis.__rest || function(s2, e2) {
+var __rest$P = globalThis && globalThis.__rest || function(s2, e2) {
   var t2 = {};
   for (var p2 in s2)
     if (Object.prototype.hasOwnProperty.call(s2, p2) && e2.indexOf(p2) < 0)
@@ -37290,7 +37319,7 @@ function route2item(route) {
   const {
     breadcrumbName,
     children
-  } = route, rest = __rest$L(route, ["breadcrumbName", "children"]);
+  } = route, rest = __rest$P(route, ["breadcrumbName", "children"]);
   const clone = Object.assign({
     title: breadcrumbName
   }, rest);
@@ -37299,7 +37328,7 @@ function route2item(route) {
       items: children.map((_a) => {
         var {
           breadcrumbName: itemBreadcrumbName
-        } = _a, itemProps = __rest$L(_a, ["breadcrumbName"]);
+        } = _a, itemProps = __rest$P(_a, ["breadcrumbName"]);
         return Object.assign(Object.assign({}, itemProps), {
           title: itemBreadcrumbName
         });
@@ -37319,7 +37348,7 @@ function useItems$1(items2, routes) {
     return null;
   }, [items2, routes]);
 }
-var __rest$K = globalThis && globalThis.__rest || function(s2, e2) {
+var __rest$O = globalThis && globalThis.__rest || function(s2, e2) {
   var t2 = {};
   for (var p2 in s2)
     if (Object.prototype.hasOwnProperty.call(s2, p2) && e2.indexOf(p2) < 0)
@@ -37353,7 +37382,7 @@ const Breadcrumb = (props) => {
     children,
     itemRender,
     params = {}
-  } = props, restProps = __rest$K(props, ["prefixCls", "separator", "style", "className", "rootClassName", "routes", "items", "children", "itemRender", "params"]);
+  } = props, restProps = __rest$O(props, ["prefixCls", "separator", "style", "className", "rootClassName", "routes", "items", "children", "itemRender", "params"]);
   const {
     getPrefixCls,
     direction,
@@ -37361,7 +37390,7 @@ const Breadcrumb = (props) => {
   } = reactExports.useContext(ConfigContext);
   let crumbs;
   const prefixCls = getPrefixCls("breadcrumb", customizePrefixCls);
-  const [wrapSSR, hashId] = useStyle$l(prefixCls);
+  const [wrapSSR, hashId] = useStyle$m(prefixCls);
   const mergedItems = useItems$1(items2, legacyRoutes);
   const mergedItemRender = useItemRender(prefixCls, itemRender);
   if (mergedItems && mergedItems.length > 0) {
@@ -37882,7 +37911,7 @@ const getDotSize = (radioSize) => {
   const dotPadding = 4;
   return radioSize - dotPadding * 2;
 };
-const useStyle$k = genComponentStyleHook("Radio", (token2) => {
+const useStyle$l = genComponentStyleHook("Radio", (token2) => {
   const {
     controlOutline,
     controlOutlineWidth,
@@ -37929,7 +37958,7 @@ const useStyle$k = genComponentStyleHook("Radio", (token2) => {
     wrapperMarginInlineEnd: marginXS
   };
 });
-var __rest$J = globalThis && globalThis.__rest || function(s2, e2) {
+var __rest$N = globalThis && globalThis.__rest || function(s2, e2) {
   var t2 = {};
   for (var p2 in s2)
     if (Object.prototype.hasOwnProperty.call(s2, p2) && e2.indexOf(p2) < 0)
@@ -37966,11 +37995,11 @@ const InternalRadio = (props, ref) => {
     rootClassName,
     children,
     style: style2
-  } = props, restProps = __rest$J(props, ["prefixCls", "className", "rootClassName", "children", "style"]);
+  } = props, restProps = __rest$N(props, ["prefixCls", "className", "rootClassName", "children", "style"]);
   const radioPrefixCls = getPrefixCls("radio", customizePrefixCls);
   const isButtonType = ((groupContext === null || groupContext === void 0 ? void 0 : groupContext.optionType) || radioOptionTypeContext) === "button";
   const prefixCls = isButtonType ? `${radioPrefixCls}-button` : radioPrefixCls;
-  const [wrapSSR, hashId] = useStyle$k(radioPrefixCls);
+  const [wrapSSR, hashId] = useStyle$l(radioPrefixCls);
   const radioProps = Object.assign({}, restProps);
   const disabled = reactExports.useContext(DisabledContext$1);
   if (groupContext) {
@@ -38042,7 +38071,7 @@ const RadioGroup = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
   } = props;
   const prefixCls = getPrefixCls("radio", customizePrefixCls);
   const groupPrefixCls = `${prefixCls}-group`;
-  const [wrapSSR, hashId] = useStyle$k(prefixCls);
+  const [wrapSSR, hashId] = useStyle$l(prefixCls);
   let childrenToRender = children;
   if (options && options.length > 0) {
     childrenToRender = options.map((option) => {
@@ -38094,7 +38123,7 @@ const RadioGroup = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
   }, childrenToRender)));
 });
 const Group$4 = /* @__PURE__ */ reactExports.memo(RadioGroup);
-var __rest$I = globalThis && globalThis.__rest || function(s2, e2) {
+var __rest$M = globalThis && globalThis.__rest || function(s2, e2) {
   var t2 = {};
   for (var p2 in s2)
     if (Object.prototype.hasOwnProperty.call(s2, p2) && e2.indexOf(p2) < 0)
@@ -38112,7 +38141,7 @@ const RadioButton = (props, ref) => {
   } = reactExports.useContext(ConfigContext);
   const {
     prefixCls: customizePrefixCls
-  } = props, radioProps = __rest$I(props, ["prefixCls"]);
+  } = props, radioProps = __rest$M(props, ["prefixCls"]);
   const prefixCls = getPrefixCls("radio", customizePrefixCls);
   return /* @__PURE__ */ reactExports.createElement(RadioOptionTypeContextProvider, {
     value: "button"
@@ -38914,7 +38943,7 @@ const genTextAreaStyle = (token2) => {
     }
   };
 };
-const useStyle$j = genComponentStyleHook("Input", (token2) => {
+const useStyle$k = genComponentStyleHook("Input", (token2) => {
   const inputToken = initInputToken(token2);
   return [
     genInputStyle(inputToken),
@@ -39219,7 +39248,7 @@ const genBaseStyle$6 = (token2) => {
     }
   };
 };
-const useStyle$i = genComponentStyleHook("Skeleton", (token2) => {
+const useStyle$j = genComponentStyleHook("Skeleton", (token2) => {
   const {
     componentCls
   } = token2;
@@ -39269,7 +39298,7 @@ const SkeletonAvatar = (props) => {
     getPrefixCls
   } = reactExports.useContext(ConfigContext);
   const prefixCls = getPrefixCls("skeleton", customizePrefixCls);
-  const [wrapSSR, hashId] = useStyle$i(prefixCls);
+  const [wrapSSR, hashId] = useStyle$j(prefixCls);
   const otherProps = omit(props, ["prefixCls", "className"]);
   const cls = classNames(prefixCls, `${prefixCls}-element`, {
     [`${prefixCls}-active`]: active
@@ -39296,7 +39325,7 @@ const SkeletonButton = (props) => {
     getPrefixCls
   } = reactExports.useContext(ConfigContext);
   const prefixCls = getPrefixCls("skeleton", customizePrefixCls);
-  const [wrapSSR, hashId] = useStyle$i(prefixCls);
+  const [wrapSSR, hashId] = useStyle$j(prefixCls);
   const otherProps = omit(props, ["prefixCls"]);
   const cls = classNames(prefixCls, `${prefixCls}-element`, {
     [`${prefixCls}-active`]: active,
@@ -39323,7 +39352,7 @@ const SkeletonImage = (props) => {
     getPrefixCls
   } = reactExports.useContext(ConfigContext);
   const prefixCls = getPrefixCls("skeleton", customizePrefixCls);
-  const [wrapSSR, hashId] = useStyle$i(prefixCls);
+  const [wrapSSR, hashId] = useStyle$j(prefixCls);
   const cls = classNames(prefixCls, `${prefixCls}-element`, {
     [`${prefixCls}-active`]: active
   }, className, rootClassName, hashId);
@@ -39355,7 +39384,7 @@ const SkeletonInput = (props) => {
     getPrefixCls
   } = reactExports.useContext(ConfigContext);
   const prefixCls = getPrefixCls("skeleton", customizePrefixCls);
-  const [wrapSSR, hashId] = useStyle$i(prefixCls);
+  const [wrapSSR, hashId] = useStyle$j(prefixCls);
   const otherProps = omit(props, ["prefixCls"]);
   const cls = classNames(prefixCls, `${prefixCls}-element`, {
     [`${prefixCls}-active`]: active,
@@ -39391,7 +39420,7 @@ const SkeletonNode = (props) => {
     getPrefixCls
   } = reactExports.useContext(ConfigContext);
   const prefixCls = getPrefixCls("skeleton", customizePrefixCls);
-  const [wrapSSR, hashId] = useStyle$i(prefixCls);
+  const [wrapSSR, hashId] = useStyle$j(prefixCls);
   const cls = classNames(prefixCls, `${prefixCls}-element`, {
     [`${prefixCls}-active`]: active
   }, hashId, className, rootClassName);
@@ -39439,7 +39468,7 @@ const Paragraph$4 = (props) => {
   }, rowList);
 };
 const Paragraph$5 = Paragraph$4;
-const Title$8 = (_ref) => {
+const Title$9 = (_ref) => {
   let {
     prefixCls,
     className,
@@ -39453,7 +39482,7 @@ const Title$8 = (_ref) => {
     }, style2)
   });
 };
-const Title$9 = Title$8;
+const Title$a = Title$9;
 function getComponentProps(prop) {
   if (prop && typeof prop === "object") {
     return prop;
@@ -39517,7 +39546,7 @@ const Skeleton = (props) => {
     skeleton
   } = reactExports.useContext(ConfigContext);
   const prefixCls = getPrefixCls("skeleton", customizePrefixCls);
-  const [wrapSSR, hashId] = useStyle$i(prefixCls);
+  const [wrapSSR, hashId] = useStyle$j(prefixCls);
   if (loading || !("loading" in props)) {
     const hasAvatar = !!avatar;
     const hasTitle = !!title;
@@ -39538,7 +39567,7 @@ const Skeleton = (props) => {
         const titleProps = Object.assign(Object.assign({
           prefixCls: `${prefixCls}-title`
         }, getTitleBasicProps(hasAvatar, hasParagraph)), getComponentProps(title));
-        $title = /* @__PURE__ */ reactExports.createElement(Title$9, Object.assign({}, titleProps));
+        $title = /* @__PURE__ */ reactExports.createElement(Title$a, Object.assign({}, titleProps));
       }
       let paragraphNode;
       if (hasParagraph) {
@@ -40661,7 +40690,7 @@ function useAnimateConfig(prefixCls) {
   }
   return mergedAnimated;
 }
-var __rest$H = globalThis && globalThis.__rest || function(s2, e2) {
+var __rest$L = globalThis && globalThis.__rest || function(s2, e2) {
   var t2 = {};
   for (var p2 in s2)
     if (Object.prototype.hasOwnProperty.call(s2, p2) && e2.indexOf(p2) < 0)
@@ -40688,7 +40717,7 @@ function useLegacyItems(items2, children) {
       } = node2;
       const _a = props || {}, {
         tab
-      } = _a, restProps = __rest$H(_a, ["tab"]);
+      } = _a, restProps = __rest$L(_a, ["tab"]);
       const item = Object.assign(Object.assign({
         key: String(key)
       }, restProps), {
@@ -41507,7 +41536,7 @@ const genTabsStyle = (token2) => {
     }
   };
 };
-const useStyle$h = genComponentStyleHook("Tabs", (token2) => {
+const useStyle$i = genComponentStyleHook("Tabs", (token2) => {
   const tabsToken = merge$1(token2, {
     // `cardPadding` is empty by default, so we could calculate with dynamic `cardHeight`
     tabsCardPadding: token2.cardPadding || `${(token2.cardHeight - Math.round(token2.fontSize * token2.lineHeight)) / 2 - token2.lineWidth}px ${token2.padding}px`,
@@ -41549,7 +41578,7 @@ const useStyle$h = genComponentStyleHook("Tabs", (token2) => {
     cardGutter: token2.marginXXS / 2
   };
 });
-var __rest$G = globalThis && globalThis.__rest || function(s2, e2) {
+var __rest$K = globalThis && globalThis.__rest || function(s2, e2) {
   var t2 = {};
   for (var p2 in s2)
     if (Object.prototype.hasOwnProperty.call(s2, p2) && e2.indexOf(p2) < 0)
@@ -41576,7 +41605,7 @@ const Tabs = (props) => {
     items: items2,
     animated,
     style: style2
-  } = props, otherProps = __rest$G(props, ["type", "className", "rootClassName", "size", "onEdit", "hideAdd", "centered", "addIcon", "popupClassName", "children", "items", "animated", "style"]);
+  } = props, otherProps = __rest$K(props, ["type", "className", "rootClassName", "size", "onEdit", "hideAdd", "centered", "addIcon", "popupClassName", "children", "items", "animated", "style"]);
   const {
     prefixCls: customizePrefixCls,
     moreIcon = /* @__PURE__ */ reactExports.createElement(EllipsisOutlined$1, null)
@@ -41588,7 +41617,7 @@ const Tabs = (props) => {
     getPopupContainer
   } = reactExports.useContext(ConfigContext);
   const prefixCls = getPrefixCls("tabs", customizePrefixCls);
-  const [wrapSSR, hashId] = useStyle$h(prefixCls);
+  const [wrapSSR, hashId] = useStyle$i(prefixCls);
   let editable;
   if (type4 === "editable-card") {
     editable = {
@@ -41631,7 +41660,7 @@ const Tabs = (props) => {
 };
 Tabs.TabPane = TabPane$1;
 const Tabs$1 = Tabs;
-var __rest$F = globalThis && globalThis.__rest || function(s2, e2) {
+var __rest$J = globalThis && globalThis.__rest || function(s2, e2) {
   var t2 = {};
   for (var p2 in s2)
     if (Object.prototype.hasOwnProperty.call(s2, p2) && e2.indexOf(p2) < 0)
@@ -41648,7 +41677,7 @@ const Grid = (_a) => {
     prefixCls,
     className,
     hoverable = true
-  } = _a, props = __rest$F(_a, ["prefixCls", "className", "hoverable"]);
+  } = _a, props = __rest$J(_a, ["prefixCls", "className", "hoverable"]);
   const {
     getPrefixCls
   } = reactExports.useContext(ConfigContext);
@@ -41967,7 +41996,7 @@ const genCardSizeStyle = (token2) => {
     }
   };
 };
-const useStyle$g = genComponentStyleHook("Card", (token2) => {
+const useStyle$h = genComponentStyleHook("Card", (token2) => {
   const cardToken = merge$1(token2, {
     cardShadow: token2.boxShadowCard,
     cardHeadPadding: token2.padding,
@@ -41993,7 +42022,7 @@ const useStyle$g = genComponentStyleHook("Card", (token2) => {
   tabsMarginBottom: -token2.padding - token2.lineWidth,
   extraColor: token2.colorText
 }));
-var __rest$E = globalThis && globalThis.__rest || function(s2, e2) {
+var __rest$I = globalThis && globalThis.__rest || function(s2, e2) {
   var t2 = {};
   for (var p2 in s2)
     if (Object.prototype.hasOwnProperty.call(s2, p2) && e2.indexOf(p2) < 0)
@@ -42039,7 +42068,7 @@ const Card$4 = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     tabBarExtraContent,
     hoverable,
     tabProps = {}
-  } = props, others = __rest$E(props, ["prefixCls", "className", "rootClassName", "style", "extra", "headStyle", "bodyStyle", "title", "loading", "bordered", "size", "type", "cover", "actions", "tabList", "children", "activeTabKey", "defaultActiveTabKey", "tabBarExtraContent", "hoverable", "tabProps"]);
+  } = props, others = __rest$I(props, ["prefixCls", "className", "rootClassName", "style", "extra", "headStyle", "bodyStyle", "title", "loading", "bordered", "size", "type", "cover", "actions", "tabList", "children", "activeTabKey", "defaultActiveTabKey", "tabBarExtraContent", "hoverable", "tabProps"]);
   const {
     getPrefixCls,
     direction,
@@ -42059,7 +42088,7 @@ const Card$4 = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     return containGrid;
   }, [children]);
   const prefixCls = getPrefixCls("card", customizePrefixCls);
-  const [wrapSSR, hashId] = useStyle$g(prefixCls);
+  const [wrapSSR, hashId] = useStyle$h(prefixCls);
   const loadingBlock = /* @__PURE__ */ reactExports.createElement(Skeleton$1, {
     loading: true,
     active: true,
@@ -42084,7 +42113,7 @@ const Card$4 = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     items: tabList.map((_a) => {
       var {
         tab
-      } = _a, item = __rest$E(_a, ["tab"]);
+      } = _a, item = __rest$I(_a, ["tab"]);
       return Object.assign({
         label: tab
       }, item);
@@ -42132,7 +42161,7 @@ const Card$4 = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
   }), head, coverDom, body, actionDom));
 });
 const InternalCard = Card$4;
-var __rest$D = globalThis && globalThis.__rest || function(s2, e2) {
+var __rest$H = globalThis && globalThis.__rest || function(s2, e2) {
   var t2 = {};
   for (var p2 in s2)
     if (Object.prototype.hasOwnProperty.call(s2, p2) && e2.indexOf(p2) < 0)
@@ -42151,7 +42180,7 @@ const Meta$2 = (props) => {
     avatar,
     title,
     description
-  } = props, others = __rest$D(props, ["prefixCls", "className", "avatar", "title", "description"]);
+  } = props, others = __rest$H(props, ["prefixCls", "className", "avatar", "title", "description"]);
   const {
     getPrefixCls
   } = reactExports.useContext(ConfigContext);
@@ -42850,7 +42879,7 @@ function getStyle(prefixCls, token2) {
   });
   return [genCheckboxStyle(checkboxToken)];
 }
-const useStyle$f = genComponentStyleHook("Checkbox", (token2, _ref) => {
+const useStyle$g = genComponentStyleHook("Checkbox", (token2, _ref) => {
   let {
     prefixCls
   } = _ref;
@@ -42858,7 +42887,7 @@ const useStyle$f = genComponentStyleHook("Checkbox", (token2, _ref) => {
 });
 const GroupContext = /* @__PURE__ */ React.createContext(null);
 const GroupContext$1 = GroupContext;
-var __rest$C = globalThis && globalThis.__rest || function(s2, e2) {
+var __rest$G = globalThis && globalThis.__rest || function(s2, e2) {
   var t2 = {};
   for (var p2 in s2)
     if (Object.prototype.hasOwnProperty.call(s2, p2) && e2.indexOf(p2) < 0)
@@ -42883,7 +42912,7 @@ const InternalCheckbox = (props, ref) => {
     onMouseLeave,
     skipGroup = false,
     disabled
-  } = props, restProps = __rest$C(props, ["prefixCls", "className", "rootClassName", "children", "indeterminate", "style", "onMouseEnter", "onMouseLeave", "skipGroup", "disabled"]);
+  } = props, restProps = __rest$G(props, ["prefixCls", "className", "rootClassName", "children", "indeterminate", "style", "onMouseEnter", "onMouseLeave", "skipGroup", "disabled"]);
   const {
     getPrefixCls,
     direction,
@@ -42911,7 +42940,7 @@ const InternalCheckbox = (props, ref) => {
     return () => checkboxGroup === null || checkboxGroup === void 0 ? void 0 : checkboxGroup.cancelValue(restProps.value);
   }, [restProps.value]);
   const prefixCls = getPrefixCls("checkbox", customizePrefixCls);
-  const [wrapSSR, hashId] = useStyle$f(prefixCls);
+  const [wrapSSR, hashId] = useStyle$g(prefixCls);
   const checkboxProps = Object.assign({}, restProps);
   if (checkboxGroup && !skipGroup) {
     checkboxProps.onChange = function() {
@@ -42957,7 +42986,7 @@ const InternalCheckbox = (props, ref) => {
 };
 const Checkbox$2 = /* @__PURE__ */ reactExports.forwardRef(InternalCheckbox);
 const InternalCheckbox$1 = Checkbox$2;
-var __rest$B = globalThis && globalThis.__rest || function(s2, e2) {
+var __rest$F = globalThis && globalThis.__rest || function(s2, e2) {
   var t2 = {};
   for (var p2 in s2)
     if (Object.prototype.hasOwnProperty.call(s2, p2) && e2.indexOf(p2) < 0)
@@ -42979,7 +43008,7 @@ const InternalGroup = (props, ref) => {
     rootClassName,
     style: style2,
     onChange
-  } = props, restProps = __rest$B(props, ["defaultValue", "children", "options", "prefixCls", "className", "rootClassName", "style", "onChange"]);
+  } = props, restProps = __rest$F(props, ["defaultValue", "children", "options", "prefixCls", "className", "rootClassName", "style", "onChange"]);
   const {
     getPrefixCls,
     direction
@@ -43025,7 +43054,7 @@ const InternalGroup = (props, ref) => {
   };
   const prefixCls = getPrefixCls("checkbox", customizePrefixCls);
   const groupPrefixCls = `${prefixCls}-group`;
-  const [wrapSSR, hashId] = useStyle$f(prefixCls);
+  const [wrapSSR, hashId] = useStyle$g(prefixCls);
   const domProps = omit(restProps, ["value", "disabled"]);
   const childrenNode = options.length ? memoOptions.map((option) => /* @__PURE__ */ reactExports.createElement(InternalCheckbox$1, {
     prefixCls,
@@ -43202,7 +43231,7 @@ const useColStyle = genComponentStyleHook("Grid", (token2) => {
   };
   return [genGridColStyle(gridToken), genGridStyle(gridToken, ""), genGridStyle(gridToken, "-xs"), Object.keys(gridMediaSizesMap).map((key) => genGridMediaStyle(gridToken, gridMediaSizesMap[key], key)).reduce((pre, cur) => Object.assign(Object.assign({}, pre), cur), {})];
 });
-var __rest$A = globalThis && globalThis.__rest || function(s2, e2) {
+var __rest$E = globalThis && globalThis.__rest || function(s2, e2) {
   var t2 = {};
   for (var p2 in s2)
     if (Object.prototype.hasOwnProperty.call(s2, p2) && e2.indexOf(p2) < 0)
@@ -43245,7 +43274,7 @@ const Col = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     children,
     flex,
     style: style2
-  } = props, others = __rest$A(props, ["prefixCls", "span", "order", "offset", "push", "pull", "className", "children", "flex", "style"]);
+  } = props, others = __rest$E(props, ["prefixCls", "span", "order", "offset", "push", "pull", "className", "children", "flex", "style"]);
   const prefixCls = getPrefixCls("col", customizePrefixCls);
   const [wrapSSR, hashId] = useColStyle(prefixCls);
   let sizeClassObj = {};
@@ -43306,7 +43335,7 @@ const useFlexGapSupport = () => {
   }, []);
   return flexible;
 };
-var __rest$z = globalThis && globalThis.__rest || function(s2, e2) {
+var __rest$D = globalThis && globalThis.__rest || function(s2, e2) {
   var t2 = {};
   for (var p2 in s2)
     if (Object.prototype.hasOwnProperty.call(s2, p2) && e2.indexOf(p2) < 0)
@@ -43353,7 +43382,7 @@ const Row = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     children,
     gutter = 0,
     wrap
-  } = props, others = __rest$z(props, ["prefixCls", "justify", "align", "className", "style", "children", "gutter", "wrap"]);
+  } = props, others = __rest$D(props, ["prefixCls", "justify", "align", "className", "style", "children", "gutter", "wrap"]);
   const {
     getPrefixCls,
     direction
@@ -44025,7 +44054,7 @@ const genGhostStyle = (token2) => {
     }
   };
 };
-const useStyle$e = genComponentStyleHook("Collapse", (token2) => {
+const useStyle$f = genComponentStyleHook("Collapse", (token2) => {
   const collapseToken = merge$1(token2, {
     collapseContentBg: token2.colorBgContainer,
     collapseHeaderBg: token2.colorFillAlter,
@@ -44062,7 +44091,7 @@ const Collapse = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
   });
   const prefixCls = getPrefixCls("collapse", customizePrefixCls);
   const rootPrefixCls = getPrefixCls();
-  const [wrapSSR, hashId] = useStyle$e(prefixCls);
+  const [wrapSSR, hashId] = useStyle$f(prefixCls);
   const mergedExpandIconPosition = reactExports.useMemo(() => {
     if (expandIconPosition === "left") {
       return "start";
@@ -44233,7 +44262,7 @@ const genSharedDividerStyle = (token2) => {
     })
   };
 };
-const useStyle$d = genComponentStyleHook("Divider", (token2) => {
+const useStyle$e = genComponentStyleHook("Divider", (token2) => {
   const dividerToken = merge$1(token2, {
     dividerVerticalGutterMargin: token2.marginXS,
     dividerHorizontalWithTextGutterMargin: token2.margin,
@@ -44243,7 +44272,7 @@ const useStyle$d = genComponentStyleHook("Divider", (token2) => {
 }, {
   sizePaddingEdgeHorizontal: 0
 });
-var __rest$y = globalThis && globalThis.__rest || function(s2, e2) {
+var __rest$C = globalThis && globalThis.__rest || function(s2, e2) {
   var t2 = {};
   for (var p2 in s2)
     if (Object.prototype.hasOwnProperty.call(s2, p2) && e2.indexOf(p2) < 0)
@@ -44272,9 +44301,9 @@ const Divider = (props) => {
     dashed,
     plain,
     style: style2
-  } = props, restProps = __rest$y(props, ["prefixCls", "type", "orientation", "orientationMargin", "className", "rootClassName", "children", "dashed", "plain", "style"]);
+  } = props, restProps = __rest$C(props, ["prefixCls", "type", "orientation", "orientationMargin", "className", "rootClassName", "children", "dashed", "plain", "style"]);
   const prefixCls = getPrefixCls("divider", customizePrefixCls);
-  const [wrapSSR, hashId] = useStyle$d(prefixCls);
+  const [wrapSSR, hashId] = useStyle$e(prefixCls);
   const orientationPrefix = orientation.length > 0 ? `-${orientation}` : orientation;
   const hasChildren = !!children;
   const hasCustomMarginLeft = orientation === "left" && orientationMargin != null;
@@ -45758,7 +45787,7 @@ const genAffixWrapperStyles = (token2) => {
     })
   };
 };
-const useStyle$c = genComponentStyleHook("InputNumber", (token2) => {
+const useStyle$d = genComponentStyleHook("InputNumber", (token2) => {
   const inputNumberToken = initInputToken(token2);
   return [
     genInputNumberStyles(inputNumberToken),
@@ -45774,7 +45803,7 @@ const useStyle$c = genComponentStyleHook("InputNumber", (token2) => {
   handleFontSize: token2.fontSize / 2,
   handleVisible: "auto"
 }));
-var __rest$x = globalThis && globalThis.__rest || function(s2, e2) {
+var __rest$B = globalThis && globalThis.__rest || function(s2, e2) {
   var t2 = {};
   for (var p2 in s2)
     if (Object.prototype.hasOwnProperty.call(s2, p2) && e2.indexOf(p2) < 0)
@@ -45806,9 +45835,9 @@ const InputNumber = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     readOnly,
     status: customStatus,
     controls
-  } = props, others = __rest$x(props, ["className", "rootClassName", "size", "disabled", "prefixCls", "addonBefore", "addonAfter", "prefix", "bordered", "readOnly", "status", "controls"]);
+  } = props, others = __rest$B(props, ["className", "rootClassName", "size", "disabled", "prefixCls", "addonBefore", "addonAfter", "prefix", "bordered", "readOnly", "status", "controls"]);
   const prefixCls = getPrefixCls("input-number", customizePrefixCls);
-  const [wrapSSR, hashId] = useStyle$c(prefixCls);
+  const [wrapSSR, hashId] = useStyle$d(prefixCls);
   const {
     compactSize,
     compactItemClassnames
@@ -45914,7 +45943,7 @@ const Group$1 = (props) => {
   } = props;
   const prefixCls = getPrefixCls("input-group", customizePrefixCls);
   const inputPrefixCls = getPrefixCls("input");
-  const [wrapSSR, hashId] = useStyle$j(inputPrefixCls);
+  const [wrapSSR, hashId] = useStyle$k(inputPrefixCls);
   const cls = classNames(prefixCls, {
     [`${prefixCls}-lg`]: props.size === "large",
     [`${prefixCls}-sm`]: props.size === "small",
@@ -45962,7 +45991,7 @@ function useRemovePasswordTimeout(inputRef, triggerOnMount) {
 function hasPrefixSuffix(props) {
   return !!(props.prefix || props.suffix || props.allowClear);
 }
-var __rest$w = globalThis && globalThis.__rest || function(s2, e2) {
+var __rest$A = globalThis && globalThis.__rest || function(s2, e2) {
   var t2 = {};
   for (var p2 in s2)
     if (Object.prototype.hasOwnProperty.call(s2, p2) && e2.indexOf(p2) < 0)
@@ -46017,7 +46046,7 @@ const Input$2 = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     rootClassName,
     onChange,
     classNames: classes
-  } = props, rest = __rest$w(props, ["prefixCls", "bordered", "status", "size", "disabled", "onBlur", "onFocus", "suffix", "allowClear", "addonAfter", "addonBefore", "className", "style", "styles", "rootClassName", "onChange", "classNames"]);
+  } = props, rest = __rest$A(props, ["prefixCls", "bordered", "status", "size", "disabled", "onBlur", "onFocus", "suffix", "allowClear", "addonAfter", "addonBefore", "className", "style", "styles", "rootClassName", "onChange", "classNames"]);
   const {
     getPrefixCls,
     direction,
@@ -46025,7 +46054,7 @@ const Input$2 = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
   } = React.useContext(ConfigContext);
   const prefixCls = getPrefixCls("input", customizePrefixCls);
   const inputRef = reactExports.useRef(null);
-  const [wrapSSR, hashId] = useStyle$j(prefixCls);
+  const [wrapSSR, hashId] = useStyle$k(prefixCls);
   const {
     compactSize,
     compactItemClassnames
@@ -46139,7 +46168,7 @@ var EyeOutlined = function EyeOutlined2(props, ref) {
   }));
 };
 const EyeOutlined$1 = /* @__PURE__ */ reactExports.forwardRef(EyeOutlined);
-var __rest$v = globalThis && globalThis.__rest || function(s2, e2) {
+var __rest$z = globalThis && globalThis.__rest || function(s2, e2) {
   var t2 = {};
   for (var p2 in s2)
     if (Object.prototype.hasOwnProperty.call(s2, p2) && e2.indexOf(p2) < 0)
@@ -46213,7 +46242,7 @@ const Password = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     prefixCls: customizePrefixCls,
     inputPrefixCls: customizeInputPrefixCls,
     size
-  } = props, restProps = __rest$v(props, ["className", "prefixCls", "inputPrefixCls", "size"]);
+  } = props, restProps = __rest$z(props, ["className", "prefixCls", "inputPrefixCls", "size"]);
   const {
     getPrefixCls
   } = reactExports.useContext(ConfigContext);
@@ -46237,7 +46266,7 @@ const Password = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
   }, omittedProps));
 });
 const Password$1 = Password;
-var __rest$u = globalThis && globalThis.__rest || function(s2, e2) {
+var __rest$y = globalThis && globalThis.__rest || function(s2, e2) {
   var t2 = {};
   for (var p2 in s2)
     if (Object.prototype.hasOwnProperty.call(s2, p2) && e2.indexOf(p2) < 0)
@@ -46264,7 +46293,7 @@ const Search$2 = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     onChange: customOnChange,
     onCompositionStart,
     onCompositionEnd
-  } = props, restProps = __rest$u(props, ["prefixCls", "inputPrefixCls", "className", "size", "suffix", "enterButton", "addonAfter", "loading", "disabled", "onSearch", "onChange", "onCompositionStart", "onCompositionEnd"]);
+  } = props, restProps = __rest$y(props, ["prefixCls", "inputPrefixCls", "className", "size", "suffix", "enterButton", "addonAfter", "loading", "disabled", "onSearch", "onChange", "onCompositionStart", "onCompositionEnd"]);
   const {
     getPrefixCls,
     direction
@@ -46724,7 +46753,7 @@ var TextArea$2 = /* @__PURE__ */ React.forwardRef(function(_ref, ref) {
   });
   return textarea;
 });
-var __rest$t = globalThis && globalThis.__rest || function(s2, e2) {
+var __rest$x = globalThis && globalThis.__rest || function(s2, e2) {
   var t2 = {};
   for (var p2 in s2)
     if (Object.prototype.hasOwnProperty.call(s2, p2) && e2.indexOf(p2) < 0)
@@ -46746,7 +46775,7 @@ const TextArea = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     allowClear,
     showCount,
     classNames: classes
-  } = props, rest = __rest$t(props, ["prefixCls", "bordered", "size", "disabled", "status", "allowClear", "showCount", "classNames"]);
+  } = props, rest = __rest$x(props, ["prefixCls", "bordered", "size", "disabled", "status", "allowClear", "showCount", "classNames"]);
   const {
     getPrefixCls,
     direction
@@ -46784,7 +46813,7 @@ const TextArea = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
       clearIcon: /* @__PURE__ */ reactExports.createElement(CloseCircleFilled$1, null)
     };
   }
-  const [wrapSSR, hashId] = useStyle$j(prefixCls);
+  const [wrapSSR, hashId] = useStyle$k(prefixCls);
   return wrapSSR(/* @__PURE__ */ reactExports.createElement(TextArea$2, Object.assign({}, rest, {
     disabled: mergedDisabled,
     allowClear: mergedAllowClear,
@@ -47448,7 +47477,7 @@ const genDrawerStyle = (token2) => {
     }
   };
 };
-const useStyle$b = genComponentStyleHook("Drawer", (token2) => {
+const useStyle$c = genComponentStyleHook("Drawer", (token2) => {
   const drawerToken = merge$1(token2, {});
   return [genDrawerStyle(drawerToken), genMotionStyle$1(drawerToken)];
 }, (token2) => ({
@@ -47456,7 +47485,7 @@ const useStyle$b = genComponentStyleHook("Drawer", (token2) => {
   footerPaddingBlock: token2.paddingXS,
   footerPaddingInline: token2.padding
 }));
-var __rest$s = globalThis && globalThis.__rest || function(s2, e2) {
+var __rest$w = globalThis && globalThis.__rest || function(s2, e2) {
   var t2 = {};
   for (var p2 in s2)
     if (Object.prototype.hasOwnProperty.call(s2, p2) && e2.indexOf(p2) < 0)
@@ -47489,7 +47518,7 @@ const Drawer2 = (props) => {
     // Deprecated
     visible,
     afterVisibleChange
-  } = props, rest = __rest$s(props, ["rootClassName", "width", "height", "size", "mask", "push", "open", "afterOpenChange", "onClose", "prefixCls", "getContainer", "style", "className", "visible", "afterVisibleChange"]);
+  } = props, rest = __rest$w(props, ["rootClassName", "width", "height", "size", "mask", "push", "open", "afterOpenChange", "onClose", "prefixCls", "getContainer", "style", "className", "visible", "afterVisibleChange"]);
   const {
     getPopupContainer,
     getPrefixCls,
@@ -47497,7 +47526,7 @@ const Drawer2 = (props) => {
     drawer
   } = reactExports.useContext(ConfigContext);
   const prefixCls = getPrefixCls("drawer", customizePrefixCls);
-  const [wrapSSR, hashId] = useStyle$b(prefixCls);
+  const [wrapSSR, hashId] = useStyle$c(prefixCls);
   const getContainer2 = (
     // 有可能为 false，所以不能直接判断
     customizeGetContainer === void 0 && getPopupContainer ? () => getPopupContainer(document.body) : customizeGetContainer
@@ -47547,18 +47576,18 @@ const Drawer2 = (props) => {
     onClose
   }))))));
 };
-const PurePanel$4 = (props) => {
+const PurePanel$6 = (props) => {
   const {
     prefixCls: customizePrefixCls,
     style: style2,
     className,
     placement = "right"
-  } = props, restProps = __rest$s(props, ["prefixCls", "style", "className", "placement"]);
+  } = props, restProps = __rest$w(props, ["prefixCls", "style", "className", "placement"]);
   const {
     getPrefixCls
   } = reactExports.useContext(ConfigContext);
   const prefixCls = getPrefixCls("drawer", customizePrefixCls);
-  const [wrapSSR, hashId] = useStyle$b(prefixCls);
+  const [wrapSSR, hashId] = useStyle$c(prefixCls);
   const cls = classNames(prefixCls, `${prefixCls}-pure`, `${prefixCls}-${placement}`, hashId, className);
   return wrapSSR(/* @__PURE__ */ reactExports.createElement("div", {
     className: cls,
@@ -47567,7 +47596,7 @@ const PurePanel$4 = (props) => {
     prefixCls
   }, restProps))));
 };
-Drawer2._InternalPanelDoNotUseOrYouWillBeFired = PurePanel$4;
+Drawer2._InternalPanelDoNotUseOrYouWillBeFired = PurePanel$6;
 const Drawer$1 = Drawer2;
 const SpaceContext = /* @__PURE__ */ React.createContext({
   latestIndex: 0,
@@ -47621,7 +47650,7 @@ const Item$3 = (_ref) => {
   }, split));
 };
 const Item$4 = Item$3;
-var __rest$r = globalThis && globalThis.__rest || function(s2, e2) {
+var __rest$v = globalThis && globalThis.__rest || function(s2, e2) {
   var t2 = {};
   for (var p2 in s2)
     if (Object.prototype.hasOwnProperty.call(s2, p2) && e2.indexOf(p2) < 0)
@@ -47661,7 +47690,7 @@ const Space = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     wrap = false,
     classNames: customClassNames,
     styles
-  } = props, otherProps = __rest$r(props, ["size", "align", "className", "rootClassName", "children", "direction", "prefixCls", "split", "style", "wrap", "classNames", "styles"]);
+  } = props, otherProps = __rest$v(props, ["size", "align", "className", "rootClassName", "children", "direction", "prefixCls", "split", "style", "wrap", "classNames", "styles"]);
   const supportFlexGap = useFlexGapSupport();
   const [horizontalSize, verticalSize] = reactExports.useMemo(() => (Array.isArray(size) ? size : [size, size]).map((item) => getNumberSize(item)), [size]);
   const childNodes = toArray$6(children, {
@@ -47669,7 +47698,7 @@ const Space = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
   });
   const mergedAlign = align === void 0 && direction === "horizontal" ? "center" : align;
   const prefixCls = getPrefixCls("space", customizePrefixCls);
-  const [wrapSSR, hashId] = useStyle$w(prefixCls);
+  const [wrapSSR, hashId] = useStyle$x(prefixCls);
   const cn = classNames(prefixCls, space === null || space === void 0 ? void 0 : space.className, hashId, `${prefixCls}-${direction}`, {
     [`${prefixCls}-rtl`]: directionConfig === "rtl",
     [`${prefixCls}-align-${mergedAlign}`]: mergedAlign
@@ -47725,7 +47754,7 @@ const Space = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
 const CompoundedSpace = Space;
 CompoundedSpace.Compact = Compact$1;
 const Space$1 = CompoundedSpace;
-var __rest$q = globalThis && globalThis.__rest || function(s2, e2) {
+var __rest$u = globalThis && globalThis.__rest || function(s2, e2) {
   var t2 = {};
   for (var p2 in s2)
     if (Object.prototype.hasOwnProperty.call(s2, p2) && e2.indexOf(p2) < 0)
@@ -47773,10 +47802,10 @@ const DropdownButton = (props) => {
     overlayStyle,
     destroyPopupOnHide,
     dropdownRender
-  } = props, restProps = __rest$q(props, ["prefixCls", "type", "danger", "disabled", "loading", "onClick", "htmlType", "children", "className", "menu", "arrow", "autoFocus", "overlay", "trigger", "align", "open", "onOpenChange", "placement", "getPopupContainer", "href", "icon", "title", "buttonsRender", "mouseEnterDelay", "mouseLeaveDelay", "overlayClassName", "overlayStyle", "destroyPopupOnHide", "dropdownRender"]);
+  } = props, restProps = __rest$u(props, ["prefixCls", "type", "danger", "disabled", "loading", "onClick", "htmlType", "children", "className", "menu", "arrow", "autoFocus", "overlay", "trigger", "align", "open", "onOpenChange", "placement", "getPopupContainer", "href", "icon", "title", "buttonsRender", "mouseEnterDelay", "mouseLeaveDelay", "overlayClassName", "overlayStyle", "destroyPopupOnHide", "dropdownRender"]);
   const prefixCls = getPrefixCls("dropdown", customizePrefixCls);
   const buttonPrefixCls = `${prefixCls}-button`;
-  const [wrapSSR, hashId] = useStyle$m(prefixCls);
+  const [wrapSSR, hashId] = useStyle$n(prefixCls);
   const dropdownProps = {
     menu,
     arrow,
@@ -47836,6 +47865,697 @@ const DropdownButton$1 = DropdownButton;
 const Dropdown = InternalDropdown;
 Dropdown.Button = DropdownButton$1;
 const Dropdown$1 = Dropdown;
+var FileTextOutlined$2 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M854.6 288.6L639.4 73.4c-6-6-14.1-9.4-22.6-9.4H192c-17.7 0-32 14.3-32 32v832c0 17.7 14.3 32 32 32h640c17.7 0 32-14.3 32-32V311.3c0-8.5-3.4-16.7-9.4-22.7zM790.2 326H602V137.8L790.2 326zm1.8 562H232V136h302v216a42 42 0 0042 42h216v494zM504 618H320c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h184c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8zM312 490v48c0 4.4 3.6 8 8 8h384c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8H320c-4.4 0-8 3.6-8 8z" } }] }, "name": "file-text", "theme": "outlined" };
+const FileTextOutlinedSvg = FileTextOutlined$2;
+var FileTextOutlined = function FileTextOutlined2(props, ref) {
+  return /* @__PURE__ */ reactExports.createElement(AntdIcon, _extends$1({}, props, {
+    ref,
+    icon: FileTextOutlinedSvg
+  }));
+};
+const FileTextOutlined$1 = /* @__PURE__ */ reactExports.forwardRef(FileTextOutlined);
+const FloatButtonContent = (props) => {
+  const {
+    icon,
+    description,
+    prefixCls,
+    className
+  } = props;
+  const defaultElement = /* @__PURE__ */ React.createElement("div", {
+    className: `${prefixCls}-icon`
+  }, /* @__PURE__ */ React.createElement(FileTextOutlined$1, null));
+  return /* @__PURE__ */ React.createElement("div", {
+    onClick: props.onClick,
+    onFocus: props.onFocus,
+    onMouseEnter: props.onMouseEnter,
+    onMouseLeave: props.onMouseLeave,
+    className: classNames(className, `${prefixCls}-content`)
+  }, icon || description ? /* @__PURE__ */ React.createElement(React.Fragment, null, icon && /* @__PURE__ */ React.createElement("div", {
+    className: `${prefixCls}-icon`
+  }, icon), description && /* @__PURE__ */ React.createElement("div", {
+    className: `${prefixCls}-description`
+  }, description)) : defaultElement);
+};
+const Content$2 = /* @__PURE__ */ reactExports.memo(FloatButtonContent);
+const FloatButtonGroupContext = /* @__PURE__ */ React.createContext(void 0);
+const {
+  Provider: FloatButtonGroupProvider
+} = FloatButtonGroupContext;
+const FloatButtonGroupContext$1 = FloatButtonGroupContext;
+const getOffset$2 = (radius) => {
+  if (radius === 0) {
+    return 0;
+  }
+  return radius - Math.sqrt(Math.pow(radius, 2) / 2);
+};
+const getOffset$3 = getOffset$2;
+const initFloatButtonGroupMotion = (token2) => {
+  const {
+    componentCls,
+    floatButtonSize,
+    motionDurationSlow,
+    motionEaseInOutCirc
+  } = token2;
+  const groupPrefixCls = `${componentCls}-group`;
+  const moveDownIn2 = new Keyframe("antFloatButtonMoveDownIn", {
+    "0%": {
+      transform: `translate3d(0, ${floatButtonSize}px, 0)`,
+      transformOrigin: "0 0",
+      opacity: 0
+    },
+    "100%": {
+      transform: "translate3d(0, 0, 0)",
+      transformOrigin: "0 0",
+      opacity: 1
+    }
+  });
+  const moveDownOut2 = new Keyframe("antFloatButtonMoveDownOut", {
+    "0%": {
+      transform: "translate3d(0, 0, 0)",
+      transformOrigin: "0 0",
+      opacity: 1
+    },
+    "100%": {
+      transform: `translate3d(0, ${floatButtonSize}px, 0)`,
+      transformOrigin: "0 0",
+      opacity: 0
+    }
+  });
+  return [{
+    [`${groupPrefixCls}-wrap`]: Object.assign({}, initMotion(`${groupPrefixCls}-wrap`, moveDownIn2, moveDownOut2, motionDurationSlow, true))
+  }, {
+    [`${groupPrefixCls}-wrap`]: {
+      [`
+          &${groupPrefixCls}-wrap-enter,
+          &${groupPrefixCls}-wrap-appear
+        `]: {
+        opacity: 0,
+        animationTimingFunction: motionEaseInOutCirc
+      },
+      [`&${groupPrefixCls}-wrap-leave`]: {
+        animationTimingFunction: motionEaseInOutCirc
+      }
+    }
+  }];
+};
+const floatButtonGroupStyle = (token2) => {
+  const {
+    antCls,
+    componentCls,
+    floatButtonSize,
+    margin,
+    borderRadiusLG,
+    borderRadiusSM,
+    badgeOffset,
+    floatButtonBodyPadding
+  } = token2;
+  const groupPrefixCls = `${componentCls}-group`;
+  return {
+    [groupPrefixCls]: Object.assign(Object.assign({}, resetComponent(token2)), {
+      zIndex: 99,
+      display: "block",
+      border: "none",
+      position: "fixed",
+      width: floatButtonSize,
+      height: "auto",
+      boxShadow: "none",
+      minHeight: floatButtonSize,
+      insetInlineEnd: token2.floatButtonInsetInlineEnd,
+      insetBlockEnd: token2.floatButtonInsetBlockEnd,
+      borderRadius: borderRadiusLG,
+      [`${groupPrefixCls}-wrap`]: {
+        zIndex: -1,
+        display: "block",
+        position: "relative",
+        marginBottom: margin
+      },
+      [`&${groupPrefixCls}-rtl`]: {
+        direction: "rtl"
+      },
+      [componentCls]: {
+        position: "static"
+      }
+    }),
+    [`${groupPrefixCls}-circle`]: {
+      [`${componentCls}-circle:not(:last-child)`]: {
+        marginBottom: token2.margin,
+        [`${componentCls}-body`]: {
+          width: floatButtonSize,
+          height: floatButtonSize,
+          borderRadius: "50%"
+        }
+      }
+    },
+    [`${groupPrefixCls}-square`]: {
+      [`${componentCls}-square`]: {
+        borderRadius: 0,
+        padding: 0,
+        "&:first-child": {
+          borderStartStartRadius: borderRadiusLG,
+          borderStartEndRadius: borderRadiusLG
+        },
+        "&:last-child": {
+          borderEndStartRadius: borderRadiusLG,
+          borderEndEndRadius: borderRadiusLG
+        },
+        "&:not(:last-child)": {
+          borderBottom: `${token2.lineWidth}px ${token2.lineType} ${token2.colorSplit}`
+        },
+        [`${antCls}-badge`]: {
+          [`${antCls}-badge-count`]: {
+            top: -(floatButtonBodyPadding + badgeOffset),
+            insetInlineEnd: -(floatButtonBodyPadding + badgeOffset)
+          }
+        }
+      },
+      [`${groupPrefixCls}-wrap`]: {
+        display: "block",
+        borderRadius: borderRadiusLG,
+        boxShadow: token2.boxShadowSecondary,
+        [`${componentCls}-square`]: {
+          boxShadow: "none",
+          marginTop: 0,
+          borderRadius: 0,
+          padding: floatButtonBodyPadding,
+          "&:first-child": {
+            borderStartStartRadius: borderRadiusLG,
+            borderStartEndRadius: borderRadiusLG
+          },
+          "&:last-child": {
+            borderEndStartRadius: borderRadiusLG,
+            borderEndEndRadius: borderRadiusLG
+          },
+          "&:not(:last-child)": {
+            borderBottom: `${token2.lineWidth}px ${token2.lineType} ${token2.colorSplit}`
+          },
+          [`${componentCls}-body`]: {
+            width: token2.floatButtonBodySize,
+            height: token2.floatButtonBodySize
+          }
+        }
+      }
+    },
+    [`${groupPrefixCls}-circle-shadow`]: {
+      boxShadow: "none"
+    },
+    [`${groupPrefixCls}-square-shadow`]: {
+      boxShadow: token2.boxShadowSecondary,
+      [`${componentCls}-square`]: {
+        boxShadow: "none",
+        padding: floatButtonBodyPadding,
+        [`${componentCls}-body`]: {
+          width: token2.floatButtonBodySize,
+          height: token2.floatButtonBodySize,
+          borderRadius: borderRadiusSM
+        }
+      }
+    }
+  };
+};
+const sharedFloatButtonStyle = (token2) => {
+  const {
+    antCls,
+    componentCls,
+    floatButtonBodyPadding,
+    floatButtonIconSize,
+    floatButtonSize,
+    borderRadiusLG,
+    badgeOffset,
+    dotOffsetInSquare,
+    dotOffsetInCircle
+  } = token2;
+  return {
+    [componentCls]: Object.assign(Object.assign({}, resetComponent(token2)), {
+      border: "none",
+      position: "fixed",
+      cursor: "pointer",
+      zIndex: 99,
+      display: "block",
+      justifyContent: "center",
+      alignItems: "center",
+      width: floatButtonSize,
+      height: floatButtonSize,
+      insetInlineEnd: token2.floatButtonInsetInlineEnd,
+      insetBlockEnd: token2.floatButtonInsetBlockEnd,
+      boxShadow: token2.boxShadowSecondary,
+      // Pure Panel
+      "&-pure": {
+        position: "relative",
+        inset: "auto"
+      },
+      "&:empty": {
+        display: "none"
+      },
+      [`${antCls}-badge`]: {
+        width: "100%",
+        height: "100%",
+        [`${antCls}-badge-count`]: {
+          transform: "translate(0, 0)",
+          transformOrigin: "center",
+          top: -badgeOffset,
+          insetInlineEnd: -badgeOffset
+        }
+      },
+      [`${componentCls}-body`]: {
+        width: "100%",
+        height: "100%",
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
+        transition: `all ${token2.motionDurationMid}`,
+        [`${componentCls}-content`]: {
+          overflow: "hidden",
+          textAlign: "center",
+          minHeight: floatButtonSize,
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          padding: `${floatButtonBodyPadding / 2}px ${floatButtonBodyPadding}px`,
+          [`${componentCls}-icon`]: {
+            textAlign: "center",
+            margin: "auto",
+            width: floatButtonIconSize,
+            fontSize: floatButtonIconSize,
+            lineHeight: 1
+          }
+        }
+      }
+    }),
+    [`${componentCls}-rtl`]: {
+      direction: "rtl"
+    },
+    [`${componentCls}-circle`]: {
+      height: floatButtonSize,
+      borderRadius: "50%",
+      [`${antCls}-badge`]: {
+        [`${antCls}-badge-dot`]: {
+          top: dotOffsetInCircle,
+          insetInlineEnd: dotOffsetInCircle
+        }
+      },
+      [`${componentCls}-body`]: {
+        borderRadius: "50%"
+      }
+    },
+    [`${componentCls}-square`]: {
+      height: "auto",
+      minHeight: floatButtonSize,
+      borderRadius: borderRadiusLG,
+      [`${antCls}-badge`]: {
+        [`${antCls}-badge-dot`]: {
+          top: dotOffsetInSquare,
+          insetInlineEnd: dotOffsetInSquare
+        }
+      },
+      [`${componentCls}-body`]: {
+        height: "auto",
+        borderRadius: borderRadiusLG
+      }
+    },
+    [`${componentCls}-default`]: {
+      backgroundColor: token2.floatButtonBackgroundColor,
+      transition: `background-color ${token2.motionDurationMid}`,
+      [`${componentCls}-body`]: {
+        backgroundColor: token2.floatButtonBackgroundColor,
+        transition: `background-color ${token2.motionDurationMid}`,
+        "&:hover": {
+          backgroundColor: token2.colorFillContent
+        },
+        [`${componentCls}-content`]: {
+          [`${componentCls}-icon`]: {
+            color: token2.colorText
+          },
+          [`${componentCls}-description`]: {
+            display: "flex",
+            alignItems: "center",
+            lineHeight: `${token2.fontSizeLG}px`,
+            color: token2.colorText,
+            fontSize: token2.fontSizeSM
+          }
+        }
+      }
+    },
+    [`${componentCls}-primary`]: {
+      backgroundColor: token2.colorPrimary,
+      [`${componentCls}-body`]: {
+        backgroundColor: token2.colorPrimary,
+        transition: `background-color ${token2.motionDurationMid}`,
+        "&:hover": {
+          backgroundColor: token2.colorPrimaryHover
+        },
+        [`${componentCls}-content`]: {
+          [`${componentCls}-icon`]: {
+            color: token2.colorTextLightSolid
+          },
+          [`${componentCls}-description`]: {
+            display: "flex",
+            alignItems: "center",
+            lineHeight: `${token2.fontSizeLG}px`,
+            color: token2.colorTextLightSolid,
+            fontSize: token2.fontSizeSM
+          }
+        }
+      }
+    }
+  };
+};
+const useStyle$b = genComponentStyleHook("FloatButton", (token2) => {
+  const {
+    colorTextLightSolid,
+    colorBgElevated,
+    controlHeightLG,
+    marginXXL,
+    marginLG,
+    fontSize,
+    fontSizeIcon,
+    controlItemBgHover,
+    paddingXXS,
+    borderRadiusLG
+  } = token2;
+  const floatButtonToken = merge$1(token2, {
+    floatButtonBackgroundColor: colorBgElevated,
+    floatButtonColor: colorTextLightSolid,
+    floatButtonHoverBackgroundColor: controlItemBgHover,
+    floatButtonFontSize: fontSize,
+    floatButtonIconSize: fontSizeIcon * 1.5,
+    floatButtonSize: controlHeightLG,
+    floatButtonInsetBlockEnd: marginXXL,
+    floatButtonInsetInlineEnd: marginLG,
+    floatButtonBodySize: controlHeightLG - paddingXXS * 2,
+    // 这里的 paddingXXS 是简写，完整逻辑是 (controlHeightLG - (controlHeightLG - paddingXXS * 2)) / 2,
+    floatButtonBodyPadding: paddingXXS,
+    badgeOffset: paddingXXS * 1.5,
+    dotOffsetInCircle: getOffset$3(controlHeightLG / 2),
+    dotOffsetInSquare: getOffset$3(borderRadiusLG)
+  });
+  return [floatButtonGroupStyle(floatButtonToken), sharedFloatButtonStyle(floatButtonToken), initFadeMotion(token2), initFloatButtonGroupMotion(floatButtonToken)];
+});
+var __rest$t = globalThis && globalThis.__rest || function(s2, e2) {
+  var t2 = {};
+  for (var p2 in s2)
+    if (Object.prototype.hasOwnProperty.call(s2, p2) && e2.indexOf(p2) < 0)
+      t2[p2] = s2[p2];
+  if (s2 != null && typeof Object.getOwnPropertySymbols === "function")
+    for (var i2 = 0, p2 = Object.getOwnPropertySymbols(s2); i2 < p2.length; i2++) {
+      if (e2.indexOf(p2[i2]) < 0 && Object.prototype.propertyIsEnumerable.call(s2, p2[i2]))
+        t2[p2[i2]] = s2[p2[i2]];
+    }
+  return t2;
+};
+const floatButtonPrefixCls = "float-btn";
+const FloatButton = (props, ref) => {
+  const {
+    prefixCls: customizePrefixCls,
+    className,
+    rootClassName,
+    type: type4 = "default",
+    shape = "circle",
+    icon,
+    description,
+    tooltip,
+    badge = {}
+  } = props, restProps = __rest$t(props, ["prefixCls", "className", "rootClassName", "type", "shape", "icon", "description", "tooltip", "badge"]);
+  const {
+    getPrefixCls,
+    direction
+  } = reactExports.useContext(ConfigContext);
+  const groupShape = reactExports.useContext(FloatButtonGroupContext$1);
+  const prefixCls = getPrefixCls(floatButtonPrefixCls, customizePrefixCls);
+  const [wrapSSR, hashId] = useStyle$b(prefixCls);
+  const mergeShape = groupShape || shape;
+  const classString = classNames(hashId, prefixCls, className, rootClassName, `${prefixCls}-${type4}`, `${prefixCls}-${mergeShape}`, {
+    [`${prefixCls}-rtl`]: direction === "rtl"
+  });
+  const badgeProps = reactExports.useMemo(() => omit(badge, ["title", "children", "status", "text"]), [badge]);
+  const contentProps = reactExports.useMemo(() => ({
+    prefixCls,
+    description,
+    icon,
+    type: type4
+  }), [prefixCls, description, icon, type4]);
+  let buttonNode = /* @__PURE__ */ React.createElement("div", {
+    className: `${prefixCls}-body`
+  }, /* @__PURE__ */ React.createElement(Content$2, Object.assign({}, contentProps)));
+  if ("badge" in props) {
+    buttonNode = /* @__PURE__ */ React.createElement(Badge$1, Object.assign({}, badgeProps), buttonNode);
+  }
+  if ("tooltip" in props) {
+    buttonNode = /* @__PURE__ */ React.createElement(Tooltip$1, {
+      title: tooltip,
+      placement: direction === "rtl" ? "right" : "left"
+    }, buttonNode);
+  }
+  return wrapSSR(props.href ? /* @__PURE__ */ React.createElement("a", Object.assign({
+    ref
+  }, restProps, {
+    className: classString
+  }), buttonNode) : /* @__PURE__ */ React.createElement("button", Object.assign({
+    ref
+  }, restProps, {
+    className: classString,
+    type: "button"
+  }), buttonNode));
+};
+const ForwardFloatButton = /* @__PURE__ */ React.forwardRef(FloatButton);
+const FloatButton$1 = ForwardFloatButton;
+var __rest$s = globalThis && globalThis.__rest || function(s2, e2) {
+  var t2 = {};
+  for (var p2 in s2)
+    if (Object.prototype.hasOwnProperty.call(s2, p2) && e2.indexOf(p2) < 0)
+      t2[p2] = s2[p2];
+  if (s2 != null && typeof Object.getOwnPropertySymbols === "function")
+    for (var i2 = 0, p2 = Object.getOwnPropertySymbols(s2); i2 < p2.length; i2++) {
+      if (e2.indexOf(p2[i2]) < 0 && Object.prototype.propertyIsEnumerable.call(s2, p2[i2]))
+        t2[p2[i2]] = s2[p2[i2]];
+    }
+  return t2;
+};
+const BackTop = (props) => {
+  const {
+    prefixCls: customizePrefixCls,
+    className,
+    type: type4 = "default",
+    shape = "circle",
+    visibilityHeight = 400,
+    icon = /* @__PURE__ */ React.createElement(VerticalAlignTopOutlined$1, null),
+    target,
+    onClick,
+    duration = 450
+  } = props, restProps = __rest$s(props, ["prefixCls", "className", "type", "shape", "visibilityHeight", "icon", "target", "onClick", "duration"]);
+  const [visible, setVisible] = reactExports.useState(visibilityHeight === 0);
+  const ref = reactExports.useRef(null);
+  const getDefaultTarget = () => ref.current && ref.current.ownerDocument ? ref.current.ownerDocument : window;
+  const handleScroll = throttleByAnimationFrame((e2) => {
+    const scrollTop = getScroll$1(e2.target, true);
+    setVisible(scrollTop >= visibilityHeight);
+  });
+  reactExports.useEffect(() => {
+    const getTarget = target || getDefaultTarget;
+    const container2 = getTarget();
+    handleScroll({
+      target: container2
+    });
+    container2 === null || container2 === void 0 ? void 0 : container2.addEventListener("scroll", handleScroll);
+    return () => {
+      handleScroll.cancel();
+      container2 === null || container2 === void 0 ? void 0 : container2.removeEventListener("scroll", handleScroll);
+    };
+  }, [target]);
+  const scrollToTop = (e2) => {
+    scrollTo(0, {
+      getContainer: target || getDefaultTarget,
+      duration
+    });
+    onClick === null || onClick === void 0 ? void 0 : onClick(e2);
+  };
+  const {
+    getPrefixCls
+  } = reactExports.useContext(ConfigContext);
+  const prefixCls = getPrefixCls(floatButtonPrefixCls, customizePrefixCls);
+  const rootPrefixCls = getPrefixCls();
+  const [wrapSSR] = useStyle$b(prefixCls);
+  const groupShape = reactExports.useContext(FloatButtonGroupContext$1);
+  const mergeShape = groupShape || shape;
+  const contentProps = Object.assign({
+    prefixCls,
+    icon,
+    type: type4,
+    shape: mergeShape
+  }, restProps);
+  return wrapSSR(/* @__PURE__ */ React.createElement(CSSMotion, {
+    visible,
+    motionName: `${rootPrefixCls}-fade`
+  }, (_ref) => {
+    let {
+      className: motionClassName
+    } = _ref;
+    return /* @__PURE__ */ React.createElement(FloatButton$1, Object.assign({
+      ref
+    }, contentProps, {
+      onClick: scrollToTop,
+      className: classNames(className, motionClassName)
+    }));
+  }));
+};
+const BackTop$1 = /* @__PURE__ */ reactExports.memo(BackTop);
+var __rest$r = globalThis && globalThis.__rest || function(s2, e2) {
+  var t2 = {};
+  for (var p2 in s2)
+    if (Object.prototype.hasOwnProperty.call(s2, p2) && e2.indexOf(p2) < 0)
+      t2[p2] = s2[p2];
+  if (s2 != null && typeof Object.getOwnPropertySymbols === "function")
+    for (var i2 = 0, p2 = Object.getOwnPropertySymbols(s2); i2 < p2.length; i2++) {
+      if (e2.indexOf(p2[i2]) < 0 && Object.prototype.propertyIsEnumerable.call(s2, p2[i2]))
+        t2[p2[i2]] = s2[p2[i2]];
+    }
+  return t2;
+};
+const FloatButtonGroup = (props) => {
+  const {
+    prefixCls: customizePrefixCls,
+    className,
+    style: style2,
+    shape = "circle",
+    type: type4 = "default",
+    icon = /* @__PURE__ */ React.createElement(FileTextOutlined$1, null),
+    closeIcon = /* @__PURE__ */ React.createElement(CloseOutlined$1, null),
+    description,
+    trigger,
+    children,
+    onOpenChange,
+    open: customOpen
+  } = props, floatButtonProps = __rest$r(props, ["prefixCls", "className", "style", "shape", "type", "icon", "closeIcon", "description", "trigger", "children", "onOpenChange", "open"]);
+  const {
+    direction,
+    getPrefixCls
+  } = reactExports.useContext(ConfigContext);
+  const prefixCls = getPrefixCls(floatButtonPrefixCls, customizePrefixCls);
+  const [wrapSSR, hashId] = useStyle$b(prefixCls);
+  const groupPrefixCls = `${prefixCls}-group`;
+  const groupCls = classNames(groupPrefixCls, hashId, className, {
+    [`${groupPrefixCls}-rtl`]: direction === "rtl",
+    [`${groupPrefixCls}-${shape}`]: shape,
+    [`${groupPrefixCls}-${shape}-shadow`]: !trigger
+  });
+  const wrapperCls = classNames(hashId, `${groupPrefixCls}-wrap`);
+  const [open2, setOpen] = useMergedState(false, {
+    value: customOpen
+  });
+  const floatButtonGroupRef = reactExports.useRef(null);
+  const floatButtonRef = reactExports.useRef(null);
+  const hoverAction = reactExports.useMemo(() => {
+    const hoverTypeAction = {
+      onMouseEnter() {
+        setOpen(true);
+        onOpenChange === null || onOpenChange === void 0 ? void 0 : onOpenChange(true);
+      },
+      onMouseLeave() {
+        setOpen(false);
+        onOpenChange === null || onOpenChange === void 0 ? void 0 : onOpenChange(false);
+      }
+    };
+    return trigger === "hover" ? hoverTypeAction : {};
+  }, [trigger]);
+  const handleOpenChange = () => {
+    setOpen((prevState) => {
+      onOpenChange === null || onOpenChange === void 0 ? void 0 : onOpenChange(!prevState);
+      return !prevState;
+    });
+  };
+  const onClick = reactExports.useCallback((e2) => {
+    var _a, _b;
+    if ((_a = floatButtonGroupRef.current) === null || _a === void 0 ? void 0 : _a.contains(e2.target)) {
+      if ((_b = floatButtonRef.current) === null || _b === void 0 ? void 0 : _b.contains(e2.target)) {
+        handleOpenChange();
+      }
+      return;
+    }
+    setOpen(false);
+    onOpenChange === null || onOpenChange === void 0 ? void 0 : onOpenChange(false);
+  }, [trigger]);
+  reactExports.useEffect(() => {
+    if (trigger === "click") {
+      document.addEventListener("click", onClick);
+      return () => {
+        document.removeEventListener("click", onClick);
+      };
+    }
+  }, [trigger]);
+  return wrapSSR(/* @__PURE__ */ React.createElement(FloatButtonGroupProvider, {
+    value: shape
+  }, /* @__PURE__ */ React.createElement("div", Object.assign({
+    ref: floatButtonGroupRef,
+    className: groupCls,
+    style: style2
+  }, hoverAction), trigger && ["click", "hover"].includes(trigger) ? /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement(CSSMotion, {
+    visible: open2,
+    motionName: `${groupPrefixCls}-wrap`
+  }, (_ref) => {
+    let {
+      className: motionClassName
+    } = _ref;
+    return /* @__PURE__ */ React.createElement("div", {
+      className: classNames(motionClassName, wrapperCls)
+    }, children);
+  }), /* @__PURE__ */ React.createElement(FloatButton$1, Object.assign({
+    ref: floatButtonRef,
+    type: type4,
+    shape,
+    icon: open2 ? closeIcon : icon,
+    description,
+    "aria-label": props["aria-label"]
+  }, floatButtonProps))) : children)));
+};
+const FloatButtonGroup$1 = /* @__PURE__ */ reactExports.memo(FloatButtonGroup);
+var __rest$q = globalThis && globalThis.__rest || function(s2, e2) {
+  var t2 = {};
+  for (var p2 in s2)
+    if (Object.prototype.hasOwnProperty.call(s2, p2) && e2.indexOf(p2) < 0)
+      t2[p2] = s2[p2];
+  if (s2 != null && typeof Object.getOwnPropertySymbols === "function")
+    for (var i2 = 0, p2 = Object.getOwnPropertySymbols(s2); i2 < p2.length; i2++) {
+      if (e2.indexOf(p2[i2]) < 0 && Object.prototype.propertyIsEnumerable.call(s2, p2[i2]))
+        t2[p2[i2]] = s2[p2[i2]];
+    }
+  return t2;
+};
+const PureFloatButton = (_a) => {
+  var {
+    backTop
+  } = _a, props = __rest$q(_a, ["backTop"]);
+  return backTop ? /* @__PURE__ */ reactExports.createElement(BackTop$1, Object.assign({}, props, {
+    visibilityHeight: 0
+  })) : /* @__PURE__ */ reactExports.createElement(FloatButton$1, Object.assign({}, props));
+};
+const PurePanel$4 = (_a) => {
+  var {
+    className,
+    items: items2
+  } = _a, props = __rest$q(_a, ["className", "items"]);
+  const {
+    prefixCls: customizePrefixCls
+  } = props;
+  const {
+    getPrefixCls
+  } = reactExports.useContext(ConfigContext);
+  const prefixCls = getPrefixCls(floatButtonPrefixCls, customizePrefixCls);
+  const pureCls = `${prefixCls}-pure`;
+  if (items2) {
+    return /* @__PURE__ */ reactExports.createElement(FloatButtonGroup$1, Object.assign({
+      className: classNames(className, pureCls)
+    }, props), items2.map((item, index2) => /* @__PURE__ */ reactExports.createElement(PureFloatButton, Object.assign({
+      key: index2
+    }, item))));
+  }
+  return /* @__PURE__ */ reactExports.createElement(PureFloatButton, Object.assign({
+    className: classNames(className, pureCls)
+  }, props));
+};
+const PurePanel$5 = PurePanel$4;
+FloatButton$1.BackTop = BackTop$1;
+FloatButton$1.Group = FloatButtonGroup$1;
+FloatButton$1._InternalPanelDoNotUseOrYouWillBeFired = PurePanel$5;
 function useDebounce(value) {
   const [cacheValue, setCacheValue] = reactExports.useState(value);
   reactExports.useEffect(() => {
@@ -50465,7 +51185,7 @@ const Image$1 = Image;
 const Layout = InternalLayout;
 Layout.Header = Header$7;
 Layout.Footer = Footer$2;
-Layout.Content = Content$1;
+Layout.Content = Content$3;
 Layout.Sider = Sider$2;
 const Layout$1 = Layout;
 function extendsObject() {
@@ -53055,7 +53775,7 @@ const baseStaticMethods = {
   destroy,
   config: setMessageGlobalConfig,
   useMessage,
-  _InternalPanelDoNotUseOrYouWillBeFired: PurePanel$b
+  _InternalPanelDoNotUseOrYouWillBeFired: PurePanel$d
 };
 const staticMethods = baseStaticMethods;
 methods.forEach((type4) => {
@@ -53094,7 +53814,7 @@ const PurePanel$2 = (props) => {
   } = reactExports.useContext(ConfigContext);
   const rootPrefixCls = getPrefixCls();
   const prefixCls = customizePrefixCls || getPrefixCls("modal");
-  const [, hashId] = useStyle$u(prefixCls);
+  const [, hashId] = useStyle$v(prefixCls);
   const confirmPrefixCls = `${prefixCls}-confirm`;
   let additionalProps = {};
   if (type4) {
@@ -64294,7 +65014,7 @@ var __rest$1 = globalThis && globalThis.__rest || function(s2, e2) {
   return t2;
 };
 const TITLE_ELE_LIST = [1, 2, 3, 4, 5];
-const Title$6 = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
+const Title$7 = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
   const {
     level = 1
   } = props, restProps = __rest$1(props, ["level"]);
@@ -64310,11 +65030,11 @@ const Title$6 = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     component
   }));
 });
-const Title$7 = Title$6;
+const Title$8 = Title$7;
 const Typography = OriginTypography;
 Typography.Text = Text$5;
 Typography.Link = Link$1;
-Typography.Title = Title$7;
+Typography.Title = Title$8;
 Typography.Paragraph = Paragraph$3;
 const Typography$1 = Typography;
 function bind(fn, thisArg) {
@@ -66375,11 +67095,11 @@ const LoginPage = () => {
       setIsLoading(false);
     });
   };
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(Container$d, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Box, { children: [
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Container$e, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Box, { children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx(
       Image$1,
       {
-        src: "logoverde.png",
+        src: "src/renderer/src/assets/logo-branca.png",
         preview: false,
         style: {
           width: "300px"
@@ -66404,94 +67124,85 @@ const LoginPage = () => {
           width: "100%",
           marginTop: "30px"
         },
-        children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
-          Form$1,
-          {
-            name: "normal_login",
-            layout: "vertical",
-            autoComplete: "on",
-            onFinish,
-            children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                "div",
-                {
-                  style: {
-                    display: "flex",
-                    gap: "5px",
-                    flexDirection: "column"
-                  },
-                  children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      Form$1.Item,
-                      {
-                        name: "email",
-                        label: "E-mail",
-                        rules: [
-                          {
-                            required: true,
-                            message: "O Email é necessário para efetuar o login!"
-                          }
-                        ],
-                        children: /* @__PURE__ */ jsxRuntimeExports.jsx(Input$1, { placeholder: "E-mail" })
-                      }
-                    ),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      Form$1.Item,
-                      {
-                        name: "password",
-                        label: "Senha",
-                        rules: [
-                          {
-                            required: true,
-                            message: "A senha é necessário para efetuar o login!"
-                          }
-                        ],
-                        children: /* @__PURE__ */ jsxRuntimeExports.jsx(Input$1.Password, { placeholder: "Senha", visibilityToggle: true })
-                      }
-                    )
-                  ]
-                }
-              ),
-              error && /* @__PURE__ */ jsxRuntimeExports.jsx(
-                "div",
-                {
-                  style: {
-                    marginBottom: "10px"
-                  },
-                  children: getErrorMessage()
-                }
-              ),
-              /* @__PURE__ */ jsxRuntimeExports.jsxs(Form$1.Item, { children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { name: "remember", valuePropName: "checked", noStyle: true, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Checkbox$1, { children: "Lembrar-me" }) }),
+        children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Form$1, { name: "normal_login", layout: "vertical", autoComplete: "on", onFinish, children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            "div",
+            {
+              style: {
+                display: "flex",
+                gap: "5px",
+                flexDirection: "column"
+              },
+              children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  Link$2,
+                  Form$1.Item,
                   {
-                    to: "/",
-                    style: {
-                      color: "#47aa54",
-                      fontWeight: "bold",
-                      marginLeft: "155px"
-                    },
-                    children: "Esqueceu a senha ?"
+                    name: "email",
+                    label: "E-mail",
+                    rules: [
+                      {
+                        required: true,
+                        message: "O Email é necessário para efetuar o login!"
+                      }
+                    ],
+                    children: /* @__PURE__ */ jsxRuntimeExports.jsx(Input$1, { placeholder: "E-mail" })
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Form$1.Item,
+                  {
+                    name: "password",
+                    label: "Senha",
+                    rules: [
+                      {
+                        required: true,
+                        message: "A senha é necessário para efetuar o login!"
+                      }
+                    ],
+                    children: /* @__PURE__ */ jsxRuntimeExports.jsx(Input$1.Password, { placeholder: "Senha", visibilityToggle: true })
                   }
                 )
-              ] }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                Button$2,
-                {
-                  type: "primary",
-                  htmlType: "submit",
-                  loading: isLoading,
-                  style: {
-                    backgroundColor: "#47aa54",
-                    width: "100%"
-                  },
-                  children: "Entrar"
-                }
-              ) })
-            ]
-          }
-        )
+              ]
+            }
+          ),
+          error && /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "div",
+            {
+              style: {
+                marginBottom: "10px"
+              },
+              children: getErrorMessage()
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(Form$1.Item, { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { name: "remember", valuePropName: "checked", noStyle: true, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Checkbox$1, { children: "Lembrar-me" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Link$2,
+              {
+                to: "/",
+                style: {
+                  color: "#47aa54",
+                  fontWeight: "bold",
+                  marginLeft: "155px"
+                },
+                children: "Esqueceu a senha ?"
+              }
+            )
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Button$2,
+            {
+              type: "primary",
+              htmlType: "submit",
+              loading: isLoading,
+              style: {
+                backgroundColor: "#47aa54",
+                width: "100%"
+              },
+              children: "Entrar"
+            }
+          ) })
+        ] })
       }
     )
   ] }) });
@@ -66543,15 +67254,6 @@ var ApiOutlined = function ApiOutlined2(props, ref) {
   }));
 };
 const ApiOutlined$1 = /* @__PURE__ */ reactExports.forwardRef(ApiOutlined);
-var AppstoreAddOutlined$2 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "defs", "attrs": {}, "children": [{ "tag": "style", "attrs": {} }] }, { "tag": "path", "attrs": { "d": "M464 144H160c-8.8 0-16 7.2-16 16v304c0 8.8 7.2 16 16 16h304c8.8 0 16-7.2 16-16V160c0-8.8-7.2-16-16-16zm-52 268H212V212h200v200zm452-268H560c-8.8 0-16 7.2-16 16v304c0 8.8 7.2 16 16 16h304c8.8 0 16-7.2 16-16V160c0-8.8-7.2-16-16-16zm-52 268H612V212h200v200zm52 132H560c-8.8 0-16 7.2-16 16v304c0 8.8 7.2 16 16 16h304c8.8 0 16-7.2 16-16V560c0-8.8-7.2-16-16-16zm-52 268H612V612h200v200zM424 712H296V584c0-4.4-3.6-8-8-8h-48c-4.4 0-8 3.6-8 8v128H104c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h128v128c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V776h128c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8z" } }] }, "name": "appstore-add", "theme": "outlined" };
-const AppstoreAddOutlinedSvg = AppstoreAddOutlined$2;
-var AppstoreAddOutlined = function AppstoreAddOutlined2(props, ref) {
-  return /* @__PURE__ */ reactExports.createElement(AntdIcon, _extends$1({}, props, {
-    ref,
-    icon: AppstoreAddOutlinedSvg
-  }));
-};
-const AppstoreAddOutlined$1 = /* @__PURE__ */ reactExports.forwardRef(AppstoreAddOutlined);
 var AppstoreOutlined$2 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M464 144H160c-8.8 0-16 7.2-16 16v304c0 8.8 7.2 16 16 16h304c8.8 0 16-7.2 16-16V160c0-8.8-7.2-16-16-16zm-52 268H212V212h200v200zm452-268H560c-8.8 0-16 7.2-16 16v304c0 8.8 7.2 16 16 16h304c8.8 0 16-7.2 16-16V160c0-8.8-7.2-16-16-16zm-52 268H612V212h200v200zM464 544H160c-8.8 0-16 7.2-16 16v304c0 8.8 7.2 16 16 16h304c8.8 0 16-7.2 16-16V560c0-8.8-7.2-16-16-16zm-52 268H212V612h200v200zm452-268H560c-8.8 0-16 7.2-16 16v304c0 8.8 7.2 16 16 16h304c8.8 0 16-7.2 16-16V560c0-8.8-7.2-16-16-16zm-52 268H612V612h200v200z" } }] }, "name": "appstore", "theme": "outlined" };
 const AppstoreOutlinedSvg = AppstoreOutlined$2;
 var AppstoreOutlined = function AppstoreOutlined2(props, ref) {
@@ -66651,6 +67353,15 @@ var PieChartOutlined = function PieChartOutlined2(props, ref) {
   }));
 };
 const PieChartOutlined$1 = /* @__PURE__ */ reactExports.forwardRef(PieChartOutlined);
+var PrinterOutlined$2 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M820 436h-40c-4.4 0-8 3.6-8 8v40c0 4.4 3.6 8 8 8h40c4.4 0 8-3.6 8-8v-40c0-4.4-3.6-8-8-8zm32-104H732V120c0-4.4-3.6-8-8-8H300c-4.4 0-8 3.6-8 8v212H172c-44.2 0-80 35.8-80 80v328c0 17.7 14.3 32 32 32h168v132c0 4.4 3.6 8 8 8h424c4.4 0 8-3.6 8-8V772h168c17.7 0 32-14.3 32-32V412c0-44.2-35.8-80-80-80zM360 180h304v152H360V180zm304 664H360V568h304v276zm200-140H732V500H292v204H160V412c0-6.6 5.4-12 12-12h680c6.6 0 12 5.4 12 12v292z" } }] }, "name": "printer", "theme": "outlined" };
+const PrinterOutlinedSvg = PrinterOutlined$2;
+var PrinterOutlined = function PrinterOutlined2(props, ref) {
+  return /* @__PURE__ */ reactExports.createElement(AntdIcon, _extends$1({}, props, {
+    ref,
+    icon: PrinterOutlinedSvg
+  }));
+};
+const PrinterOutlined$1 = /* @__PURE__ */ reactExports.forwardRef(PrinterOutlined);
 var ReconciliationOutlined$2 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M676 565c-50.8 0-92 41.2-92 92s41.2 92 92 92 92-41.2 92-92-41.2-92-92-92zm0 126c-18.8 0-34-15.2-34-34s15.2-34 34-34 34 15.2 34 34-15.2 34-34 34zm204-523H668c0-30.9-25.1-56-56-56h-80c-30.9 0-56 25.1-56 56H264c-17.7 0-32 14.3-32 32v200h-88c-17.7 0-32 14.3-32 32v448c0 17.7 14.3 32 32 32h336c17.7 0 32-14.3 32-32v-16h368c17.7 0 32-14.3 32-32V200c0-17.7-14.3-32-32-32zm-412 64h72v-56h64v56h72v48H468v-48zm-20 616H176V616h272v232zm0-296H176v-88h272v88zm392 240H512V432c0-17.7-14.3-32-32-32H304V240h100v104h336V240h100v552zM704 408v96c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8v-96c0-4.4-3.6-8-8-8h-48c-4.4 0-8 3.6-8 8zM592 512h48c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8h-48c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8z" } }] }, "name": "reconciliation", "theme": "outlined" };
 const ReconciliationOutlinedSvg = ReconciliationOutlined$2;
 var ReconciliationOutlined = function ReconciliationOutlined2(props, ref) {
@@ -66660,6 +67371,15 @@ var ReconciliationOutlined = function ReconciliationOutlined2(props, ref) {
   }));
 };
 const ReconciliationOutlined$1 = /* @__PURE__ */ reactExports.forwardRef(ReconciliationOutlined);
+var ScanOutlined$2 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M136 384h56c4.4 0 8-3.6 8-8V200h176c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H196c-37.6 0-68 30.4-68 68v180c0 4.4 3.6 8 8 8zm512-184h176v176c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8V196c0-37.6-30.4-68-68-68H648c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zM376 824H200V648c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v180c0 37.6 30.4 68 68 68h180c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm512-184h-56c-4.4 0-8 3.6-8 8v176H648c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h180c37.6 0 68-30.4 68-68V648c0-4.4-3.6-8-8-8zm16-164H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8z" } }] }, "name": "scan", "theme": "outlined" };
+const ScanOutlinedSvg = ScanOutlined$2;
+var ScanOutlined = function ScanOutlined2(props, ref) {
+  return /* @__PURE__ */ reactExports.createElement(AntdIcon, _extends$1({}, props, {
+    ref,
+    icon: ScanOutlinedSvg
+  }));
+};
+const ScanOutlined$1 = /* @__PURE__ */ reactExports.forwardRef(ScanOutlined);
 var ShoppingOutlined$2 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M832 312H696v-16c0-101.6-82.4-184-184-184s-184 82.4-184 184v16H192c-17.7 0-32 14.3-32 32v536c0 17.7 14.3 32 32 32h640c17.7 0 32-14.3 32-32V344c0-17.7-14.3-32-32-32zm-432-16c0-61.9 50.1-112 112-112s112 50.1 112 112v16H400v-16zm392 544H232V384h96v88c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-88h224v88c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-88h96v456z" } }] }, "name": "shopping", "theme": "outlined" };
 const ShoppingOutlinedSvg = ShoppingOutlined$2;
 var ShoppingOutlined = function ShoppingOutlined2(props, ref) {
@@ -66714,7 +67434,7 @@ var WalletOutlined = function WalletOutlined2(props, ref) {
   }));
 };
 const WalletOutlined$1 = /* @__PURE__ */ reactExports.forwardRef(WalletOutlined);
-const { Title: Title$5, Paragraph } = Typography$1;
+const { Title: Title$6, Paragraph } = Typography$1;
 const Dashboard = () => {
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(DashboardContainer, { children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs(
@@ -66756,7 +67476,7 @@ const Dashboard = () => {
               },
               children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  Title$5,
+                  Title$6,
                   {
                     level: 1,
                     style: {
@@ -66816,7 +67536,7 @@ const Dashboard = () => {
               }
             ) }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(Title$5, { level: 3, style: { margin: "0" }, children: "R$ 0,00" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Title$6, { level: 3, style: { margin: "0" }, children: "R$ 0,00" }),
               /* @__PURE__ */ jsxRuntimeExports.jsx(
                 Paragraph,
                 {
@@ -66836,7 +67556,7 @@ const Dashboard = () => {
               }
             ) }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(Title$5, { level: 3, style: { margin: "0" }, children: "R$ 0,00" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Title$6, { level: 3, style: { margin: "0" }, children: "R$ 0,00" }),
               /* @__PURE__ */ jsxRuntimeExports.jsx(
                 Paragraph,
                 {
@@ -66856,7 +67576,7 @@ const Dashboard = () => {
               }
             ) }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(Title$5, { level: 3, style: { margin: "0" }, children: "R$ 0,00" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Title$6, { level: 3, style: { margin: "0" }, children: "R$ 0,00" }),
               /* @__PURE__ */ jsxRuntimeExports.jsx(
                 Paragraph,
                 {
@@ -66876,7 +67596,7 @@ const Dashboard = () => {
               }
             ) }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(Title$5, { level: 3, style: { margin: "0" }, children: "139" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Title$6, { level: 3, style: { margin: "0" }, children: "139" }),
               /* @__PURE__ */ jsxRuntimeExports.jsx(
                 Paragraph,
                 {
@@ -66896,7 +67616,7 @@ const Dashboard = () => {
               }
             ) }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(Title$5, { level: 3, style: { margin: "0" }, children: "R$ 0,00" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Title$6, { level: 3, style: { margin: "0" }, children: "R$ 0,00" }),
               /* @__PURE__ */ jsxRuntimeExports.jsx(
                 Paragraph,
                 {
@@ -66911,7 +67631,7 @@ const Dashboard = () => {
     )
   ] });
 };
-const Container$c = st.div`
+const Container$d = st.div`
   width: 100%;
   padding: 20px 20px;
 `;
@@ -67165,7 +67885,7 @@ const CreateCommandModal = ({
     }
   );
 };
-const Container$b = st.div`
+const Container$c = st.div`
   width: 280px;
   height: auto;
   cursor: pointer;
@@ -67260,10 +67980,10 @@ const ColorList = [
   "#FF1493"
   // Adicione mais cores aqui
 ];
-const { Title: Title$4, Text: Text$3 } = Typography$1;
+const { Title: Title$5, Text: Text$3 } = Typography$1;
 const CardBill = (props) => {
   const navigate = useNavigate();
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$b, { onClick: () => navigate(`/comandas/${props.data.id}`), children: [
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$c, { onClick: () => navigate(`/comandas/${props.data.id}`), children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs(InfoBill, { children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
         Avatar$1,
@@ -67275,7 +67995,7 @@ const CardBill = (props) => {
           icon: /* @__PURE__ */ jsxRuntimeExports.jsx(DollarOutlined$1, { style: { color: "#2FAA54" } })
         }
       ) }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(Title$4, { level: 3, children: props.data.number }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Title$5, { level: 3, children: props.data.number }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs(Text$3, { strong: true, style: { fontSize: "18px" }, children: [
         " ",
         "Mesa: ",
@@ -67294,7 +68014,7 @@ const CardBill = (props) => {
     /* @__PURE__ */ jsxRuntimeExports.jsx(Divider$1, { style: { margin: "0" } }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs(FinanceBill, { children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs(BoxFinance, { children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(Title$4, { level: 5, style: { color: "#ECA63E" }, children: "SubTotal" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Title$5, { level: 5, style: { color: "#ECA63E" }, children: "SubTotal" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx(Text$3, { strong: true, italic: true, style: { fontSize: "18px" }, children: formatCurrency(12.9) })
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -67306,7 +68026,7 @@ const CardBill = (props) => {
         }
       ),
       /* @__PURE__ */ jsxRuntimeExports.jsxs(BoxFinance, { children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(Title$4, { level: 5, style: { color: "#2FAA54" }, children: "Total" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Title$5, { level: 5, style: { color: "#2FAA54" }, children: "Total" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx(Text$3, { strong: true, italic: true, style: { fontSize: "18px" }, children: formatCurrency(12.9) })
       ] })
     ] })
@@ -67328,7 +68048,7 @@ const Commands = () => {
     });
   }
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$c, { children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$d, { children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx(HeaderFilter, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
         "div",
         {
@@ -67380,7 +68100,7 @@ const Commands = () => {
 const Reports = () => {
   return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { children: "Relatorios" }) });
 };
-const Container$a = st.div`
+const Container$b = st.div`
   width: 100%;
   height: 100vh;
   padding: 20px;
@@ -67582,7 +68302,7 @@ const data = [
   }
 ];
 const Stocks = () => {
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$a, { children: [
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$b, { children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx(Header$4, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
       "div",
       {
@@ -67718,7 +68438,7 @@ const h = /* @__PURE__ */ new Map([
   ]
 ]), i = reactExports.forwardRef((l2, a2) => /* @__PURE__ */ React.createElement(P, c(r({ ref: a2 }, l2), { weights: h })));
 i.displayName = "StackSimple";
-const Container$9 = st.div`
+const Container$a = st.div`
   width: 100%;
   height: 100%;
   padding: 20px ;
@@ -67896,7 +68616,7 @@ const CreateTable = ({
     }
   );
 };
-const { Title: Title$3, Text: Text$2 } = Typography$1;
+const { Title: Title$4, Text: Text$2 } = Typography$1;
 const TablesPage = () => {
   const navigate = useNavigate();
   const [tables, setTables] = reactExports.useState([]);
@@ -67912,7 +68632,7 @@ const TablesPage = () => {
     });
   }
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$9, { children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$a, { children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx(Header$3, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
         Button$2,
         {
@@ -67968,7 +68688,7 @@ const TablesPage = () => {
                           )
                         }
                       ),
-                      /* @__PURE__ */ jsxRuntimeExports.jsxs(Title$3, { level: 4, children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsxs(Title$4, { level: 4, children: [
                         "Mesa ",
                         table.title
                       ] }),
@@ -68025,9 +68745,9 @@ const TablesPage = () => {
   ] });
 };
 const Apps = () => {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { children: "Aplicativos" }) });
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: "Apps" });
 };
-const Container$8 = st.div`
+const Container$9 = st.div`
   width: 100%;
 `;
 const Header$2 = st.header`
@@ -68347,6 +69067,27 @@ function BillProvider({ children }) {
 }
 function useBill() {
   const context = reactExports.useContext(BillContext);
+  return context;
+}
+const PrinterContext = reactExports.createContext({});
+function PrinterProvider({ children }) {
+  const [currentTab, setCurrentTab] = reactExports.useState("1");
+  const [showModal, setShowModal] = reactExports.useState(false);
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    PrinterContext.Provider,
+    {
+      value: {
+        currentTab,
+        setCurrentTab,
+        showModal,
+        setShowModal
+      },
+      children
+    }
+  );
+}
+function usePrinter() {
+  const context = reactExports.useContext(PrinterContext);
   return context;
 }
 const DrawerFilterProducts = ({
@@ -69374,7 +70115,7 @@ const Products$1 = () => {
     return Object.values(categoryGroups);
   }
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$8, { children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$9, { children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs(Header$2, { children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs(
           Button$2,
@@ -69475,8 +70216,139 @@ const Products$1 = () => {
     )
   ] });
 };
-const Integrations = () => {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { children: "Integrações" }) });
+const Container$8 = st.div`
+  width: 100%;
+  padding: 20px 300px;
+  height: calc(100vh - 65px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: scroll;
+  gap: 80px;
+`;
+const Title$3 = st.div`
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  flex-direction: column;
+  gap: 20px;
+`;
+const Content$1 = st.div`
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+`;
+const CardHabilitated = ({
+  icon,
+  title,
+  status,
+  style: style2,
+  button,
+  description = "Aprimore a integração para otimizar sua experiência na loja.",
+  badge
+}) => {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, { children: badge?.active ? /* @__PURE__ */ jsxRuntimeExports.jsx(Badge$1.Ribbon, { text: badge.text, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    "div",
+    {
+      style: {
+        width: "250px",
+        maxWidth: "250px",
+        maxHeight: "280px",
+        height: "280px",
+        backgroundColor: "#fff",
+        borderRadius: "8px",
+        boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.05)",
+        border: "1px solid rgba(0, 0, 0, 0.09)",
+        padding: "16px",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "space-between",
+        gap: "16px"
+      },
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+          Avatar$1,
+          {
+            size: 72,
+            icon,
+            style: {
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: style2?.backgroundColor
+            }
+          }
+        ) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: title }),
+        status ? /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Integração" }) : null,
+        description ? /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "p",
+          {
+            style: {
+              textAlign: "center"
+            },
+            children: description
+          }
+        ) : null,
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          Button$2,
+          {
+            type: button.type,
+            disabled: button.disabled,
+            size: "large",
+            onClick: button.onClick,
+            children: button?.text ? button.text : "Configurar"
+          }
+        )
+      ]
+    }
+  ) }) : /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    "div",
+    {
+      style: {
+        width: "250px",
+        height: "280px",
+        backgroundColor: "#fff",
+        borderRadius: "8px",
+        boxShadow: "0px 4px 4px rgba(0, 0, 0, 0.05)",
+        border: "1px solid rgba(0, 0, 0, 0.09)",
+        padding: "16px",
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "space-between",
+        gap: "16px"
+      },
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+          Avatar$1,
+          {
+            size: 72,
+            icon,
+            style: {
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              backgroundColor: style2?.backgroundColor
+            }
+          }
+        ) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: title }),
+        status ? /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Integração" }) : null,
+        description ? /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "p",
+          {
+            style: {
+              textAlign: "center"
+            },
+            children: description
+          }
+        ) : null,
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Button$2, { type: button.type, size: "large", onClick: button.onClick, children: button?.text ? button.text : "Configurar" })
+      ]
+    }
+  ) });
 };
 var DefaultContext = {
   color: void 0,
@@ -69551,6 +70423,242 @@ function IconBase2(props) {
     return elem(conf);
   }) : elem(DefaultContext);
 }
+function MdBalance(props) {
+  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 24 24" }, "child": [{ "tag": "path", "attr": { "fill": "none", "d": "M0 0h24v24H0z" } }, { "tag": "path", "attr": { "d": "M13 7.83c.85-.3 1.53-.98 1.83-1.83H18l-3 7c0 1.66 1.57 3 3.5 3s3.5-1.34 3.5-3l-3-7h2V4h-6.17c-.41-1.17-1.52-2-2.83-2s-2.42.83-2.83 2H3v2h2l-3 7c0 1.66 1.57 3 3.5 3S9 14.66 9 13L6 6h3.17c.3.85.98 1.53 1.83 1.83V19H2v2h20v-2h-9V7.83zM20.37 13h-3.74l1.87-4.36L20.37 13zm-13 0H3.63L5.5 8.64 7.37 13zM12 6c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z" } }] })(props);
+}
+function MdRestaurantMenu(props) {
+  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 24 24" }, "child": [{ "tag": "path", "attr": { "fill": "none", "d": "M0 0h24v24H0z" } }, { "tag": "path", "attr": { "d": "M8.1 13.34l2.83-2.83L3.91 3.5a4.008 4.008 0 000 5.66l4.19 4.18zm6.78-1.81c1.53.71 3.68.21 5.27-1.38 1.91-1.91 2.28-4.65.81-6.12-1.46-1.46-4.2-1.1-6.12.81-1.59 1.59-2.09 3.74-1.38 5.27L3.7 19.87l1.41 1.41L12 14.41l6.88 6.88 1.41-1.41L13.41 13l1.47-1.47z" } }] })(props);
+}
+function MdTableRestaurant(props) {
+  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 24 24" }, "child": [{ "tag": "path", "attr": { "fill": "none", "d": "M0 0h24v24H0z" } }, { "tag": "path", "attr": { "d": "M21.96 9.73l-1.43-5a.996.996 0 00-.96-.73H4.43c-.45 0-.84.3-.96.73l-1.43 5c-.18.63.3 1.27.96 1.27h2.2L4 20h2l.67-5h10.67l.66 5h2l-1.2-9H21c.66 0 1.14-.64.96-1.27zM6.93 13l.27-2h9.6l.27 2H6.93z" } }] })(props);
+}
+function SiIfood(props) {
+  return GenIcon({ "tag": "svg", "attr": { "role": "img", "viewBox": "0 0 24 24" }, "child": [{ "tag": "title", "attr": {}, "child": [] }, { "tag": "path", "attr": { "d": "M8.428 1.67c-4.65 0-7.184 4.149-7.184 6.998 0 2.294 2.2 3.299 4.25 3.299l-.006-.006c4.244 0 7.184-3.854 7.184-6.998 0-2.29-2.175-3.293-4.244-3.293zm11.328 0c-4.65 0-7.184 4.149-7.184 6.998 0 2.294 2.2 3.299 4.25 3.299l-.006-.006C21.061 11.96 24 8.107 24 4.963c0-2.29-2.18-3.293-4.244-3.293zM14.172 14.52l2.435 1.834c-2.17 2.07-6.124 3.525-9.353 3.17A8.913 8.913 0 01.23 14.541H0a9.598 9.598 0 008.828 7.758c3.814.24 7.323-.905 9.947-3.13l-.004.007 1.08 2.988 1.555-7.623-7.234-.02Z" } }] })(props);
+}
+function FaWhatsapp(props) {
+  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 448 512" }, "child": [{ "tag": "path", "attr": { "d": "M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z" } }] })(props);
+}
+function FaArrowDown(props) {
+  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 448 512" }, "child": [{ "tag": "path", "attr": { "d": "M413.1 222.5l22.2 22.2c9.4 9.4 9.4 24.6 0 33.9L241 473c-9.4 9.4-24.6 9.4-33.9 0L12.7 278.6c-9.4-9.4-9.4-24.6 0-33.9l22.2-22.2c9.5-9.5 25-9.3 34.3.4L184 343.4V56c0-13.3 10.7-24 24-24h32c13.3 0 24 10.7 24 24v287.4l114.8-120.5c9.3-9.8 24.8-10 34.3-.4z" } }] })(props);
+}
+function FaArrowUp(props) {
+  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 448 512" }, "child": [{ "tag": "path", "attr": { "d": "M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z" } }] })(props);
+}
+function FaBookReader(props) {
+  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 512 512" }, "child": [{ "tag": "path", "attr": { "d": "M352 96c0-53.02-42.98-96-96-96s-96 42.98-96 96 42.98 96 96 96 96-42.98 96-96zM233.59 241.1c-59.33-36.32-155.43-46.3-203.79-49.05C13.55 191.13 0 203.51 0 219.14v222.8c0 14.33 11.59 26.28 26.49 27.05 43.66 2.29 131.99 10.68 193.04 41.43 9.37 4.72 20.48-1.71 20.48-11.87V252.56c-.01-4.67-2.32-8.95-6.42-11.46zm248.61-49.05c-48.35 2.74-144.46 12.73-203.78 49.05-4.1 2.51-6.41 6.96-6.41 11.63v245.79c0 10.19 11.14 16.63 20.54 11.9 61.04-30.72 149.32-39.11 192.97-41.4 14.9-.78 26.49-12.73 26.49-27.06V219.14c-.01-15.63-13.56-28.01-29.81-27.09z" } }] })(props);
+}
+function FaCashRegister(props) {
+  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 512 512" }, "child": [{ "tag": "path", "attr": { "d": "M511.1 378.8l-26.7-160c-2.6-15.4-15.9-26.7-31.6-26.7H208v-64h96c8.8 0 16-7.2 16-16V16c0-8.8-7.2-16-16-16H48c-8.8 0-16 7.2-16 16v96c0 8.8 7.2 16 16 16h96v64H59.1c-15.6 0-29 11.3-31.6 26.7L.8 378.7c-.6 3.5-.9 7-.9 10.5V480c0 17.7 14.3 32 32 32h448c17.7 0 32-14.3 32-32v-90.7c.1-3.5-.2-7-.8-10.5zM280 248c0-8.8 7.2-16 16-16h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16h-16c-8.8 0-16-7.2-16-16v-16zm-32 64h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16h-16c-8.8 0-16-7.2-16-16v-16c0-8.8 7.2-16 16-16zm-32-80c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16h-16c-8.8 0-16-7.2-16-16v-16c0-8.8 7.2-16 16-16h16zM80 80V48h192v32H80zm40 200h-16c-8.8 0-16-7.2-16-16v-16c0-8.8 7.2-16 16-16h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16zm16 64v-16c0-8.8 7.2-16 16-16h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16h-16c-8.8 0-16-7.2-16-16zm216 112c0 4.4-3.6 8-8 8H168c-4.4 0-8-3.6-8-8v-16c0-4.4 3.6-8 8-8h176c4.4 0 8 3.6 8 8v16zm24-112c0 8.8-7.2 16-16 16h-16c-8.8 0-16-7.2-16-16v-16c0-8.8 7.2-16 16-16h16c8.8 0 16 7.2 16 16v16zm48-80c0 8.8-7.2 16-16 16h-16c-8.8 0-16-7.2-16-16v-16c0-8.8 7.2-16 16-16h16c8.8 0 16 7.2 16 16v16z" } }] })(props);
+}
+function FaExclamationTriangle(props) {
+  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 576 512" }, "child": [{ "tag": "path", "attr": { "d": "M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z" } }] })(props);
+}
+function FaMoneyBillAlt(props) {
+  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 640 512" }, "child": [{ "tag": "path", "attr": { "d": "M352 288h-16v-88c0-4.42-3.58-8-8-8h-13.58c-4.74 0-9.37 1.4-13.31 4.03l-15.33 10.22a7.994 7.994 0 0 0-2.22 11.09l8.88 13.31a7.994 7.994 0 0 0 11.09 2.22l.47-.31V288h-16c-4.42 0-8 3.58-8 8v16c0 4.42 3.58 8 8 8h64c4.42 0 8-3.58 8-8v-16c0-4.42-3.58-8-8-8zM608 64H32C14.33 64 0 78.33 0 96v320c0 17.67 14.33 32 32 32h576c17.67 0 32-14.33 32-32V96c0-17.67-14.33-32-32-32zM48 400v-64c35.35 0 64 28.65 64 64H48zm0-224v-64h64c0 35.35-28.65 64-64 64zm272 192c-53.02 0-96-50.15-96-112 0-61.86 42.98-112 96-112s96 50.14 96 112c0 61.87-43 112-96 112zm272 32h-64c0-35.35 28.65-64 64-64v64zm0-224c-35.35 0-64-28.65-64-64h64v64z" } }] })(props);
+}
+function FaPercentage(props) {
+  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 384 512" }, "child": [{ "tag": "path", "attr": { "d": "M109.25 173.25c24.99-24.99 24.99-65.52 0-90.51-24.99-24.99-65.52-24.99-90.51 0-24.99 24.99-24.99 65.52 0 90.51 25 25 65.52 25 90.51 0zm256 165.49c-24.99-24.99-65.52-24.99-90.51 0-24.99 24.99-24.99 65.52 0 90.51 24.99 24.99 65.52 24.99 90.51 0 25-24.99 25-65.51 0-90.51zm-1.94-231.43l-22.62-22.62c-12.5-12.5-32.76-12.5-45.25 0L20.69 359.44c-12.5 12.5-12.5 32.76 0 45.25l22.62 22.62c12.5 12.5 32.76 12.5 45.25 0l274.75-274.75c12.5-12.49 12.5-32.75 0-45.25z" } }] })(props);
+}
+function FaQrcode(props) {
+  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 448 512" }, "child": [{ "tag": "path", "attr": { "d": "M0 224h192V32H0v192zM64 96h64v64H64V96zm192-64v192h192V32H256zm128 128h-64V96h64v64zM0 480h192V288H0v192zm64-128h64v64H64v-64zm352-64h32v128h-96v-32h-32v96h-64V288h96v32h64v-32zm0 160h32v32h-32v-32zm-64 0h32v32h-32v-32z" } }] })(props);
+}
+function FaUserAlt(props) {
+  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 512 512" }, "child": [{ "tag": "path", "attr": { "d": "M256 288c79.5 0 144-64.5 144-144S335.5 0 256 0 112 64.5 112 144s64.5 144 144 144zm128 32h-55.1c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16H128C57.3 320 0 377.3 0 448v16c0 26.5 21.5 48 48 48h416c26.5 0 48-21.5 48-48v-16c0-70.7-57.3-128-128-128z" } }] })(props);
+}
+function FaUserTie(props) {
+  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 448 512" }, "child": [{ "tag": "path", "attr": { "d": "M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm95.8 32.6L272 480l-32-136 32-56h-96l32 56-32 136-47.8-191.4C56.9 292 0 350.3 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-72.1-56.9-130.4-128.2-133.8z" } }] })(props);
+}
+function FaWallet(props) {
+  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 512 512" }, "child": [{ "tag": "path", "attr": { "d": "M461.2 128H80c-8.84 0-16-7.16-16-16s7.16-16 16-16h384c8.84 0 16-7.16 16-16 0-26.51-21.49-48-48-48H64C28.65 32 0 60.65 0 96v320c0 35.35 28.65 64 64 64h397.2c28.02 0 50.8-21.53 50.8-48V176c0-26.47-22.78-48-50.8-48zM416 336c-17.67 0-32-14.33-32-32s14.33-32 32-32 32 14.33 32 32-14.33 32-32 32z" } }] })(props);
+}
+function FaRegCreditCard(props) {
+  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 576 512" }, "child": [{ "tag": "path", "attr": { "d": "M527.9 32H48.1C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48.1 48h479.8c26.6 0 48.1-21.5 48.1-48V80c0-26.5-21.5-48-48.1-48zM54.1 80h467.8c3.3 0 6 2.7 6 6v42H48.1V86c0-3.3 2.7-6 6-6zm467.8 352H54.1c-3.3 0-6-2.7-6-6V256h479.8v170c0 3.3-2.7 6-6 6zM192 332v40c0 6.6-5.4 12-12 12h-72c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h72c6.6 0 12 5.4 12 12zm192 0v40c0 6.6-5.4 12-12 12H236c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h136c6.6 0 12 5.4 12 12z" } }] })(props);
+}
+const RegistePrinter = () => {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: "RegistePrinter" });
+};
+const PrinterModal = () => {
+  const { showModal, setShowModal, currentTab } = usePrinter();
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    Modal$1,
+    {
+      title: currentTab === "1" ? /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "Impressoras registradas" }) : /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "Registrar impressoras" }),
+      footer: null,
+      open: showModal,
+      onCancel: () => setShowModal(false),
+      width: "30%",
+      children: [
+        currentTab === "1" && /* @__PURE__ */ jsxRuntimeExports.jsx(RegistePrinter, {}),
+        currentTab === "2" && /* @__PURE__ */ jsxRuntimeExports.jsx(RegistePrinter, {})
+      ]
+    }
+  );
+};
+const Integrations = () => {
+  const { setShowModal } = usePrinter();
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$8, { children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "p",
+        {
+          style: {
+            color: "rgba(0, 0, 0, 0.54)"
+          },
+          children: "Habilite e edite preferências das integrações com o Peditz"
+        }
+      ) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(Title$3, { children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "Integrações internas" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(Content$1, { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            CardHabilitated,
+            {
+              title: "Impressoras",
+              button: {
+                text: "Configurar",
+                type: "primary",
+                onClick: () => {
+                  console.log("click"), setShowModal(true);
+                }
+              },
+              style: {
+                backgroundColor: "#F5F5F5"
+              },
+              icon: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                PrinterOutlined$1,
+                {
+                  style: {
+                    color: "#25D366"
+                  }
+                }
+              ),
+              badge: {
+                active: false,
+                text: "Em breve"
+              }
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            CardHabilitated,
+            {
+              title: "Balança digital",
+              button: {
+                text: "Configurar",
+                type: "primary",
+                disabled: true,
+                onClick: () => console.log("click")
+              },
+              style: {
+                backgroundColor: "#F5F5F5"
+              },
+              icon: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                MdBalance,
+                {
+                  style: {
+                    color: "#25D366"
+                  }
+                }
+              ),
+              badge: {
+                active: true,
+                text: "Em breve"
+              }
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            CardHabilitated,
+            {
+              title: "Leitor de código de barras",
+              button: {
+                text: "Configurar",
+                type: "primary",
+                disabled: true,
+                onClick: () => console.log("click")
+              },
+              style: {
+                backgroundColor: "#F5F5F5"
+              },
+              icon: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                ScanOutlined$1,
+                {
+                  style: {
+                    color: "#25D366"
+                  }
+                }
+              ),
+              badge: {
+                active: true,
+                text: "Em breve"
+              }
+            }
+          )
+        ] })
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(Title$3, { children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "Integrações Externas" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(Content$1, { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            CardHabilitated,
+            {
+              title: "Ifood",
+              description: "Integre os pedidos do iFood diretamente à plataforma Peditz.",
+              button: {
+                text: "Habilitar",
+                type: "primary",
+                onClick: () => console.log("click"),
+                disabled: true
+              },
+              style: {
+                backgroundColor: "#F5F5F5"
+              },
+              icon: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                SiIfood,
+                {
+                  style: {
+                    color: "#EA1D2C"
+                  }
+                }
+              ),
+              badge: {
+                active: true,
+                text: "Em breve"
+              }
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            CardHabilitated,
+            {
+              title: "Whatsapp",
+              description: "Integre os pedidos do Whatsapp diretamente à plataforma Peditz.",
+              button: {
+                text: "Habilitar",
+                type: "primary",
+                disabled: true,
+                onClick: () => console.log("click")
+              },
+              style: {
+                backgroundColor: "#F5F5F5"
+              },
+              icon: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                FaWhatsapp,
+                {
+                  style: {
+                    color: "#25D366"
+                  }
+                }
+              ),
+              badge: {
+                active: true,
+                text: "Em breve"
+              }
+            }
+          )
+        ] })
+      ] })
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(PrinterModal, {})
+  ] });
+};
 function IoFastFood(props) {
   return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 512 512" }, "child": [{ "tag": "path", "attr": { "d": "M368 128h.09m111.46-32h-91.06l8.92-35.66 38.32-13.05c8.15-2.77 13-11.43 10.65-19.71a16 16 0 00-20.54-10.73l-47 16a16 16 0 00-10.36 11.27L355.51 96H224.45c-8.61 0-16 6.62-16.43 15.23A16 16 0 00224 128h2.75l1 8.66A8.3 8.3 0 00236 144c39 0 73.66 10.9 100.12 31.52A121.9 121.9 0 01371 218.07a123.4 123.4 0 0110.12 29.51 7.83 7.83 0 003.29 4.88 72 72 0 0126.38 86.43 7.92 7.92 0 00-.15 5.53A96 96 0 01416 376c0 22.34-7.6 43.63-21.4 59.95a80.12 80.12 0 01-28.78 21.67 8 8 0 00-4.21 4.37 108.19 108.19 0 01-17.37 29.86 2.5 2.5 0 001.9 4.11h49.21a48.22 48.22 0 0047.85-44.14L477.4 128h2.6a16 16 0 0016-16.77c-.42-8.61-7.84-15.23-16.45-15.23z" } }, { "tag": "path", "attr": { "d": "M108.69 320a23.87 23.87 0 0117 7l15.51 15.51a4 4 0 005.66 0L162.34 327a23.87 23.87 0 0117-7h196.58a8 8 0 008.08-7.92V312a40.07 40.07 0 00-32-39.2c-.82-29.69-13-54.54-35.51-72C295.67 184.56 267.85 176 236 176h-72c-68.22 0-114.43 38.77-116 96.8A40.07 40.07 0 0016 312a8 8 0 008 8zm77.25 32a8 8 0 00-5.66 2.34l-22.14 22.15a20 20 0 01-28.28 0l-22.14-22.15a8 8 0 00-5.66-2.34h-69.4a15.93 15.93 0 00-15.76 13.17A65.22 65.22 0 0016 376c0 30.59 21.13 55.51 47.26 56 2.43 15.12 8.31 28.78 17.16 39.47C93.51 487.28 112.54 496 134 496h132c21.46 0 40.49-8.72 53.58-24.55 8.85-10.69 14.73-24.35 17.16-39.47 26.13-.47 47.26-25.39 47.26-56a65.22 65.22 0 00-.9-10.83A15.93 15.93 0 00367.34 352z" } }] })(props);
 }
@@ -69618,13 +70726,13 @@ const items$1 = [
     label: /* @__PURE__ */ jsxRuntimeExports.jsx(Link$2, { to: "/relatorios", children: "Relatórios" }),
     icon: /* @__PURE__ */ jsxRuntimeExports.jsx(SolutionOutlined$1, {})
   }),
+  // getItem({
+  // 	key: '10',
+  // 	label: <Link to={'/aplicativos'}>Aplicativos</Link>,
+  // 	icon: <AppstoreAddOutlined />,
+  // }),
   getItem({
     key: "10",
-    label: /* @__PURE__ */ jsxRuntimeExports.jsx(Link$2, { to: "/aplicativos", children: "Aplicativos" }),
-    icon: /* @__PURE__ */ jsxRuntimeExports.jsx(AppstoreAddOutlined$1, {})
-  }),
-  getItem({
-    key: "11",
     label: /* @__PURE__ */ jsxRuntimeExports.jsx(Link$2, { to: "/integracoes", children: "Integrações" }),
     icon: /* @__PURE__ */ jsxRuntimeExports.jsx(ApiOutlined$1, {})
   }),
@@ -69705,12 +70813,6 @@ const SideBar = ({ collapsed }) => {
     }
   );
 };
-function MdRestaurantMenu(props) {
-  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 24 24" }, "child": [{ "tag": "path", "attr": { "fill": "none", "d": "M0 0h24v24H0z" } }, { "tag": "path", "attr": { "d": "M8.1 13.34l2.83-2.83L3.91 3.5a4.008 4.008 0 000 5.66l4.19 4.18zm6.78-1.81c1.53.71 3.68.21 5.27-1.38 1.91-1.91 2.28-4.65.81-6.12-1.46-1.46-4.2-1.1-6.12.81-1.59 1.59-2.09 3.74-1.38 5.27L3.7 19.87l1.41 1.41L12 14.41l6.88 6.88 1.41-1.41L13.41 13l1.47-1.47z" } }] })(props);
-}
-function MdTableRestaurant(props) {
-  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 24 24" }, "child": [{ "tag": "path", "attr": { "fill": "none", "d": "M0 0h24v24H0z" } }, { "tag": "path", "attr": { "d": "M21.96 9.73l-1.43-5a.996.996 0 00-.96-.73H4.43c-.45 0-.84.3-.96.73l-1.43 5c-.18.63.3 1.27.96 1.27h2.2L4 20h2l.67-5h10.67l.66 5h2l-1.2-9H21c.66 0 1.14-.64.96-1.27zM6.93 13l.27-2h9.6l.27 2H6.93z" } }] })(props);
-}
 function CgMenuOreos(props) {
   return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 24 24", "fill": "none" }, "child": [{ "tag": "path", "attr": { "d": "M7 3C5.34315 3 4 4.34315 4 6H20C20 4.34315 18.6569 3 17 3H7Z", "fill": "currentColor" } }, { "tag": "path", "attr": { "d": "M7 11C5.34315 11 4 9.65685 4 8H20C20 9.65685 18.6569 11 17 11H7Z", "fill": "currentColor" } }, { "tag": "path", "attr": { "d": "M7 13C5.34315 13 4 14.3431 4 16H20C20 14.3431 18.6569 13 17 13H7Z", "fill": "currentColor" } }, { "tag": "path", "attr": { "d": "M7 21C5.34315 21 4 19.6569 4 18H20C20 19.6569 18.6569 21 17 21H7Z", "fill": "currentColor" } }] })(props);
 }
@@ -69967,42 +71069,6 @@ function BsFillDatabaseFill(props) {
 function BsCashCoin(props) {
   return GenIcon({ "tag": "svg", "attr": { "fill": "currentColor", "viewBox": "0 0 16 16" }, "child": [{ "tag": "path", "attr": { "fillRule": "evenodd", "d": "M11 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm5-4a5 5 0 1 1-10 0 5 5 0 0 1 10 0z" } }, { "tag": "path", "attr": { "d": "M9.438 11.944c.047.596.518 1.06 1.363 1.116v.44h.375v-.443c.875-.061 1.386-.529 1.386-1.207 0-.618-.39-.936-1.09-1.1l-.296-.07v-1.2c.376.043.614.248.671.532h.658c-.047-.575-.54-1.024-1.329-1.073V8.5h-.375v.45c-.747.073-1.255.522-1.255 1.158 0 .562.378.92 1.007 1.066l.248.061v1.272c-.384-.058-.639-.27-.696-.563h-.668zm1.36-1.354c-.369-.085-.569-.26-.569-.522 0-.294.216-.514.572-.578v1.1h-.003zm.432.746c.449.104.655.272.655.569 0 .339-.257.571-.709.614v-1.195l.054.012z" } }, { "tag": "path", "attr": { "d": "M1 0a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h4.083c.058-.344.145-.678.258-1H3a2 2 0 0 0-2-2V3a2 2 0 0 0 2-2h10a2 2 0 0 0 2 2v3.528c.38.34.717.728 1 1.154V1a1 1 0 0 0-1-1H1z" } }, { "tag": "path", "attr": { "d": "M9.998 5.083 10 5a2 2 0 1 0-3.132 1.65 5.982 5.982 0 0 1 3.13-1.567z" } }] })(props);
 }
-function FaArrowDown(props) {
-  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 448 512" }, "child": [{ "tag": "path", "attr": { "d": "M413.1 222.5l22.2 22.2c9.4 9.4 9.4 24.6 0 33.9L241 473c-9.4 9.4-24.6 9.4-33.9 0L12.7 278.6c-9.4-9.4-9.4-24.6 0-33.9l22.2-22.2c9.5-9.5 25-9.3 34.3.4L184 343.4V56c0-13.3 10.7-24 24-24h32c13.3 0 24 10.7 24 24v287.4l114.8-120.5c9.3-9.8 24.8-10 34.3-.4z" } }] })(props);
-}
-function FaArrowUp(props) {
-  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 448 512" }, "child": [{ "tag": "path", "attr": { "d": "M34.9 289.5l-22.2-22.2c-9.4-9.4-9.4-24.6 0-33.9L207 39c9.4-9.4 24.6-9.4 33.9 0l194.3 194.3c9.4 9.4 9.4 24.6 0 33.9L413 289.4c-9.5 9.5-25 9.3-34.3-.4L264 168.6V456c0 13.3-10.7 24-24 24h-32c-13.3 0-24-10.7-24-24V168.6L69.2 289.1c-9.3 9.8-24.8 10-34.3.4z" } }] })(props);
-}
-function FaBookReader(props) {
-  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 512 512" }, "child": [{ "tag": "path", "attr": { "d": "M352 96c0-53.02-42.98-96-96-96s-96 42.98-96 96 42.98 96 96 96 96-42.98 96-96zM233.59 241.1c-59.33-36.32-155.43-46.3-203.79-49.05C13.55 191.13 0 203.51 0 219.14v222.8c0 14.33 11.59 26.28 26.49 27.05 43.66 2.29 131.99 10.68 193.04 41.43 9.37 4.72 20.48-1.71 20.48-11.87V252.56c-.01-4.67-2.32-8.95-6.42-11.46zm248.61-49.05c-48.35 2.74-144.46 12.73-203.78 49.05-4.1 2.51-6.41 6.96-6.41 11.63v245.79c0 10.19 11.14 16.63 20.54 11.9 61.04-30.72 149.32-39.11 192.97-41.4 14.9-.78 26.49-12.73 26.49-27.06V219.14c-.01-15.63-13.56-28.01-29.81-27.09z" } }] })(props);
-}
-function FaCashRegister(props) {
-  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 512 512" }, "child": [{ "tag": "path", "attr": { "d": "M511.1 378.8l-26.7-160c-2.6-15.4-15.9-26.7-31.6-26.7H208v-64h96c8.8 0 16-7.2 16-16V16c0-8.8-7.2-16-16-16H48c-8.8 0-16 7.2-16 16v96c0 8.8 7.2 16 16 16h96v64H59.1c-15.6 0-29 11.3-31.6 26.7L.8 378.7c-.6 3.5-.9 7-.9 10.5V480c0 17.7 14.3 32 32 32h448c17.7 0 32-14.3 32-32v-90.7c.1-3.5-.2-7-.8-10.5zM280 248c0-8.8 7.2-16 16-16h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16h-16c-8.8 0-16-7.2-16-16v-16zm-32 64h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16h-16c-8.8 0-16-7.2-16-16v-16c0-8.8 7.2-16 16-16zm-32-80c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16h-16c-8.8 0-16-7.2-16-16v-16c0-8.8 7.2-16 16-16h16zM80 80V48h192v32H80zm40 200h-16c-8.8 0-16-7.2-16-16v-16c0-8.8 7.2-16 16-16h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16zm16 64v-16c0-8.8 7.2-16 16-16h16c8.8 0 16 7.2 16 16v16c0 8.8-7.2 16-16 16h-16c-8.8 0-16-7.2-16-16zm216 112c0 4.4-3.6 8-8 8H168c-4.4 0-8-3.6-8-8v-16c0-4.4 3.6-8 8-8h176c4.4 0 8 3.6 8 8v16zm24-112c0 8.8-7.2 16-16 16h-16c-8.8 0-16-7.2-16-16v-16c0-8.8 7.2-16 16-16h16c8.8 0 16 7.2 16 16v16zm48-80c0 8.8-7.2 16-16 16h-16c-8.8 0-16-7.2-16-16v-16c0-8.8 7.2-16 16-16h16c8.8 0 16 7.2 16 16v16z" } }] })(props);
-}
-function FaExclamationTriangle(props) {
-  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 576 512" }, "child": [{ "tag": "path", "attr": { "d": "M569.517 440.013C587.975 472.007 564.806 512 527.94 512H48.054c-36.937 0-59.999-40.055-41.577-71.987L246.423 23.985c18.467-32.009 64.72-31.951 83.154 0l239.94 416.028zM288 354c-25.405 0-46 20.595-46 46s20.595 46 46 46 46-20.595 46-46-20.595-46-46-46zm-43.673-165.346l7.418 136c.347 6.364 5.609 11.346 11.982 11.346h48.546c6.373 0 11.635-4.982 11.982-11.346l7.418-136c.375-6.874-5.098-12.654-11.982-12.654h-63.383c-6.884 0-12.356 5.78-11.981 12.654z" } }] })(props);
-}
-function FaMoneyBillAlt(props) {
-  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 640 512" }, "child": [{ "tag": "path", "attr": { "d": "M352 288h-16v-88c0-4.42-3.58-8-8-8h-13.58c-4.74 0-9.37 1.4-13.31 4.03l-15.33 10.22a7.994 7.994 0 0 0-2.22 11.09l8.88 13.31a7.994 7.994 0 0 0 11.09 2.22l.47-.31V288h-16c-4.42 0-8 3.58-8 8v16c0 4.42 3.58 8 8 8h64c4.42 0 8-3.58 8-8v-16c0-4.42-3.58-8-8-8zM608 64H32C14.33 64 0 78.33 0 96v320c0 17.67 14.33 32 32 32h576c17.67 0 32-14.33 32-32V96c0-17.67-14.33-32-32-32zM48 400v-64c35.35 0 64 28.65 64 64H48zm0-224v-64h64c0 35.35-28.65 64-64 64zm272 192c-53.02 0-96-50.15-96-112 0-61.86 42.98-112 96-112s96 50.14 96 112c0 61.87-43 112-96 112zm272 32h-64c0-35.35 28.65-64 64-64v64zm0-224c-35.35 0-64-28.65-64-64h64v64z" } }] })(props);
-}
-function FaPercentage(props) {
-  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 384 512" }, "child": [{ "tag": "path", "attr": { "d": "M109.25 173.25c24.99-24.99 24.99-65.52 0-90.51-24.99-24.99-65.52-24.99-90.51 0-24.99 24.99-24.99 65.52 0 90.51 25 25 65.52 25 90.51 0zm256 165.49c-24.99-24.99-65.52-24.99-90.51 0-24.99 24.99-24.99 65.52 0 90.51 24.99 24.99 65.52 24.99 90.51 0 25-24.99 25-65.51 0-90.51zm-1.94-231.43l-22.62-22.62c-12.5-12.5-32.76-12.5-45.25 0L20.69 359.44c-12.5 12.5-12.5 32.76 0 45.25l22.62 22.62c12.5 12.5 32.76 12.5 45.25 0l274.75-274.75c12.5-12.49 12.5-32.75 0-45.25z" } }] })(props);
-}
-function FaQrcode(props) {
-  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 448 512" }, "child": [{ "tag": "path", "attr": { "d": "M0 224h192V32H0v192zM64 96h64v64H64V96zm192-64v192h192V32H256zm128 128h-64V96h64v64zM0 480h192V288H0v192zm64-128h64v64H64v-64zm352-64h32v128h-96v-32h-32v96h-64V288h96v32h64v-32zm0 160h32v32h-32v-32zm-64 0h32v32h-32v-32z" } }] })(props);
-}
-function FaUserAlt(props) {
-  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 512 512" }, "child": [{ "tag": "path", "attr": { "d": "M256 288c79.5 0 144-64.5 144-144S335.5 0 256 0 112 64.5 112 144s64.5 144 144 144zm128 32h-55.1c-22.2 10.2-46.9 16-72.9 16s-50.6-5.8-72.9-16H128C57.3 320 0 377.3 0 448v16c0 26.5 21.5 48 48 48h416c26.5 0 48-21.5 48-48v-16c0-70.7-57.3-128-128-128z" } }] })(props);
-}
-function FaUserTie(props) {
-  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 448 512" }, "child": [{ "tag": "path", "attr": { "d": "M224 256c70.7 0 128-57.3 128-128S294.7 0 224 0 96 57.3 96 128s57.3 128 128 128zm95.8 32.6L272 480l-32-136 32-56h-96l32 56-32 136-47.8-191.4C56.9 292 0 350.3 0 422.4V464c0 26.5 21.5 48 48 48h352c26.5 0 48-21.5 48-48v-41.6c0-72.1-56.9-130.4-128.2-133.8z" } }] })(props);
-}
-function FaWallet(props) {
-  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 512 512" }, "child": [{ "tag": "path", "attr": { "d": "M461.2 128H80c-8.84 0-16-7.16-16-16s7.16-16 16-16h384c8.84 0 16-7.16 16-16 0-26.51-21.49-48-48-48H64C28.65 32 0 60.65 0 96v320c0 35.35 28.65 64 64 64h397.2c28.02 0 50.8-21.53 50.8-48V176c0-26.47-22.78-48-50.8-48zM416 336c-17.67 0-32-14.33-32-32s14.33-32 32-32 32 14.33 32 32-14.33 32-32 32z" } }] })(props);
-}
-function FaRegCreditCard(props) {
-  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 576 512" }, "child": [{ "tag": "path", "attr": { "d": "M527.9 32H48.1C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48.1 48h479.8c26.6 0 48.1-21.5 48.1-48V80c0-26.5-21.5-48-48.1-48zM54.1 80h467.8c3.3 0 6 2.7 6 6v42H48.1V86c0-3.3 2.7-6 6-6zm467.8 352H54.1c-3.3 0-6-2.7-6-6V256h479.8v170c0 3.3-2.7 6-6 6zM192 332v40c0 6.6-5.4 12-12 12h-72c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h72c6.6 0 12 5.4 12 12zm192 0v40c0 6.6-5.4 12-12 12H236c-6.6 0-12-5.4-12-12v-40c0-6.6 5.4-12 12-12h136c6.6 0 12 5.4 12 12z" } }] })(props);
-}
 const JoinCommandModal = ({
   onCancel,
   visible,
@@ -70044,6 +71110,38 @@ const JoinCommandModal = ({
     }
   );
 };
+function OpenCashier(props) {
+  window.electronBridge.printLine(`
+    <!DOCTYPE html>
+    <html>
+        <head>
+            <title>Document</title>
+            <style>
+                body {
+                    font-family: Arial, Helvetica, sans-serif;
+                    max-width: 70mm;
+                    font-size: 14px;
+                }
+                .title {
+                    font-size: 1rem;
+                    font-weight: bold;
+                    text-align: center;
+                }
+            </style>
+        </head>
+        <body>
+            <div class="title">ABERTURA DE CAIXA</div>
+            <p>---------------------------------</p>
+            <br>
+            <br>
+            <p><b>Valor inicial:</b> ${formatCurrency(Number(props?.initial_value))}</p>
+            <p><b>Operador:</b>${props?.restaurant?.title}</p>
+            <p><b>Id Caixa:</b>${props?.opened_by_name}</p>
+            <p><b>Abertura:</b>${(/* @__PURE__ */ new Date()).toLocaleString()}</p>
+        </body>
+    </html>
+    `);
+}
 const { Text: Text$1, Title: Title$2 } = Typography$1;
 const { Option: Option2 } = Select$1;
 const { confirm: confirm$1 } = Modal$1;
@@ -70094,9 +71192,7 @@ const Command = () => {
   const [visibleJoinCommandModal, setVisibleJoinCommandModal] = reactExports.useState(false);
   const [onTip, setOnTip] = React.useState(true);
   const [operatorCode, setOperatorCode] = reactExports.useState("");
-  const [formOfPayment, setFormOfPayment] = reactExports.useState(
-    []
-  );
+  const [formOfPayment, setFormOfPayment] = reactExports.useState([]);
   const { fetchBill, selectedBill, handleDeleteOrder, ordersGroupList } = useBill();
   const { id: id2 } = useParams();
   reactExports.useEffect(() => {
@@ -70183,8 +71279,7 @@ const Command = () => {
               /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: props.name })
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs(Text$1, { children: [
-              "Preço do item:",
-              " ",
+              "Preço do item: ",
               /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: formatCurrency(Number(props.price)) })
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs(Text$1, { children: [
@@ -70232,11 +71327,7 @@ const Command = () => {
   };
   const rowSelection = {
     onChange: (selectedRowKeys, selectedRows) => {
-      console.log(
-        `selectedRowKeys: ${selectedRowKeys}`,
-        "selectedRows: ",
-        selectedRows
-      );
+      console.log(`selectedRowKeys: ${selectedRowKeys}`, "selectedRows: ", selectedRows);
     }
   };
   const dataTable = ordersGroupList.flatMap((order) => {
@@ -70427,6 +71518,14 @@ const Command = () => {
                             {
                               type: "primary",
                               icon: /* @__PURE__ */ jsxRuntimeExports.jsx(AiFillPrinter, { size: 24 }),
+                              onClick: () => OpenCashier({
+                                initial_value: "0",
+                                opened_by_name: "teste",
+                                restaurant: {
+                                  id: "1",
+                                  title: "teste"
+                                }
+                              }),
                               size: "large",
                               style: {
                                 display: "flex",
@@ -70606,12 +71705,7 @@ const Command = () => {
                               },
                               children: [
                                 formatCurrency(120),
-                                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                                  Badge$1,
-                                  {
-                                    count: /* @__PURE__ */ jsxRuntimeExports.jsx(ClockCircleOutlined$1, { style: { color: "#f5222d" } })
-                                  }
-                                )
+                                /* @__PURE__ */ jsxRuntimeExports.jsx(Badge$1, { count: /* @__PURE__ */ jsxRuntimeExports.jsx(ClockCircleOutlined$1, { style: { color: "#f5222d" } }) })
                               ]
                             }
                           )
@@ -70648,12 +71742,7 @@ const Command = () => {
                               },
                               children: [
                                 formatCurrency(120),
-                                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                                  Badge$1,
-                                  {
-                                    count: /* @__PURE__ */ jsxRuntimeExports.jsx(BsFillDatabaseFill, { style: { color: "#a49d16" } })
-                                  }
-                                )
+                                /* @__PURE__ */ jsxRuntimeExports.jsx(Badge$1, { count: /* @__PURE__ */ jsxRuntimeExports.jsx(BsFillDatabaseFill, { style: { color: "#a49d16" } }) })
                               ]
                             }
                           )
@@ -71393,8 +72482,9 @@ const ModalCashier = ({
   }
   function handleOpenCashier(data2) {
     setIsLoading(true);
-    api.post("/cashier/", { ...data2, open: true }).then(() => {
+    api.post("/cashier/", { ...data2, open: true }).then((response) => {
       onFetch();
+      OpenCashier(response.data);
       onClose();
     }).catch((error) => {
       errorActions(error);
@@ -73948,7 +75038,17 @@ function App() {
         },
         children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Xe, { theme: theme$1, children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(GlobalStyle, {}),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(ProductsProvider, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(BillProvider, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(Navigation, {}) }) })
+          /* @__PURE__ */ jsxRuntimeExports.jsx(ProductsProvider, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(PrinterProvider, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(BillProvider, { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Navigation, {}),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              FloatButton$1,
+              {
+                icon: /* @__PURE__ */ jsxRuntimeExports.jsx(QuestionCircleOutlined$1, {}),
+                type: "primary",
+                style: { right: 24 }
+              }
+            )
+          ] }) }) })
         ] })
       }
     )
