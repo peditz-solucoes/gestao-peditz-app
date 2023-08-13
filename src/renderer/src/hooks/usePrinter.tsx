@@ -1,4 +1,7 @@
-// import { Printer } from '@renderer/types'
+import api from '@renderer/services/api'
+import { Printer } from '@renderer/types'
+import { errorActions } from '@renderer/utils/errorActions'
+import { AxiosError } from 'axios'
 import { ReactNode, createContext, useContext, useState } from 'react'
 
 interface PrinterProviderProps {
@@ -10,7 +13,8 @@ interface PrinterContextData {
   setCurrentTab: (tab: '1' | '2') => void
   showModal: boolean
   setShowModal: (show: boolean) => void
-  // printers: Printer[]
+  printers: Printer[]
+  fetchPrinters: () => void
 }
 
 export const PrinterContext = createContext<PrinterContextData>({} as PrinterContextData)
@@ -18,7 +22,18 @@ export const PrinterContext = createContext<PrinterContextData>({} as PrinterCon
 export function PrinterProvider({ children }: PrinterProviderProps) {
   const [currentTab, setCurrentTab] = useState('1')
   const [showModal, setShowModal] = useState(false)
-  // const [printers, setPrinters] = useState<Printer[]>([])
+  const [printers, setPrinters] = useState<Printer[]>([])
+
+  function fetchPrinters() {
+    api
+      .get('/print/')
+      .then((response) => {
+        setPrinters(response.data)
+      })
+      .catch((err: AxiosError) => {
+        errorActions(err)
+      })
+  }
 
   return (
     <PrinterContext.Provider
@@ -26,7 +41,9 @@ export function PrinterProvider({ children }: PrinterProviderProps) {
         currentTab,
         setCurrentTab,
         showModal,
-        setShowModal
+        setShowModal,
+        printers,
+        fetchPrinters,
       }}
     >
       {children}

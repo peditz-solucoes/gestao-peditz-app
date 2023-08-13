@@ -17,6 +17,11 @@ export function OpenCashier(props: OpenCashierProps) {
         <head>
             <title>Document</title>
             <style>
+                @page{
+                    margin: 10mm 0mm;
+                    size: 70mm 120mm ;
+                }
+
                 body {
                     font-family: Arial, Helvetica, sans-serif;
                     max-width: 70mm;

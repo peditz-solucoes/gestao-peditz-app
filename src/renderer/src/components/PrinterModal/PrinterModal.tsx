@@ -2,6 +2,7 @@ import { usePrinter } from '@renderer/hooks'
 import { Modal } from 'antd'
 import React from 'react'
 import { RegistePrinter } from './components/RegisterPrinter/RegisterPrinter'
+import { ListPrinter } from './components/ListPrinter/ListPrinter'
 
 export const PrinterModal: React.FC = () => {
   const { showModal, setShowModal, currentTab } = usePrinter()
@@ -13,7 +14,7 @@ export const PrinterModal: React.FC = () => {
       onCancel={() => setShowModal(false)}
       width={'30%'}
     >
-      {currentTab === '1' && <RegistePrinter />}
+      {currentTab === '1' && <ListPrinter />}
       {currentTab === '2' && <RegistePrinter />}
     </Modal>
   )

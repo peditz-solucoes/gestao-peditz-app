@@ -5,6 +5,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import api from '../../services/api'
 import { AxiosError, AxiosResponse } from 'axios'
 import { setLogin } from '../../services/auth'
+import logo from '../../assets/logo-green.png'
 
 
 const { Paragraph } = Typography
@@ -60,7 +61,7 @@ export const LoginPage: React.FC = () => {
     <S.Container>
       <S.Box>
         <Image
-          src="src/renderer/src/assets/logo-branca.png"
+          src={logo}
           preview={false}
           style={{
             width: '300px'
