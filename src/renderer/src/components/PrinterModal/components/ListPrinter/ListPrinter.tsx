@@ -32,7 +32,7 @@ const columns: ColumnsType<Printer> = [
     dataIndex: 'actions',
     key: 'actions',
     align: 'center',
-    render: (text) => <div>
+    render: () => <div>
       <Button type="primary" shape="circle" icon={<EditOutlined />} />
       <Button type="primary" shape="circle" icon={<EditOutlined />} />
     </div>

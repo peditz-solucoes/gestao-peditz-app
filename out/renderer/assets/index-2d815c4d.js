@@ -12217,7 +12217,7 @@ var parseStyle = function parseStyle2(interpolation) {
           effectStyle = _objectSpread2(_objectSpread2({}, effectStyle), childEffectStyle);
           styleStr += "".concat(mergedKey).concat(_parsedStr2);
         } else {
-          let appendStyle2 = function(cssKey, cssValue) {
+          let appendStyle = function(cssKey, cssValue) {
             var styleName = cssKey.replace(/[A-Z]/g, function(match2) {
               return "-".concat(match2.toLowerCase());
             });
@@ -12231,15 +12231,14 @@ var parseStyle = function parseStyle2(interpolation) {
             }
             styleStr += "".concat(styleName, ":").concat(formatValue, ";");
           };
-          var appendStyle = appendStyle2;
           var _value;
           var actualValue = (_value = value === null || value === void 0 ? void 0 : value.value) !== null && _value !== void 0 ? _value : value;
           if (_typeof(value) === "object" && value !== null && value !== void 0 && value[MULTI_VALUE] && Array.isArray(actualValue)) {
             actualValue.forEach(function(item) {
-              appendStyle2(key, item);
+              appendStyle(key, item);
             });
           } else {
-            appendStyle2(key, actualValue);
+            appendStyle(key, actualValue);
           }
         }
       });
@@ -26422,7 +26421,7 @@ function useAlign(open2, popupEle, target, placement, builtinPlacements, popupAl
   }
   var onAlign = useEvent(function() {
     if (popupEle && target && open2) {
-      let getIntersectionVisibleArea2 = function(offsetX, offsetY) {
+      let getIntersectionVisibleArea = function(offsetX, offsetY) {
         var area = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : visibleArea;
         var l2 = popupRect.x + offsetX;
         var t2 = popupRect.y + offsetY;
@@ -26433,13 +26432,12 @@ function useAlign(open2, popupEle, target, placement, builtinPlacements, popupAl
         var visibleR = Math.min(r2, area.right);
         var visibleB = Math.min(b2, area.bottom);
         return Math.max(0, (visibleR - visibleL) * (visibleB - visibleT));
-      }, syncNextPopupPosition2 = function() {
+      }, syncNextPopupPosition = function() {
         nextPopupY = popupRect.y + nextOffsetY;
         nextPopupBottom = nextPopupY + popupHeight;
         nextPopupX = popupRect.x + nextOffsetX;
         nextPopupRight = nextPopupX + popupWidth;
       };
-      var getIntersectionVisibleArea = getIntersectionVisibleArea2, syncNextPopupPosition = syncNextPopupPosition2;
       var popupElement = popupEle;
       var originLeft = popupElement.style.left;
       var originTop = popupElement.style.top;
@@ -26526,8 +26524,8 @@ function useAlign(open2, popupEle, target, placement, builtinPlacements, popupAl
       var nextAlignInfo = _objectSpread2({}, placementInfo);
       var nextOffsetX = targetAlignPoint.x - popupAlignPoint.x + popupOffsetX;
       var nextOffsetY = targetAlignPoint.y - popupAlignPoint.y + popupOffsetY;
-      var originIntersectionVisibleArea = getIntersectionVisibleArea2(nextOffsetX, nextOffsetY);
-      var originIntersectionRecommendArea = getIntersectionVisibleArea2(nextOffsetX, nextOffsetY, visibleRegionArea);
+      var originIntersectionVisibleArea = getIntersectionVisibleArea(nextOffsetX, nextOffsetY);
+      var originIntersectionRecommendArea = getIntersectionVisibleArea(nextOffsetX, nextOffsetY, visibleRegionArea);
       var targetAlignPointTL = getAlignPoint(targetRect, ["t", "l"]);
       var popupAlignPointTL = getAlignPoint(popupRect, ["t", "l"]);
       var targetAlignPointBR = getAlignPoint(targetRect, ["b", "r"]);
@@ -26544,7 +26542,7 @@ function useAlign(open2, popupEle, target, placement, builtinPlacements, popupAl
       var nextPopupBottom;
       var nextPopupX;
       var nextPopupRight;
-      syncNextPopupPosition2();
+      syncNextPopupPosition();
       var needAdjustY = supportAdjust(adjustY);
       var sameTB = popupPoints[0] === targetPoints[0];
       if (needAdjustY && popupPoints[0] === "t" && (nextPopupBottom > adjustCheckVisibleArea.bottom || prevFlipRef.current.bt)) {
@@ -26554,8 +26552,8 @@ function useAlign(open2, popupEle, target, placement, builtinPlacements, popupAl
         } else {
           tmpNextOffsetY = targetAlignPointTL.y - popupAlignPointBR.y - popupOffsetY;
         }
-        var newVisibleArea = getIntersectionVisibleArea2(nextOffsetX, tmpNextOffsetY);
-        var newVisibleRecommendArea = getIntersectionVisibleArea2(nextOffsetX, tmpNextOffsetY, visibleRegionArea);
+        var newVisibleArea = getIntersectionVisibleArea(nextOffsetX, tmpNextOffsetY);
+        var newVisibleRecommendArea = getIntersectionVisibleArea(nextOffsetX, tmpNextOffsetY, visibleRegionArea);
         if (
           // Of course use larger one
           newVisibleArea > originIntersectionVisibleArea || newVisibleArea === originIntersectionVisibleArea && (!isVisibleFirst || // Choose recommend one
@@ -26576,8 +26574,8 @@ function useAlign(open2, popupEle, target, placement, builtinPlacements, popupAl
         } else {
           _tmpNextOffsetY = targetAlignPointBR.y - popupAlignPointTL.y - popupOffsetY;
         }
-        var _newVisibleArea = getIntersectionVisibleArea2(nextOffsetX, _tmpNextOffsetY);
-        var _newVisibleRecommendArea = getIntersectionVisibleArea2(nextOffsetX, _tmpNextOffsetY, visibleRegionArea);
+        var _newVisibleArea = getIntersectionVisibleArea(nextOffsetX, _tmpNextOffsetY);
+        var _newVisibleRecommendArea = getIntersectionVisibleArea(nextOffsetX, _tmpNextOffsetY, visibleRegionArea);
         if (
           // Of course use larger one
           _newVisibleArea > originIntersectionVisibleArea || _newVisibleArea === originIntersectionVisibleArea && (!isVisibleFirst || // Choose recommend one
@@ -26600,8 +26598,8 @@ function useAlign(open2, popupEle, target, placement, builtinPlacements, popupAl
         } else {
           tmpNextOffsetX = targetAlignPointTL.x - popupAlignPointBR.x - popupOffsetX;
         }
-        var _newVisibleArea2 = getIntersectionVisibleArea2(tmpNextOffsetX, nextOffsetY);
-        var _newVisibleRecommendArea2 = getIntersectionVisibleArea2(tmpNextOffsetX, nextOffsetY, visibleRegionArea);
+        var _newVisibleArea2 = getIntersectionVisibleArea(tmpNextOffsetX, nextOffsetY);
+        var _newVisibleRecommendArea2 = getIntersectionVisibleArea(tmpNextOffsetX, nextOffsetY, visibleRegionArea);
         if (
           // Of course use larger one
           _newVisibleArea2 > originIntersectionVisibleArea || _newVisibleArea2 === originIntersectionVisibleArea && (!isVisibleFirst || // Choose recommend one
@@ -26622,8 +26620,8 @@ function useAlign(open2, popupEle, target, placement, builtinPlacements, popupAl
         } else {
           _tmpNextOffsetX = targetAlignPointBR.x - popupAlignPointTL.x - popupOffsetX;
         }
-        var _newVisibleArea3 = getIntersectionVisibleArea2(_tmpNextOffsetX, nextOffsetY);
-        var _newVisibleRecommendArea3 = getIntersectionVisibleArea2(_tmpNextOffsetX, nextOffsetY, visibleRegionArea);
+        var _newVisibleArea3 = getIntersectionVisibleArea(_tmpNextOffsetX, nextOffsetY);
+        var _newVisibleRecommendArea3 = getIntersectionVisibleArea(_tmpNextOffsetX, nextOffsetY, visibleRegionArea);
         if (
           // Of course use larger one
           _newVisibleArea3 > originIntersectionVisibleArea || _newVisibleArea3 === originIntersectionVisibleArea && (!isVisibleFirst || // Choose recommend one
@@ -26637,7 +26635,7 @@ function useAlign(open2, popupEle, target, placement, builtinPlacements, popupAl
           prevFlipRef.current.lr = false;
         }
       }
-      syncNextPopupPosition2();
+      syncNextPopupPosition();
       var numShiftX = shiftX === true ? 0 : shiftX;
       if (typeof numShiftX === "number") {
         if (nextPopupX < visibleRegionArea.left) {
@@ -26728,11 +26726,10 @@ function useAlign(open2, popupEle, target, placement, builtinPlacements, popupAl
 function useWatch(open2, target, popup, onAlign, onScroll) {
   useLayoutEffect$1(function() {
     if (open2 && target && popup) {
-      let notifyScroll2 = function() {
+      let notifyScroll = function() {
         onAlign();
         onScroll();
       };
-      var notifyScroll = notifyScroll2;
       var targetElement = target;
       var popupElement = popup;
       var targetScrollList = collectScroller(targetElement);
@@ -26740,18 +26737,18 @@ function useWatch(open2, target, popup, onAlign, onScroll) {
       var win = getWin(popupElement);
       var mergedList = new Set([win].concat(_toConsumableArray(targetScrollList), _toConsumableArray(popupScrollList)));
       mergedList.forEach(function(scroller) {
-        scroller.addEventListener("scroll", notifyScroll2, {
+        scroller.addEventListener("scroll", notifyScroll, {
           passive: true
         });
       });
-      win.addEventListener("resize", notifyScroll2, {
+      win.addEventListener("resize", notifyScroll, {
         passive: true
       });
       onAlign();
       return function() {
         mergedList.forEach(function(scroller) {
-          scroller.removeEventListener("scroll", notifyScroll2);
-          win.removeEventListener("resize", notifyScroll2);
+          scroller.removeEventListener("scroll", notifyScroll);
+          win.removeEventListener("resize", notifyScroll);
         });
       };
     }
@@ -61026,18 +61023,17 @@ function useLazyKVMap(data2, childrenColumnName, getRowKey) {
   const mapCacheRef = reactExports.useRef({});
   function getRecordByKey(key) {
     if (!mapCacheRef.current || mapCacheRef.current.data !== data2 || mapCacheRef.current.childrenColumnName !== childrenColumnName || mapCacheRef.current.getRowKey !== getRowKey) {
-      let dig2 = function(records) {
+      let dig = function(records) {
         records.forEach((record, index2) => {
           const rowKey = getRowKey(record, index2);
           kvMap.set(rowKey, record);
           if (record && typeof record === "object" && childrenColumnName in record) {
-            dig2(record[childrenColumnName] || []);
+            dig(record[childrenColumnName] || []);
           }
         });
       };
-      var dig = dig2;
       const kvMap = /* @__PURE__ */ new Map();
-      dig2(data2);
+      dig(data2);
       mapCacheRef.current = {
         data: data2,
         childrenColumnName,
@@ -67066,6 +67062,7 @@ api.interceptors.request.use(async (config) => {
   }
   return config;
 });
+const logo$1 = "" + new URL("logo-green-24b4ae3d.png", import.meta.url).href;
 const { Paragraph: Paragraph$1 } = Typography$1;
 const LoginPage = () => {
   const [isLoading, setIsLoading] = reactExports.useState(false);
@@ -67099,7 +67096,7 @@ const LoginPage = () => {
     /* @__PURE__ */ jsxRuntimeExports.jsx(
       Image$1,
       {
-        src: "src/renderer/src/assets/logo-branca.png",
+        src: logo$1,
         preview: false,
         style: {
           width: "300px"
@@ -68017,14 +68014,7 @@ const CardBill = (props) => {
         /* @__PURE__ */ jsxRuntimeExports.jsx(Title$5, { level: 5, style: { color: "#ECA63E" }, children: "SubTotal" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx(Text$3, { strong: true, italic: true, style: { fontSize: "18px" }, children: formatCurrency(12.9) })
       ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        Divider$1,
-        {
-          type: "vertical",
-          style: { height: "100%", margin: "0" },
-          orientation: "center"
-        }
-      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Divider$1, { type: "vertical", style: { height: "100%", margin: "0" }, orientation: "center" }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs(BoxFinance, { children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(Title$5, { level: 5, style: { color: "#2FAA54" }, children: "Total" }),
         /* @__PURE__ */ jsxRuntimeExports.jsx(Text$3, { strong: true, italic: true, style: { fontSize: "18px" }, children: formatCurrency(12.9) })
@@ -68088,13 +68078,7 @@ const Commands = () => {
         return /* @__PURE__ */ jsxRuntimeExports.jsx(CardBill, { data: command }, command.id);
       }) })
     ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(
-      CreateCommandModal,
-      {
-        visible: isModalVisible,
-        onClose: () => setIsModalVisible(false)
-      }
-    )
+    /* @__PURE__ */ jsxRuntimeExports.jsx(CreateCommandModal, { visible: isModalVisible, onClose: () => setIsModalVisible(false) })
   ] });
 };
 const Reports = () => {
@@ -68111,7 +68095,7 @@ const Header$4 = st.div`
   align-items: center;
   margin-bottom: 20px;
 `;
-const columns$2 = [
+const columns$3 = [
   {
     title: "Nome",
     dataIndex: "name",
@@ -68320,7 +68304,7 @@ const Stocks = () => {
     /* @__PURE__ */ jsxRuntimeExports.jsx(
       Table$2,
       {
-        columns: columns$2,
+        columns: columns$3,
         dataSource: data,
         pagination: false,
         scroll: { y: 700 }
@@ -68994,9 +68978,7 @@ function BillProvider({ children }) {
   const [bills, setBills] = reactExports.useState([]);
   const [selectedBill, setSelectedBill] = reactExports.useState({});
   const [selectedBills, setSelectedBills] = reactExports.useState([]);
-  const [orders, setOrders] = reactExports.useState(
-    []
-  );
+  const [orders, setOrders] = reactExports.useState([]);
   function fetchBills() {
     api.get("/bill/").then((response) => {
       setBills(response.data);
@@ -69023,29 +69005,44 @@ function BillProvider({ children }) {
     });
   }
   function handleDeleteOrder(id2, operatorCode, billId) {
+    console.log(billId);
     api.post(`/order-delete/`, {
       operator_code: operatorCode,
       order_id: id2
     }).then(() => {
-      fetchOrders(billId);
+      let newOrders = orders;
+      setOrders([]);
+      setTimeout(() => {
+        newOrders = newOrders.filter((order) => order.id !== id2);
+        setOrders([...newOrders]);
+      }, 300);
     }).catch((error) => {
       errorActions(error);
     }).finally(() => {
     });
   }
-  function handleJoinBill(billId) {
-    for (let id2 of billId) {
-      api.get(`/bill/${id2}/`).then((response) => {
+  function getOrdersBills(billId, reset) {
+    api.get(`/order-list/?bill=${billId}`).then((response) => {
+      if (reset) {
+        setOrders([...response.data]);
+      } else {
+        setOrders([...orders, ...response.data]);
+      }
+    }).catch((error) => {
+      errorActions(error);
+    });
+  }
+  function addBill(id2, reset) {
+    api.get(`/bill/${id2}/`).then((response) => {
+      if (reset) {
+        setSelectedBills([response.data]);
+      } else {
         setSelectedBills([...selectedBills, response.data]);
-      }).catch((error) => {
-        errorActions(error);
-      });
-      api.get(`/order-list/?bill=${id2}`).then((response) => {
-        setOrders([...orders, response.data]);
-      }).catch((error) => {
-        errorActions(error);
-      });
-    }
+      }
+      getOrdersBills(response.data.id, reset);
+    }).catch((error) => {
+      errorActions(error);
+    });
   }
   return /* @__PURE__ */ jsxRuntimeExports.jsx(
     BillContext.Provider,
@@ -69058,8 +69055,9 @@ function BillProvider({ children }) {
         ordersGroupList: orders,
         fetchOrders,
         handleDeleteOrder,
-        handleJoinBill,
-        selectedBills
+        selectedBills,
+        addBill,
+        getOrdersBills
       },
       children
     }
@@ -69073,6 +69071,14 @@ const PrinterContext = reactExports.createContext({});
 function PrinterProvider({ children }) {
   const [currentTab, setCurrentTab] = reactExports.useState("1");
   const [showModal, setShowModal] = reactExports.useState(false);
+  const [printers, setPrinters] = reactExports.useState([]);
+  function fetchPrinters() {
+    api.get("/print/").then((response) => {
+      setPrinters(response.data);
+    }).catch((err) => {
+      errorActions(err);
+    });
+  }
   return /* @__PURE__ */ jsxRuntimeExports.jsx(
     PrinterContext.Provider,
     {
@@ -69080,7 +69086,9 @@ function PrinterProvider({ children }) {
         currentTab,
         setCurrentTab,
         showModal,
-        setShowModal
+        setShowModal,
+        printers,
+        fetchPrinters
       },
       children
     }
@@ -70032,7 +70040,7 @@ const DrawerProduct = ({
     }
   ) });
 };
-const columns$1 = [
+const columns$2 = [
   {
     title: "Nome",
     dataIndex: "title",
@@ -70192,7 +70200,7 @@ const Products$1 = () => {
                 style: {
                   padding: "0 40px"
                 },
-                children: /* @__PURE__ */ jsxRuntimeExports.jsx(Table$2, { columns: columns$1, dataSource: products })
+                children: /* @__PURE__ */ jsxRuntimeExports.jsx(Table$2, { columns: columns$2, dataSource: products })
               }
             )
           ]
@@ -70477,6 +70485,49 @@ function FaRegCreditCard(props) {
 const RegistePrinter = () => {
   return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: "RegistePrinter" });
 };
+const columns$1 = [
+  {
+    title: "Name",
+    dataIndex: "name",
+    key: "name",
+    render: (text) => /* @__PURE__ */ jsxRuntimeExports.jsx("a", { children: text }),
+    align: "center"
+  },
+  {
+    title: "Ativada",
+    dataIndex: "active",
+    key: "active",
+    align: "center",
+    render: (text) => /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: text ? "Sim" : "Não" })
+  },
+  {
+    title: "Largura",
+    dataIndex: "paper_width",
+    key: "paper_width",
+    align: "center",
+    render: (text) => /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
+      text,
+      "mm"
+    ] })
+  },
+  {
+    title: "Ações",
+    dataIndex: "actions",
+    key: "actions",
+    align: "center",
+    render: () => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Button$2, { type: "primary", shape: "circle", icon: /* @__PURE__ */ jsxRuntimeExports.jsx(EditOutlined$1, {}) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Button$2, { type: "primary", shape: "circle", icon: /* @__PURE__ */ jsxRuntimeExports.jsx(EditOutlined$1, {}) })
+    ] })
+  }
+];
+const ListPrinter = () => {
+  const { printers, fetchPrinters, showModal } = usePrinter();
+  reactExports.useEffect(() => {
+    fetchPrinters();
+  }, [showModal]);
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Table$2, { columns: columns$1, dataSource: printers, pagination: false });
+};
 const PrinterModal = () => {
   const { showModal, setShowModal, currentTab } = usePrinter();
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(
@@ -70488,7 +70539,7 @@ const PrinterModal = () => {
       onCancel: () => setShowModal(false),
       width: "30%",
       children: [
-        currentTab === "1" && /* @__PURE__ */ jsxRuntimeExports.jsx(RegistePrinter, {}),
+        currentTab === "1" && /* @__PURE__ */ jsxRuntimeExports.jsx(ListPrinter, {}),
         currentTab === "2" && /* @__PURE__ */ jsxRuntimeExports.jsx(RegistePrinter, {})
       ]
     }
@@ -70504,7 +70555,7 @@ const Integrations = () => {
           style: {
             color: "rgba(0, 0, 0, 0.54)"
           },
-          children: "Habilite e edite preferências das integrações com o Peditz"
+          children: "Estou testando o auto updater"
         }
       ) }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs(Title$3, { children: [
@@ -70662,15 +70713,10 @@ const Integrations = () => {
 function IoFastFood(props) {
   return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 512 512" }, "child": [{ "tag": "path", "attr": { "d": "M368 128h.09m111.46-32h-91.06l8.92-35.66 38.32-13.05c8.15-2.77 13-11.43 10.65-19.71a16 16 0 00-20.54-10.73l-47 16a16 16 0 00-10.36 11.27L355.51 96H224.45c-8.61 0-16 6.62-16.43 15.23A16 16 0 00224 128h2.75l1 8.66A8.3 8.3 0 00236 144c39 0 73.66 10.9 100.12 31.52A121.9 121.9 0 01371 218.07a123.4 123.4 0 0110.12 29.51 7.83 7.83 0 003.29 4.88 72 72 0 0126.38 86.43 7.92 7.92 0 00-.15 5.53A96 96 0 01416 376c0 22.34-7.6 43.63-21.4 59.95a80.12 80.12 0 01-28.78 21.67 8 8 0 00-4.21 4.37 108.19 108.19 0 01-17.37 29.86 2.5 2.5 0 001.9 4.11h49.21a48.22 48.22 0 0047.85-44.14L477.4 128h2.6a16 16 0 0016-16.77c-.42-8.61-7.84-15.23-16.45-15.23z" } }, { "tag": "path", "attr": { "d": "M108.69 320a23.87 23.87 0 0117 7l15.51 15.51a4 4 0 005.66 0L162.34 327a23.87 23.87 0 0117-7h196.58a8 8 0 008.08-7.92V312a40.07 40.07 0 00-32-39.2c-.82-29.69-13-54.54-35.51-72C295.67 184.56 267.85 176 236 176h-72c-68.22 0-114.43 38.77-116 96.8A40.07 40.07 0 0016 312a8 8 0 008 8zm77.25 32a8 8 0 00-5.66 2.34l-22.14 22.15a20 20 0 01-28.28 0l-22.14-22.15a8 8 0 00-5.66-2.34h-69.4a15.93 15.93 0 00-15.76 13.17A65.22 65.22 0 0016 376c0 30.59 21.13 55.51 47.26 56 2.43 15.12 8.31 28.78 17.16 39.47C93.51 487.28 112.54 496 134 496h132c21.46 0 40.49-8.72 53.58-24.55 8.85-10.69 14.73-24.35 17.16-39.47 26.13-.47 47.26-25.39 47.26-56a65.22 65.22 0 00-.9-10.83A15.93 15.93 0 00367.34 352z" } }] })(props);
 }
+const logo = "" + new URL("logo-branca-ecee0344.png", import.meta.url).href;
+const miniLogo = "" + new URL("peditz-b44a92a1.jpeg", import.meta.url).href;
 const { Sider } = Layout$1;
-function getItem({
-  key,
-  label,
-  children,
-  icon,
-  style: style2,
-  type: type4
-}) {
+function getItem({ key, label, children, icon, style: style2, type: type4 }) {
   return {
     key,
     icon,
@@ -70770,7 +70816,7 @@ const SideBar = ({ collapsed }) => {
             children: collapsed ? /* @__PURE__ */ jsxRuntimeExports.jsx(
               "img",
               {
-                src: "resources/logo-branca.png",
+                src: miniLogo,
                 alt: "Peditz",
                 style: {
                   width: "80px",
@@ -70780,7 +70826,7 @@ const SideBar = ({ collapsed }) => {
             ) : /* @__PURE__ */ jsxRuntimeExports.jsx(
               "img",
               {
-                src: "/peditzlogo.png",
+                src: logo,
                 alt: "Peditz",
                 style: {
                   width: "230px",
@@ -71071,20 +71117,22 @@ function BsCashCoin(props) {
 }
 const JoinCommandModal = ({
   onCancel,
-  visible,
-  billId
+  visible
 }) => {
-  const { bills, fetchBills } = useBill();
-  const [selectedBillsIds, setSelectedBillsIds] = React.useState([]);
+  const { bills, fetchBills, addBill } = useBill();
+  const [selectedBill, setSelectedBill] = React.useState("");
   reactExports.useEffect(() => {
     fetchBills();
-    setSelectedBillsIds([...selectedBillsIds, billId]);
   }, []);
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(
     Modal$1,
     {
       onCancel,
       open: visible,
+      onOk: () => {
+        addBill(selectedBill, false);
+        onCancel();
+      },
       title: "Unir comandas",
       destroyOnClose: true,
       children: [
@@ -71093,6 +71141,9 @@ const JoinCommandModal = ({
           Select$1,
           {
             showSearch: true,
+            onChange: (value) => {
+              setSelectedBill(value);
+            },
             style: { width: "100%" },
             placeholder: "Busque a comanda desejada.",
             optionFilterProp: "children",
@@ -71117,6 +71168,11 @@ function OpenCashier(props) {
         <head>
             <title>Document</title>
             <style>
+                @page{
+                    margin: 10mm 0mm;
+                    size: 70mm 120mm ;
+                }
+
                 body {
                     font-family: Arial, Helvetica, sans-serif;
                     max-width: 70mm;
@@ -71193,10 +71249,10 @@ const Command = () => {
   const [onTip, setOnTip] = React.useState(true);
   const [operatorCode, setOperatorCode] = reactExports.useState("");
   const [formOfPayment, setFormOfPayment] = reactExports.useState([]);
-  const { fetchBill, selectedBill, handleDeleteOrder, ordersGroupList } = useBill();
+  const { selectedBills, handleDeleteOrder, ordersGroupList, addBill } = useBill();
   const { id: id2 } = useParams();
   reactExports.useEffect(() => {
-    fetchBill(id2);
+    addBill(id2, true);
     fetchFormOfPayments();
   }, []);
   const columns2 = [
@@ -71241,7 +71297,6 @@ const Command = () => {
           danger: true,
           icon: /* @__PURE__ */ jsxRuntimeExports.jsx(ImBin, {}),
           onClick: () => {
-            console.log("cancelar item da comanda", r2);
             showDeleteConfirm({
               id: r2.id,
               name: r2.product_title,
@@ -71303,8 +71358,8 @@ const Command = () => {
                 Input$1.Password,
                 {
                   placeholder: "Insira o codigo operacional",
+                  value: operatorCode,
                   onChange: (e2) => {
-                    console.log(e2.target.value);
                     setOperatorCode(e2.target.value);
                   }
                 }
@@ -71320,7 +71375,6 @@ const Command = () => {
         handleDeleteOrder(props.id, operatorCode, id2);
       },
       onCancel() {
-        console.log("Cancel");
         setOperatorCode("");
       }
     });
@@ -71359,7 +71413,7 @@ const Command = () => {
                 },
                 children: [
                   "Nº ",
-                  selectedBill.number || "Não informada"
+                  selectedBills[0]?.number || "Não informada"
                 ]
               }
             )
@@ -71388,7 +71442,7 @@ const Command = () => {
                 },
                 children: [
                   "Nº ",
-                  selectedBill?.table_datail?.title || "Não informada"
+                  selectedBills[0]?.table_datail?.title || "Não informada"
                 ]
               }
             )
@@ -71415,7 +71469,7 @@ const Command = () => {
                 style: {
                   fontSize: "1.15rem"
                 },
-                children: selectedBill?.opened_by_name || "Não informado"
+                children: selectedBills[0]?.opened_by_name || "Não informado"
               }
             )
           ] })
@@ -71441,7 +71495,7 @@ const Command = () => {
                 style: {
                   fontSize: "1.15rem"
                 },
-                children: selectedBill?.client_name || "Não informado"
+                children: selectedBills[0]?.client_name || "Não informado"
               }
             )
           ] })
@@ -71518,14 +71572,16 @@ const Command = () => {
                             {
                               type: "primary",
                               icon: /* @__PURE__ */ jsxRuntimeExports.jsx(AiFillPrinter, { size: 24 }),
-                              onClick: () => OpenCashier({
-                                initial_value: "0",
-                                opened_by_name: "teste",
-                                restaurant: {
-                                  id: "1",
-                                  title: "teste"
-                                }
-                              }),
+                              onClick: () => {
+                                OpenCashier({
+                                  initial_value: "0",
+                                  opened_by_name: "teste",
+                                  restaurant: {
+                                    id: "1",
+                                    title: "teste"
+                                  }
+                                });
+                              },
                               size: "large",
                               style: {
                                 display: "flex",
@@ -71569,7 +71625,7 @@ const Command = () => {
                           item.complement_title,
                           ",",
                           " "
-                        ] }))
+                        ] }, item.id))
                       ] }))
                     ] })
                   }
@@ -71584,7 +71640,8 @@ const Command = () => {
                     flex: 1
                   },
                   children: payment.title
-                }
+                },
+                payment.id
               )) })
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs(ResumeFinance, { children: [

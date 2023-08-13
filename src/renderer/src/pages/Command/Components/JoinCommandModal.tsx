@@ -11,7 +11,6 @@ interface JoinCommandModalProps {
 export const JoinCommandModal: React.FC<JoinCommandModalProps> = ({
   onCancel,
   visible,
-  billId
 }) => {
   const { bills, fetchBills, addBill } = useBill()
   const [selectedBill, setSelectedBill] = React.useState<string>('')

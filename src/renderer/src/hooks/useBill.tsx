@@ -71,6 +71,7 @@ export function BillProvider({ children }: BillProviderProps): JSX.Element {
   }
 
   function handleDeleteOrder(id: string, operatorCode: string, billId: string): void {
+    console.log(billId)
     api
       .post(`/order-delete/`, {
         operator_code: operatorCode,
