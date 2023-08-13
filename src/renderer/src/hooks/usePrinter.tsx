@@ -62,7 +62,7 @@ export function PrinterProvider({ children }: PrinterProviderProps) {
   function fetchPrinter() {
     setIsLoading(true)
     api
-      .get(`/print/${printerId}`)
+      .get(`/print/${printerId}/`)
       .then((response) => {
         setSelectedPrinter(response.data)
         setSwitchValue(response.data.active)
@@ -103,7 +103,7 @@ export function PrinterProvider({ children }: PrinterProviderProps) {
   function updatePrinter() {
     setIsLoading(true)
     api
-      .put(`/print/${printerId}`, form.getFieldsValue())
+      .put(`/print/${printerId}/`, form.getFieldsValue())
       .then((response) => {
         fetchPrinters()
         resetedForm()
@@ -121,7 +121,7 @@ export function PrinterProvider({ children }: PrinterProviderProps) {
   function deletePrinter(id: number) {
     setIsLoading(true)
     api
-      .delete(`/print/${id}`)
+      .delete(`/print/${id}/`)
       .then(() => {
         fetchPrinters()
       })
