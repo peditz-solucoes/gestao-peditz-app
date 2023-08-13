@@ -5,7 +5,7 @@ declare global {
     electron: ElectronAPI
     api: unknown
     electronBridge: {
-      printLine: (line: string) => void
+      printLine: (printerName: string, line: string) => void
     }
   }
 }
