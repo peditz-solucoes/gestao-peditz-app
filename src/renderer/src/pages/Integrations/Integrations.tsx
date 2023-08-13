@@ -20,7 +20,7 @@ export const Integrations: React.FC = () => {
               color: 'rgba(0, 0, 0, 0.54)'
             }}
           >
-            Estou testando o auto updater
+            Estou testando o auto updater dnv, ver se dá certo
           </p>
         </div>
         <S.Title>
