@@ -1,6 +1,6 @@
 import {
 	ApiOutlined,
-	AppstoreAddOutlined,
+	// AppstoreAddOutlined,
 	BlockOutlined,
 	DesktopOutlined,
 	PieChartOutlined,
@@ -106,7 +106,7 @@ const items: MenuItem[] = [
 	// }),
 
 	getItem({
-		key: '11',
+		key: '10',
 		label: <Link to={'/integracoes'}>Integrações</Link>,
 		icon: <ApiOutlined />,
 	}),

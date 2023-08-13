@@ -6,7 +6,7 @@ import icon from '../../resources/peditz.jpeg?asset'
 function createWindow(): void {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
-    simpleFullscreen: true, 
+    simpleFullscreen: true,
     show: false,
     autoHideMenuBar: true,
     ...(process.platform === 'linux' ? { icon } : {}),
@@ -57,29 +57,34 @@ app.whenReady().then(() => {
   })
 })
 
-ipcMain.on('print-line', (event, line) => {
+ipcMain.on('print-line', (_, line) => {
   // Criar uma nova janela do Electron para o conteúdo da impressão
-  let win = new BrowserWindow({ show: false });
-  win.loadURL(`data:text/html;charset=utf-8,${encodeURIComponent(`
+  let win = new BrowserWindow({ show: false })
+  win.loadURL(
+    `data:text/html;charset=utf-8,${encodeURIComponent(`
       ${line}
-  `)}`);
+  `)}`
+  )
 
   // Imprimir quando estiver pronto
   win.webContents.on('did-finish-load', () => {
-      win.webContents.print({
-          silent: true, // isso mostrará a caixa de diálogo de impressão
-          printBackground: true,
-          deviceName: 'MP-4200 TH' // se você souber o nome da impressora, pode definir aqui
-      }, (success, reason) => {
-          if (!success) {
-              console.log(`Falha na impressão: ${reason}`);
-          }
+    win.webContents.print(
+      {
+        silent: true, // isso mostrará a caixa de diálogo de impressão
+        printBackground: true,
+        deviceName: 'MP-4200 TH' // se você souber o nome da impressora, pode definir aqui
+      },
+      (success, reason) => {
+        if (!success) {
+          console.log(`Falha na impressão: ${reason}`)
+        }
 
-          // Fechar a janela após a impressão
-          win.close();
-      });
-  });
-});
+        // Fechar a janela após a impressão
+        win.close()
+      }
+    )
+  })
+})
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits
@@ -89,7 +94,6 @@ app.on('window-all-closed', () => {
     app.quit()
   }
 })
-
 
 // In this file you can include the rest of your app"s specific main process
 // code. You can also put them in separate files and require them here.

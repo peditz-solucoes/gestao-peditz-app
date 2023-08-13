@@ -1,4 +1,4 @@
-import { Printer } from '@renderer/types'
+// import { Printer } from '@renderer/types'
 import { ReactNode, createContext, useContext, useState } from 'react'
 
 interface PrinterProviderProps {
@@ -18,7 +18,7 @@ export const PrinterContext = createContext<PrinterContextData>({} as PrinterCon
 export function PrinterProvider({ children }: PrinterProviderProps) {
   const [currentTab, setCurrentTab] = useState('1')
   const [showModal, setShowModal] = useState(false)
-  const [printers, setPrinters] = useState<Printer[]>([])
+  // const [printers, setPrinters] = useState<Printer[]>([])
 
   return (
     <PrinterContext.Provider
