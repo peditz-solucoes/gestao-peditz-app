@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import api from '../../services/api';
 import { AxiosError } from 'axios';
 import { errorActions } from '../../utils/errorActions';
+import { OpenCashier } from '@renderer/utils/Printers';
 
 interface ModalTradingBoxProps {
 	open: boolean;
@@ -55,8 +56,9 @@ export const ModalCashier: React.FC<ModalTradingBoxProps> = ({
 		setIsLoading(true);
 		api
 			.post('/cashier/', { ...data, open: true })
-			.then(() => {
+			.then((response) => {
 				onFetch();
+				OpenCashier(response.data);
 				onClose();
 			})
 			.catch((error: AxiosError) => {

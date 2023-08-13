@@ -31,6 +31,9 @@ import { FormOfPayment, OrderList } from '../../types';
 import api from '../../services/api';
 import { AxiosError } from 'axios';
 import { errorActions } from '../../utils/errorActions';
+import { ipcRenderer } from 'electron';
+import { BillPrinter, printBill } from '@renderer/components/templates/BillPrinter';
+import { OpenCashier } from '@renderer/utils/Printers';
 
 const { Text, Title } = Typography;
 const { Option } = Select;
@@ -113,6 +116,7 @@ export const Command: React.FC = () => {
 		fetchBill(id as string);
 		fetchFormOfPayments();
 	}, []);
+
 
 	const columns: ColumnsType<OrderList> = [
 		{
@@ -414,6 +418,7 @@ export const Command: React.FC = () => {
 								<Button
 									type="primary"
 									icon={<AiFillPrinter size={24} />}
+									onClick={OpenCashier}
 									size="large"
 									style={{
 										display: 'flex',
