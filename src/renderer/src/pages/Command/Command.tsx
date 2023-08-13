@@ -99,11 +99,12 @@ export const Command: React.FC = () => {
   const [onTip, setOnTip] = React.useState<boolean>(true)
   const [operatorCode, setOperatorCode] = useState<string>('')
   const [formOfPayment, setFormOfPayment] = useState<FormOfPayment[]>([] as FormOfPayment[])
-  const { fetchBill, selectedBill, handleDeleteOrder, ordersGroupList } = useBill()
+  const { selectedBills, handleDeleteOrder, ordersGroupList, addBill } = useBill()
   const { id } = useParams()
 
   useEffect(() => {
-    fetchBill(id as string)
+    // fetchBill(id as string)
+    addBill(id as string, true)
     fetchFormOfPayments()
   }, [])
 
@@ -148,8 +149,7 @@ export const Command: React.FC = () => {
             type="primary"
             danger
             icon={<ImBin />}
-            onClick={() => {
-              console.log('cancelar item da comanda', r)
+            onClick={(): void => {
               showDeleteConfirm({
                 id: r.id,
                 name: r.product_title,
@@ -165,7 +165,7 @@ export const Command: React.FC = () => {
     }
   ]
 
-  function fetchFormOfPayments() {
+  function fetchFormOfPayments(): void {
     api
       .get(`/payment-method/`)
       .then((response) => {
@@ -181,7 +181,7 @@ export const Command: React.FC = () => {
     name: string
     price: string
     amount: number
-  }) => {
+  }): void => {
     confirm({
       title: 'Você tem certeza que quer cancelar o item da comanda?',
       icon: <ExclamationCircleFilled />,
@@ -214,8 +214,8 @@ export const Command: React.FC = () => {
             </label>
             <Input.Password
               placeholder="Insira o codigo operacional"
-              onChange={(e) => {
-                console.log(e.target.value)
+              value={operatorCode}
+              onChange={(e): void => {
                 setOperatorCode(e.target.value)
               }}
             />
@@ -229,14 +229,13 @@ export const Command: React.FC = () => {
         handleDeleteOrder(props.id, operatorCode, id as string)
       },
       onCancel() {
-        console.log('Cancel')
         setOperatorCode('')
       }
     })
   }
 
   const rowSelection = {
-    onChange: (selectedRowKeys: React.Key[], selectedRows: OrderList[]) => {
+    onChange: (selectedRowKeys: React.Key[], selectedRows: OrderList[]): void => {
       console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows)
     }
   }
@@ -268,7 +267,7 @@ export const Command: React.FC = () => {
                   fontSize: '1.25rem'
                 }}
               >
-                Nº {selectedBill.number || 'Não informada'}
+                Nº {selectedBills[0]?.number || 'Não informada'}
               </Text>
             </div>
           </S.CardInfo>
@@ -291,7 +290,7 @@ export const Command: React.FC = () => {
                   fontSize: '1.25rem'
                 }}
               >
-                Nº {selectedBill?.table_datail?.title || 'Não informada'}
+                Nº {selectedBills[0]?.table_datail?.title || 'Não informada'}
               </Text>
             </div>
           </S.CardInfo>
@@ -314,7 +313,7 @@ export const Command: React.FC = () => {
                   fontSize: '1.15rem'
                 }}
               >
-                {selectedBill?.opened_by_name || 'Não informado'}
+                {selectedBills[0]?.opened_by_name || 'Não informado'}
               </Text>
             </div>
           </S.CardInfo>
@@ -337,7 +336,7 @@ export const Command: React.FC = () => {
                   fontSize: '1.15rem'
                 }}
               >
-                {selectedBill?.client_name || 'Não informado'}
+                {selectedBills[0]?.client_name || 'Não informado'}
               </Text>
             </div>
           </S.CardInfo>
@@ -368,7 +367,7 @@ export const Command: React.FC = () => {
                 <Button
                   type={onTip ? 'primary' : 'dashed'}
                   icon={onTip && <AiOutlineCheckCircle />}
-                  onClick={() => setOnTip(!onTip)}
+                  onClick={(): void => setOnTip(!onTip)}
                   style={{
                     display: 'flex',
                     alignItems: 'center',
@@ -389,7 +388,7 @@ export const Command: React.FC = () => {
                   type="primary"
                   icon={<PlusOutlined />}
                   size="large"
-                  onClick={() => setVisibleJoinCommandModal(true)}
+                  onClick={(): void => setVisibleJoinCommandModal(true)}
                   style={{
                     display: 'flex',
                     alignItems: 'center',
@@ -402,7 +401,7 @@ export const Command: React.FC = () => {
                 <Button
                   type="primary"
                   icon={<AiFillPrinter size={24} />}
-                  onClick={() =>
+                  onClick={(): void => {
                     OpenCashier({
                       initial_value: '0',
                       opened_by_name: 'teste',
@@ -411,7 +410,7 @@ export const Command: React.FC = () => {
                         title: 'teste'
                       }
                     })
-                  }
+                  }}
                   size="large"
                   style={{
                     display: 'flex',
@@ -429,7 +428,7 @@ export const Command: React.FC = () => {
               dataSource={dataTable}
               pagination={false}
               scroll={{ y: 450 }}
-              rowKey={(record) => record.id as string}
+              rowKey={(record): string => record.id as string}
               rowSelection={{
                 type: 'checkbox',
                 ...rowSelection
@@ -443,7 +442,7 @@ export const Command: React.FC = () => {
                       <>
                         <h4>{complement.complement_group_title}</h4>
                         {complement.items.map((item) => (
-                          <span>
+                          <span key={item.id}>
                             {Number(item.quantity)}-{item.complement_title},{' '}
                           </span>
                         ))}
@@ -457,6 +456,7 @@ export const Command: React.FC = () => {
             <S.ActionsPayments>
               {formOfPayment.map((payment) => (
                 <Button
+                  key={payment.id}
                   type="primary"
                   size="large"
                   style={{
@@ -603,7 +603,7 @@ export const Command: React.FC = () => {
       </S.Container>
       <JoinCommandModal
         visible={visibleJoinCommandModal}
-        onCancel={() => setVisibleJoinCommandModal(false)}
+        onCancel={(): void => setVisibleJoinCommandModal(false)}
         billId={id as string}
       />
     </>
