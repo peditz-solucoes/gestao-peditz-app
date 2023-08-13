@@ -1,12 +1,14 @@
-import { styled } from 'styled-components'
+import { styled } from "styled-components"
 
 export const Container = styled.div`
   width: 100%;
   padding: 20px 300px;
+  height: calc(100vh - 65px);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  overflow-y: scroll;
+  gap: 80px;
 `
 
 export const Title = styled.div`

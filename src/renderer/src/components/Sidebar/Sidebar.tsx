@@ -99,11 +99,11 @@ const items: MenuItem[] = [
 		icon: <SolutionOutlined />,
 	}),
 
-	getItem({
-		key: '10',
-		label: <Link to={'/aplicativos'}>Aplicativos</Link>,
-		icon: <AppstoreAddOutlined />,
-	}),
+	// getItem({
+	// 	key: '10',
+	// 	label: <Link to={'/aplicativos'}>Aplicativos</Link>,
+	// 	icon: <AppstoreAddOutlined />,
+	// }),
 
 	getItem({
 		key: '11',
