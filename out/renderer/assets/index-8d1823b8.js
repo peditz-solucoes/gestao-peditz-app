@@ -74956,72 +74956,71 @@ const Products = () => {
                           size: "large",
                           accordion: true,
                           expandIcon: ({ isActive: isActive2 }) => /* @__PURE__ */ jsxRuntimeExports.jsx(CaretRightOutlined$1, { rotate: isActive2 ? 90 : 0 }),
-                          items: groupProductsByCategory(filteredProducts).map(
-                            (category) => ({
-                              key: category.categoryId,
-                              label: category.category,
-                              children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                                "div",
-                                {
-                                  style: {
-                                    width: "100%",
-                                    height: "100%",
-                                    display: "flex",
-                                    flexDirection: "row",
-                                    alignItems: "flex-start",
-                                    justifyContent: "flex-start",
-                                    gap: "0.3rem 0.3rem"
-                                  },
-                                  children: category.products.map((product) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                                    Card$3,
-                                    {
-                                      style: {
-                                        width: "200px",
-                                        minWidth: "200px",
-                                        cursor: "pointer",
-                                        minHeight: "120px"
-                                      },
-                                      onClick: () => setSelectedProduct(product.id),
-                                      children: [
-                                        /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                                          Typography$1.Title,
-                                          {
-                                            style: {
-                                              textAlign: "center",
-                                              marginBottom: "0"
-                                            },
-                                            level: 5,
-                                            ellipsis: {
-                                              rows: 3,
-                                              suffix: ""
-                                            },
-                                            children: [
-                                              product.codigo_produto,
-                                              " - ",
-                                              product.title
-                                            ]
-                                          }
-                                        ),
-                                        /* @__PURE__ */ jsxRuntimeExports.jsx(
-                                          Typography$1.Title,
-                                          {
-                                            style: {
-                                              textAlign: "center",
-                                              marginTop: "0",
-                                              marginBottom: "0"
-                                            },
-                                            level: 5,
-                                            children: formatCurrency(Number(product.price))
-                                          }
-                                        )
-                                      ]
+                          items: groupProductsByCategory(filteredProducts).map((category) => ({
+                            key: category.categoryId,
+                            label: category.category,
+                            children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                              "div",
+                              {
+                                style: {
+                                  width: "100%",
+                                  height: "100%",
+                                  display: "flex",
+                                  flexDirection: "row",
+                                  alignItems: "flex-start",
+                                  justifyContent: "flex-start",
+                                  flexWrap: "wrap",
+                                  gap: "0.3rem 0.3rem"
+                                },
+                                children: category.products.map((product) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                                  Card$3,
+                                  {
+                                    style: {
+                                      width: "200px",
+                                      minWidth: "200px",
+                                      cursor: "pointer",
+                                      minHeight: "120px"
                                     },
-                                    product.id
-                                  ))
-                                }
-                              )
-                            })
-                          )
+                                    onClick: () => setSelectedProduct(product.id),
+                                    children: [
+                                      /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                                        Typography$1.Title,
+                                        {
+                                          style: {
+                                            textAlign: "center",
+                                            marginBottom: "0"
+                                          },
+                                          level: 5,
+                                          ellipsis: {
+                                            rows: 3,
+                                            suffix: ""
+                                          },
+                                          children: [
+                                            product.codigo_produto,
+                                            " - ",
+                                            product.title
+                                          ]
+                                        }
+                                      ),
+                                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                        Typography$1.Title,
+                                        {
+                                          style: {
+                                            textAlign: "center",
+                                            marginTop: "0",
+                                            marginBottom: "0"
+                                          },
+                                          level: 5,
+                                          children: formatCurrency(Number(product.price))
+                                        }
+                                      )
+                                    ]
+                                  },
+                                  product.id
+                                ))
+                              }
+                            )
+                          }))
                         }
                       )
                     }
@@ -75201,13 +75200,7 @@ const Products = () => {
             ]
           }
         ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          ProductDrawer,
-          {
-            visible: selectedProduct,
-            onClose: () => setSelectedProduct("")
-          }
-        )
+        /* @__PURE__ */ jsxRuntimeExports.jsx(ProductDrawer, { visible: selectedProduct, onClose: () => setSelectedProduct("") })
       ]
     }
   );
