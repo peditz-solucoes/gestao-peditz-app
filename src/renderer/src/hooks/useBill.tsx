@@ -19,6 +19,20 @@ interface BillContextData {
   selectedBills: Bill[]
   addBill: (id: string, reset?: boolean) => void
   getOrdersBills: (billId: string, reset?: boolean) => void
+  showModalPayment: boolean
+  setShowModalPayment: (show: boolean) => void
+  addPayment: (paymentId: string) => void
+  selectedPayment: string
+  OnCloseModalPayment: () => void
+  payments: Payments[]
+  setPayments: React.Dispatch<React.SetStateAction<Payments[]>>
+  DeletePayment: (id: string) => void
+}
+
+interface Payments {
+  id: string
+  value: number
+  title: string
 }
 
 export const BillContext = createContext({} as BillContextData)
@@ -28,6 +42,9 @@ export function BillProvider({ children }: BillProviderProps): JSX.Element {
   const [selectedBill, setSelectedBill] = useState<Bill>({} as Bill)
   const [selectedBills, setSelectedBills] = useState<Bill[]>([] as Bill[])
   const [orders, setOrders] = useState<OrderGroupList[]>([] as OrderGroupList[])
+  const [showModalPayment, setShowModalPayment] = useState<boolean>(false)
+  const [selectedPayment, setSelectedPayment] = useState<string>('')
+  const [payments, setPayments] = useState<Payments[]>([])
 
   function fetchBills(): void {
     api
@@ -124,6 +141,20 @@ export function BillProvider({ children }: BillProviderProps): JSX.Element {
       })
   }
 
+  function addPayment(paymentId: string): void {
+    setSelectedPayment(paymentId)
+    setShowModalPayment(true)
+  }
+
+  function OnCloseModalPayment() {
+    setShowModalPayment(false)
+    setSelectedPayment('')
+  }
+
+  function DeletePayment(id: string){
+    setPayments(old => old.filter(payment => payment.id !== id))
+  }
+
   return (
     <BillContext.Provider
       value={{
@@ -136,7 +167,15 @@ export function BillProvider({ children }: BillProviderProps): JSX.Element {
         handleDeleteOrder,
         selectedBills,
         addBill,
-        getOrdersBills
+        getOrdersBills,
+        showModalPayment,
+        setShowModalPayment,
+        addPayment,
+        selectedPayment,
+        OnCloseModalPayment,
+        payments,
+        setPayments,
+        DeletePayment
       }}
     >
       {children}

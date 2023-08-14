@@ -60,7 +60,8 @@ export const Commands: React.FC = () => {
             />
           </div>
         </S.HeaderFilter>
-        <S.ContentCommands>
+
+        <S.ListContainer>
           {commands
             .filter((command) => {
               return (
@@ -72,7 +73,7 @@ export const Commands: React.FC = () => {
             .map((command) => {
               return <CardBill key={command.id} data={command} />
             })}
-        </S.ContentCommands>
+        </S.ListContainer>
       </S.Container>
       <CreateCommandModal visible={isModalVisible} onClose={(): void => setIsModalVisible(false)} />
     </>

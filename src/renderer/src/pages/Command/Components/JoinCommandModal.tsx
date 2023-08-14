@@ -47,8 +47,8 @@ export const JoinCommandModal: React.FC<JoinCommandModalProps> = ({
           return {
             value: bill.id,
             label: `Comanda:${bill.number} | Cliente: ${
-              bill.client_name.split(' ').length > 2
-                ? `${bill.client_name.split(' ')[0]} ${bill.client_name.split(' ')[1]}...`
+              bill.client_name?.split(' ').length > 2
+                ? `${bill.client_name?.split(' ')[0]} ${bill.client_name.split(' ')[1]}...`
                 : `${bill.client_name}`
             }`
           }

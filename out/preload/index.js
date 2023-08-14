@@ -7,7 +7,7 @@ if (process.contextIsolated) {
     electron.contextBridge.exposeInMainWorld("electron", preload.electronAPI);
     electron.contextBridge.exposeInMainWorld("api", api);
     electron.contextBridge.exposeInMainWorld("electronBridge", {
-      printLine: (line) => electron.ipcRenderer.send("print-line", line)
+      printLine: (printerName, line) => electron.ipcRenderer.send("print-line", line, printerName)
     });
   } catch (error) {
     console.error(error);

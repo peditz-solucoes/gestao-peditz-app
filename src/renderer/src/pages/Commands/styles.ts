@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
 export const Container = styled.div`
   width: 100%;
@@ -16,9 +16,19 @@ export const HeaderFilter = styled.div`
 export const ContentCommands = styled.div`
   display: flex;
   flex-direction: row;
-  align-items: flex-start;
+  align-items: center;
   flex-wrap: wrap;
   gap: 15px;
   overflow: auto;
-  height: calc(100vh - 200px);
+  height: calc(100vh - 50px);
+`
+export const ListContainer = styled.div`
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);;
+  place-items: center;
+  grid-gap: 15px;
+  grid-auto-flow: row;
+  width: 100%;
+  overflow-y: auto;
+  max-height: calc(100vh - 170px);
 `

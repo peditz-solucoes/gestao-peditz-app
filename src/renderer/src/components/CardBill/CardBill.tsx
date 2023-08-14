@@ -3,7 +3,6 @@ import * as S from './styles'
 import { Bill } from '../../types'
 import { Avatar, Divider, Typography } from 'antd'
 import { DollarOutlined } from '@ant-design/icons'
-import { formatCurrency } from '../../utils'
 import { useNavigate } from 'react-router-dom'
 
 const { Title, Text } = Typography
@@ -48,7 +47,7 @@ export const CardBill: React.FC<CardBillProps> = (props: CardBillProps) => {
         )}
       </S.InfoBill>
       <Divider style={{ margin: '0' }} />
-      <S.FinanceBill>
+      {/* <S.FinanceBill>
         <S.BoxFinance>
           <Title level={5} style={{ color: '#ECA63E' }}>
             SubTotal
@@ -66,7 +65,7 @@ export const CardBill: React.FC<CardBillProps> = (props: CardBillProps) => {
             {formatCurrency(12.9)}
           </Text>
         </S.BoxFinance>
-      </S.FinanceBill>
+      </S.FinanceBill> */}
     </S.Container>
   )
 }

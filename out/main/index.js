@@ -38,7 +38,7 @@ electron.app.whenReady().then(() => {
       createWindow();
   });
 });
-electron.ipcMain.on("print-line", (_, line) => {
+electron.ipcMain.on("print-line", (_, line, printerName) => {
   let win = new electron.BrowserWindow({ show: false });
   win.loadURL(
     `data:text/html;charset=utf-8,${encodeURIComponent(`
@@ -51,7 +51,7 @@ electron.ipcMain.on("print-line", (_, line) => {
         silent: true,
         // isso mostrará a caixa de diálogo de impressão
         printBackground: true,
-        deviceName: "MP-4200 TH"
+        deviceName: printerName
         // se você souber o nome da impressora, pode definir aqui
       },
       (success, reason) => {

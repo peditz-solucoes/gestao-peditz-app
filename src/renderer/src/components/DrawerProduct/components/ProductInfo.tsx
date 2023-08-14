@@ -141,10 +141,10 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ formRef }) => {
                 style={{
                   width: "80%",
                 }}
-                formatter={(value) =>
-                  `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ",")
-                }
-                parser={(value) => value!.replace(/\$\s?|(,*)/g, "")}
+                // formatter={(value) =>
+                //   `$ ${value}`.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.")
+                // }
+                // parser={(value) => value!.replace(/\$\s?|(,*)/g, "")}
               />
             </Form.Item>
             <Form.Item

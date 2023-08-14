@@ -1,22 +1,16 @@
 import React, { useEffect, useState } from 'react'
 import * as S from './styles'
-import {
-  Avatar,
-  Badge,
-  Button,
-  Input,
-  InputNumber,
-  Modal,
-  Select,
-  Space,
-  Tag,
-  Typography
-} from 'antd'
-import { AiFillPrinter, AiOutlineCheckCircle } from 'react-icons/ai'
+import { Avatar, Badge, Button, Input, InputNumber, Modal, Space, Tag, Typography } from 'antd'
+import { AiFillPrinter } from 'react-icons/ai'
 import { ImBin } from 'react-icons/im'
 import Table, { ColumnsType } from 'antd/es/table'
 import { formatCurrency } from '../../utils'
-import { ClockCircleOutlined, ExclamationCircleFilled, PlusOutlined } from '@ant-design/icons'
+import {
+  ClockCircleOutlined,
+  ExclamationCircleFilled,
+  PlusOutlined,
+  DeleteOutlined
+} from '@ant-design/icons'
 import { BsCashCoin, BsFillDatabaseFill } from 'react-icons/bs'
 import { FaBookReader, FaUserAlt, FaUserTie, FaWallet } from 'react-icons/fa'
 import { MdTableRestaurant } from 'react-icons/md'
@@ -27,79 +21,33 @@ import { FormOfPayment, OrderList } from '../../types'
 import api from '../../services/api'
 import { AxiosError } from 'axios'
 import { errorActions } from '../../utils/errorActions'
-import { OpenCashier } from '@renderer/utils/Printers'
+import { ModalPayment } from './Components/ModalPayment'
 
 const { Text, Title } = Typography
-const { Option } = Select
 const { confirm } = Modal
 
 //  tipagem dos dados da tabela de formas de pagamento
 interface DataFormOfPaymentsType {
-  key: string
-  type: string
+  id: string
   value: number
-  time: string
+  title: string
 }
 
 // colunas da tabela de formas de pagamento
-const columnsFormOfPayments: ColumnsType<DataFormOfPaymentsType> = [
-  {
-    title: 'Tipo',
-    dataIndex: 'type',
-    key: 'type',
-    align: 'center',
-    render: (type) => <Tag color="green">{type}</Tag>
-  },
-  {
-    title: 'Valor',
-    dataIndex: 'value',
-    key: 'value',
-    align: 'center',
-    render: (value) => formatCurrency(value)
-  },
-  {
-    title: 'Hora',
-    dataIndex: 'time',
-    key: 'time',
-    align: 'center',
-    render: () => new Date().toLocaleTimeString()
-  },
-  {
-    title: 'Ação',
-    key: 'action',
-    align: 'center',
-    render: () => (
-      <Space size="middle">
-        <Button type="primary" danger icon={<ImBin />}>
-          Cancelar
-        </Button>
-      </Space>
-    )
-  }
-]
-
-// dados da tabela de formas de pagamento
-const dataFormOfPayments: DataFormOfPaymentsType[] = [
-  {
-    key: '1',
-    type: 'Dinheiro',
-    value: 32.0,
-    time: '10:00'
-  },
-  {
-    key: '2',
-    type: 'Cartão',
-    value: 42.0,
-    time: '10:00'
-  }
-]
 
 export const Command: React.FC = () => {
   const [visibleJoinCommandModal, setVisibleJoinCommandModal] = useState<boolean>(false)
-  const [onTip, setOnTip] = React.useState<boolean>(true)
   const [operatorCode, setOperatorCode] = useState<string>('')
   const [formOfPayment, setFormOfPayment] = useState<FormOfPayment[]>([] as FormOfPayment[])
-  const { selectedBills, handleDeleteOrder, ordersGroupList, addBill } = useBill()
+  const {
+    selectedBills,
+    handleDeleteOrder,
+    ordersGroupList,
+    addBill,
+    addPayment,
+    payments,
+    DeletePayment
+  } = useBill()
   const { id } = useParams()
 
   useEffect(() => {
@@ -107,6 +55,39 @@ export const Command: React.FC = () => {
     addBill(id as string, true)
     fetchFormOfPayments()
   }, [])
+
+  const columnsFormOfPayments: ColumnsType<DataFormOfPaymentsType> = [
+    {
+      title: 'Tipo',
+      dataIndex: 'title',
+      key: 'title',
+      align: 'center',
+      render: (title) => <Tag color="green">{title}</Tag>
+    },
+    {
+      title: 'Valor',
+      dataIndex: 'value',
+      key: 'value',
+      align: 'center',
+      render: (value) => formatCurrency(value)
+    },
+    {
+      title: 'Ação',
+      key: 'action',
+      align: 'center',
+      render: (_, payment) => (
+        <Space size="middle">
+          <Button
+            type="primary"
+            danger
+            shape="circle"
+            onClick={() => DeletePayment(payment.id)}
+            icon={<DeleteOutlined />}
+          />
+        </Space>
+      )
+    }
+  ]
 
   const columns: ColumnsType<OrderList> = [
     {
@@ -128,7 +109,7 @@ export const Command: React.FC = () => {
             padding: '0.25rem'
           }}
         >
-          {formatCurrency(price)}
+          {formatCurrency(Number(price))}
         </Tag>
       )
     },
@@ -359,12 +340,12 @@ export const Command: React.FC = () => {
               }}
             >
               <Space.Compact style={{ width: 300 }}>
-                <Select defaultValue={'percent'}>
+                {/* <Select defaultValue={'percent'}>
                   <Option value="percent">%</Option>
                   <Option value="cash">R$</Option>
                 </Select>
-                <Input defaultValue="10" />
-                <Button
+                <Input defaultValue="10" /> */}
+                {/* <Button
                   type={onTip ? 'primary' : 'dashed'}
                   icon={onTip && <AiOutlineCheckCircle />}
                   onClick={(): void => setOnTip(!onTip)}
@@ -375,7 +356,7 @@ export const Command: React.FC = () => {
                   }}
                 >
                   {onTip ? 'Gorjeta Aplicada' : 'Aplicar Gorjeta'}
-                </Button>
+                </Button> */}
               </Space.Compact>
               <div
                 style={{
@@ -401,16 +382,6 @@ export const Command: React.FC = () => {
                 <Button
                   type="primary"
                   icon={<AiFillPrinter size={24} />}
-                  onClick={(): void => {
-                    OpenCashier({
-                      initial_value: '0',
-                      opened_by_name: 'teste',
-                      restaurant: {
-                        id: '1',
-                        title: 'teste'
-                      }
-                    })
-                  }}
                   size="large"
                   style={{
                     display: 'flex',
@@ -459,6 +430,7 @@ export const Command: React.FC = () => {
                   key={payment.id}
                   type="primary"
                   size="large"
+                  onClick={() => addPayment(payment.id as string)}
                   style={{
                     flex: 1
                   }}
@@ -588,9 +560,10 @@ export const Command: React.FC = () => {
             <div>
               <Table
                 columns={columnsFormOfPayments}
-                dataSource={dataFormOfPayments}
+                dataSource={payments}
                 pagination={false}
                 scroll={{ y: 380 }}
+                rowKey={(record): string => record.id as string}
               />
             </div>
             <S.ActionsPayments>
@@ -606,6 +579,7 @@ export const Command: React.FC = () => {
         onCancel={(): void => setVisibleJoinCommandModal(false)}
         billId={id as string}
       />
+      <ModalPayment />
     </>
   )
 }

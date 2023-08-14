@@ -8,7 +8,7 @@ export const Container = styled.div`
   gap: 20px;
 `
 export const ResumeCommand = styled.div`
-  width: 60%;
+  width: 65%;
   height: calc(100vh - 18rem);
   box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
   border-radius: 10px;
@@ -21,7 +21,7 @@ export const ResumeCommand = styled.div`
 `
 
 export const ResumeFinance = styled.div`
-  width: 40%;
+  width: 35%;
   max-height: calc(100vh - 18rem);
   box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
   border-radius: 10px;
