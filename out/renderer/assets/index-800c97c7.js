@@ -71576,6 +71576,7 @@ const Command = () => {
   const [visibleJoinCommandModal, setVisibleJoinCommandModal] = reactExports.useState(false);
   const [operatorCode, setOperatorCode] = reactExports.useState("");
   const [formOfPayment, setFormOfPayment] = reactExports.useState([]);
+  const [selectedNfce, setSelectedNfce] = reactExports.useState({});
   const {
     selectedBills,
     handleDeleteOrder,
@@ -71748,6 +71749,16 @@ const Command = () => {
   const rowSelection = {
     onChange: (selectedRowKeys, selectedRows) => {
       console.log(`selectedRowKeys: ${selectedRowKeys}`, "selectedRows: ", selectedRows);
+      const selected = {
+        payments_methods: [],
+        tax_items: selectedRows.map((item) => {
+          return {
+            product_id: item.id,
+            quantity: Number(item.quantity)
+          };
+        })
+      };
+      setSelectedNfce(selected);
     }
   };
   const dataTable = ordersGroupList.flatMap((order) => {
@@ -71926,6 +71937,20 @@ const Command = () => {
                                 fontWeight: "bold"
                               },
                               children: "Imprimir"
+                            }
+                          ),
+                          selectedNfce?.tax_items?.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                            Button$2,
+                            {
+                              type: "primary",
+                              size: "large",
+                              style: {
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "center",
+                                fontWeight: "bold"
+                              },
+                              children: "Emitir Nfc-e"
                             }
                           )
                         ]

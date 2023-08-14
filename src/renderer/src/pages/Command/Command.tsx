@@ -33,12 +33,22 @@ interface DataFormOfPaymentsType {
   title: string
 }
 
-// colunas da tabela de formas de pagamento
+interface TaxData {
+  payments_methods: {
+    forma_pagamento: string
+    valor_pagamento: string
+  }[]
+  tax_items: {
+    product_id: string
+    quantity: number
+  }[]
+}
 
 export const Command: React.FC = () => {
   const [visibleJoinCommandModal, setVisibleJoinCommandModal] = useState<boolean>(false)
   const [operatorCode, setOperatorCode] = useState<string>('')
   const [formOfPayment, setFormOfPayment] = useState<FormOfPayment[]>([] as FormOfPayment[])
+  const [selectedNfce, setSelectedNfce] = useState<TaxData>({} as TaxData)
   const {
     selectedBills,
     handleDeleteOrder,
@@ -218,6 +228,18 @@ export const Command: React.FC = () => {
   const rowSelection = {
     onChange: (selectedRowKeys: React.Key[], selectedRows: OrderList[]): void => {
       console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows)
+
+      const selected: TaxData = {
+        payments_methods: [],
+        tax_items: selectedRows.map((item) => {
+          return {
+            product_id: item.id as string,
+            quantity: Number(item.quantity)
+          }
+        })
+      }
+
+      setSelectedNfce(selected)
     }
   }
 
@@ -392,6 +414,20 @@ export const Command: React.FC = () => {
                 >
                   Imprimir
                 </Button>
+                {selectedNfce?.tax_items?.length > 0 && (
+                  <Button
+                    type="primary"
+                    size="large"
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontWeight: 'bold'
+                    }}
+                  >
+                    Emitir Nfc-e
+                  </Button>
+                )}
               </div>
             </div>
             <Table
