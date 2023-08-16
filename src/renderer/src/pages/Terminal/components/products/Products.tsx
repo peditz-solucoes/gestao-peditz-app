@@ -6,6 +6,7 @@ import { useTerminal } from '../../../../hooks/useTerminal'
 import { Product } from '../../../../types'
 import api from '../../../../services/api'
 import { ProductDrawer } from '../productDrawer'
+import { Order } from '@renderer/utils/Printers'
 type CategoryGroup = {
   category: string
   categoryId: string
@@ -21,7 +22,7 @@ export const Products: React.FC = () => {
   const [filteredProducts, setFilteredProducts] = React.useState<Product[]>([])
   const [searchValue, setSearchValue] = React.useState<string>('')
   const [loadingSend, setLoadingSend] = React.useState<boolean>(false)
-  const fetchProducts = async () => {
+  const fetchProducts = async (): Promise<void> => {
     setLoading(true)
     api
       .get('/product/')
@@ -51,7 +52,7 @@ export const Products: React.FC = () => {
     return Object.values(categoryGroups)
   }
 
-  const searchProduct = () => {
+  const searchProduct = (): void => {
     if (!searchValue) {
       setFilteredProducts(products)
       return
@@ -98,7 +99,7 @@ export const Products: React.FC = () => {
         <Input.Search
           ref={searchInput}
           value={searchValue}
-          onChange={(e) => setSearchValue(e.target.value)}
+          onChange={(e): void => setSearchValue(e.target.value)}
           onSearch={searchProduct}
           placeholder="Pesquisar o nome ou código do produto"
           style={{
@@ -359,8 +360,17 @@ export const Products: React.FC = () => {
                   operator_code: '156',
                   order_items: cart
                 })
-                .then(() => {
+                .then((response) => {
                   setCart([])
+                  console.log(response.data)
+                  Order(
+                    response.data.restaurant.title,
+                    response.data.bill?.table?.title || '',
+                    String(response.data.bill?.number) || '',
+                    response.data.order_items,
+                    response.data?.collaborator_name || '',
+                    response.data?.created || ''
+                  )
                   setCurrentTab('1')
                 })
                 .finally(() => {

@@ -124,12 +124,12 @@ export function BillProvider({ children }: BillProviderProps): JSX.Element {
     setShowModalPayment(true)
   }
 
-  function OnCloseModalPayment() {
+  function OnCloseModalPayment(): void {
     setShowModalPayment(false)
     setSelectedPayment('')
   }
 
-  function DeletePayment(id: string) {
+  function DeletePayment(id: string): void {
     setPayments((old) => old.filter((payment) => payment.id !== id))
   }
 

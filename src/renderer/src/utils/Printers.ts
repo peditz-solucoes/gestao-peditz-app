@@ -1,3 +1,4 @@
+import moment from 'moment'
 import { formatCurrency } from './formatCurrency'
 
 interface OpenCashierProps {
@@ -12,7 +13,7 @@ interface OpenCashierProps {
   printerName: string
 }
 
-export function OpenCashier(props: OpenCashierProps) {
+export function OpenCashier(props: OpenCashierProps): void {
   window.electronBridge.printLine(
     props.printerName,
     `
@@ -38,7 +39,7 @@ export function OpenCashier(props: OpenCashierProps) {
         <h3 style="margin-bottom: 5px; text-transform: uppercase; text-align: center;">Comprovante de abertura de caixa</h3>
         <hr style="border-style: dashed" />
         <br>
-    
+
         <h4 style="margin: 0">ABERTO POR:</h4>
         <p style="margin: 0; font-size: 16px;">
             ${props.data.opened_by_name}
@@ -58,7 +59,7 @@ export function OpenCashier(props: OpenCashierProps) {
             ....
         </p>
       </body>
-    </html>  
+    </html>
   `
   )
 }
@@ -67,7 +68,7 @@ interface TestPrintProps {
   printerName: string
 }
 
-export function TestPrint(props: TestPrintProps) {
+export function TestPrint(props: TestPrintProps): void {
   window.electronBridge.printLine(
     props.printerName,
     `
@@ -104,12 +105,12 @@ export function TestPrint(props: TestPrintProps) {
       <p style="text-align: center">www.peditz.com.br</p>
     </body>
   </html>
-  
+
   `
   )
 }
 
-export function ClosedCashier() {
+export function ClosedCashier(): void {
   window.electronBridge.printLine(
     '',
     `
@@ -170,7 +171,7 @@ export function ClosedCashier() {
   )
 }
 
-export function BillPrinter() {
+export function BillPrinter(): void {
   window.electronBridge.printLine(
     '',
     `
@@ -273,83 +274,123 @@ export function BillPrinter() {
   )
 }
 
-export function Order() {
-  window.electronBridge.printLine(
-    '',
-    `
-      <html>
-      <head>
-        <title>Impressão</title>
-        <style>
-          * {
-            font-family: sans-serif;
-            font-size: 18px;
-          }
-          @page {
-            size: 80mm 270mm;
-            margin: 10mm 10mm;
-          }
-        </style>
-      </head>
-      <body style="max-width: 80mm">
-        <br />
-        <h2
-          style="
-            margin-bottom: 5px;
-            text-transform: uppercase;
-            font-size: 24px;
-            text-align: center;
-          "
-        >
-          Novo pedido!
-        </h2>
-        <hr style="border-style: dashed" />
-        <h4 style="margin: 0; text-align: center">12/12/2023 12:12</h4>
-        <h4 style="margin: 0; text-align: center; margin-top: 5px">COMANDA 12</h4>
-        <h4 style="margin: 0; text-align: center; margin-top: 5px">MESA 4</h4>
-        <hr style="border-style: dashed" />
-        <ul style="padding: 0; font-size: 24px">
-          <li style="list-style: none">
-            <div style="font-size: 24px">
-              <strong style="font-size: 24px">1x Pizza Grande</strong>
-            </div>
-            <ul style="padding: 2px 0 0 5mm">
-              <li style="list-style: none; display: flex">
-                <span style="font-size: 24px">1x Calabresa</span>
-              </li>
-              <li
-                style="
-                  list-style: none;
-                  display: flex;
-                  justify-content: space-between;
-                "
-              >
-                <span style="font-size: 24px">1x Frango</span>
-              </li>
-            </ul>
-          </li>
-          <li style="list-style: none; margin-top: 10px">
-            <div>
-              <strong style="font-size: 24px">2x Refrigerante Lata</strong>
-            </div>
-          </li>
-        </ul>
+interface ItemsOrdersProps {
+  items: {
+    complement_id: string
+    complement_title: string
+    items: {
+      item_title: string
+      quantity: number
+      item_id: string
+    }[]
+  }[]
+  notes: string
+  product_title: string
+  printer_name?: string
+  product_id: string
+  quantity: number
+}
 
-        <hr style="border-style: dashed" />
-        <div
-          style="margin-top: 10px ; font-size: 14px;"
-        >
-          <strong style="font-size: 14px;">Impressora:</strong>
-          <span style="font-size: 14px;">cozinha</span>
-        </div>
-        <br>
-        <p style="margin: 0; text-align: center; font-size: 12px">
-          Atelie do chefe
-        </p>
-        <br />
-        <p style="margin: 0; text-align: center; font-size: 12px">....</p>
-      </body>
-    </html>
-  `
-  )
+function addOrderItemInString(items: ItemsOrdersProps[]): string {
+  let row = ''
+  for (const i of items) {
+    row += `<li style="list-style: none">
+    <div style="font-size: 24px">
+      <strong style="font-size: 24px">${i.quantity}x ${i.product_title}</strong>
+    </div>
+    ${
+      i.notes
+        ? `<div style="padding: 2px 0 0 5mm">
+      <span style="font-size: 24px">${i.notes}</span>
+    </div>`
+        : ''
+    }
+    `
+    if (i.items.length > 0) {
+      for (const j of i.items) {
+        row += `<ul style="padding: 2px 0 0 5mm">`
+        for (const k of j.items) {
+          row += `<li style="list-style: none; display: flex">`
+          row += `<span style="font-size: 24px">${k.quantity}x ${k.item_title}</span>`
+          row += `</li>`
+        }
+        row += `</ul>`
+      }
+    }
+    row += `</li>`
+  }
+  return row
+}
+
+export function Order(
+  restaurant: string,
+  table: string,
+  command: string,
+  items: ItemsOrdersProps[],
+  operator: string,
+  date: string
+): void {
+  for (const i of items) {
+    if (i.printer_name) {
+      window.electronBridge.printLine(
+        i.printer_name || '',
+        `
+        <html>
+        <head>
+          <title>Impressão</title>
+          <style>
+            * {
+              font-family: sans-serif;
+              font-size: 18px;
+            }
+            @page {
+              size: 80mm 270mm;
+              margin: 10mm 10mm;
+            }
+          </style>
+        </head>
+        <body style="max-width: 80mm">
+          <br />
+          <h2
+            style="
+              margin-bottom: 5px;
+              text-transform: uppercase;
+              font-size: 24px;
+              text-align: center;
+            "
+          >
+            Novo pedido!
+          </h2>
+          <hr style="border-style: dashed" />
+          <h4 style="margin: 0; text-align: center">${moment(date).format(
+            'DD/MM/YYYY HH:mm:ss'
+          )}</h4>
+          <h4 style="margin: 0; text-align: center; margin-top: 5px">COMANDA ${command}</h4>
+          <h4 style="margin: 0; text-align: center; margin-top: 5px">MESA ${table}</h4>
+          <h4 style="margin: 0; text-align: center; margin-top: 5px">Responsável ${operator}</h4>
+          <hr style="border-style: dashed" />
+          <ul style="padding: 0; font-size: 24px">
+          ${addOrderItemInString(items)}
+          <hr style="border-style: dashed" />
+          <div
+            style="margin-top: 10px ; font-size: 14px;"
+          >
+            <strong style="font-size: 14px;">Impressora:</strong>
+            <span style="font-size: 14px;">${i.printer_name}</span>
+          </div>
+          <br>
+          <p style="margin: 0; text-align: center; font-size: 12px">
+            ${restaurant}
+          </p>
+          <br />
+          <p style="margin: 0; text-align: center; font-size: 12px">....</p>
+        </body>
+      </html>
+    `
+      )
+    }
+    console.log('items', items)
+    console.log('restaurant', restaurant)
+    console.log(addOrderItemInString(items))
+  }
 }
