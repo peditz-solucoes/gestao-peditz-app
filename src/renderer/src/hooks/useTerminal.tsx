@@ -46,6 +46,7 @@ export function TerminalProvider({ children }: TerminalProviderProps): JSX.Eleme
   const [loadingSelectedBill, setLoadingSelectedBill] = useState<boolean>(false)
   function fetchBills(): Promise<unknown> {
     return new Promise((resolve, reject) => {
+      setCart([])
       api
         .get('/bill/?open=true')
         .then((response: AxiosResponse) => {
