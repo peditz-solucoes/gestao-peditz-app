@@ -1,6 +1,6 @@
 import {
   ApiOutlined,
-  // AppstoreAddOutlined,
+  AppstoreAddOutlined,
   BlockOutlined,
   DesktopOutlined,
   PieChartOutlined,
@@ -14,8 +14,12 @@ import { Layout, Menu, MenuProps } from 'antd'
 import logo from '../../assets/logo-branca.png'
 import miniLogo from '../../assets/peditz.jpeg'
 
-import React from 'react'
+import React, { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import { UserPermissions } from '@renderer/types'
+import api from '@renderer/services/api'
+import { AxiosError } from 'axios'
+import { errorActions } from '@renderer/utils/errorActions'
 
 const { Sider } = Layout
 
@@ -41,82 +45,133 @@ function getItem({ key, label, children, icon, style, type }: ItemProps): MenuIt
   } as MenuItem
 }
 
-const items: MenuItem[] = [
-  getItem({
-    key: '1',
-    label: <Link to={'/dashboard'}>Dashboard</Link>,
-    icon: <PieChartOutlined />
-  }),
-
-  getItem({
-    key: '2',
-    label: <Link to={'/caixa'}>Caixa</Link>,
-    icon: <DesktopOutlined />
-  }),
-
-  getItem({
-    key: 'sub1',
-    label: 'Produtos',
-    icon: <IoFastFood />,
-    children: [
-      getItem({
-        key: '4',
-        label: <Link to={'/produtos'}>Lista de produtos</Link>
-      }),
-      getItem({
-        key: '5',
-        label: <Link to={'/produtos/categorias'}>Categorias</Link>
-      })
-    ]
-  }),
-
-  getItem({
-    key: '6',
-    label: <Link to={'/comandas'}>Comandas</Link>,
-    icon: <WalletOutlined />
-  }),
-
-  getItem({
-    key: '7',
-    label: <Link to={'/mesas'}>Mesas</Link>,
-    icon: <BlockOutlined />
-  }),
-
-  getItem({
-    key: '8',
-    label: <Link to={'/estoque'}>Estoques</Link>,
-    icon: <ShoppingOutlined />
-  }),
-
-  getItem({
-    key: '9',
-    label: <Link to={'/relatorios'}>Relatórios</Link>,
-    icon: <SolutionOutlined />
-  }),
-
-  // getItem({
-  // 	key: '10',
-  // 	label: <Link to={'/aplicativos'}>Aplicativos</Link>,
-  // 	icon: <AppstoreAddOutlined />,
-  // }),
-
-  getItem({
-    key: '10',
-    label: <Link to={'/integracoes'}>Integrações</Link>,
-    icon: <ApiOutlined />
-  }),
-  getItem({
-    key: '11',
-    label: <Link to={'/terminal'}>Terminal de pedidos</Link>,
-    icon: <ReconciliationOutlined />
-  })
-]
-
 interface SideBarProps {
   collapsed: boolean
 }
 
 export const SideBar: React.FC<SideBarProps> = ({ collapsed }) => {
+  const [userPermissions, setUserPermissions] = React.useState<string[]>([])
+
+  useEffect(() => {
+    fetchUserPermission()
+  }, [])
+
+  function fetchUserPermission() {
+    api
+      .get('/user-permissions/')
+      .then((response) => {
+        const permissions = (response.data as UserPermissions[])
+          .map((permission) => permission.sidebar_permissions.map((sidebar) => sidebar.title))
+          .flat()
+
+        setUserPermissions(permissions)
+      })
+      .catch((error: AxiosError) => {
+        errorActions(error)
+      })
+  }
+
+  const items: MenuItem[] = [
+    getItem({
+      key: '1',
+      label: <Link to={'/dashboard'}>Dashboard</Link>,
+      icon: <PieChartOutlined />,
+      style: {
+        display: userPermissions.includes('Dashboard') ? 'flex' : 'none'
+      }
+    }),
+
+    getItem({
+      key: '2',
+      label: <Link to={'/caixa'}>Caixa</Link>,
+      icon: <DesktopOutlined />,
+      style: {
+        display: userPermissions.includes('Caixa') ? 'flex' : 'none'
+      }
+    }),
+
+    getItem({
+      key: 'sub1',
+      label: 'Produtos',
+      icon: <IoFastFood />,
+      style: {
+        display: userPermissions.includes('Produtos') ? 'flex' : 'none'
+      },
+      children: [
+        getItem({
+          key: '4',
+          label: <Link to={'/produtos'}>Lista de produtos</Link>
+        }),
+        getItem({
+          key: '5',
+          label: <Link to={'/produtos/categorias'}>Categorias</Link>
+        })
+      ]
+    }),
+
+    getItem({
+      key: '6',
+      label: <Link to={'/comandas'}>Comandas</Link>,
+      icon: <WalletOutlined />,
+      style: {
+        display: userPermissions.includes('Comandas') ? 'flex' : 'none'
+      }
+    }),
+
+    getItem({
+      key: '7',
+      label: <Link to={'/mesas'}>Mesas</Link>,
+      icon: <BlockOutlined />,
+      style: {
+        display: userPermissions.includes('Mesas') ? 'flex' : 'none'
+      }
+    }),
+
+    getItem({
+      key: '8',
+      label: <Link to={'/estoque'}>Estoques</Link>,
+      icon: <ShoppingOutlined />,
+      style: {
+        display: userPermissions.includes('Estoques') ? 'flex' : 'none'
+      }
+    }),
+
+    getItem({
+      key: '9',
+      label: <Link to={'/relatorios'}>Relatórios</Link>,
+      icon: <SolutionOutlined />,
+      style: {
+        display: userPermissions.includes('Relatorios') ? 'flex' : 'none'
+      }
+    }),
+
+    getItem({
+      key: '10',
+      label: <Link to={'/aplicativos'}>Aplicativos</Link>,
+      icon: <AppstoreAddOutlined />,
+      style: {
+        display: userPermissions.includes('Aplicativos') ? 'flex' : 'none'
+      }
+    }),
+
+    getItem({
+      key: '11',
+      label: <Link to={'/integracoes'}>Integrações</Link>,
+      icon: <ApiOutlined />,
+      style: {
+        display: userPermissions.includes('Integracoes') ? 'flex' : 'none'
+      }
+    }),
+    getItem({
+      key: '12',
+      label: <Link to={'/terminal'}>Terminal de pedidos</Link>,
+      icon: <ReconciliationOutlined />,
+      style: {
+        display: userPermissions.includes('Terminal') ? 'flex' : 'none'
+      }
+    })
+  ]
+
   return (
     <Sider
       trigger={null}

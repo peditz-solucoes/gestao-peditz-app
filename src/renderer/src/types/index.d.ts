@@ -259,3 +259,22 @@ export type Payments = {
   total: string
   cashier: string
 }
+
+export type UserPermissions = {
+  id: string
+  sidebar_permissions: [
+    {
+      id: string
+      title: string
+    }
+  ]
+  role: string
+  office: string
+  user: {
+    email: string
+    first_name: string
+    last_name: string
+    is_active: boolean
+    is_staff: boolean
+  }
+}
