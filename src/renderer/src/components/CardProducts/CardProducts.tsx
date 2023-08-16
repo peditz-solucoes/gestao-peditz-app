@@ -41,6 +41,7 @@ export const CardProducts: React.FC<CardProductsProps> = ({
 				setIsLoading(false);
 			});
 	}
+	
 	return (
 		<>
 			<Card

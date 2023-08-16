@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import * as S from './styles'
-import { Avatar, Badge, Button, Space, Tag, Typography } from 'antd'
-import { AiFillPrinter } from 'react-icons/ai'
+import { Avatar, Badge, Button, Input, Select, Space, Tag, Typography } from 'antd'
+import { AiFillPrinter, AiOutlineCheckCircle } from 'react-icons/ai'
 import { ImBin } from 'react-icons/im'
 import Table, { ColumnsType } from 'antd/es/table'
 import { formatCurrency } from '../../utils'
@@ -20,6 +20,7 @@ import { ModalPayment } from './Components/ModalPayment'
 import { ModalConfirmDeleteItem } from './Components/ModalConfirmDeleteItem'
 import { BillPrinter } from '@renderer/utils/Printers'
 import { NfceEmitModal } from './Components/NfceEmitModal'
+import { Option } from 'antd/es/mentions'
 
 const { Text, Title } = Typography
 
@@ -41,11 +42,15 @@ export const Command: React.FC = () => {
   const [visibleModalNfce, setVisibleModalNfce] = useState<boolean>(false)
   const [visibleModal, setVisibleModal] = useState<boolean>(false)
   const [selectExcluseItem, setSelectExcluseItem] = useState<OrderList>({} as OrderList)
-  const { selectedBills, orders, addBill, addPayment, payments, DeletePayment } = useBill()
+  const { selectedBills, orders, addBill, addPayment, payments, DeletePayment, fetchBill } =
+    useBill()
+  const [tipInput, setTipInput] = useState<number>(0)
+  const [tipApply, setTipApply] = useState<boolean>(false)
+  const [onTip, setOnTip] = useState<number>(0)
+  const [typeOnTip, setTypeOnTip] = useState<string>('percent')
   const { id } = useParams()
 
   useEffect(() => {
-    // fetchBill(id as string)
     addBill(id as string, true)
     fetchFormOfPayments()
   }, [])
@@ -157,6 +162,19 @@ export const Command: React.FC = () => {
       })
   }
 
+  function handleApplyPayment(): void {
+    api
+      .post('/payment/', {
+        bills: selectedBills.map((bill) => bill.id),
+        pyments_methods: payments.map((payment) => ({ id: payment.id, value: payment.value }))
+      })
+      // .then((response) => {})
+      .catch((error: AxiosError) => {
+        errorActions(error)
+      })
+      .finally(() => {})
+  }
+
   const rowSelection = {
     onChange: (selectedRowKeys: React.Key[], selectedRows: OrderList[]): void => {
       console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows)
@@ -181,8 +199,22 @@ export const Command: React.FC = () => {
     return order.orders
   })
 
+  function handleTip(): void {
+    if (!tipApply) {
+      setTipApply(true)
+      if (typeOnTip === 'percent') {
+        setOnTip((tipInput / 100) * total)
+      } else {
+        setOnTip(tipInput)
+      }
+    } else {
+      setTipApply(false)
+      setOnTip(0)
+    }
+  }
+
   // Resume finance
-  const total = orders.map((o) => Number(o.total)).reduce((a, b) => a + b, 0)
+  const total = orders.map((o) => Number(o.total)).reduce((a, b) => a + b, 0) + onTip
   const paid = payments.map((p) => Number(p.value)).reduce((a, b) => a + b, 0)
   const missing = total - paid < 0 ? 0 : total - paid
   const change = paid - total < 0 ? 0 : paid - total
@@ -309,23 +341,29 @@ export const Command: React.FC = () => {
               }}
             >
               <Space.Compact style={{ width: 300 }}>
-                {/* <Select defaultValue={'percent'}>
+                <Select defaultValue={'percent'} onChange={(value) => setTypeOnTip(value)}>
                   <Option value="percent">%</Option>
                   <Option value="cash">R$</Option>
                 </Select>
-                <Input defaultValue="10" /> */}
-                {/* <Button
-                  type={onTip ? 'primary' : 'dashed'}
+                <Input
+                  defaultValue={tipInput}
+                  value={tipInput}
+                  onChange={(e) => setTipInput(Number(e.target.value))}
+                />
+                <Button
+                  type={tipApply ? 'primary' : 'dashed'}
                   icon={onTip && <AiOutlineCheckCircle />}
-                  onClick={(): void => setOnTip(!onTip)}
+                  onClick={() => {
+                    handleTip()
+                  }}
                   style={{
                     display: 'flex',
                     alignItems: 'center',
                     fontWeight: 'bold'
                   }}
                 >
-                  {onTip ? 'Gorjeta Aplicada' : 'Aplicar Gorjeta'}
-                </Button> */}
+                  {tipApply ? 'Gorjeta Aplicada' : 'Aplicar Gorjeta'}
+                </Button>
               </Space.Compact>
               <div
                 style={{
@@ -553,9 +591,20 @@ export const Command: React.FC = () => {
               />
             </div>
             <S.ActionsPayments>
-              <Button type="primary" size="large" style={{ flex: 1 }}>
-                Finalizar Comanda
-              </Button>
+              {missing > 0 ? (
+                <Button type="primary" danger size="large" style={{ flex: 1 }}>
+                  Fechar comanda
+                </Button>
+              ) : (
+                <Button
+                  type="primary"
+                  size="large"
+                  style={{ flex: 1 }}
+                  onClick={handleApplyPayment}
+                >
+                  Finalizar Comanda
+                </Button>
+              )}
             </S.ActionsPayments>
           </S.ResumeFinance>
         </div>
