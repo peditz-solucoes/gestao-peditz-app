@@ -1,12 +1,13 @@
 import { CaretRightOutlined, DeleteOutlined, ReloadOutlined } from '@ant-design/icons'
-import { Button, Card, Collapse, Input, InputRef, List, Typography } from 'antd'
+import { Alert, Button, Card, Collapse, Input, InputRef, List, Modal, Typography } from 'antd'
 import React, { useEffect } from 'react'
 import { formatCurrency } from '../../../../utils'
 import { useTerminal } from '../../../../hooks/useTerminal'
-import { Product } from '../../../../types'
+import { OrderGroupList, Product } from '../../../../types'
 import api from '../../../../services/api'
 import { ProductDrawer } from '../productDrawer'
 import { Order } from '@renderer/utils/Printers'
+import { AxiosError, AxiosResponse } from 'axios'
 type CategoryGroup = {
   category: string
   categoryId: string
@@ -22,6 +23,21 @@ export const Products: React.FC = () => {
   const [filteredProducts, setFilteredProducts] = React.useState<Product[]>([])
   const [searchValue, setSearchValue] = React.useState<string>('')
   const [loadingSend, setLoadingSend] = React.useState<boolean>(false)
+  const [orders, setOrders] = React.useState<OrderGroupList[]>([])
+  const operatorCodePassInput = React.useRef<InputRef>(null)
+  const [operatorCode, setOperatorCode] = React.useState<string>('')
+  const [modalCodeOpen, setModalCodeOpen] = React.useState<boolean>(false)
+  const [sendError, setSendError] = React.useState<string>('')
+  function getOrdersBills(billId: string): void {
+    api
+      .get(`/order-list/?bill=${billId}`)
+      .then((response: AxiosResponse) => {
+        setOrders([...response.data])
+      })
+      .catch((error: AxiosError) => {
+        // errorActions(error)
+      })
+  }
   const fetchProducts = async (): Promise<void> => {
     setLoading(true)
     api
@@ -72,9 +88,54 @@ export const Products: React.FC = () => {
 
   useEffect(() => {
     if (currentTab === '2') {
+      setOrders([])
       fetchProducts()
+      if (selectedBill.id) {
+        getOrdersBills(selectedBill.id)
+      }
     }
   }, [currentTab])
+
+  function sendOrder(): void {
+    setLoadingSend(true)
+    if (operatorCode) {
+      setSendError('')
+      api
+        .post('/order/', {
+          bill_id: selectedBill.id,
+          operator_code: operatorCode,
+          order_items: cart
+        })
+        .then((response) => {
+          setCart([])
+          console.log(response.data)
+          Order(
+            response.data.restaurant.title,
+            response.data.bill?.table?.title || '',
+            String(response.data.bill?.number) || '',
+            response.data.order_items,
+            response.data?.collaborator_name || '',
+            response.data?.created || ''
+          )
+          setOperatorCode('')
+          setModalCodeOpen(false)
+          setCurrentTab('1')
+        })
+        .catch((error) => {
+          if (error.response?.data?.detail) {
+            setSendError(error.response?.data?.detail)
+          } else {
+            setSendError('Erro ao enviar pedido')
+          }
+        })
+        .finally(() => {
+          setLoadingSend(false)
+        })
+    } else {
+      setSendError('Informe o código do operador')
+      setLoadingSend(false)
+    }
+  }
 
   return (
     <div
@@ -130,19 +191,100 @@ export const Products: React.FC = () => {
             height: '100%',
             display: 'flex',
             flexDirection: 'column',
+            padding: '0 !important',
             alignItems: 'center'
+          }}
+          bodyStyle={{
+            padding: '0 !important'
           }}
         >
           <Typography.Title
             style={{
               textAlign: 'center',
-              marginBottom: '0',
-              height: '100%'
+              marginBottom: '1rem',
+              marginTop: '1rem'
             }}
             level={4}
           >
             Comanda {selectedBill.number}
           </Typography.Title>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'flex-start',
+              justifyContent: 'flex-start',
+              width: '100%',
+              maxHeight: 'calc(100vh - 250px)',
+              overflowY: 'auto'
+            }}
+          >
+            {orders.map((orderG) =>
+              orderG.orders.map((order) => (
+                <div
+                  key={order.id}
+                  style={{
+                    width: '100%'
+                  }}
+                >
+                  <Typography.Text
+                    style={{
+                      margin: '0',
+                      width: '100%',
+                      fontSize: '1.2rem',
+                      // marginLeft: '14px',
+                      fontWeight: 'bold',
+                      maxWidth: '100%',
+                      wordBreak: 'break-all',
+                      wordWrap: 'break-word'
+                    }}
+                  >
+                    {Number(order.quantity)}x {order.product_title}
+                  </Typography.Text>
+                  <br />
+                  <Typography.Text
+                    style={{
+                      margin: '0',
+                      width: '100%',
+                      marginLeft: '30px'
+                    }}
+                  >
+                    {order.note}
+                  </Typography.Text>
+                  {order.complements.map((complement) => {
+                    return (
+                      <div key={complement.id}>
+                        <Typography.Text
+                          style={{
+                            margin: '0',
+                            width: '100%',
+                            marginLeft: '30px',
+                            fontWeight: 'bold'
+                          }}
+                        >
+                          {complement.complement_group_title}
+                        </Typography.Text>
+                        {complement.items.map((ite) => (
+                          <div key={ite.id}>
+                            <Typography.Text
+                              style={{
+                                margin: '0',
+                                width: '100%',
+                                marginLeft: '30px'
+                              }}
+                            >
+                              {Number(ite.quantity) > 1 ? ite.quantity + 'x ' : '-'}{' '}
+                              {ite.complement_title}
+                            </Typography.Text>
+                          </div>
+                        ))}
+                      </div>
+                    )
+                  })}
+                </div>
+              ))
+            )}
+          </div>
         </Card>
         <div
           style={{
@@ -352,37 +494,47 @@ export const Products: React.FC = () => {
             block
             loading={loadingSend}
             disabled={cart.length === 0}
-            onClick={() => {
-              setLoadingSend(true)
-              api
-                .post('/order/', {
-                  bill_id: selectedBill.id,
-                  operator_code: '156',
-                  order_items: cart
-                })
-                .then((response) => {
-                  setCart([])
-                  console.log(response.data)
-                  Order(
-                    response.data.restaurant.title,
-                    response.data.bill?.table?.title || '',
-                    String(response.data.bill?.number) || '',
-                    response.data.order_items,
-                    response.data?.collaborator_name || '',
-                    response.data?.created || ''
-                  )
-                  setCurrentTab('1')
-                })
-                .finally(() => {
-                  setLoadingSend(false)
-                })
+            onClick={(): void => {
+              setModalCodeOpen(true)
+              setTimeout(() => {
+                operatorCodePassInput.current?.focus()
+              }, 100)
             }}
           >
             Enviar Pedidos
           </Button>
         </Card>
       </div>
-      <ProductDrawer visible={selectedProduct} onClose={() => setSelectedProduct('')} />
+      <Modal
+        title="Confimar Senha de Operador"
+        open={modalCodeOpen}
+        onCancel={(): void => setModalCodeOpen(false)}
+        onOk={(): void => {
+          sendOrder()
+        }}
+        confirmLoading={loadingSend}
+      >
+        {sendError && (
+          <Alert
+            style={{
+              marginBottom: '1rem'
+            }}
+            message={sendError}
+            type="error"
+            showIcon
+          />
+        )}
+        <Input.Password
+          value={operatorCode}
+          onChange={(e): void => setOperatorCode(e.target.value)}
+          placeholder="Código"
+          ref={operatorCodePassInput}
+          onPressEnter={(): void => {
+            sendOrder()
+          }}
+        />
+      </Modal>
+      <ProductDrawer visible={selectedProduct} onClose={(): void => setSelectedProduct('')} />
     </div>
   )
 }
