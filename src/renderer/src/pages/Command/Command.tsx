@@ -1,30 +1,27 @@
 import React, { useEffect, useState } from 'react'
 import * as S from './styles'
-import { Avatar, Badge, Button, Input, InputNumber, Modal, Space, Tag, Typography } from 'antd'
+import { Avatar, Badge, Button, Space, Tag, Typography } from 'antd'
 import { AiFillPrinter } from 'react-icons/ai'
 import { ImBin } from 'react-icons/im'
 import Table, { ColumnsType } from 'antd/es/table'
 import { formatCurrency } from '../../utils'
-import {
-  ClockCircleOutlined,
-  ExclamationCircleFilled,
-  PlusOutlined,
-  DeleteOutlined
-} from '@ant-design/icons'
+import { ClockCircleOutlined, PlusOutlined, DeleteOutlined } from '@ant-design/icons'
 import { BsCashCoin, BsFillDatabaseFill } from 'react-icons/bs'
 import { FaBookReader, FaUserAlt, FaUserTie, FaWallet } from 'react-icons/fa'
 import { MdTableRestaurant } from 'react-icons/md'
 import { useBill } from '../../hooks/useBill'
 import { useParams } from 'react-router-dom'
 import { JoinCommandModal } from './Components/JoinCommandModal'
-import { FormOfPayment, OrderList } from '../../types'
+import { FormOfPayment, OrderList, TaxData } from '../../types'
 import api from '../../services/api'
 import { AxiosError } from 'axios'
 import { errorActions } from '../../utils/errorActions'
 import { ModalPayment } from './Components/ModalPayment'
+import { ModalConfirmDeleteItem } from './Components/ModalConfirmDeleteItem'
+import { BillPrinter } from '@renderer/utils/Printers'
+import { NfceEmitModal } from './Components/NfceEmitModal'
 
 const { Text, Title } = Typography
-const { confirm } = Modal
 
 //  tipagem dos dados da tabela de formas de pagamento
 interface DataFormOfPaymentsType {
@@ -33,31 +30,18 @@ interface DataFormOfPaymentsType {
   title: string
 }
 
-interface TaxData {
-  payments_methods: {
-    forma_pagamento: string
-    valor_pagamento: string
-  }[]
-  tax_items: {
-    product_id: string
-    quantity: number
-  }[]
-}
-
 export const Command: React.FC = () => {
+  // Estado que controla o modal de juntar comandas
   const [visibleJoinCommandModal, setVisibleJoinCommandModal] = useState<boolean>(false)
-  const [operatorCode, setOperatorCode] = useState<string>('')
+  // Estado que guarda as formas de pagamento
   const [formOfPayment, setFormOfPayment] = useState<FormOfPayment[]>([] as FormOfPayment[])
+  // Estado que guarda os produtos que vão ser emitidos nota fiscal
   const [selectedNfce, setSelectedNfce] = useState<TaxData>({} as TaxData)
-  const {
-    selectedBills,
-    handleDeleteOrder,
-    ordersGroupList,
-    addBill,
-    addPayment,
-    payments,
-    DeletePayment
-  } = useBill()
+  // Estado que controla o modal de emitir nota fiscal
+  const [visibleModalNfce, setVisibleModalNfce] = useState<boolean>(false)
+  const [visibleModal, setVisibleModal] = useState<boolean>(false)
+  const [selectExcluseItem, setSelectExcluseItem] = useState<OrderList>({} as OrderList)
+  const { selectedBills, orders, addBill, addPayment, payments, DeletePayment } = useBill()
   const { id } = useParams()
 
   useEffect(() => {
@@ -128,7 +112,17 @@ export const Command: React.FC = () => {
       dataIndex: 'quantity',
       key: 'quantity',
       align: 'center',
-      render: (amount) => <InputNumber defaultValue={amount} />
+      render: (amount) => (
+        <Tag
+          color="blue"
+          style={{
+            fontSize: '1rem',
+            padding: '0.25rem'
+          }}
+        >
+          {Number(amount)}
+        </Tag>
+      )
     },
     {
       title: 'Ações',
@@ -140,13 +134,9 @@ export const Command: React.FC = () => {
             type="primary"
             danger
             icon={<ImBin />}
-            onClick={(): void => {
-              showDeleteConfirm({
-                id: r.id,
-                name: r.product_title,
-                amount: r.quantity,
-                price: r.total
-              })
+            onClick={() => {
+              setSelectExcluseItem(r)
+              setVisibleModal(true)
             }}
           >
             Cancelar
@@ -167,64 +157,6 @@ export const Command: React.FC = () => {
       })
   }
 
-  const showDeleteConfirm = (props: {
-    id: string
-    name: string
-    price: string
-    amount: number
-  }): void => {
-    confirm({
-      title: 'Você tem certeza que quer cancelar o item da comanda?',
-      icon: <ExclamationCircleFilled />,
-      content: (
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '10px'
-          }}
-        >
-          <Text>
-            Nome do item: <strong>{props.name}</strong>
-          </Text>
-          <Text>
-            Preço do item: <strong>{formatCurrency(Number(props.price))}</strong>
-          </Text>
-          <Text>
-            Quantidade: <strong>{props.amount}</strong>
-          </Text>
-
-          <div>
-            <label
-              style={{
-                fontWeight: 'bold'
-              }}
-            >
-              {' '}
-              Codigo operacional
-            </label>
-            <Input.Password
-              placeholder="Insira o codigo operacional"
-              value={operatorCode}
-              onChange={(e): void => {
-                setOperatorCode(e.target.value)
-              }}
-            />
-          </div>
-        </div>
-      ),
-      okText: 'Confirmar',
-      okType: 'danger',
-      cancelText: 'Cancelar',
-      onOk() {
-        handleDeleteOrder(props.id, operatorCode, id as string)
-      },
-      onCancel() {
-        setOperatorCode('')
-      }
-    })
-  }
-
   const rowSelection = {
     onChange: (selectedRowKeys: React.Key[], selectedRows: OrderList[]): void => {
       console.log(`selectedRowKeys: ${selectedRowKeys}`, 'selectedRows: ', selectedRows)
@@ -233,8 +165,10 @@ export const Command: React.FC = () => {
         payments_methods: [],
         tax_items: selectedRows.map((item) => {
           return {
-            product_id: item.id as string,
-            quantity: Number(item.quantity)
+            product_id: item.product.id as string,
+            title: item.product_title,
+            quantity: Number(item.quantity),
+            price: Number(item.total)
           }
         })
       }
@@ -243,9 +177,15 @@ export const Command: React.FC = () => {
     }
   }
 
-  const dataTable = ordersGroupList.flatMap((order) => {
+  const dataTable = orders.flatMap((order) => {
     return order.orders
   })
+
+  // Resume finance
+  const total = orders.map((o) => Number(o.total)).reduce((a, b) => a + b, 0)
+  const paid = payments.map((p) => Number(p.value)).reduce((a, b) => a + b, 0)
+  const missing = total - paid < 0 ? 0 : total - paid
+  const change = paid - total < 0 ? 0 : paid - total
 
   return (
     <>
@@ -270,7 +210,9 @@ export const Command: React.FC = () => {
                   fontSize: '1.25rem'
                 }}
               >
-                Nº {selectedBills[0]?.number || 'Não informada'}
+                {selectedBills.length > 0
+                  ? `Nº ${selectedBills.map((bill) => bill.number).join(', ')}`
+                  : 'Não informada'}
               </Text>
             </div>
           </S.CardInfo>
@@ -293,7 +235,9 @@ export const Command: React.FC = () => {
                   fontSize: '1.25rem'
                 }}
               >
-                Nº {selectedBills[0]?.table_datail?.title || 'Não informada'}
+                {selectedBills.length > 0
+                  ? `Nº ${selectedBills.map((bill) => bill.table_datail.title).join(', ')}`
+                  : 'Não informada'}
               </Text>
             </div>
           </S.CardInfo>
@@ -316,7 +260,9 @@ export const Command: React.FC = () => {
                   fontSize: '1.15rem'
                 }}
               >
-                {selectedBills[0]?.opened_by_name || 'Não informado'}
+                {selectedBills.length > 0
+                  ? selectedBills.map((bill) => bill.opened_by_name).join(', ')
+                  : 'Não informado'}
               </Text>
             </div>
           </S.CardInfo>
@@ -339,12 +285,13 @@ export const Command: React.FC = () => {
                   fontSize: '1.15rem'
                 }}
               >
-                {selectedBills[0]?.client_name || 'Não informado'}
+                {selectedBills.length > 0
+                  ? selectedBills.map((bill) => bill.client_name).join(', ')
+                  : 'Não informado'}
               </Text>
             </div>
           </S.CardInfo>
         </S.RowCards>
-
         <div
           style={{
             display: 'flex',
@@ -404,6 +351,7 @@ export const Command: React.FC = () => {
                 <Button
                   type="primary"
                   icon={<AiFillPrinter size={24} />}
+                  onClick={() => BillPrinter()}
                   size="large"
                   style={{
                     display: 'flex',
@@ -418,6 +366,7 @@ export const Command: React.FC = () => {
                   <Button
                     type="primary"
                     size="large"
+                    onClick={() => setVisibleModalNfce(true)}
                     style={{
                       display: 'flex',
                       alignItems: 'center',
@@ -441,11 +390,11 @@ export const Command: React.FC = () => {
                 ...rowSelection
               }}
               expandable={{
-                expandedRowRender: (record) => (
+                expandedRowRender: (data) => (
                   <>
-                    <h3>{record.product_title}</h3>
-                    {record.note && <p>Observação: {record.note}</p>}
-                    {record.complements.map((complement) => (
+                    <h3>{data.product_title}</h3>
+                    {data.note && <p>Observação: {data.note}</p>}
+                    {data.complements.map((complement) => (
                       <>
                         <h4>{complement.complement_group_title}</h4>
                         {complement.items.map((item) => (
@@ -507,7 +456,8 @@ export const Command: React.FC = () => {
                   }}
                 >
                   {' '}
-                  {formatCurrency(120)} <Badge count={<FaWallet style={{ color: '#2FAA54' }} />} />
+                  {formatCurrency(total)}{' '}
+                  <Badge count={<FaWallet style={{ color: '#2FAA54' }} />} />
                 </Text>
               </div>
               <div
@@ -534,7 +484,7 @@ export const Command: React.FC = () => {
                   }}
                 >
                   {' '}
-                  {formatCurrency(120)}{' '}
+                  {formatCurrency(paid)}{' '}
                   <Badge count={<BsCashCoin style={{ color: '#2FAA54' }} />} />
                 </Text>
               </div>
@@ -561,7 +511,7 @@ export const Command: React.FC = () => {
                     gap: '5px'
                   }}
                 >
-                  {formatCurrency(120)}
+                  {formatCurrency(missing)}
                   <Badge count={<ClockCircleOutlined style={{ color: '#f5222d' }} />} />
                 </Text>
               </div>
@@ -588,7 +538,7 @@ export const Command: React.FC = () => {
                     gap: '5px'
                   }}
                 >
-                  {formatCurrency(120)}
+                  {formatCurrency(change)}
                   <Badge count={<BsFillDatabaseFill style={{ color: '#a49d16' }} />} />
                 </Text>
               </div>
@@ -616,6 +566,22 @@ export const Command: React.FC = () => {
         billId={id as string}
       />
       <ModalPayment />
+      <ModalConfirmDeleteItem
+        onClose={() => setVisibleModal(false)}
+        visible={visibleModal}
+        data={{
+          id: selectExcluseItem.id as string,
+          name: selectExcluseItem.product_title as string,
+          amount: selectExcluseItem.quantity,
+          price: selectExcluseItem.total,
+          billId: id as string
+        }}
+      />
+      <NfceEmitModal
+        onClose={() => setVisibleModalNfce(false)}
+        visible={visibleModalNfce}
+        data={selectedNfce}
+      />
     </>
   )
 }

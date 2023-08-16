@@ -168,10 +168,15 @@ export type OrderGroupList = {
 export type OrderList = {
   id?: string
   product_title: string
-  quantity: string
+  quantity: number
   unit_price: string
   note: string
   total: string
+  product: {
+    id: string
+    title: string
+    price: string
+  }
   complements: OrderComplementList[]
 }
 
@@ -215,4 +220,17 @@ export type Printer = {
   bodyFontSize?: number
   footerFontSize?: number
   restaurant?: string
+}
+
+interface TaxData {
+  payments_methods: {
+    forma_pagamento: string
+    valor_pagamento: string
+  }[]
+  tax_items: {
+    product_id: string
+    title: string
+    price: number
+    quantity: number
+  }[]
 }

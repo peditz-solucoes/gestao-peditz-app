@@ -13,9 +13,9 @@ interface BillContextData {
   selectedBill: Bill
   fetchBills: () => void
   fetchBill: (id: string) => void
-  ordersGroupList: OrderGroupList[]
+  orders: OrderGroupList[]
+  setOrders: React.Dispatch<React.SetStateAction<OrderGroupList[]>>
   fetchOrders: (billId: string) => void
-  handleDeleteOrder: (id: string, operatorCode: string, billId: string) => void
   selectedBills: Bill[]
   addBill: (id: string, reset?: boolean) => void
   getOrdersBills: (billId: string, reset?: boolean) => void
@@ -87,29 +87,6 @@ export function BillProvider({ children }: BillProviderProps): JSX.Element {
       })
   }
 
-  function handleDeleteOrder(id: string, operatorCode: string, billId: string): void {
-    console.log(billId)
-    api
-      .post(`/order-delete/`, {
-        operator_code: operatorCode,
-        order_id: id
-      })
-      .then(() => {
-        let newOrders = orders
-        setOrders([])
-        setTimeout(() => {
-          newOrders = newOrders.filter((order) => order.id !== id)
-          setOrders([...newOrders])
-        }, 300)
-      })
-      .catch((error: AxiosError) => {
-        errorActions(error)
-      })
-      .finally(() => {
-        // console.log('finally');
-      })
-  }
-
   function getOrdersBills(billId: string, reset?: boolean): void {
     api
       .get(`/order-list/?bill=${billId}`)
@@ -151,8 +128,8 @@ export function BillProvider({ children }: BillProviderProps): JSX.Element {
     setSelectedPayment('')
   }
 
-  function DeletePayment(id: string){
-    setPayments(old => old.filter(payment => payment.id !== id))
+  function DeletePayment(id: string) {
+    setPayments((old) => old.filter((payment) => payment.id !== id))
   }
 
   return (
@@ -162,9 +139,8 @@ export function BillProvider({ children }: BillProviderProps): JSX.Element {
         selectedBill,
         fetchBills,
         fetchBill,
-        ordersGroupList: orders,
+        orders,
         fetchOrders,
-        handleDeleteOrder,
         selectedBills,
         addBill,
         getOrdersBills,
@@ -175,7 +151,8 @@ export function BillProvider({ children }: BillProviderProps): JSX.Element {
         OnCloseModalPayment,
         payments,
         setPayments,
-        DeletePayment
+        DeletePayment,
+        setOrders
       }}
     >
       {children}
