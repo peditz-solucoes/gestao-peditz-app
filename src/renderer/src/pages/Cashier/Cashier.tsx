@@ -11,7 +11,7 @@ import {
   FaExclamationTriangle
 } from 'react-icons/fa'
 import { Icon } from '../../components/Icon'
-import { Typography, Table, Button } from 'antd'
+import { Typography, Table, Button, Tag } from 'antd'
 import { ColumnsType } from 'antd/es/table'
 import { ModalCashier } from '../../components/ModalCashier/ModalCashier'
 import api from '../../services/api'
@@ -22,63 +22,50 @@ import { formatCurrency } from '../../utils'
 
 const { Text, Title } = Typography
 
-const columns: ColumnsType<Payments> = [
-  {
-    title: 'STATUS',
-    dataIndex: 'status',
-    width: '5%',
-    render: (status) => (
-      <div
-        style={{
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center'
-        }}
-      >
-        {status === 'Entrada' && (
-          <FaArrowUp
-            style={{
-              backgroundColor: '#00A65A',
-              color: '#fff',
-              fontSize: '1.5rem',
-              padding: '0.25rem',
-              borderRadius: '50%'
-            }}
-          />
-        )}
-        {status === 'Saida' && (
-          <FaArrowDown
-            style={{
-              backgroundColor: '#d32121',
-              color: '#fff',
-              fontSize: '1.5rem',
-              padding: '0.25rem',
-              borderRadius: '50%'
-            }}
-          />
-        )}
-      </div>
-    ),
-    align: 'center'
-  },
+interface payment {
+  methodPayment: string
+  value: string
+  tax: string
+  date: string
+  bills: string
+  type: string
+}
+
+const columns: ColumnsType<payment> = [
   {
     title: 'MÉTODO DE PAGAMENTO',
     dataIndex: 'methodPayment',
-    align: 'center'
+    align: 'center',
+    render: (text) => <a>{text}</a>
   },
   {
     title: 'VALOR',
     dataIndex: 'value',
-    align: 'center'
+    align: 'center',
+    render: (text) => (
+      <Tag color="#2FAA54" style={{ width: '80px', textAlign: 'center' }}>
+        {text}
+      </Tag>
+    )
   },
   {
     title: 'TAXA DE SERVIÇO',
     dataIndex: 'tax',
-    align: 'center'
+    align: 'center',
+    render: (text) => (
+      <Tag color="#E58B4A" style={{ width: '80px', textAlign: 'center' }}>
+        {text}
+      </Tag>
+    )
   },
   {
     title: 'DATA',
     dataIndex: 'date',
+    align: 'center'
+  },
+  {
+    title: 'CANAL DE VENDAS',
+    dataIndex: 'type',
     align: 'center'
   }
 ]
@@ -99,6 +86,7 @@ export const CashierPage: React.FC = () => {
       .then((response) => {
         console.log(response.data)
         setCashier(response.data[0])
+        fetchTransactions(response.data[0].id)
       })
       .catch((error: AxiosError) => {
         errorActions(error)
@@ -123,6 +111,36 @@ export const CashierPage: React.FC = () => {
 
   function handleOpenTradingBox() {
     setOpenModal(true)
+  }
+
+  const mapTypePayment = (type: string) => {
+    switch (type) {
+      case 'BILL':
+        return 'Comanda'
+      case 'TAKEOUT':
+        return 'Balcão'
+      case 'DELIVERY':
+        return 'Delivery'
+      default:
+        return 'Não identificado'
+    }
+  }
+
+  function mapPaymentsToTableData() {
+    return transactions
+      .map((transaction) => {
+        return transaction.payments.map((payment) => {
+          return {
+            methodPayment: payment.payment_method_title,
+            bills: transaction.bills.map((bill) => bill.number).join(', '),
+            tax: formatCurrency(Number(transaction.tip)),
+            date: new Date(transaction.created).toLocaleString(),
+            value: formatCurrency(Number(payment.value)),
+            type: mapTypePayment(transaction.type)
+          } as payment
+        })
+      })
+      .flatMap((payment) => payment)
   }
 
   return (
@@ -276,7 +294,15 @@ export const CashierPage: React.FC = () => {
                 color: '#4C0677'
               }}
             >
-              R$ 1.500,00
+               {formatCurrency(
+                transactions
+                  .map((transaction) =>
+                    transaction.payments
+                      .filter((pay) => pay.payment_method_title === 'Cartão de Débito')
+                      .map((item) => item.value)
+                  )
+                  .reduce((acc, curr) => Number(acc) + Number(curr), 0)
+              )}
             </Text>
           </S.CardInfoFinance>
           <S.CardInfoFinance>
@@ -310,7 +336,15 @@ export const CashierPage: React.FC = () => {
                 color: '#0583F2'
               }}
             >
-              R$ 1.500,00
+               {formatCurrency(
+                transactions
+                  .map((transaction) =>
+                    transaction.payments
+                      .filter((pay) => pay.payment_method_title === 'Cartão de Crédito')
+                      .map((item) => item.value)
+                  )
+                  .reduce((acc, curr) => Number(acc) + Number(curr), 0)
+              )}
             </Text>
           </S.CardInfoFinance>
           <S.CardInfoFinance>
@@ -344,7 +378,15 @@ export const CashierPage: React.FC = () => {
                 color: '#2FAA54'
               }}
             >
-              R$ 1.500,00
+               {formatCurrency(
+                transactions
+                  .map((transaction) =>
+                    transaction.payments
+                      .filter((pay) => pay.payment_method_title === 'Dinheiro')
+                      .map((item) => item.value)
+                  )
+                  .reduce((acc, curr) => Number(acc) + Number(curr), 0)
+              )}
             </Text>
           </S.CardInfoFinance>
           <S.CardInfoFinance>
@@ -378,7 +420,15 @@ export const CashierPage: React.FC = () => {
                 color: '#DD6B20'
               }}
             >
-              R$ 1.500,00
+              {formatCurrency(
+                transactions
+                  .map((transaction) =>
+                    transaction.payments
+                      .filter((pay) => pay.payment_method_title === 'PIX')
+                      .map((item) => item.value)
+                  )
+                  .reduce((acc, curr) => Number(acc) + Number(curr), 0)
+              )}
             </Text>
           </S.CardInfoFinance>
           <S.CardInfoFinance>
@@ -412,12 +462,23 @@ export const CashierPage: React.FC = () => {
                 color: '#0583F2'
               }}
             >
-              R$ 1.500,00
+              {formatCurrency(
+                transactions
+                  .map((transaction) => Number(transaction.tip))
+                  .reduce((acc, curr) => acc + Number(curr), 0)
+              )}
             </Text>
           </S.CardInfoFinance>
         </S.CardsInfoFinance>
 
-        <Table columns={columns} dataSource={undefined} size="middle" loading={isLoading} />
+        <Table
+          columns={columns}
+          dataSource={mapPaymentsToTableData()}
+          pagination={false}
+          scroll={{ y: 555 }}
+          size="middle"
+          loading={isLoading}
+        />
       </S.Container>
       <ModalCashier
         cashierId={cashier?.id}

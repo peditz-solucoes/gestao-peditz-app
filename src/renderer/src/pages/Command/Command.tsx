@@ -42,18 +42,12 @@ export const Command: React.FC = () => {
   const [visibleModalNfce, setVisibleModalNfce] = useState<boolean>(false)
   const [visibleModal, setVisibleModal] = useState<boolean>(false)
   const [selectExcluseItem, setSelectExcluseItem] = useState<OrderList>({} as OrderList)
-  const {
-    selectedBills,
-    orders,
-    addBill,
-    addPayment,
-    payments,
-    DeletePayment,
-  } = useBill()
+  const { selectedBills, orders, addBill, addPayment, payments, DeletePayment } = useBill()
   const [tipInput, setTipInput] = useState<number>(0)
   const [tipApply, setTipApply] = useState<boolean>(false)
   const [onTip, setOnTip] = useState<number>(0)
   const [typeOnTip, setTypeOnTip] = useState<string>('percent')
+  const [isLoading, setIsLoading] = useState<boolean>(false)
   const { id } = useParams()
 
   useEffect(() => {
@@ -170,6 +164,7 @@ export const Command: React.FC = () => {
   }
 
   function handleApplyPayment(): void {
+    setIsLoading(true)
     api
       .post('/payment/', {
         bills: selectedBills.map((bill) => bill.id),
@@ -182,8 +177,24 @@ export const Command: React.FC = () => {
       .catch((error: AxiosError) => {
         errorActions(error)
       })
-      .finally(() => {})
+      .finally(() => {
+        setIsLoading(false)
+      })
   }
+
+  // function handlePrint(): void {
+  //   BillPrinter({
+  //     number: `${selectedBills.map((bill) => bill.number).join(', ')}`,
+  //     serviceTax: onTip,
+  //     total: total - onTip,
+  //     subtotal: total,
+  //     permanenceTime: selectedBills[0].created,
+  //     products: orders.map((order) => {
+      
+    
+  //     })
+  //   })
+  // }
 
   const rowSelection = {
     onChange: (selectedRowKeys: React.Key[], selectedRows: OrderList[]): void => {
@@ -349,35 +360,37 @@ export const Command: React.FC = () => {
               style={{
                 width: '100%',
                 display: 'flex',
-                justifyContent: 'space-between',
+                justifyContent: `${selectedBills[0]?.open ? 'space-between' : 'flex-end'}`,
                 alignItems: 'center'
               }}
             >
-              <Space.Compact style={{ width: 300 }}>
-                <Select defaultValue={'percent'} onChange={(value) => setTypeOnTip(value)}>
-                  <Option value="percent">%</Option>
-                  <Option value="cash">R$</Option>
-                </Select>
-                <Input
-                  defaultValue={tipInput}
-                  value={tipInput}
-                  onChange={(e) => setTipInput(Number(e.target.value))}
-                />
-                <Button
-                  type={tipApply ? 'primary' : 'dashed'}
-                  icon={onTip && <AiOutlineCheckCircle />}
-                  onClick={() => {
-                    handleTip()
-                  }}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    fontWeight: 'bold'
-                  }}
-                >
-                  {tipApply ? 'Gorjeta Aplicada' : 'Aplicar Gorjeta'}
-                </Button>
-              </Space.Compact>
+              {selectedBills[0]?.open && (
+                <Space.Compact style={{ width: 300 }}>
+                  <Select defaultValue={'percent'} onChange={(value) => setTypeOnTip(value)}>
+                    <Option value="percent">%</Option>
+                    <Option value="cash">R$</Option>
+                  </Select>
+                  <Input
+                    defaultValue={tipInput}
+                    value={tipInput}
+                    onChange={(e) => setTipInput(Number(e.target.value))}
+                  />
+                  <Button
+                    type={tipApply ? 'primary' : 'dashed'}
+                    icon={onTip && <AiOutlineCheckCircle />}
+                    onClick={() => {
+                      handleTip()
+                    }}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      fontWeight: 'bold'
+                    }}
+                  >
+                    {tipApply ? 'Gorjeta Aplicada' : 'Aplicar Gorjeta'}
+                  </Button>
+                </Space.Compact>
+              )}
               <div
                 style={{
                   display: 'flex',
@@ -402,7 +415,7 @@ export const Command: React.FC = () => {
                 <Button
                   type="primary"
                   icon={<AiFillPrinter size={24} />}
-                  onClick={() => BillPrinter()}
+                  // onClick={handlePrint}
                   size="large"
                   style={{
                     display: 'flex',
@@ -623,6 +636,7 @@ export const Command: React.FC = () => {
                   size="large"
                   style={{ flex: 1 }}
                   onClick={handleApplyPayment}
+                  loading={isLoading}
                   disabled={missing > 0}
                 >
                   Finalizar Comanda

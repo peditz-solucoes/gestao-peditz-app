@@ -1,5 +1,6 @@
 import moment from 'moment'
 import { formatCurrency } from './formatCurrency'
+import { Product } from '@renderer/types'
 
 interface OpenCashierProps {
   data: {
@@ -171,7 +172,41 @@ export function ClosedCashier(): void {
   )
 }
 
-export function BillPrinter(): void {
+interface BillPrinterProps {
+  number: string
+  subtotal: number
+  serviceTax: number
+  total: number
+  permanenceTime: string
+  products: {
+    title: string
+    quantity: number
+    price: number
+    complementItems: {
+      title: string
+      quantity: number
+    }[]
+  }[]
+}
+
+export function BillPrinter(props: BillPrinterProps): void {
+  const dateString = props.permanenceTime
+  const currentDate = new Date()
+
+  // Criar objeto Date a partir da string de data
+  const dateFromISOString = new Date(dateString)
+
+  // Calcular a diferença em milissegundos
+  const timeDifferenceInMilliseconds = currentDate - dateFromISOString
+
+  // Converter a diferença para dias, horas, minutos e segundos
+  const hours = Math.floor(
+    (timeDifferenceInMilliseconds % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
+  )
+  const minutes = Math.floor((timeDifferenceInMilliseconds % (1000 * 60 * 60)) / (1000 * 60))
+
+  const formattedDifference = `${hours} horas e ${minutes} minutos`
+
   window.electronBridge.printLine(
     '',
     `
@@ -197,8 +232,8 @@ export function BillPrinter(): void {
       <p style="margin: 0; margin-bottom: 2px">ateliedochefe.mkt@gmail.com</p>
       <hr style="border-style: dashed" />
 
-      <h4 style="margin: 0">N DA COMANDA: 12</h4>
-      <h4 style="margin: 0">DATA DE IMPRESSÃO: 12/12/2023 12:12</h4>
+      <h4 style="margin: 0">N DA COMANDA: ${props.number}</h4>
+      <h4 style="margin: 0">DATA DE IMPRESSÃO: ${new Date().toLocaleString()}</h4>
       <h4 style="margin-top: 10px">RESUMO</h4>
       <ul style="padding: 0">
         <li style="list-style: none">
@@ -227,31 +262,54 @@ export function BillPrinter(): void {
             </li>
           </ul>
         </li>
-        <li style="list-style: none; margin-top: 10px">
-          <div style="display: flex; justify-content: space-between">
-            <strong>2x Refrigerante Lata</strong>
-            <span>R$ 12,00</span>
-          </div>
-        </li>
+        ${props.products.map((item) => {
+          return `
+          <li style="list-style: none; margin-top: 10px">
+            <div style="display: flex; justify-content: space-between">
+              <strong>${item.quantity}x ${item.title}</strong>
+              <span>${item.price}</span>
+            </div>
+            ${
+              item.complementItems.length > 0
+                ? item.complementItems.map(
+                    (item) => `
+            <ul style="padding: 2px 0 0 5mm">
+            <li
+              style="
+                list-style: none;
+                display: flex;
+                justify-content: space-between;
+              "
+            >
+              <span>${item.quantity}x ${item.title}</span>
+            </li>
+            </ul>
+            `
+                  )
+                : ''
+            }
+          </li>
+        `
+        })}
       </ul>
 
       <hr style="border-style: dashed" />
       <div style="display: flex; justify-content: space-between; margin-top: 10px;">
           <strong>SubTotal:</strong>
-          <span>R$ 62,00</span>
+          <span>${props.subtotal}</span>
       </div>
       <div style="display: flex; justify-content: space-between; margin-top: 10px;">
           <strong>Taxa de serviço:</strong>
-          <span>R$ 6,20</span>
+          <span>${props.serviceTax}</span>
       </div>
       <div style="display: flex; justify-content: space-between; margin-top: 10px;">
           <strong>Total:</strong>
-          <span>R$ 68,20</span>
+          <span>${props.total}</span>
       </div>
       <hr style="border-style: dashed" />
       <div style="display: flex; justify-content: flex-end; margin-top: 10px; gap: 5px;">
           <strong>Permanencia: </strong>
-          <span> 2 horas 15 min </span>
+          <span> ${formattedDifference} </span>
       </div>
       <br>
       <br>

@@ -5,6 +5,7 @@ import { BillComponent } from './components/billComponent/BillComponent'
 import { useTerminal } from '../../hooks/useTerminal'
 import { Products } from './components/products/Products'
 import { useNavigate } from 'react-router-dom'
+import logo from '../../assets/logo-branca.png'
 
 export const Terminal: React.FC = () => {
   const { currentTab, setCurrentTab } = useTerminal()
@@ -43,7 +44,7 @@ export const Terminal: React.FC = () => {
         <Button size="large" type="default" onClick={(): void => navigate('/comandas/')}>
           Voltar
         </Button>
-        <Image src="logo-branca.png" width={130} preview={false} />
+        <Image src={logo} width={130} preview={false} />
         <Typography.Title level={4} style={{ color: 'white' }}>
           Terminal
         </Typography.Title>
