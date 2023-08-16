@@ -8,15 +8,12 @@ interface JoinCommandModalProps {
   billId: string
 }
 
-export const JoinCommandModal: React.FC<JoinCommandModalProps> = ({
-  onCancel,
-  visible,
-}) => {
+export const JoinCommandModal: React.FC<JoinCommandModalProps> = ({ onCancel, visible }) => {
   const { bills, fetchBills, addBill } = useBill()
   const [selectedBill, setSelectedBill] = React.useState<string>('')
 
   useEffect(() => {
-    fetchBills()
+    fetchBills(true)
   }, [])
 
   return (
@@ -47,9 +44,9 @@ export const JoinCommandModal: React.FC<JoinCommandModalProps> = ({
           return {
             value: bill.id,
             label: `Comanda:${bill.number} | Cliente: ${
-              bill.client_name?.split(' ').length > 2
+              bill.client_name && bill.client_name?.split(' ').length > 2
                 ? `${bill.client_name?.split(' ')[0]} ${bill.client_name.split(' ')[1]}...`
-                : `${bill.client_name}`
+                : `${bill.client_name || 'Cliente não informado!'}`
             }`
           }
         })}

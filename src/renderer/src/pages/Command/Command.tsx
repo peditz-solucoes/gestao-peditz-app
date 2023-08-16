@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import * as S from './styles'
-import { Avatar, Badge, Button, Input, Select, Space, Tag, Typography } from 'antd'
+import { Avatar, Badge, Button, Empty, Input, Select, Space, Tag, Typography } from 'antd'
 import { AiFillPrinter, AiOutlineCheckCircle } from 'react-icons/ai'
 import { ImBin } from 'react-icons/im'
 import Table, { ColumnsType } from 'antd/es/table'
@@ -42,8 +42,14 @@ export const Command: React.FC = () => {
   const [visibleModalNfce, setVisibleModalNfce] = useState<boolean>(false)
   const [visibleModal, setVisibleModal] = useState<boolean>(false)
   const [selectExcluseItem, setSelectExcluseItem] = useState<OrderList>({} as OrderList)
-  const { selectedBills, orders, addBill, addPayment, payments, DeletePayment, fetchBill } =
-    useBill()
+  const {
+    selectedBills,
+    orders,
+    addBill,
+    addPayment,
+    payments,
+    DeletePayment,
+  } = useBill()
   const [tipInput, setTipInput] = useState<number>(0)
   const [tipApply, setTipApply] = useState<boolean>(false)
   const [onTip, setOnTip] = useState<number>(0)
@@ -138,6 +144,7 @@ export const Command: React.FC = () => {
           <Button
             type="primary"
             danger
+            disabled={!selectedBills[0]?.open}
             icon={<ImBin />}
             onClick={() => {
               setSelectExcluseItem(r)
@@ -168,7 +175,10 @@ export const Command: React.FC = () => {
         bills: selectedBills.map((bill) => bill.id),
         pyments_methods: payments.map((payment) => ({ id: payment.id, value: payment.value }))
       })
-      // .then((response) => {})
+      .then((response) => {
+        console.log('Pagamento realizado com sucesso', response.data)
+        window.location.reload()
+      })
       .catch((error: AxiosError) => {
         errorActions(error)
       })
@@ -267,8 +277,9 @@ export const Command: React.FC = () => {
                   fontSize: '1.25rem'
                 }}
               >
-                {selectedBills.length > 0
-                  ? `Nº ${selectedBills.map((bill) => bill.table_datail.title).join(', ')}`
+                {selectedBills.length > 0 &&
+                selectedBills.map((bill) => bill.table_datail.title).length > 0
+                  ? `Nº ${selectedBills.map((bill) => bill.table_datail.title)}`
                   : 'Não informada'}
               </Text>
             </div>
@@ -293,7 +304,7 @@ export const Command: React.FC = () => {
                 }}
               >
                 {selectedBills.length > 0
-                  ? selectedBills.map((bill) => bill.opened_by_name).join(', ')
+                  ? Array.from(new Set(selectedBills.map((bill) => bill.opened_by_name)))
                   : 'Não informado'}
               </Text>
             </div>
@@ -317,7 +328,9 @@ export const Command: React.FC = () => {
                   fontSize: '1.15rem'
                 }}
               >
-                {selectedBills.length > 0
+                {selectedBills.length > 0 &&
+                selectedBills.map((bill) => bill.client_name).filter((name) => name !== '').length >
+                  0
                   ? selectedBills.map((bill) => bill.client_name).join(', ')
                   : 'Não informado'}
               </Text>
@@ -331,7 +344,7 @@ export const Command: React.FC = () => {
             gap: '20px'
           }}
         >
-          <S.ResumeCommand>
+          <S.ResumeCommand billOpen={selectedBills[0]?.open}>
             <div
               style={{
                 width: '100%',
@@ -417,17 +430,28 @@ export const Command: React.FC = () => {
                 )}
               </div>
             </div>
+
+            {!selectedBills[0]?.open && (
+              <Empty
+                description={
+                  <>
+                    <Title level={4}>Comanda fechada</Title>
+                  </>
+                }
+              />
+            )}
             <Table
               columns={columns}
               dataSource={dataTable}
               pagination={false}
-              scroll={{ y: 450 }}
+              scroll={{ y: selectedBills[0]?.open ? 455 : 250 }}
               rowKey={(record): string => record.id as string}
               rowSelection={{
                 type: 'checkbox',
                 ...rowSelection
               }}
               expandable={{
+                showExpandColumn: selectedBills[0]?.open,
                 expandedRowRender: (data) => (
                   <>
                     <h3>{data.product_title}</h3>
@@ -453,6 +477,7 @@ export const Command: React.FC = () => {
                   key={payment.id}
                   type="primary"
                   size="large"
+                  disabled={!selectedBills[0]?.open}
                   onClick={() => addPayment(payment.id as string)}
                   style={{
                     flex: 1
@@ -463,150 +488,148 @@ export const Command: React.FC = () => {
               ))}
             </S.ActionsPayments>
           </S.ResumeCommand>
-          <S.ResumeFinance>
-            <div
-              style={{
-                display: 'flex',
-                flexDirection: 'column'
-              }}
-            >
+          {selectedBills.length > 0 && selectedBills[0]?.open && (
+            <S.ResumeFinance>
               <div
                 style={{
                   display: 'flex',
-                  flexDirection: 'row',
-                  justifyContent: 'space-between'
+                  flexDirection: 'column'
                 }}
               >
-                <Text
-                  strong
+                <div
                   style={{
-                    fontSize: 20
-                  }}
-                >
-                  Valor Total:
-                </Text>
-                <Text
-                  style={{
-                    fontSize: 20,
                     display: 'flex',
-                    alignItems: 'center',
-                    gap: '5px'
+                    flexDirection: 'row',
+                    justifyContent: 'space-between'
                   }}
                 >
-                  {' '}
-                  {formatCurrency(total)}{' '}
-                  <Badge count={<FaWallet style={{ color: '#2FAA54' }} />} />
-                </Text>
-              </div>
-              <div
-                style={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  justifyContent: 'space-between'
-                }}
-              >
-                <Text
-                  strong
+                  <Text
+                    strong
+                    style={{
+                      fontSize: 20
+                    }}
+                  >
+                    Valor Total:
+                  </Text>
+                  <Text
+                    style={{
+                      fontSize: 20,
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '5px'
+                    }}
+                  >
+                    {' '}
+                    {formatCurrency(total)}{' '}
+                    <Badge count={<FaWallet style={{ color: '#2FAA54' }} />} />
+                  </Text>
+                </div>
+                <div
                   style={{
-                    fontSize: 20
-                  }}
-                >
-                  Pago:
-                </Text>
-                <Text
-                  style={{
-                    fontSize: 20,
                     display: 'flex',
-                    alignItems: 'center',
-                    gap: '5px'
+                    flexDirection: 'row',
+                    justifyContent: 'space-between'
                   }}
                 >
-                  {' '}
-                  {formatCurrency(paid)}{' '}
-                  <Badge count={<BsCashCoin style={{ color: '#2FAA54' }} />} />
-                </Text>
-              </div>
-              <div
-                style={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  justifyContent: 'space-between'
-                }}
-              >
-                <Text
-                  strong
+                  <Text
+                    strong
+                    style={{
+                      fontSize: 20
+                    }}
+                  >
+                    Pago:
+                  </Text>
+                  <Text
+                    style={{
+                      fontSize: 20,
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '5px'
+                    }}
+                  >
+                    {' '}
+                    {formatCurrency(paid)}{' '}
+                    <Badge count={<BsCashCoin style={{ color: '#2FAA54' }} />} />
+                  </Text>
+                </div>
+                <div
                   style={{
-                    fontSize: 20
-                  }}
-                >
-                  Faltante:
-                </Text>{' '}
-                <Text
-                  style={{
-                    fontSize: 20,
                     display: 'flex',
-                    alignItems: 'center',
-                    gap: '5px'
+                    flexDirection: 'row',
+                    justifyContent: 'space-between'
                   }}
                 >
-                  {formatCurrency(missing)}
-                  <Badge count={<ClockCircleOutlined style={{ color: '#f5222d' }} />} />
-                </Text>
-              </div>
-              <div
-                style={{
-                  display: 'flex',
-                  flexDirection: 'row',
-                  justifyContent: 'space-between'
-                }}
-              >
-                <Text
-                  strong
+                  <Text
+                    strong
+                    style={{
+                      fontSize: 20
+                    }}
+                  >
+                    Faltante:
+                  </Text>{' '}
+                  <Text
+                    style={{
+                      fontSize: 20,
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '5px'
+                    }}
+                  >
+                    {formatCurrency(missing)}
+                    <Badge count={<ClockCircleOutlined style={{ color: '#f5222d' }} />} />
+                  </Text>
+                </div>
+                <div
                   style={{
-                    fontSize: 20
-                  }}
-                >
-                  Troco:
-                </Text>
-                <Text
-                  style={{
-                    fontSize: 20,
                     display: 'flex',
-                    alignItems: 'center',
-                    gap: '5px'
+                    flexDirection: 'row',
+                    justifyContent: 'space-between'
                   }}
                 >
-                  {formatCurrency(change)}
-                  <Badge count={<BsFillDatabaseFill style={{ color: '#a49d16' }} />} />
-                </Text>
+                  <Text
+                    strong
+                    style={{
+                      fontSize: 20
+                    }}
+                  >
+                    Troco:
+                  </Text>
+                  <Text
+                    style={{
+                      fontSize: 20,
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '5px'
+                    }}
+                  >
+                    {formatCurrency(change)}
+                    <Badge count={<BsFillDatabaseFill style={{ color: '#a49d16' }} />} />
+                  </Text>
+                </div>
               </div>
-            </div>
-            <div>
-              <Table
-                columns={columnsFormOfPayments}
-                dataSource={payments}
-                pagination={false}
-                scroll={{ y: 380 }}
-                rowKey={(record): string => record.id as string}
-              />
-            </div>
-            <S.ActionsPayments>
-              {missing > 0 ? (
-                <Button type="primary" danger size="large" style={{ flex: 1 }}>
-                  Fechar comanda
-                </Button>
-              ) : (
+              <div>
+                <Table
+                  columns={columnsFormOfPayments}
+                  dataSource={payments}
+                  pagination={false}
+                  scroll={{ y: 380 }}
+                  rowKey={(record): string => record.id as string}
+                />
+              </div>
+
+              <S.ActionsPayments>
                 <Button
                   type="primary"
                   size="large"
                   style={{ flex: 1 }}
                   onClick={handleApplyPayment}
+                  disabled={missing > 0}
                 >
                   Finalizar Comanda
                 </Button>
-              )}
-            </S.ActionsPayments>
-          </S.ResumeFinance>
+              </S.ActionsPayments>
+            </S.ResumeFinance>
+          )}
         </div>
       </S.Container>
       <JoinCommandModal

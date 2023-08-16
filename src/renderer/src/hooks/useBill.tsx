@@ -11,12 +11,13 @@ interface BillProviderProps {
 interface BillContextData {
   bills: Bill[]
   selectedBill: Bill
-  fetchBills: () => void
+  fetchBills: (open?: boolean) => void
   fetchBill: (id: string) => void
   orders: OrderGroupList[]
   setOrders: React.Dispatch<React.SetStateAction<OrderGroupList[]>>
   fetchOrders: (billId: string) => void
   selectedBills: Bill[]
+  setSelectedBills: React.Dispatch<React.SetStateAction<Bill[]>>
   addBill: (id: string, reset?: boolean) => void
   getOrdersBills: (billId: string, reset?: boolean) => void
   showModalPayment: boolean
@@ -46,9 +47,9 @@ export function BillProvider({ children }: BillProviderProps): JSX.Element {
   const [selectedPayment, setSelectedPayment] = useState<string>('')
   const [payments, setPayments] = useState<Payments[]>([])
 
-  function fetchBills(): void {
+  function fetchBills(open?: boolean): void {
     api
-      .get('/bill/')
+      .get(`/bill/?open=${open}`)
       .then((response: AxiosResponse) => {
         setBills(response.data)
       })
@@ -152,7 +153,8 @@ export function BillProvider({ children }: BillProviderProps): JSX.Element {
         payments,
         setPayments,
         DeletePayment,
-        setOrders
+        setOrders,
+        setSelectedBills
       }}
     >
       {children}

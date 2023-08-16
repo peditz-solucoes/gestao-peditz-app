@@ -15,24 +15,14 @@ import { Typography, Table, Button } from 'antd'
 import { ColumnsType } from 'antd/es/table'
 import { ModalCashier } from '../../components/ModalCashier/ModalCashier'
 import api from '../../services/api'
-import { Cashier } from '../../types'
+import { Cashier, Payments } from '../../types'
 import { AxiosError } from 'axios'
 import { errorActions } from '../../utils/errorActions'
 import { formatCurrency } from '../../utils'
 
 const { Text, Title } = Typography
 
-interface DataType {
-  // key: React.Key;
-  id: string
-  status: 'Entrada' | 'Saida'
-  methodPayment: 'Pix' | 'Credit Card' | 'Debit Card' | 'Bank Transfer'
-  value: number
-  tax: string
-  date: string
-}
-
-const columns: ColumnsType<DataType> = [
+const columns: ColumnsType<Payments> = [
   {
     title: 'STATUS',
     dataIndex: 'status',
@@ -96,6 +86,8 @@ const columns: ColumnsType<DataType> = [
 export const CashierPage: React.FC = () => {
   const [cashier, setCashier] = useState<Cashier>({} as Cashier)
   const [openModal, setOpenModal] = useState(false)
+  const [transactions, setTransactions] = useState<Payments[]>([])
+  const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
     fetchCashier()
@@ -105,12 +97,28 @@ export const CashierPage: React.FC = () => {
     api
       .get('/cashier/?open=true')
       .then((response) => {
+        console.log(response.data)
         setCashier(response.data[0])
       })
       .catch((error: AxiosError) => {
         errorActions(error)
       })
       .finally(() => {})
+  }
+
+  function fetchTransactions(cashierId: string) {
+    setIsLoading(true)
+    api
+      .get(`/list-payment/?cashier=${cashierId}`)
+      .then((response) => {
+        setTransactions(response.data)
+      })
+      .catch((error: AxiosError) => {
+        errorActions(error)
+      })
+      .finally(() => {
+        setIsLoading(false)
+      })
   }
 
   function handleOpenTradingBox() {
@@ -121,7 +129,7 @@ export const CashierPage: React.FC = () => {
     <>
       <S.Container>
         <S.CardInfo>
-          {cashier?.open && (
+          {cashier?.open ? (
             <>
               {' '}
               <div>
@@ -173,8 +181,7 @@ export const CashierPage: React.FC = () => {
                 </S.ButtonBox>
               </div>
             </>
-          )}
-          {!cashier && (
+          ) : (
             <div
               style={{
                 width: '100%'
@@ -410,7 +417,7 @@ export const CashierPage: React.FC = () => {
           </S.CardInfoFinance>
         </S.CardsInfoFinance>
 
-        <Table columns={columns} dataSource={undefined} size="middle" />
+        <Table columns={columns} dataSource={undefined} size="middle" loading={isLoading} />
       </S.Container>
       <ModalCashier
         cashierId={cashier?.id}

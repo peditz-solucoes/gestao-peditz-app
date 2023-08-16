@@ -234,3 +234,28 @@ interface TaxData {
     quantity: number
   }[]
 }
+
+export type Payments = {
+  id: string
+  payments: [
+    {
+      payment_method_title: string
+      value: string
+      note: string
+      created: string
+      id: string
+    }
+  ]
+  bills: [
+    {
+      id: string
+      number: number
+    }
+  ]
+  created: string
+  modified: string
+  type: string
+  tip: string
+  total: string
+  cashier: string
+}

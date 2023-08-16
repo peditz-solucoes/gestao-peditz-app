@@ -22,7 +22,7 @@ export const Commands: React.FC = () => {
 
   function fetchCommands(): void {
     api
-      .get('/bill/')
+      .get('/bill/?open=true')
       .then((response) => {
         setCommands(response.data)
       })
