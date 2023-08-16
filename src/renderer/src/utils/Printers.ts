@@ -182,7 +182,7 @@ interface BillPrinterProps {
     title: string
     quantity: number
     price: number
-    complementItems: {
+    complementItems?: {
       title: string
       quantity: number
     }[]
@@ -190,23 +190,7 @@ interface BillPrinterProps {
 }
 
 export function BillPrinter(props: BillPrinterProps): void {
-  const dateString = props.permanenceTime
-  const currentDate = new Date()
-
-  // Criar objeto Date a partir da string de data
-  const dateFromISOString = new Date(dateString)
-
-  // Calcular a diferença em milissegundos
-  const timeDifferenceInMilliseconds = currentDate - dateFromISOString
-
-  // Converter a diferença para dias, horas, minutos e segundos
-  const hours = Math.floor(
-    (timeDifferenceInMilliseconds % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)
-  )
-  const minutes = Math.floor((timeDifferenceInMilliseconds % (1000 * 60 * 60)) / (1000 * 60))
-
-  const formattedDifference = `${hours} horas e ${minutes} minutos`
-
+  console.log('estou imprimindo comanda')
   window.electronBridge.printLine(
     '',
     `
@@ -270,7 +254,7 @@ export function BillPrinter(props: BillPrinterProps): void {
               <span>${item.price}</span>
             </div>
             ${
-              item.complementItems.length > 0
+              item.complementItems && item.complementItems.length > 0
                 ? item.complementItems.map(
                     (item) => `
             <ul style="padding: 2px 0 0 5mm">
@@ -307,10 +291,7 @@ export function BillPrinter(props: BillPrinterProps): void {
           <span>${props.total}</span>
       </div>
       <hr style="border-style: dashed" />
-      <div style="display: flex; justify-content: flex-end; margin-top: 10px; gap: 5px;">
-          <strong>Permanencia: </strong>
-          <span> ${formattedDifference} </span>
-      </div>
+
       <br>
       <br>
       <p style="margin: 0; text-align: center; font-size: 12px;">
@@ -331,6 +312,10 @@ export function BillPrinter(props: BillPrinterProps): void {
   `
   )
 }
+// <div style="display: flex; justify-content: flex-end; margin-top: 10px; gap: 5px;">
+// <strong>Permanencia: </strong>
+// <span> ${formattedDifference} </span>
+// </div>
 
 interface ItemsOrdersProps {
   items: {

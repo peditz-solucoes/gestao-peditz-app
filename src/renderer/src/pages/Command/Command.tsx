@@ -171,7 +171,6 @@ export const Command: React.FC = () => {
         pyments_methods: payments.map((payment) => ({ id: payment.id, value: payment.value }))
       })
       .then((response) => {
-        console.log('Pagamento realizado com sucesso', response.data)
         window.location.reload()
       })
       .catch((error: AxiosError) => {
@@ -182,19 +181,31 @@ export const Command: React.FC = () => {
       })
   }
 
-  // function handlePrint(): void {
-  //   BillPrinter({
-  //     number: `${selectedBills.map((bill) => bill.number).join(', ')}`,
-  //     serviceTax: onTip,
-  //     total: total - onTip,
-  //     subtotal: total,
-  //     permanenceTime: selectedBills[0].created,
-  //     products: orders.map((order) => {
-      
-    
-  //     })
-  //   })
-  // }
+  function handlePrint(): void {
+    BillPrinter({
+      number: `${selectedBills.map((bill) => bill.number).join(', ')}`,
+      serviceTax: onTip,
+      total: total - onTip,
+      subtotal: total,
+      permanenceTime: selectedBills[0].created,
+      products: orders
+        .map((order) => {
+          return order.orders.map((product) => {
+            return {
+              name: product.product.title,
+              amount: Number(product.quantity),
+              price: Number(product.total),
+              complementItems: product.complements.map((complement) => {
+                return complement.items.map((item) => {
+                  return { title: item.complement_title, quantity: item.quantity }
+                })
+              })
+            }
+          })
+        })
+        .flatMap((product) => product) as any
+    })
+  }
 
   const rowSelection = {
     onChange: (selectedRowKeys: React.Key[], selectedRows: OrderList[]): void => {
@@ -415,7 +426,7 @@ export const Command: React.FC = () => {
                 <Button
                   type="primary"
                   icon={<AiFillPrinter size={24} />}
-                  // onClick={handlePrint}
+                  onClick={handlePrint}
                   size="large"
                   style={{
                     display: 'flex',
