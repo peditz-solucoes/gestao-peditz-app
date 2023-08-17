@@ -108,31 +108,26 @@ export const Products: React.FC = () => {
             <FilterOutlined />
           </Button>
         </S.Header>
-        <Spin spinning={isLoading}>
+        <Spin spinning={isLoading} size="large">
           <div
             style={{
               overflow: 'auto',
               overflowX: 'hidden',
-              height: 'calc(100vh - 140px)',
+              height: 'calc(100vh - 160px)',
               display: 'flex',
               marginTop: '20px',
               flexDirection: 'column',
               gap: '40px'
             }}
           >
-            {!visibleCardProduct &&
+            {!visibleCardProduct ? (
               groupProductsByCategory().map((category, k) => {
                 return (
                   <div key={k}>
                     <S.TitleCategory>
                       {category.category} <Divider type="horizontal" />
                     </S.TitleCategory>
-                    <Row
-                      gutter={[24, 24]}
-                      style={{
-                        padding: '0 40px'
-                      }}
-                    >
+                    <S.RowProduct>
                       {category.products.map((Product) => {
                         return (
                           <Col span={4} key={Product.id}>
@@ -148,17 +143,22 @@ export const Products: React.FC = () => {
                           </Col>
                         )
                       })}
-                    </Row>
+                    </S.RowProduct>
                   </div>
                 )
-              })}
-            {visibleCardProduct && (
+              })
+            ) : (
               <div
                 style={{
                   padding: '0 40px'
                 }}
               >
-                <Table columns={columns} dataSource={products} />
+                <Table
+                  columns={columns}
+                  dataSource={products}
+                  pagination={false}
+                  scroll={{ y: 'calc(100vh - 220px)' }}
+                />
               </div>
             )}
           </div>

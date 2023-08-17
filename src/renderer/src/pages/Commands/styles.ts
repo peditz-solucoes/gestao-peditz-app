@@ -24,7 +24,7 @@ export const ContentCommands = styled.div`
 `
 export const ListContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(5, 1fr);;
+  grid-template-columns: repeat(5, 1fr);
   place-items: center;
   grid-gap: 15px;
   grid-auto-flow: row;

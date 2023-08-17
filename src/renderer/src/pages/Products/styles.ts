@@ -37,3 +37,10 @@ export const Content = styled.div`
   gap: 10px;
   overflow-x: auto;
 `
+
+export const RowProduct = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); /* Ajusta automaticamente com um mínimo de 200px */
+  gap: 15px;
+  padding: 0 30px;
+`

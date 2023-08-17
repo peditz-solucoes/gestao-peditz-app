@@ -95,16 +95,17 @@ export const SideBar: React.FC<SideBarProps> = ({ collapsed }) => {
       label: 'Produtos',
       icon: <IoFastFood />,
       style: {
-        display: userPermissions.includes('Produtos') ? 'flex' : 'none'
+        display: userPermissions.includes('Produtos') ? 'flex' : 'none',
+        flexDirection: 'column'
       },
       children: [
         getItem({
           key: '4',
-          label: <Link to={'/produtos'}>Lista de produtos</Link>
+          label: <Link to={'/produtos'}>Lista de produtos</Link>,
         }),
         getItem({
           key: '5',
-          label: <Link to={'/produtos/categorias'}>Categorias</Link>
+          label: <Link to={'/produtos/categorias'}>Categorias</Link>,
         })
       ]
     }),
