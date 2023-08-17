@@ -1,29 +1,42 @@
-import { Route, Routes } from "react-router-dom";
-import { LoginPage } from "../pages/Login";
-import { Dashboard } from "../pages/Dashboard";
-import { Commands } from "../pages/Commands";
-import { Reports } from "../pages/Reports";
-import { Stocks } from "../pages/Stocks";
-import { Tables } from "../pages/Tables";
-import { Apps } from "../pages/Apps";
-import { Products } from "../pages/Products/Products";
-import { Integrations } from "../pages/Integrations";
-import { AddSidebar } from "../components/AddSidebar";
-import { Command } from "../pages/Command";
-import { CategoryProducts } from "../pages/CategoryProducts";
-import { PrivateRoute } from "./PrivateRoute";
-import { LoginRoute } from "./LoginRoute";
-import { Table } from "../pages/Table/Table";
-import { CashierPage } from "../pages/Cashier/Cashier";
-import { EmployersPage } from "../pages/Employers/Employers";
-import { EmployerRegisterPage } from "../pages/EmployerRegister/EmployerRegister";
-import { EmployerViewPage } from "../pages/EmployerView/EmployerView";
-import { Terminal } from "../pages/Terminal";
-import { TerminalProvider } from "../hooks/useTerminal";
+import { Route, Routes } from 'react-router-dom'
+import { LoginPage } from '../pages/Login'
+import { Dashboard } from '../pages/Dashboard'
+import { Commands } from '../pages/Commands'
+import { Reports } from '../pages/Reports'
+import { Stocks } from '../pages/Stocks'
+import { Tables } from '../pages/Tables'
+import { Apps } from '../pages/Apps'
+import { Products } from '../pages/Products/Products'
+import { Integrations } from '../pages/Integrations'
+import { AddSidebar } from '../components/AddSidebar'
+import { Command } from '../pages/Command'
+import { CategoryProducts } from '../pages/CategoryProducts'
+import { PrivateRoute } from './PrivateRoute'
+import { LoginRoute } from './LoginRoute'
+import { Table } from '../pages/Table/Table'
+import { CashierPage } from '../pages/Cashier/Cashier'
+import { EmployersPage } from '../pages/Employers/Employers'
+import { EmployerRegisterPage } from '../pages/EmployerRegister/EmployerRegister'
+import { EmployerViewPage } from '../pages/EmployerView/EmployerView'
+import { Terminal } from '../pages/Terminal'
+import { TerminalProvider } from '../hooks/useTerminal'
+import { BillClosedPage } from '@renderer/pages/BillCLosed'
 
 export function Navigation() {
   return (
     <Routes>
+      {/* Rota de comandas fechadas */}
+      <Route path="/comandas-fechadas/" element={<PrivateRoute />}>
+        <Route
+          path="/comandas-fechadas/"
+          element={
+            <AddSidebar titleHeader="Comandas fechadas">
+              <BillClosedPage />
+            </AddSidebar>
+          }
+        />
+      </Route>
+
       {/* Rota raiz / */}
       <Route path="/" element={<PrivateRoute />}>
         <Route
@@ -227,5 +240,5 @@ export function Navigation() {
         />
       </Route>
     </Routes>
-  );
+  )
 }

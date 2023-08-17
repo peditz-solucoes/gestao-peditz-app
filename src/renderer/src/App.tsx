@@ -6,6 +6,7 @@ import GlobalStyle from './theme/GlobalStyles'
 import { ConfigProvider, FloatButton, message } from 'antd'
 import { BillProvider, PrinterProvider, ProductsProvider } from './hooks'
 import { QuestionCircleOutlined } from '@ant-design/icons'
+import { CashierProvider } from './hooks'
 
 function App() {
   const [, contextHolder] = message.useMessage()
@@ -20,18 +21,20 @@ function App() {
       >
         <ThemeProvider theme={theme}>
           <GlobalStyle />
-          <ProductsProvider>
-            <PrinterProvider>
-              <BillProvider>
-                <Navigation />
-                <FloatButton
-                  icon={<QuestionCircleOutlined />}
-                  type="primary"
-                  style={{ right: 24 }}
-                />
-              </BillProvider>
-            </PrinterProvider>
-          </ProductsProvider>
+          <CashierProvider>
+            <ProductsProvider>
+              <PrinterProvider>
+                <BillProvider>
+                  <Navigation />
+                  <FloatButton
+                    icon={<QuestionCircleOutlined />}
+                    type="primary"
+                    style={{ right: 24 }}
+                  />
+                </BillProvider>
+              </PrinterProvider>
+            </ProductsProvider>
+          </CashierProvider>
         </ThemeProvider>
       </ConfigProvider>
     </Router>

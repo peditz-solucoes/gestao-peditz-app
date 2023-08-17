@@ -101,22 +101,33 @@ export const SideBar: React.FC<SideBarProps> = ({ collapsed }) => {
       children: [
         getItem({
           key: '4',
-          label: <Link to={'/produtos'}>Lista de produtos</Link>,
+          label: <Link to={'/produtos'}>Lista de produtos</Link>
         }),
         getItem({
           key: '5',
-          label: <Link to={'/produtos/categorias'}>Categorias</Link>,
+          label: <Link to={'/produtos/categorias'}>Categorias</Link>
         })
       ]
     }),
 
     getItem({
       key: '6',
-      label: <Link to={'/comandas'}>Comandas</Link>,
+      label: 'Comandas',
       icon: <WalletOutlined />,
       style: {
-        display: userPermissions.includes('Comandas') ? 'flex' : 'none'
-      }
+        display: userPermissions.includes('Comandas') ? 'flex' : 'none',
+        flexDirection: 'column'
+      },
+      children: [
+        getItem({
+          key: '6.1',
+          label: <Link to={'/comandas'}>Abertas</Link>
+        }),
+        getItem({
+          key: '6.2',
+          label: <Link to={'/comandas-fechadas'}>Fechadas</Link>
+        })
+      ]
     }),
 
     getItem({

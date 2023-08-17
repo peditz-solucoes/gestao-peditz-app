@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import * as S from './styles'
 import {
   FaCashRegister,
@@ -6,19 +6,14 @@ import {
   FaMoneyBillAlt,
   FaQrcode,
   FaPercentage,
-  FaArrowUp,
-  FaArrowDown,
   FaExclamationTriangle
 } from 'react-icons/fa'
 import { Icon } from '../../components/Icon'
 import { Typography, Table, Button, Tag } from 'antd'
 import { ColumnsType } from 'antd/es/table'
 import { ModalCashier } from '../../components/ModalCashier/ModalCashier'
-import api from '../../services/api'
-import { Cashier, Payments } from '../../types'
-import { AxiosError } from 'axios'
-import { errorActions } from '../../utils/errorActions'
 import { formatCurrency } from '../../utils'
+import { useCashier } from '@renderer/hooks'
 
 const { Text, Title } = Typography
 
@@ -71,47 +66,12 @@ const columns: ColumnsType<payment> = [
 ]
 
 export const CashierPage: React.FC = () => {
-  const [cashier, setCashier] = useState<Cashier>({} as Cashier)
-  const [openModal, setOpenModal] = useState(false)
-  const [transactions, setTransactions] = useState<Payments[]>([])
-  const [isLoading, setIsLoading] = useState(false)
+  const { fetchCashier, transactions, cashier, setOpenCashierModal, openCashierModal, isLoading } =
+    useCashier()
 
   useEffect(() => {
-    fetchCashier()
+    fetchCashier(true)
   }, [])
-
-  function fetchCashier() {
-    api
-      .get('/cashier/?open=true')
-      .then((response) => {
-        console.log(response.data)
-        setCashier(response.data[0])
-        fetchTransactions(response.data[0].id)
-      })
-      .catch((error: AxiosError) => {
-        errorActions(error)
-      })
-      .finally(() => {})
-  }
-
-  function fetchTransactions(cashierId: string) {
-    setIsLoading(true)
-    api
-      .get(`/list-payment/?cashier=${cashierId}`)
-      .then((response) => {
-        setTransactions(response.data)
-      })
-      .catch((error: AxiosError) => {
-        errorActions(error)
-      })
-      .finally(() => {
-        setIsLoading(false)
-      })
-  }
-
-  function handleOpenTradingBox() {
-    setOpenModal(true)
-  }
 
   const mapTypePayment = (type: string) => {
     switch (type) {
@@ -194,7 +154,7 @@ export const CashierPage: React.FC = () => {
                   Caixa aberto por: {cashier.opened_by_name || 'Usuário sem nome'}
                 </Text>
                 <Text type="secondary">em {new Date(cashier.created).toLocaleString()}</Text>
-                <S.ButtonBox type="primary" danger onClick={handleOpenTradingBox}>
+                <S.ButtonBox type="primary" danger onClick={() => setOpenCashierModal(true)}>
                   Fechar Caixa
                 </S.ButtonBox>
               </div>
@@ -255,7 +215,7 @@ export const CashierPage: React.FC = () => {
                 >
                   Clique no botão abaixo para abrir um novo caixa.
                 </Text>
-                <Button size="large" type="primary" onClick={handleOpenTradingBox}>
+                <Button size="large" type="primary" onClick={() => setOpenCashierModal(true)}>
                   Abrir Caixa
                 </Button>
               </div>
@@ -294,7 +254,7 @@ export const CashierPage: React.FC = () => {
                 color: '#4C0677'
               }}
             >
-               {formatCurrency(
+              {formatCurrency(
                 transactions
                   .map((transaction) =>
                     transaction.payments
@@ -336,7 +296,7 @@ export const CashierPage: React.FC = () => {
                 color: '#0583F2'
               }}
             >
-               {formatCurrency(
+              {formatCurrency(
                 transactions
                   .map((transaction) =>
                     transaction.payments
@@ -378,7 +338,7 @@ export const CashierPage: React.FC = () => {
                 color: '#2FAA54'
               }}
             >
-               {formatCurrency(
+              {formatCurrency(
                 transactions
                   .map((transaction) =>
                     transaction.payments
@@ -482,9 +442,9 @@ export const CashierPage: React.FC = () => {
       </S.Container>
       <ModalCashier
         cashierId={cashier?.id}
-        open={openModal}
-        onClose={() => setOpenModal(false)}
-        onFetch={fetchCashier}
+        open={openCashierModal}
+        onClose={() => setOpenCashierModal(false)}
+        onFetch={() => fetchCashier(true)}
         type={cashier && cashier.open ? 'close' : 'open'}
       />
     </>
