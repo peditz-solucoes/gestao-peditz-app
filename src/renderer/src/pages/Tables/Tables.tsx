@@ -53,14 +53,7 @@ export const TablesPage: React.FC = () => {
               text={table.bills.length > 0 ? 'Mesa Ocupada' : 'Mesa livre'}
               color={table.bills.length > 0 ? 'red' : 'green'}
             >
-              <Card
-                onClick={() => navigate(`/mesas/${table.id}/`)}
-                style={{
-                  width: 250,
-                  maxHeight: 250,
-                  cursor: 'pointer'
-                }}
-              >
+              <S.CardTable onClick={() => navigate(`/mesas/${table.id}/`)}>
                 <div
                   style={{
                     display: 'flex',
@@ -89,7 +82,7 @@ export const TablesPage: React.FC = () => {
                   <Title level={4}>Mesa {table.title}</Title>
                   <Text type="secondary">{table.capacity} lugares</Text>
                 </div>
-                <Divider
+                {/* <Divider
                   type="horizontal"
                   plain
                   style={{
@@ -112,8 +105,8 @@ export const TablesPage: React.FC = () => {
                   <Text type="secondary" strong>
                     Valor total: R$ 50,00
                   </Text>
-                </div>
-              </Card>
+                </div> */}
+              </S.CardTable>
             </Badge.Ribbon>
           ))}
         </S.ContentTable>

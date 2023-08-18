@@ -12,7 +12,6 @@ import {
   Switch,
   Typography
 } from 'antd'
-// import { MdTableRestaurant } from 'react-icons/md';
 import { CheckCircleOutlined, StopOutlined } from '@ant-design/icons'
 import { useNavigate, useParams } from 'react-router-dom'
 import api from '../../services/api'
@@ -163,7 +162,7 @@ export const Table: React.FC = () => {
             </div>
             {table.bills?.length > 0 ? (
               table.bills.map((bill) => (
-                <S.CommandCard onClick={() => navigate(`/comandas/${bill.id}/`)}>
+                <S.CommandCard key={bill.id} onClick={() => navigate(`/comandas/${bill.id}/`)}>
                   <Title level={5} style={{ margin: '0' }}>
                     Comanda {bill.number}
                   </Title>
