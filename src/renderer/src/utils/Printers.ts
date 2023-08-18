@@ -188,20 +188,30 @@ interface BillPrinterProps {
   }[]
 }
 
-function aux(item) {
+function aux(
+  item: {
+    title: string
+    quantity: number
+    price: number
+    complementItems?: {
+      title: string
+      quantity: number
+    }[]
+  }[]
+) {
   console.log('tô chegando assim', item)
   let row = ''
   for (let product of item) {
     row += `
     <li style="list-style: none; margin-top: 10px">
       <div style="display: flex; justify-content: space-between">
-        <strong>${item.quantity}x ${item.name}</strong>
-        <span>${formatCurrency(item.price)}</span>
+        <strong>${product.quantity}x ${product.title}</strong>
+        <span>${formatCurrency(product.price)}</span>
       </div>
   `
 
-    if (item.complementItems && item.complementItems.length > 0) {
-      for (const complement of item.complementItems) {
+    if (product.complementItems && product.complementItems.length > 0) {
+      for (const complement of product.complementItems) {
         row += `
         <ul style="padding: 2px 0 0 5mm">
           <li style="list-style: none; display: flex">
