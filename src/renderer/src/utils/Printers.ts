@@ -189,34 +189,36 @@ interface BillPrinterProps {
 }
 
 function aux(item) {
-  let row = '';
-  row += `
+  console.log('tô chegando assim', item)
+  let row = ''
+  for (let product of item) {
+    row += `
     <li style="list-style: none; margin-top: 10px">
       <div style="display: flex; justify-content: space-between">
         <strong>${item.quantity}x ${item.name}</strong>
         <span>${formatCurrency(item.price)}</span>
       </div>
-  `;
+  `
 
-  if (item.complementItems && item.complementItems.length > 0) {
-    for (const complement of item.complementItems) {
-      row += `
+    if (item.complementItems && item.complementItems.length > 0) {
+      for (const complement of item.complementItems) {
+        row += `
         <ul style="padding: 2px 0 0 5mm">
           <li style="list-style: none; display: flex">
             <span>${complement.quantity}x ${complement.title}</span>
           </li>
         </ul>
-      `;
+      `
+      }
     }
+
+    row += `
+    </li>
+  `
   }
 
-  row += `
-    </li>
-  `;
-
-  return row;
+  return row
 }
-
 
 export function BillPrinter(props: BillPrinterProps): void {
   console.log(props)
