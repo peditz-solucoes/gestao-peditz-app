@@ -202,7 +202,6 @@ function aux(
   console.log('tô chegando assim', item)
   let row = ''
   for (let product of item) {
-    console.log('product', product)
     row += `
     <li style="list-style: none; margin-top: 10px">
       <div style="display: flex; justify-content: space-between">
@@ -211,17 +210,18 @@ function aux(
       </div>
   `
 
-    if (product.complementItems && product.complementItems.length > 0) {
-      for (const complement of product.complementItems) {
-        row += `
-        <ul style="padding: 2px 0 0 5mm">
-          <li style="list-style: none; display: flex">
-            <span>${complement.quantity}x ${complement.title}</span>
-          </li>
-        </ul>
-      `
-      }
-    }
+    // if (product.complementItems && product.complementItems.length > 0) {
+    //   for (const complement of product.complementItems) {
+    //     console.log('eu sou o super complement', complement)
+    //     row += `
+    //     <ul style="padding: 2px 0 0 5mm">
+    //       <li style="list-style: none; display: flex">
+    //         <span>${Number(complement.quantity)}x ${complement.title}</span>
+    //       </li>
+    //     </ul>
+    //   `
+    //   }
+    // }
 
     row += `
     </li>
@@ -293,7 +293,7 @@ export function BillPrinter(props: BillPrinterProps): void {
     </body>
   </html>`
 
-  // console.log(html)
+  console.log(html)
 
   window.electronBridge.printLine('massas', html)
 }
