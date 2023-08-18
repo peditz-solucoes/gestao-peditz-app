@@ -182,11 +182,29 @@ export const Command: React.FC = () => {
   }
 
   function handlePrint(): void {
+    // console.log(
+    //   orders
+    //     .map((order) => {
+    //       return order.orders.map((product) => {
+    //         return {
+    //           name: product.product.title,
+    //           amount: Number(product.quantity),
+    //           price: Number(product.total),
+    //           complementItems: product.complements.map((complement) => {
+    //             return complement.items.map((item) => {
+    //               return { title: item.complement_title, quantity: item.quantity }
+    //             })
+    //           })
+    //         }
+    //       })
+    //     })
+    //     .flatMap((product) => product) as any
+    // )
     BillPrinter({
       number: `${selectedBills.map((bill) => bill.number).join(', ')}`,
       serviceTax: onTip,
-      total: total - onTip,
-      subtotal: total,
+      total: Number((total - onTip).toFixed(2)),
+      subtotal: Number(total.toFixed(2)),
       permanenceTime: selectedBills[0].created,
       products: orders
         .map((order) => {

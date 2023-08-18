@@ -189,12 +189,47 @@ interface BillPrinterProps {
 }
 
 export function BillPrinter(props: BillPrinterProps): void {
-  console.log('estou imprimindo comanda')
+  console.log(props)
+
+  const productsHTML = props.products
+  .map((item) => {
+    return `
+      <li style="list-style: none; margin-top: 10px">
+        <div style="display: flex; justify-content: space-between">
+          <strong>${item.quantity}x ${item.title}</strong>
+          <span>${item.price}</span>
+        </div>
+        ${
+          item.complementItems && item.complementItems.length > 0
+            ? item.complementItems
+                .map(
+                  (complement) => `
+                  <ul style="padding: 2px 0 0 5mm">
+                    <li
+                      style="
+                        list-style: none;
+                        display: flex;
+                        justify-content: space-between;
+                      "
+                    >
+                      <span>${complement.quantity}x ${complement.title}</span>
+                    </li>
+                  </ul>
+                `
+                )
+                .join('')
+            : ''
+        }
+      </li>
+    `;
+  })
+  .join('');
+
   window.electronBridge.printLine(
     'massas',
     `
     <!DOCTYPE html>
-    <html >
+  <html>
     <head>
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -207,7 +242,7 @@ export function BillPrinter(props: BillPrinterProps): void {
         @page {
           size: 80mm auto;
           margin: 0mm;
-          padding: 0mm,
+          padding: 0mm;
         }
       </style>
     </head>
@@ -223,88 +258,32 @@ export function BillPrinter(props: BillPrinterProps): void {
       <h4 style="margin: 0">DATA DE IMPRESSÃO: ${new Date().toLocaleString()}</h4>
       <h4 style="margin-top: 10px">RESUMO</h4>
       <ul style="padding: 0">
-        <li style="list-style: none">
-          <div style="display: flex; justify-content: space-between">
-            <strong>1x Pizza Grande</strong>
-            <span>R$ 50,00</span>
-          </div>
-          <ul style="padding: 2px 0 0 5mm">
-            <li
-              style="
-                list-style: none;
-                display: flex;
-                justify-content: space-between;
-              "
-            >
-              <span>1x Calabresa</span>
-            </li>
-            <li
-              style="
-                list-style: none;
-                display: flex;
-                justify-content: space-between;
-              "
-            >
-              <span>1x Frango</span>
-            </li>
-          </ul>
-        </li>
-        ${props.products.map((item) => {
-          return `
-          <li style="list-style: none; margin-top: 10px">
-            <div style="display: flex; justify-content: space-between">
-              <strong>${item.quantity}x ${item.title}</strong>
-              <span>${item.price}</span>
-            </div>
-            ${
-              item.complementItems && item.complementItems.length > 0
-                ? item.complementItems.map(
-                    (item) => `
-            <ul style="padding: 2px 0 0 5mm">
-            <li
-              style="
-                list-style: none;
-                display: flex;
-                justify-content: space-between;
-              "
-            >
-              <span>${item.quantity}x ${item.title}</span>
-            </li>
-            </ul>
-            `
-                  )
-                : ''
-            }
-          </li>
-        `
-        })}
+        ${productsHTML}
       </ul>
 
       <hr style="border-style: dashed" />
       <div style="display: flex; justify-content: space-between; margin-top: 10px;">
-          <strong>SubTotal:</strong>
-          <span>${props.subtotal}</span>
+        <strong>SubTotal:</strong>
+        <span>${props.subtotal}</span>
       </div>
       <div style="display: flex; justify-content: space-between; margin-top: 10px;">
-          <strong>Taxa de serviço:</strong>
-          <span>${props.serviceTax}</span>
+        <strong>Taxa de serviço:</strong>
+        <span>${props.serviceTax}</span>
       </div>
       <div style="display: flex; justify-content: space-between; margin-top: 10px;">
-          <strong>Total:</strong>
-          <span>${props.total}</span>
+        <strong>Total:</strong>
+        <span>${props.total}</span>
       </div>
       <hr style="border-style: dashed" />
 
       <br>
       <br>
       <p style="margin: 0; text-align: center; font-size: 12px;">
-          Desenvolvido por @peditz.br
+        Desenvolvido por @peditz.br
       </p>
       <p style="margin: 0; text-align: center; font-size: 12px;">
-          wwww.peditz.com.br
+        wwww.peditz.com.br
       </p>
-
-
     </body>
   </html>
   `
@@ -346,18 +325,18 @@ function addOrderItemInString(i: ItemsOrdersProps): string {
         : ''
     }
     `
-    if (i.items.length > 0) {
-      for (const j of i.items) {
-        row += `<ul style="padding: 2px 0 0 5mm">`
-        for (const k of j.items) {
-          row += `<li style="list-style: none; display: flex">`
-          row += `<span style="font-size: 24px">- ${k.item_title}</span>`
-          row += `</li>`
-        }
-        row += `</ul>`
+  if (i.items.length > 0) {
+    for (const j of i.items) {
+      row += `<ul style="padding: 2px 0 0 5mm">`
+      for (const k of j.items) {
+        row += `<li style="list-style: none; display: flex">`
+        row += `<span style="font-size: 24px">- ${k.item_title}</span>`
+        row += `</li>`
       }
+      row += `</ul>`
     }
-    row += `</li>`
+  }
+  row += `</li>`
   return row
 }
 
