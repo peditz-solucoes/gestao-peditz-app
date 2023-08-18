@@ -192,12 +192,12 @@ export function BillPrinter(props: BillPrinterProps): void {
   console.log(props)
 
   const productsHTML = props.products
-  .map((item) => {
-    return `
+    .map((item) => {
+      return `
       <li style="list-style: none; margin-top: 10px">
         <div style="display: flex; justify-content: space-between">
           <strong>${item.quantity}x ${item.title}</strong>
-          <span>${item.price}</span>
+          <span>${formatCurrency(item.price)}</span>
         </div>
         ${
           item.complementItems && item.complementItems.length > 0
@@ -221,9 +221,9 @@ export function BillPrinter(props: BillPrinterProps): void {
             : ''
         }
       </li>
-    `;
-  })
-  .join('');
+    `
+    })
+    .join('')
 
   window.electronBridge.printLine(
     'massas',
