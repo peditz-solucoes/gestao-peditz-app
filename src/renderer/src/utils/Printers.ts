@@ -1,6 +1,5 @@
 import moment from 'moment'
 import { formatCurrency } from './formatCurrency'
-import { Product } from '@renderer/types'
 
 interface OpenCashierProps {
   data: {
@@ -192,10 +191,13 @@ interface BillPrinterProps {
 export function BillPrinter(props: BillPrinterProps): void {
   console.log('estou imprimindo comanda')
   window.electronBridge.printLine(
-    '',
+    'massas',
     `
-    <html>
+    <!DOCTYPE html>
+    <html >
     <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <title>Impressão</title>
       <style>
         * {
@@ -203,16 +205,17 @@ export function BillPrinter(props: BillPrinterProps): void {
           font-size: 14px;
         }
         @page {
-          size: 80mm 270mm;
-          margin: 10mm 10mm;
+          size: 80mm auto;
+          margin: 0mm;
+          padding: 0mm,
         }
       </style>
     </head>
-    <body style="max-width: 80mm">
+    <body>
       <h3 style="margin-bottom: 5px">Atelie do chefe</h3>
       <p style="margin: 0; margin-bottom: 2px">Rua 15 de novembro, 123</p>
       <p style="margin: 0; margin-bottom: 2px">65900-231, centro Imperatriz/MA</p>
-      <p style="margin: 0; margin-bottom: 2px">(99) 99194-7191</p>
+      <p style="margin: 0; margin-bottom: 2px">(99) 99194 7191</p>
       <p style="margin: 0; margin-bottom: 2px">ateliedochefe.mkt@gmail.com</p>
       <hr style="border-style: dashed" />
 
@@ -300,11 +303,6 @@ export function BillPrinter(props: BillPrinterProps): void {
       <p style="margin: 0; text-align: center; font-size: 12px;">
           wwww.peditz.com.br
       </p>
-      <br>
-      <br>
-      <p style="margin: 0; text-align: center; font-size: 12px;">
-          ....
-      </p>
 
 
     </body>
@@ -334,10 +332,9 @@ interface ItemsOrdersProps {
   quantity: number
 }
 
-function addOrderItemInString(items: ItemsOrdersProps[]): string {
+function addOrderItemInString(i: ItemsOrdersProps): string {
   let row = ''
-  for (const i of items) {
-    row += `<li style="list-style: none">
+  row += `<li style="list-style: none">
     <div style="font-size: 24px">
       <strong style="font-size: 24px">${i.quantity}x ${i.product_title}</strong>
     </div>
@@ -354,14 +351,13 @@ function addOrderItemInString(items: ItemsOrdersProps[]): string {
         row += `<ul style="padding: 2px 0 0 5mm">`
         for (const k of j.items) {
           row += `<li style="list-style: none; display: flex">`
-          row += `<span style="font-size: 24px">${k.quantity}x ${k.item_title}</span>`
+          row += `<span style="font-size: 24px">- ${k.item_title}</span>`
           row += `</li>`
         }
         row += `</ul>`
       }
     }
     row += `</li>`
-  }
   return row
 }
 
@@ -378,22 +374,25 @@ export function Order(
       window.electronBridge.printLine(
         i.printer_name || '',
         `
+        <!DOCTYPE html>
         <html>
         <head>
-          <title>Impressão</title>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>Novo pedido</title>
           <style>
             * {
               font-family: sans-serif;
               font-size: 18px;
             }
             @page {
-              size: 80mm 270mm;
-              margin: 10mm 10mm;
+              size: 80mm auto;
+              margin: 0mm;
+              padding: 0mm,
             }
           </style>
         </head>
-        <body style="max-width: 80mm">
-          <br />
+        <body>
           <h2
             style="
               margin-bottom: 5px;
@@ -405,7 +404,7 @@ export function Order(
             Novo pedido!
           </h2>
           <hr style="border-style: dashed" />
-          <h4 style="margin: 0; text-align: center">${moment(date).format(
+          <h4 style="margin: 0; text-align: center;">${moment(date).format(
             'DD/MM/YYYY HH:mm:ss'
           )}</h4>
           <h4 style="margin: 0; text-align: center; margin-top: 5px">COMANDA ${command}</h4>
@@ -413,7 +412,7 @@ export function Order(
           <h4 style="margin: 0; text-align: center; margin-top: 5px">Responsável ${operator}</h4>
           <hr style="border-style: dashed" />
           <ul style="padding: 0; font-size: 24px">
-          ${addOrderItemInString(items)}
+          ${addOrderItemInString(i)}
           <hr style="border-style: dashed" />
           <div
             style="margin-top: 10px ; font-size: 14px;"
@@ -425,8 +424,6 @@ export function Order(
           <p style="margin: 0; text-align: center; font-size: 12px">
             ${restaurant}
           </p>
-          <br />
-          <p style="margin: 0; text-align: center; font-size: 12px">....</p>
         </body>
       </html>
     `
@@ -434,6 +431,5 @@ export function Order(
     }
     console.log('items', items)
     console.log('restaurant', restaurant)
-    console.log(addOrderItemInString(items))
   }
 }
