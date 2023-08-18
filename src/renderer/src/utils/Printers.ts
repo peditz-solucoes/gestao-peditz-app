@@ -202,6 +202,7 @@ function aux(
   console.log('tô chegando assim', item)
   let row = ''
   for (let product of item) {
+    console.log('product', product)
     row += `
     <li style="list-style: none; margin-top: 10px">
       <div style="display: flex; justify-content: space-between">
@@ -233,10 +234,7 @@ function aux(
 export function BillPrinter(props: BillPrinterProps): void {
   console.log(props)
 
-  window.electronBridge.printLine(
-    'massas',
-    `
-    <!DOCTYPE html>
+  const html = `<!DOCTYPE html>
   <html>
     <head>
       <meta charset="utf-8">
@@ -262,7 +260,7 @@ export function BillPrinter(props: BillPrinterProps): void {
       <p style="margin: 0; margin-bottom: 2px">ateliedochefe.mkt@gmail.com</p>
       <hr style="border-style: dashed" />
 
-      <h4 style="margin: 0">N DA COMANDA: ${props.number}</h4>
+      <h4 style="margin: 0">Nº DA COMANDA: ${props.number}</h4>
       <h4 style="margin: 0">DATA DE IMPRESSÃO: ${new Date().toLocaleString()}</h4>
       <h4 style="margin-top: 10px">RESUMO</h4>
       <ul style="padding: 0">
@@ -293,9 +291,11 @@ export function BillPrinter(props: BillPrinterProps): void {
         wwww.peditz.com.br
       </p>
     </body>
-  </html>
-  `
-  )
+  </html>`
+
+  // console.log(html)
+
+  window.electronBridge.printLine('massas', html)
 }
 // <div style="display: flex; justify-content: flex-end; margin-top: 10px; gap: 5px;">
 // <strong>Permanencia: </strong>

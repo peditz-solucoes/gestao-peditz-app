@@ -210,8 +210,8 @@ export const Command: React.FC = () => {
         .map((order) => {
           return order.orders.map((product) => {
             return {
-              name: product.product.title,
-              amount: Number(product.quantity),
+              title: product.product.title,
+              quantity: Number(product.quantity),
               price: Number(product.total),
               complementItems: product.complements.map((complement) => {
                 return complement.items.map((item) => {
