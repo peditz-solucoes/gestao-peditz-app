@@ -264,15 +264,15 @@ export function BillPrinter(props: BillPrinterProps): void {
       <hr style="border-style: dashed" />
       <div style="display: flex; justify-content: space-between; margin-top: 10px;">
         <strong>SubTotal:</strong>
-        <span>${props.subtotal}</span>
+        <span>${formatCurrency(props.subtotal)}</span>
       </div>
       <div style="display: flex; justify-content: space-between; margin-top: 10px;">
         <strong>Taxa de serviço:</strong>
-        <span>${props.serviceTax}</span>
+        <span>${formatCurrency(props.serviceTax)}</span>
       </div>
       <div style="display: flex; justify-content: space-between; margin-top: 10px;">
         <strong>Total:</strong>
-        <span>${props.total}</span>
+        <span>${formatCurrency(props.total)}</span>
       </div>
       <hr style="border-style: dashed" />
 
