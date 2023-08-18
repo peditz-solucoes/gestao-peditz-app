@@ -188,42 +188,38 @@ interface BillPrinterProps {
   }[]
 }
 
+function aux(item) {
+  let row = '';
+  row += `
+    <li style="list-style: none; margin-top: 10px">
+      <div style="display: flex; justify-content: space-between">
+        <strong>${item.quantity}x ${item.name}</strong>
+        <span>${formatCurrency(item.price)}</span>
+      </div>
+  `;
+
+  if (item.complementItems && item.complementItems.length > 0) {
+    for (const complement of item.complementItems) {
+      row += `
+        <ul style="padding: 2px 0 0 5mm">
+          <li style="list-style: none; display: flex">
+            <span>${complement.quantity}x ${complement.title}</span>
+          </li>
+        </ul>
+      `;
+    }
+  }
+
+  row += `
+    </li>
+  `;
+
+  return row;
+}
+
+
 export function BillPrinter(props: BillPrinterProps): void {
   console.log(props)
-
-  const productsHTML = props.products
-    .map((item) => {
-      return `
-      <li style="list-style: none; margin-top: 10px">
-        <div style="display: flex; justify-content: space-between">
-          <strong>${item.quantity}x ${item.title}</strong>
-          <span>${formatCurrency(item.price)}</span>
-        </div>
-        ${
-          item.complementItems && item.complementItems.length > 0
-            ? item.complementItems
-                .map(
-                  (complement) => `
-                  <ul style="padding: 2px 0 0 5mm">
-                    <li
-                      style="
-                        list-style: none;
-                        display: flex;
-                        justify-content: space-between;
-                      "
-                    >
-                      <span>${complement.quantity}x ${complement.title}</span>
-                    </li>
-                  </ul>
-                `
-                )
-                .join('')
-            : ''
-        }
-      </li>
-    `
-    })
-    .join('')
 
   window.electronBridge.printLine(
     'massas',
@@ -258,7 +254,7 @@ export function BillPrinter(props: BillPrinterProps): void {
       <h4 style="margin: 0">DATA DE IMPRESSÃO: ${new Date().toLocaleString()}</h4>
       <h4 style="margin-top: 10px">RESUMO</h4>
       <ul style="padding: 0">
-        ${productsHTML}
+        ${aux(props.products)}
       </ul>
 
       <hr style="border-style: dashed" />
