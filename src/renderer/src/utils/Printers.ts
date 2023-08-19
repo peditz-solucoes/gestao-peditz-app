@@ -210,19 +210,6 @@ function aux(
       </div>
   `
 
-    // if (product.complementItems && product.complementItems.length > 0) {
-    //   for (const complement of product.complementItems) {
-    //     console.log('eu sou o super complement', complement)
-    //     row += `
-    //     <ul style="padding: 2px 0 0 5mm">
-    //       <li style="list-style: none; display: flex">
-    //         <span>${Number(complement.quantity)}x ${complement.title}</span>
-    //       </li>
-    //     </ul>
-    //   `
-    //   }
-    // }
-
     row += `
     </li>
   `

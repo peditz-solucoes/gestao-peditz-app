@@ -1,43 +1,33 @@
-import styled from "styled-components";
+import styled from 'styled-components'
 
-export const DashboardContainer = styled.div`
+export const Container = styled.div`
   width: 100%;
-  height: 100vh;
-  padding: 1.25rem 2rem;
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
+  height: calc(100vh - 50px);
+  padding: 20px;
+  overflow-y: scroll;
+`
+
+export const RowMetrics = styled.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-gap: 20px;
 `
 
 export const Card = styled.div`
-  width: 25%;
-  max-width: 300px;
-  height: 150px;
-  background-color: #fff;
+  padding: 20px;
   border-radius: 10px;
-  box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
-  padding: 10px 30px;
-
+  border: 1px solid #f2f2f2;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  height: 130px;
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
+  justify-content: space-between;
+`
+
+export const CardTitle = styled.div`
+  display: flex;
   align-items: center;
+  flex-direction: row;
   gap: 10px;
-  
-`
-
-export const SliderContainer = styled.div`
-  width: 100%;
-  height: 300px;
-  background-color: #fff;
-  box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
-  border-radius: 10px;
-  padding: 10px;
-`
-
-export const CardProduct = styled.div`
-  max-width: 180px;
-  height: 220px;
-  border-radius: 10px;
-  background-color: #F2F2F2;
-  padding: 10px;
 `

@@ -1,203 +1,218 @@
-import React from 'react';
-import * as S from './styles';
-import { Avatar, Button, Image, Typography } from 'antd';
-import { DollarOutlined } from '@ant-design/icons';
+import { Line } from '@ant-design/charts'
+import React from 'react'
+import * as S from './styles'
+import { Avatar, Button, Image, Statistic, Typography } from 'antd'
+import { FaConciergeBell, FaMoneyBillWave, FaUserCheck, FaUserFriends } from 'react-icons/fa'
+import { formatCurrency } from '@renderer/utils'
+import { ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons'
+import { ChartBar } from './components/ChartBar'
 
-const { Title, Paragraph } = Typography;
+const { Title, Paragraph } = Typography
 
 export const Dashboard: React.FC = () => {
-	return (
-		<S.DashboardContainer>
-			<div
-				style={{
-					width: '100%',
-					position: 'relative',
-				}}
-			>
-				<Image
-					preview={false}
-					width={'100%'}
-					height={'350px'}
-					style={{
-						borderRadius: '10px',
-						boxShadow: '0px 0px 10px 0px rgba(0,0,0,0.5)',
-						filter: 'brightness(60%)',
-					}}
-					src="https://peditz.sfo3.digitaloceanspaces.com/capa.png"
-				/>
-				<div
-					style={{
-						position: 'absolute',
-						top: 0,
-						left: 30,
-						width: '100%',
-						height: '100%',
-						display: 'flex',
-						flexDirection: 'column',
-						justifyContent: 'center',
-						alignItems: 'flex-start',
-						gap: '10px',
-					}}
-				>
-					<Title
-						level={1}
-						style={{
-							color: '#fff',
-						}}
-					>
-						Bem vindo ao Peditz
-					</Title>
-					<Paragraph
-						style={{
-							color: '#fff',
-							fontSize: '1.5rem',
-						}}
-					>
-						Gestão restaurante: eficiência, controle e excelência em um só
-						lugar.
-					</Paragraph>
-					<Button
-						type="primary"
-						size="large"
-						style={{
-							height: '60px',
-							fontSize: '1.25rem',
-							fontWeight: 'bold',
-						}}
-					>
-						Visualizar cardápio
-					</Button>
-				</div>
-			</div>
-			<div
-				style={{
-					width: '100%',
-					display: 'flex',
-					flexDirection: 'row',
-					justifyContent: 'space-between',
-					alignItems: 'center',
-					gap: '20px',
-				}}
-			>
-				<S.Card>
-					<div>
-						<Avatar
-							icon={<DollarOutlined style={{ color: '#2FAA54' }} />}
-							style={{ backgroundColor: '#E9EDFC' }}
-							size={64}
-						/>
-					</div>
-					<div>
-						<Title level={3} style={{ margin: '0' }}>
-							R$ 0,00
-						</Title>
-						<Paragraph
-							style={{ margin: '0', fontWeight: 'bold', color: '#a9a9a9' }}
-						>
-							Valor total de vendas
-						</Paragraph>
-					</div>
-				</S.Card>
-				<S.Card>
-					<div>
-						<Avatar
-							icon={<DollarOutlined style={{ color: '#2FAA54' }} />}
-							style={{ backgroundColor: '#E9EDFC' }}
-							size={64}
-						/>
-					</div>
-					<div>
-						<Title level={3} style={{ margin: '0' }}>
-							R$ 0,00
-						</Title>
-						<Paragraph
-							style={{ margin: '0', fontWeight: 'bold', color: '#a9a9a9' }}
-						>
-							Ticket Médio
-						</Paragraph>
-					</div>
-				</S.Card>
-				<S.Card>
-					<div>
-						<Avatar
-							icon={<DollarOutlined style={{ color: '#2FAA54' }} />}
-							style={{ backgroundColor: '#E9EDFC' }}
-							size={64}
-						/>
-					</div>
-					<div>
-						<Title level={3} style={{ margin: '0' }}>
-							R$ 0,00
-						</Title>
-						<Paragraph
-							style={{ margin: '0', fontWeight: 'bold', color: '#a9a9a9' }}
-						>
-							Faturamento Total
-						</Paragraph>
-					</div>
-				</S.Card>
-				<S.Card>
-					<div>
-						<Avatar
-							icon={<DollarOutlined style={{ color: '#2FAA54' }} />}
-							style={{ backgroundColor: '#E9EDFC' }}
-							size={64}
-						/>
-					</div>
-					<div>
-						<Title level={3} style={{ margin: '0' }}>
-							139
-						</Title>
-						<Paragraph
-							style={{ margin: '0', fontWeight: 'bold', color: '#a9a9a9' }}
-						>
-							Visitas no cardápio
-						</Paragraph>
-					</div>
-				</S.Card>
-				<S.Card>
-					<div>
-						<Avatar
-							icon={<DollarOutlined style={{ color: '#2FAA54' }} />}
-							style={{ backgroundColor: '#E9EDFC' }}
-							size={64}
-						/>
-					</div>
-					<div>
-						<Title level={3} style={{ margin: '0' }}>
-							R$ 0,00
-						</Title>
-						<Paragraph
-							style={{ margin: '0', fontWeight: 'bold', color: '#a9a9a9' }}
-						>
-							Gastos com estoque
-						</Paragraph>
-					</div>
-				</S.Card>
-			</div>
-			{/* <S.SliderContainer>
-				<div
-					style={{
-						width: '100%',
-						display: 'flex',
-						flexDirection: 'row',
-						justifyContent: 'flex-start',
-					}}
-				>
-					<Title level={3} style={{ fontWeight: 'bolder', color: '#a9a9a9' }}>
-						Top 10º mais vendidos
-					</Title>
-				</div>
-				<Carousel
-					autoplay
-					style={{
-						width: '100%',
-						height: '100%',
-					}}
-				>
-					<S.CardProduct>teste</S.CardProduct>
-				</Carousel>
-			</S.SliderContainer> */}
-		</S.DashboardContainer>
-	);
-};
+  const data = [
+    { year: '1991', value: 3 },
+    { year: '1992', value: 4 },
+    { year: '1993', value: 3.5 },
+    { year: '1994', value: 5 },
+    { year: '1995', value: 4.9 },
+    { year: '1996', value: 6 },
+    { year: '1997', value: 7 },
+    { year: '1998', value: 9 },
+    { year: '1999', value: 13 }
+  ]
+
+  const config = {
+    data,
+    width: 800,
+    height: 400,
+    autoFit: false,
+    xField: 'year',
+    yField: 'value',
+    point: {
+      size: 5,
+      shape: 'diamond'
+    },
+    label: {
+      style: {
+        fill: '#aaa'
+      }
+    }
+  }
+
+  let chart
+
+  // return <Line {...config} onReady={(chartInstance) => (chart = chartInstance)} />
+
+  return (
+    <S.Container>
+      <S.RowMetrics>
+        <S.Card>
+          <S.CardTitle>
+            <div>
+              <Avatar
+                size={'large'}
+                icon={<FaConciergeBell style={{ color: '#0583F2' }} />}
+                style={{
+                  backgroundColor: '#BEE3F8',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+              />
+            </div>
+            <Title level={5} style={{ margin: '0', color: '#A0AEC0' }} italic>
+              Pedidos Recebidos
+            </Title>
+          </S.CardTitle>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'flex-start',
+              gap: '0.5rem'
+            }}
+          >
+            <Paragraph strong style={{ margin: '0', fontSize: '1.75rem', color: '#0583F2' }}>
+              1569
+            </Paragraph>
+            <Statistic
+              value={11.28}
+              precision={2}
+              valueStyle={{ color: '#3f8600', fontSize: '0.75rem' }}
+              prefix={<ArrowUpOutlined />}
+              suffix="%"
+            />
+          </div>
+        </S.Card>
+        <S.Card>
+          <S.CardTitle>
+            <div>
+              <Avatar
+                size={'large'}
+                icon={<FaMoneyBillWave style={{ color: '#31AB56' }} />}
+                style={{
+                  backgroundColor: '#C6F6D5',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+              />
+            </div>
+            <Title level={5} style={{ margin: '0', color: '#A0AEC0' }} italic>
+              Receita bruta
+            </Title>
+          </S.CardTitle>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'flex-start',
+              gap: '0.5rem'
+            }}
+          >
+            <Paragraph strong style={{ margin: '0', fontSize: '1.75rem', color: '#31AB56' }}>
+              {formatCurrency(18934)}
+            </Paragraph>
+            <Statistic
+              value={11.28}
+              precision={2}
+              valueStyle={{ color: '#3f8600', fontSize: '0.75rem' }}
+              prefix={<ArrowUpOutlined />}
+              suffix="%"
+            />
+          </div>
+        </S.Card>
+        <S.Card>
+          <S.CardTitle>
+            <div>
+              <Avatar
+                size={'large'}
+                icon={<FaUserFriends style={{ color: '#DD6B20' }} />}
+                style={{
+                  backgroundColor: '#FEEBC8',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+              />
+            </div>
+            <Title level={5} style={{ margin: '0', color: '#A0AEC0' }} italic>
+              Visitas diárias
+            </Title>
+          </S.CardTitle>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'flex-start',
+              gap: '0.5rem'
+            }}
+          >
+            <Paragraph strong style={{ margin: '0', fontSize: '1.75rem', color: '#DD6B20' }}>
+              1569
+            </Paragraph>
+            <Statistic
+              value={11.28}
+              precision={2}
+              valueStyle={{ color: '#cf1322', fontSize: '0.75rem' }}
+              prefix={<ArrowDownOutlined />}
+              suffix="%"
+            />
+          </div>
+        </S.Card>
+        <S.Card>
+          <S.CardTitle>
+            <div>
+              <Avatar
+                size={'large'}
+                icon={<FaUserCheck style={{ color: '#8D6ADA' }} />}
+                style={{
+                  backgroundColor: '#E9D8FD',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center'
+                }}
+              />
+            </div>
+            <Title level={5} style={{ margin: '0', color: '#A0AEC0' }} italic>
+              Gastos com estoque
+            </Title>
+          </S.CardTitle>
+          <div
+            style={{
+              display: 'flex',
+              alignItems: 'flex-start',
+              flexDirection: 'row',
+              gap: '0.5rem'
+            }}
+          >
+            <Paragraph strong style={{ margin: '0', fontSize: '1.75rem', color: '#8D6ADA' }}>
+              {formatCurrency(1406)}{' '}
+            </Paragraph>
+
+            <Statistic
+              value={11.28}
+              precision={2}
+              valueStyle={{ color: '#3f8600', fontSize: '0.75rem' }}
+              prefix={<ArrowUpOutlined />}
+              suffix="%"
+            />
+          </div>
+        </S.Card>
+      </S.RowMetrics>
+      <div
+        style={{
+          width: '50%',
+          height: '350px',
+					backgroundColor: '#fff',
+					borderRadius: '0.5rem',
+					padding: '1rem',
+					boxShadow: '0 0 0.5rem rgba(0, 0, 0, 0.1)'
+        }}
+      >
+        <ChartBar />
+      </div>
+    </S.Container>
+  )
+}
