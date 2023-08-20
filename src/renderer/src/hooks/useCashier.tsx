@@ -11,12 +11,11 @@ interface CashierProviderProps {
 
 interface CashierContextData {
   cashier: Cashier
-  fetchCashier: (open: boolean) => void
+  fetchCashier: (open: boolean) => Promise<Cashier>
   isLoading: boolean
   transactions: Payments[]
   openCashierModal: boolean
   setOpenCashierModal: React.Dispatch<React.SetStateAction<boolean>>
-  getCashier: Cashier
 }
 
 export const CashierContext = createContext({} as CashierContextData)
@@ -27,19 +26,23 @@ export function CashierProvider({ children }: CashierProviderProps): JSX.Element
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [transactions, setTransactions] = useState<Payments[]>([])
 
-  const getCashier = JSON.parse(localStorage.getItem('cashier') as string) as Cashier
-
-  function fetchCashier(open: boolean): void {
-    api
-      .get(`/cashier/?open=${open}`)
-      .then((response) => {
-        localStorage.setItem('cashier', JSON.stringify(response.data[0]))
-        setCashier(response.data[0])
-        fetchTransactions(response.data[0].id)
-      })
-      .catch((error: AxiosError) => {
-        errorActions(error)
-      })
+  function fetchCashier(open: boolean): Promise<Cashier> {
+    return new Promise((resolve, reject) => {
+      api
+        .get(`/cashier/?open=${open}`)
+        .then((response) => {
+          localStorage.setItem('cashier', JSON.stringify(response.data[0]))
+          setCashier(response.data[0])
+          if (response.data[0]?.id) {
+            fetchTransactions(response.data[0]?.id)
+          }
+          resolve(response.data[0])
+        })
+        .catch((error: AxiosError) => {
+          errorActions(error)
+          reject(error)
+        })
+    })
   }
 
   function fetchTransactions(cashierId: string) {
@@ -65,8 +68,7 @@ export function CashierProvider({ children }: CashierProviderProps): JSX.Element
         transactions,
         isLoading,
         openCashierModal,
-        setOpenCashierModal,
-        getCashier
+        setOpenCashierModal
       }}
     >
       {children}

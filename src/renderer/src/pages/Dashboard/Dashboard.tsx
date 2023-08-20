@@ -100,7 +100,7 @@ export const Dashboard: React.FC = () => {
               />
             </div>
             <Title level={5} style={{ margin: '0', color: '#A0AEC0' }} italic>
-              Receita bruta
+              Rendimento Total
             </Title>
           </S.CardTitle>
           <div
@@ -205,10 +205,10 @@ export const Dashboard: React.FC = () => {
         style={{
           width: '50%',
           height: '350px',
-					backgroundColor: '#fff',
-					borderRadius: '0.5rem',
-					padding: '1rem',
-					boxShadow: '0 0 0.5rem rgba(0, 0, 0, 0.1)'
+          backgroundColor: '#fff',
+          borderRadius: '0.5rem',
+          padding: '1rem',
+          boxShadow: '0 0 0.5rem rgba(0, 0, 0, 0.1)'
         }}
       >
         <ChartBar />

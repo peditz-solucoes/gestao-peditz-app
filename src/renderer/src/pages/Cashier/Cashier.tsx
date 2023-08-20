@@ -66,8 +66,7 @@ const columns: ColumnsType<payment> = [
 ]
 
 export const CashierPage: React.FC = () => {
-  const { fetchCashier, transactions, cashier, setOpenCashierModal, openCashierModal, isLoading } =
-    useCashier()
+  const { fetchCashier, transactions, cashier, setOpenCashierModal, isLoading } = useCashier()
 
   useEffect(() => {
     fetchCashier(true)
@@ -440,13 +439,7 @@ export const CashierPage: React.FC = () => {
           loading={isLoading}
         />
       </S.Container>
-      <ModalCashier
-        cashierId={cashier?.id}
-        open={openCashierModal}
-        onClose={() => setOpenCashierModal(false)}
-        onFetch={() => fetchCashier(true)}
-        type={cashier && cashier.open ? 'close' : 'open'}
-      />
+      <ModalCashier />
     </>
   )
 }
