@@ -80,5 +80,8 @@
       "category": "your.app.category.type",
       "target": "AppImage"
     }
+  },
+  "env": {
+    "GH_TOKEN": "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"
   }
 }
