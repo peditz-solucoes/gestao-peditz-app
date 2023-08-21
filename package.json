@@ -65,23 +65,23 @@
     "vite": "^4.4.2"
   },
   "build": {
-    "appId": "com.github.peditz-solucoes.gestao-peditz-app",
-    "afterSign": "./build/notarize.js",
+    "extraResources": [
+      {
+        "from": "build",
+        "to": "build"
+      }
+    ],
+    "publish": [
+      {
+        "provider": "github",
+        "owner": "peditz-solucoes",
+        "repo": "gestao-peditz-utils",
+        "private": false
+      }
+    ],
+    "appId": "gestao-peditz-utils.app",
     "mac": {
-      "category": "your.app.category.type"
-    },
-    "win": {
-      "target": "nsis"
-    },
-    "nsis": {
-      "oneClick": false
-    },
-    "linux": {
-      "category": "your.app.category.type",
-      "target": "AppImage"
+      "category": "gestao-peditz-utils.app.utils.product"
     }
-  },
-  "env": {
-    "GH_TOKEN": "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"
   }
 }

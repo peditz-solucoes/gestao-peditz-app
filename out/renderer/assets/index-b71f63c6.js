@@ -80264,14 +80264,13 @@ st.div`
   height: calc(100vh - 50px);
 `;
 const ListContainer$1 = st.div`
+  width: 100%;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   place-items: center;
   grid-gap: 15px;
-  grid-auto-flow: row;
-  width: 100%;
-  overflow-y: auto;
   max-height: calc(100vh - 170px);
+  overflow-y: scroll;
 `;
 const formatPhoneNumber = (value) => {
   if (!value)
@@ -87715,13 +87714,14 @@ const items = [
     icon: /* @__PURE__ */ jsxRuntimeExports.jsx(LogoutOutlined$1, {}),
     onClick: () => setLogout(),
     key: "3"
+  },
+  {
+    label: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: window.location.hash.substring(1) }),
+    icon: /* @__PURE__ */ jsxRuntimeExports.jsx(LogoutOutlined$1, {}),
+    key: "4"
   }
 ];
-const Header$1 = ({
-  titleHeader,
-  setCollapsed,
-  collapsedValue
-}) => {
+const Header$1 = ({ titleHeader, setCollapsed, collapsedValue }) => {
   const [color2, setColor] = reactExports.useState(ColorList[0]);
   const [status, setStatus] = reactExports.useState(false);
   const [name] = reactExports.useState("Lucas");
@@ -92326,10 +92326,9 @@ st.div`
 `;
 const ListContainer = st.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   place-items: center;
   grid-gap: 15px;
-  grid-auto-flow: row;
   width: 100%;
   overflow-y: auto;
   max-height: calc(100vh - 170px);

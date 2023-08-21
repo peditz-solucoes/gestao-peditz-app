@@ -1,21 +1,54 @@
-import { app, shell, BrowserWindow, ipcMain } from 'electron'
+import { app, shell, BrowserWindow, ipcMain, dialog } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../src/renderer/src/assets/peditz.jpeg?asset'
 import { autoUpdater } from 'electron-updater'
 import log from 'electron-log'
 
-autoUpdater.logger = log
-autoUpdater.logger.info('App starting...')
+console.log = log.log
+console.error = log.error
 
-function sendStatusToWindow(text) {
-  log.info(text)
-  mainWindow.webContents.send('message', text)
-}
-let mainWindow
+autoUpdater.autoDownload = false
+
+autoUpdater.on('checking-for-update', () => {
+  console.log('Checking for update...')
+})
+
+let dialogOpen = 0
+autoUpdater.on('update-available', (a) => {
+  console.log('Update available...')
+  dialogOpen = dialogOpen + 1
+
+  try {
+    const dialogOpts = {
+      type: 'info',
+      buttons: ['Baixar', 'Depois'],
+      title: 'Atualização encontrada! 😍😍',
+      detail: 'Deseja fazer o download dessa atualização?'
+    }
+
+    if (dialogOpen === 1) {
+      dialog
+        .showMessageBox({
+          type: 'info',
+          buttons: ['Baixar', 'Depois'],
+          title: 'Atualização encontrada! 😍😍',
+          detail: 'Deseja fazer o download dessa atualização?',
+          message: 'Atualização encontrada! 😍😍'
+        })
+        .then((returnValue) => {
+          dialogOpen = 0
+          if (returnValue.response === 0) {
+            autoUpdater.downloadUpdate()
+          }
+        })
+    }
+  } catch (error) {}
+})
+
 function createWindow(): void {
   // Create the browser window.
-  mainWindow = new BrowserWindow({
+  const mainWindow = new BrowserWindow({
     simpleFullscreen: true,
     show: false,
     autoHideMenuBar: true,
@@ -43,33 +76,6 @@ function createWindow(): void {
     mainWindow.loadFile(join(__dirname, '../renderer/index.html'))
   }
 }
-
-autoUpdater.on('checking-for-update', () => {
-  console.log('Checking for update...')
-  sendStatusToWindow('Checking for update...')
-})
-autoUpdater.on('update-available', () => {
-  console.log('Update available.')
-  sendStatusToWindow('Update available.')
-})
-autoUpdater.on('update-not-available', () => {
-  console.log('Update not available.')
-  sendStatusToWindow('Update not available.')
-})
-autoUpdater.on('error', (err) => {
-  console.error('Error in auto-updater. ' + err)
-  sendStatusToWindow('Error in auto-updater. ' + err)
-})
-autoUpdater.on('download-progress', (progressObj) => {
-  let log_message = 'Download speed: ' + progressObj.bytesPerSecond
-  log_message = log_message + ' - Downloaded ' + progressObj.percent + '%'
-  log_message = log_message + ' (' + progressObj.transferred + '/' + progressObj.total + ')'
-  sendStatusToWindow(log_message)
-})
-autoUpdater.on('update-downloaded', () => {
-  console.log('Update downloaded')
-  sendStatusToWindow('Update downloaded')
-})
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.

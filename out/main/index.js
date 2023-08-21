@@ -37,15 +37,19 @@ function createWindow() {
   }
 }
 electronUpdater.autoUpdater.on("checking-for-update", () => {
+  console.log("Checking for update...");
   sendStatusToWindow("Checking for update...");
 });
 electronUpdater.autoUpdater.on("update-available", () => {
+  console.log("Update available.");
   sendStatusToWindow("Update available.");
 });
 electronUpdater.autoUpdater.on("update-not-available", () => {
+  console.log("Update not available.");
   sendStatusToWindow("Update not available.");
 });
 electronUpdater.autoUpdater.on("error", (err) => {
+  console.error("Error in auto-updater. " + err);
   sendStatusToWindow("Error in auto-updater. " + err);
 });
 electronUpdater.autoUpdater.on("download-progress", (progressObj) => {
@@ -55,6 +59,7 @@ electronUpdater.autoUpdater.on("download-progress", (progressObj) => {
   sendStatusToWindow(log_message);
 });
 electronUpdater.autoUpdater.on("update-downloaded", () => {
+  console.log("Update downloaded");
   sendStatusToWindow("Update downloaded");
 });
 electron.app.whenReady().then(() => {
@@ -99,5 +104,6 @@ electron.app.on("window-all-closed", () => {
   }
 });
 electron.app.on("ready", function() {
+  console.log("App ready");
   electronUpdater.autoUpdater.checkForUpdatesAndNotify();
 });

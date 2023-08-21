@@ -1,4 +1,4 @@
-import { styled } from "styled-components"
+import { styled } from 'styled-components'
 
 export const Container = styled.div`
   width: 100%;
@@ -24,10 +24,9 @@ export const ContentCommands = styled.div`
 `
 export const ListContainer = styled.div`
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); 
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   place-items: center;
   grid-gap: 15px;
-  grid-auto-flow: row;
   width: 100%;
   overflow-y: auto;
   max-height: calc(100vh - 170px);

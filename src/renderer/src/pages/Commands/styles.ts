@@ -23,12 +23,11 @@ export const ContentCommands = styled.div`
   height: calc(100vh - 50px);
 `
 export const ListContainer = styled.div`
+  width: 100%;
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   place-items: center;
   grid-gap: 15px;
-  grid-auto-flow: row;
-  width: 100%;
-  overflow-y: auto;
   max-height: calc(100vh - 170px);
+  overflow-y: scroll;
 `
