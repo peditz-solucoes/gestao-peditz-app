@@ -1,4 +1,4 @@
-import { Button, Form, Input, InputNumber, Modal } from 'antd'
+import { Alert, Button, Form, Input, InputNumber, Modal } from 'antd'
 import React, { useState } from 'react'
 import api from '../../services/api'
 import { AxiosError } from 'axios'
@@ -10,6 +10,7 @@ export const ModalCashier: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [form] = Form.useForm()
   const { setOpenCashierModal, cashier, openCashierModal, fetchCashier } = useCashier()
+  const [errorMessage, setErrorMessage] = useState('')
   const onFinish = (values: any) => {
     if (!cashier?.open) {
       handleOpenCashier(values)
@@ -18,7 +19,10 @@ export const ModalCashier: React.FC = () => {
     }
   }
 
-  const onResetForm = () => form.resetFields()
+  const onResetForm = () => {
+    setErrorMessage('')
+    form.resetFields()
+  }
 
   function handleCloseCashier(password: string) {
     setIsLoading(true)
@@ -26,10 +30,13 @@ export const ModalCashier: React.FC = () => {
       .patch(`/cashier/${cashier.id}/`, { open: false, password })
       .then(() => {
         setOpenCashierModal(false)
-        fetchCashier(true)
         onResetForm()
+        fetchCashier(true)
       })
       .catch((error: AxiosError) => {
+        if (error.response?.status === 400) {
+          setErrorMessage((error.response.data as { detail: string }).detail)
+        }
         errorActions(error)
       })
       .finally(() => setIsLoading(false))
@@ -45,10 +52,14 @@ export const ModalCashier: React.FC = () => {
       .post('/cashier/', { ...data, open: true })
       .then((response) => {
         setOpenCashierModal(false)
+        onResetForm()
         fetchCashier(true)
         OpenCashier(response.data)
       })
       .catch((error: AxiosError) => {
+        if (error.response?.status === 400) {
+          setErrorMessage((error.response.data as { detail: string }).detail)
+        }
         errorActions(error)
       })
       .finally(() => setIsLoading(false))
@@ -121,6 +132,15 @@ export const ModalCashier: React.FC = () => {
               >
                 <Input.Password size="large" placeholder="Senha" visibilityToggle />
               </Form.Item>
+              {errorMessage && (
+                <div
+                  style={{
+                    marginBottom: '10px'
+                  }}
+                >
+                  <Alert type="error" showIcon message={errorMessage} />
+                </div>
+              )}
 
               <div
                 style={{
@@ -175,6 +195,16 @@ export const ModalCashier: React.FC = () => {
               >
                 <Input.Password size="large" placeholder="Senha" visibilityToggle />
               </Form.Item>
+              
+              {errorMessage && (
+                <div
+                  style={{
+                    marginBottom: '10px'
+                  }}
+                >
+                  <Alert type="error" showIcon message={errorMessage} />
+                </div>
+              )}
 
               <div
                 style={{
