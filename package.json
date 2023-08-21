@@ -1,10 +1,10 @@
 {
   "name": "gestao-peditz",
   "version": "v1.0.1",
-  "description": "An Electron application with React and TypeScript",
+  "description": "Gestão Peditz",
   "main": "./out/main/index.js",
-  "author": "example.com",
-  "homepage": "https://www.electronjs.org",
+  "author": "Peditz solucoes",
+  "homepage": "www.peditz.com.br",
   "scripts": {
     "format": "prettier --write .",
     "lint": "eslint . --ext .js,.jsx,.cjs,.mjs,.ts,.tsx,.cts,.mts --fix",
