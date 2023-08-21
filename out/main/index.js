@@ -2,9 +2,18 @@
 const electron = require("electron");
 const path = require("path");
 const utils = require("@electron-toolkit/utils");
+const electronUpdater = require("electron-updater");
+const log = require("electron-log");
 const icon = path.join(__dirname, "./chunks/peditz-b44a92a1.jpeg");
+electronUpdater.autoUpdater.logger = log;
+electronUpdater.autoUpdater.logger.info("App starting...");
+function sendStatusToWindow(text) {
+  log.info(text);
+  mainWindow.webContents.send("message", text);
+}
+let mainWindow;
 function createWindow() {
-  const mainWindow = new electron.BrowserWindow({
+  mainWindow = new electron.BrowserWindow({
     simpleFullscreen: true,
     show: false,
     autoHideMenuBar: true,
@@ -14,6 +23,7 @@ function createWindow() {
       sandbox: false
     }
   });
+  mainWindow.webContents.openDevTools();
   mainWindow.on("ready-to-show", () => {
     mainWindow.show();
   });
@@ -27,6 +37,27 @@ function createWindow() {
     mainWindow.loadFile(path.join(__dirname, "../renderer/index.html"));
   }
 }
+electronUpdater.autoUpdater.on("checking-for-update", () => {
+  sendStatusToWindow("Checking for update...");
+});
+electronUpdater.autoUpdater.on("update-available", (info) => {
+  sendStatusToWindow("Update available.");
+});
+electronUpdater.autoUpdater.on("update-not-available", (info) => {
+  sendStatusToWindow("Update not available.");
+});
+electronUpdater.autoUpdater.on("error", (err) => {
+  sendStatusToWindow("Error in auto-updater. " + err);
+});
+electronUpdater.autoUpdater.on("download-progress", (progressObj) => {
+  let log_message = "Download speed: " + progressObj.bytesPerSecond;
+  log_message = log_message + " - Downloaded " + progressObj.percent + "%";
+  log_message = log_message + " (" + progressObj.transferred + "/" + progressObj.total + ")";
+  sendStatusToWindow(log_message);
+});
+electronUpdater.autoUpdater.on("update-downloaded", (info) => {
+  sendStatusToWindow("Update downloaded");
+});
 electron.app.whenReady().then(() => {
   utils.electronApp.setAppUserModelId("com.electron");
   electron.app.on("browser-window-created", (_, window) => {
@@ -67,4 +98,7 @@ electron.app.on("window-all-closed", () => {
   if (process.platform !== "darwin") {
     electron.app.quit();
   }
+});
+electron.app.on("ready", function() {
+  electronUpdater.autoUpdater.checkForUpdatesAndNotify();
 });
