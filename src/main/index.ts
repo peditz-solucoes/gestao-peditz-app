@@ -45,15 +45,19 @@ function createWindow(): void {
 }
 
 autoUpdater.on('checking-for-update', () => {
+  console.log('Checking for update...')
   sendStatusToWindow('Checking for update...')
 })
 autoUpdater.on('update-available', () => {
+  console.log('Update available.')
   sendStatusToWindow('Update available.')
 })
 autoUpdater.on('update-not-available', () => {
+  console.log('Update not available.')
   sendStatusToWindow('Update not available.')
 })
 autoUpdater.on('error', (err) => {
+  console.error('Error in auto-updater. ' + err)
   sendStatusToWindow('Error in auto-updater. ' + err)
 })
 autoUpdater.on('download-progress', (progressObj) => {
@@ -63,6 +67,7 @@ autoUpdater.on('download-progress', (progressObj) => {
   sendStatusToWindow(log_message)
 })
 autoUpdater.on('update-downloaded', () => {
+  console.log('Update downloaded')
   sendStatusToWindow('Update downloaded')
 })
 
@@ -128,6 +133,7 @@ app.on('window-all-closed', () => {
 })
 
 app.on('ready', function () {
+  console.log('App ready')
   autoUpdater.checkForUpdatesAndNotify()
 })
 
