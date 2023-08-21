@@ -8,6 +8,7 @@ import api from '../../../../services/api'
 import { ProductDrawer } from '../productDrawer'
 import { Order } from '@renderer/utils/Printers'
 import { AxiosError, AxiosResponse } from 'axios'
+import { errorActions } from '@renderer/utils/errorActions'
 type CategoryGroup = {
   category: string
   categoryId: string
@@ -35,7 +36,7 @@ export const Products: React.FC = () => {
         setOrders([...response.data])
       })
       .catch((error: AxiosError) => {
-        // errorActions(error)
+        errorActions(error)
       })
   }
   const fetchProducts = async (): Promise<void> => {

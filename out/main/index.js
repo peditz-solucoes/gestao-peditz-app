@@ -23,7 +23,6 @@ function createWindow() {
       sandbox: false
     }
   });
-  mainWindow.webContents.openDevTools();
   mainWindow.on("ready-to-show", () => {
     mainWindow.show();
   });
@@ -40,10 +39,10 @@ function createWindow() {
 electronUpdater.autoUpdater.on("checking-for-update", () => {
   sendStatusToWindow("Checking for update...");
 });
-electronUpdater.autoUpdater.on("update-available", (info) => {
+electronUpdater.autoUpdater.on("update-available", () => {
   sendStatusToWindow("Update available.");
 });
-electronUpdater.autoUpdater.on("update-not-available", (info) => {
+electronUpdater.autoUpdater.on("update-not-available", () => {
   sendStatusToWindow("Update not available.");
 });
 electronUpdater.autoUpdater.on("error", (err) => {
@@ -55,7 +54,7 @@ electronUpdater.autoUpdater.on("download-progress", (progressObj) => {
   log_message = log_message + " (" + progressObj.transferred + "/" + progressObj.total + ")";
   sendStatusToWindow(log_message);
 });
-electronUpdater.autoUpdater.on("update-downloaded", (info) => {
+electronUpdater.autoUpdater.on("update-downloaded", () => {
   sendStatusToWindow("Update downloaded");
 });
 electron.app.whenReady().then(() => {

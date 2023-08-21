@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
-import { Button, Card, Image, Tag, Typography } from 'antd'
-import { DeleteOutlined, EditOutlined, PictureOutlined } from '@ant-design/icons'
+import { Button, Image, Tag, Typography } from 'antd'
+import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
 import { Product } from '../../types'
 import api from '../../services/api'
 import { AxiosError } from 'axios'

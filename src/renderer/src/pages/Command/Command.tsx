@@ -170,7 +170,7 @@ export const Command: React.FC = () => {
         bills: selectedBills.map((bill) => bill.id),
         pyments_methods: payments.map((payment) => ({ id: payment.id, value: payment.value }))
       })
-      .then((response) => {
+      .then(() => {
         window.location.reload()
       })
       .catch((error: AxiosError) => {

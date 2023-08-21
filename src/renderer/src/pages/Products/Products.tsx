@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import * as S from './styles'
-import { Button, Col, Divider, Row, Spin, Table } from 'antd'
+import { Button, Col, Divider, Spin, Table } from 'antd'
 import { AppstoreOutlined, BarsOutlined, FilterOutlined, ShoppingOutlined } from '@ant-design/icons'
 import { CardProducts } from '../../components/CardProducts/CardProducts'
 import { DrawerFilterProducts } from '../../components/DrawerFilterProducts/DrawerFilterProducts'
