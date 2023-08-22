@@ -68037,7 +68037,7 @@ const setLogout = () => {
   localStorage.removeItem(TOKEN_KEY);
 };
 const api = axios$1.create({
-  baseURL: "https://api-hml.peditz.com/api/v1/",
+  baseURL: "https://api.peditz.com/api/v1/",
   headers: {
     "Content-Type": "application/json;charset=UTF-8"
   }
@@ -80591,6 +80591,7 @@ const Commands = () => {
             gap: 10
           },
           children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Button$2, { size: "large", icon: /* @__PURE__ */ jsxRuntimeExports.jsx(ReloadOutlined$1, {}) }),
             /* @__PURE__ */ jsxRuntimeExports.jsx(
               Button$2,
               {
@@ -80617,7 +80618,7 @@ const Commands = () => {
         }
       ) }),
       /* @__PURE__ */ jsxRuntimeExports.jsx(ListContainer$1, { children: commands.filter((command) => {
-        return command.number.toString().startsWith(search) || command?.table_datail?.title.toString().startsWith(search) || command?.client_name.toLowerCase().startsWith(search.toLowerCase());
+        return command.number.toString().startsWith(search) || command?.table_datail?.title?.toString()?.startsWith(search) || command?.client_name?.toLowerCase()?.startsWith(search.toLowerCase());
       }).map((command) => {
         return /* @__PURE__ */ jsxRuntimeExports.jsx(CardBill, { data: command }, command.id);
       }) })
@@ -85848,14 +85849,69 @@ function CashierProvider({ children }) {
   const [openCashierModal, setOpenCashierModal] = reactExports.useState(false);
   const [cashier, setCashier] = reactExports.useState({});
   const [isLoading, setIsLoading] = reactExports.useState(false);
+  const [wsConnected, setWsConnected] = reactExports.useState(false);
   const [transactions, setTransactions] = reactExports.useState([]);
-  function fetchCashier(open2) {
+  const [socket, setSocket] = reactExports.useState();
+  const [loadingConnectSocket, setLoadingConnectSocket] = reactExports.useState(false);
+  function handleConnectionWs(value = false) {
+    setWsConnected(value);
+    if (value) {
+      connectSocket();
+    }
+    if (!value) {
+      localStorage.setItem("connectedWs", "DISCONNECTED");
+      window.location.reload();
+    }
+  }
+  async function connectSocket() {
+    setLoadingConnectSocket(true);
+    api.get("/restaurant/").then((response) => {
+      if (!socket) {
+        const newSocket = new WebSocket(`wss://api.peditz.com/ws/pedidos/${response.data[0].id}/`);
+        newSocket.onopen = () => {
+          console.log("Conectado ao WebSocket");
+          localStorage.setItem("connectedWs", "CONNECTED");
+          setLoadingConnectSocket(false);
+          setSocket(socket);
+          setWsConnected(true);
+        };
+        newSocket.onmessage = (event) => {
+          const eventParse = JSON.parse(event.data);
+          console.log("event", eventParse);
+          const order = JSON.parse(eventParse?.order);
+          console.log(order);
+          if (order) {
+            Order(
+              order.restaurant.title,
+              order.bill?.table?.title || "",
+              String(order.bill?.number) || "",
+              order.order_items,
+              order?.collaborator_name || "",
+              order?.created || ""
+            );
+          }
+          console.log("Mensagem recebida:", event.data);
+        };
+        newSocket.onerror = (error) => {
+          console.log("Erro no WebSocket:", error);
+          localStorage.setItem("connectedWs", "DISCONNECTED");
+          setWsConnected(false);
+        };
+        newSocket.onclose = () => {
+          console.log("Conexão WebSocket fechada");
+          localStorage.setItem("connectedWs", "DISCONNECTED");
+          setWsConnected(false);
+        };
+      }
+    }).catch((err) => console.log(err.response?.data));
+  }
+  function getCashier(open2) {
     return new Promise((resolve2, reject) => {
       api.get(`/cashier/?open=${open2}`).then((response) => {
         localStorage.setItem("cashier", JSON.stringify(response.data[0]));
         setCashier(response.data[0]);
         if (response.data[0]?.id) {
-          fetchTransactions(response.data[0]?.id);
+          getTransactions(response.data[0]?.id);
         }
         resolve2(response.data[0]);
       }).catch((error) => {
@@ -85864,7 +85920,7 @@ function CashierProvider({ children }) {
       });
     });
   }
-  function fetchTransactions(cashierId) {
+  function getTransactions(cashierId) {
     setIsLoading(true);
     api.get(`/list-payment/?cashier=${cashierId}`).then((response) => {
       setTransactions(response.data);
@@ -85879,11 +85935,15 @@ function CashierProvider({ children }) {
     {
       value: {
         cashier,
-        fetchCashier,
+        getCashier,
         transactions,
         isLoading,
         openCashierModal,
-        setOpenCashierModal
+        setOpenCashierModal,
+        connectSocket,
+        handleConnectionWs,
+        wsConnected,
+        loadingConnectSocket
       },
       children
     }
@@ -87724,13 +87784,24 @@ const items = [
 const Header$1 = ({ titleHeader, setCollapsed, collapsedValue }) => {
   const [color2, setColor] = reactExports.useState(ColorList[0]);
   const [status, setStatus] = reactExports.useState(false);
-  const [name] = reactExports.useState("Lucas");
+  const hasUpdated = reactExports.useRef(false);
+  const { cashier, wsConnected, handleConnectionWs, loadingConnectSocket } = useCashier();
   reactExports.useEffect(() => {
+    if (!hasUpdated.current) {
+      aux2();
+      hasUpdated.current = true;
+    }
     setInterval(() => {
       setStatus(window.navigator.onLine);
     }, 5e3);
     setColor(getRandomColor());
   }, []);
+  function aux2() {
+    const connectedWs = localStorage.getItem("connectedWs");
+    if (connectedWs === "CONNECTED") {
+      handleConnectionWs(true);
+    }
+  }
   function getRandomColor() {
     const ColorList2 = [
       "#FF0000",
@@ -87816,7 +87887,37 @@ const Header$1 = ({ titleHeader, setCollapsed, collapsedValue }) => {
               gap: "10px"
             },
             children: [
-              status ? /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { color: "green" }, children: "Online" }) : /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { color: "red" }, children: "Offline" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Switch$1,
+                {
+                  loading: loadingConnectSocket,
+                  checked: wsConnected,
+                  checkedChildren: "Imprimir pedidos online",
+                  unCheckedChildren: "Não imprimir pedidos online",
+                  onChange: (e2) => handleConnectionWs(e2)
+                }
+              ),
+              status ? /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Tag$1,
+                {
+                  color: "green",
+                  style: {
+                    fontWeight: "400",
+                    fontSize: "16px"
+                  },
+                  children: "Online"
+                }
+              ) : /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Tag$1,
+                {
+                  color: "red",
+                  style: {
+                    fontWeight: "400",
+                    fontSize: "16px"
+                  },
+                  children: "Offline"
+                }
+              ),
               /* @__PURE__ */ jsxRuntimeExports.jsx(Dropdown$1, { menu: { items }, trigger: ["click"], placement: "bottomRight", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
                 Avatar$1,
                 {
@@ -87827,7 +87928,7 @@ const Header$1 = ({ titleHeader, setCollapsed, collapsedValue }) => {
                     cursor: "pointer"
                   },
                   size: "large",
-                  children: name[0].toUpperCase() + name[2].toUpperCase()
+                  children: cashier?.opened_by?.first_name
                 }
               ) })
             ]
@@ -87955,6 +88056,7 @@ function BsCashCoin(props) {
 const JoinCommandModal = ({ onCancel, visible }) => {
   const { bills, fetchBills, addBill } = useBill();
   const [selectedBill, setSelectedBill] = React.useState("");
+  const { selectedBills } = useBill();
   reactExports.useEffect(() => {
     fetchBills(true);
   }, []);
@@ -87983,7 +88085,9 @@ const JoinCommandModal = ({ onCancel, visible }) => {
             optionFilterProp: "children",
             filterOption: (input, option) => (option?.label ?? "").includes(input),
             filterSort: (optionA, optionB) => (optionA?.label ?? "").toLowerCase().localeCompare((optionB?.label ?? "").toLowerCase()),
-            options: bills.map((bill) => {
+            options: bills.filter((bill) => {
+              return bill.open && !selectedBills.map((selectedBill2) => selectedBill2.id).includes(bill.id);
+            }).map((bill) => {
               return {
                 value: bill.id,
                 label: `Comanda:${bill.number} | Cliente: ${bill.client_name && bill.client_name?.split(" ").length > 2 ? `${bill.client_name?.split(" ")[0]} ${bill.client_name.split(" ")[1]}...` : `${bill.client_name || "Cliente não informado!"}`}`
@@ -88564,6 +88668,10 @@ const Command = () => {
   const dataTable = orders.flatMap((order) => {
     return order.orders;
   });
+  const total = orders.map((o2) => Number(o2.total)).reduce((a2, b2) => a2 + b2, 0) + onTip;
+  const paid = payments.map((p2) => Number(p2.value)).reduce((a2, b2) => a2 + b2, 0);
+  const missing = total - paid < 0 ? 0 : total - paid;
+  const change = paid - total < 0 ? 0 : paid - total;
   function handleTip() {
     if (!tipApply) {
       setTipApply(true);
@@ -88577,10 +88685,6 @@ const Command = () => {
       setOnTip(0);
     }
   }
-  const total = orders.map((o2) => Number(o2.total)).reduce((a2, b2) => a2 + b2, 0) + onTip;
-  const paid = payments.map((p2) => Number(p2.value)).reduce((a2, b2) => a2 + b2, 0);
-  const missing = total - paid < 0 ? 0 : total - paid;
-  const change = paid - total < 0 ? 0 : paid - total;
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$8, { children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs(RowCards, { children: [
@@ -88748,7 +88852,7 @@ const Command = () => {
                           flexDirection: "row"
                         },
                         children: [
-                          /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          !tipApply && /* @__PURE__ */ jsxRuntimeExports.jsx(
                             Button$2,
                             {
                               type: "primary",
@@ -89759,7 +89863,7 @@ const Icon = ({ icon, style: style2 }) => {
 const ModalCashier = () => {
   const [isLoading, setIsLoading] = reactExports.useState(false);
   const [form] = Form$1.useForm();
-  const { setOpenCashierModal, cashier, openCashierModal, fetchCashier } = useCashier();
+  const { setOpenCashierModal, cashier, openCashierModal, getCashier } = useCashier();
   const [errorMessage, setErrorMessage] = reactExports.useState("");
   const onFinish = (values) => {
     if (!cashier?.open) {
@@ -89777,7 +89881,7 @@ const ModalCashier = () => {
     api.patch(`/cashier/${cashier.id}/`, { open: false, password }).then(() => {
       setOpenCashierModal(false);
       onResetForm();
-      fetchCashier(true);
+      getCashier(true);
     }).catch((error) => {
       if (error.response?.status === 400) {
         setErrorMessage(error.response.data.detail);
@@ -89790,7 +89894,7 @@ const ModalCashier = () => {
     api.post("/cashier/", { ...data2, open: true }).then((response) => {
       setOpenCashierModal(false);
       onResetForm();
-      fetchCashier(true);
+      getCashier(true);
       OpenCashier(response.data);
     }).catch((error) => {
       if (error.response?.status === 400) {
@@ -90009,9 +90113,9 @@ const columns = [
   }
 ];
 const CashierPage = () => {
-  const { fetchCashier, transactions, cashier, setOpenCashierModal, isLoading } = useCashier();
+  const { getCashier, transactions, cashier, setOpenCashierModal, isLoading } = useCashier();
   reactExports.useEffect(() => {
-    fetchCashier(true);
+    getCashier(true);
   }, []);
   const mapTypePayment = (type4) => {
     switch (type4) {
@@ -92337,41 +92441,44 @@ const { Search } = Input$1;
 const BillClosedPage = () => {
   const [commands, setCommands] = React.useState([]);
   const [search, setSearch] = React.useState("");
-  const { cashier, fetchCashier } = useCashier();
+  const { cashier, getCashier } = useCashier();
   reactExports.useEffect(() => {
-    fetchCashier(true).then((response) => {
+    getCashier(true).then((response) => {
       if (response) {
-        fetchCommands();
+        fetchCommands(response.id);
       }
     });
   }, []);
-  function fetchCommands() {
-    api.get(`/bill/?open=false&cashier=${cashier?.id}`).then((response) => {
+  function fetchCommands(id2) {
+    api.get(`/bill/?open=false&cashier=${cashier?.id || id2}`).then((response) => {
       setCommands(response.data);
     }).catch((error) => {
       errorActions(error);
     });
   }
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(Container, { children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx(HeaderFilter, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+    /* @__PURE__ */ jsxRuntimeExports.jsx(HeaderFilter, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
       "div",
       {
         style: {
           display: "flex",
           gap: 10
         },
-        children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Search,
-          {
-            placeholder: "Digite o numero da comanda, nome do cliente ou mesa.",
-            allowClear: true,
-            size: "large",
-            onChange: (e2) => setSearch(e2.target.value),
-            style: {
-              width: 400
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Button$2, { size: "large", icon: /* @__PURE__ */ jsxRuntimeExports.jsx(ReloadOutlined$1, {}) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Search,
+            {
+              placeholder: "Digite o numero da comanda, nome do cliente ou mesa.",
+              allowClear: true,
+              size: "large",
+              onChange: (e2) => setSearch(e2.target.value),
+              style: {
+                width: 400
+              }
             }
-          }
-        )
+          )
+        ]
       }
     ) }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(ListContainer, { children: commands.filter((command) => {

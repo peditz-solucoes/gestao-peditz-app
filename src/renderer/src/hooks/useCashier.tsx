@@ -94,7 +94,7 @@ export function CashierProvider({ children }: CashierProviderProps): JSX.Element
             setWsConnected(false)
           }
 
-          return () => newSocket.close()
+          // return () => newSocket.close()
         }
     }).catch((err:AxiosError)=> console.log(err.response?.data))
   }

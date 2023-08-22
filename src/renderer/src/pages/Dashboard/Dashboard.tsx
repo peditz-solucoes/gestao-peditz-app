@@ -200,7 +200,7 @@ export const Dashboard: React.FC = () => {
           </div>
         </S.Card>
       </S.RowMetrics>
-      <div
+      {/* <div
         style={{
           width: '50%',
           height: '350px',
@@ -211,7 +211,7 @@ export const Dashboard: React.FC = () => {
         }}
       >
         <ChartBar />
-      </div>
+      </div> */}
     </S.Container>
   )
 }
