@@ -37,6 +37,8 @@
     "react-electron-web-view": "^2.0.1",
     "react-icons": "^4.10.1",
     "react-router-dom": "^6.15.0",
+    "socket.io": "^4.7.2",
+    "socket.io-client": "^4.7.2",
     "styled-components": "^6.0.7"
   },
   "devDependencies": {

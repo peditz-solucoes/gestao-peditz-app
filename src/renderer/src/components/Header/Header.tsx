@@ -1,4 +1,4 @@
-import { Avatar, Dropdown, MenuProps } from 'antd'
+import { Avatar, Dropdown, MenuProps, Switch, Tag } from 'antd'
 import { Header as HeaderAnt } from 'antd/es/layout/layout'
 import React, { useEffect, useState } from 'react'
 import { ColorList } from '../../utils/ColorList'
@@ -7,6 +7,8 @@ import { MdRestaurantMenu } from 'react-icons/md'
 import { CgMenuOreos } from 'react-icons/cg'
 import { LogoutOutlined, TeamOutlined, UserOutlined } from '@ant-design/icons'
 import { setLogout } from '../../services/auth'
+import { StatusWebSocket } from '@renderer/types'
+import { useBill, useCashier } from '@renderer/hooks'
 
 const items: MenuProps['items'] = [
   {
@@ -45,9 +47,13 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ titleHeader, setCollapsed, collapsedValue }) => {
   const [color, setColor] = useState(ColorList[0])
   const [status, setStatus] = useState<boolean>(false)
-  const [name] = useState('Lucas')
+ 
+  const { connectSocket, cashier, getCashier, wsConnected } = useCashier()
 
   useEffect(() => {
+    getCashier(true)
+    handleConnectionWs()
+
     // a cada 5 segundos verifica se o usuário está online
     setInterval(() => {
       setStatus(window.navigator.onLine)
@@ -55,6 +61,14 @@ export const Header: React.FC<HeaderProps> = ({ titleHeader, setCollapsed, colla
 
     setColor(getRandomColor())
   }, [])
+
+  function handleConnectionWs(value?: boolean) {
+    const wsStatus = localStorage.getItem('connectedWs')
+    if (wsStatus === 'CONNECTED') {
+      connectSocket()
+    }
+    
+  }
 
   function getRandomColor() {
     const ColorList = [
@@ -138,10 +152,33 @@ export const Header: React.FC<HeaderProps> = ({ titleHeader, setCollapsed, colla
           gap: '10px'
         }}
       >
+        <Switch
+          checked={wsConnected}
+          checkedChildren="Imprimir pedidos online"
+          unCheckedChildren="Não imprimir pedidos online"
+          onChange={(e) => console.log(e)}
+        />
+
         {status ? (
-          <span style={{ color: 'green' }}>Online</span>
+          <Tag
+            color="green"
+            style={{
+              fontWeight: '400',
+              fontSize: '16px'
+            }}
+          >
+            Online
+          </Tag>
         ) : (
-          <span style={{ color: 'red' }}>Offline</span>
+          <Tag
+            color="red"
+            style={{
+              fontWeight: '400',
+              fontSize: '16px'
+            }}
+          >
+            Offline
+          </Tag>
         )}
         <Dropdown menu={{ items }} trigger={['click']} placement="bottomRight">
           <Avatar
@@ -153,7 +190,7 @@ export const Header: React.FC<HeaderProps> = ({ titleHeader, setCollapsed, colla
             }}
             size="large"
           >
-            {name[0].toUpperCase() + name[2].toUpperCase()}
+            {cashier?.opened_by?.first_name}
           </Avatar>
         </Dropdown>
       </div>

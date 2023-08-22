@@ -12,7 +12,7 @@ electronUpdater.autoUpdater.on("checking-for-update", () => {
   console.log("Checking for update...");
 });
 let dialogOpen = 0;
-electronUpdater.autoUpdater.on("update-available", (a) => {
+electronUpdater.autoUpdater.on("update-available", () => {
   console.log("Update available...");
   dialogOpen = dialogOpen + 1;
   try {
@@ -60,12 +60,6 @@ function createWindow() {
 electron.app.whenReady().then(() => {
   utils.electronApp.setAppUserModelId("com.electron");
   electronUpdater.autoUpdater.checkForUpdatesAndNotify();
-  electron.globalShortcut.register("F5", () => {
-    const mainWindow = electron.BrowserWindow.getFocusedWindow();
-    if (mainWindow) {
-      mainWindow.reload();
-    }
-  });
   electron.app.on("browser-window-created", (_, window) => {
     utils.optimizer.watchWindowShortcuts(window);
   });

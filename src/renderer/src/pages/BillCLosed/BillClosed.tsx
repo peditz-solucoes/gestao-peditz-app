@@ -14,10 +14,10 @@ const { Search } = Input
 export const BillClosedPage: React.FC = () => {
   const [commands, setCommands] = React.useState<Bill[]>([] as Bill[])
   const [search, setSearch] = React.useState('')
-  const { cashier, fetchCashier } = useCashier()
+  const { cashier, getCashier } = useCashier()
 
   useEffect(() => {
-    fetchCashier(true).then((response) => {
+    getCashier(true).then((response) => {
       if (response) {
         fetchCommands(response.id)
       }

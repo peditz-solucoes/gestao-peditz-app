@@ -66,10 +66,10 @@ const columns: ColumnsType<payment> = [
 ]
 
 export const CashierPage: React.FC = () => {
-  const { fetchCashier, transactions, cashier, setOpenCashierModal, isLoading } = useCashier()
+  const { getCashier, transactions, cashier, setOpenCashierModal, isLoading } = useCashier()
 
   useEffect(() => {
-    fetchCashier(true)
+    getCashier(true)
   }, [])
 
   const mapTypePayment = (type: string) => {

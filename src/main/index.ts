@@ -1,4 +1,4 @@
-import { app, shell, BrowserWindow, ipcMain, dialog, globalShortcut } from 'electron'
+import { app, shell, BrowserWindow, ipcMain, dialog } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../src/renderer/src/assets/peditz.jpeg?asset'
@@ -15,7 +15,7 @@ autoUpdater.on('checking-for-update', () => {
 })
 
 let dialogOpen = 0
-autoUpdater.on('update-available', (a) => {
+autoUpdater.on('update-available', () => {
   console.log('Update available...')
   dialogOpen = dialogOpen + 1
 

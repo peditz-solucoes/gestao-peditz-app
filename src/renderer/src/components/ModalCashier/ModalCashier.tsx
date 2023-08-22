@@ -9,7 +9,7 @@ import { useCashier } from '@renderer/hooks'
 export const ModalCashier: React.FC = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [form] = Form.useForm()
-  const { setOpenCashierModal, cashier, openCashierModal, fetchCashier } = useCashier()
+  const { setOpenCashierModal, cashier, openCashierModal, getCashier } = useCashier()
   const [errorMessage, setErrorMessage] = useState('')
   const onFinish = (values: any) => {
     if (!cashier?.open) {
@@ -31,7 +31,7 @@ export const ModalCashier: React.FC = () => {
       .then(() => {
         setOpenCashierModal(false)
         onResetForm()
-        fetchCashier(true)
+        getCashier(true)
       })
       .catch((error: AxiosError) => {
         if (error.response?.status === 400) {
@@ -53,7 +53,7 @@ export const ModalCashier: React.FC = () => {
       .then((response) => {
         setOpenCashierModal(false)
         onResetForm()
-        fetchCashier(true)
+        getCashier(true)
         OpenCashier(response.data)
       })
       .catch((error: AxiosError) => {

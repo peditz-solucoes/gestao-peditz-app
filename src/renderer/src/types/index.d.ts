@@ -278,3 +278,8 @@ export type UserPermissions = {
     is_staff: boolean
   }
 }
+
+export enum StatusWebSocket {
+  CONNECTED = 'CONNECTED',
+  DISCONNECTED = 'DISCONNECTED'
+}
