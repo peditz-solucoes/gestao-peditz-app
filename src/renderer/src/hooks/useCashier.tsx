@@ -32,32 +32,34 @@ export function CashierProvider({ children }: CashierProviderProps): JSX.Element
 
   async function connectSocket() {
     const connectedWs = localStorage.getItem('connectedWs')
-    const socket = new WebSocket(`wss://api.peditz.com/ws/pedidos/${cashier?.restaurant?.id}/`)
-
-    socket.onopen = () => {
-      console.log('Conectado ao WebSocket')
-    }
-
-    socket.onmessage = (event) => {
-      if (connectedWs === 'CONNECTED') {
-        const order = JSON.parse(event.data)
-        Order(order)
+    getCashier(true).then((response) => {
+      const socket = new WebSocket(`wss://api.peditz.com/ws/pedidos/${cashier?.restaurant?.id}/`)
+      socket.onopen = () => {
+        console.log('Conectado ao WebSocket')
       }
 
-      console.log('Mensagem recebida:', event.data)
-    }
+      socket.onmessage = (event) => {
+        const order = JSON.parse(event.data)
+        console.log('order', order.message)
+        if (connectedWs === 'CONNECTED') {
+          Order(...order.message)
+        }
 
-    socket.onerror = (error) => {
-      console.log('Erro no WebSocket:', error)
-      setWsConnected(false)
-    }
+        console.log('Mensagem recebida:', event.data)
+      }
 
-    socket.onclose = () => {
-      console.log('Conexão WebSocket fechada')
-      setWsConnected(false)
-    }
+      socket.onerror = (error) => {
+        console.log('Erro no WebSocket:', error)
+        setWsConnected(false)
+      }
 
-    return () => socket.close()
+      socket.onclose = () => {
+        console.log('Conexão WebSocket fechada')
+        setWsConnected(false)
+      }
+
+      return () => socket.close()
+    })
   }
 
   function getCashier(open: boolean): Promise<Cashier> {
