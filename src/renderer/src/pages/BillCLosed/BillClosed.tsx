@@ -3,10 +3,11 @@ import { Bill } from '@renderer/types'
 import { errorActions } from '@renderer/utils/errorActions'
 import { AxiosError } from 'axios'
 import React, { useEffect } from 'react'
-import { Input } from 'antd'
+import { Button, Input } from 'antd'
 import { CardBill } from '@renderer/components/CardBill'
 import * as S from './styles'
 import { useCashier } from '@renderer/hooks'
+import { ReloadOutlined } from '@ant-design/icons'
 
 const { Search } = Input
 
@@ -18,14 +19,14 @@ export const BillClosedPage: React.FC = () => {
   useEffect(() => {
     fetchCashier(true).then((response) => {
       if (response) {
-        fetchCommands()
+        fetchCommands(response.id)
       }
     })
   }, [])
 
-  function fetchCommands(): void {
+  function fetchCommands(id?: string): void {
     api
-      .get(`/bill/?open=false&cashier=${cashier?.id}`)
+      .get(`/bill/?open=false&cashier=${cashier?.id || id}`)
       .then((response) => {
         setCommands(response.data)
       })
@@ -43,6 +44,7 @@ export const BillClosedPage: React.FC = () => {
             gap: 10
           }}
         >
+          <Button size="large" icon={<ReloadOutlined />} />
           <Search
             placeholder="Digite o numero da comanda, nome do cliente ou mesa."
             allowClear

@@ -5,15 +5,36 @@ const utils = require("@electron-toolkit/utils");
 const electronUpdater = require("electron-updater");
 const log = require("electron-log");
 const icon = path.join(__dirname, "./chunks/peditz-b44a92a1.jpeg");
-electronUpdater.autoUpdater.logger = log;
-electronUpdater.autoUpdater.logger.info("App starting...");
-function sendStatusToWindow(text) {
-  log.info(text);
-  mainWindow.webContents.send("message", text);
-}
-let mainWindow;
+console.log = log.log;
+console.error = log.error;
+electronUpdater.autoUpdater.autoDownload = false;
+electronUpdater.autoUpdater.on("checking-for-update", () => {
+  console.log("Checking for update...");
+});
+let dialogOpen = 0;
+electronUpdater.autoUpdater.on("update-available", (a) => {
+  console.log("Update available...");
+  dialogOpen = dialogOpen + 1;
+  try {
+    if (dialogOpen === 1) {
+      electron.dialog.showMessageBox({
+        type: "info",
+        buttons: ["Baixar", "Depois"],
+        title: "Atualização encontrada! 😍😍",
+        detail: "Deseja fazer o download dessa atualização?",
+        message: "Atualização encontrada! 😍😍"
+      }).then((returnValue) => {
+        dialogOpen = 0;
+        if (returnValue.response === 0) {
+          electronUpdater.autoUpdater.downloadUpdate();
+        }
+      });
+    }
+  } catch (error) {
+  }
+});
 function createWindow() {
-  mainWindow = new electron.BrowserWindow({
+  const mainWindow = new electron.BrowserWindow({
     simpleFullscreen: true,
     show: false,
     autoHideMenuBar: true,
@@ -36,34 +57,15 @@ function createWindow() {
     mainWindow.loadFile(path.join(__dirname, "../renderer/index.html"));
   }
 }
-electronUpdater.autoUpdater.on("checking-for-update", () => {
-  console.log("Checking for update...");
-  sendStatusToWindow("Checking for update...");
-});
-electronUpdater.autoUpdater.on("update-available", () => {
-  console.log("Update available.");
-  sendStatusToWindow("Update available.");
-});
-electronUpdater.autoUpdater.on("update-not-available", () => {
-  console.log("Update not available.");
-  sendStatusToWindow("Update not available.");
-});
-electronUpdater.autoUpdater.on("error", (err) => {
-  console.error("Error in auto-updater. " + err);
-  sendStatusToWindow("Error in auto-updater. " + err);
-});
-electronUpdater.autoUpdater.on("download-progress", (progressObj) => {
-  let log_message = "Download speed: " + progressObj.bytesPerSecond;
-  log_message = log_message + " - Downloaded " + progressObj.percent + "%";
-  log_message = log_message + " (" + progressObj.transferred + "/" + progressObj.total + ")";
-  sendStatusToWindow(log_message);
-});
-electronUpdater.autoUpdater.on("update-downloaded", () => {
-  console.log("Update downloaded");
-  sendStatusToWindow("Update downloaded");
-});
 electron.app.whenReady().then(() => {
   utils.electronApp.setAppUserModelId("com.electron");
+  electronUpdater.autoUpdater.checkForUpdatesAndNotify();
+  electron.globalShortcut.register("F5", () => {
+    const mainWindow = electron.BrowserWindow.getFocusedWindow();
+    if (mainWindow) {
+      mainWindow.reload();
+    }
+  });
   electron.app.on("browser-window-created", (_, window) => {
     utils.optimizer.watchWindowShortcuts(window);
   });

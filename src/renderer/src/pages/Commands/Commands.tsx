@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import * as S from './styles'
 import { Input, Button } from 'antd'
 import { PlusOutlined } from '@ant-design/icons'
@@ -8,6 +8,7 @@ import api from '../../services/api'
 import { AxiosError } from 'axios'
 import { errorActions } from '../../utils/errorActions'
 import { CardBill } from '../../components/CardBill'
+import { ReloadOutlined } from '@ant-design/icons'
 
 const { Search } = Input
 
@@ -41,6 +42,7 @@ export const Commands: React.FC = () => {
               gap: 10
             }}
           >
+            <Button size="large" icon={<ReloadOutlined />} />
             <Button
               type="primary"
               size="large"
@@ -66,8 +68,8 @@ export const Commands: React.FC = () => {
             .filter((command) => {
               return (
                 command.number.toString().startsWith(search) ||
-                command?.table_datail?.title.toString().startsWith(search) ||
-                command?.client_name.toLowerCase().startsWith(search.toLowerCase())
+                command?.table_datail?.title?.toString()?.startsWith(search) ||
+                command?.client_name?.toLowerCase()?.startsWith(search.toLowerCase())
               )
             })
             .map((command) => {

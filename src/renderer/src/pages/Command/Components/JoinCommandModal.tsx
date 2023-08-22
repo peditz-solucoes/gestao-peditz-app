@@ -11,6 +11,7 @@ interface JoinCommandModalProps {
 export const JoinCommandModal: React.FC<JoinCommandModalProps> = ({ onCancel, visible }) => {
   const { bills, fetchBills, addBill } = useBill()
   const [selectedBill, setSelectedBill] = React.useState<string>('')
+  const { selectedBills } = useBill()
 
   useEffect(() => {
     fetchBills(true)
@@ -40,16 +41,22 @@ export const JoinCommandModal: React.FC<JoinCommandModalProps> = ({ onCancel, vi
         filterSort={(optionA, optionB): number =>
           (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
         }
-        options={bills.map((bill) => {
-          return {
-            value: bill.id,
-            label: `Comanda:${bill.number} | Cliente: ${
-              bill.client_name && bill.client_name?.split(' ').length > 2
-                ? `${bill.client_name?.split(' ')[0]} ${bill.client_name.split(' ')[1]}...`
-                : `${bill.client_name || 'Cliente não informado!'}`
-            }`
-          }
-        })}
+        options={bills
+          .filter((bill) => {
+            return (
+              bill.open && !selectedBills.map((selectedBill) => selectedBill.id).includes(bill.id)
+            )
+          })
+          .map((bill) => {
+            return {
+              value: bill.id,
+              label: `Comanda:${bill.number} | Cliente: ${
+                bill.client_name && bill.client_name?.split(' ').length > 2
+                  ? `${bill.client_name?.split(' ')[0]} ${bill.client_name.split(' ')[1]}...`
+                  : `${bill.client_name || 'Cliente não informado!'}`
+              }`
+            }
+          })}
       />
     </Modal>
   )

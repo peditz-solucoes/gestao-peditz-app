@@ -1,4 +1,4 @@
-import { app, shell, BrowserWindow, ipcMain, dialog } from 'electron'
+import { app, shell, BrowserWindow, ipcMain, dialog, globalShortcut } from 'electron'
 import { join } from 'path'
 import { electronApp, optimizer, is } from '@electron-toolkit/utils'
 import icon from '../../src/renderer/src/assets/peditz.jpeg?asset'
@@ -20,13 +20,6 @@ autoUpdater.on('update-available', (a) => {
   dialogOpen = dialogOpen + 1
 
   try {
-    const dialogOpts = {
-      type: 'info',
-      buttons: ['Baixar', 'Depois'],
-      title: 'Atualização encontrada! 😍😍',
-      detail: 'Deseja fazer o download dessa atualização?'
-    }
-
     if (dialogOpen === 1) {
       dialog
         .showMessageBox({
@@ -83,6 +76,7 @@ function createWindow(): void {
 app.whenReady().then(() => {
   // Set app user model id for windows
   electronApp.setAppUserModelId('com.electron')
+  autoUpdater.checkForUpdatesAndNotify()
 
   // Default open or close DevTools by F12 in development
   // and ignore CommandOrControl + R in production.
