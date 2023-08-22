@@ -51,6 +51,32 @@ function createWindow() {
     electron.shell.openExternal(details.url);
     return { action: "deny" };
   });
+  electronUpdater.autoUpdater.on("download-progress", (a) => {
+    try {
+      mainWindow.setTitle(`Baixando nova versao ${Math.round(a.percent)}%`);
+    } catch (error) {
+    }
+    console.log(`Baixando nova versao ${Math.round(a.percent)}%`);
+  });
+  electronUpdater.autoUpdater.on("update-downloaded", () => {
+    mainWindow.setTitle("Peditz Gestão " + electron.app.getVersion());
+    console.log("Downlaod finalizado...");
+    try {
+      electron.dialog.showMessageBox({
+        type: "info",
+        buttons: ["Reiniciar", "Depois"],
+        title: "Atualizaçao",
+        detail: "Uma nova versão foi baixada! Deseja reiniciar o Peditz?",
+        message: "Reinicie! 😍😍"
+      }).then((returnValue) => {
+        dialogOpen = 0;
+        if (returnValue.response === 0)
+          electronUpdater.autoUpdater.quitAndInstall();
+      });
+    } catch (error) {
+      console.log("Errou ao atualizar", error);
+    }
+  });
   if (utils.is.dev && process.env["ELECTRON_RENDERER_URL"]) {
     mainWindow.loadURL(process.env["ELECTRON_RENDERER_URL"]);
   } else {

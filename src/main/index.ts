@@ -39,6 +39,8 @@ autoUpdater.on('update-available', () => {
   } catch (error) {}
 })
 
+
+
 function createWindow(): void {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
@@ -59,6 +61,37 @@ function createWindow(): void {
   mainWindow.webContents.setWindowOpenHandler((details) => {
     shell.openExternal(details.url)
     return { action: 'deny' }
+  })
+
+  autoUpdater.on('download-progress', (a) => {
+    try {
+      mainWindow.setTitle(`Baixando nova versao ${Math.round(a.percent)}%`)
+    } catch (error) {
+
+    }
+    console.log(`Baixando nova versao ${Math.round(a.percent)}%`)
+  })
+
+  autoUpdater.on('update-downloaded', () => {
+    mainWindow.setTitle('Peditz Gestão ' + app.getVersion())
+    console.log('Downlaod finalizado...')
+
+    try {
+      dialog.showMessageBox({
+        type:'info',
+        buttons: ['Reiniciar', 'Depois'],
+        title: 'Atualizaçao',
+        detail: 'Uma nova versão foi baixada! Deseja reiniciar o Peditz?',
+        message: 'Reinicie! 😍😍'
+      }).then((returnValue) => {
+        dialogOpen = 0
+        if (returnValue.response === 0) autoUpdater.quitAndInstall()
+      })
+
+
+    } catch (error) {
+      console.log('Errou ao atualizar', error)
+    }
   })
 
   // HMR for renderer base on electron-vite cli.

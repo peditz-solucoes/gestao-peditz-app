@@ -4,6 +4,7 @@ import { Avatar, Statistic, Typography } from 'antd'
 import { FaConciergeBell, FaMoneyBillWave, FaUserCheck, FaUserFriends } from 'react-icons/fa'
 import { formatCurrency } from '@renderer/utils'
 import { ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons'
+import { ChartBar } from './components/ChartBar'
 // import { ChartBar } from './components/ChartBar'
 
 const { Title, Paragraph } = Typography
@@ -200,7 +201,7 @@ export const Dashboard: React.FC = () => {
           </div>
         </S.Card>
       </S.RowMetrics>
-      {/* <div
+      <div
         style={{
           width: '50%',
           height: '350px',
@@ -211,7 +212,7 @@ export const Dashboard: React.FC = () => {
         }}
       >
         <ChartBar />
-      </div> */}
+      </div>
     </S.Container>
   )
 }

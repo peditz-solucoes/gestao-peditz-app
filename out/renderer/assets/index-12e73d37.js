@@ -77,9 +77,9 @@ C$2(H$2, E$3.prototype);
 H$2.isPureReactComponent = true;
 var I$2 = Array.isArray, J$1 = Object.prototype.hasOwnProperty, K$2 = { current: null }, L$2 = { key: true, ref: true, __self: true, __source: true };
 function M$3(a2, b2, e2) {
-  var d2, c2 = {}, k2 = null, h2 = null;
+  var d2, c2 = {}, k2 = null, h3 = null;
   if (null != b2)
-    for (d2 in void 0 !== b2.ref && (h2 = b2.ref), void 0 !== b2.key && (k2 = "" + b2.key), b2)
+    for (d2 in void 0 !== b2.ref && (h3 = b2.ref), void 0 !== b2.key && (k2 = "" + b2.key), b2)
       J$1.call(b2, d2) && !L$2.hasOwnProperty(d2) && (c2[d2] = b2[d2]);
   var g2 = arguments.length - 2;
   if (1 === g2)
@@ -92,7 +92,7 @@ function M$3(a2, b2, e2) {
   if (a2 && a2.defaultProps)
     for (d2 in g2 = a2.defaultProps, g2)
       void 0 === c2[d2] && (c2[d2] = g2[d2]);
-  return { $$typeof: l$4, type: a2, key: k2, ref: h2, props: c2, _owner: K$2.current };
+  return { $$typeof: l$4, type: a2, key: k2, ref: h3, props: c2, _owner: K$2.current };
 }
 function N$2(a2, b2) {
   return { $$typeof: l$4, type: a2.type, key: b2, ref: a2.ref, props: a2.props, _owner: a2._owner };
@@ -114,40 +114,40 @@ function R$3(a2, b2, e2, d2, c2) {
   var k2 = typeof a2;
   if ("undefined" === k2 || "boolean" === k2)
     a2 = null;
-  var h2 = false;
+  var h3 = false;
   if (null === a2)
-    h2 = true;
+    h3 = true;
   else
     switch (k2) {
       case "string":
       case "number":
-        h2 = true;
+        h3 = true;
         break;
       case "object":
         switch (a2.$$typeof) {
           case l$4:
           case n$4:
-            h2 = true;
+            h3 = true;
         }
     }
-  if (h2)
-    return h2 = a2, c2 = c2(h2), a2 = "" === d2 ? "." + Q$2(h2, 0) : d2, I$2(c2) ? (e2 = "", null != a2 && (e2 = a2.replace(P$3, "$&/") + "/"), R$3(c2, b2, e2, "", function(a3) {
+  if (h3)
+    return h3 = a2, c2 = c2(h3), a2 = "" === d2 ? "." + Q$2(h3, 0) : d2, I$2(c2) ? (e2 = "", null != a2 && (e2 = a2.replace(P$3, "$&/") + "/"), R$3(c2, b2, e2, "", function(a3) {
       return a3;
-    })) : null != c2 && (O$2(c2) && (c2 = N$2(c2, e2 + (!c2.key || h2 && h2.key === c2.key ? "" : ("" + c2.key).replace(P$3, "$&/") + "/") + a2)), b2.push(c2)), 1;
-  h2 = 0;
+    })) : null != c2 && (O$2(c2) && (c2 = N$2(c2, e2 + (!c2.key || h3 && h3.key === c2.key ? "" : ("" + c2.key).replace(P$3, "$&/") + "/") + a2)), b2.push(c2)), 1;
+  h3 = 0;
   d2 = "" === d2 ? "." : d2 + ":";
   if (I$2(a2))
     for (var g2 = 0; g2 < a2.length; g2++) {
       k2 = a2[g2];
       var f2 = d2 + Q$2(k2, g2);
-      h2 += R$3(k2, b2, e2, f2, c2);
+      h3 += R$3(k2, b2, e2, f2, c2);
     }
   else if (f2 = A$4(a2), "function" === typeof f2)
     for (a2 = f2.call(a2), g2 = 0; !(k2 = a2.next()).done; )
-      k2 = k2.value, f2 = d2 + Q$2(k2, g2++), h2 += R$3(k2, b2, e2, f2, c2);
+      k2 = k2.value, f2 = d2 + Q$2(k2, g2++), h3 += R$3(k2, b2, e2, f2, c2);
   else if ("object" === k2)
     throw b2 = String(a2), Error("Objects are not valid as a React child (found: " + ("[object Object]" === b2 ? "object with keys {" + Object.keys(a2).join(", ") + "}" : b2) + "). If you meant to render a collection of children, use an array instead.");
-  return h2;
+  return h3;
 }
 function S$1(a2, b2, e2) {
   if (null == a2)
@@ -205,9 +205,9 @@ react_production_min.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED = W$2;
 react_production_min.cloneElement = function(a2, b2, e2) {
   if (null === a2 || void 0 === a2)
     throw Error("React.cloneElement(...): The argument must be a React element, but you passed " + a2 + ".");
-  var d2 = C$2({}, a2.props), c2 = a2.key, k2 = a2.ref, h2 = a2._owner;
+  var d2 = C$2({}, a2.props), c2 = a2.key, k2 = a2.ref, h3 = a2._owner;
   if (null != b2) {
-    void 0 !== b2.ref && (k2 = b2.ref, h2 = K$2.current);
+    void 0 !== b2.ref && (k2 = b2.ref, h3 = K$2.current);
     void 0 !== b2.key && (c2 = "" + b2.key);
     if (a2.type && a2.type.defaultProps)
       var g2 = a2.type.defaultProps;
@@ -223,7 +223,7 @@ react_production_min.cloneElement = function(a2, b2, e2) {
       g2[m2] = arguments[m2 + 2];
     d2.children = g2;
   }
-  return { $$typeof: l$4, type: a2.type, key: c2, ref: k2, props: d2, _owner: h2 };
+  return { $$typeof: l$4, type: a2.type, key: c2, ref: k2, props: d2, _owner: h3 };
 };
 react_production_min.createContext = function(a2) {
   a2 = { $$typeof: u, _currentValue: a2, _currentValue2: a2, _threadCount: 0, Provider: null, Consumer: null, _defaultValue: null, _globalName: null };
@@ -326,16 +326,16 @@ const React$1 = /* @__PURE__ */ _mergeNamespaces({
  */
 var f$3 = reactExports, k$2 = Symbol.for("react.element"), l$3 = Symbol.for("react.fragment"), m$3 = Object.prototype.hasOwnProperty, n$3 = f$3.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.ReactCurrentOwner, p$3 = { key: true, ref: true, __self: true, __source: true };
 function q$2(c2, a2, g2) {
-  var b2, d2 = {}, e2 = null, h2 = null;
+  var b2, d2 = {}, e2 = null, h3 = null;
   void 0 !== g2 && (e2 = "" + g2);
   void 0 !== a2.key && (e2 = "" + a2.key);
-  void 0 !== a2.ref && (h2 = a2.ref);
+  void 0 !== a2.ref && (h3 = a2.ref);
   for (b2 in a2)
     m$3.call(a2, b2) && !p$3.hasOwnProperty(b2) && (d2[b2] = a2[b2]);
   if (c2 && c2.defaultProps)
     for (b2 in a2 = c2.defaultProps, a2)
       void 0 === d2[b2] && (d2[b2] = a2[b2]);
-  return { $$typeof: k$2, type: c2, key: e2, ref: h2, props: d2, _owner: n$3.current };
+  return { $$typeof: k$2, type: c2, key: e2, ref: h3, props: d2, _owner: n$3.current };
 }
 reactJsxRuntime_production_min.Fragment = l$3;
 reactJsxRuntime_production_min.jsx = q$2;
@@ -371,7 +371,7 @@ var scheduler_production_min = {};
           break a;
       }
   }
-  function h2(a2) {
+  function h3(a2) {
     return 0 === a2.length ? null : a2[0];
   }
   function k2(a2) {
@@ -411,24 +411,24 @@ var scheduler_production_min = {};
   var r2 = [], t2 = [], u2 = 1, v2 = null, y2 = 3, z2 = false, A2 = false, B2 = false, D2 = "function" === typeof setTimeout ? setTimeout : null, E2 = "function" === typeof clearTimeout ? clearTimeout : null, F2 = "undefined" !== typeof setImmediate ? setImmediate : null;
   "undefined" !== typeof navigator && void 0 !== navigator.scheduling && void 0 !== navigator.scheduling.isInputPending && navigator.scheduling.isInputPending.bind(navigator.scheduling);
   function G2(a2) {
-    for (var b2 = h2(t2); null !== b2; ) {
+    for (var b2 = h3(t2); null !== b2; ) {
       if (null === b2.callback)
         k2(t2);
       else if (b2.startTime <= a2)
         k2(t2), b2.sortIndex = b2.expirationTime, f2(r2, b2);
       else
         break;
-      b2 = h2(t2);
+      b2 = h3(t2);
     }
   }
   function H2(a2) {
     B2 = false;
     G2(a2);
     if (!A2)
-      if (null !== h2(r2))
+      if (null !== h3(r2))
         A2 = true, I2(J2);
       else {
-        var b2 = h2(t2);
+        var b2 = h3(t2);
         null !== b2 && K2(H2, b2.startTime - a2);
       }
   }
@@ -439,23 +439,23 @@ var scheduler_production_min = {};
     var c2 = y2;
     try {
       G2(b2);
-      for (v2 = h2(r2); null !== v2 && (!(v2.expirationTime > b2) || a2 && !M2()); ) {
+      for (v2 = h3(r2); null !== v2 && (!(v2.expirationTime > b2) || a2 && !M2()); ) {
         var d2 = v2.callback;
         if ("function" === typeof d2) {
           v2.callback = null;
           y2 = v2.priorityLevel;
           var e2 = d2(v2.expirationTime <= b2);
           b2 = exports.unstable_now();
-          "function" === typeof e2 ? v2.callback = e2 : v2 === h2(r2) && k2(r2);
+          "function" === typeof e2 ? v2.callback = e2 : v2 === h3(r2) && k2(r2);
           G2(b2);
         } else
           k2(r2);
-        v2 = h2(r2);
+        v2 = h3(r2);
       }
       if (null !== v2)
         var w2 = true;
       else {
-        var m2 = h2(t2);
+        var m2 = h3(t2);
         null !== m2 && K2(H2, m2.startTime - b2);
         w2 = false;
       }
@@ -524,7 +524,7 @@ var scheduler_production_min = {};
     return y2;
   };
   exports.unstable_getFirstCallbackNode = function() {
-    return h2(r2);
+    return h3(r2);
   };
   exports.unstable_next = function(a2) {
     switch (y2) {
@@ -588,7 +588,7 @@ var scheduler_production_min = {};
     }
     e2 = c2 + e2;
     a2 = { id: u2++, callback: b2, priorityLevel: a2, startTime: c2, expirationTime: e2, sortIndex: -1 };
-    c2 > d2 ? (a2.sortIndex = c2, f2(t2, a2), null === h2(r2) && a2 === h2(t2) && (B2 ? (E2(L2), L2 = -1) : B2 = true, K2(H2, c2 - d2))) : (a2.sortIndex = e2, f2(r2, a2), A2 || z2 || (A2 = true, I2(J2)));
+    c2 > d2 ? (a2.sortIndex = c2, f2(t2, a2), null === h3(r2) && a2 === h3(t2) && (B2 ? (E2(L2), L2 = -1) : B2 = true, K2(H2, c2 - d2))) : (a2.sortIndex = e2, f2(r2, a2), A2 || z2 || (A2 = true, I2(J2)));
     return a2;
   };
   exports.unstable_shouldYield = M2;
@@ -809,18 +809,18 @@ function Oa(a2, b2) {
     }
   } catch (l2) {
     if (l2 && d2 && "string" === typeof l2.stack) {
-      for (var e2 = l2.stack.split("\n"), f2 = d2.stack.split("\n"), g2 = e2.length - 1, h2 = f2.length - 1; 1 <= g2 && 0 <= h2 && e2[g2] !== f2[h2]; )
-        h2--;
-      for (; 1 <= g2 && 0 <= h2; g2--, h2--)
-        if (e2[g2] !== f2[h2]) {
-          if (1 !== g2 || 1 !== h2) {
+      for (var e2 = l2.stack.split("\n"), f2 = d2.stack.split("\n"), g2 = e2.length - 1, h3 = f2.length - 1; 1 <= g2 && 0 <= h3 && e2[g2] !== f2[h3]; )
+        h3--;
+      for (; 1 <= g2 && 0 <= h3; g2--, h3--)
+        if (e2[g2] !== f2[h3]) {
+          if (1 !== g2 || 1 !== h3) {
             do
-              if (g2--, h2--, 0 > h2 || e2[g2] !== f2[h2]) {
+              if (g2--, h3--, 0 > h3 || e2[g2] !== f2[h3]) {
                 var k2 = "\n" + e2[g2].replace(" at new ", " at ");
                 a2.displayName && k2.includes("<anonymous>") && (k2 = k2.replace("<anonymous>", a2.displayName));
                 return k2;
               }
-            while (1 <= g2 && 0 <= h2);
+            while (1 <= g2 && 0 <= h3);
           }
           break;
         }
@@ -1341,7 +1341,7 @@ if (ia)
   } catch (a2) {
     Lb = false;
   }
-function Nb(a2, b2, c2, d2, e2, f2, g2, h2, k2) {
+function Nb(a2, b2, c2, d2, e2, f2, g2, h3, k2) {
   var l2 = Array.prototype.slice.call(arguments, 3);
   try {
     b2.apply(c2, l2);
@@ -1353,12 +1353,12 @@ var Ob = false, Pb = null, Qb = false, Rb = null, Sb = { onError: function(a2) {
   Ob = true;
   Pb = a2;
 } };
-function Tb(a2, b2, c2, d2, e2, f2, g2, h2, k2) {
+function Tb(a2, b2, c2, d2, e2, f2, g2, h3, k2) {
   Ob = false;
   Pb = null;
   Nb.apply(Sb, arguments);
 }
-function Ub(a2, b2, c2, d2, e2, f2, g2, h2, k2) {
+function Ub(a2, b2, c2, d2, e2, f2, g2, h3, k2) {
   Tb.apply(this, arguments);
   if (Ob) {
     if (Ob) {
@@ -1430,36 +1430,36 @@ function Yb(a2) {
     if (c2.return !== d2.return)
       c2 = e2, d2 = f2;
     else {
-      for (var g2 = false, h2 = e2.child; h2; ) {
-        if (h2 === c2) {
+      for (var g2 = false, h3 = e2.child; h3; ) {
+        if (h3 === c2) {
           g2 = true;
           c2 = e2;
           d2 = f2;
           break;
         }
-        if (h2 === d2) {
+        if (h3 === d2) {
           g2 = true;
           d2 = e2;
           c2 = f2;
           break;
         }
-        h2 = h2.sibling;
+        h3 = h3.sibling;
       }
       if (!g2) {
-        for (h2 = f2.child; h2; ) {
-          if (h2 === c2) {
+        for (h3 = f2.child; h3; ) {
+          if (h3 === c2) {
             g2 = true;
             c2 = f2;
             d2 = e2;
             break;
           }
-          if (h2 === d2) {
+          if (h3 === d2) {
             g2 = true;
             d2 = f2;
             c2 = e2;
             break;
           }
-          h2 = h2.sibling;
+          h3 = h3.sibling;
         }
         if (!g2)
           throw Error(p$2(189));
@@ -1556,8 +1556,8 @@ function uc(a2, b2) {
     return 0;
   var d2 = 0, e2 = a2.suspendedLanes, f2 = a2.pingedLanes, g2 = c2 & 268435455;
   if (0 !== g2) {
-    var h2 = g2 & ~e2;
-    0 !== h2 ? d2 = tc(h2) : (f2 &= g2, 0 !== f2 && (d2 = tc(f2)));
+    var h3 = g2 & ~e2;
+    0 !== h3 ? d2 = tc(h3) : (f2 &= g2, 0 !== f2 && (d2 = tc(f2)));
   } else
     g2 = c2 & ~e2, 0 !== g2 ? d2 = tc(g2) : 0 !== f2 && (d2 = tc(f2));
   if (0 === d2)
@@ -1614,13 +1614,13 @@ function vc(a2, b2) {
 }
 function wc(a2, b2) {
   for (var c2 = a2.suspendedLanes, d2 = a2.pingedLanes, e2 = a2.expirationTimes, f2 = a2.pendingLanes; 0 < f2; ) {
-    var g2 = 31 - oc(f2), h2 = 1 << g2, k2 = e2[g2];
+    var g2 = 31 - oc(f2), h3 = 1 << g2, k2 = e2[g2];
     if (-1 === k2) {
-      if (0 === (h2 & c2) || 0 !== (h2 & d2))
-        e2[g2] = vc(h2, b2);
+      if (0 === (h3 & c2) || 0 !== (h3 & d2))
+        e2[g2] = vc(h3, b2);
     } else
-      k2 <= b2 && (a2.expiredLanes |= h2);
-    f2 &= ~h2;
+      k2 <= b2 && (a2.expiredLanes |= h3);
+    f2 &= ~h3;
   }
 }
 function xc(a2) {
@@ -2378,22 +2378,22 @@ function se$1(a2, b2) {
       var f2 = void 0;
       if (b2)
         for (var g2 = d2.length - 1; 0 <= g2; g2--) {
-          var h2 = d2[g2], k2 = h2.instance, l2 = h2.currentTarget;
-          h2 = h2.listener;
+          var h3 = d2[g2], k2 = h3.instance, l2 = h3.currentTarget;
+          h3 = h3.listener;
           if (k2 !== f2 && e2.isPropagationStopped())
             break a;
-          nf(e2, h2, l2);
+          nf(e2, h3, l2);
           f2 = k2;
         }
       else
         for (g2 = 0; g2 < d2.length; g2++) {
-          h2 = d2[g2];
-          k2 = h2.instance;
-          l2 = h2.currentTarget;
-          h2 = h2.listener;
+          h3 = d2[g2];
+          k2 = h3.instance;
+          l2 = h3.currentTarget;
+          h3 = h3.listener;
           if (k2 !== f2 && e2.isPropagationStopped())
             break a;
-          nf(e2, h2, l2);
+          nf(e2, h3, l2);
           f2 = k2;
         }
     }
@@ -2448,8 +2448,8 @@ function hd(a2, b2, c2, d2, e2) {
           return;
         var g2 = d2.tag;
         if (3 === g2 || 4 === g2) {
-          var h2 = d2.stateNode.containerInfo;
-          if (h2 === e2 || 8 === h2.nodeType && h2.parentNode === e2)
+          var h3 = d2.stateNode.containerInfo;
+          if (h3 === e2 || 8 === h3.nodeType && h3.parentNode === e2)
             break;
           if (4 === g2)
             for (g2 = d2.return; null !== g2; ) {
@@ -2460,8 +2460,8 @@ function hd(a2, b2, c2, d2, e2) {
               }
               g2 = g2.return;
             }
-          for (; null !== h2; ) {
-            g2 = Wc(h2);
+          for (; null !== h3; ) {
+            g2 = Wc(h3);
             if (null === g2)
               return;
             k2 = g2.tag;
@@ -2469,7 +2469,7 @@ function hd(a2, b2, c2, d2, e2) {
               d2 = f2 = g2;
               continue a;
             }
-            h2 = h2.parentNode;
+            h3 = h3.parentNode;
           }
         }
         d2 = d2.return;
@@ -2477,8 +2477,8 @@ function hd(a2, b2, c2, d2, e2) {
   Jb(function() {
     var d3 = f2, e3 = xb(c2), g3 = [];
     a: {
-      var h3 = df.get(a2);
-      if (void 0 !== h3) {
+      var h4 = df.get(a2);
+      if (void 0 !== h4) {
         var k3 = td, n2 = a2;
         switch (a2) {
           case "keypress":
@@ -2558,7 +2558,7 @@ function hd(a2, b2, c2, d2, e2) {
           case "pointerup":
             k3 = Td;
         }
-        var t2 = 0 !== (b2 & 4), J2 = !t2 && "scroll" === a2, x2 = t2 ? null !== h3 ? h3 + "Capture" : null : h3;
+        var t2 = 0 !== (b2 & 4), J2 = !t2 && "scroll" === a2, x2 = t2 ? null !== h4 ? h4 + "Capture" : null : h4;
         t2 = [];
         for (var w2 = d3, u2; null !== w2; ) {
           u2 = w2;
@@ -2568,17 +2568,17 @@ function hd(a2, b2, c2, d2, e2) {
             break;
           w2 = w2.return;
         }
-        0 < t2.length && (h3 = new k3(h3, n2, null, c2, e3), g3.push({ event: h3, listeners: t2 }));
+        0 < t2.length && (h4 = new k3(h4, n2, null, c2, e3), g3.push({ event: h4, listeners: t2 }));
       }
     }
     if (0 === (b2 & 7)) {
       a: {
-        h3 = "mouseover" === a2 || "pointerover" === a2;
+        h4 = "mouseover" === a2 || "pointerover" === a2;
         k3 = "mouseout" === a2 || "pointerout" === a2;
-        if (h3 && c2 !== wb && (n2 = c2.relatedTarget || c2.fromElement) && (Wc(n2) || n2[uf]))
+        if (h4 && c2 !== wb && (n2 = c2.relatedTarget || c2.fromElement) && (Wc(n2) || n2[uf]))
           break a;
-        if (k3 || h3) {
-          h3 = e3.window === e3 ? e3 : (h3 = e3.ownerDocument) ? h3.defaultView || h3.parentWindow : window;
+        if (k3 || h4) {
+          h4 = e3.window === e3 ? e3 : (h4 = e3.ownerDocument) ? h4.defaultView || h4.parentWindow : window;
           if (k3) {
             if (n2 = c2.relatedTarget || c2.toElement, k3 = d3, n2 = n2 ? Wc(n2) : null, null !== n2 && (J2 = Vb(n2), n2 !== J2 || 5 !== n2.tag && 6 !== n2.tag))
               n2 = null;
@@ -2591,11 +2591,11 @@ function hd(a2, b2, c2, d2, e2) {
             w2 = "mouse";
             if ("pointerout" === a2 || "pointerover" === a2)
               t2 = Td, F2 = "onPointerLeave", x2 = "onPointerEnter", w2 = "pointer";
-            J2 = null == k3 ? h3 : ue$1(k3);
-            u2 = null == n2 ? h3 : ue$1(n2);
-            h3 = new t2(F2, w2 + "leave", k3, c2, e3);
-            h3.target = J2;
-            h3.relatedTarget = u2;
+            J2 = null == k3 ? h4 : ue$1(k3);
+            u2 = null == n2 ? h4 : ue$1(n2);
+            h4 = new t2(F2, w2 + "leave", k3, c2, e3);
+            h4.target = J2;
+            h4.relatedTarget = u2;
             F2 = null;
             Wc(e3) === d3 && (t2 = new t2(x2, w2 + "enter", n2, c2, e3), t2.target = u2, t2.relatedTarget = J2, F2 = t2);
             J2 = F2;
@@ -2623,17 +2623,17 @@ function hd(a2, b2, c2, d2, e2) {
               }
             else
               t2 = null;
-            null !== k3 && wf(g3, h3, k3, t2, false);
+            null !== k3 && wf(g3, h4, k3, t2, false);
             null !== n2 && null !== J2 && wf(g3, J2, n2, t2, true);
           }
         }
       }
       a: {
-        h3 = d3 ? ue$1(d3) : window;
-        k3 = h3.nodeName && h3.nodeName.toLowerCase();
-        if ("select" === k3 || "input" === k3 && "file" === h3.type)
+        h4 = d3 ? ue$1(d3) : window;
+        k3 = h4.nodeName && h4.nodeName.toLowerCase();
+        if ("select" === k3 || "input" === k3 && "file" === h4.type)
           var na = ve$1;
-        else if (me$1(h3))
+        else if (me$1(h4))
           if (we$1)
             na = Fe$1;
           else {
@@ -2641,13 +2641,13 @@ function hd(a2, b2, c2, d2, e2) {
             var xa = Ce$1;
           }
         else
-          (k3 = h3.nodeName) && "input" === k3.toLowerCase() && ("checkbox" === h3.type || "radio" === h3.type) && (na = Ee$1);
+          (k3 = h4.nodeName) && "input" === k3.toLowerCase() && ("checkbox" === h4.type || "radio" === h4.type) && (na = Ee$1);
         if (na && (na = na(a2, d3))) {
           ne$1(g3, na, c2, e3);
           break a;
         }
-        xa && xa(a2, h3, d3);
-        "focusout" === a2 && (xa = h3._wrapperState) && xa.controlled && "number" === h3.type && cb(h3, "number", h3.value);
+        xa && xa(a2, h4, d3);
+        "focusout" === a2 && (xa = h4._wrapperState) && xa.controlled && "number" === h4.type && cb(h4, "number", h4.value);
       }
       xa = d3 ? ue$1(d3) : window;
       switch (a2) {
@@ -2720,10 +2720,10 @@ function vf(a2) {
 }
 function wf(a2, b2, c2, d2, e2) {
   for (var f2 = b2._reactName, g2 = []; null !== c2 && c2 !== d2; ) {
-    var h2 = c2, k2 = h2.alternate, l2 = h2.stateNode;
+    var h3 = c2, k2 = h3.alternate, l2 = h3.stateNode;
     if (null !== k2 && k2 === d2)
       break;
-    5 === h2.tag && null !== l2 && (h2 = l2, e2 ? (k2 = Kb(c2, f2), null != k2 && g2.unshift(tf(c2, k2, h2))) : e2 || (k2 = Kb(c2, f2), null != k2 && g2.push(tf(c2, k2, h2))));
+    5 === h3.tag && null !== l2 && (h3 = l2, e2 ? (k2 = Kb(c2, f2), null != k2 && g2.unshift(tf(c2, k2, h3))) : e2 || (k2 = Kb(c2, f2), null != k2 && g2.push(tf(c2, k2, h3))));
     c2 = c2.return;
   }
   0 !== g2.length && a2.push({ event: b2, listeners: g2 });
@@ -3198,34 +3198,34 @@ function fh(a2, b2) {
 function gh(a2, b2, c2, d2) {
   var e2 = a2.updateQueue;
   $g = false;
-  var f2 = e2.firstBaseUpdate, g2 = e2.lastBaseUpdate, h2 = e2.shared.pending;
-  if (null !== h2) {
+  var f2 = e2.firstBaseUpdate, g2 = e2.lastBaseUpdate, h3 = e2.shared.pending;
+  if (null !== h3) {
     e2.shared.pending = null;
-    var k2 = h2, l2 = k2.next;
+    var k2 = h3, l2 = k2.next;
     k2.next = null;
     null === g2 ? f2 = l2 : g2.next = l2;
     g2 = k2;
     var m2 = a2.alternate;
-    null !== m2 && (m2 = m2.updateQueue, h2 = m2.lastBaseUpdate, h2 !== g2 && (null === h2 ? m2.firstBaseUpdate = l2 : h2.next = l2, m2.lastBaseUpdate = k2));
+    null !== m2 && (m2 = m2.updateQueue, h3 = m2.lastBaseUpdate, h3 !== g2 && (null === h3 ? m2.firstBaseUpdate = l2 : h3.next = l2, m2.lastBaseUpdate = k2));
   }
   if (null !== f2) {
     var q2 = e2.baseState;
     g2 = 0;
     m2 = l2 = k2 = null;
-    h2 = f2;
+    h3 = f2;
     do {
-      var r2 = h2.lane, y2 = h2.eventTime;
+      var r2 = h3.lane, y2 = h3.eventTime;
       if ((d2 & r2) === r2) {
         null !== m2 && (m2 = m2.next = {
           eventTime: y2,
           lane: 0,
-          tag: h2.tag,
-          payload: h2.payload,
-          callback: h2.callback,
+          tag: h3.tag,
+          payload: h3.payload,
+          callback: h3.callback,
           next: null
         });
         a: {
-          var n2 = a2, t2 = h2;
+          var n2 = a2, t2 = h3;
           r2 = b2;
           y2 = c2;
           switch (t2.tag) {
@@ -3250,15 +3250,15 @@ function gh(a2, b2, c2, d2) {
               $g = true;
           }
         }
-        null !== h2.callback && 0 !== h2.lane && (a2.flags |= 64, r2 = e2.effects, null === r2 ? e2.effects = [h2] : r2.push(h2));
+        null !== h3.callback && 0 !== h3.lane && (a2.flags |= 64, r2 = e2.effects, null === r2 ? e2.effects = [h3] : r2.push(h3));
       } else
-        y2 = { eventTime: y2, lane: r2, tag: h2.tag, payload: h2.payload, callback: h2.callback, next: null }, null === m2 ? (l2 = m2 = y2, k2 = q2) : m2 = m2.next = y2, g2 |= r2;
-      h2 = h2.next;
-      if (null === h2)
-        if (h2 = e2.shared.pending, null === h2)
+        y2 = { eventTime: y2, lane: r2, tag: h3.tag, payload: h3.payload, callback: h3.callback, next: null }, null === m2 ? (l2 = m2 = y2, k2 = q2) : m2 = m2.next = y2, g2 |= r2;
+      h3 = h3.next;
+      if (null === h3)
+        if (h3 = e2.shared.pending, null === h3)
           break;
         else
-          r2 = h2, h2 = r2.next, r2.next = null, e2.lastBaseUpdate = r2, e2.shared.pending = null;
+          r2 = h3, h3 = r2.next, r2.next = null, e2.lastBaseUpdate = r2, e2.shared.pending = null;
     } while (1);
     null === m2 && (k2 = q2);
     e2.baseState = k2;
@@ -3438,7 +3438,7 @@ function vh(a2) {
     a2 && null === b3.alternate && (b3.flags |= 2);
     return b3;
   }
-  function h2(a3, b3, c3, d3) {
+  function h3(a3, b3, c3, d3) {
     if (null === b3 || 6 !== b3.tag)
       return b3 = xh(c3, a3.mode, d3), b3.return = a3, b3;
     b3 = e2(b3, c3);
@@ -3492,7 +3492,7 @@ function vh(a2) {
   function r2(a3, b3, c3, d3) {
     var e3 = null !== b3 ? b3.key : null;
     if ("string" === typeof c3 && "" !== c3 || "number" === typeof c3)
-      return null !== e3 ? null : h2(a3, b3, "" + c3, d3);
+      return null !== e3 ? null : h3(a3, b3, "" + c3, d3);
     if ("object" === typeof c3 && null !== c3) {
       switch (c3.$$typeof) {
         case va:
@@ -3515,7 +3515,7 @@ function vh(a2) {
   }
   function y2(a3, b3, c3, d3, e3) {
     if ("string" === typeof d3 && "" !== d3 || "number" === typeof d3)
-      return a3 = a3.get(c3) || null, h2(b3, a3, "" + d3, e3);
+      return a3 = a3.get(c3) || null, h3(b3, a3, "" + d3, e3);
     if ("object" === typeof d3 && null !== d3) {
       switch (d3.$$typeof) {
         case va:
@@ -3532,10 +3532,10 @@ function vh(a2) {
     }
     return null;
   }
-  function n2(e3, g3, h3, k3) {
-    for (var l3 = null, m3 = null, u2 = g3, w2 = g3 = 0, x2 = null; null !== u2 && w2 < h3.length; w2++) {
+  function n2(e3, g3, h4, k3) {
+    for (var l3 = null, m3 = null, u2 = g3, w2 = g3 = 0, x2 = null; null !== u2 && w2 < h4.length; w2++) {
       u2.index > w2 ? (x2 = u2, u2 = null) : x2 = u2.sibling;
-      var n3 = r2(e3, u2, h3[w2], k3);
+      var n3 = r2(e3, u2, h4[w2], k3);
       if (null === n3) {
         null === u2 && (u2 = x2);
         break;
@@ -3546,30 +3546,30 @@ function vh(a2) {
       m3 = n3;
       u2 = x2;
     }
-    if (w2 === h3.length)
+    if (w2 === h4.length)
       return c2(e3, u2), I$1 && tg(e3, w2), l3;
     if (null === u2) {
-      for (; w2 < h3.length; w2++)
-        u2 = q2(e3, h3[w2], k3), null !== u2 && (g3 = f2(u2, g3, w2), null === m3 ? l3 = u2 : m3.sibling = u2, m3 = u2);
+      for (; w2 < h4.length; w2++)
+        u2 = q2(e3, h4[w2], k3), null !== u2 && (g3 = f2(u2, g3, w2), null === m3 ? l3 = u2 : m3.sibling = u2, m3 = u2);
       I$1 && tg(e3, w2);
       return l3;
     }
-    for (u2 = d2(e3, u2); w2 < h3.length; w2++)
-      x2 = y2(u2, e3, w2, h3[w2], k3), null !== x2 && (a2 && null !== x2.alternate && u2.delete(null === x2.key ? w2 : x2.key), g3 = f2(x2, g3, w2), null === m3 ? l3 = x2 : m3.sibling = x2, m3 = x2);
+    for (u2 = d2(e3, u2); w2 < h4.length; w2++)
+      x2 = y2(u2, e3, w2, h4[w2], k3), null !== x2 && (a2 && null !== x2.alternate && u2.delete(null === x2.key ? w2 : x2.key), g3 = f2(x2, g3, w2), null === m3 ? l3 = x2 : m3.sibling = x2, m3 = x2);
     a2 && u2.forEach(function(a3) {
       return b2(e3, a3);
     });
     I$1 && tg(e3, w2);
     return l3;
   }
-  function t2(e3, g3, h3, k3) {
-    var l3 = Ka(h3);
+  function t2(e3, g3, h4, k3) {
+    var l3 = Ka(h4);
     if ("function" !== typeof l3)
       throw Error(p$2(150));
-    h3 = l3.call(h3);
-    if (null == h3)
+    h4 = l3.call(h4);
+    if (null == h4)
       throw Error(p$2(151));
-    for (var u2 = l3 = null, m3 = g3, w2 = g3 = 0, x2 = null, n3 = h3.next(); null !== m3 && !n3.done; w2++, n3 = h3.next()) {
+    for (var u2 = l3 = null, m3 = g3, w2 = g3 = 0, x2 = null, n3 = h4.next(); null !== m3 && !n3.done; w2++, n3 = h4.next()) {
       m3.index > w2 ? (x2 = m3, m3 = null) : x2 = m3.sibling;
       var t3 = r2(e3, m3, n3.value, k3);
       if (null === t3) {
@@ -3588,12 +3588,12 @@ function vh(a2) {
         m3
       ), I$1 && tg(e3, w2), l3;
     if (null === m3) {
-      for (; !n3.done; w2++, n3 = h3.next())
+      for (; !n3.done; w2++, n3 = h4.next())
         n3 = q2(e3, n3.value, k3), null !== n3 && (g3 = f2(n3, g3, w2), null === u2 ? l3 = n3 : u2.sibling = n3, u2 = n3);
       I$1 && tg(e3, w2);
       return l3;
     }
-    for (m3 = d2(e3, m3); !n3.done; w2++, n3 = h3.next())
+    for (m3 = d2(e3, m3); !n3.done; w2++, n3 = h4.next())
       n3 = y2(m3, e3, w2, n3.value, k3), null !== n3 && (a2 && null !== n3.alternate && m3.delete(null === n3.key ? w2 : n3.key), g3 = f2(n3, g3, w2), null === u2 ? l3 = n3 : u2.sibling = n3, u2 = n3);
     a2 && m3.forEach(function(a3) {
       return b2(e3, a3);
@@ -3601,7 +3601,7 @@ function vh(a2) {
     I$1 && tg(e3, w2);
     return l3;
   }
-  function J2(a3, d3, f3, h3) {
+  function J2(a3, d3, f3, h4) {
     "object" === typeof f3 && null !== f3 && f3.type === ya && null === f3.key && (f3 = f3.props.children);
     if ("object" === typeof f3 && null !== f3) {
       switch (f3.$$typeof) {
@@ -3632,7 +3632,7 @@ function vh(a2) {
                 b2(a3, l3);
               l3 = l3.sibling;
             }
-            f3.type === ya ? (d3 = Ah(f3.props.children, a3.mode, h3, f3.key), d3.return = a3, a3 = d3) : (h3 = yh(f3.type, f3.key, f3.props, null, a3.mode, h3), h3.ref = sh(a3, d3, f3), h3.return = a3, a3 = h3);
+            f3.type === ya ? (d3 = Ah(f3.props.children, a3.mode, h4, f3.key), d3.return = a3, a3 = d3) : (h4 = yh(f3.type, f3.key, f3.props, null, a3.mode, h4), h4.ref = sh(a3, d3, f3), h4.return = a3, a3 = h4);
           }
           return g2(a3);
         case wa:
@@ -3653,21 +3653,21 @@ function vh(a2) {
                 b2(a3, d3);
               d3 = d3.sibling;
             }
-            d3 = zh(f3, a3.mode, h3);
+            d3 = zh(f3, a3.mode, h4);
             d3.return = a3;
             a3 = d3;
           }
           return g2(a3);
         case Ha:
-          return l3 = f3._init, J2(a3, d3, l3(f3._payload), h3);
+          return l3 = f3._init, J2(a3, d3, l3(f3._payload), h4);
       }
       if (eb(f3))
-        return n2(a3, d3, f3, h3);
+        return n2(a3, d3, f3, h4);
       if (Ka(f3))
-        return t2(a3, d3, f3, h3);
+        return t2(a3, d3, f3, h4);
       th(a3, f3);
     }
-    return "string" === typeof f3 && "" !== f3 || "number" === typeof f3 ? (f3 = "" + f3, null !== d3 && 6 === d3.tag ? (c2(a3, d3.sibling), d3 = e2(d3, f3), d3.return = a3, a3 = d3) : (c2(a3, d3), d3 = xh(f3, a3.mode, h3), d3.return = a3, a3 = d3), g2(a3)) : c2(a3, d3);
+    return "string" === typeof f3 && "" !== f3 || "number" === typeof f3 ? (f3 = "" + f3, null !== d3 && 6 === d3.tag ? (c2(a3, d3.sibling), d3 = e2(d3, f3), d3.return = a3, a3 = d3) : (c2(a3, d3), d3 = xh(f3, a3.mode, h4), d3.return = a3, a3 = d3), g2(a3)) : c2(a3, d3);
   }
   return J2;
 }
@@ -3832,7 +3832,7 @@ function fi(a2) {
   if (null !== e2) {
     f2 = e2.next;
     d2 = d2.baseState;
-    var h2 = g2 = null, k2 = null, l2 = f2;
+    var h3 = g2 = null, k2 = null, l2 = f2;
     do {
       var m2 = l2.lane;
       if ((Rh & m2) === m2)
@@ -3845,13 +3845,13 @@ function fi(a2) {
           eagerState: l2.eagerState,
           next: null
         };
-        null === k2 ? (h2 = k2 = q2, g2 = d2) : k2 = k2.next = q2;
+        null === k2 ? (h3 = k2 = q2, g2 = d2) : k2 = k2.next = q2;
         N$1.lanes |= m2;
         hh |= m2;
       }
       l2 = l2.next;
     } while (null !== l2 && l2 !== f2);
-    null === k2 ? g2 = d2 : k2.next = h2;
+    null === k2 ? g2 = d2 : k2.next = h3;
     He$1(d2, b2.memoizedState) || (Ug = true);
     b2.memoizedState = d2;
     b2.baseState = g2;
@@ -4058,10 +4058,10 @@ function ri(a2, b2, c2) {
     var f2 = a2.alternate;
     if (0 === a2.lanes && (null === f2 || 0 === f2.lanes) && (f2 = b2.lastRenderedReducer, null !== f2))
       try {
-        var g2 = b2.lastRenderedState, h2 = f2(g2, c2);
+        var g2 = b2.lastRenderedState, h3 = f2(g2, c2);
         e2.hasEagerState = true;
-        e2.eagerState = h2;
-        if (He$1(h2, g2)) {
+        e2.eagerState = h3;
+        if (He$1(h3, g2)) {
           var k2 = b2.interleaved;
           null === k2 ? (e2.next = e2, Xg(b2)) : (e2.next = k2.next, k2.next = e2);
           b2.interleaved = e2;
@@ -4391,36 +4391,36 @@ function ij(a2, b2, c2, d2, e2) {
   if (null === b2.stateNode)
     jj(a2, b2), ph(b2, c2, d2), rh(b2, c2, d2, e2), d2 = true;
   else if (null === a2) {
-    var g2 = b2.stateNode, h2 = b2.memoizedProps;
-    g2.props = h2;
+    var g2 = b2.stateNode, h3 = b2.memoizedProps;
+    g2.props = h3;
     var k2 = g2.context, l2 = c2.contextType;
     "object" === typeof l2 && null !== l2 ? l2 = Vg(l2) : (l2 = Zf(c2) ? Xf : H$1.current, l2 = Yf(b2, l2));
     var m2 = c2.getDerivedStateFromProps, q2 = "function" === typeof m2 || "function" === typeof g2.getSnapshotBeforeUpdate;
-    q2 || "function" !== typeof g2.UNSAFE_componentWillReceiveProps && "function" !== typeof g2.componentWillReceiveProps || (h2 !== d2 || k2 !== l2) && qh(b2, g2, d2, l2);
+    q2 || "function" !== typeof g2.UNSAFE_componentWillReceiveProps && "function" !== typeof g2.componentWillReceiveProps || (h3 !== d2 || k2 !== l2) && qh(b2, g2, d2, l2);
     $g = false;
     var r2 = b2.memoizedState;
     g2.state = r2;
     gh(b2, d2, g2, e2);
     k2 = b2.memoizedState;
-    h2 !== d2 || r2 !== k2 || Wf.current || $g ? ("function" === typeof m2 && (kh(b2, c2, m2, d2), k2 = b2.memoizedState), (h2 = $g || oh(b2, c2, h2, d2, r2, k2, l2)) ? (q2 || "function" !== typeof g2.UNSAFE_componentWillMount && "function" !== typeof g2.componentWillMount || ("function" === typeof g2.componentWillMount && g2.componentWillMount(), "function" === typeof g2.UNSAFE_componentWillMount && g2.UNSAFE_componentWillMount()), "function" === typeof g2.componentDidMount && (b2.flags |= 4194308)) : ("function" === typeof g2.componentDidMount && (b2.flags |= 4194308), b2.memoizedProps = d2, b2.memoizedState = k2), g2.props = d2, g2.state = k2, g2.context = l2, d2 = h2) : ("function" === typeof g2.componentDidMount && (b2.flags |= 4194308), d2 = false);
+    h3 !== d2 || r2 !== k2 || Wf.current || $g ? ("function" === typeof m2 && (kh(b2, c2, m2, d2), k2 = b2.memoizedState), (h3 = $g || oh(b2, c2, h3, d2, r2, k2, l2)) ? (q2 || "function" !== typeof g2.UNSAFE_componentWillMount && "function" !== typeof g2.componentWillMount || ("function" === typeof g2.componentWillMount && g2.componentWillMount(), "function" === typeof g2.UNSAFE_componentWillMount && g2.UNSAFE_componentWillMount()), "function" === typeof g2.componentDidMount && (b2.flags |= 4194308)) : ("function" === typeof g2.componentDidMount && (b2.flags |= 4194308), b2.memoizedProps = d2, b2.memoizedState = k2), g2.props = d2, g2.state = k2, g2.context = l2, d2 = h3) : ("function" === typeof g2.componentDidMount && (b2.flags |= 4194308), d2 = false);
   } else {
     g2 = b2.stateNode;
     bh(a2, b2);
-    h2 = b2.memoizedProps;
-    l2 = b2.type === b2.elementType ? h2 : Lg(b2.type, h2);
+    h3 = b2.memoizedProps;
+    l2 = b2.type === b2.elementType ? h3 : Lg(b2.type, h3);
     g2.props = l2;
     q2 = b2.pendingProps;
     r2 = g2.context;
     k2 = c2.contextType;
     "object" === typeof k2 && null !== k2 ? k2 = Vg(k2) : (k2 = Zf(c2) ? Xf : H$1.current, k2 = Yf(b2, k2));
     var y2 = c2.getDerivedStateFromProps;
-    (m2 = "function" === typeof y2 || "function" === typeof g2.getSnapshotBeforeUpdate) || "function" !== typeof g2.UNSAFE_componentWillReceiveProps && "function" !== typeof g2.componentWillReceiveProps || (h2 !== q2 || r2 !== k2) && qh(b2, g2, d2, k2);
+    (m2 = "function" === typeof y2 || "function" === typeof g2.getSnapshotBeforeUpdate) || "function" !== typeof g2.UNSAFE_componentWillReceiveProps && "function" !== typeof g2.componentWillReceiveProps || (h3 !== q2 || r2 !== k2) && qh(b2, g2, d2, k2);
     $g = false;
     r2 = b2.memoizedState;
     g2.state = r2;
     gh(b2, d2, g2, e2);
     var n2 = b2.memoizedState;
-    h2 !== q2 || r2 !== n2 || Wf.current || $g ? ("function" === typeof y2 && (kh(b2, c2, y2, d2), n2 = b2.memoizedState), (l2 = $g || oh(b2, c2, l2, d2, r2, n2, k2) || false) ? (m2 || "function" !== typeof g2.UNSAFE_componentWillUpdate && "function" !== typeof g2.componentWillUpdate || ("function" === typeof g2.componentWillUpdate && g2.componentWillUpdate(d2, n2, k2), "function" === typeof g2.UNSAFE_componentWillUpdate && g2.UNSAFE_componentWillUpdate(d2, n2, k2)), "function" === typeof g2.componentDidUpdate && (b2.flags |= 4), "function" === typeof g2.getSnapshotBeforeUpdate && (b2.flags |= 1024)) : ("function" !== typeof g2.componentDidUpdate || h2 === a2.memoizedProps && r2 === a2.memoizedState || (b2.flags |= 4), "function" !== typeof g2.getSnapshotBeforeUpdate || h2 === a2.memoizedProps && r2 === a2.memoizedState || (b2.flags |= 1024), b2.memoizedProps = d2, b2.memoizedState = n2), g2.props = d2, g2.state = n2, g2.context = k2, d2 = l2) : ("function" !== typeof g2.componentDidUpdate || h2 === a2.memoizedProps && r2 === a2.memoizedState || (b2.flags |= 4), "function" !== typeof g2.getSnapshotBeforeUpdate || h2 === a2.memoizedProps && r2 === a2.memoizedState || (b2.flags |= 1024), d2 = false);
+    h3 !== q2 || r2 !== n2 || Wf.current || $g ? ("function" === typeof y2 && (kh(b2, c2, y2, d2), n2 = b2.memoizedState), (l2 = $g || oh(b2, c2, l2, d2, r2, n2, k2) || false) ? (m2 || "function" !== typeof g2.UNSAFE_componentWillUpdate && "function" !== typeof g2.componentWillUpdate || ("function" === typeof g2.componentWillUpdate && g2.componentWillUpdate(d2, n2, k2), "function" === typeof g2.UNSAFE_componentWillUpdate && g2.UNSAFE_componentWillUpdate(d2, n2, k2)), "function" === typeof g2.componentDidUpdate && (b2.flags |= 4), "function" === typeof g2.getSnapshotBeforeUpdate && (b2.flags |= 1024)) : ("function" !== typeof g2.componentDidUpdate || h3 === a2.memoizedProps && r2 === a2.memoizedState || (b2.flags |= 4), "function" !== typeof g2.getSnapshotBeforeUpdate || h3 === a2.memoizedProps && r2 === a2.memoizedState || (b2.flags |= 1024), b2.memoizedProps = d2, b2.memoizedState = n2), g2.props = d2, g2.state = n2, g2.context = k2, d2 = l2) : ("function" !== typeof g2.componentDidUpdate || h3 === a2.memoizedProps && r2 === a2.memoizedState || (b2.flags |= 4), "function" !== typeof g2.getSnapshotBeforeUpdate || h3 === a2.memoizedProps && r2 === a2.memoizedState || (b2.flags |= 1024), d2 = false);
   }
   return kj(a2, b2, c2, d2, f2, e2);
 }
@@ -4431,9 +4431,9 @@ function kj(a2, b2, c2, d2, e2, f2) {
     return e2 && dg(b2, c2, false), $i(a2, b2, f2);
   d2 = b2.stateNode;
   Xi.current = b2;
-  var h2 = g2 && "function" !== typeof c2.getDerivedStateFromError ? null : d2.render();
+  var h3 = g2 && "function" !== typeof c2.getDerivedStateFromError ? null : d2.render();
   b2.flags |= 1;
-  null !== a2 && g2 ? (b2.child = Bh(b2, a2.child, null, f2), b2.child = Bh(b2, null, h2, f2)) : Yi(a2, b2, h2, f2);
+  null !== a2 && g2 ? (b2.child = Bh(b2, a2.child, null, f2), b2.child = Bh(b2, null, h3, f2)) : Yi(a2, b2, h3, f2);
   b2.memoizedState = d2.state;
   e2 && dg(b2, c2, true);
   return b2.child;
@@ -4455,9 +4455,9 @@ function oj(a2) {
   return { baseLanes: a2, cachePool: null, transitions: null };
 }
 function pj(a2, b2, c2) {
-  var d2 = b2.pendingProps, e2 = M$2.current, f2 = false, g2 = 0 !== (b2.flags & 128), h2;
-  (h2 = g2) || (h2 = null !== a2 && null === a2.memoizedState ? false : 0 !== (e2 & 2));
-  if (h2)
+  var d2 = b2.pendingProps, e2 = M$2.current, f2 = false, g2 = 0 !== (b2.flags & 128), h3;
+  (h3 = g2) || (h3 = null !== a2 && null === a2.memoizedState ? false : 0 !== (e2 & 2));
+  if (h3)
     f2 = true, b2.flags &= -129;
   else if (null === a2 || null !== a2.memoizedState)
     e2 |= 1;
@@ -4472,16 +4472,16 @@ function pj(a2, b2, c2) {
     return f2 ? (d2 = b2.mode, f2 = b2.child, g2 = { mode: "hidden", children: g2 }, 0 === (d2 & 1) && null !== f2 ? (f2.childLanes = 0, f2.pendingProps = g2) : f2 = qj(g2, d2, 0, null), a2 = Ah(a2, d2, c2, null), f2.return = b2, a2.return = b2, f2.sibling = a2, b2.child = f2, b2.child.memoizedState = oj(c2), b2.memoizedState = nj, a2) : rj(b2, g2);
   }
   e2 = a2.memoizedState;
-  if (null !== e2 && (h2 = e2.dehydrated, null !== h2))
-    return sj(a2, b2, g2, d2, h2, e2, c2);
+  if (null !== e2 && (h3 = e2.dehydrated, null !== h3))
+    return sj(a2, b2, g2, d2, h3, e2, c2);
   if (f2) {
     f2 = d2.fallback;
     g2 = b2.mode;
     e2 = a2.child;
-    h2 = e2.sibling;
+    h3 = e2.sibling;
     var k2 = { mode: "hidden", children: d2.children };
     0 === (g2 & 1) && b2.child !== e2 ? (d2 = b2.child, d2.childLanes = 0, d2.pendingProps = k2, b2.deletions = null) : (d2 = wh(e2, k2), d2.subtreeFlags = e2.subtreeFlags & 14680064);
-    null !== h2 ? f2 = wh(h2, f2) : (f2 = Ah(f2, g2, c2, null), f2.flags |= 2);
+    null !== h3 ? f2 = wh(h3, f2) : (f2 = Ah(f2, g2, c2, null), f2.flags |= 2);
     f2.return = b2;
     d2.return = b2;
     d2.sibling = f2;
@@ -4544,14 +4544,14 @@ function sj(a2, b2, c2, d2, e2, f2, g2) {
   if ("$!" === e2.data) {
     d2 = e2.nextSibling && e2.nextSibling.dataset;
     if (d2)
-      var h2 = d2.dgst;
-    d2 = h2;
+      var h3 = d2.dgst;
+    d2 = h3;
     f2 = Error(p$2(419));
     d2 = Li(f2, d2, void 0);
     return tj(a2, b2, g2, d2);
   }
-  h2 = 0 !== (g2 & a2.childLanes);
-  if (Ug || h2) {
+  h3 = 0 !== (g2 & a2.childLanes);
+  if (Ug || h3) {
     d2 = R$2;
     if (null !== d2) {
       switch (g2 & -g2) {
@@ -4814,28 +4814,28 @@ Cj = function(a2, b2, c2, d2) {
     for (l2 in e2)
       if (!d2.hasOwnProperty(l2) && e2.hasOwnProperty(l2) && null != e2[l2])
         if ("style" === l2) {
-          var h2 = e2[l2];
-          for (g2 in h2)
-            h2.hasOwnProperty(g2) && (c2 || (c2 = {}), c2[g2] = "");
+          var h3 = e2[l2];
+          for (g2 in h3)
+            h3.hasOwnProperty(g2) && (c2 || (c2 = {}), c2[g2] = "");
         } else
           "dangerouslySetInnerHTML" !== l2 && "children" !== l2 && "suppressContentEditableWarning" !== l2 && "suppressHydrationWarning" !== l2 && "autoFocus" !== l2 && (ea.hasOwnProperty(l2) ? f2 || (f2 = []) : (f2 = f2 || []).push(l2, null));
     for (l2 in d2) {
       var k2 = d2[l2];
-      h2 = null != e2 ? e2[l2] : void 0;
-      if (d2.hasOwnProperty(l2) && k2 !== h2 && (null != k2 || null != h2))
+      h3 = null != e2 ? e2[l2] : void 0;
+      if (d2.hasOwnProperty(l2) && k2 !== h3 && (null != k2 || null != h3))
         if ("style" === l2)
-          if (h2) {
-            for (g2 in h2)
-              !h2.hasOwnProperty(g2) || k2 && k2.hasOwnProperty(g2) || (c2 || (c2 = {}), c2[g2] = "");
+          if (h3) {
+            for (g2 in h3)
+              !h3.hasOwnProperty(g2) || k2 && k2.hasOwnProperty(g2) || (c2 || (c2 = {}), c2[g2] = "");
             for (g2 in k2)
-              k2.hasOwnProperty(g2) && h2[g2] !== k2[g2] && (c2 || (c2 = {}), c2[g2] = k2[g2]);
+              k2.hasOwnProperty(g2) && h3[g2] !== k2[g2] && (c2 || (c2 = {}), c2[g2] = k2[g2]);
           } else
             c2 || (f2 || (f2 = []), f2.push(
               l2,
               c2
             )), c2 = k2;
         else
-          "dangerouslySetInnerHTML" === l2 ? (k2 = k2 ? k2.__html : void 0, h2 = h2 ? h2.__html : void 0, null != k2 && h2 !== k2 && (f2 = f2 || []).push(l2, k2)) : "children" === l2 ? "string" !== typeof k2 && "number" !== typeof k2 || (f2 = f2 || []).push(l2, "" + k2) : "suppressContentEditableWarning" !== l2 && "suppressHydrationWarning" !== l2 && (ea.hasOwnProperty(l2) ? (null != k2 && "onScroll" === l2 && D$1("scroll", a2), f2 || h2 === k2 || (f2 = [])) : (f2 = f2 || []).push(l2, k2));
+          "dangerouslySetInnerHTML" === l2 ? (k2 = k2 ? k2.__html : void 0, h3 = h3 ? h3.__html : void 0, null != k2 && h3 !== k2 && (f2 = f2 || []).push(l2, k2)) : "children" === l2 ? "string" !== typeof k2 && "number" !== typeof k2 || (f2 = f2 || []).push(l2, "" + k2) : "suppressContentEditableWarning" !== l2 && "suppressHydrationWarning" !== l2 && (ea.hasOwnProperty(l2) ? (null != k2 && "onScroll" === l2 && D$1("scroll", a2), f2 || h3 === k2 || (f2 = [])) : (f2 = f2 || []).push(l2, k2));
     }
     c2 && (f2 = f2 || []).push("style", c2);
     var l2 = f2;
@@ -4969,12 +4969,12 @@ function Fj(a2, b2, c2) {
           e2 = null;
           for (var g2 in f2)
             if (f2.hasOwnProperty(g2)) {
-              var h2 = f2[g2];
-              "children" === g2 ? "string" === typeof h2 ? d2.textContent !== h2 && (true !== f2.suppressHydrationWarning && Af(d2.textContent, h2, a2), e2 = ["children", h2]) : "number" === typeof h2 && d2.textContent !== "" + h2 && (true !== f2.suppressHydrationWarning && Af(
+              var h3 = f2[g2];
+              "children" === g2 ? "string" === typeof h3 ? d2.textContent !== h3 && (true !== f2.suppressHydrationWarning && Af(d2.textContent, h3, a2), e2 = ["children", h3]) : "number" === typeof h3 && d2.textContent !== "" + h3 && (true !== f2.suppressHydrationWarning && Af(
                 d2.textContent,
-                h2,
+                h3,
                 a2
-              ), e2 = ["children", "" + h2]) : ea.hasOwnProperty(g2) && null != h2 && "onScroll" === g2 && D$1("scroll", d2);
+              ), e2 = ["children", "" + h3]) : ea.hasOwnProperty(g2) && null != h3 && "onScroll" === g2 && D$1("scroll", d2);
             }
           switch (c2) {
             case "input":
@@ -5062,10 +5062,10 @@ function Fj(a2, b2, c2) {
                 e2 = d2;
             }
             ub(c2, e2);
-            h2 = e2;
-            for (f2 in h2)
-              if (h2.hasOwnProperty(f2)) {
-                var k2 = h2[f2];
+            h3 = e2;
+            for (f2 in h3)
+              if (h3.hasOwnProperty(f2)) {
+                var k2 = h3[f2];
                 "style" === f2 ? sb(a2, k2) : "dangerouslySetInnerHTML" === f2 ? (k2 = k2 ? k2.__html : void 0, null != k2 && nb(a2, k2)) : "children" === f2 ? "string" === typeof k2 ? ("textarea" !== c2 || "" !== k2) && ob(a2, k2) : "number" === typeof k2 && ob(a2, "" + k2) : "suppressContentEditableWarning" !== f2 && "suppressHydrationWarning" !== f2 && "autoFocus" !== f2 && (ea.hasOwnProperty(f2) ? null != k2 && "onScroll" === f2 && D$1("scroll", a2) : null != k2 && ta(a2, f2, k2, g2));
               }
             switch (c2) {
@@ -5306,11 +5306,11 @@ function Pj(a2, b2) {
             c2 = null;
             break a;
           }
-          var g2 = 0, h2 = -1, k2 = -1, l2 = 0, m2 = 0, q2 = a2, r2 = null;
+          var g2 = 0, h3 = -1, k2 = -1, l2 = 0, m2 = 0, q2 = a2, r2 = null;
           b:
             for (; ; ) {
               for (var y2; ; ) {
-                q2 !== c2 || 0 !== e2 && 3 !== q2.nodeType || (h2 = g2 + e2);
+                q2 !== c2 || 0 !== e2 && 3 !== q2.nodeType || (h3 = g2 + e2);
                 q2 !== f2 || 0 !== d2 && 3 !== q2.nodeType || (k2 = g2 + d2);
                 3 === q2.nodeType && (g2 += q2.nodeValue.length);
                 if (null === (y2 = q2.firstChild))
@@ -5321,7 +5321,7 @@ function Pj(a2, b2) {
               for (; ; ) {
                 if (q2 === a2)
                   break b;
-                r2 === c2 && ++l2 === e2 && (h2 = g2);
+                r2 === c2 && ++l2 === e2 && (h3 = g2);
                 r2 === f2 && ++m2 === d2 && (k2 = g2);
                 if (null !== (y2 = q2.nextSibling))
                   break;
@@ -5330,7 +5330,7 @@ function Pj(a2, b2) {
               }
               q2 = y2;
             }
-          c2 = -1 === h2 || -1 === k2 ? null : { start: h2, end: k2 };
+          c2 = -1 === h3 || -1 === k2 ? null : { start: h3, end: k2 };
         } else
           c2 = null;
       }
@@ -5494,7 +5494,7 @@ function ak(a2, b2, c2) {
   if (lc && "function" === typeof lc.onCommitFiberUnmount)
     try {
       lc.onCommitFiberUnmount(kc, c2);
-    } catch (h2) {
+    } catch (h3) {
     }
   switch (c2.tag) {
     case 5:
@@ -5538,8 +5538,8 @@ function ak(a2, b2, c2) {
       if (!U$1 && (Mj(c2, b2), d2 = c2.stateNode, "function" === typeof d2.componentWillUnmount))
         try {
           d2.props = c2.memoizedProps, d2.state = c2.memoizedState, d2.componentWillUnmount();
-        } catch (h2) {
-          W$1(c2, b2, h2);
+        } catch (h3) {
+          W$1(c2, b2, h3);
         }
       Zj(a2, b2, c2);
       break;
@@ -5571,24 +5571,24 @@ function dk(a2, b2) {
     for (var d2 = 0; d2 < c2.length; d2++) {
       var e2 = c2[d2];
       try {
-        var f2 = a2, g2 = b2, h2 = g2;
+        var f2 = a2, g2 = b2, h3 = g2;
         a:
-          for (; null !== h2; ) {
-            switch (h2.tag) {
+          for (; null !== h3; ) {
+            switch (h3.tag) {
               case 5:
-                X$1 = h2.stateNode;
+                X$1 = h3.stateNode;
                 Yj = false;
                 break a;
               case 3:
-                X$1 = h2.stateNode.containerInfo;
+                X$1 = h3.stateNode.containerInfo;
                 Yj = true;
                 break a;
               case 4:
-                X$1 = h2.stateNode.containerInfo;
+                X$1 = h3.stateNode.containerInfo;
                 Yj = true;
                 break a;
             }
-            h2 = h2.return;
+            h3 = h3.return;
           }
         if (null === X$1)
           throw Error(p$2(160));
@@ -5646,18 +5646,18 @@ function ek(a2, b2) {
         }
       }
       if (d2 & 4 && (e2 = a2.stateNode, null != e2)) {
-        var f2 = a2.memoizedProps, g2 = null !== c2 ? c2.memoizedProps : f2, h2 = a2.type, k2 = a2.updateQueue;
+        var f2 = a2.memoizedProps, g2 = null !== c2 ? c2.memoizedProps : f2, h3 = a2.type, k2 = a2.updateQueue;
         a2.updateQueue = null;
         if (null !== k2)
           try {
-            "input" === h2 && "radio" === f2.type && null != f2.name && ab(e2, f2);
-            vb(h2, g2);
-            var l2 = vb(h2, f2);
+            "input" === h3 && "radio" === f2.type && null != f2.name && ab(e2, f2);
+            vb(h3, g2);
+            var l2 = vb(h3, f2);
             for (g2 = 0; g2 < k2.length; g2 += 2) {
               var m2 = k2[g2], q2 = k2[g2 + 1];
               "style" === m2 ? sb(e2, q2) : "dangerouslySetInnerHTML" === m2 ? nb(e2, q2) : "children" === m2 ? ob(e2, q2) : ta(e2, m2, q2, l2);
             }
-            switch (h2) {
+            switch (h3) {
               case "input":
                 bb(e2, f2);
                 break;
@@ -5767,7 +5767,7 @@ function ek(a2, b2) {
               if (null === m2) {
                 m2 = q2;
                 try {
-                  e2 = q2.stateNode, l2 ? (f2 = e2.style, "function" === typeof f2.setProperty ? f2.setProperty("display", "none", "important") : f2.display = "none") : (h2 = q2.stateNode, k2 = q2.memoizedProps.style, g2 = void 0 !== k2 && null !== k2 && k2.hasOwnProperty("display") ? k2.display : null, h2.style.display = rb("display", g2));
+                  e2 = q2.stateNode, l2 ? (f2 = e2.style, "function" === typeof f2.setProperty ? f2.setProperty("display", "none", "important") : f2.display = "none") : (h3 = q2.stateNode, k2 = q2.memoizedProps.style, g2 = void 0 !== k2 && null !== k2 && k2.hasOwnProperty("display") ? k2.display : null, h3.style.display = rb("display", g2));
                 } catch (t2) {
                   W$1(a2, a2.return, t2);
                 }
@@ -5835,8 +5835,8 @@ function fk(a2) {
           break;
         case 3:
         case 4:
-          var g2 = d2.stateNode.containerInfo, h2 = Vj(a2);
-          Wj(a2, h2, g2);
+          var g2 = d2.stateNode.containerInfo, h3 = Vj(a2);
+          Wj(a2, h3, g2);
           break;
         default:
           throw Error(p$2(161));
@@ -5858,8 +5858,8 @@ function jk(a2, b2, c2) {
     if (22 === e2.tag && d2) {
       var g2 = null !== e2.memoizedState || Kj;
       if (!g2) {
-        var h2 = e2.alternate, k2 = null !== h2 && null !== h2.memoizedState || U$1;
-        h2 = Kj;
+        var h3 = e2.alternate, k2 = null !== h3 && null !== h3.memoizedState || U$1;
+        h3 = Kj;
         var l2 = U$1;
         Kj = g2;
         if ((U$1 = k2) && !l2)
@@ -5868,7 +5868,7 @@ function jk(a2, b2, c2) {
         for (; null !== f2; )
           V$1 = f2, jk(f2), f2 = f2.sibling;
         V$1 = e2;
-        Kj = h2;
+        Kj = h3;
         U$1 = l2;
       }
       lk(a2);
@@ -5917,9 +5917,9 @@ function lk(a2) {
               }
               break;
             case 5:
-              var h2 = b2.stateNode;
+              var h3 = b2.stateNode;
               if (null === c2 && b2.flags & 4) {
-                c2 = h2;
+                c2 = h3;
                 var k2 = b2.memoizedProps;
                 switch (b2.type) {
                   case "button":
@@ -6042,10 +6042,10 @@ function kk(a2) {
       V$1 = null;
       break;
     }
-    var h2 = b2.sibling;
-    if (null !== h2) {
-      h2.return = b2.return;
-      V$1 = h2;
+    var h3 = b2.sibling;
+    if (null !== h3) {
+      h3.return = b2.return;
+      V$1 = h3;
       break;
     }
     V$1 = b2.return;
@@ -6135,8 +6135,8 @@ function Hk(a2, b2) {
       try {
         Mk();
         break;
-      } catch (h2) {
-        Nk(a2, h2);
+      } catch (h3) {
+        Nk(a2, h3);
       }
     while (1);
     Qg();
@@ -6402,11 +6402,11 @@ function Nk(a2, b2) {
         break;
       }
       a: {
-        var f2 = a2, g2 = c2.return, h2 = c2, k2 = b2;
+        var f2 = a2, g2 = c2.return, h3 = c2, k2 = b2;
         b2 = Z$2;
-        h2.flags |= 32768;
+        h3.flags |= 32768;
         if (null !== k2 && "object" === typeof k2 && "function" === typeof k2.then) {
-          var l2 = k2, m2 = h2, q2 = m2.tag;
+          var l2 = k2, m2 = h3, q2 = m2.tag;
           if (0 === (m2.mode & 1) && (0 === q2 || 11 === q2 || 15 === q2)) {
             var r2 = m2.alternate;
             r2 ? (m2.updateQueue = r2.updateQueue, m2.memoizedState = r2.memoizedState, m2.lanes = r2.lanes) : (m2.updateQueue = null, m2.memoizedState = null);
@@ -6414,7 +6414,7 @@ function Nk(a2, b2) {
           var y2 = Vi(g2);
           if (null !== y2) {
             y2.flags &= -257;
-            Wi(y2, g2, h2, f2, b2);
+            Wi(y2, g2, h3, f2, b2);
             y2.mode & 1 && Ti(f2, l2, b2);
             b2 = y2;
             k2 = l2;
@@ -6434,16 +6434,16 @@ function Nk(a2, b2) {
             }
             k2 = Error(p$2(426));
           }
-        } else if (I$1 && h2.mode & 1) {
+        } else if (I$1 && h3.mode & 1) {
           var J2 = Vi(g2);
           if (null !== J2) {
             0 === (J2.flags & 65536) && (J2.flags |= 256);
-            Wi(J2, g2, h2, f2, b2);
-            Jg(Ki(k2, h2));
+            Wi(J2, g2, h3, f2, b2);
+            Jg(Ki(k2, h3));
             break a;
           }
         }
-        f2 = k2 = Ki(k2, h2);
+        f2 = k2 = Ki(k2, h3);
         4 !== T$1 && (T$1 = 2);
         null === tk ? tk = [f2] : tk.push(f2);
         f2 = g2;
@@ -6457,13 +6457,13 @@ function Nk(a2, b2) {
               fh(f2, x2);
               break a;
             case 1:
-              h2 = k2;
+              h3 = k2;
               var w2 = f2.type, u2 = f2.stateNode;
               if (0 === (f2.flags & 128) && ("function" === typeof w2.getDerivedStateFromError || null !== u2 && "function" === typeof u2.componentDidCatch && (null === Si || !Si.has(u2)))) {
                 f2.flags |= 65536;
                 b2 &= -b2;
                 f2.lanes |= b2;
-                var F2 = Ri(f2, h2, b2);
+                var F2 = Ri(f2, h3, b2);
                 fh(f2, F2);
                 break a;
               }
@@ -6599,7 +6599,7 @@ function Xk(a2, b2, c2, d2) {
     pk.transition = null;
     var g2 = C$1;
     C$1 = 1;
-    var h2 = K$1;
+    var h3 = K$1;
     K$1 |= 4;
     ok.current = null;
     Pj(a2, c2);
@@ -6610,7 +6610,7 @@ function Xk(a2, b2, c2, d2) {
     a2.current = c2;
     ik(c2);
     dc();
-    K$1 = h2;
+    K$1 = h3;
     C$1 = g2;
     pk.transition = f2;
   } else
@@ -6650,10 +6650,10 @@ function Ik() {
         for (V$1 = a2.current; null !== V$1; ) {
           var f2 = V$1, g2 = f2.child;
           if (0 !== (V$1.flags & 16)) {
-            var h2 = f2.deletions;
-            if (null !== h2) {
-              for (var k2 = 0; k2 < h2.length; k2++) {
-                var l2 = h2[k2];
+            var h3 = f2.deletions;
+            if (null !== h3) {
+              for (var k2 = 0; k2 < h3.length; k2++) {
+                var l2 = h3[k2];
                 for (V$1 = l2; null !== V$1; ) {
                   var m2 = V$1;
                   switch (m2.tag) {
@@ -6729,29 +6729,29 @@ function Ik() {
           else
             b:
               for (g2 = w2; null !== V$1; ) {
-                h2 = V$1;
-                if (0 !== (h2.flags & 2048))
+                h3 = V$1;
+                if (0 !== (h3.flags & 2048))
                   try {
-                    switch (h2.tag) {
+                    switch (h3.tag) {
                       case 0:
                       case 11:
                       case 15:
-                        Rj(9, h2);
+                        Rj(9, h3);
                     }
                   } catch (na) {
-                    W$1(h2, h2.return, na);
+                    W$1(h3, h3.return, na);
                   }
-                if (h2 === g2) {
+                if (h3 === g2) {
                   V$1 = null;
                   break b;
                 }
-                var F2 = h2.sibling;
+                var F2 = h3.sibling;
                 if (null !== F2) {
-                  F2.return = h2.return;
+                  F2.return = h3.return;
                   V$1 = F2;
                   break b;
                 }
-                V$1 = h2.return;
+                V$1 = h3.return;
               }
         }
         K$1 = e2;
@@ -6962,10 +6962,10 @@ Wk = function(a2, b2, c2) {
             }
           } else
             for (f2 = b2.child, null !== f2 && (f2.return = b2); null !== f2; ) {
-              var h2 = f2.dependencies;
-              if (null !== h2) {
+              var h3 = f2.dependencies;
+              if (null !== h3) {
                 g2 = f2.child;
-                for (var k2 = h2.firstContext; null !== k2; ) {
+                for (var k2 = h3.firstContext; null !== k2; ) {
                   if (k2.context === d2) {
                     if (1 === f2.tag) {
                       k2 = ch(-1, c2 & -c2);
@@ -6986,7 +6986,7 @@ Wk = function(a2, b2, c2) {
                       c2,
                       b2
                     );
-                    h2.lanes |= c2;
+                    h3.lanes |= c2;
                     break;
                   }
                   k2 = k2.next;
@@ -6998,8 +6998,8 @@ Wk = function(a2, b2, c2) {
                 if (null === g2)
                   throw Error(p$2(341));
                 g2.lanes |= c2;
-                h2 = g2.alternate;
-                null !== h2 && (h2.lanes |= c2);
+                h3 = g2.alternate;
+                null !== h3 && (h3.lanes |= c2);
                 Sg(g2, c2, b2);
                 g2 = f2.sibling;
               } else
@@ -7184,8 +7184,8 @@ function bl(a2, b2, c2, d2, e2) {
   this.onRecoverableError = e2;
   this.mutableSourceEagerHydrationData = null;
 }
-function cl(a2, b2, c2, d2, e2, f2, g2, h2, k2) {
-  a2 = new bl(a2, b2, c2, h2, k2);
+function cl(a2, b2, c2, d2, e2, f2, g2, h3, k2) {
+  a2 = new bl(a2, b2, c2, h3, k2);
   1 === b2 ? (b2 = 1, true === f2 && (b2 |= 8)) : b2 = 0;
   f2 = Bg(3, null, null, b2);
   a2.current = f2;
@@ -7228,8 +7228,8 @@ function el(a2) {
   }
   return b2;
 }
-function fl(a2, b2, c2, d2, e2, f2, g2, h2, k2) {
-  a2 = cl(c2, d2, true, a2, e2, f2, g2, h2, k2);
+function fl(a2, b2, c2, d2, e2, f2, g2, h3, k2) {
+  a2 = cl(c2, d2, true, a2, e2, f2, g2, h3, k2);
   a2.context = el(null);
   c2 = a2.current;
   d2 = L$1();
@@ -7342,10 +7342,10 @@ function rl(a2, b2, c2, d2, e2) {
   for (; e2 = a2.lastChild; )
     a2.removeChild(e2);
   if ("function" === typeof d2) {
-    var h2 = d2;
+    var h3 = d2;
     d2 = function() {
       var a3 = hl(k2);
-      h2.call(a3);
+      h3.call(a3);
     };
   }
   var k2 = cl(a2, 0, false, null, null, false, false, "", ql);
@@ -7362,10 +7362,10 @@ function sl(a2, b2, c2, d2, e2) {
   if (f2) {
     var g2 = f2;
     if ("function" === typeof e2) {
-      var h2 = e2;
+      var h3 = e2;
       e2 = function() {
         var a3 = hl(g2);
-        h2.call(a3);
+        h3.call(a3);
       };
     }
     gl(b2, g2, a2, e2);
@@ -7624,7 +7624,7 @@ var IMPORT = "@import";
 var KEYFRAMES = "@keyframes";
 var LAYER = "@layer";
 var abs$2 = Math.abs;
-var from$1 = String.fromCharCode;
+var from$2 = String.fromCharCode;
 var assign = Object.assign;
 function hash(value, length2) {
   return charat(value, 0) ^ 45 ? (((length2 << 2 ^ charat(value, 0)) << 2 ^ charat(value, 1)) << 2 ^ charat(value, 2)) << 2 ^ charat(value, 3) : 0;
@@ -7656,8 +7656,8 @@ function sizeof(value) {
 function append(value, array4) {
   return array4.push(value), value;
 }
-function combine(array4, callback) {
-  return array4.map(callback).join("");
+function combine(array4, callback2) {
+  return array4.map(callback2).join("");
 }
 function filter$1(array4, pattern4) {
   return array4.filter(function(value) {
@@ -7786,7 +7786,7 @@ function commenter(type4, index2) {
       break;
     else if (type4 + character === 42 + 42 && peek() === 47)
       break;
-  return "/*" + slice(index2, position - 1) + "*" + from$1(type4 === 47 ? type4 : next());
+  return "/*" + slice(index2, position - 1) + "*" + from$2(type4 === 47 ? type4 : next());
 }
 function identifier(index2) {
   while (!token$1(peek()))
@@ -7794,9 +7794,9 @@ function identifier(index2) {
   return slice(index2, position);
 }
 function compile(value) {
-  return dealloc(parse("", null, null, null, [""], value = alloc(value), 0, [0], value));
+  return dealloc(parse$1("", null, null, null, [""], value = alloc(value), 0, [0], value));
 }
-function parse(value, root2, parent, rule, rules2, rulesets, pseudo, points, declarations) {
+function parse$1(value, root2, parent, rule, rules2, rulesets, pseudo, points, declarations) {
   var index2 = 0;
   var offset2 = 0;
   var length2 = pseudo;
@@ -7865,17 +7865,17 @@ function parse(value, root2, parent, rule, rules2, rulesets, pseudo, points, dec
             append(reference = ruleset(characters2, root2, parent, index2, offset2, rules2, points, type4, props = [], children = [], length2, rulesets), rulesets);
             if (character2 === 123)
               if (offset2 === 0)
-                parse(characters2, root2, reference, reference, props, rulesets, length2, points, children);
+                parse$1(characters2, root2, reference, reference, props, rulesets, length2, points, children);
               else
                 switch (atrule === 99 && charat(characters2, 3) === 110 ? 100 : atrule) {
                   case 100:
                   case 108:
                   case 109:
                   case 115:
-                    parse(value, reference, reference, rule && append(ruleset(value, reference, reference, 0, 0, rules2, points, type4, rules2, props = [], length2, children), children), rules2, children, length2, points, rule ? props : children);
+                    parse$1(value, reference, reference, rule && append(ruleset(value, reference, reference, 0, 0, rules2, points, type4, rules2, props = [], length2, children), children), rules2, children, length2, points, rule ? props : children);
                     break;
                   default:
-                    parse(characters2, reference, reference, reference, [""], children, 0, points, children);
+                    parse$1(characters2, reference, reference, reference, [""], children, 0, points, children);
                 }
         }
         index2 = offset2 = property = 0, variable = ampersand = 1, type4 = characters2 = "", length2 = pseudo;
@@ -7889,7 +7889,7 @@ function parse(value, root2, parent, rule, rules2, rulesets, pseudo, points, dec
           else if (character2 == 125 && variable++ == 0 && prev() == 125)
             continue;
         }
-        switch (characters2 += from$1(character2), character2 * variable) {
+        switch (characters2 += from$2(character2), character2 * variable) {
           case 38:
             ampersand = offset2 > 0 ? 1 : (characters2 += "\f", -1);
             break;
@@ -7919,7 +7919,7 @@ function ruleset(value, root2, parent, index2, offset2, rules2, points, type4, p
   return node(value, root2, parent, offset2 === 0 ? RULESET : type4, props, children, length2, siblings);
 }
 function comment(value, root2, parent, siblings) {
-  return node(value, root2, parent, COMMENT, from$1(char()), substr(value, 2, -2), 0, siblings);
+  return node(value, root2, parent, COMMENT, from$2(char()), substr(value, 2, -2), 0, siblings);
 }
 function declaration(value, root2, parent, length2, siblings) {
   return node(value, root2, parent, DECLARATION, substr(value, 0, length2), substr(value, length2 + 1, -1), length2, siblings);
@@ -8072,13 +8072,13 @@ function prefix(value, length2, children) {
   }
   return value;
 }
-function serialize(children, callback) {
+function serialize(children, callback2) {
   var output = "";
   for (var i2 = 0; i2 < children.length; i2++)
-    output += callback(children[i2], i2, children, callback) || "";
+    output += callback2(children[i2], i2, children, callback2) || "";
   return output;
 }
-function stringify$2(element, index2, children, callback) {
+function stringify$2(element, index2, children, callback2) {
   switch (element.type) {
     case LAYER:
       if (element.children.length)
@@ -8089,31 +8089,31 @@ function stringify$2(element, index2, children, callback) {
     case COMMENT:
       return "";
     case KEYFRAMES:
-      return element.return = element.value + "{" + serialize(element.children, callback) + "}";
+      return element.return = element.value + "{" + serialize(element.children, callback2) + "}";
     case RULESET:
       if (!strlen(element.value = element.props.join(",")))
         return "";
   }
-  return strlen(children = serialize(element.children, callback)) ? element.return = element.value + "{" + children + "}" : "";
+  return strlen(children = serialize(element.children, callback2)) ? element.return = element.value + "{" + children + "}" : "";
 }
 function middleware(collection) {
   var length2 = sizeof(collection);
-  return function(element, index2, children, callback) {
+  return function(element, index2, children, callback2) {
     var output = "";
     for (var i2 = 0; i2 < length2; i2++)
-      output += collection[i2](element, index2, children, callback) || "";
+      output += collection[i2](element, index2, children, callback2) || "";
     return output;
   };
 }
-function rulesheet(callback) {
+function rulesheet(callback2) {
   return function(element) {
     if (!element.root) {
       if (element = element.return)
-        callback(element);
+        callback2(element);
     }
   };
 }
-function prefixer(element, index2, children, callback) {
+function prefixer(element, index2, children, callback2) {
   if (element.length > -1) {
     if (!element.return)
       switch (element.type) {
@@ -8121,23 +8121,23 @@ function prefixer(element, index2, children, callback) {
           element.return = prefix(element.value, element.length, children);
           return;
         case KEYFRAMES:
-          return serialize([copy$2(element, { value: replace(element.value, "@", "@" + WEBKIT) })], callback);
+          return serialize([copy$2(element, { value: replace(element.value, "@", "@" + WEBKIT) })], callback2);
         case RULESET:
           if (element.length)
             return combine(children = element.props, function(value) {
-              switch (match$1(value, callback = /(::plac\w+|:read-\w+)/)) {
+              switch (match$1(value, callback2 = /(::plac\w+|:read-\w+)/)) {
                 case ":read-only":
                 case ":read-write":
                   lift(copy$2(element, { props: [replace(value, /:(read-\w+)/, ":" + MOZ + "$1")] }));
                   lift(copy$2(element, { props: [value] }));
-                  assign(element, { props: filter$1(children, callback) });
+                  assign(element, { props: filter$1(children, callback2) });
                   break;
                 case "::placeholder":
                   lift(copy$2(element, { props: [replace(value, /:(plac\w+)/, ":" + WEBKIT + "input-$1")] }));
                   lift(copy$2(element, { props: [replace(value, /:(plac\w+)/, ":" + MOZ + "$1")] }));
                   lift(copy$2(element, { props: [replace(value, /:(plac\w+)/, MS + "input-$1")] }));
                   lift(copy$2(element, { props: [value] }));
-                  assign(element, { props: filter$1(children, callback) });
+                  assign(element, { props: filter$1(children, callback2) });
                   break;
               }
               return "";
@@ -8621,12 +8621,12 @@ function Xe(e2) {
 }
 var Ze = {}, Ke = /* @__PURE__ */ new Set();
 function Qe(e2, r2, s2) {
-  var i2 = ee(e2), a2 = e2, c2 = !M$1(e2), p2 = r2.attrs, d2 = void 0 === p2 ? E$1 : p2, h2 = r2.componentId, f2 = void 0 === h2 ? function(e3, t2) {
+  var i2 = ee(e2), a2 = e2, c2 = !M$1(e2), p2 = r2.attrs, d2 = void 0 === p2 ? E$1 : p2, h3 = r2.componentId, f2 = void 0 === h3 ? function(e3, t2) {
     var n2 = "string" != typeof e3 ? "sc" : A$2(e3);
     Ze[n2] = (Ze[n2] || 0) + 1;
     var o2 = "".concat(n2, "-").concat(x$1("6.0.7" + n2 + Ze[n2]));
     return t2 ? "".concat(t2, "-").concat(o2) : o2;
-  }(r2.displayName, r2.parentComponentId) : h2, m2 = r2.displayName;
+  }(r2.displayName, r2.parentComponentId) : h3, m2 = r2.displayName;
   void 0 === m2 ? function(e3) {
     return M$1(e3) ? "styled.".concat(e3) : "Styled(".concat(V(e3), ")");
   }(e2) : m2;
@@ -8644,7 +8644,7 @@ function Qe(e2, r2, s2) {
   var I2 = new qe(s2, v2, i2 ? a2.componentStyle : void 0);
   function O2(e3, r3) {
     return function(e4, r4, s3) {
-      var i3 = e4.attrs, a3 = e4.componentStyle, c3 = e4.defaultProps, p3 = e4.foldedComponentIds, d3 = e4.styledComponentId, h3 = e4.target, f3 = React.useContext(He), m3 = Ve(), y2 = e4.shouldForwardProp || m3.shouldForwardProp;
+      var i3 = e4.attrs, a3 = e4.componentStyle, c3 = e4.defaultProps, p3 = e4.foldedComponentIds, d3 = e4.styledComponentId, h4 = e4.target, f3 = React.useContext(He), m3 = Ve(), y2 = e4.shouldForwardProp || m3.shouldForwardProp;
       var v3 = function(e5, n2, o2) {
         for (var r5, s4 = __assign$1(__assign$1({}, n2), { className: void 0, theme: o2 }), i4 = 0; i4 < e5.length; i4 += 1) {
           var a4 = Q(r5 = e5[i4]) ? r5(s4) : r5;
@@ -8652,7 +8652,7 @@ function Qe(e2, r2, s2) {
             s4[c4] = "className" === c4 ? te(s4[c4], a4[c4]) : "style" === c4 ? __assign$1(__assign$1({}, s4[c4]), a4[c4]) : a4[c4];
         }
         return n2.className && (s4.className = te(s4.className, n2.className)), s4;
-      }(i3, r4, P$1(r4, f3, c3) || N), g3 = v3.as || h3, S3 = {};
+      }(i3, r4, P$1(r4, f3, c3) || N), g3 = v3.as || h4, S3 = {};
       for (var w3 in v3)
         void 0 === v3[w3] || "$" === w3[0] || "as" === w3 || "theme" === w3 || ("forwardedAs" === w3 ? S3.as = v3.forwardedAs : y2 && !y2(w3, g3) || (S3[w3] = v3[w3], y2 || true));
       var b2 = function(e5, t2) {
@@ -8802,9 +8802,9 @@ var Action;
   Action2["Replace"] = "REPLACE";
 })(Action || (Action = {}));
 const PopStateEventType = "popstate";
-function createHashHistory(options) {
-  if (options === void 0) {
-    options = {};
+function createHashHistory(options2) {
+  if (options2 === void 0) {
+    options2 = {};
   }
   function createHashLocation(window2, globalHistory) {
     let {
@@ -8840,7 +8840,7 @@ function createHashHistory(options) {
   function validateHashLocation(location, to2) {
     warning$3(location.pathname.charAt(0) === "/", "relative pathnames are not supported in hash history.push(" + JSON.stringify(to2) + ")");
   }
-  return getUrlBasedHistory(createHashLocation, createHashHref, validateHashLocation, options);
+  return getUrlBasedHistory(createHashLocation, createHashHref, validateHashLocation, options2);
 }
 function invariant(value, message2) {
   if (value === false || value === null || typeof value === "undefined") {
@@ -8916,14 +8916,14 @@ function parsePath(path2) {
   }
   return parsedPath;
 }
-function getUrlBasedHistory(getLocation, createHref, validateLocation, options) {
-  if (options === void 0) {
-    options = {};
+function getUrlBasedHistory(getLocation, createHref, validateLocation, options2) {
+  if (options2 === void 0) {
+    options2 = {};
   }
   let {
     window: window2 = document.defaultView,
     v5Compat = false
-  } = options;
+  } = options2;
   let globalHistory = window2.history;
   let action = Action.Pop;
   let listener = null;
@@ -9475,9 +9475,9 @@ function useNavigateUnstable() {
   useIsomorphicLayoutEffect$1(() => {
     activeRef.current = true;
   });
-  let navigate = reactExports.useCallback(function(to2, options) {
-    if (options === void 0) {
-      options = {};
+  let navigate = reactExports.useCallback(function(to2, options2) {
+    if (options2 === void 0) {
+      options2 = {};
     }
     if (!activeRef.current)
       return;
@@ -9485,11 +9485,11 @@ function useNavigateUnstable() {
       navigator2.go(to2);
       return;
     }
-    let path2 = resolveTo(to2, JSON.parse(routePathnamesJson), locationPathname, options.relative === "path");
+    let path2 = resolveTo(to2, JSON.parse(routePathnamesJson), locationPathname, options2.relative === "path");
     if (dataRouterContext == null && basename !== "/") {
       path2.pathname = path2.pathname === "/" ? basename : joinPaths([basename, path2.pathname]);
     }
-    (!!options.replace ? navigator2.replace : navigator2.push)(path2, options.state, options);
+    (!!options2.replace ? navigator2.replace : navigator2.push)(path2, options2.state, options2);
   }, [basename, navigator2, routePathnamesJson, locationPathname, dataRouterContext]);
   return navigate;
 }
@@ -9780,9 +9780,9 @@ function useNavigateStable() {
   useIsomorphicLayoutEffect$1(() => {
     activeRef.current = true;
   });
-  let navigate = reactExports.useCallback(function(to2, options) {
-    if (options === void 0) {
-      options = {};
+  let navigate = reactExports.useCallback(function(to2, options2) {
+    if (options2 === void 0) {
+      options2 = {};
     }
     if (!activeRef.current)
       return;
@@ -9791,7 +9791,7 @@ function useNavigateStable() {
     } else {
       router.navigate(to2, _extends$3({
         fromRouteId: id2
-      }, options));
+      }, options2));
     }
   }, [router, id2]);
   return navigate;
@@ -10612,13 +10612,13 @@ var MapShim = function() {
       class_1.prototype.clear = function() {
         this.__entries__.splice(0);
       };
-      class_1.prototype.forEach = function(callback, ctx) {
+      class_1.prototype.forEach = function(callback2, ctx) {
         if (ctx === void 0) {
           ctx = null;
         }
         for (var _i = 0, _a = this.__entries__; _i < _a.length; _i++) {
           var entry = _a[_i];
-          callback.call(ctx, entry[1], entry[0]);
+          callback2.call(ctx, entry[1], entry[0]);
         }
       };
       return class_1;
@@ -10642,19 +10642,19 @@ var requestAnimationFrame$1 = function() {
   if (typeof requestAnimationFrame === "function") {
     return requestAnimationFrame.bind(global$1);
   }
-  return function(callback) {
+  return function(callback2) {
     return setTimeout(function() {
-      return callback(Date.now());
+      return callback2(Date.now());
     }, 1e3 / 60);
   };
 }();
 var trailingTimeout = 2;
-function throttle$1(callback, delay) {
+function throttle$1(callback2, delay) {
   var leadingCall = false, trailingCall = false, lastCallTime = 0;
   function resolvePending() {
     if (leadingCall) {
       leadingCall = false;
-      callback();
+      callback2();
     }
     if (trailingCall) {
       proxy();
@@ -10802,19 +10802,19 @@ function toFloat(value) {
   return parseFloat(value) || 0;
 }
 function getBordersSize(styles) {
-  var positions = [];
+  var positions2 = [];
   for (var _i = 1; _i < arguments.length; _i++) {
-    positions[_i - 1] = arguments[_i];
+    positions2[_i - 1] = arguments[_i];
   }
-  return positions.reduce(function(size, position2) {
+  return positions2.reduce(function(size, position2) {
     var value = styles["border-" + position2 + "-width"];
     return size + toFloat(value);
   }, 0);
 }
 function getPaddings(styles) {
-  var positions = ["top", "right", "bottom", "left"];
+  var positions2 = ["top", "right", "bottom", "left"];
   var paddings = {};
-  for (var _i = 0, positions_1 = positions; _i < positions_1.length; _i++) {
+  for (var _i = 0, positions_1 = positions2; _i < positions_1.length; _i++) {
     var position2 = positions_1[_i];
     var value = styles["padding-" + position2];
     paddings[position2] = toFloat(value);
@@ -10932,13 +10932,13 @@ var ResizeObserverEntry = (
 var ResizeObserverSPI = (
   /** @class */
   function() {
-    function ResizeObserverSPI2(callback, controller, callbackCtx) {
+    function ResizeObserverSPI2(callback2, controller, callbackCtx) {
       this.activeObservations_ = [];
       this.observations_ = new MapShim();
-      if (typeof callback !== "function") {
+      if (typeof callback2 !== "function") {
         throw new TypeError("The callback provided as parameter 1 is not a function.");
       }
-      this.callback_ = callback;
+      this.callback_ = callback2;
       this.controller_ = controller;
       this.callbackCtx_ = callbackCtx;
     }
@@ -11017,7 +11017,7 @@ var observers = typeof WeakMap !== "undefined" ? /* @__PURE__ */ new WeakMap() :
 var ResizeObserver$2 = (
   /** @class */
   function() {
-    function ResizeObserver2(callback) {
+    function ResizeObserver2(callback2) {
       if (!(this instanceof ResizeObserver2)) {
         throw new TypeError("Cannot call a class as a function.");
       }
@@ -11025,7 +11025,7 @@ var ResizeObserver$2 = (
         throw new TypeError("1 argument required, but only 0 present.");
       }
       var controller = ResizeObserverController.getInstance();
-      var observer = new ResizeObserverSPI(callback, controller, this);
+      var observer = new ResizeObserverSPI(callback2, controller, this);
       observers.set(this, observer);
     }
     return ResizeObserver2;
@@ -11058,16 +11058,16 @@ function onResize(entities) {
   });
 }
 var resizeObserver = new index(onResize);
-function observe(element, callback) {
+function observe(element, callback2) {
   if (!elementListeners.has(element)) {
     elementListeners.set(element, /* @__PURE__ */ new Set());
     resizeObserver.observe(element);
   }
-  elementListeners.get(element).add(callback);
+  elementListeners.get(element).add(callback2);
 }
-function unobserve(element, callback) {
+function unobserve(element, callback2) {
   if (elementListeners.has(element)) {
-    elementListeners.get(element).delete(callback);
+    elementListeners.get(element).delete(callback2);
     if (!elementListeners.get(element).size) {
       resizeObserver.unobserve(element);
       elementListeners.delete(element);
@@ -11242,15 +11242,15 @@ function _nonIterableSpread() {
 function _toConsumableArray(arr) {
   return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _unsupportedIterableToArray(arr) || _nonIterableSpread();
 }
-var raf = function raf2(callback) {
-  return +setTimeout(callback, 16);
+var raf = function raf2(callback2) {
+  return +setTimeout(callback2, 16);
 };
 var caf = function caf2(num) {
   return clearTimeout(num);
 };
 if (typeof window !== "undefined" && "requestAnimationFrame" in window) {
-  raf = function raf3(callback) {
-    return window.requestAnimationFrame(callback);
+  raf = function raf3(callback2) {
+    return window.requestAnimationFrame(callback2);
   };
   caf = function caf3(handle) {
     return window.cancelAnimationFrame(handle);
@@ -11261,14 +11261,14 @@ var rafIds = /* @__PURE__ */ new Map();
 function cleanup(id2) {
   rafIds.delete(id2);
 }
-var wrapperRaf = function wrapperRaf2(callback) {
+var wrapperRaf = function wrapperRaf2(callback2) {
   var times = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : 1;
   rafUUID += 1;
   var id2 = rafUUID;
   function callRef(leftTimes) {
     if (leftTimes === 0) {
       cleanup(id2);
-      callback();
+      callback2();
     } else {
       var realId = raf(function() {
         callRef(leftTimes - 1);
@@ -11290,7 +11290,7 @@ function throttleByAnimationFrame(fn) {
     requestId = null;
     fn.apply(void 0, _toConsumableArray(args));
   };
-  const throttled = function() {
+  const throttled2 = function() {
     if (requestId == null) {
       for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
         args[_key] = arguments[_key];
@@ -11298,14 +11298,14 @@ function throttleByAnimationFrame(fn) {
       requestId = wrapperRaf(later(args));
     }
   };
-  throttled.cancel = () => {
+  throttled2.cancel = () => {
     wrapperRaf.cancel(requestId);
     requestId = null;
   };
-  return throttled;
+  return throttled2;
 }
 function murmur2(str) {
-  var h2 = 0;
+  var h3 = 0;
   var k2, i2 = 0, len = str.length;
   for (; len >= 4; ++i2, len -= 4) {
     k2 = str.charCodeAt(i2) & 255 | (str.charCodeAt(++i2) & 255) << 8 | (str.charCodeAt(++i2) & 255) << 16 | (str.charCodeAt(++i2) & 255) << 24;
@@ -11313,24 +11313,24 @@ function murmur2(str) {
     (k2 & 65535) * 1540483477 + ((k2 >>> 16) * 59797 << 16);
     k2 ^= /* k >>> r: */
     k2 >>> 24;
-    h2 = /* Math.imul(k, m): */
+    h3 = /* Math.imul(k, m): */
     (k2 & 65535) * 1540483477 + ((k2 >>> 16) * 59797 << 16) ^ /* Math.imul(h, m): */
-    (h2 & 65535) * 1540483477 + ((h2 >>> 16) * 59797 << 16);
+    (h3 & 65535) * 1540483477 + ((h3 >>> 16) * 59797 << 16);
   }
   switch (len) {
     case 3:
-      h2 ^= (str.charCodeAt(i2 + 2) & 255) << 16;
+      h3 ^= (str.charCodeAt(i2 + 2) & 255) << 16;
     case 2:
-      h2 ^= (str.charCodeAt(i2 + 1) & 255) << 8;
+      h3 ^= (str.charCodeAt(i2 + 1) & 255) << 8;
     case 1:
-      h2 ^= str.charCodeAt(i2) & 255;
-      h2 = /* Math.imul(h, m): */
-      (h2 & 65535) * 1540483477 + ((h2 >>> 16) * 59797 << 16);
+      h3 ^= str.charCodeAt(i2) & 255;
+      h3 = /* Math.imul(h, m): */
+      (h3 & 65535) * 1540483477 + ((h3 >>> 16) * 59797 << 16);
   }
-  h2 ^= h2 >>> 13;
-  h2 = /* Math.imul(h, m): */
-  (h2 & 65535) * 1540483477 + ((h2 >>> 16) * 59797 << 16);
-  return ((h2 ^ h2 >>> 15) >>> 0).toString(36);
+  h3 ^= h3 >>> 13;
+  h3 = /* Math.imul(h, m): */
+  (h3 & 65535) * 1540483477 + ((h3 >>> 16) * 59797 << 16);
+  return ((h3 ^ h3 >>> 15) >>> 0).toString(36);
 }
 function _objectWithoutPropertiesLoose(source, excluded) {
   if (source == null)
@@ -11844,10 +11844,10 @@ function supportLayer() {
   return canLayer;
 }
 var useInternalLayoutEffect = canUseDom() ? reactExports.useLayoutEffect : reactExports.useEffect;
-var useLayoutEffect$1 = function useLayoutEffect(callback, deps) {
+var useLayoutEffect$1 = function useLayoutEffect(callback2, deps) {
   var firstMountRef = reactExports.useRef(true);
   useInternalLayoutEffect(function() {
-    return callback(firstMountRef.current);
+    return callback2(firstMountRef.current);
   }, deps);
   useInternalLayoutEffect(function() {
     firstMountRef.current = false;
@@ -11856,10 +11856,10 @@ var useLayoutEffect$1 = function useLayoutEffect(callback, deps) {
     };
   }, []);
 };
-var useLayoutUpdateEffect = function useLayoutUpdateEffect2(callback, deps) {
+var useLayoutUpdateEffect = function useLayoutUpdateEffect2(callback2, deps) {
   useLayoutEffect$1(function(firstMount) {
     if (!firstMount) {
-      return callback();
+      return callback2();
     }
   }, deps);
 };
@@ -12460,21 +12460,21 @@ function internalSet(entity, paths, value, removeIfUndefined) {
   }
   return clone2;
 }
-function set$2(entity, paths, value) {
+function set$3(entity, paths, value) {
   var removeIfUndefined = arguments.length > 3 && arguments[3] !== void 0 ? arguments[3] : false;
   if (paths.length && removeIfUndefined && value === void 0 && !get$3(entity, paths.slice(0, -1))) {
     return entity;
   }
   return internalSet(entity, paths, value, removeIfUndefined);
 }
-function isObject$2(obj) {
+function isObject$3(obj) {
   return _typeof(obj) === "object" && obj !== null && Object.getPrototypeOf(obj) === Object.prototype;
 }
 function createEmpty(source) {
   return Array.isArray(source) ? [] : {};
 }
 var keys$1 = typeof Reflect === "undefined" ? Object.keys : Reflect.ownKeys;
-function merge$2() {
+function merge$3() {
   for (var _len = arguments.length, sources = new Array(_len), _key = 0; _key < _len; _key++) {
     sources[_key] = arguments[_key];
   }
@@ -12484,21 +12484,21 @@ function merge$2() {
       var loopSet = new Set(parentLoopSet);
       var value = get$3(src, path2);
       var isArr = Array.isArray(value);
-      if (isArr || isObject$2(value)) {
+      if (isArr || isObject$3(value)) {
         if (!loopSet.has(value)) {
           loopSet.add(value);
           var originValue = get$3(clone2, path2);
           if (isArr) {
-            clone2 = set$2(clone2, path2, []);
+            clone2 = set$3(clone2, path2, []);
           } else if (!originValue || _typeof(originValue) !== "object") {
-            clone2 = set$2(clone2, path2, createEmpty(value));
+            clone2 = set$3(clone2, path2, createEmpty(value));
           }
           keys$1(value).forEach(function(key) {
             internalMerge([].concat(_toConsumableArray(path2), [key]), loopSet);
           });
         }
       } else {
-        clone2 = set$2(clone2, path2, value);
+        clone2 = set$3(clone2, path2, value);
       }
     }
     internalMerge([]);
@@ -12768,7 +12768,7 @@ const LocaleProvider = (props) => {
 };
 const LocaleProvider$1 = LocaleProvider;
 const PresetColors = ["blue", "purple", "cyan", "green", "magenta", "pink", "red", "orange", "yellow", "volcano", "geekblue", "lime", "gold"];
-const version$1 = "5.8.3";
+const version$2 = "5.8.3";
 function bound01(n2, max2) {
   if (isOnePointZero(n2)) {
     n2 = "100%";
@@ -12826,29 +12826,29 @@ function rgbToHsl(r2, g2, b2) {
   b2 = bound01(b2, 255);
   var max2 = Math.max(r2, g2, b2);
   var min2 = Math.min(r2, g2, b2);
-  var h2 = 0;
+  var h3 = 0;
   var s2 = 0;
   var l2 = (max2 + min2) / 2;
   if (max2 === min2) {
     s2 = 0;
-    h2 = 0;
+    h3 = 0;
   } else {
     var d2 = max2 - min2;
     s2 = l2 > 0.5 ? d2 / (2 - max2 - min2) : d2 / (max2 + min2);
     switch (max2) {
       case r2:
-        h2 = (g2 - b2) / d2 + (g2 < b2 ? 6 : 0);
+        h3 = (g2 - b2) / d2 + (g2 < b2 ? 6 : 0);
         break;
       case g2:
-        h2 = (b2 - r2) / d2 + 2;
+        h3 = (b2 - r2) / d2 + 2;
         break;
       case b2:
-        h2 = (r2 - g2) / d2 + 4;
+        h3 = (r2 - g2) / d2 + 4;
         break;
     }
-    h2 /= 6;
+    h3 /= 6;
   }
-  return { h: h2, s: s2, l: l2 };
+  return { h: h3, s: s2, l: l2 };
 }
 function hue2rgb(p2, q2, t2) {
   if (t2 < 0) {
@@ -12868,11 +12868,11 @@ function hue2rgb(p2, q2, t2) {
   }
   return p2;
 }
-function hslToRgb(h2, s2, l2) {
+function hslToRgb(h3, s2, l2) {
   var r2;
   var g2;
   var b2;
-  h2 = bound01(h2, 360);
+  h3 = bound01(h3, 360);
   s2 = bound01(s2, 100);
   l2 = bound01(l2, 100);
   if (s2 === 0) {
@@ -12882,9 +12882,9 @@ function hslToRgb(h2, s2, l2) {
   } else {
     var q2 = l2 < 0.5 ? l2 * (1 + s2) : l2 + s2 - l2 * s2;
     var p2 = 2 * l2 - q2;
-    r2 = hue2rgb(p2, q2, h2 + 1 / 3);
-    g2 = hue2rgb(p2, q2, h2);
-    b2 = hue2rgb(p2, q2, h2 - 1 / 3);
+    r2 = hue2rgb(p2, q2, h3 + 1 / 3);
+    g2 = hue2rgb(p2, q2, h3);
+    b2 = hue2rgb(p2, q2, h3 - 1 / 3);
   }
   return { r: r2 * 255, g: g2 * 255, b: b2 * 255 };
 }
@@ -12894,34 +12894,34 @@ function rgbToHsv(r2, g2, b2) {
   b2 = bound01(b2, 255);
   var max2 = Math.max(r2, g2, b2);
   var min2 = Math.min(r2, g2, b2);
-  var h2 = 0;
+  var h3 = 0;
   var v2 = max2;
   var d2 = max2 - min2;
   var s2 = max2 === 0 ? 0 : d2 / max2;
   if (max2 === min2) {
-    h2 = 0;
+    h3 = 0;
   } else {
     switch (max2) {
       case r2:
-        h2 = (g2 - b2) / d2 + (g2 < b2 ? 6 : 0);
+        h3 = (g2 - b2) / d2 + (g2 < b2 ? 6 : 0);
         break;
       case g2:
-        h2 = (b2 - r2) / d2 + 2;
+        h3 = (b2 - r2) / d2 + 2;
         break;
       case b2:
-        h2 = (r2 - g2) / d2 + 4;
+        h3 = (r2 - g2) / d2 + 4;
         break;
     }
-    h2 /= 6;
+    h3 /= 6;
   }
-  return { h: h2, s: s2, v: v2 };
+  return { h: h3, s: s2, v: v2 };
 }
-function hsvToRgb(h2, s2, v2) {
-  h2 = bound01(h2, 360) * 6;
+function hsvToRgb(h3, s2, v2) {
+  h3 = bound01(h3, 360) * 6;
   s2 = bound01(s2, 100);
   v2 = bound01(v2, 100);
-  var i2 = Math.floor(h2);
-  var f2 = h2 - i2;
+  var i2 = Math.floor(h3);
+  var f2 = h3 - i2;
   var p2 = v2 * (1 - s2);
   var q2 = v2 * (1 - f2 * s2);
   var t2 = v2 * (1 - (1 - f2) * s2);
@@ -12932,45 +12932,45 @@ function hsvToRgb(h2, s2, v2) {
   return { r: r2 * 255, g: g2 * 255, b: b2 * 255 };
 }
 function rgbToHex(r2, g2, b2, allow3Char) {
-  var hex2 = [
+  var hex3 = [
     pad2(Math.round(r2).toString(16)),
     pad2(Math.round(g2).toString(16)),
     pad2(Math.round(b2).toString(16))
   ];
-  if (allow3Char && hex2[0].startsWith(hex2[0].charAt(1)) && hex2[1].startsWith(hex2[1].charAt(1)) && hex2[2].startsWith(hex2[2].charAt(1))) {
-    return hex2[0].charAt(0) + hex2[1].charAt(0) + hex2[2].charAt(0);
+  if (allow3Char && hex3[0].startsWith(hex3[0].charAt(1)) && hex3[1].startsWith(hex3[1].charAt(1)) && hex3[2].startsWith(hex3[2].charAt(1))) {
+    return hex3[0].charAt(0) + hex3[1].charAt(0) + hex3[2].charAt(0);
   }
-  return hex2.join("");
+  return hex3.join("");
 }
 function rgbaToHex(r2, g2, b2, a2, allow4Char) {
-  var hex2 = [
+  var hex3 = [
     pad2(Math.round(r2).toString(16)),
     pad2(Math.round(g2).toString(16)),
     pad2(Math.round(b2).toString(16)),
     pad2(convertDecimalToHex(a2))
   ];
-  if (allow4Char && hex2[0].startsWith(hex2[0].charAt(1)) && hex2[1].startsWith(hex2[1].charAt(1)) && hex2[2].startsWith(hex2[2].charAt(1)) && hex2[3].startsWith(hex2[3].charAt(1))) {
-    return hex2[0].charAt(0) + hex2[1].charAt(0) + hex2[2].charAt(0) + hex2[3].charAt(0);
+  if (allow4Char && hex3[0].startsWith(hex3[0].charAt(1)) && hex3[1].startsWith(hex3[1].charAt(1)) && hex3[2].startsWith(hex3[2].charAt(1)) && hex3[3].startsWith(hex3[3].charAt(1))) {
+    return hex3[0].charAt(0) + hex3[1].charAt(0) + hex3[2].charAt(0) + hex3[3].charAt(0);
   }
-  return hex2.join("");
+  return hex3.join("");
 }
 function convertDecimalToHex(d2) {
   return Math.round(parseFloat(d2) * 255).toString(16);
 }
-function convertHexToDecimal(h2) {
-  return parseIntFromHex(h2) / 255;
+function convertHexToDecimal(h3) {
+  return parseIntFromHex(h3) / 255;
 }
 function parseIntFromHex(val) {
   return parseInt(val, 16);
 }
-function numberInputToObject(color) {
+function numberInputToObject(color2) {
   return {
-    r: color >> 16,
-    g: (color & 65280) >> 8,
-    b: color & 255
+    r: color2 >> 16,
+    g: (color2 & 65280) >> 8,
+    b: color2 & 255
   };
 }
-var names = {
+var names$2 = {
   aliceblue: "#f0f8ff",
   antiquewhite: "#faebd7",
   aqua: "#00ffff",
@@ -13120,7 +13120,7 @@ var names = {
   yellow: "#ffff00",
   yellowgreen: "#9acd32"
 };
-function inputToRGB(color) {
+function inputToRGB(color2) {
   var rgb = { r: 0, g: 0, b: 0 };
   var a2 = 1;
   var s2 = null;
@@ -13128,35 +13128,35 @@ function inputToRGB(color) {
   var l2 = null;
   var ok2 = false;
   var format2 = false;
-  if (typeof color === "string") {
-    color = stringInputToObject(color);
+  if (typeof color2 === "string") {
+    color2 = stringInputToObject(color2);
   }
-  if (typeof color === "object") {
-    if (isValidCSSUnit(color.r) && isValidCSSUnit(color.g) && isValidCSSUnit(color.b)) {
-      rgb = rgbToRgb(color.r, color.g, color.b);
+  if (typeof color2 === "object") {
+    if (isValidCSSUnit(color2.r) && isValidCSSUnit(color2.g) && isValidCSSUnit(color2.b)) {
+      rgb = rgbToRgb(color2.r, color2.g, color2.b);
       ok2 = true;
-      format2 = String(color.r).substr(-1) === "%" ? "prgb" : "rgb";
-    } else if (isValidCSSUnit(color.h) && isValidCSSUnit(color.s) && isValidCSSUnit(color.v)) {
-      s2 = convertToPercentage(color.s);
-      v2 = convertToPercentage(color.v);
-      rgb = hsvToRgb(color.h, s2, v2);
+      format2 = String(color2.r).substr(-1) === "%" ? "prgb" : "rgb";
+    } else if (isValidCSSUnit(color2.h) && isValidCSSUnit(color2.s) && isValidCSSUnit(color2.v)) {
+      s2 = convertToPercentage(color2.s);
+      v2 = convertToPercentage(color2.v);
+      rgb = hsvToRgb(color2.h, s2, v2);
       ok2 = true;
       format2 = "hsv";
-    } else if (isValidCSSUnit(color.h) && isValidCSSUnit(color.s) && isValidCSSUnit(color.l)) {
-      s2 = convertToPercentage(color.s);
-      l2 = convertToPercentage(color.l);
-      rgb = hslToRgb(color.h, s2, l2);
+    } else if (isValidCSSUnit(color2.h) && isValidCSSUnit(color2.s) && isValidCSSUnit(color2.l)) {
+      s2 = convertToPercentage(color2.s);
+      l2 = convertToPercentage(color2.l);
+      rgb = hslToRgb(color2.h, s2, l2);
       ok2 = true;
       format2 = "hsl";
     }
-    if (Object.prototype.hasOwnProperty.call(color, "a")) {
-      a2 = color.a;
+    if (Object.prototype.hasOwnProperty.call(color2, "a")) {
+      a2 = color2.a;
     }
   }
   a2 = boundAlpha(a2);
   return {
     ok: ok2,
-    format: color.format || format2,
+    format: color2.format || format2,
     r: Math.min(255, Math.max(rgb.r, 0)),
     g: Math.min(255, Math.max(rgb.g, 0)),
     b: Math.min(255, Math.max(rgb.b, 0)),
@@ -13181,43 +13181,43 @@ var matchers = {
   hex4: /^#?([0-9a-fA-F]{1})([0-9a-fA-F]{1})([0-9a-fA-F]{1})([0-9a-fA-F]{1})$/,
   hex8: /^#?([0-9a-fA-F]{2})([0-9a-fA-F]{2})([0-9a-fA-F]{2})([0-9a-fA-F]{2})$/
 };
-function stringInputToObject(color) {
-  color = color.trim().toLowerCase();
-  if (color.length === 0) {
+function stringInputToObject(color2) {
+  color2 = color2.trim().toLowerCase();
+  if (color2.length === 0) {
     return false;
   }
   var named = false;
-  if (names[color]) {
-    color = names[color];
+  if (names$2[color2]) {
+    color2 = names$2[color2];
     named = true;
-  } else if (color === "transparent") {
+  } else if (color2 === "transparent") {
     return { r: 0, g: 0, b: 0, a: 0, format: "name" };
   }
-  var match5 = matchers.rgb.exec(color);
+  var match5 = matchers.rgb.exec(color2);
   if (match5) {
     return { r: match5[1], g: match5[2], b: match5[3] };
   }
-  match5 = matchers.rgba.exec(color);
+  match5 = matchers.rgba.exec(color2);
   if (match5) {
     return { r: match5[1], g: match5[2], b: match5[3], a: match5[4] };
   }
-  match5 = matchers.hsl.exec(color);
+  match5 = matchers.hsl.exec(color2);
   if (match5) {
     return { h: match5[1], s: match5[2], l: match5[3] };
   }
-  match5 = matchers.hsla.exec(color);
+  match5 = matchers.hsla.exec(color2);
   if (match5) {
     return { h: match5[1], s: match5[2], l: match5[3], a: match5[4] };
   }
-  match5 = matchers.hsv.exec(color);
+  match5 = matchers.hsv.exec(color2);
   if (match5) {
     return { h: match5[1], s: match5[2], v: match5[3] };
   }
-  match5 = matchers.hsva.exec(color);
+  match5 = matchers.hsva.exec(color2);
   if (match5) {
     return { h: match5[1], s: match5[2], v: match5[3], a: match5[4] };
   }
-  match5 = matchers.hex8.exec(color);
+  match5 = matchers.hex8.exec(color2);
   if (match5) {
     return {
       r: parseIntFromHex(match5[1]),
@@ -13227,7 +13227,7 @@ function stringInputToObject(color) {
       format: named ? "name" : "hex8"
     };
   }
-  match5 = matchers.hex6.exec(color);
+  match5 = matchers.hex6.exec(color2);
   if (match5) {
     return {
       r: parseIntFromHex(match5[1]),
@@ -13236,7 +13236,7 @@ function stringInputToObject(color) {
       format: named ? "name" : "hex"
     };
   }
-  match5 = matchers.hex4.exec(color);
+  match5 = matchers.hex4.exec(color2);
   if (match5) {
     return {
       r: parseIntFromHex(match5[1] + match5[1]),
@@ -13246,7 +13246,7 @@ function stringInputToObject(color) {
       format: named ? "name" : "hex8"
     };
   }
-  match5 = matchers.hex3.exec(color);
+  match5 = matchers.hex3.exec(color2);
   if (match5) {
     return {
       r: parseIntFromHex(match5[1] + match5[1]),
@@ -13257,29 +13257,29 @@ function stringInputToObject(color) {
   }
   return false;
 }
-function isValidCSSUnit(color) {
-  return Boolean(matchers.CSS_UNIT.exec(String(color)));
+function isValidCSSUnit(color2) {
+  return Boolean(matchers.CSS_UNIT.exec(String(color2)));
 }
 var TinyColor = (
   /** @class */
   function() {
-    function TinyColor2(color, opts) {
-      if (color === void 0) {
-        color = "";
+    function TinyColor2(color2, opts) {
+      if (color2 === void 0) {
+        color2 = "";
       }
       if (opts === void 0) {
         opts = {};
       }
       var _a;
-      if (color instanceof TinyColor2) {
-        return color;
+      if (color2 instanceof TinyColor2) {
+        return color2;
       }
-      if (typeof color === "number") {
-        color = numberInputToObject(color);
+      if (typeof color2 === "number") {
+        color2 = numberInputToObject(color2);
       }
-      this.originalInput = color;
-      var rgb = inputToRGB(color);
-      this.originalInput = color;
+      this.originalInput = color2;
+      var rgb = inputToRGB(color2);
+      this.originalInput = color2;
       this.r = rgb.r;
       this.g = rgb.g;
       this.b = rgb.b;
@@ -13336,8 +13336,8 @@ var TinyColor = (
     TinyColor2.prototype.getAlpha = function() {
       return this.a;
     };
-    TinyColor2.prototype.setAlpha = function(alpha) {
-      this.a = boundAlpha(alpha);
+    TinyColor2.prototype.setAlpha = function(alpha2) {
+      this.a = boundAlpha(alpha2);
       this.roundA = Math.round(100 * this.a) / 100;
       return this;
     };
@@ -13351,10 +13351,10 @@ var TinyColor = (
     };
     TinyColor2.prototype.toHsvString = function() {
       var hsv = rgbToHsv(this.r, this.g, this.b);
-      var h2 = Math.round(hsv.h * 360);
+      var h3 = Math.round(hsv.h * 360);
       var s2 = Math.round(hsv.s * 100);
       var v2 = Math.round(hsv.v * 100);
-      return this.a === 1 ? "hsv(".concat(h2, ", ").concat(s2, "%, ").concat(v2, "%)") : "hsva(".concat(h2, ", ").concat(s2, "%, ").concat(v2, "%, ").concat(this.roundA, ")");
+      return this.a === 1 ? "hsv(".concat(h3, ", ").concat(s2, "%, ").concat(v2, "%)") : "hsva(".concat(h3, ", ").concat(s2, "%, ").concat(v2, "%, ").concat(this.roundA, ")");
     };
     TinyColor2.prototype.toHsl = function() {
       var hsl = rgbToHsl(this.r, this.g, this.b);
@@ -13362,10 +13362,10 @@ var TinyColor = (
     };
     TinyColor2.prototype.toHslString = function() {
       var hsl = rgbToHsl(this.r, this.g, this.b);
-      var h2 = Math.round(hsl.h * 360);
+      var h3 = Math.round(hsl.h * 360);
       var s2 = Math.round(hsl.s * 100);
       var l2 = Math.round(hsl.l * 100);
-      return this.a === 1 ? "hsl(".concat(h2, ", ").concat(s2, "%, ").concat(l2, "%)") : "hsla(".concat(h2, ", ").concat(s2, "%, ").concat(l2, "%, ").concat(this.roundA, ")");
+      return this.a === 1 ? "hsl(".concat(h3, ", ").concat(s2, "%, ").concat(l2, "%)") : "hsla(".concat(h3, ", ").concat(s2, "%, ").concat(l2, "%, ").concat(this.roundA, ")");
     };
     TinyColor2.prototype.toHex = function(allow3Char) {
       if (allow3Char === void 0) {
@@ -13435,10 +13435,10 @@ var TinyColor = (
       if (this.a < 1) {
         return false;
       }
-      var hex2 = "#" + rgbToHex(this.r, this.g, this.b, false);
-      for (var _i = 0, _a = Object.entries(names); _i < _a.length; _i++) {
+      var hex3 = "#" + rgbToHex(this.r, this.g, this.b, false);
+      for (var _i = 0, _a = Object.entries(names$2); _i < _a.length; _i++) {
         var _b = _a[_i], key = _b[0], value = _b[1];
-        if (hex2 === value) {
+        if (hex3 === value) {
           return key;
         }
       }
@@ -13554,16 +13554,16 @@ var TinyColor = (
     };
     TinyColor2.prototype.spin = function(amount) {
       var hsl = this.toHsl();
-      var hue = (hsl.h + amount) % 360;
-      hsl.h = hue < 0 ? 360 + hue : hue;
+      var hue2 = (hsl.h + amount) % 360;
+      hsl.h = hue2 < 0 ? 360 + hue2 : hue2;
       return new TinyColor2(hsl);
     };
-    TinyColor2.prototype.mix = function(color, amount) {
+    TinyColor2.prototype.mix = function(color2, amount) {
       if (amount === void 0) {
         amount = 50;
       }
       var rgb1 = this.toRgb();
-      var rgb2 = new TinyColor2(color).toRgb();
+      var rgb2 = new TinyColor2(color2).toRgb();
       var p2 = amount / 100;
       var rgba = {
         r: (rgb2.r - rgb1.r) * p2 + rgb1.r,
@@ -13599,35 +13599,35 @@ var TinyColor = (
         results = 6;
       }
       var hsv = this.toHsv();
-      var h2 = hsv.h;
+      var h3 = hsv.h;
       var s2 = hsv.s;
       var v2 = hsv.v;
       var res = [];
       var modification = 1 / results;
       while (results--) {
-        res.push(new TinyColor2({ h: h2, s: s2, v: v2 }));
+        res.push(new TinyColor2({ h: h3, s: s2, v: v2 }));
         v2 = (v2 + modification) % 1;
       }
       return res;
     };
     TinyColor2.prototype.splitcomplement = function() {
       var hsl = this.toHsl();
-      var h2 = hsl.h;
+      var h3 = hsl.h;
       return [
         this,
-        new TinyColor2({ h: (h2 + 72) % 360, s: hsl.s, l: hsl.l }),
-        new TinyColor2({ h: (h2 + 216) % 360, s: hsl.s, l: hsl.l })
+        new TinyColor2({ h: (h3 + 72) % 360, s: hsl.s, l: hsl.l }),
+        new TinyColor2({ h: (h3 + 216) % 360, s: hsl.s, l: hsl.l })
       ];
     };
     TinyColor2.prototype.onBackground = function(background) {
       var fg2 = this.toRgb();
       var bg2 = new TinyColor2(background).toRgb();
-      var alpha = fg2.a + bg2.a * (1 - fg2.a);
+      var alpha2 = fg2.a + bg2.a * (1 - fg2.a);
       return new TinyColor2({
-        r: (fg2.r * fg2.a + bg2.r * bg2.a * (1 - fg2.a)) / alpha,
-        g: (fg2.g * fg2.a + bg2.g * bg2.a * (1 - fg2.a)) / alpha,
-        b: (fg2.b * fg2.a + bg2.b * bg2.a * (1 - fg2.a)) / alpha,
-        a: alpha
+        r: (fg2.r * fg2.a + bg2.r * bg2.a * (1 - fg2.a)) / alpha2,
+        g: (fg2.g * fg2.a + bg2.g * bg2.a * (1 - fg2.a)) / alpha2,
+        b: (fg2.b * fg2.a + bg2.b * bg2.a * (1 - fg2.a)) / alpha2,
+        a: alpha2
       });
     };
     TinyColor2.prototype.triad = function() {
@@ -13638,16 +13638,16 @@ var TinyColor = (
     };
     TinyColor2.prototype.polyad = function(n2) {
       var hsl = this.toHsl();
-      var h2 = hsl.h;
+      var h3 = hsl.h;
       var result = [this];
       var increment = 360 / n2;
       for (var i2 = 1; i2 < n2; i2++) {
-        result.push(new TinyColor2({ h: (h2 + i2 * increment) % 360, s: hsl.s, l: hsl.l }));
+        result.push(new TinyColor2({ h: (h3 + i2 * increment) % 360, s: hsl.s, l: hsl.l }));
       }
       return result;
     };
-    TinyColor2.prototype.equals = function(color) {
-      return this.toRgbString() === new TinyColor2(color).toRgbString();
+    TinyColor2.prototype.equals = function(color2) {
+      return this.toRgbString() === new TinyColor2(color2).toRgbString();
     };
     return TinyColor2;
   }()
@@ -13713,18 +13713,18 @@ function mix(rgb1, rgb2, amount) {
   return rgb;
 }
 function getHue(hsv, i2, light) {
-  var hue;
+  var hue2;
   if (Math.round(hsv.h) >= 60 && Math.round(hsv.h) <= 240) {
-    hue = light ? Math.round(hsv.h) - hueStep * i2 : Math.round(hsv.h) + hueStep * i2;
+    hue2 = light ? Math.round(hsv.h) - hueStep * i2 : Math.round(hsv.h) + hueStep * i2;
   } else {
-    hue = light ? Math.round(hsv.h) + hueStep * i2 : Math.round(hsv.h) - hueStep * i2;
+    hue2 = light ? Math.round(hsv.h) + hueStep * i2 : Math.round(hsv.h) - hueStep * i2;
   }
-  if (hue < 0) {
-    hue += 360;
-  } else if (hue >= 360) {
-    hue -= 360;
+  if (hue2 < 0) {
+    hue2 += 360;
+  } else if (hue2 >= 360) {
+    hue2 -= 360;
   }
-  return hue;
+  return hue2;
 }
 function getSaturation(hsv, i2, light) {
   if (hsv.h === 0 && hsv.s === 0) {
@@ -13761,10 +13761,10 @@ function getValue$1(hsv, i2, light) {
   }
   return Number(value.toFixed(2));
 }
-function generate$1(color) {
+function generate$1(color2) {
   var opts = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
   var patterns = [];
-  var pColor = inputToRGB(color);
+  var pColor = inputToRGB(color2);
   for (var i2 = lightColorCount; i2 > 0; i2 -= 1) {
     var hsv = toHsv(pColor);
     var colorString = toHex(inputToRGB({
@@ -14052,24 +14052,24 @@ function genCommonMapToken(token2) {
     lineWidthBold: lineWidth + 1
   }, genRadius$1(borderRadius));
 }
-const getAlphaColor$2 = (baseColor, alpha) => new TinyColor(baseColor).setAlpha(alpha).toRgbString();
+const getAlphaColor$2 = (baseColor, alpha2) => new TinyColor(baseColor).setAlpha(alpha2).toRgbString();
 const getSolidColor$1 = (baseColor, brightness) => {
   const instance = new TinyColor(baseColor);
   return instance.darken(brightness).toHexString();
 };
 const generateColorPalettes$1 = (baseColor) => {
-  const colors = generate$1(baseColor);
+  const colors2 = generate$1(baseColor);
   return {
-    1: colors[0],
-    2: colors[1],
-    3: colors[2],
-    4: colors[3],
-    5: colors[4],
-    6: colors[5],
-    7: colors[6],
-    8: colors[4],
-    9: colors[5],
-    10: colors[6]
+    1: colors2[0],
+    2: colors2[1],
+    3: colors2[2],
+    4: colors2[3],
+    5: colors2[4],
+    6: colors2[5],
+    7: colors2[6],
+    8: colors2[4],
+    9: colors2[5],
+    10: colors2[6]
     // 8: colors[7],
     // 9: colors[8],
     // 10: colors[9],
@@ -14140,10 +14140,10 @@ const genFontMapToken = (fontSize) => {
 const genFontMapToken$1 = genFontMapToken;
 function derivative$2(token2) {
   const colorPalettes = Object.keys(defaultPresetColors).map((colorKey) => {
-    const colors = generate$1(token2[colorKey]);
+    const colors2 = generate$1(token2[colorKey]);
     return new Array(10).fill(1).reduce((prev2, _2, i2) => {
-      prev2[`${colorKey}-${i2 + 1}`] = colors[i2];
-      prev2[`${colorKey}${i2 + 1}`] = colors[i2];
+      prev2[`${colorKey}-${i2 + 1}`] = colors2[i2];
+      prev2[`${colorKey}${i2 + 1}`] = colors2[i2];
       return prev2;
     }, {});
   }).reduce((prev2, cur) => {
@@ -14161,8 +14161,8 @@ const defaultConfig = {
   hashed: true
 };
 const DesignTokenContext = /* @__PURE__ */ React.createContext(defaultConfig);
-function isStableColor(color) {
-  return color >= 0 && color <= 255;
+function isStableColor(color2) {
+  return color2 >= 0 && color2 <= 255;
 }
 function getAlphaColor$1(frontColor, backgroundColor) {
   const {
@@ -14413,7 +14413,7 @@ function useToken$2() {
     theme: theme2,
     components
   } = React.useContext(DesignTokenContext);
-  const salt = `${version$1}-${hashed || ""}`;
+  const salt = `${version$2}-${hashed || ""}`;
   const mergedTheme = theme2 || defaultTheme;
   const [token2, hashId] = useCacheToken(mergedTheme, [seedToken$1, rootDesignToken], {
     salt,
@@ -14427,9 +14427,9 @@ function useToken$2() {
   });
   return [mergedTheme, token2, hashed ? hashId : ""];
 }
-function useEvent(callback) {
+function useEvent(callback2) {
   var fnRef = reactExports.useRef();
-  fnRef.current = callback;
+  fnRef.current = callback2;
   var memoFn = reactExports.useCallback(function() {
     var _fnRef$current;
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
@@ -14685,7 +14685,7 @@ const genFocusStyle = (token2) => ({
 });
 const enableStatistic = typeof CSSINJS_STATISTIC !== "undefined";
 let recording = true;
-function merge$1() {
+function merge$2() {
   for (var _len = arguments.length, objs = new Array(_len), _key = 0; _key < _len; _key++) {
     objs[_key] = arguments[_key];
   }
@@ -14707,12 +14707,12 @@ function merge$1() {
   recording = true;
   return ret;
 }
-function noop$3() {
+function noop$4() {
 }
 function statisticToken(token2) {
   let tokenKeys2;
   let proxy = token2;
-  let flush = noop$3;
+  let flush = noop$4;
   if (enableStatistic) {
     tokenKeys2 = /* @__PURE__ */ new Set();
     proxy = new Proxy(token2, {
@@ -14736,7 +14736,7 @@ function statisticToken(token2) {
     flush
   };
 }
-function genComponentStyleHook(component, styleFn, getDefaultToken, options) {
+function genComponentStyleHook(component, styleFn, getDefaultToken, options2) {
   return (prefixCls) => {
     const [theme2, token2, hashId] = useToken$2();
     const {
@@ -14750,7 +14750,7 @@ function genComponentStyleHook(component, styleFn, getDefaultToken, options) {
       token: token2,
       hashId,
       nonce: () => csp === null || csp === void 0 ? void 0 : csp.nonce,
-      clientOnly: options === null || options === void 0 ? void 0 : options.clientOnly,
+      clientOnly: options2 === null || options2 === void 0 ? void 0 : options2.clientOnly,
       // antd is always at top of styles
       order: -999
     };
@@ -14769,10 +14769,10 @@ function genComponentStyleHook(component, styleFn, getDefaultToken, options) {
         flush
       } = statisticToken(token2);
       const customComponentToken = Object.assign({}, token2[component]);
-      if (options === null || options === void 0 ? void 0 : options.deprecatedTokens) {
+      if (options2 === null || options2 === void 0 ? void 0 : options2.deprecatedTokens) {
         const {
           deprecatedTokens
-        } = options;
+        } = options2;
         deprecatedTokens.forEach((_ref) => {
           let [oldTokenKey, newTokenKey] = _ref;
           var _a;
@@ -14781,10 +14781,10 @@ function genComponentStyleHook(component, styleFn, getDefaultToken, options) {
           }
         });
       }
-      const defaultComponentToken = typeof getDefaultToken === "function" ? getDefaultToken(merge$1(proxyToken, customComponentToken !== null && customComponentToken !== void 0 ? customComponentToken : {})) : getDefaultToken;
+      const defaultComponentToken = typeof getDefaultToken === "function" ? getDefaultToken(merge$2(proxyToken, customComponentToken !== null && customComponentToken !== void 0 ? customComponentToken : {})) : getDefaultToken;
       const mergedComponentToken = Object.assign(Object.assign({}, defaultComponentToken), customComponentToken);
       const componentCls = `.${prefixCls}`;
-      const mergedToken = merge$1(proxyToken, {
+      const mergedToken = merge$2(proxyToken, {
         componentCls,
         prefixCls,
         iconCls: `.${iconPrefixCls}`,
@@ -14798,7 +14798,7 @@ function genComponentStyleHook(component, styleFn, getDefaultToken, options) {
         overrideComponentToken: customComponentToken
       });
       flush(component, mergedComponentToken);
-      return [(options === null || options === void 0 ? void 0 : options.resetStyle) === false ? null : genCommonStyle(token2, prefixCls), styleInterpolation];
+      return [(options2 === null || options2 === void 0 ? void 0 : options2.resetStyle) === false ? null : genCommonStyle(token2, prefixCls), styleInterpolation];
     }), hashId];
   };
 }
@@ -14817,10 +14817,10 @@ function genPresetColor(token2, genCss) {
   }, {});
 }
 const dynamicStyleMark = `-ant-${Date.now()}-${Math.random()}`;
-function getStyle$1(globalPrefixCls2, theme2) {
+function getStyle$2(globalPrefixCls2, theme2) {
   const variables = {};
-  const formatColor = (color, updater) => {
-    let clone2 = color.clone();
+  const formatColor = (color2, updater) => {
+    let clone2 = color2.clone();
     clone2 = (updater === null || updater === void 0 ? void 0 : updater(clone2)) || clone2;
     return clone2.toRgbString();
   };
@@ -14839,8 +14839,8 @@ function getStyle$1(globalPrefixCls2, theme2) {
     fillColor(theme2.primaryColor, "primary");
     const primaryColor = new TinyColor(theme2.primaryColor);
     const primaryColors = generate$1(primaryColor.toRgbString());
-    primaryColors.forEach((color, index2) => {
-      variables[`primary-${index2 + 1}`] = color;
+    primaryColors.forEach((color2, index2) => {
+      variables[`primary-${index2 + 1}`] = color2;
     });
     variables["primary-color-deprecated-l-35"] = formatColor(primaryColor, (c2) => c2.lighten(35));
     variables["primary-color-deprecated-l-20"] = formatColor(primaryColor, (c2) => c2.lighten(20));
@@ -14871,7 +14871,7 @@ function getStyle$1(globalPrefixCls2, theme2) {
   `.trim();
 }
 function registerTheme(globalPrefixCls2, theme2) {
-  const style2 = getStyle$1(globalPrefixCls2, theme2);
+  const style2 = getStyle$2(globalPrefixCls2, theme2);
   if (canUseDom()) {
     updateCSS(style2, `${dynamicStyleMark}-dynamic-theme`);
   }
@@ -15026,10 +15026,10 @@ function getTransitionName$1(transitionName, transitionType) {
   }
   return "".concat(transitionName, "-").concat(transitionType);
 }
-const useDomMotionEvents = function(callback) {
+const useDomMotionEvents = function(callback2) {
   var cacheElementRef = reactExports.useRef();
-  var callbackRef = reactExports.useRef(callback);
-  callbackRef.current = callback;
+  var callbackRef = reactExports.useRef(callback2);
+  callbackRef.current = callback2;
   var onInternalMotionEnd = reactExports.useCallback(function(event) {
     callbackRef.current(event);
   }, []);
@@ -15062,18 +15062,18 @@ const useNextFrame = function() {
   function cancelNextFrame() {
     wrapperRaf.cancel(nextFrameRef.current);
   }
-  function nextFrame(callback) {
+  function nextFrame(callback2) {
     var delay = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : 2;
     cancelNextFrame();
     var nextFrameId = wrapperRaf(function() {
       if (delay <= 1) {
-        callback({
+        callback2({
           isCanceled: function isCanceled() {
             return nextFrameId !== nextFrameRef.current;
           }
         });
       } else {
-        nextFrame(callback, delay - 1);
+        nextFrame(callback2, delay - 1);
       }
     });
     nextFrameRef.current = nextFrameId;
@@ -15092,7 +15092,7 @@ var DoStep = true;
 function isActive(step) {
   return step === STEP_ACTIVE || step === STEP_ACTIVATED;
 }
-const useStepQueue = function(status, prepareOnly, callback) {
+const useStepQueue = function(status, prepareOnly, callback2) {
   var _useState = useSafeState(STEP_NONE), _useState2 = _slicedToArray(_useState, 2), step = _useState2[0], setStep = _useState2[1];
   var _useNextFrame = useNextFrame(), _useNextFrame2 = _slicedToArray(_useNextFrame, 2), nextFrame = _useNextFrame2[0], cancelNextFrame = _useNextFrame2[1];
   function startQueue() {
@@ -15103,7 +15103,7 @@ const useStepQueue = function(status, prepareOnly, callback) {
     if (step !== STEP_NONE && step !== STEP_ACTIVATED) {
       var index2 = STEP_QUEUE.indexOf(step);
       var nextStep = STEP_QUEUE[index2 + 1];
-      var result = callback(step);
+      var result = callback2(step);
       if (result === SkipStep) {
         setStep(nextStep, true);
       } else if (nextStep) {
@@ -15665,7 +15665,7 @@ const ProviderChildren = (props) => {
     divider,
     drawer,
     skeleton,
-    steps,
+    steps: steps2,
     image,
     layout,
     list,
@@ -15741,7 +15741,7 @@ const ProviderChildren = (props) => {
     divider,
     drawer,
     skeleton,
-    steps,
+    steps: steps2,
     image,
     input,
     layout,
@@ -15799,7 +15799,7 @@ const ProviderChildren = (props) => {
   let childNode = shouldWrapSSR ? wrapSSR(children) : children;
   const validateMessages = reactExports.useMemo(() => {
     var _a, _b, _c, _d;
-    return merge$2(((_a = defaultLocale.Form) === null || _a === void 0 ? void 0 : _a.defaultValidateMessages) || {}, ((_c = (_b = memoedConfig.locale) === null || _b === void 0 ? void 0 : _b.Form) === null || _c === void 0 ? void 0 : _c.defaultValidateMessages) || {}, ((_d = memoedConfig.form) === null || _d === void 0 ? void 0 : _d.validateMessages) || {}, (form === null || form === void 0 ? void 0 : form.validateMessages) || {});
+    return merge$3(((_a = defaultLocale.Form) === null || _a === void 0 ? void 0 : _a.defaultValidateMessages) || {}, ((_c = (_b = memoedConfig.locale) === null || _b === void 0 ? void 0 : _b.Form) === null || _c === void 0 ? void 0 : _c.defaultValidateMessages) || {}, ((_d = memoedConfig.form) === null || _d === void 0 ? void 0 : _d.validateMessages) || {}, (form === null || form === void 0 ? void 0 : form.validateMessages) || {});
   }, [memoedConfig, form === null || form === void 0 ? void 0 : form.validateMessages]);
   if (Object.keys(validateMessages).length > 0) {
     childNode = /* @__PURE__ */ reactExports.createElement(ValidateMessagesContext.Provider, {
@@ -15884,7 +15884,7 @@ Object.defineProperty(ConfigProvider, "SizeContext", {
 const ConfigProvider$1 = ConfigProvider;
 var CheckCircleFilled$2 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm193.5 301.7l-210.6 292a31.8 31.8 0 01-51.7 0L318.5 484.9c-3.8-5.3 0-12.7 6.5-12.7h46.9c10.2 0 19.9 4.9 25.9 13.3l71.2 98.8 157.2-218c6-8.3 15.6-13.3 25.9-13.3H699c6.5 0 10.3 7.4 6.5 12.7z" } }] }, "name": "check-circle", "theme": "filled" };
 const CheckCircleFilledSvg = CheckCircleFilled$2;
-var INFINITY = 1 / 0;
+var INFINITY$1 = 1 / 0;
 var symbolTag = "[object Symbol]";
 var reAsciiWord = /[^\x00-\x2f\x3a-\x40\x5b-\x60\x7b-\x7f]+/g;
 var reLatin = /[\xc0-\xd6\xd8-\xf6\xf8-\xff\u0100-\u017f]/g;
@@ -16167,7 +16167,7 @@ function baseToString(value) {
     return symbolToString ? symbolToString.call(value) : "";
   }
   var result = value + "";
-  return result == "0" && 1 / value == -INFINITY ? "-0" : result;
+  return result == "0" && 1 / value == -INFINITY$1 ? "-0" : result;
 }
 function castSlice(array4, start, end) {
   var length2 = array4.length;
@@ -16183,9 +16183,9 @@ function createCaseFirst(methodName) {
     return chr[methodName]() + trailing;
   };
 }
-function createCompounder(callback) {
+function createCompounder(callback2) {
   return function(string3) {
-    return arrayReduce(words(deburr(string3).replace(reApos, "")), callback, "");
+    return arrayReduce(words(deburr(string3).replace(reApos, "")), callback2, "");
   };
 }
 function isObjectLike(value) {
@@ -16309,9 +16309,9 @@ function getTwoToneColors() {
 var IconBase$1 = function IconBase(props) {
   var icon = props.icon, className = props.className, onClick = props.onClick, style2 = props.style, primaryColor = props.primaryColor, secondaryColor = props.secondaryColor, restProps = _objectWithoutProperties(props, _excluded$P);
   var svgRef = reactExports.useRef();
-  var colors = twoToneColorPalette;
+  var colors2 = twoToneColorPalette;
   if (primaryColor) {
-    colors = {
+    colors2 = {
       primaryColor,
       secondaryColor: secondaryColor || getSecondaryColor(primaryColor)
     };
@@ -16324,7 +16324,7 @@ var IconBase$1 = function IconBase(props) {
   var target = icon;
   if (target && typeof target.icon === "function") {
     target = _objectSpread2(_objectSpread2({}, target), {}, {
-      icon: target.icon(colors.primaryColor, colors.secondaryColor)
+      icon: target.icon(colors2.primaryColor, colors2.secondaryColor)
     });
   }
   return generate(target.icon, "svg-".concat(target.name), _objectSpread2(_objectSpread2({
@@ -16352,26 +16352,26 @@ function setTwoToneColor(twoToneColor) {
   });
 }
 function getTwoToneColor() {
-  var colors = ReactIcon.getTwoToneColors();
-  if (!colors.calculated) {
-    return colors.primaryColor;
+  var colors2 = ReactIcon.getTwoToneColors();
+  if (!colors2.calculated) {
+    return colors2.primaryColor;
   }
-  return [colors.primaryColor, colors.secondaryColor];
+  return [colors2.primaryColor, colors2.secondaryColor];
 }
 var _excluded$O = ["className", "icon", "spin", "rotate", "tabIndex", "onClick", "twoToneColor"];
 setTwoToneColor(blue.primary);
 var Icon$2 = /* @__PURE__ */ reactExports.forwardRef(function(props, ref) {
   var _classNames;
-  var className = props.className, icon = props.icon, spin = props.spin, rotate = props.rotate, tabIndex = props.tabIndex, onClick = props.onClick, twoToneColor = props.twoToneColor, restProps = _objectWithoutProperties(props, _excluded$O);
+  var className = props.className, icon = props.icon, spin = props.spin, rotate2 = props.rotate, tabIndex = props.tabIndex, onClick = props.onClick, twoToneColor = props.twoToneColor, restProps = _objectWithoutProperties(props, _excluded$O);
   var _React$useContext = reactExports.useContext(Context$2), _React$useContext$pre = _React$useContext.prefixCls, prefixCls = _React$useContext$pre === void 0 ? "anticon" : _React$useContext$pre, rootClassName = _React$useContext.rootClassName;
   var classString = classNames(rootClassName, prefixCls, (_classNames = {}, _defineProperty(_classNames, "".concat(prefixCls, "-").concat(icon.name), !!icon.name), _defineProperty(_classNames, "".concat(prefixCls, "-spin"), !!spin || icon.name === "loading"), _classNames), className);
   var iconTabIndex = tabIndex;
   if (iconTabIndex === void 0 && onClick) {
     iconTabIndex = -1;
   }
-  var svgStyle = rotate ? {
-    msTransform: "rotate(".concat(rotate, "deg)"),
-    transform: "rotate(".concat(rotate, "deg)")
+  var svgStyle = rotate2 ? {
+    msTransform: "rotate(".concat(rotate2, "deg)"),
+    transform: "rotate(".concat(rotate2, "deg)")
   } : void 0;
   var _normalizeTwoToneColo = normalizeTwoToneColors(twoToneColor), _normalizeTwoToneColo2 = _slicedToArray(_normalizeTwoToneColo, 2), primaryColor = _normalizeTwoToneColo2[0], secondaryColor = _normalizeTwoToneColo2[1];
   return /* @__PURE__ */ reactExports.createElement("span", _extends$1({
@@ -16660,7 +16660,7 @@ const useStyle$C = genComponentStyleHook("Alert", (token2) => {
   const {
     fontSizeHeading3
   } = token2;
-  const alertToken = merge$1(token2, {
+  const alertToken = merge$2(token2, {
     alertIconSizeLG: fontSizeHeading3,
     alertPaddingHorizontal: 12
     // Fixed value here.
@@ -16904,7 +16904,7 @@ const t$1 = (t2) => "object" == typeof t2 && null != t2 && 1 === t2.nodeType, e 
   const e2 = t2.parentElement;
   return null == e2 ? t2.getRootNode().host || null : e2;
 }, l$1 = (e2, l2) => {
-  var r2, d2, s2, h2;
+  var r2, d2, s2, h3;
   if ("undefined" == typeof document)
     return [];
   const { scrollMode: c2, block: f2, inline: u2, boundary: a2, skipOverflowHiddenElements: g2 } = l2, m2 = "function" == typeof a2 ? a2 : (t2) => t2 !== a2;
@@ -16919,22 +16919,22 @@ const t$1 = (t2) => "object" == typeof t2 && null != t2 && 1 === t2.nodeType, e 
     }
     null != W2 && W2 === document.body && n$1(W2) && !n$1(document.documentElement) || null != W2 && n$1(W2, g2) && w2.push(W2);
   }
-  const H2 = null != (d2 = null == (r2 = window.visualViewport) ? void 0 : r2.width) ? d2 : innerWidth, b2 = null != (h2 = null == (s2 = window.visualViewport) ? void 0 : s2.height) ? h2 : innerHeight, { scrollX: v2, scrollY: y2 } = window, { height: E2, width: M2, top: x2, right: I2, bottom: C2, left: R2 } = e2.getBoundingClientRect();
+  const H2 = null != (d2 = null == (r2 = window.visualViewport) ? void 0 : r2.width) ? d2 : innerWidth, b2 = null != (h3 = null == (s2 = window.visualViewport) ? void 0 : s2.height) ? h3 : innerHeight, { scrollX: v2, scrollY: y2 } = window, { height: E2, width: M2, top: x2, right: I2, bottom: C2, left: R2 } = e2.getBoundingClientRect();
   let T2 = "start" === f2 || "nearest" === f2 ? x2 : "end" === f2 ? C2 : x2 + E2 / 2, V2 = "center" === u2 ? R2 + M2 / 2 : "end" === u2 ? I2 : R2;
   const k2 = [];
   for (let t2 = 0; t2 < w2.length; t2++) {
     const e3 = w2[t2], { height: n2, width: i2, top: l3, right: r3, bottom: d3, left: s3 } = e3.getBoundingClientRect();
     if ("if-needed" === c2 && x2 >= 0 && R2 >= 0 && C2 <= b2 && I2 <= H2 && x2 >= l3 && C2 <= d3 && R2 >= s3 && I2 <= r3)
       return k2;
-    const h3 = getComputedStyle(e3), a3 = parseInt(h3.borderLeftWidth, 10), g3 = parseInt(h3.borderTopWidth, 10), m3 = parseInt(h3.borderRightWidth, 10), W3 = parseInt(h3.borderBottomWidth, 10);
+    const h4 = getComputedStyle(e3), a3 = parseInt(h4.borderLeftWidth, 10), g3 = parseInt(h4.borderTopWidth, 10), m3 = parseInt(h4.borderRightWidth, 10), W3 = parseInt(h4.borderBottomWidth, 10);
     let B2 = 0, D2 = 0;
     const L2 = "offsetWidth" in e3 ? e3.offsetWidth - e3.clientWidth - a3 - m3 : 0, S2 = "offsetHeight" in e3 ? e3.offsetHeight - e3.clientHeight - g3 - W3 : 0, X2 = "offsetWidth" in e3 ? 0 === e3.offsetWidth ? 0 : i2 / e3.offsetWidth : 0, Y2 = "offsetHeight" in e3 ? 0 === e3.offsetHeight ? 0 : n2 / e3.offsetHeight : 0;
     if (p2 === e3)
       B2 = "start" === f2 ? T2 : "end" === f2 ? T2 - b2 : "nearest" === f2 ? o$2(y2, y2 + b2, b2, g3, W3, y2 + T2, y2 + T2 + E2, E2) : T2 - b2 / 2, D2 = "start" === u2 ? V2 : "center" === u2 ? V2 - H2 / 2 : "end" === u2 ? V2 - H2 : o$2(v2, v2 + H2, H2, a3, m3, v2 + V2, v2 + V2 + M2, M2), B2 = Math.max(0, B2 + y2), D2 = Math.max(0, D2 + v2);
     else {
       B2 = "start" === f2 ? T2 - l3 - g3 : "end" === f2 ? T2 - d3 + W3 + S2 : "nearest" === f2 ? o$2(l3, d3, n2, g3, W3 + S2, T2, T2 + E2, E2) : T2 - (l3 + n2 / 2) + S2 / 2, D2 = "start" === u2 ? V2 - s3 - a3 : "center" === u2 ? V2 - (s3 + i2 / 2) + L2 / 2 : "end" === u2 ? V2 - r3 + m3 + L2 : o$2(s3, r3, i2, a3, m3 + L2, V2, V2 + M2, M2);
-      const { scrollLeft: t3, scrollTop: h4 } = e3;
-      B2 = Math.max(0, Math.min(h4 + B2 / Y2, e3.scrollHeight - n2 / Y2 + S2)), D2 = Math.max(0, Math.min(t3 + D2 / X2, e3.scrollWidth - i2 / X2 + L2)), T2 += h4 - B2, V2 += t3 - D2;
+      const { scrollLeft: t3, scrollTop: h5 } = e3;
+      B2 = Math.max(0, Math.min(h5 + B2 / Y2, e3.scrollHeight - n2 / Y2 + S2)), D2 = Math.max(0, Math.min(t3 + D2 / X2, e3.scrollWidth - i2 / X2 + L2)), T2 += h5 - B2, V2 += t3 - D2;
     }
     k2.push({ el: e3, top: B2, left: D2 });
   }
@@ -16991,12 +16991,12 @@ function easeInOutCubic(t2, b2, c2, d2) {
   return cc2 / 2 * ((t2 -= 2) * t2 * t2 + 2) + b2;
 }
 function scrollTo(y2) {
-  let options = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
+  let options2 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
   const {
     getContainer: getContainer2 = () => window,
-    callback,
+    callback: callback2,
     duration = 450
-  } = options;
+  } = options2;
   const container2 = getContainer2();
   const scrollTop = getScroll$1(container2, true);
   const startTime = Date.now();
@@ -17013,8 +17013,8 @@ function scrollTo(y2) {
     }
     if (time < duration) {
       wrapperRaf(frameFunc);
-    } else if (typeof callback === "function") {
-      callback();
+    } else if (typeof callback2 === "function") {
+      callback2();
     }
   };
   wrapperRaf(frameFunc);
@@ -17953,7 +17953,7 @@ const genMessageStyle = (token2) => {
   ];
 };
 const useStyle$B = genComponentStyleHook("Message", (token2) => {
-  const combinedToken = merge$1(token2, {
+  const combinedToken = merge$2(token2, {
     height: 150
   });
   return [genMessageStyle(combinedToken)];
@@ -18027,9 +18027,9 @@ function getMotion$2(prefixCls, transitionName) {
 }
 function wrapPromiseFn(openFn) {
   let closeFn;
-  const closePromise = new Promise((resolve) => {
+  const closePromise = new Promise((resolve2) => {
     closeFn = openFn(() => {
-      resolve(true);
+      resolve2(true);
     });
   });
   const result = () => {
@@ -18141,7 +18141,7 @@ function useInternalMessage(messageConfig) {
         keyIndex += 1;
         mergedKey = `antd-message-${keyIndex}`;
       }
-      return wrapPromiseFn((resolve) => {
+      return wrapPromiseFn((resolve2) => {
         originOpen(Object.assign(Object.assign({}, restConfig), {
           key: mergedKey,
           content: /* @__PURE__ */ reactExports.createElement(PureContent, {
@@ -18154,7 +18154,7 @@ function useInternalMessage(messageConfig) {
           style: Object.assign(Object.assign({}, message2 === null || message2 === void 0 ? void 0 : message2.style), style2),
           onClose: () => {
             onClose === null || onClose === void 0 ? void 0 : onClose();
-            resolve();
+            resolve2();
           }
         }));
         return () => {
@@ -18288,18 +18288,18 @@ function _regeneratorRuntime() {
     });
   }
   function AsyncIterator(generator2, PromiseImpl) {
-    function invoke(method4, arg, resolve, reject) {
+    function invoke(method4, arg, resolve2, reject) {
       var record = tryCatch(generator2[method4], generator2, arg);
       if ("throw" !== record.type) {
         var result = record.arg, value = result.value;
         return value && "object" == _typeof(value) && hasOwn.call(value, "__await") ? PromiseImpl.resolve(value.__await).then(function(value2) {
-          invoke("next", value2, resolve, reject);
+          invoke("next", value2, resolve2, reject);
         }, function(err) {
-          invoke("throw", err, resolve, reject);
+          invoke("throw", err, resolve2, reject);
         }) : PromiseImpl.resolve(value).then(function(unwrapped) {
-          result.value = unwrapped, resolve(result);
+          result.value = unwrapped, resolve2(result);
         }, function(error) {
-          return invoke("throw", error, resolve, reject);
+          return invoke("throw", error, resolve2, reject);
         });
       }
       reject(record.arg);
@@ -18308,8 +18308,8 @@ function _regeneratorRuntime() {
     defineProperty(this, "_invoke", {
       value: function value(method4, arg) {
         function callInvokeWithMethodAndArg() {
-          return new PromiseImpl(function(resolve, reject) {
-            invoke(method4, arg, resolve, reject);
+          return new PromiseImpl(function(resolve2, reject) {
+            invoke(method4, arg, resolve2, reject);
           });
         }
         return previousPromise = previousPromise ? previousPromise.then(callInvokeWithMethodAndArg, callInvokeWithMethodAndArg) : callInvokeWithMethodAndArg();
@@ -18535,7 +18535,7 @@ function _regeneratorRuntime() {
     }
   }, exports;
 }
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
+function asyncGeneratorStep(gen, resolve2, reject, _next, _throw, key, arg) {
   try {
     var info = gen[key](arg);
     var value = info.value;
@@ -18544,7 +18544,7 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
     return;
   }
   if (info.done) {
-    resolve(value);
+    resolve2(value);
   } else {
     Promise.resolve(value).then(_next, _throw);
   }
@@ -18552,32 +18552,32 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) {
 function _asyncToGenerator(fn) {
   return function() {
     var self2 = this, args = arguments;
-    return new Promise(function(resolve, reject) {
+    return new Promise(function(resolve2, reject) {
       var gen = fn.apply(self2, args);
       function _next(value) {
-        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value);
+        asyncGeneratorStep(gen, resolve2, reject, _next, _throw, "next", value);
       }
       function _throw(err) {
-        asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err);
+        asyncGeneratorStep(gen, resolve2, reject, _next, _throw, "throw", err);
       }
       _next(void 0);
     });
   };
 }
 var fullClone = _objectSpread2({}, ReactDOM$1);
-var version = fullClone.version, reactRender = fullClone.render, unmountComponentAtNode = fullClone.unmountComponentAtNode;
+var version$1 = fullClone.version, reactRender = fullClone.render, unmountComponentAtNode = fullClone.unmountComponentAtNode;
 var createRoot;
 try {
-  var mainVersion = Number((version || "").split(".")[0]);
+  var mainVersion = Number((version$1 || "").split(".")[0]);
   if (mainVersion >= 18) {
     createRoot = fullClone.createRoot;
   }
 } catch (e2) {
 }
-function toggleWarning(skip) {
+function toggleWarning(skip2) {
   var __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED = fullClone.__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED;
   if (__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED && _typeof(__SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED) === "object") {
-    __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.usingClientEntryPoint = skip;
+    __SECRET_INTERNALS_DO_NOT_USE_OR_YOU_WILL_BE_FIRED.usingClientEntryPoint = skip2;
   }
 }
 var MARK = "__rc_react_root__";
@@ -18699,16 +18699,16 @@ const genWaveStyle = (token2) => {
   };
 };
 const useStyle$A = genComponentStyleHook("Wave", (token2) => [genWaveStyle(token2)]);
-function isNotGrey(color) {
-  const match5 = (color || "").match(/rgba?\((\d*), (\d*), (\d*)(, [\d.]*)?\)/);
+function isNotGrey(color2) {
+  const match5 = (color2 || "").match(/rgba?\((\d*), (\d*), (\d*)(, [\d.]*)?\)/);
   if (match5 && match5[1] && match5[2] && match5[3]) {
     return !(match5[1] === match5[2] && match5[2] === match5[3]);
   }
   return true;
 }
-function isValidWaveColor(color) {
-  return color && color !== "#fff" && color !== "#ffffff" && color !== "rgb(255, 255, 255)" && color !== "rgba(255, 255, 255, 1)" && isNotGrey(color) && !/rgba\((?:\d*, ){3}0\)/.test(color) && // any transparent rgba color
-  color !== "transparent";
+function isValidWaveColor(color2) {
+  return color2 && color2 !== "#fff" && color2 !== "#ffffff" && color2 !== "rgb(255, 255, 255)" && color2 !== "rgba(255, 255, 255, 1)" && isNotGrey(color2) && !/rgba\((?:\d*, ){3}0\)/.test(color2) && // any transparent rgba color
+  color2 !== "transparent";
 }
 function getTargetWaveColor(node2) {
   const {
@@ -18738,7 +18738,7 @@ const WaveEffect = (props) => {
     component
   } = props;
   const divRef = reactExports.useRef(null);
-  const [color, setWaveColor] = reactExports.useState(null);
+  const [color2, setWaveColor] = reactExports.useState(null);
   const [borderRadius, setBorderRadius] = reactExports.useState([]);
   const [left, setLeft] = reactExports.useState(0);
   const [top, setTop] = reactExports.useState(0);
@@ -18752,8 +18752,8 @@ const WaveEffect = (props) => {
     height,
     borderRadius: borderRadius.map((radius) => `${radius}px`).join(" ")
   };
-  if (color) {
-    waveStyle["--wave-color"] = color;
+  if (color2) {
+    waveStyle["--wave-color"] = color2;
   }
   function syncPos() {
     const nodeStyle = getComputedStyle(target);
@@ -19252,12 +19252,12 @@ function spaceChildren(children, needInserted) {
   });
   return React.Children.map(childList, (child) => splitCNCharsBySpace(child, needInserted));
 }
-function compactItemBorder(token2, parentCls, options) {
+function compactItemBorder(token2, parentCls, options2) {
   const {
     focusElCls,
     focus,
     borderElCls
-  } = options;
+  } = options2;
   const childCombinator = borderElCls ? "> *" : "";
   const hoverEffects = ["hover", focus ? "focus" : null, "active"].filter(Boolean).map((n2) => `&:${n2} ${childCombinator}`).join(",");
   return {
@@ -19279,10 +19279,10 @@ function compactItemBorder(token2, parentCls, options) {
     })
   };
 }
-function compactItemBorderRadius(prefixCls, parentCls, options) {
+function compactItemBorderRadius(prefixCls, parentCls, options2) {
   const {
     borderElCls
-  } = options;
+  } = options2;
   const childCombinator = borderElCls ? `> ${borderElCls}` : "";
   return {
     [`&-item:not(${parentCls}-first-item):not(${parentCls}-last-item) ${childCombinator}`]: {
@@ -19303,7 +19303,7 @@ function compactItemBorderRadius(prefixCls, parentCls, options) {
   };
 }
 function genCompactItemStyle(token2) {
-  let options = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {
+  let options2 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {
     focus: true
   };
   const {
@@ -19311,7 +19311,7 @@ function genCompactItemStyle(token2) {
   } = token2;
   const compactCls = `${componentCls}-compact`;
   return {
-    [compactCls]: Object.assign(Object.assign({}, compactItemBorder(token2, compactCls, options)), compactItemBorderRadius(componentCls, compactCls, options))
+    [compactCls]: Object.assign(Object.assign({}, compactItemBorder(token2, compactCls, options2)), compactItemBorderRadius(componentCls, compactCls, options2))
   };
 }
 function compactItemVerticalBorder(token2, parentCls) {
@@ -19721,7 +19721,7 @@ const genSizeButtonStyle = function(token2) {
 };
 const genSizeBaseButtonStyle = (token2) => genSizeButtonStyle(token2);
 const genSizeSmallButtonStyle = (token2) => {
-  const smallToken = merge$1(token2, {
+  const smallToken = merge$2(token2, {
     controlHeight: token2.controlHeightSM,
     padding: token2.paddingXS,
     buttonPaddingHorizontal: 8,
@@ -19731,7 +19731,7 @@ const genSizeSmallButtonStyle = (token2) => {
   return genSizeButtonStyle(smallToken, `${token2.componentCls}-sm`);
 };
 const genSizeLargeButtonStyle = (token2) => {
-  const largeToken = merge$1(token2, {
+  const largeToken = merge$2(token2, {
     controlHeight: token2.controlHeightLG,
     fontSize: token2.fontSizeLG,
     borderRadius: token2.borderRadiusLG,
@@ -19756,7 +19756,7 @@ const useStyle$y = genComponentStyleHook("Button", (token2) => {
     controlTmpOutline,
     paddingContentHorizontal
   } = token2;
-  const buttonToken = merge$1(token2, {
+  const buttonToken = merge$2(token2, {
     colorOutlineDefault: controlTmpOutline,
     buttonPaddingHorizontal: paddingContentHorizontal,
     buttonIconOnlyFontSize: token2.fontSizeLG,
@@ -20921,7 +20921,7 @@ function isEmptyValue(value, type4) {
   }
   return false;
 }
-function asyncParallelArray(arr, func, callback) {
+function asyncParallelArray(arr, func, callback2) {
   var results = [];
   var total = 0;
   var arrLength = arr.length;
@@ -20929,19 +20929,19 @@ function asyncParallelArray(arr, func, callback) {
     results.push.apply(results, errors || []);
     total++;
     if (total === arrLength) {
-      callback(results);
+      callback2(results);
     }
   }
   arr.forEach(function(a2) {
     func(a2, count);
   });
 }
-function asyncSerialArray(arr, func, callback) {
+function asyncSerialArray(arr, func, callback2) {
   var index2 = 0;
   var arrLength = arr.length;
   function next2(errors) {
     if (errors && errors.length) {
-      callback(errors);
+      callback2(errors);
       return;
     }
     var original = index2;
@@ -20949,7 +20949,7 @@ function asyncSerialArray(arr, func, callback) {
     if (original < arrLength) {
       func(arr[original], next2);
     } else {
-      callback([]);
+      callback2([]);
     }
   }
   next2([]);
@@ -20972,12 +20972,12 @@ var AsyncValidationError = /* @__PURE__ */ function(_Error) {
   }
   return AsyncValidationError2;
 }(/* @__PURE__ */ _wrapNativeSuper(Error));
-function asyncMap(objArr, option, func, callback, source) {
+function asyncMap(objArr, option, func, callback2, source) {
   if (option.first) {
-    var _pending = new Promise(function(resolve, reject) {
+    var _pending = new Promise(function(resolve2, reject) {
       var next2 = function next3(errors) {
-        callback(errors);
-        return errors.length ? reject(new AsyncValidationError(errors, convertFieldsError(errors))) : resolve(source);
+        callback2(errors);
+        return errors.length ? reject(new AsyncValidationError(errors, convertFieldsError(errors))) : resolve2(source);
       };
       var flattenArr = flattenObjArr(objArr);
       asyncSerialArray(flattenArr, func, next2);
@@ -20992,18 +20992,18 @@ function asyncMap(objArr, option, func, callback, source) {
   var objArrLength = objArrKeys.length;
   var total = 0;
   var results = [];
-  var pending = new Promise(function(resolve, reject) {
+  var pending = new Promise(function(resolve2, reject) {
     var next2 = function next3(errors) {
       results.push.apply(results, errors);
       total++;
       if (total === objArrLength) {
-        callback(results);
-        return results.length ? reject(new AsyncValidationError(results, convertFieldsError(results))) : resolve(source);
+        callback2(results);
+        return results.length ? reject(new AsyncValidationError(results, convertFieldsError(results))) : resolve2(source);
       }
     };
     if (!objArrKeys.length) {
-      callback(results);
-      resolve(source);
+      callback2(results);
+      resolve2(source);
     }
     objArrKeys.forEach(function(key) {
       var arr = objArr[key];
@@ -21067,14 +21067,14 @@ function deepMerge(target, source) {
   }
   return target;
 }
-var required$1 = function required(rule, value, source, errors, options, type4) {
+var required$1 = function required(rule, value, source, errors, options2, type4) {
   if (rule.required && (!source.hasOwnProperty(rule.field) || isEmptyValue(value, type4 || rule.type))) {
-    errors.push(format$2(options.messages.required, rule.fullField));
+    errors.push(format$2(options2.messages.required, rule.fullField));
   }
 };
-var whitespace = function whitespace2(rule, value, source, errors, options) {
+var whitespace = function whitespace2(rule, value, source, errors, options2) {
   if (/^\s+$/.test(value) || value === "") {
-    errors.push(format$2(options.messages.whitespace, rule.fullField));
+    errors.push(format$2(options2.messages.whitespace, rule.fullField));
   }
 };
 var urlReg;
@@ -21083,8 +21083,8 @@ var getUrlRegex = function() {
     return urlReg;
   }
   var word = "[a-fA-F\\d:]";
-  var b2 = function b3(options) {
-    return options && options.includeBoundaries ? "(?:(?<=\\s|^)(?=" + word + ")|(?<=" + word + ")(?=\\s|$))" : "";
+  var b2 = function b3(options2) {
+    return options2 && options2.includeBoundaries ? "(?:(?<=\\s|^)(?=" + word + ")|(?<=" + word + ")(?=\\s|$))" : "";
   };
   var v4 = "(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)(?:\\.(?:25[0-5]|2[0-4]\\d|1\\d\\d|[1-9]\\d|\\d)){3}";
   var v6seg = "[a-fA-F\\d]{1,4}";
@@ -21092,14 +21092,14 @@ var getUrlRegex = function() {
   var v46Exact = new RegExp("(?:^" + v4 + "$)|(?:^" + v6 + "$)");
   var v4exact = new RegExp("^" + v4 + "$");
   var v6exact = new RegExp("^" + v6 + "$");
-  var ip = function ip2(options) {
-    return options && options.exact ? v46Exact : new RegExp("(?:" + b2(options) + v4 + b2(options) + ")|(?:" + b2(options) + v6 + b2(options) + ")", "g");
+  var ip = function ip2(options2) {
+    return options2 && options2.exact ? v46Exact : new RegExp("(?:" + b2(options2) + v4 + b2(options2) + ")|(?:" + b2(options2) + v6 + b2(options2) + ")", "g");
   };
-  ip.v4 = function(options) {
-    return options && options.exact ? v4exact : new RegExp("" + b2(options) + v4 + b2(options), "g");
+  ip.v4 = function(options2) {
+    return options2 && options2.exact ? v4exact : new RegExp("" + b2(options2) + v4 + b2(options2), "g");
   };
-  ip.v6 = function(options) {
-    return options && options.exact ? v6exact : new RegExp("" + b2(options) + v6 + b2(options), "g");
+  ip.v6 = function(options2) {
+    return options2 && options2.exact ? v6exact : new RegExp("" + b2(options2) + v6 + b2(options2), "g");
   };
   var protocol = "(?:(?:[a-z]+:)?//)";
   var auth = "(?:\\S+(?::\\S*)?@)?";
@@ -21168,22 +21168,22 @@ var types = {
     return typeof value === "string" && !!value.match(pattern$2.hex);
   }
 };
-var type$1 = function type(rule, value, source, errors, options) {
+var type$1 = function type(rule, value, source, errors, options2) {
   if (rule.required && value === void 0) {
-    required$1(rule, value, source, errors, options);
+    required$1(rule, value, source, errors, options2);
     return;
   }
   var custom = ["integer", "float", "array", "regexp", "object", "method", "email", "number", "date", "url", "hex"];
   var ruleType = rule.type;
   if (custom.indexOf(ruleType) > -1) {
     if (!types[ruleType](value)) {
-      errors.push(format$2(options.messages.types[ruleType], rule.fullField, rule.type));
+      errors.push(format$2(options2.messages.types[ruleType], rule.fullField, rule.type));
     }
   } else if (ruleType && typeof value !== rule.type) {
-    errors.push(format$2(options.messages.types[ruleType], rule.fullField, rule.type));
+    errors.push(format$2(options2.messages.types[ruleType], rule.fullField, rule.type));
   }
 };
-var range = function range2(rule, value, source, errors, options) {
+var range = function range2(rule, value, source, errors, options2) {
   var len = typeof rule.len === "number";
   var min2 = typeof rule.min === "number";
   var max2 = typeof rule.max === "number";
@@ -21211,34 +21211,34 @@ var range = function range2(rule, value, source, errors, options) {
   }
   if (len) {
     if (val !== rule.len) {
-      errors.push(format$2(options.messages[key].len, rule.fullField, rule.len));
+      errors.push(format$2(options2.messages[key].len, rule.fullField, rule.len));
     }
   } else if (min2 && !max2 && val < rule.min) {
-    errors.push(format$2(options.messages[key].min, rule.fullField, rule.min));
+    errors.push(format$2(options2.messages[key].min, rule.fullField, rule.min));
   } else if (max2 && !min2 && val > rule.max) {
-    errors.push(format$2(options.messages[key].max, rule.fullField, rule.max));
+    errors.push(format$2(options2.messages[key].max, rule.fullField, rule.max));
   } else if (min2 && max2 && (val < rule.min || val > rule.max)) {
-    errors.push(format$2(options.messages[key].range, rule.fullField, rule.min, rule.max));
+    errors.push(format$2(options2.messages[key].range, rule.fullField, rule.min, rule.max));
   }
 };
 var ENUM$1 = "enum";
-var enumerable$1 = function enumerable(rule, value, source, errors, options) {
+var enumerable$1 = function enumerable(rule, value, source, errors, options2) {
   rule[ENUM$1] = Array.isArray(rule[ENUM$1]) ? rule[ENUM$1] : [];
   if (rule[ENUM$1].indexOf(value) === -1) {
-    errors.push(format$2(options.messages[ENUM$1], rule.fullField, rule[ENUM$1].join(", ")));
+    errors.push(format$2(options2.messages[ENUM$1], rule.fullField, rule[ENUM$1].join(", ")));
   }
 };
-var pattern$1 = function pattern(rule, value, source, errors, options) {
+var pattern$1 = function pattern(rule, value, source, errors, options2) {
   if (rule.pattern) {
     if (rule.pattern instanceof RegExp) {
       rule.pattern.lastIndex = 0;
       if (!rule.pattern.test(value)) {
-        errors.push(format$2(options.messages.pattern.mismatch, rule.fullField, value, rule.pattern));
+        errors.push(format$2(options2.messages.pattern.mismatch, rule.fullField, value, rule.pattern));
       }
     } else if (typeof rule.pattern === "string") {
       var _pattern = new RegExp(rule.pattern);
       if (!_pattern.test(value)) {
-        errors.push(format$2(options.messages.pattern.mismatch, rule.fullField, value, rule.pattern));
+        errors.push(format$2(options2.messages.pattern.mismatch, rule.fullField, value, rule.pattern));
       }
     }
   }
@@ -21251,40 +21251,40 @@ var rules = {
   "enum": enumerable$1,
   pattern: pattern$1
 };
-var string = function string2(rule, value, callback, source, options) {
+var string = function string2(rule, value, callback2, source, options2) {
   var errors = [];
   var validate = rule.required || !rule.required && source.hasOwnProperty(rule.field);
   if (validate) {
     if (isEmptyValue(value, "string") && !rule.required) {
-      return callback();
+      return callback2();
     }
-    rules.required(rule, value, source, errors, options, "string");
+    rules.required(rule, value, source, errors, options2, "string");
     if (!isEmptyValue(value, "string")) {
-      rules.type(rule, value, source, errors, options);
-      rules.range(rule, value, source, errors, options);
-      rules.pattern(rule, value, source, errors, options);
+      rules.type(rule, value, source, errors, options2);
+      rules.range(rule, value, source, errors, options2);
+      rules.pattern(rule, value, source, errors, options2);
       if (rule.whitespace === true) {
-        rules.whitespace(rule, value, source, errors, options);
+        rules.whitespace(rule, value, source, errors, options2);
       }
     }
   }
-  callback(errors);
+  callback2(errors);
 };
-var method2 = function method3(rule, value, callback, source, options) {
+var method2 = function method3(rule, value, callback2, source, options2) {
   var errors = [];
   var validate = rule.required || !rule.required && source.hasOwnProperty(rule.field);
   if (validate) {
     if (isEmptyValue(value) && !rule.required) {
-      return callback();
+      return callback2();
     }
-    rules.required(rule, value, source, errors, options);
+    rules.required(rule, value, source, errors, options2);
     if (value !== void 0) {
-      rules.type(rule, value, source, errors, options);
+      rules.type(rule, value, source, errors, options2);
     }
   }
-  callback(errors);
+  callback2(errors);
 };
-var number2 = function number3(rule, value, callback, source, options) {
+var number2 = function number3(rule, value, callback2, source, options2) {
   var errors = [];
   var validate = rule.required || !rule.required && source.hasOwnProperty(rule.field);
   if (validate) {
@@ -21292,140 +21292,140 @@ var number2 = function number3(rule, value, callback, source, options) {
       value = void 0;
     }
     if (isEmptyValue(value) && !rule.required) {
-      return callback();
+      return callback2();
     }
-    rules.required(rule, value, source, errors, options);
+    rules.required(rule, value, source, errors, options2);
     if (value !== void 0) {
-      rules.type(rule, value, source, errors, options);
-      rules.range(rule, value, source, errors, options);
+      rules.type(rule, value, source, errors, options2);
+      rules.range(rule, value, source, errors, options2);
     }
   }
-  callback(errors);
+  callback2(errors);
 };
-var _boolean = function _boolean2(rule, value, callback, source, options) {
+var _boolean = function _boolean2(rule, value, callback2, source, options2) {
   var errors = [];
   var validate = rule.required || !rule.required && source.hasOwnProperty(rule.field);
   if (validate) {
     if (isEmptyValue(value) && !rule.required) {
-      return callback();
+      return callback2();
     }
-    rules.required(rule, value, source, errors, options);
+    rules.required(rule, value, source, errors, options2);
     if (value !== void 0) {
-      rules.type(rule, value, source, errors, options);
+      rules.type(rule, value, source, errors, options2);
     }
   }
-  callback(errors);
+  callback2(errors);
 };
-var regexp2 = function regexp3(rule, value, callback, source, options) {
+var regexp2 = function regexp3(rule, value, callback2, source, options2) {
   var errors = [];
   var validate = rule.required || !rule.required && source.hasOwnProperty(rule.field);
   if (validate) {
     if (isEmptyValue(value) && !rule.required) {
-      return callback();
+      return callback2();
     }
-    rules.required(rule, value, source, errors, options);
+    rules.required(rule, value, source, errors, options2);
     if (!isEmptyValue(value)) {
-      rules.type(rule, value, source, errors, options);
+      rules.type(rule, value, source, errors, options2);
     }
   }
-  callback(errors);
+  callback2(errors);
 };
-var integer2 = function integer3(rule, value, callback, source, options) {
+var integer2 = function integer3(rule, value, callback2, source, options2) {
   var errors = [];
   var validate = rule.required || !rule.required && source.hasOwnProperty(rule.field);
   if (validate) {
     if (isEmptyValue(value) && !rule.required) {
-      return callback();
+      return callback2();
     }
-    rules.required(rule, value, source, errors, options);
+    rules.required(rule, value, source, errors, options2);
     if (value !== void 0) {
-      rules.type(rule, value, source, errors, options);
-      rules.range(rule, value, source, errors, options);
+      rules.type(rule, value, source, errors, options2);
+      rules.range(rule, value, source, errors, options2);
     }
   }
-  callback(errors);
+  callback2(errors);
 };
-var floatFn = function floatFn2(rule, value, callback, source, options) {
+var floatFn = function floatFn2(rule, value, callback2, source, options2) {
   var errors = [];
   var validate = rule.required || !rule.required && source.hasOwnProperty(rule.field);
   if (validate) {
     if (isEmptyValue(value) && !rule.required) {
-      return callback();
+      return callback2();
     }
-    rules.required(rule, value, source, errors, options);
+    rules.required(rule, value, source, errors, options2);
     if (value !== void 0) {
-      rules.type(rule, value, source, errors, options);
-      rules.range(rule, value, source, errors, options);
+      rules.type(rule, value, source, errors, options2);
+      rules.range(rule, value, source, errors, options2);
     }
   }
-  callback(errors);
+  callback2(errors);
 };
-var array2 = function array3(rule, value, callback, source, options) {
+var array2 = function array3(rule, value, callback2, source, options2) {
   var errors = [];
   var validate = rule.required || !rule.required && source.hasOwnProperty(rule.field);
   if (validate) {
     if ((value === void 0 || value === null) && !rule.required) {
-      return callback();
+      return callback2();
     }
-    rules.required(rule, value, source, errors, options, "array");
+    rules.required(rule, value, source, errors, options2, "array");
     if (value !== void 0 && value !== null) {
-      rules.type(rule, value, source, errors, options);
-      rules.range(rule, value, source, errors, options);
+      rules.type(rule, value, source, errors, options2);
+      rules.range(rule, value, source, errors, options2);
     }
   }
-  callback(errors);
+  callback2(errors);
 };
-var object2 = function object3(rule, value, callback, source, options) {
+var object2 = function object3(rule, value, callback2, source, options2) {
   var errors = [];
   var validate = rule.required || !rule.required && source.hasOwnProperty(rule.field);
   if (validate) {
     if (isEmptyValue(value) && !rule.required) {
-      return callback();
+      return callback2();
     }
-    rules.required(rule, value, source, errors, options);
+    rules.required(rule, value, source, errors, options2);
     if (value !== void 0) {
-      rules.type(rule, value, source, errors, options);
+      rules.type(rule, value, source, errors, options2);
     }
   }
-  callback(errors);
+  callback2(errors);
 };
 var ENUM = "enum";
-var enumerable2 = function enumerable3(rule, value, callback, source, options) {
+var enumerable2 = function enumerable3(rule, value, callback2, source, options2) {
   var errors = [];
   var validate = rule.required || !rule.required && source.hasOwnProperty(rule.field);
   if (validate) {
     if (isEmptyValue(value) && !rule.required) {
-      return callback();
+      return callback2();
     }
-    rules.required(rule, value, source, errors, options);
+    rules.required(rule, value, source, errors, options2);
     if (value !== void 0) {
-      rules[ENUM](rule, value, source, errors, options);
+      rules[ENUM](rule, value, source, errors, options2);
     }
   }
-  callback(errors);
+  callback2(errors);
 };
-var pattern2 = function pattern3(rule, value, callback, source, options) {
+var pattern2 = function pattern3(rule, value, callback2, source, options2) {
   var errors = [];
   var validate = rule.required || !rule.required && source.hasOwnProperty(rule.field);
   if (validate) {
     if (isEmptyValue(value, "string") && !rule.required) {
-      return callback();
+      return callback2();
     }
-    rules.required(rule, value, source, errors, options);
+    rules.required(rule, value, source, errors, options2);
     if (!isEmptyValue(value, "string")) {
-      rules.pattern(rule, value, source, errors, options);
+      rules.pattern(rule, value, source, errors, options2);
     }
   }
-  callback(errors);
+  callback2(errors);
 };
-var date2 = function date3(rule, value, callback, source, options) {
+var date2 = function date3(rule, value, callback2, source, options2) {
   var errors = [];
   var validate = rule.required || !rule.required && source.hasOwnProperty(rule.field);
   if (validate) {
     if (isEmptyValue(value, "date") && !rule.required) {
-      return callback();
+      return callback2();
     }
-    rules.required(rule, value, source, errors, options);
+    rules.required(rule, value, source, errors, options2);
     if (!isEmptyValue(value, "date")) {
       var dateObject;
       if (value instanceof Date) {
@@ -21433,45 +21433,45 @@ var date2 = function date3(rule, value, callback, source, options) {
       } else {
         dateObject = new Date(value);
       }
-      rules.type(rule, dateObject, source, errors, options);
+      rules.type(rule, dateObject, source, errors, options2);
       if (dateObject) {
-        rules.range(rule, dateObject.getTime(), source, errors, options);
+        rules.range(rule, dateObject.getTime(), source, errors, options2);
       }
     }
   }
-  callback(errors);
+  callback2(errors);
 };
-var required2 = function required3(rule, value, callback, source, options) {
+var required2 = function required3(rule, value, callback2, source, options2) {
   var errors = [];
   var type4 = Array.isArray(value) ? "array" : typeof value;
-  rules.required(rule, value, source, errors, options, type4);
-  callback(errors);
+  rules.required(rule, value, source, errors, options2, type4);
+  callback2(errors);
 };
-var type2 = function type3(rule, value, callback, source, options) {
+var type2 = function type3(rule, value, callback2, source, options2) {
   var ruleType = rule.type;
   var errors = [];
   var validate = rule.required || !rule.required && source.hasOwnProperty(rule.field);
   if (validate) {
     if (isEmptyValue(value, ruleType) && !rule.required) {
-      return callback();
+      return callback2();
     }
-    rules.required(rule, value, source, errors, options, ruleType);
+    rules.required(rule, value, source, errors, options2, ruleType);
     if (!isEmptyValue(value, ruleType)) {
-      rules.type(rule, value, source, errors, options);
+      rules.type(rule, value, source, errors, options2);
     }
   }
-  callback(errors);
+  callback2(errors);
 };
-var any = function any2(rule, value, callback, source, options) {
+var any = function any2(rule, value, callback2, source, options2) {
   var errors = [];
   var validate = rule.required || !rule.required && source.hasOwnProperty(rule.field);
   if (validate) {
     if (isEmptyValue(value) && !rule.required) {
-      return callback();
+      return callback2();
     }
-    rules.required(rule, value, source, errors, options);
+    rules.required(rule, value, source, errors, options2);
   }
-  callback(errors);
+  callback2(errors);
 };
 var validators$2 = {
   string,
@@ -21584,15 +21584,15 @@ var Schema = /* @__PURE__ */ function() {
       };
     }
     var source = source_;
-    var options = o2;
-    var callback = oc2;
-    if (typeof options === "function") {
-      callback = options;
-      options = {};
+    var options2 = o2;
+    var callback2 = oc2;
+    if (typeof options2 === "function") {
+      callback2 = options2;
+      options2 = {};
     }
     if (!this.rules || Object.keys(this.rules).length === 0) {
-      if (callback) {
-        callback(null, source);
+      if (callback2) {
+        callback2(null, source);
       }
       return Promise.resolve(source);
     }
@@ -21611,24 +21611,24 @@ var Schema = /* @__PURE__ */ function() {
         add2(results[i2]);
       }
       if (!errors.length) {
-        callback(null, source);
+        callback2(null, source);
       } else {
         fields = convertFieldsError(errors);
-        callback(errors, fields);
+        callback2(errors, fields);
       }
     }
-    if (options.messages) {
+    if (options2.messages) {
       var messages$1 = this.messages();
       if (messages$1 === messages) {
         messages$1 = newMessages();
       }
-      deepMerge(messages$1, options.messages);
-      options.messages = messages$1;
+      deepMerge(messages$1, options2.messages);
+      options2.messages = messages$1;
     } else {
-      options.messages = this.messages();
+      options2.messages = this.messages();
     }
     var series = {};
-    var keys2 = options.keys || Object.keys(this.rules);
+    var keys2 = options2.keys || Object.keys(this.rules);
     keys2.forEach(function(z2) {
       var arr = _this2.rules[z2];
       var value = source[z2];
@@ -21664,7 +21664,7 @@ var Schema = /* @__PURE__ */ function() {
       });
     });
     var errorFields = {};
-    return asyncMap(series, options, function(data2, doIt) {
+    return asyncMap(series, options2, function(data2, doIt) {
       var rule = data2.rule;
       var deep = (rule.type === "object" || rule.type === "array") && (typeof rule.fields === "object" || typeof rule.defaultField === "object");
       deep = deep && (rule.required || !rule.required && data2.value);
@@ -21680,14 +21680,14 @@ var Schema = /* @__PURE__ */ function() {
           e2 = [];
         }
         var errorList = Array.isArray(e2) ? e2 : [e2];
-        if (!options.suppressWarning && errorList.length) {
+        if (!options2.suppressWarning && errorList.length) {
           Schema2.warning("async-validator:", errorList);
         }
         if (errorList.length && rule.message !== void 0) {
           errorList = [].concat(rule.message);
         }
         var filledErrors = errorList.map(complementError(rule, source));
-        if (options.first && filledErrors.length) {
+        if (options2.first && filledErrors.length) {
           errorFields[rule.field] = 1;
           return doIt(filledErrors);
         }
@@ -21697,8 +21697,8 @@ var Schema = /* @__PURE__ */ function() {
           if (rule.required && !data2.value) {
             if (rule.message !== void 0) {
               filledErrors = [].concat(rule.message).map(complementError(rule, source));
-            } else if (options.error) {
-              filledErrors = [options.error(rule, format$2(options.messages.required, rule.field))];
+            } else if (options2.error) {
+              filledErrors = [options2.error(rule, format$2(options2.messages.required, rule.field))];
             }
             return doIt(filledErrors);
           }
@@ -21716,12 +21716,12 @@ var Schema = /* @__PURE__ */ function() {
             paredFieldsSchema[field] = fieldSchemaList.map(addFullField.bind(null, field));
           });
           var schema = new Schema2(paredFieldsSchema);
-          schema.messages(options.messages);
+          schema.messages(options2.messages);
           if (data2.rule.options) {
-            data2.rule.options.messages = options.messages;
-            data2.rule.options.error = options.error;
+            data2.rule.options.messages = options2.messages;
+            data2.rule.options.error = options2.error;
           }
-          schema.validate(data2.value, data2.rule.options || options, function(errs) {
+          schema.validate(data2.value, data2.rule.options || options2, function(errs) {
             var finalErrors = [];
             if (filledErrors && filledErrors.length) {
               finalErrors.push.apply(finalErrors, filledErrors);
@@ -21735,13 +21735,13 @@ var Schema = /* @__PURE__ */ function() {
       }
       var res;
       if (rule.asyncValidator) {
-        res = rule.asyncValidator(rule, data2.value, cb2, data2.source, options);
+        res = rule.asyncValidator(rule, data2.value, cb2, data2.source, options2);
       } else if (rule.validator) {
         try {
-          res = rule.validator(rule, data2.value, cb2, data2.source, options);
+          res = rule.validator(rule, data2.value, cb2, data2.source, options2);
         } catch (error) {
           console.error == null ? void 0 : console.error(error);
-          if (!options.suppressValidatorError) {
+          if (!options2.suppressValidatorError) {
             setTimeout(function() {
               throw error;
             }, 0);
@@ -21863,7 +21863,7 @@ function validateRule(_x, _x2, _x3, _x4, _x5) {
   return _validateRule.apply(this, arguments);
 }
 function _validateRule() {
-  _validateRule = _asyncToGenerator(/* @__PURE__ */ _regeneratorRuntime().mark(function _callee2(name, value, rule, options, messageVariables) {
+  _validateRule = _asyncToGenerator(/* @__PURE__ */ _regeneratorRuntime().mark(function _callee2(name, value, rule, options2, messageVariables) {
     var cloneRule, originValidator, subRuleField, validator2, messages2, result, subResults, kv, fillVariableResult;
     return _regeneratorRuntime().wrap(function _callee2$(_context2) {
       while (1)
@@ -21891,12 +21891,12 @@ function _validateRule() {
               delete cloneRule.defaultField;
             }
             validator2 = new AsyncValidator(_defineProperty({}, name, [cloneRule]));
-            messages2 = merge$2(defaultValidateMessages, options.validateMessages);
+            messages2 = merge$3(defaultValidateMessages, options2.validateMessages);
             validator2.messages(messages2);
             result = [];
             _context2.prev = 10;
             _context2.next = 13;
-            return Promise.resolve(validator2.validate(_defineProperty({}, name, value), _objectSpread2({}, options)));
+            return Promise.resolve(validator2.validate(_defineProperty({}, name, value), _objectSpread2({}, options2)));
           case 13:
             _context2.next = 18;
             break;
@@ -21922,7 +21922,7 @@ function _validateRule() {
             }
             _context2.next = 21;
             return Promise.all(value.map(function(subValue, i2) {
-              return validateRule("".concat(name, ".").concat(i2), subValue, subRuleField, options, messageVariables);
+              return validateRule("".concat(name, ".").concat(i2), subValue, subRuleField, options2, messageVariables);
             }));
           case 21:
             subResults = _context2.sent;
@@ -21949,7 +21949,7 @@ function _validateRule() {
   }));
   return _validateRule.apply(this, arguments);
 }
-function validateRules(namePath, value, rules2, options, validateFirst, messageVariables) {
+function validateRules(namePath, value, rules2, options2, validateFirst, messageVariables) {
   var name = namePath.join(".");
   var filledRules = rules2.map(function(currentRule, ruleIndex) {
     var originValidatorFunc = currentRule.validator;
@@ -21957,7 +21957,7 @@ function validateRules(namePath, value, rules2, options, validateFirst, messageV
       ruleIndex
     });
     if (originValidatorFunc) {
-      cloneRule.validator = function(rule, val, callback) {
+      cloneRule.validator = function(rule, val, callback2) {
         var hasPromise = false;
         var wrappedCallback = function wrappedCallback2() {
           for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
@@ -21966,7 +21966,7 @@ function validateRules(namePath, value, rules2, options, validateFirst, messageV
           Promise.resolve().then(function() {
             warningOnce(!hasPromise, "Your validator function has already return a promise. `callback` will be ignored.");
             if (!hasPromise) {
-              callback.apply(void 0, args);
+              callback2.apply(void 0, args);
             }
           });
         };
@@ -21975,9 +21975,9 @@ function validateRules(namePath, value, rules2, options, validateFirst, messageV
         warningOnce(hasPromise, "`callback` is deprecated. Please return a promise instead.");
         if (hasPromise) {
           promise.then(function() {
-            callback();
+            callback2();
           }).catch(function(err) {
-            callback(err || " ");
+            callback2(err || " ");
           });
         }
       };
@@ -21997,7 +21997,7 @@ function validateRules(namePath, value, rules2, options, validateFirst, messageV
   var summaryPromise;
   if (validateFirst === true) {
     summaryPromise = new Promise(/* @__PURE__ */ function() {
-      var _ref3 = _asyncToGenerator(/* @__PURE__ */ _regeneratorRuntime().mark(function _callee(resolve, reject) {
+      var _ref3 = _asyncToGenerator(/* @__PURE__ */ _regeneratorRuntime().mark(function _callee(resolve2, reject) {
         var i2, rule, errors;
         return _regeneratorRuntime().wrap(function _callee$(_context) {
           while (1)
@@ -22011,7 +22011,7 @@ function validateRules(namePath, value, rules2, options, validateFirst, messageV
                 }
                 rule = filledRules[i2];
                 _context.next = 5;
-                return validateRule(name, value, rule, options, messageVariables);
+                return validateRule(name, value, rule, options2, messageVariables);
               case 5:
                 errors = _context.sent;
                 if (!errors.length) {
@@ -22028,7 +22028,7 @@ function validateRules(namePath, value, rules2, options, validateFirst, messageV
                 _context.next = 1;
                 break;
               case 12:
-                resolve([]);
+                resolve2([]);
               case 13:
               case "end":
                 return _context.stop();
@@ -22041,7 +22041,7 @@ function validateRules(namePath, value, rules2, options, validateFirst, messageV
     }());
   } else {
     var rulePromises = filledRules.map(function(rule) {
-      return validateRule(name, value, rule, options, messageVariables).then(function(errors) {
+      return validateRule(name, value, rule, options2, messageVariables).then(function(errors) {
         return {
           errors,
           rule
@@ -22090,15 +22090,15 @@ function _finishOnFirstFailed() {
         switch (_context4.prev = _context4.next) {
           case 0:
             count = 0;
-            return _context4.abrupt("return", new Promise(function(resolve) {
+            return _context4.abrupt("return", new Promise(function(resolve2) {
               rulePromises.forEach(function(promise) {
                 promise.then(function(ruleError) {
                   if (ruleError.errors.length) {
-                    resolve([ruleError]);
+                    resolve2([ruleError]);
                   }
                   count += 1;
                   if (count === rulePromises.length) {
-                    resolve([]);
+                    resolve2([]);
                   }
                 });
               });
@@ -22118,7 +22118,7 @@ function cloneByNamePathList(store, namePathList) {
   var newStore = {};
   namePathList.forEach(function(namePath) {
     var value = get$3(store, namePath);
-    newStore = set$2(newStore, namePath, value);
+    newStore = set$3(newStore, namePath, value);
   });
   return newStore;
 }
@@ -22336,10 +22336,10 @@ var Field = /* @__PURE__ */ function(_React$Component) {
         _this.reRender();
       }
     };
-    _this.validateRules = function(options) {
+    _this.validateRules = function(options2) {
       var namePath = _this.getNamePath();
       var currentValue = _this.getValue();
-      var _ref2 = options || {}, triggerName = _ref2.triggerName, _ref2$validateOnly = _ref2.validateOnly, validateOnly = _ref2$validateOnly === void 0 ? false : _ref2$validateOnly;
+      var _ref2 = options2 || {}, triggerName = _ref2.triggerName, _ref2$validateOnly = _ref2.validateOnly, validateOnly = _ref2$validateOnly === void 0 ? false : _ref2$validateOnly;
       var rootPromise = Promise.resolve().then(function() {
         if (!_this.mounted) {
           return [];
@@ -22358,7 +22358,7 @@ var Field = /* @__PURE__ */ function(_React$Component) {
             return triggerList.includes(triggerName);
           });
         }
-        var promise = validateRules(namePath, currentValue, filteredRules, options, validateFirst, messageVariables);
+        var promise = validateRules(namePath, currentValue, filteredRules, options2, validateFirst, messageVariables);
         promise.catch(function(e2) {
           return e2;
         }).then(function() {
@@ -22719,7 +22719,7 @@ function allPromiseFinish(promiseList) {
   if (!promiseList.length) {
     return Promise.resolve([]);
   }
-  return new Promise(function(resolve, reject) {
+  return new Promise(function(resolve2, reject) {
     promiseList.forEach(function(promise, index2) {
       promise.catch(function(e2) {
         hasError = true;
@@ -22733,7 +22733,7 @@ function allPromiseFinish(promiseList) {
         if (hasError) {
           reject(results);
         }
-        resolve(results);
+        resolve2(results);
       });
     });
   });
@@ -22778,11 +22778,11 @@ var NameMap = /* @__PURE__ */ function() {
     // Since we only use this in test, let simply realize this
   }, {
     key: "map",
-    value: function map2(callback) {
+    value: function map2(callback2) {
       return _toConsumableArray(this.kvs.entries()).map(function(_ref) {
         var _ref2 = _slicedToArray(_ref, 2), key = _ref2[0], value = _ref2[1];
         var cells = key.split(SPLIT);
-        return callback({
+        return callback2({
           key: cells.map(function(cell) {
             var _cell$match = cell.match(/^([^:]*):(.*)$/), _cell$match2 = _slicedToArray(_cell$match, 3), type4 = _cell$match2[1], unit = _cell$match2[2];
             return type4 === "number" ? Number(unit) : unit;
@@ -22869,10 +22869,10 @@ var FormStore = /* @__PURE__ */ _createClass(function FormStore2(forceRootUpdate
     _this.initialValues = initialValues || {};
     if (init) {
       var _this$prevWithoutPres;
-      var nextStore = merge$2(initialValues, _this.store);
+      var nextStore = merge$3(initialValues, _this.store);
       (_this$prevWithoutPres = _this.prevWithoutPreserves) === null || _this$prevWithoutPres === void 0 ? void 0 : _this$prevWithoutPres.map(function(_ref) {
         var namePath = _ref.key;
-        nextStore = set$2(nextStore, namePath, get$3(initialValues, namePath));
+        nextStore = set$3(nextStore, namePath, get$3(initialValues, namePath));
       });
       _this.prevWithoutPreserves = null;
       _this.updateStore(nextStore);
@@ -22889,7 +22889,7 @@ var FormStore = /* @__PURE__ */ _createClass(function FormStore2(forceRootUpdate
   };
   this.getInitialValue = function(namePath) {
     var initValue = get$3(_this.initialValues, namePath);
-    return namePath.length ? merge$2(initValue) : initValue;
+    return namePath.length ? merge$3(initValue) : initValue;
   };
   this.setCallbacks = function(callbacks) {
     _this.callbacks = callbacks;
@@ -22901,11 +22901,11 @@ var FormStore = /* @__PURE__ */ _createClass(function FormStore2(forceRootUpdate
     _this.preserve = preserve;
   };
   this.watchList = [];
-  this.registerWatch = function(callback) {
-    _this.watchList.push(callback);
+  this.registerWatch = function(callback2) {
+    _this.watchList.push(callback2);
     return function() {
       _this.watchList = _this.watchList.filter(function(fn) {
-        return fn !== callback;
+        return fn !== callback2;
       });
     };
   };
@@ -22914,8 +22914,8 @@ var FormStore = /* @__PURE__ */ _createClass(function FormStore2(forceRootUpdate
     if (_this.watchList.length) {
       var values = _this.getFieldsValue();
       var allValues = _this.getFieldsValue(true);
-      _this.watchList.forEach(function(callback) {
-        callback(values, allValues, namePath);
+      _this.watchList.forEach(function(callback2) {
+        callback2(values, allValues, namePath);
       });
     }
   };
@@ -23136,7 +23136,7 @@ var FormStore = /* @__PURE__ */ _createClass(function FormStore2(forceRootUpdate
             } else if (records) {
               var originValue = _this.getFieldValue(namePath);
               if (!info.skipExist || originValue === void 0) {
-                _this.updateStore(set$2(_this.store, namePath, _toConsumableArray(records)[0].value));
+                _this.updateStore(set$3(_this.store, namePath, _toConsumableArray(records)[0].value));
               }
             }
           }
@@ -23166,7 +23166,7 @@ var FormStore = /* @__PURE__ */ _createClass(function FormStore2(forceRootUpdate
     _this.warningUnhooked();
     var prevStore = _this.store;
     if (!nameList) {
-      _this.updateStore(merge$2(_this.initialValues));
+      _this.updateStore(merge$3(_this.initialValues));
       _this.resetWithFieldInitialValue();
       _this.notifyObservers(prevStore, null, {
         type: "reset"
@@ -23177,7 +23177,7 @@ var FormStore = /* @__PURE__ */ _createClass(function FormStore2(forceRootUpdate
     var namePathList = nameList.map(getNamePath);
     namePathList.forEach(function(namePath) {
       var initialValue = _this.getInitialValue(namePath);
-      _this.updateStore(set$2(_this.store, namePath, initialValue));
+      _this.updateStore(set$3(_this.store, namePath, initialValue));
     });
     _this.resetWithFieldInitialValue({
       namePathList
@@ -23196,7 +23196,7 @@ var FormStore = /* @__PURE__ */ _createClass(function FormStore2(forceRootUpdate
       var namePath = getNamePath(name);
       namePathList.push(namePath);
       if ("value" in data2) {
-        _this.updateStore(set$2(_this.store, namePath, data2.value));
+        _this.updateStore(set$3(_this.store, namePath, data2.value));
       }
       _this.notifyObservers(prevStore, [namePath], {
         type: "setField",
@@ -23227,7 +23227,7 @@ var FormStore = /* @__PURE__ */ _createClass(function FormStore2(forceRootUpdate
       var namePath = entity.getNamePath();
       var prevValue = get$3(_this.store, namePath);
       if (prevValue === void 0) {
-        _this.updateStore(set$2(_this.store, namePath, initialValue));
+        _this.updateStore(set$3(_this.store, namePath, initialValue));
       }
     }
   };
@@ -23264,7 +23264,7 @@ var FormStore = /* @__PURE__ */ _createClass(function FormStore2(forceRootUpdate
           );
         })) {
           var _prevStore = _this.store;
-          _this.updateStore(set$2(_prevStore, namePath, defaultValue, true));
+          _this.updateStore(set$3(_prevStore, namePath, defaultValue, true));
           _this.notifyObservers(_prevStore, [namePath], {
             type: "remove"
           });
@@ -23317,7 +23317,7 @@ var FormStore = /* @__PURE__ */ _createClass(function FormStore2(forceRootUpdate
   this.updateValue = function(name, value) {
     var namePath = getNamePath(name);
     var prevStore = _this.store;
-    _this.updateStore(set$2(_this.store, namePath, value));
+    _this.updateStore(set$3(_this.store, namePath, value));
     _this.notifyObservers(prevStore, [namePath], {
       type: "valueUpdate",
       source: "internal"
@@ -23335,7 +23335,7 @@ var FormStore = /* @__PURE__ */ _createClass(function FormStore2(forceRootUpdate
     _this.warningUnhooked();
     var prevStore = _this.store;
     if (store) {
-      var nextStore = merge$2(_this.store, store);
+      var nextStore = merge$3(_this.store, store);
       _this.updateStore(nextStore);
     }
     _this.notifyObservers(prevStore, null, {
@@ -23407,12 +23407,12 @@ var FormStore = /* @__PURE__ */ _createClass(function FormStore2(forceRootUpdate
   this.validateFields = function(arg1, arg2) {
     _this.warningUnhooked();
     var nameList;
-    var options;
+    var options2;
     if (Array.isArray(arg1) || typeof arg1 === "string" || typeof arg2 === "string") {
       nameList = arg1;
-      options = arg2;
+      options2 = arg2;
     } else {
-      options = arg1;
+      options2 = arg1;
     }
     var provideNameList = !!nameList;
     var namePathList = provideNameList ? nameList.map(getNamePath) : [];
@@ -23424,7 +23424,7 @@ var FormStore = /* @__PURE__ */ _createClass(function FormStore2(forceRootUpdate
       if (!provideNameList) {
         namePathList.push(field.getNamePath());
       }
-      if (((_options = options) === null || _options === void 0 ? void 0 : _options.recursive) && provideNameList) {
+      if (((_options = options2) === null || _options === void 0 ? void 0 : _options.recursive) && provideNameList) {
         var namePath = field.getNamePath();
         if (
           // nameList[i] === undefined 说明是以 nameList 开头的
@@ -23444,7 +23444,7 @@ var FormStore = /* @__PURE__ */ _createClass(function FormStore2(forceRootUpdate
       if (!provideNameList || containsNamePath(namePathList, fieldNamePath)) {
         var promise = field.validateRules(_objectSpread2({
           validateMessages: _objectSpread2(_objectSpread2({}, defaultValidateMessages), _this.validateMessages)
-        }, options));
+        }, options2));
         promiseList.push(promise.then(function() {
           return {
             name: fieldNamePath,
@@ -23708,10 +23708,10 @@ function useWatch$1() {
     args[_key] = arguments[_key];
   }
   var _args$ = args[0], dependencies = _args$ === void 0 ? [] : _args$, _args$2 = args[1], _form = _args$2 === void 0 ? {} : _args$2;
-  var options = isFormInstance(_form) ? {
+  var options2 = isFormInstance(_form) ? {
     form: _form
   } : _form;
-  var form = options.form;
+  var form = options2.form;
   var _useState = reactExports.useState(), _useState2 = _slicedToArray(_useState, 2), value = _useState2[0], setValue = _useState2[1];
   var valueStr = reactExports.useMemo(function() {
     return stringify$1(value);
@@ -23732,14 +23732,14 @@ function useWatch$1() {
       var getFieldsValue = formInstance.getFieldsValue, getInternalHooks2 = formInstance.getInternalHooks;
       var _getInternalHooks = getInternalHooks2(HOOK_MARK), registerWatch = _getInternalHooks.registerWatch;
       var cancelRegister = registerWatch(function(values, allValues) {
-        var newValue = get$3(options.preserve ? allValues : values, namePathRef.current);
+        var newValue = get$3(options2.preserve ? allValues : values, namePathRef.current);
         var nextValueStr = stringify$1(newValue);
         if (valueStrRef.current !== nextValueStr) {
           valueStrRef.current = nextValueStr;
           setValue(newValue);
         }
       });
-      var initialValue = get$3(options.preserve ? getFieldsValue(true) : getFieldsValue(), namePathRef.current);
+      var initialValue = get$3(options2.preserve ? getFieldsValue(true) : getFieldsValue(), namePathRef.current);
       setValue(initialValue);
       return cancelRegister;
     },
@@ -24715,7 +24715,7 @@ const useStyle$x = genComponentStyleHook("Modal", (token2) => {
   const headerPaddingVertical = token2.padding;
   const headerFontSize = token2.fontSizeHeading5;
   const headerLineHeight = token2.lineHeightHeading5;
-  const modalToken = merge$1(token2, {
+  const modalToken = merge$2(token2, {
     modalBodyPadding: token2.paddingLG,
     modalHeaderPadding: `${headerPaddingVertical}px ${token2.paddingLG}px`,
     modalHeaderBorderWidth: token2.lineWidth,
@@ -25216,8 +25216,8 @@ function useModal() {
     uuid$2 += 1;
     const modalRef = /* @__PURE__ */ reactExports.createRef();
     let resolvePromise;
-    const promise = new Promise((resolve) => {
-      resolvePromise = resolve;
+    const promise = new Promise((resolve2) => {
+      resolvePromise = resolve2;
     });
     let silent = false;
     let closeFunc;
@@ -25260,9 +25260,9 @@ function useModal() {
           setActionQueue((prev2) => [].concat(_toConsumableArray(prev2), [updateAction]));
         }
       },
-      then: (resolve) => {
+      then: (resolve2) => {
         silent = true;
-        return promise.then(resolve);
+        return promise.then(resolve2);
       }
     };
     return instance;
@@ -25373,12 +25373,12 @@ function useDelayReset() {
   reactExports.useEffect(function() {
     return cancelLatest;
   }, []);
-  var delaySetBool = function delaySetBool2(value, callback) {
+  var delaySetBool = function delaySetBool2(value, callback2) {
     cancelLatest();
     delayRef.current = window.setTimeout(function() {
       setBool(value);
-      if (callback) {
-        callback();
+      if (callback2) {
+        callback2();
       }
     }, timeout);
   };
@@ -25485,20 +25485,20 @@ function InternalItem$1(props, ref) {
 }
 var Item$7 = /* @__PURE__ */ reactExports.forwardRef(InternalItem$1);
 Item$7.displayName = "Item";
-function channelUpdate(callback) {
+function channelUpdate(callback2) {
   if (typeof MessageChannel === "undefined") {
-    wrapperRaf(callback);
+    wrapperRaf(callback2);
   } else {
     var channel = new MessageChannel();
     channel.port1.onmessage = function() {
-      return callback();
+      return callback2();
     };
     channel.port2.postMessage(void 0);
   }
 }
 function useBatcher() {
   var updateFuncRef = reactExports.useRef(null);
-  var notifyEffectUpdate = function notifyEffectUpdate2(callback) {
+  var notifyEffectUpdate = function notifyEffectUpdate2(callback2) {
     if (!updateFuncRef.current) {
       updateFuncRef.current = [];
       channelUpdate(function() {
@@ -25510,7 +25510,7 @@ function useBatcher() {
         });
       });
     }
-    updateFuncRef.current.push(callback);
+    updateFuncRef.current.push(callback2);
   };
   return notifyEffectUpdate;
 }
@@ -27136,9 +27136,9 @@ function generateTrigger() {
       afterPopupVisibleChange === null || afterPopupVisibleChange === void 0 ? void 0 : afterPopupVisibleChange(visible);
     };
     var onPrepare = function onPrepare2() {
-      return new Promise(function(resolve) {
+      return new Promise(function(resolve2) {
         setMotionPrepareResolve(function() {
-          return resolve;
+          return resolve2;
         });
       });
     };
@@ -27418,16 +27418,16 @@ function getKey$1(data2, index2) {
   return "rc-index-key-".concat(index2);
 }
 function fillFieldNames$1(fieldNames, childrenAsData) {
-  var _ref = fieldNames || {}, label = _ref.label, value = _ref.value, options = _ref.options, groupLabel = _ref.groupLabel;
+  var _ref = fieldNames || {}, label = _ref.label, value = _ref.value, options2 = _ref.options, groupLabel = _ref.groupLabel;
   var mergedLabel = label || (childrenAsData ? "children" : "label");
   return {
     label: mergedLabel,
     value: value || "value",
-    options: options || "options",
+    options: options2 || "options",
     groupLabel: groupLabel || mergedLabel
   };
 }
-function flattenOptions(options) {
+function flattenOptions(options2) {
   var _ref2 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {}, fieldNames = _ref2.fieldNames, childrenAsData = _ref2.childrenAsData;
   var flattenList = [];
   var _fillFieldNames = fillFieldNames$1(fieldNames, false), fieldLabel = _fillFieldNames.label, fieldValue = _fillFieldNames.value, fieldOptions = _fillFieldNames.options, groupLabel = _fillFieldNames.groupLabel;
@@ -27457,7 +27457,7 @@ function flattenOptions(options) {
       }
     });
   }
-  dig(options, false);
+  dig(options2, false);
   return flattenList;
 }
 function injectPropsWithOption(option) {
@@ -27939,10 +27939,10 @@ const useCache = function(labeledValues, valueOptions) {
 function includes(test, search) {
   return toArray$5(test).join("").toUpperCase().includes(search);
 }
-const useFilterOptions = function(options, fieldNames, searchValue, filterOption2, optionFilterProp) {
+const useFilterOptions = function(options2, fieldNames, searchValue, filterOption2, optionFilterProp) {
   return reactExports.useMemo(function() {
     if (!searchValue || filterOption2 === false) {
-      return options;
+      return options2;
     }
     var fieldOptions = fieldNames.options, fieldLabel = fieldNames.label, fieldValue = fieldNames.value;
     var filteredOptions = [];
@@ -27962,7 +27962,7 @@ const useFilterOptions = function(options, fieldNames, searchValue, filterOption
     } : function(opt) {
       return opt;
     };
-    options.forEach(function(item) {
+    options2.forEach(function(item) {
       if (item[fieldOptions]) {
         var matchGroup = filterFunc(searchValue, wrapOption(item));
         if (matchGroup) {
@@ -27982,7 +27982,7 @@ const useFilterOptions = function(options, fieldNames, searchValue, filterOption
       }
     });
     return filteredOptions;
-  }, [options, filterOption2, optionFilterProp, searchValue, fieldNames]);
+  }, [options2, filterOption2, optionFilterProp, searchValue, fieldNames]);
 };
 var uuid$1 = 0;
 var isBrowserClient = canUseDom();
@@ -28032,10 +28032,10 @@ function convertChildrenToData(nodes) {
     return data2;
   });
 }
-function useOptions(options, children, fieldNames, optionFilterProp, optionLabelProp) {
+function useOptions(options2, children, fieldNames, optionFilterProp, optionLabelProp) {
   return reactExports.useMemo(function() {
-    var mergedOptions = options;
-    var childrenAsData = !options;
+    var mergedOptions = options2;
+    var childrenAsData = !options2;
     if (childrenAsData) {
       mergedOptions = convertChildrenToData(children);
     }
@@ -28066,11 +28066,11 @@ function useOptions(options, children, fieldNames, optionFilterProp, optionLabel
       valueOptions,
       labelOptions
     };
-  }, [options, children, fieldNames, optionFilterProp, optionLabelProp]);
+  }, [options2, children, fieldNames, optionFilterProp, optionLabelProp]);
 }
-function useRefFunc(callback) {
+function useRefFunc(callback2) {
   var funcRef = reactExports.useRef();
-  funcRef.current = callback;
+  funcRef.current = callback2;
   var cacheFn = reactExports.useCallback(function() {
     return funcRef.current.apply(funcRef, arguments);
   }, []);
@@ -28603,7 +28603,7 @@ function useFrameWheel(inVirtual, isScrollAtTop, isScrollAtBottom, onWheelDelta)
   return [onWheel, onFireFoxScroll];
 }
 var SMOOTH_PTG = 14 / 15;
-function useMobileTouchMove(inVirtual, listRef, callback) {
+function useMobileTouchMove(inVirtual, listRef, callback2) {
   var touchedRef = reactExports.useRef(false);
   var touchYRef = reactExports.useRef(0);
   var elementRef = reactExports.useRef(null);
@@ -28614,13 +28614,13 @@ function useMobileTouchMove(inVirtual, listRef, callback) {
       var currentY = Math.ceil(e2.touches[0].pageY);
       var offsetY = touchYRef.current - currentY;
       touchYRef.current = currentY;
-      if (callback(offsetY)) {
+      if (callback2(offsetY)) {
         e2.preventDefault();
       }
       clearInterval(intervalRef.current);
       intervalRef.current = setInterval(function() {
         offsetY *= SMOOTH_PTG;
-        if (!callback(offsetY, true) || Math.abs(offsetY) <= 0.1) {
+        if (!callback2(offsetY, true) || Math.abs(offsetY) <= 0.1) {
           clearInterval(intervalRef.current);
         }
       }, 16);
@@ -29151,10 +29151,10 @@ function isRawValue(value) {
   return !value || _typeof(value) !== "object";
 }
 var Select$2 = /* @__PURE__ */ reactExports.forwardRef(function(props, ref) {
-  var id2 = props.id, mode = props.mode, _props$prefixCls = props.prefixCls, prefixCls = _props$prefixCls === void 0 ? "rc-select" : _props$prefixCls, backfill = props.backfill, fieldNames = props.fieldNames, inputValue = props.inputValue, searchValue = props.searchValue, onSearch = props.onSearch, _props$autoClearSearc = props.autoClearSearchValue, autoClearSearchValue = _props$autoClearSearc === void 0 ? true : _props$autoClearSearc, onSelect = props.onSelect, onDeselect = props.onDeselect, _props$dropdownMatchS = props.dropdownMatchSelectWidth, dropdownMatchSelectWidth = _props$dropdownMatchS === void 0 ? true : _props$dropdownMatchS, filterOption2 = props.filterOption, filterSort = props.filterSort, optionFilterProp = props.optionFilterProp, optionLabelProp = props.optionLabelProp, options = props.options, children = props.children, defaultActiveFirstOption = props.defaultActiveFirstOption, menuItemSelectedIcon = props.menuItemSelectedIcon, virtual = props.virtual, direction = props.direction, _props$listHeight = props.listHeight, listHeight = _props$listHeight === void 0 ? 200 : _props$listHeight, _props$listItemHeight = props.listItemHeight, listItemHeight = _props$listItemHeight === void 0 ? 20 : _props$listItemHeight, value = props.value, defaultValue = props.defaultValue, labelInValue = props.labelInValue, onChange = props.onChange, restProps = _objectWithoutProperties(props, _excluded$A);
+  var id2 = props.id, mode = props.mode, _props$prefixCls = props.prefixCls, prefixCls = _props$prefixCls === void 0 ? "rc-select" : _props$prefixCls, backfill = props.backfill, fieldNames = props.fieldNames, inputValue = props.inputValue, searchValue = props.searchValue, onSearch = props.onSearch, _props$autoClearSearc = props.autoClearSearchValue, autoClearSearchValue = _props$autoClearSearc === void 0 ? true : _props$autoClearSearc, onSelect = props.onSelect, onDeselect = props.onDeselect, _props$dropdownMatchS = props.dropdownMatchSelectWidth, dropdownMatchSelectWidth = _props$dropdownMatchS === void 0 ? true : _props$dropdownMatchS, filterOption2 = props.filterOption, filterSort = props.filterSort, optionFilterProp = props.optionFilterProp, optionLabelProp = props.optionLabelProp, options2 = props.options, children = props.children, defaultActiveFirstOption = props.defaultActiveFirstOption, menuItemSelectedIcon = props.menuItemSelectedIcon, virtual = props.virtual, direction = props.direction, _props$listHeight = props.listHeight, listHeight = _props$listHeight === void 0 ? 200 : _props$listHeight, _props$listItemHeight = props.listItemHeight, listItemHeight = _props$listItemHeight === void 0 ? 20 : _props$listItemHeight, value = props.value, defaultValue = props.defaultValue, labelInValue = props.labelInValue, onChange = props.onChange, restProps = _objectWithoutProperties(props, _excluded$A);
   var mergedId = useId(id2);
   var multiple = isMultiple(mode);
-  var childrenAsData = !!(!options && children);
+  var childrenAsData = !!(!options2 && children);
   var mergedFilterOption = reactExports.useMemo(function() {
     if (filterOption2 === void 0 && mode === "combobox") {
       return false;
@@ -29179,7 +29179,7 @@ var Select$2 = /* @__PURE__ */ reactExports.forwardRef(function(props, ref) {
       return search || "";
     }
   }), _useMergedState2 = _slicedToArray(_useMergedState, 2), mergedSearchValue = _useMergedState2[0], setSearchValue = _useMergedState2[1];
-  var parsedOptions = useOptions(options, children, mergedFieldNames, optionFilterProp, optionLabelProp);
+  var parsedOptions = useOptions(options2, children, mergedFieldNames, optionFilterProp, optionLabelProp);
   var valueOptions = parsedOptions.valueOptions, labelOptions = parsedOptions.labelOptions, mergedOptions = parsedOptions.options;
   var convert2LabelValues = reactExports.useCallback(function(draftValues) {
     var valueList = toArray$5(draftValues);
@@ -29629,7 +29629,7 @@ const useStyle$w = genComponentStyleHook("Empty", (token2) => {
     componentCls,
     controlHeightLG
   } = token2;
-  const emptyToken = merge$1(token2, {
+  const emptyToken = merge$2(token2, {
     emptyImgCls: `${componentCls}-img`,
     emptyImgHeight: controlHeightLG * 2.5,
     emptyImgHeightMD: controlHeightLG,
@@ -30027,13 +30027,13 @@ const genMultipleStyle = (token2) => {
   const {
     componentCls
   } = token2;
-  const smallToken = merge$1(token2, {
+  const smallToken = merge$2(token2, {
     controlHeight: token2.controlHeightSM,
     controlHeightSM: token2.controlHeightXS,
     borderRadius: token2.borderRadiusSM,
     borderRadiusSM: token2.borderRadiusXS
   });
-  const largeToken = merge$1(token2, {
+  const largeToken = merge$2(token2, {
     fontSize: token2.fontSizeLG,
     controlHeight: token2.controlHeightLG,
     controlHeightSM: token2.controlHeight,
@@ -30180,7 +30180,7 @@ function genSingleStyle(token2) {
     genSizeStyle$3(token2),
     // ======================== Small ========================
     // Shared
-    genSizeStyle$3(merge$1(token2, {
+    genSizeStyle$3(merge$2(token2, {
       controlHeight: token2.controlHeightSM,
       borderRadius: token2.borderRadiusSM
     }), "sm"),
@@ -30210,7 +30210,7 @@ function genSingleStyle(token2) {
     },
     // ======================== Large ========================
     // Shared
-    genSizeStyle$3(merge$1(token2, {
+    genSizeStyle$3(merge$2(token2, {
       controlHeight: token2.controlHeightLG,
       fontSize: token2.fontSizeLG,
       borderRadius: token2.borderRadiusLG
@@ -30439,15 +30439,15 @@ const genSelectStyle = (token2) => {
     // =====================================================
     // ==                     Status                      ==
     // =====================================================
-    genStatusStyle$3(componentCls, merge$1(token2, {
+    genStatusStyle$3(componentCls, merge$2(token2, {
       borderHoverColor: token2.colorPrimaryHover,
       outlineColor: token2.controlOutline
     })),
-    genStatusStyle$3(`${componentCls}-status-error`, merge$1(token2, {
+    genStatusStyle$3(`${componentCls}-status-error`, merge$2(token2, {
       borderHoverColor: token2.colorErrorHover,
       outlineColor: token2.colorErrorOutline
     }), true),
-    genStatusStyle$3(`${componentCls}-status-warning`, merge$1(token2, {
+    genStatusStyle$3(`${componentCls}-status-warning`, merge$2(token2, {
       borderHoverColor: token2.colorWarningHover,
       outlineColor: token2.colorWarningOutline
     }), true),
@@ -30464,7 +30464,7 @@ const useSelectStyle = genComponentStyleHook("Select", (token2, _ref) => {
   let {
     rootPrefixCls
   } = _ref;
-  const selectToken = merge$1(token2, {
+  const selectToken = merge$2(token2, {
     rootPrefixCls,
     inputPaddingHorizontalBase: token2.paddingSM - 1
   });
@@ -30982,7 +30982,7 @@ const useStyle$v = genComponentStyleHook("Avatar", (token2) => {
     colorTextLightSolid,
     colorTextPlaceholder
   } = token2;
-  const avatarToken = merge$1(token2, {
+  const avatarToken = merge$2(token2, {
     avatarBg: colorTextPlaceholder,
     avatarColor: colorTextLightSolid
   });
@@ -31271,7 +31271,7 @@ function Popup(props) {
   }, typeof children === "function" ? children() : children));
 }
 var _excluded$z = ["overlayClassName", "trigger", "mouseEnterDelay", "mouseLeaveDelay", "overlayStyle", "prefixCls", "children", "onVisibleChange", "afterVisibleChange", "transitionName", "animation", "motion", "placement", "align", "destroyTooltipOnHide", "defaultVisible", "getTooltipContainer", "overlayInnerStyle", "arrowContent", "overlay", "id", "showArrow"];
-var Tooltip$2 = function Tooltip(props, ref) {
+var Tooltip$3 = function Tooltip(props, ref) {
   var overlayClassName = props.overlayClassName, _props$trigger = props.trigger, trigger = _props$trigger === void 0 ? ["hover"] : _props$trigger, _props$mouseEnterDela = props.mouseEnterDelay, mouseEnterDelay = _props$mouseEnterDela === void 0 ? 0 : _props$mouseEnterDela, _props$mouseLeaveDela = props.mouseLeaveDelay, mouseLeaveDelay = _props$mouseLeaveDela === void 0 ? 0.1 : _props$mouseLeaveDela, overlayStyle = props.overlayStyle, _props$prefixCls = props.prefixCls, prefixCls = _props$prefixCls === void 0 ? "rc-tooltip" : _props$prefixCls, children = props.children, onVisibleChange = props.onVisibleChange, afterVisibleChange = props.afterVisibleChange, transitionName = props.transitionName, animation = props.animation, motion2 = props.motion, _props$placement = props.placement, placement = _props$placement === void 0 ? "right" : _props$placement, _props$align = props.align, align = _props$align === void 0 ? {} : _props$align, _props$destroyTooltip = props.destroyTooltipOnHide, destroyTooltipOnHide = _props$destroyTooltip === void 0 ? false : _props$destroyTooltip, defaultVisible = props.defaultVisible, getTooltipContainer = props.getTooltipContainer, overlayInnerStyle = props.overlayInnerStyle;
   props.arrowContent;
   var overlay = props.overlay, id2 = props.id, _props$showArrow = props.showArrow, showArrow = _props$showArrow === void 0 ? true : _props$showArrow, restProps = _objectWithoutProperties(props, _excluded$z);
@@ -31314,14 +31314,14 @@ var Tooltip$2 = function Tooltip(props, ref) {
     arrow: showArrow
   }, extraProps), children);
 };
-const Tooltip$3 = /* @__PURE__ */ reactExports.forwardRef(Tooltip$2);
+const Tooltip$4 = /* @__PURE__ */ reactExports.forwardRef(Tooltip$3);
 const MAX_VERTICAL_CONTENT_RADIUS = 8;
-function getArrowOffset(options) {
+function getArrowOffset(options2) {
   const maxVerticalContentRadius = MAX_VERTICAL_CONTENT_RADIUS;
   const {
     contentRadius,
     limitVerticalRadius
-  } = options;
+  } = options2;
   const dropdownArrowOffset = contentRadius > 12 ? contentRadius + 2 : 12;
   const dropdownArrowOffsetVertical = limitVerticalRadius ? maxVerticalContentRadius : dropdownArrowOffset;
   return {
@@ -31334,7 +31334,7 @@ function isInject(valid, code) {
     return {};
   return code;
 }
-function getArrowStyle(token2, options) {
+function getArrowStyle(token2, options2) {
   const {
     componentCls,
     sizePopupArrow,
@@ -31353,7 +31353,7 @@ function getArrowStyle(token2, options) {
       top: true,
       bottom: true
     }
-  } = options;
+  } = options2;
   const {
     dropdownArrowOffsetVertical,
     dropdownArrowOffset
@@ -31670,26 +31670,26 @@ const derivative$1 = (token2, mapToken) => {
   })));
 };
 const compactAlgorithm = derivative$1;
-const getAlphaColor = (baseColor, alpha) => new TinyColor(baseColor).setAlpha(alpha).toRgbString();
+const getAlphaColor = (baseColor, alpha2) => new TinyColor(baseColor).setAlpha(alpha2).toRgbString();
 const getSolidColor = (baseColor, brightness) => {
   const instance = new TinyColor(baseColor);
   return instance.lighten(brightness).toHexString();
 };
 const generateColorPalettes = (baseColor) => {
-  const colors = generate$1(baseColor, {
+  const colors2 = generate$1(baseColor, {
     theme: "dark"
   });
   return {
-    1: colors[0],
-    2: colors[1],
-    3: colors[2],
-    4: colors[3],
-    5: colors[6],
-    6: colors[5],
-    7: colors[4],
-    8: colors[6],
-    9: colors[5],
-    10: colors[4]
+    1: colors2[0],
+    2: colors2[1],
+    3: colors2[2],
+    4: colors2[3],
+    5: colors2[6],
+    6: colors2[5],
+    7: colors2[4],
+    8: colors2[6],
+    9: colors2[5],
+    10: colors2[4]
     // 8: colors[9],
     // 9: colors[8],
     // 10: colors[7],
@@ -31719,12 +31719,12 @@ const generateNeutralColorPalettes = (bgBaseColor, textBaseColor) => {
 };
 const derivative = (token2, mapToken) => {
   const colorPalettes = Object.keys(defaultPresetColors).map((colorKey) => {
-    const colors = generate$1(token2[colorKey], {
+    const colors2 = generate$1(token2[colorKey], {
       theme: "dark"
     });
     return new Array(10).fill(1).reduce((prev2, _2, i2) => {
-      prev2[`${colorKey}-${i2 + 1}`] = colors[i2];
-      prev2[`${colorKey}${i2 + 1}`] = colors[i2];
+      prev2[`${colorKey}-${i2 + 1}`] = colors2[i2];
+      prev2[`${colorKey}${i2 + 1}`] = colors2[i2];
       return prev2;
     }, {});
   }).reduce((prev2, cur) => {
@@ -31831,7 +31831,7 @@ const genTooltipStyle = (token2) => {
       })
     },
     // Arrow Style
-    getArrowStyle(merge$1(token2, {
+    getArrowStyle(merge$2(token2, {
       borderRadiusOuter: tooltipRadiusOuter
     }), {
       colorBg: "var(--antd-arrow-background-color)",
@@ -31859,7 +31859,7 @@ const useStyle$u = (prefixCls, injectStyle) => {
       colorBgDefault,
       borderRadiusOuter
     } = token2;
-    const TooltipToken = merge$1(token2, {
+    const TooltipToken = merge$2(token2, {
       // default variables
       tooltipMaxWidth: 250,
       tooltipColor: colorTextLightSolid,
@@ -31882,28 +31882,28 @@ const useStyle$u = (prefixCls, injectStyle) => {
   });
   return useOriginHook(prefixCls);
 };
-const inverseColors = PresetColors.map((color) => `${color}-inverse`);
+const inverseColors = PresetColors.map((color2) => `${color2}-inverse`);
 const PresetStatusColorTypes = ["success", "processing", "error", "default", "warning"];
-function isPresetColor(color) {
+function isPresetColor(color2) {
   let includeInverse = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : true;
   if (includeInverse) {
-    return [].concat(_toConsumableArray(inverseColors), _toConsumableArray(PresetColors)).includes(color);
+    return [].concat(_toConsumableArray(inverseColors), _toConsumableArray(PresetColors)).includes(color2);
   }
-  return PresetColors.includes(color);
+  return PresetColors.includes(color2);
 }
-function isPresetStatusColor(color) {
-  return PresetStatusColorTypes.includes(color);
+function isPresetStatusColor(color2) {
+  return PresetStatusColorTypes.includes(color2);
 }
-function parseColor(prefixCls, color) {
-  const isInternalColor = isPresetColor(color);
+function parseColor(prefixCls, color2) {
+  const isInternalColor = isPresetColor(color2);
   const className = classNames({
-    [`${prefixCls}-${color}`]: color && isInternalColor
+    [`${prefixCls}-${color2}`]: color2 && isInternalColor
   });
   const overlayStyle = {};
   const arrowStyle = {};
-  if (color && !isInternalColor) {
-    overlayStyle.background = color;
-    arrowStyle["--antd-arrow-background-color"] = color;
+  if (color2 && !isInternalColor) {
+    overlayStyle.background = color2;
+    arrowStyle["--antd-arrow-background-color"] = color2;
   }
   return {
     className,
@@ -31917,7 +31917,7 @@ const PurePanel$a = (props) => {
     className,
     placement = "top",
     title,
-    color,
+    color: color2,
     overlayInnerStyle
   } = props;
   const {
@@ -31925,7 +31925,7 @@ const PurePanel$a = (props) => {
   } = reactExports.useContext(ConfigContext);
   const prefixCls = getPrefixCls("tooltip", customizePrefixCls);
   const [wrapSSR, hashId] = useStyle$u(prefixCls, true);
-  const colorInfo = parseColor(prefixCls, color);
+  const colorInfo = parseColor(prefixCls, color2);
   const arrowContentStyle = colorInfo.arrowStyle;
   const formattedOverlayInnerStyle = Object.assign(Object.assign({}, overlayInnerStyle), colorInfo.overlayStyle);
   const cls = classNames(hashId, prefixCls, `${prefixCls}-pure`, `${prefixCls}-placement-${placement}`, className, colorInfo.className);
@@ -31997,14 +31997,14 @@ function getDisabledCompatibleChildren(element, prefixCls) {
   }
   return element;
 }
-const Tooltip2 = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
+const Tooltip$1 = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
   var _a, _b;
   const {
     prefixCls: customizePrefixCls,
     openClassName,
     getTooltipContainer,
     overlayClassName,
-    color,
+    color: color2,
     overlayInnerStyle,
     children,
     afterOpenChange,
@@ -32091,13 +32091,13 @@ const Tooltip2 = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
   const childProps = child.props;
   const childCls = !childProps.className || typeof childProps.className === "string" ? classNames(childProps.className, openClassName || `${prefixCls}-open`) : childProps.className;
   const [wrapSSR, hashId] = useStyle$u(prefixCls, !injectFromPopover);
-  const colorInfo = parseColor(prefixCls, color);
+  const colorInfo = parseColor(prefixCls, color2);
   const arrowContentStyle = colorInfo.arrowStyle;
   const formattedOverlayInnerStyle = Object.assign(Object.assign({}, overlayInnerStyle), colorInfo.overlayStyle);
   const customOverlayClassName = classNames(overlayClassName, {
     [`${prefixCls}-rtl`]: direction === "rtl"
   }, colorInfo.className, rootClassName, hashId);
-  return wrapSSR(/* @__PURE__ */ reactExports.createElement(Tooltip$3, Object.assign({}, otherProps, {
+  return wrapSSR(/* @__PURE__ */ reactExports.createElement(Tooltip$4, Object.assign({}, otherProps, {
     showArrow: mergedShowArrow,
     placement,
     mouseEnterDelay,
@@ -32125,8 +32125,8 @@ const Tooltip2 = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     className: childCls
   }) : child));
 });
-Tooltip2._InternalPanelDoNotUseOrYouWillBeFired = PurePanel$b;
-const Tooltip$1 = Tooltip2;
+Tooltip$1._InternalPanelDoNotUseOrYouWillBeFired = PurePanel$b;
+const Tooltip$2 = Tooltip$1;
 const genBaseStyle$8 = (token2) => {
   const {
     componentCls,
@@ -32264,7 +32264,7 @@ const useStyle$t = genComponentStyleHook("Popover", (token2) => {
     colorText,
     wireframe
   } = token2;
-  const popoverToken = merge$1(token2, {
+  const popoverToken = merge$2(token2, {
     popoverPadding: 12,
     popoverBg: colorBgElevated,
     popoverColor: colorText
@@ -32377,7 +32377,7 @@ const Popover = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
   const [wrapSSR, hashId] = useStyle$t(prefixCls);
   const rootPrefixCls = getPrefixCls();
   const overlayCls = classNames(overlayClassName, hashId);
-  return wrapSSR(/* @__PURE__ */ reactExports.createElement(Tooltip$1, Object.assign({
+  return wrapSSR(/* @__PURE__ */ reactExports.createElement(Tooltip$2, Object.assign({
     placement,
     trigger,
     mouseEnterDelay,
@@ -32830,7 +32830,7 @@ const useStyle$s = genComponentStyleHook("Badge", (token2) => {
   const badgeDotSize = fontSizeSM / 2;
   const badgeFontSizeSm = fontSizeSM;
   const badgeStatusSize = fontSizeSM / 2;
-  const badgeToken = merge$1(token2, {
+  const badgeToken = merge$2(token2, {
     badgeFontHeight,
     badgeShadowSize,
     badgeZIndex,
@@ -32858,7 +32858,7 @@ const Ribbon = (props) => {
     className,
     prefixCls: customizePrefixCls,
     style: style2,
-    color,
+    color: color2,
     children,
     text,
     placement = "end"
@@ -32868,17 +32868,17 @@ const Ribbon = (props) => {
     direction
   } = reactExports.useContext(ConfigContext);
   const prefixCls = getPrefixCls("ribbon", customizePrefixCls);
-  const colorInPreset = isPresetColor(color, false);
+  const colorInPreset = isPresetColor(color2, false);
   const ribbonCls = classNames(prefixCls, `${prefixCls}-placement-${placement}`, {
     [`${prefixCls}-rtl`]: direction === "rtl",
-    [`${prefixCls}-color-${color}`]: colorInPreset
+    [`${prefixCls}-color-${color2}`]: colorInPreset
   }, className);
   const [wrapSSR, hashId] = useStyle$s(prefixCls);
   const colorStyle = {};
   const cornerColorStyle = {};
-  if (color && !colorInPreset) {
-    colorStyle.background = color;
-    cornerColorStyle.color = color;
+  if (color2 && !colorInPreset) {
+    colorStyle.background = color2;
+    cornerColorStyle.color = color2;
   }
   return wrapSSR(/* @__PURE__ */ reactExports.createElement("div", {
     className: classNames(`${prefixCls}-wrapper`, hashId)
@@ -33064,7 +33064,7 @@ const InternalBadge = (props, ref) => {
     children,
     status,
     text,
-    color,
+    color: color2,
     count = null,
     overflowCount = 99,
     dot = false,
@@ -33088,7 +33088,7 @@ const InternalBadge = (props, ref) => {
   const numberedDisplayCount = count > overflowCount ? `${overflowCount}+` : count;
   const isZero = numberedDisplayCount === "0" || numberedDisplayCount === 0;
   const ignoreCount = count === null || isZero && !showZero;
-  const hasStatus = (status !== null && status !== void 0 || color !== null && color !== void 0) && ignoreCount;
+  const hasStatus = (status !== null && status !== void 0 || color2 !== null && color2 !== void 0) && ignoreCount;
   const showAsDot = dot && !isZero;
   const mergedCount = showAsDot ? "" : numberedDisplayCount;
   const isHidden = reactExports.useMemo(() => {
@@ -33130,16 +33130,16 @@ const InternalBadge = (props, ref) => {
   const displayNode = !livingCount || typeof livingCount !== "object" ? void 0 : cloneElement(livingCount, (oriProps) => ({
     style: Object.assign(Object.assign({}, mergedStyle), oriProps.style)
   }));
-  const isInternalColor = isPresetColor(color, false);
+  const isInternalColor = isPresetColor(color2, false);
   const statusCls = classNames(classNames$1 === null || classNames$1 === void 0 ? void 0 : classNames$1.indicator, (_a = badge === null || badge === void 0 ? void 0 : badge.classNames) === null || _a === void 0 ? void 0 : _a.indicator, {
     [`${prefixCls}-status-dot`]: hasStatus,
     [`${prefixCls}-status-${status}`]: !!status,
-    [`${prefixCls}-color-${color}`]: isInternalColor
+    [`${prefixCls}-color-${color2}`]: isInternalColor
   });
   const statusStyle = {};
-  if (color && !isInternalColor) {
-    statusStyle.color = color;
-    statusStyle.background = color;
+  if (color2 && !isInternalColor) {
+    statusStyle.color = color2;
+    statusStyle.background = color2;
   }
   const badgeClassName = classNames(prefixCls, {
     [`${prefixCls}-status`]: hasStatus,
@@ -33185,12 +33185,12 @@ const InternalBadge = (props, ref) => {
       [`${prefixCls}-count-sm`]: size === "small",
       [`${prefixCls}-multiple-words`]: !isDot && displayCount && displayCount.toString().length > 1,
       [`${prefixCls}-status-${status}`]: !!status,
-      [`${prefixCls}-color-${color}`]: isInternalColor
+      [`${prefixCls}-color-${color2}`]: isInternalColor
     });
     let scrollNumberStyle = Object.assign(Object.assign(Object.assign({}, styles === null || styles === void 0 ? void 0 : styles.indicator), (_b2 = badge === null || badge === void 0 ? void 0 : badge.styles) === null || _b2 === void 0 ? void 0 : _b2.indicator), mergedStyle);
-    if (color && !isInternalColor) {
+    if (color2 && !isInternalColor) {
       scrollNumberStyle = scrollNumberStyle || {};
-      scrollNumberStyle.background = color;
+      scrollNumberStyle.background = color2;
     }
     return /* @__PURE__ */ reactExports.createElement(ScrollNumber$1, {
       prefixCls: scrollNumberPrefixCls,
@@ -33705,8 +33705,8 @@ function useAccessibility(mode, activeKey, isRtl, id2, containerRef, getKeys, ge
     originOnKeyDown === null || originOnKeyDown === void 0 ? void 0 : originOnKeyDown(e2);
   };
 }
-function nextSlice(callback) {
-  Promise.resolve().then(callback);
+function nextSlice(callback2) {
+  Promise.resolve().then(callback2);
 }
 var PATH_SPLIT = "__RC_UTIL_PATH_SPLIT__";
 var getPathStr = function getPathStr2(keyPath) {
@@ -33799,14 +33799,14 @@ function useKeyRecords() {
 function useMemoCallback(func) {
   var funRef = reactExports.useRef(func);
   funRef.current = func;
-  var callback = reactExports.useCallback(function() {
+  var callback2 = reactExports.useCallback(function() {
     var _funRef$current;
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
     return (_funRef$current = funRef.current) === null || _funRef$current === void 0 ? void 0 : _funRef$current.call.apply(_funRef$current, [funRef].concat(args));
   }, []);
-  return func ? callback : void 0;
+  return func ? callback2 : void 0;
 }
 var uniquePrefix = Math.random().toFixed(5).toString().slice(2);
 var internalId = 0;
@@ -34571,14 +34571,14 @@ var Menu$2 = /* @__PURE__ */ reactExports.forwardRef(function(props, ref) {
   reactExports.useImperativeHandle(ref, function() {
     return {
       list: containerRef.current,
-      focus: function focus(options) {
+      focus: function focus(options2) {
         var _childList$find;
         var shouldFocusKey = mergedActiveKey !== null && mergedActiveKey !== void 0 ? mergedActiveKey : (_childList$find = childList.find(function(node2) {
           return !node2.props.disabled;
         })) === null || _childList$find === void 0 ? void 0 : _childList$find.key;
         if (shouldFocusKey) {
           var _containerRef$current, _containerRef$current2, _containerRef$current3;
-          (_containerRef$current = containerRef.current) === null || _containerRef$current === void 0 ? void 0 : (_containerRef$current2 = _containerRef$current.querySelector("li[data-menu-id='".concat(getMenuId(uuid2, shouldFocusKey), "']"))) === null || _containerRef$current2 === void 0 ? void 0 : (_containerRef$current3 = _containerRef$current2.focus) === null || _containerRef$current3 === void 0 ? void 0 : _containerRef$current3.call(_containerRef$current2, options);
+          (_containerRef$current = containerRef.current) === null || _containerRef$current === void 0 ? void 0 : (_containerRef$current2 = _containerRef$current.querySelector("li[data-menu-id='".concat(getMenuId(uuid2, shouldFocusKey), "']"))) === null || _containerRef$current2 === void 0 ? void 0 : (_containerRef$current3 = _containerRef$current2.focus) === null || _containerRef$current3 === void 0 ? void 0 : _containerRef$current3.call(_containerRef$current2, options2);
         }
       }
     };
@@ -34959,7 +34959,7 @@ const useStyle$r = genComponentStyleHook("Layout", (token2) => {
     marginXXS
   } = token2;
   const layoutHeaderPaddingInline = controlHeightLG * 1.25;
-  const layoutToken = merge$1(token2, {
+  const layoutToken = merge$2(token2, {
     // Layout
     layoutHeaderHeight: controlHeight * 2,
     layoutHeaderPaddingInline,
@@ -35346,7 +35346,7 @@ const MenuItem = (props) => {
     className: classNames(isValidElement(icon) ? (_a = icon.props) === null || _a === void 0 ? void 0 : _a.className : "", `${prefixCls}-item-icon`)
   }), renderItemChildren(isInlineCollapsed));
   if (!disableMenuItemTitleTooltip) {
-    returnNode = /* @__PURE__ */ reactExports.createElement(Tooltip$1, Object.assign({}, tooltipProps, {
+    returnNode = /* @__PURE__ */ reactExports.createElement(Tooltip$2, Object.assign({}, tooltipProps, {
       placement: direction === "rtl" ? "left" : "right",
       overlayClassName: `${prefixCls}-inline-collapsed-tooltip`
     }), returnNode);
@@ -36315,14 +36315,14 @@ const useStyle$q = (prefixCls, injectStyle) => {
       darkDangerItemActiveBg
     } = token2;
     const menuArrowSize = fontSize / 7 * 5;
-    const menuToken = merge$1(token2, {
+    const menuToken = merge$2(token2, {
       menuArrowSize,
       menuHorizontalHeight: controlHeightLG * 1.15,
       menuArrowOffset: `${menuArrowSize * 0.25}px`,
       menuPanelMaskInset: -7,
       menuSubMenuBg: colorBgElevated
     });
-    const menuDarkToken = merge$1(menuToken, {
+    const menuDarkToken = merge$2(menuToken, {
       itemColor: darkItemColor,
       itemHoverColor: darkItemHoverColor,
       groupTitleColor: darkGroupTitleColor,
@@ -36597,9 +36597,9 @@ const Menu = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
   const context = reactExports.useContext(SiderContext);
   reactExports.useImperativeHandle(ref, () => ({
     menu: menuRef.current,
-    focus: (options) => {
+    focus: (options2) => {
       var _a;
-      (_a = menuRef.current) === null || _a === void 0 ? void 0 : _a.focus(options);
+      (_a = menuRef.current) === null || _a === void 0 ? void 0 : _a.focus(options2);
     }
   }));
   return /* @__PURE__ */ reactExports.createElement(InternalMenu$1, Object.assign({
@@ -36904,7 +36904,7 @@ const useStyle$p = genComponentStyleHook("Dropdown", (token2, _ref) => {
   } = getArrowOffset({
     contentRadius: borderRadiusLG
   });
-  const dropdownToken = merge$1(token2, {
+  const dropdownToken = merge$2(token2, {
     menuCls: `${componentCls}-menu`,
     rootPrefixCls,
     dropdownArrowDistance: sizePopupArrow / 2 + marginXXS,
@@ -37290,7 +37290,7 @@ const genBreadcrumbStyle = (token2) => {
   };
 };
 const useStyle$o = genComponentStyleHook("Breadcrumb", (token2) => {
-  const BreadcrumbToken = merge$1(token2, {});
+  const BreadcrumbToken = merge$2(token2, {});
   return [genBreadcrumbStyle(BreadcrumbToken)];
 }, (token2) => ({
   itemColor: token2.colorTextDescription,
@@ -37918,7 +37918,7 @@ const useStyle$n = genComponentStyleHook("Radio", (token2) => {
   const radioFocusShadow = `0 0 0 ${controlOutlineWidth}px ${controlOutline}`;
   const radioButtonFocusShadow = radioFocusShadow;
   const radioDotDisabledSize = getDotSize(radioSize);
-  const radioToken = merge$1(token2, {
+  const radioToken = merge$2(token2, {
     radioDotDisabledSize,
     radioFocusShadow,
     radioButtonFocusShadow
@@ -38055,7 +38055,7 @@ const RadioGroup = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     prefixCls: customizePrefixCls,
     className,
     rootClassName,
-    options,
+    options: options2,
     buttonStyle = "outline",
     disabled,
     children,
@@ -38071,8 +38071,8 @@ const RadioGroup = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
   const groupPrefixCls = `${prefixCls}-group`;
   const [wrapSSR, hashId] = useStyle$n(prefixCls);
   let childrenToRender = children;
-  if (options && options.length > 0) {
-    childrenToRender = options.map((option) => {
+  if (options2 && options2.length > 0) {
+    childrenToRender = options2.map((option) => {
       if (typeof option === "string" || typeof option === "number") {
         return /* @__PURE__ */ reactExports.createElement(InternalRadio$1, {
           key: option.toString(),
@@ -38156,13 +38156,13 @@ Radio.Button = Button;
 Radio.Group = Group$4;
 Radio.__ANT_RADIO = true;
 const Radio$1 = Radio;
-const genPlaceholderStyle = (color) => ({
+const genPlaceholderStyle = (color2) => ({
   // Firefox
   "&::-moz-placeholder": {
     opacity: 1
   },
   "&::placeholder": {
-    color,
+    color: color2,
     userSelect: "none"
     // https://github.com/ant-design/ant-design/pull/32639
   },
@@ -38187,7 +38187,7 @@ const genDisabledStyle = (token2) => ({
   boxShadow: "none",
   cursor: "not-allowed",
   opacity: 1,
-  "&:hover": Object.assign({}, genHoverStyle(merge$1(token2, {
+  "&:hover": Object.assign({}, genHoverStyle(merge$2(token2, {
     inputBorderHoverColor: token2.colorBorder
   })))
 });
@@ -38226,7 +38226,7 @@ const genStatusStyle = (token2, parentCls) => {
       "&:hover": {
         borderColor: colorErrorBorderHover
       },
-      "&:focus, &-focused": Object.assign({}, genActiveStyle(merge$1(token2, {
+      "&:focus, &-focused": Object.assign({}, genActiveStyle(merge$2(token2, {
         inputBorderActiveColor: colorError,
         inputBorderHoverColor: colorError,
         controlOutline: colorErrorOutline
@@ -38240,7 +38240,7 @@ const genStatusStyle = (token2, parentCls) => {
       "&:hover": {
         borderColor: colorWarningBorderHover
       },
-      "&:focus, &-focused": Object.assign({}, genActiveStyle(merge$1(token2, {
+      "&:focus, &-focused": Object.assign({}, genActiveStyle(merge$2(token2, {
         inputBorderActiveColor: colorWarning,
         inputBorderHoverColor: colorWarning,
         controlOutline: colorWarningOutline
@@ -38858,7 +38858,7 @@ const genSearchInputStyle = (token2) => {
   };
 };
 function initInputToken(token2) {
-  return merge$1(token2, {
+  return merge$2(token2, {
     inputAffixPadding: token2.paddingXXS,
     inputPaddingVertical: Math.max(Math.round((token2.controlHeight - token2.fontSize * token2.lineHeight) / 2 * 10) / 10 - token2.lineWidth, 3),
     inputPaddingVerticalLG: Math.ceil((token2.controlHeightLG - token2.fontSizeLG * token2.lineHeightLG) / 2 * 10) / 10 - token2.lineWidth,
@@ -38955,7 +38955,7 @@ const useStyle$m = genComponentStyleHook("Input", (token2) => {
     genCompactItemStyle(inputToken)
   ];
 });
-const Element$1 = (props) => {
+const Element$2 = (props) => {
   const {
     prefixCls,
     className,
@@ -38982,7 +38982,7 @@ const Element$1 = (props) => {
     style: Object.assign(Object.assign({}, sizeStyle), style2)
   });
 };
-const Element$2 = Element$1;
+const Element$3 = Element$2;
 const skeletonClsLoading = new Keyframe(`ant-skeleton-loading`, {
   "0%": {
     backgroundPosition: "100% 50%"
@@ -39250,7 +39250,7 @@ const useStyle$l = genComponentStyleHook("Skeleton", (token2) => {
   const {
     componentCls
   } = token2;
-  const skeletonToken = merge$1(token2, {
+  const skeletonToken = merge$2(token2, {
     skeletonAvatarCls: `${componentCls}-avatar`,
     skeletonTitleCls: `${componentCls}-title`,
     skeletonParagraphCls: `${componentCls}-paragraph`,
@@ -39303,7 +39303,7 @@ const SkeletonAvatar = (props) => {
   }, className, rootClassName, hashId);
   return wrapSSR(/* @__PURE__ */ reactExports.createElement("div", {
     className: cls
-  }, /* @__PURE__ */ reactExports.createElement(Element$2, Object.assign({
+  }, /* @__PURE__ */ reactExports.createElement(Element$3, Object.assign({
     prefixCls: `${prefixCls}-avatar`,
     shape,
     size
@@ -39331,7 +39331,7 @@ const SkeletonButton = (props) => {
   }, className, rootClassName, hashId);
   return wrapSSR(/* @__PURE__ */ reactExports.createElement("div", {
     className: cls
-  }, /* @__PURE__ */ reactExports.createElement(Element$2, Object.assign({
+  }, /* @__PURE__ */ reactExports.createElement(Element$3, Object.assign({
     prefixCls: `${prefixCls}-button`,
     size
   }, otherProps))));
@@ -39390,7 +39390,7 @@ const SkeletonInput = (props) => {
   }, className, rootClassName, hashId);
   return wrapSSR(/* @__PURE__ */ reactExports.createElement("div", {
     className: cls
-  }, /* @__PURE__ */ reactExports.createElement(Element$2, Object.assign({
+  }, /* @__PURE__ */ reactExports.createElement(Element$3, Object.assign({
     prefixCls: `${prefixCls}-input`,
     size
   }, otherProps))));
@@ -39466,7 +39466,7 @@ const Paragraph$6 = (props) => {
   }, rowList);
 };
 const Paragraph$7 = Paragraph$6;
-const Title$b = (_ref) => {
+const Title$c = (_ref) => {
   let {
     prefixCls,
     className,
@@ -39480,7 +39480,7 @@ const Title$b = (_ref) => {
     }, style2)
   });
 };
-const Title$c = Title$b;
+const Title$d = Title$c;
 function getComponentProps(prop) {
   if (prop && typeof prop === "object") {
     return prop;
@@ -39556,7 +39556,7 @@ const Skeleton = (props) => {
       }, getAvatarBasicProps(hasTitle, hasParagraph)), getComponentProps(avatar));
       avatarNode = /* @__PURE__ */ reactExports.createElement("div", {
         className: `${prefixCls}-header`
-      }, /* @__PURE__ */ reactExports.createElement(Element$2, Object.assign({}, avatarProps)));
+      }, /* @__PURE__ */ reactExports.createElement(Element$3, Object.assign({}, avatarProps)));
     }
     let contentNode;
     if (hasTitle || hasParagraph) {
@@ -39565,7 +39565,7 @@ const Skeleton = (props) => {
         const titleProps = Object.assign(Object.assign({
           prefixCls: `${prefixCls}-title`
         }, getTitleBasicProps(hasAvatar, hasParagraph)), getComponentProps(title));
-        $title = /* @__PURE__ */ reactExports.createElement(Title$c, Object.assign({}, titleProps));
+        $title = /* @__PURE__ */ reactExports.createElement(Title$d, Object.assign({}, titleProps));
       }
       let paragraphNode;
       if (hasParagraph) {
@@ -39813,11 +39813,11 @@ function useTouchMove(ref, onOffset) {
     };
   }, []);
 }
-function useUpdate(callback) {
+function useUpdate(callback2) {
   var _useState = reactExports.useState(0), _useState2 = _slicedToArray(_useState, 2), count = _useState2[0], setCount = _useState2[1];
   var effectRef = reactExports.useRef(0);
   var callbackRef = reactExports.useRef();
-  callbackRef.current = callback;
+  callbackRef.current = callback2;
   useLayoutUpdateEffect(function() {
     var _callbackRef$current;
     (_callbackRef$current = callbackRef.current) === null || _callbackRef$current === void 0 ? void 0 : _callbackRef$current.call(callbackRef);
@@ -39836,15 +39836,15 @@ function useUpdateState(defaultState) {
   var state = reactExports.useRef(typeof defaultState === "function" ? defaultState() : defaultState);
   var flushUpdate = useUpdate(function() {
     var current = state.current;
-    batchRef.current.forEach(function(callback) {
-      current = callback(current);
+    batchRef.current.forEach(function(callback2) {
+      current = callback2(current);
     });
     batchRef.current = [];
     state.current = current;
     forceUpdate({});
   });
-  function updater(callback) {
-    batchRef.current.push(callback);
+  function updater(callback2) {
+    batchRef.current.push(callback2);
     flushUpdate();
   }
   return [state.current, updater];
@@ -41535,7 +41535,7 @@ const genTabsStyle = (token2) => {
   };
 };
 const useStyle$k = genComponentStyleHook("Tabs", (token2) => {
-  const tabsToken = merge$1(token2, {
+  const tabsToken = merge$2(token2, {
     // `cardPadding` is empty by default, so we could calculate with dynamic `cardHeight`
     tabsCardPadding: token2.cardPadding || `${(token2.cardHeight - Math.round(token2.fontSize * token2.lineHeight)) / 2 - token2.lineWidth}px ${token2.padding}px`,
     dropdownEdgeChildVerticalPadding: token2.paddingXXS,
@@ -41995,7 +41995,7 @@ const genCardSizeStyle = (token2) => {
   };
 };
 const useStyle$j = genComponentStyleHook("Card", (token2) => {
-  const cardToken = merge$1(token2, {
+  const cardToken = merge$2(token2, {
     cardShadow: token2.boxShadowCard,
     cardHeadPadding: token2.padding,
     cardPaddingBase: token2.paddingLG,
@@ -42205,8 +42205,8 @@ const Card$1 = InternalCard;
 Card$1.Grid = Grid$1;
 Card$1.Meta = Meta$2;
 const Card$2 = Card$1;
-function throttle(delay, callback, options) {
-  var _ref = options || {}, _ref$noTrailing = _ref.noTrailing, noTrailing = _ref$noTrailing === void 0 ? false : _ref$noTrailing, _ref$noLeading = _ref.noLeading, noLeading = _ref$noLeading === void 0 ? false : _ref$noLeading, _ref$debounceMode = _ref.debounceMode, debounceMode = _ref$debounceMode === void 0 ? void 0 : _ref$debounceMode;
+function throttle(delay, callback2, options2) {
+  var _ref = options2 || {}, _ref$noTrailing = _ref.noTrailing, noTrailing = _ref$noTrailing === void 0 ? false : _ref$noTrailing, _ref$noLeading = _ref.noLeading, noLeading = _ref$noLeading === void 0 ? false : _ref$noLeading, _ref$debounceMode = _ref.debounceMode, debounceMode = _ref$debounceMode === void 0 ? void 0 : _ref$debounceMode;
   var timeoutID;
   var cancelled = false;
   var lastExec = 0;
@@ -42215,8 +42215,8 @@ function throttle(delay, callback, options) {
       clearTimeout(timeoutID);
     }
   }
-  function cancel(options2) {
-    var _ref2 = options2 || {}, _ref2$upcomingOnly = _ref2.upcomingOnly, upcomingOnly = _ref2$upcomingOnly === void 0 ? false : _ref2$upcomingOnly;
+  function cancel(options3) {
+    var _ref2 = options3 || {}, _ref2$upcomingOnly = _ref2.upcomingOnly, upcomingOnly = _ref2$upcomingOnly === void 0 ? false : _ref2$upcomingOnly;
     clearExistingTimeout();
     cancelled = !upcomingOnly;
   }
@@ -42231,7 +42231,7 @@ function throttle(delay, callback, options) {
     }
     function exec() {
       lastExec = Date.now();
-      callback.apply(self2, arguments_);
+      callback2.apply(self2, arguments_);
     }
     function clear() {
       timeoutID = void 0;
@@ -42256,9 +42256,9 @@ function throttle(delay, callback, options) {
   wrapper.cancel = cancel;
   return wrapper;
 }
-function debounce(delay, callback, options) {
-  var _ref = options || {}, _ref$atBegin = _ref.atBegin, atBegin = _ref$atBegin === void 0 ? false : _ref$atBegin;
-  return throttle(delay, callback, {
+function debounce$1(delay, callback2, options2) {
+  var _ref = options2 || {}, _ref$atBegin = _ref.atBegin, atBegin = _ref$atBegin === void 0 ? false : _ref$atBegin;
+  return throttle(delay, callback2, {
     debounceMode: atBegin !== false
   });
 }
@@ -42513,7 +42513,7 @@ function flattenTreeData(treeNodeList, expandedKeys, fieldNames) {
   dig(treeNodeList);
   return flattenList;
 }
-function traverseDataNodes(dataNodes, callback, config) {
+function traverseDataNodes(dataNodes, callback2, config) {
   var mergedConfig = {};
   if (_typeof(config) === "object") {
     mergedConfig = config;
@@ -42557,7 +42557,7 @@ function traverseDataNodes(dataNodes, callback, config) {
         level: parent.level + 1,
         nodes: connectNodes
       };
-      callback(data2);
+      callback2(data2);
     }
     if (children) {
       children.forEach(function(subNode, subIndex) {
@@ -42870,8 +42870,8 @@ const genCheckboxStyle = (token2) => {
     }
   ];
 };
-function getStyle(prefixCls, token2) {
-  const checkboxToken = merge$1(token2, {
+function getStyle$1(prefixCls, token2) {
+  const checkboxToken = merge$2(token2, {
     checkboxCls: `.${prefixCls}`,
     checkboxSize: token2.controlInteractiveSize
   });
@@ -42881,7 +42881,7 @@ const useStyle$i = genComponentStyleHook("Checkbox", (token2, _ref) => {
   let {
     prefixCls
   } = _ref;
-  return [getStyle(prefixCls, token2)];
+  return [getStyle$1(prefixCls, token2)];
 });
 const GroupContext = /* @__PURE__ */ React.createContext(null);
 const GroupContext$1 = GroupContext;
@@ -43000,7 +43000,7 @@ const InternalGroup = (props, ref) => {
   const {
     defaultValue,
     children,
-    options = [],
+    options: options2 = [],
     prefixCls: customizePrefixCls,
     className,
     rootClassName,
@@ -43018,7 +43018,7 @@ const InternalGroup = (props, ref) => {
       setValue(restProps.value || []);
     }
   }, [restProps.value]);
-  const memoOptions = reactExports.useMemo(() => options.map((option) => {
+  const memoOptions = reactExports.useMemo(() => options2.map((option) => {
     if (typeof option === "string" || typeof option === "number") {
       return {
         label: option,
@@ -43026,7 +43026,7 @@ const InternalGroup = (props, ref) => {
       };
     }
     return option;
-  }), [options]);
+  }), [options2]);
   const cancelValue = (val) => {
     setRegisteredValues((prevValues) => prevValues.filter((v2) => v2 !== val));
   };
@@ -43054,7 +43054,7 @@ const InternalGroup = (props, ref) => {
   const groupPrefixCls = `${prefixCls}-group`;
   const [wrapSSR, hashId] = useStyle$i(prefixCls);
   const domProps = omit(restProps, ["value", "disabled"]);
-  const childrenNode = options.length ? memoOptions.map((option) => /* @__PURE__ */ reactExports.createElement(InternalCheckbox$1, {
+  const childrenNode = options2.length ? memoOptions.map((option) => /* @__PURE__ */ reactExports.createElement(InternalCheckbox$1, {
     prefixCls,
     key: option.value.toString(),
     disabled: "disabled" in option ? option.disabled : restProps.disabled,
@@ -43216,7 +43216,7 @@ const genGridMediaStyle = (token2, screenSize, sizeCls) => ({
 });
 const useRowStyle = genComponentStyleHook("Grid", (token2) => [genGridRowStyle(token2)]);
 const useColStyle = genComponentStyleHook("Grid", (token2) => {
-  const gridToken = merge$1(token2, {
+  const gridToken = merge$2(token2, {
     gridColumns: 24
     // Row is divided into 24 parts in Grid
   });
@@ -44053,7 +44053,7 @@ const genGhostStyle = (token2) => {
   };
 };
 const useStyle$h = genComponentStyleHook("Collapse", (token2) => {
-  const collapseToken = merge$1(token2, {
+  const collapseToken = merge$2(token2, {
     collapseContentBg: token2.colorBgContainer,
     collapseHeaderBg: token2.colorFillAlter,
     collapseHeaderPadding: `${token2.paddingSM}px ${token2.padding}px`,
@@ -44261,7 +44261,7 @@ const genSharedDividerStyle = (token2) => {
   };
 };
 const useStyle$g = genComponentStyleHook("Divider", (token2) => {
-  const dividerToken = merge$1(token2, {
+  const dividerToken = merge$2(token2, {
     dividerVerticalGutterMargin: token2.marginXS,
     dividerHorizontalWithTextGutterMargin: token2.margin,
     dividerHorizontalGutterMargin: token2.marginLG
@@ -44452,9 +44452,9 @@ var BigIntDecimal = /* @__PURE__ */ function() {
     if (validateNumber(mergedValue)) {
       var trimRet = trimNumber(mergedValue);
       this.negative = trimRet.negative;
-      var numbers = trimRet.trimStr.split(".");
-      this.integer = BigInt(numbers[0]);
-      var decimalStr = numbers[1] || "0";
+      var numbers2 = trimRet.trimStr.split(".");
+      this.integer = BigInt(numbers2[0]);
+      var decimalStr = numbers2[1] || "0";
       this.decimal = BigInt(decimalStr);
       this.decimalLen = decimalStr.length;
     } else {
@@ -45125,10 +45125,10 @@ const useFrame = function() {
   reactExports.useEffect(function() {
     return cleanUp;
   }, []);
-  return function(callback) {
+  return function(callback2) {
     cleanUp();
     idRef.current = wrapperRaf(function() {
-      callback();
+      callback2();
     });
   };
 };
@@ -47476,7 +47476,7 @@ const genDrawerStyle = (token2) => {
   };
 };
 const useStyle$e = genComponentStyleHook("Drawer", (token2) => {
-  const drawerToken = merge$1(token2, {});
+  const drawerToken = merge$2(token2, {});
   return [genDrawerStyle(drawerToken), genMotionStyle$1(drawerToken)];
 }, (token2) => ({
   zIndexPopup: token2.zIndexPopupBase,
@@ -48231,7 +48231,7 @@ const useStyle$d = genComponentStyleHook("FloatButton", (token2) => {
     paddingXXS,
     borderRadiusLG
   } = token2;
-  const floatButtonToken = merge$1(token2, {
+  const floatButtonToken = merge$2(token2, {
     floatButtonBackgroundColor: colorBgElevated,
     floatButtonColor: colorTextLightSolid,
     floatButtonHoverBackgroundColor: controlItemBgHover,
@@ -48299,7 +48299,7 @@ const FloatButton = (props, ref) => {
     buttonNode = /* @__PURE__ */ React.createElement(Badge$1, Object.assign({}, badgeProps), buttonNode);
   }
   if ("tooltip" in props) {
-    buttonNode = /* @__PURE__ */ React.createElement(Tooltip$1, {
+    buttonNode = /* @__PURE__ */ React.createElement(Tooltip$2, {
       title: tooltip,
       placement: direction === "rtl" ? "right" : "left"
     }, buttonNode);
@@ -49013,7 +49013,7 @@ const useStyle$c = genComponentStyleHook("Form", (token2, _ref) => {
   let {
     rootPrefixCls
   } = _ref;
-  const formToken = merge$1(token2, {
+  const formToken = merge$2(token2, {
     formItemCls: `${token2.componentCls}-item`,
     rootPrefixCls
   });
@@ -49131,7 +49131,7 @@ function useForm(form) {
       }
     },
     scrollToField: function(name) {
-      let options = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
+      let options2 = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : {};
       const namePath = toArray$3(name);
       const fieldId = getFieldId(namePath, wrapForm.__INTERNAL__.name);
       const node2 = fieldId ? document.getElementById(fieldId) : null;
@@ -49139,7 +49139,7 @@ function useForm(form) {
         t(node2, Object.assign({
           scrollMode: "if-needed",
           block: "nearest"
-        }, options));
+        }, options2));
       }
     },
     getFieldInstance: (name) => {
@@ -49228,13 +49228,13 @@ const InternalForm = (props, ref) => {
     form: wrapForm
   }), [name, labelAlign, labelCol, wrapperCol, layout, mergedColon, mergedRequiredMark, wrapForm]);
   reactExports.useImperativeHandle(ref, () => wrapForm);
-  const scrollToField = (options, fieldName) => {
-    if (options) {
+  const scrollToField = (options2, fieldName) => {
+    if (options2) {
       let defaultScrollToFirstError = {
         block: "nearest"
       };
-      if (typeof options === "object") {
-        defaultScrollToFirstError = options;
+      if (typeof options2 === "object") {
+        defaultScrollToFirstError = options2;
       }
       wrapForm.scrollToField(fieldName, defaultScrollToFirstError);
     }
@@ -49482,7 +49482,7 @@ const FormItemLabel = (_ref) => {
     const {
       icon = /* @__PURE__ */ reactExports.createElement(QuestionCircleOutlined$1, null)
     } = tooltipProps, restTooltipProps = __rest$p(tooltipProps, ["icon"]);
-    const tooltipNode = /* @__PURE__ */ reactExports.createElement(Tooltip$1, Object.assign({}, restTooltipProps), /* @__PURE__ */ reactExports.cloneElement(icon, {
+    const tooltipNode = /* @__PURE__ */ reactExports.createElement(Tooltip$2, Object.assign({}, restTooltipProps), /* @__PURE__ */ reactExports.cloneElement(icon, {
       className: `${prefixCls}-item-tooltip`,
       title: ""
     }));
@@ -49927,11 +49927,11 @@ function getOffset$1(node2) {
 }
 var COMMON_PROPS = ["crossOrigin", "decoding", "draggable", "loading", "referrerPolicy", "sizes", "srcSet", "useMap", "alt"];
 var PreviewGroupContext = /* @__PURE__ */ reactExports.createContext(null);
-var uid = 0;
+var uid$1 = 0;
 function useRegisterImage(canPreview, data2) {
   var _React$useState = reactExports.useState(function() {
-    uid += 1;
-    return String(uid);
+    uid$1 += 1;
+    return String(uid$1);
   }), _React$useState2 = _slicedToArray(_React$useState, 1), id2 = _React$useState2[0];
   var groupContext = reactExports.useContext(PreviewGroupContext);
   var registerData = {
@@ -49951,13 +49951,13 @@ function useRegisterImage(canPreview, data2) {
   return id2;
 }
 function isImageValid(src) {
-  return new Promise(function(resolve) {
+  return new Promise(function(resolve2) {
     var img = document.createElement("img");
     img.onerror = function() {
-      return resolve(false);
+      return resolve2(false);
     };
     img.onload = function() {
-      return resolve(true);
+      return resolve2(true);
     };
     img.src = src;
   });
@@ -50003,16 +50003,16 @@ function useStatus(_ref) {
   return [getImgRef, srcAndOnload, status];
 }
 function addEventListenerWrap(target, eventType, cb2, option) {
-  var callback = ReactDOM.unstable_batchedUpdates ? function run(e2) {
+  var callback2 = ReactDOM.unstable_batchedUpdates ? function run(e2) {
     ReactDOM.unstable_batchedUpdates(cb2, e2);
   } : cb2;
   if (target !== null && target !== void 0 && target.addEventListener) {
-    target.addEventListener(eventType, callback, option);
+    target.addEventListener(eventType, callback2, option);
   }
   return {
     remove: function remove() {
       if (target !== null && target !== void 0 && target.removeEventListener) {
-        target.removeEventListener(eventType, callback, option);
+        target.removeEventListener(eventType, callback2, option);
       }
     }
   };
@@ -50264,7 +50264,7 @@ var Preview = function Preview2(props) {
   var showOperationsProgress = groupContext && count >= 1;
   var _useImageTransform = useImageTransform(imgRef, minScale, maxScale, onTransform), transform = _useImageTransform.transform, resetTransform = _useImageTransform.resetTransform, updateTransform = _useImageTransform.updateTransform, dispatchZoomChange = _useImageTransform.dispatchZoomChange;
   var _useState3 = reactExports.useState(true), _useState4 = _slicedToArray(_useState3, 2), enableTransition = _useState4[0], setEnableTransition = _useState4[1];
-  var rotate = transform.rotate, scale = transform.scale, x2 = transform.x, y2 = transform.y;
+  var rotate2 = transform.rotate, scale = transform.scale, x2 = transform.x, y2 = transform.y;
   var wrapClassName = classNames(_defineProperty({}, "".concat(prefixCls, "-moving"), isMoving));
   reactExports.useEffect(function() {
     if (!enableTransition) {
@@ -50282,12 +50282,12 @@ var Preview = function Preview2(props) {
   };
   var onRotateRight = function onRotateRight2() {
     updateTransform({
-      rotate: rotate + 90
+      rotate: rotate2 + 90
     }, "rotateRight");
   };
   var onRotateLeft = function onRotateLeft2() {
     updateTransform({
-      rotate: rotate - 90
+      rotate: rotate2 - 90
     }, "rotateLeft");
   };
   var onFlipX = function onFlipX2() {
@@ -50329,7 +50329,7 @@ var Preview = function Preview2(props) {
       var width = imgRef.current.offsetWidth * scale;
       var height = imgRef.current.offsetHeight * scale;
       var _imgRef$current$getBo = imgRef.current.getBoundingClientRect(), left = _imgRef$current$getBo.left, top = _imgRef$current$getBo.top;
-      var isRotate = rotate % 180 !== 0;
+      var isRotate = rotate2 % 180 !== 0;
       var fixState = getFixScaleEleTransPosition(isRotate ? height : width, isRotate ? width : height, left, top);
       if (fixState) {
         updateTransform(_objectSpread2({}, fixState), "dragRebound");
@@ -50413,7 +50413,7 @@ var Preview = function Preview2(props) {
       (_onTopMouseUpListener = onTopMouseUpListener) === null || _onTopMouseUpListener === void 0 ? void 0 : _onTopMouseUpListener.remove();
       (_onTopMouseMoveListen = onTopMouseMoveListener) === null || _onTopMouseMoveListen === void 0 ? void 0 : _onTopMouseMoveListen.remove();
     };
-  }, [visible, isMoving, x2, y2, rotate, movable]);
+  }, [visible, isMoving, x2, y2, rotate2, movable]);
   reactExports.useEffect(function() {
     var onKeyDownListener = addEventListenerWrap(window, "keydown", onKeyDown2, false);
     return function() {
@@ -50427,7 +50427,7 @@ var Preview = function Preview2(props) {
     className: "".concat(prefixCls, "-img"),
     alt,
     style: {
-      transform: "translate3d(".concat(transform.x, "px, ").concat(transform.y, "px, 0) scale3d(").concat(transform.flipX ? "-" : "").concat(scale, ", ").concat(transform.flipY ? "-" : "").concat(scale, ", 1) rotate(").concat(rotate, "deg)"),
+      transform: "translate3d(".concat(transform.x, "px, ").concat(transform.y, "px, 0) scale3d(").concat(transform.flipX ? "-" : "").concat(scale, ", ").concat(transform.flipY ? "-" : "").concat(scale, ", 1) rotate(").concat(rotate2, "deg)"),
       transitionDuration: !enableTransition && "0s"
     },
     fallback,
@@ -51045,12 +51045,12 @@ const genPreviewMotion = (token2) => {
 };
 const useStyle$b = genComponentStyleHook("Image", (token2) => {
   const previewCls = `${token2.componentCls}-preview`;
-  const imageToken = merge$1(token2, {
+  const imageToken = merge$2(token2, {
     previewCls,
     modalMaskBg: new TinyColor("#000").setAlpha(0.45).toRgbString(),
     imagePreviewSwitchSize: token2.controlHeightLG
   });
-  return [genImageStyle(imageToken), genImagePreviewStyle(imageToken), genModalMaskStyle(merge$1(imageToken, {
+  return [genImageStyle(imageToken), genImagePreviewStyle(imageToken), genModalMaskStyle(merge$2(imageToken, {
     componentCls: previewCls
   })), genPreviewMotion(imageToken)];
 }, (token2) => ({
@@ -51332,7 +51332,7 @@ var Options = /* @__PURE__ */ function(_React$Component) {
       }
       var pageSizeOptions = this.getPageSizeOptions();
       if (changeSize && Select2) {
-        var options = pageSizeOptions.map(function(opt, i2) {
+        var options2 = pageSizeOptions.map(function(opt, i2) {
           return /* @__PURE__ */ React.createElement(Select2.Option, {
             key: i2,
             value: opt.toString()
@@ -51352,7 +51352,7 @@ var Options = /* @__PURE__ */ function(_React$Component) {
           },
           "aria-label": locale2.page_size,
           defaultOpen: false
-        }, options);
+        }, options2);
       }
       if (quickGo) {
         if (goButton) {
@@ -51410,7 +51410,7 @@ var Pager = function Pager2(props) {
     rel: "nofollow"
   }, page)));
 };
-function noop$2() {
+function noop$3() {
 }
 function isInteger(v2) {
   var value = Number(v2);
@@ -51562,12 +51562,12 @@ var Pagination$2 = /* @__PURE__ */ function(_React$Component) {
     _this.hasNext = function() {
       return _this.state.current < calculatePage(void 0, _this.state, _this.props);
     };
-    _this.runIfEnter = function(event, callback) {
+    _this.runIfEnter = function(event, callback2) {
       if (event.key === "Enter" || event.charCode === 13) {
         for (var _len = arguments.length, restParams = new Array(_len > 2 ? _len - 2 : 0), _key = 2; _key < _len; _key++) {
           restParams[_key - 2] = arguments[_key];
         }
-        callback.apply(void 0, restParams);
+        callback2.apply(void 0, restParams);
       }
     };
     _this.runIfEnterPrev = function(e2) {
@@ -51603,7 +51603,7 @@ var Pagination$2 = /* @__PURE__ */ function(_React$Component) {
         disabled
       }) : nextButton;
     };
-    var hasOnChange = props.onChange !== noop$2;
+    var hasOnChange = props.onChange !== noop$3;
     var hasCurrent = "current" in props;
     if (hasCurrent && !hasOnChange) {
       console.warn("Warning: You provided a `current` prop to a Pagination component without an `onChange` handler. This will render a read-only component.");
@@ -51914,7 +51914,7 @@ Pagination$2.defaultProps = {
   defaultCurrent: 1,
   total: 0,
   defaultPageSize: 10,
-  onChange: noop$2,
+  onChange: noop$3,
   className: "",
   selectPrefixCls: "rc-select",
   prefixCls: "rc-pagination",
@@ -51924,7 +51924,7 @@ Pagination$2.defaultProps = {
   showQuickJumper: false,
   showLessItems: false,
   showTitle: true,
-  onShowSizeChange: noop$2,
+  onShowSizeChange: noop$3,
   locale: LOCALE,
   style: {},
   itemRender: defaultItemRender,
@@ -52502,7 +52502,7 @@ const genPaginationFocusStyle = (token2) => {
   };
 };
 const useStyle$a = genComponentStyleHook("Pagination", (token2) => {
-  const paginationToken = merge$1(token2, {
+  const paginationToken = merge$2(token2, {
     inputOutlineOffset: 0,
     paginationMiniOptionsMarginInlineStart: token2.marginXXS / 2,
     paginationMiniQuickJumperInputWidth: token2.controlHeightLG * 1.1,
@@ -52807,7 +52807,7 @@ const genSpinStyle = (token2) => ({
   })
 });
 const useStyle$9 = genComponentStyleHook("Spin", (token2) => {
-  const spinToken = merge$1(token2, {
+  const spinToken = merge$2(token2, {
     spinDotDefault: token2.colorTextDescription,
     spinDotSize: token2.controlHeightLG / 2,
     spinDotSizeSM: token2.controlHeightLG * 0.35,
@@ -52884,7 +52884,7 @@ const Spin = (props) => {
   const [spinning, setSpinning] = reactExports.useState(() => customSpinning && !shouldDelay(customSpinning, delay));
   reactExports.useEffect(() => {
     if (customSpinning) {
-      const showSpinning = debounce(delay, () => {
+      const showSpinning = debounce$1(delay, () => {
         setSpinning(true);
       });
       showSpinning();
@@ -53034,8 +53034,8 @@ const InternalItem = (_a, ref) => {
       className: `${prefixCls}-item-action-split`
     }))
   )));
-  const Element2 = grid ? "div" : "li";
-  const itemChildren = /* @__PURE__ */ React.createElement(Element2, Object.assign({}, others, !grid ? {
+  const Element3 = grid ? "div" : "li";
+  const itemChildren = /* @__PURE__ */ React.createElement(Element3, Object.assign({}, others, !grid ? {
     ref
   } : {}, {
     className: classNames(`${prefixCls}-item`, {
@@ -53363,7 +53363,7 @@ const genBaseStyle$4 = (token2) => {
   };
 };
 const useStyle$8 = genComponentStyleHook("List", (token2) => {
-  const listToken = merge$1(token2, {
+  const listToken = merge$2(token2, {
     listBorderedCls: `${token2.componentCls}-bordered`,
     minHeight: token2.controlHeightLG
   });
@@ -53574,12 +53574,12 @@ function useEffectState() {
     id: 0,
     callback: null
   }), _useState2 = _slicedToArray(_useState, 2), effectId = _useState2[0], setEffectId = _useState2[1];
-  var update = reactExports.useCallback(function(callback) {
+  var update = reactExports.useCallback(function(callback2) {
     setEffectId(function(_ref) {
       var id2 = _ref.id;
       return {
         id: id2 + 1,
-        callback
+        callback: callback2
       };
     });
   }, []);
@@ -53592,14 +53592,14 @@ function useEffectState() {
 var MentionsContext = /* @__PURE__ */ reactExports.createContext(null);
 function DropdownMenu(props) {
   var _React$useContext = reactExports.useContext(MentionsContext), notFoundContent = _React$useContext.notFoundContent, activeIndex = _React$useContext.activeIndex, setActiveIndex = _React$useContext.setActiveIndex, selectOption = _React$useContext.selectOption, onFocus = _React$useContext.onFocus, onBlur = _React$useContext.onBlur;
-  var prefixCls = props.prefixCls, options = props.options;
-  var activeOption = options[activeIndex] || {};
+  var prefixCls = props.prefixCls, options2 = props.options;
+  var activeOption = options2[activeIndex] || {};
   return /* @__PURE__ */ reactExports.createElement(ExportMenu, {
     prefixCls: "".concat(prefixCls, "-menu"),
     activeKey: activeOption.key,
     onSelect: function onSelect(_ref) {
       var key = _ref.key;
-      var option = options.find(function(_ref2) {
+      var option = options2.find(function(_ref2) {
         var optionKey = _ref2.key;
         return optionKey === key;
       });
@@ -53607,7 +53607,7 @@ function DropdownMenu(props) {
     },
     onFocus,
     onBlur
-  }, options.map(function(option, index2) {
+  }, options2.map(function(option, index2) {
     var key = option.key, disabled = option.disabled, className = option.className, style2 = option.style, label = option.label;
     return /* @__PURE__ */ reactExports.createElement(MenuItem$2, {
       key,
@@ -53618,7 +53618,7 @@ function DropdownMenu(props) {
         setActiveIndex(index2);
       }
     }, label);
-  }), !options.length && /* @__PURE__ */ reactExports.createElement(MenuItem$2, {
+  }), !options2.length && /* @__PURE__ */ reactExports.createElement(MenuItem$2, {
     disabled: true
   }, notFoundContent));
 }
@@ -53657,11 +53657,11 @@ var BUILT_IN_PLACEMENTS = {
   }
 };
 var KeywordTrigger = function KeywordTrigger2(props) {
-  var prefixCls = props.prefixCls, options = props.options, children = props.children, visible = props.visible, transitionName = props.transitionName, getPopupContainer = props.getPopupContainer, dropdownClassName = props.dropdownClassName, direction = props.direction, placement = props.placement;
+  var prefixCls = props.prefixCls, options2 = props.options, children = props.children, visible = props.visible, transitionName = props.transitionName, getPopupContainer = props.getPopupContainer, dropdownClassName = props.dropdownClassName, direction = props.direction, placement = props.placement;
   var dropdownPrefix = "".concat(prefixCls, "-dropdown");
   var dropdownElement = /* @__PURE__ */ reactExports.createElement(DropdownMenu, {
     prefixCls: dropdownPrefix,
-    options
+    options: options2
   });
   var dropdownPlacement = reactExports.useMemo(function() {
     var popupPlacement;
@@ -53759,7 +53759,7 @@ function filterOption(input, _ref) {
 }
 var _excluded$b = ["prefixCls", "className", "style", "prefix", "split", "notFoundContent", "value", "defaultValue", "children", "options", "open", "validateSearch", "filterOption", "onChange", "onKeyDown", "onKeyUp", "onPressEnter", "onSearch", "onSelect", "onFocus", "onBlur", "transitionName", "placement", "direction", "getPopupContainer", "dropdownClassName", "rows"], _excluded2$1 = ["suffix", "prefixCls", "classes", "value"];
 var InternalMentions$1 = /* @__PURE__ */ reactExports.forwardRef(function(props, ref) {
-  var _props$prefixCls = props.prefixCls, prefixCls = _props$prefixCls === void 0 ? "rc-mentions" : _props$prefixCls, className = props.className, style2 = props.style, _props$prefix = props.prefix, prefix2 = _props$prefix === void 0 ? "@" : _props$prefix, _props$split = props.split, split = _props$split === void 0 ? " " : _props$split, _props$notFoundConten = props.notFoundContent, notFoundContent = _props$notFoundConten === void 0 ? "Not Found" : _props$notFoundConten, value = props.value, defaultValue = props.defaultValue, children = props.children, options = props.options, open2 = props.open, _props$validateSearch = props.validateSearch, validateSearch$1 = _props$validateSearch === void 0 ? validateSearch : _props$validateSearch, _props$filterOption = props.filterOption, filterOption$1 = _props$filterOption === void 0 ? filterOption : _props$filterOption, onChange = props.onChange, onKeyDown2 = props.onKeyDown, onKeyUp = props.onKeyUp, onPressEnter = props.onPressEnter, onSearch = props.onSearch, onSelect = props.onSelect, onFocus = props.onFocus, onBlur = props.onBlur, transitionName = props.transitionName, placement = props.placement, direction = props.direction, getPopupContainer = props.getPopupContainer, dropdownClassName = props.dropdownClassName, _props$rows = props.rows, rows = _props$rows === void 0 ? 1 : _props$rows, restProps = _objectWithoutProperties(props, _excluded$b);
+  var _props$prefixCls = props.prefixCls, prefixCls = _props$prefixCls === void 0 ? "rc-mentions" : _props$prefixCls, className = props.className, style2 = props.style, _props$prefix = props.prefix, prefix2 = _props$prefix === void 0 ? "@" : _props$prefix, _props$split = props.split, split = _props$split === void 0 ? " " : _props$split, _props$notFoundConten = props.notFoundContent, notFoundContent = _props$notFoundConten === void 0 ? "Not Found" : _props$notFoundConten, value = props.value, defaultValue = props.defaultValue, children = props.children, options2 = props.options, open2 = props.open, _props$validateSearch = props.validateSearch, validateSearch$1 = _props$validateSearch === void 0 ? validateSearch : _props$validateSearch, _props$filterOption = props.filterOption, filterOption$1 = _props$filterOption === void 0 ? filterOption : _props$filterOption, onChange = props.onChange, onKeyDown2 = props.onKeyDown, onKeyUp = props.onKeyUp, onPressEnter = props.onPressEnter, onSearch = props.onSearch, onSelect = props.onSelect, onFocus = props.onFocus, onBlur = props.onBlur, transitionName = props.transitionName, placement = props.placement, direction = props.direction, getPopupContainer = props.getPopupContainer, dropdownClassName = props.dropdownClassName, _props$rows = props.rows, rows = _props$rows === void 0 ? 1 : _props$rows, restProps = _objectWithoutProperties(props, _excluded$b);
   var mergedPrefix = reactExports.useMemo(function() {
     return Array.isArray(prefix2) ? prefix2 : [prefix2];
   }, [prefix2]);
@@ -53812,8 +53812,8 @@ var InternalMentions$1 = /* @__PURE__ */ reactExports.forwardRef(function(props,
   }, [open2, measuring, mergedPrefix, mergedValue, measureText, measurePrefix, measureLocation]), _React$useMemo2 = _slicedToArray(_React$useMemo, 4), mergedMeasuring = _React$useMemo2[0], mergedMeasureText = _React$useMemo2[1], mergedMeasurePrefix = _React$useMemo2[2], mergedMeasureLocation = _React$useMemo2[3];
   var getOptions = React.useCallback(function(targetMeasureText) {
     var list;
-    if (options && options.length > 0) {
-      list = options.map(function(item) {
+    if (options2 && options2.length > 0) {
+      list = options2.map(function(item) {
         var _item$key;
         return _objectSpread2(_objectSpread2({}, item), {}, {
           key: (_item$key = item === null || item === void 0 ? void 0 : item.key) !== null && _item$key !== void 0 ? _item$key : item.value
@@ -53834,7 +53834,7 @@ var InternalMentions$1 = /* @__PURE__ */ reactExports.forwardRef(function(props,
       }
       return filterOption$1(targetMeasureText, option);
     });
-  }, [children, options, filterOption$1]);
+  }, [children, options2, filterOption$1]);
   var mergedOptions = React.useMemo(function() {
     return getOptions(mergedMeasureText);
   }, [getOptions, mergedMeasureText]);
@@ -53846,11 +53846,11 @@ var InternalMentions$1 = /* @__PURE__ */ reactExports.forwardRef(function(props,
     setMeasureLocation(nextMeasureLocation);
     setActiveIndex(0);
   };
-  var stopMeasure = function stopMeasure2(callback) {
+  var stopMeasure = function stopMeasure2(callback2) {
     setMeasuring(false);
     setMeasureLocation(0);
     setMeasureText("");
-    onSelectionEffect(callback);
+    onSelectionEffect(callback2);
   };
   var triggerChange = function triggerChange2(nextValue) {
     setMergedValue(nextValue);
@@ -54194,7 +54194,7 @@ const InternalMentions = (props, ref) => {
     filterOption: filterOption2,
     children,
     notFoundContent,
-    options,
+    options: options2,
     status: customStatus,
     popupClassName,
     style: style2
@@ -54251,7 +54251,7 @@ const InternalMentions = (props, ref) => {
     label: /* @__PURE__ */ reactExports.createElement(Spin$1, {
       size: "small"
     })
-  }] : options;
+  }] : options2;
   const mentionsfilterOption = loading ? loadingFilterOption : filterOption2;
   const prefixCls = getPrefixCls("mentions", customizePrefixCls);
   const [wrapSSR, hashId] = useStyle$7(prefixCls);
@@ -54314,7 +54314,7 @@ Mentions.getMentions = function() {
   }).filter((entity) => !!entity && !!entity.value);
 };
 let message = null;
-let act = (callback) => callback();
+let act = (callback2) => callback2();
 let taskQueue = [];
 let defaultGlobalConfig = {};
 function getGlobalContext() {
@@ -54455,12 +54455,12 @@ function setMessageGlobalConfig(config) {
   });
 }
 function open(config) {
-  const result = wrapPromiseFn((resolve) => {
+  const result = wrapPromiseFn((resolve2) => {
     let closeFn;
     const task = {
       type: "open",
       config,
-      resolve,
+      resolve: resolve2,
       setCloseFn: (fn) => {
         closeFn = fn;
       }
@@ -54480,12 +54480,12 @@ function open(config) {
   return result;
 }
 function typeOpen(type4, args) {
-  const result = wrapPromiseFn((resolve) => {
+  const result = wrapPromiseFn((resolve2) => {
     let closeFn;
     const task = {
       type: type4,
       args,
-      resolve,
+      resolve: resolve2,
       setCloseFn: (fn) => {
         closeFn = fn;
       }
@@ -55730,7 +55730,7 @@ const SliderTooltip = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     }
     return cancelKeepAlign;
   }, [open2, props.title]);
-  return /* @__PURE__ */ reactExports.createElement(Tooltip$1, Object.assign({
+  return /* @__PURE__ */ reactExports.createElement(Tooltip$2, Object.assign({
     ref: composeRef(innerRef, ref)
   }, props));
 });
@@ -55982,7 +55982,7 @@ const genVerticalStyle = (token2) => {
   };
 };
 const useStyle$6 = genComponentStyleHook("Slider", (token2) => {
-  const sliderToken = merge$1(token2, {
+  const sliderToken = merge$2(token2, {
     marginPart: (token2.controlHeight - token2.controlSize) / 2,
     marginFull: token2.controlSize / 2,
     marginPartWithMark: token2.controlHeightLG - token2.controlSize
@@ -56220,7 +56220,7 @@ const genStatisticStyle = (token2) => {
   };
 };
 const useStyle$5 = genComponentStyleHook("Statistic", (token2) => {
-  const statisticToken2 = merge$1(token2, {});
+  const statisticToken2 = merge$2(token2, {});
   return [genStatisticStyle(statisticToken2)];
 }, (token2) => {
   const {
@@ -56676,7 +56676,7 @@ const useStyle$4 = genComponentStyleHook("Switch", (token2) => {
   const switchPadding = 2;
   const switchPinSize = switchHeight - switchPadding * 2;
   const switchPinSizeSM = switchHeightSM - switchPadding * 2;
-  const switchToken = merge$1(token2, {
+  const switchToken = merge$2(token2, {
     switchMinWidth: switchPinSize * 2 + switchPadding * 4,
     switchHeight,
     switchDuration: token2.motionDurationMid,
@@ -56767,7 +56767,7 @@ Switch.__ANT_SWITCH = true;
 const Switch$1 = Switch;
 var EXPAND_COLUMN = {};
 var INTERNAL_HOOKS = "rc-table-internal-hook";
-function createContext(defaultValue) {
+function createContext$1(defaultValue) {
   var Context2 = /* @__PURE__ */ reactExports.createContext(void 0);
   var Provider = function Provider2(_ref) {
     var value = _ref.value, children = _ref.children;
@@ -56870,7 +56870,7 @@ function responseImmutable(Component, propsAreEqual) {
   };
   return refAble ? /* @__PURE__ */ reactExports.memo(/* @__PURE__ */ reactExports.forwardRef(ImmutableComponent), propsAreEqual) : /* @__PURE__ */ reactExports.memo(ImmutableComponent, propsAreEqual);
 }
-var TableContext = createContext();
+var TableContext = createContext$1();
 function useRenderTimes(props, debug) {
   var timesRef = reactExports.useRef(0);
   timesRef.current += 1;
@@ -59393,7 +59393,7 @@ var HIDDEN_STYLE = {
   padding: 0,
   margin: 0
 };
-var noop$1 = function noop() {
+var noop$2 = function noop() {
 };
 var MOTION_KEY = "RC_TREE_MOTION_".concat(Math.random());
 var MotionNode = {
@@ -59529,7 +59529,7 @@ var NodeList = /* @__PURE__ */ reactExports.forwardRef(function(props, ref) {
     onFocus,
     onBlur,
     value: "",
-    onChange: noop$1,
+    onChange: noop$2,
     "aria-label": "for screen reader"
   })), /* @__PURE__ */ reactExports.createElement("div", {
     className: "".concat(prefixCls, "-treenode"),
@@ -59994,7 +59994,7 @@ var Tree$3 = /* @__PURE__ */ function(_React$Component) {
     };
     _this.onNodeLoad = function(treeNode) {
       var key = treeNode.key;
-      var loadPromise = new Promise(function(resolve, reject) {
+      var loadPromise = new Promise(function(resolve2, reject) {
         _this.setState(function(_ref) {
           var _ref$loadedKeys = _ref.loadedKeys, loadedKeys = _ref$loadedKeys === void 0 ? [] : _ref$loadedKeys, _ref$loadingKeys = _ref.loadingKeys, loadingKeys = _ref$loadingKeys === void 0 ? [] : _ref$loadingKeys;
           var _this$props7 = _this.props, loadData = _this$props7.loadData, onLoad = _this$props7.onLoad;
@@ -60017,7 +60017,7 @@ var Tree$3 = /* @__PURE__ */ function(_React$Component) {
                 loadingKeys: arrDel(prevState.loadingKeys, key)
               };
             });
-            resolve();
+            resolve2();
           }).catch(function(e2) {
             _this.setState(function(prevState) {
               return {
@@ -60031,7 +60031,7 @@ var Tree$3 = /* @__PURE__ */ function(_React$Component) {
               _this.setUncontrolledState({
                 loadedKeys: arrAdd(currentLoadedKeys, key)
               });
-              resolve();
+              resolve2();
             }
             reject(e2);
           });
@@ -60947,7 +60947,7 @@ const genTreeStyle = (prefixCls, token2) => {
   const treeNodeCls = `${treeCls}-treenode`;
   const treeNodePadding = token2.paddingXS / 2;
   const treeTitleHeight = token2.controlHeightSM;
-  const treeToken = merge$1(token2, {
+  const treeToken = merge$2(token2, {
     treeCls,
     treeNodeCls,
     treeNodePadding,
@@ -60965,7 +60965,7 @@ const useStyle$3 = genComponentStyleHook("Tree", (token2, _ref) => {
     prefixCls
   } = _ref;
   return [{
-    [token2.componentCls]: getStyle(`${prefixCls}-checkbox`, token2)
+    [token2.componentCls]: getStyle$1(`${prefixCls}-checkbox`, token2)
   }, genTreeStyle(prefixCls, token2), genCollapseMotion$1(token2)];
 });
 const offset$1 = 4;
@@ -61180,14 +61180,14 @@ var Record;
   Record2[Record2["Start"] = 1] = "Start";
   Record2[Record2["End"] = 2] = "End";
 })(Record || (Record = {}));
-function traverseNodesKey(treeData, callback) {
+function traverseNodesKey(treeData, callback2) {
   function processNode(dataNode) {
     const {
       key,
       children
     } = dataNode;
-    if (callback(key, dataNode) !== false) {
-      traverseNodesKey(children || [], callback);
+    if (callback2(key, dataNode) !== false) {
+      traverseNodesKey(children || [], callback2);
     }
   }
   treeData.forEach(processNode);
@@ -62615,12 +62615,12 @@ function getMultiplePriority(column2) {
   }
   return false;
 }
-function getSortFunction(sorter) {
-  if (typeof sorter === "function") {
-    return sorter;
+function getSortFunction(sorter2) {
+  if (typeof sorter2 === "function") {
+    return sorter2;
   }
-  if (sorter && typeof sorter === "object" && sorter.compare) {
-    return sorter.compare;
+  if (sorter2 && typeof sorter2 === "object" && sorter2.compare) {
+    return sorter2.compare;
   }
   return false;
 }
@@ -62678,9 +62678,9 @@ function injectSorter(prefixCls, columns2, sorterStates, triggerSorter, defaultS
       });
       const sortOrder = sorterState ? sorterState.sortOrder : null;
       const nextSortOrder = nextSortDirection(sortDirections, sortOrder);
-      let sorter;
+      let sorter2;
       if (column2.sortIcon) {
-        sorter = column2.sortIcon({
+        sorter2 = column2.sortIcon({
           sortOrder
         });
       } else {
@@ -62694,7 +62694,7 @@ function injectSorter(prefixCls, columns2, sorterStates, triggerSorter, defaultS
             active: sortOrder === DESCEND
           })
         });
-        sorter = /* @__PURE__ */ reactExports.createElement("span", {
+        sorter2 = /* @__PURE__ */ reactExports.createElement("span", {
           className: classNames(`${prefixCls}-column-sorter`, {
             [`${prefixCls}-column-sorter-full`]: !!(upNode && downNode)
           })
@@ -62726,8 +62726,8 @@ function injectSorter(prefixCls, columns2, sorterStates, triggerSorter, defaultS
             className: `${prefixCls}-column-sorters`
           }, /* @__PURE__ */ reactExports.createElement("span", {
             className: `${prefixCls}-column-title`
-          }, renderColumnTitle(column2.title, renderProps)), sorter);
-          return showSorterTooltip ? /* @__PURE__ */ reactExports.createElement(Tooltip$1, Object.assign({}, tooltipProps), renderSortTitle) : renderSortTitle;
+          }, renderColumnTitle(column2.title, renderProps)), sorter2);
+          return showSorterTooltip ? /* @__PURE__ */ reactExports.createElement(Tooltip$2, Object.assign({}, tooltipProps), renderSortTitle) : renderSortTitle;
         },
         onHeaderCell: (col) => {
           const cell = column2.onHeaderCell && column2.onHeaderCell(col) || {};
@@ -62808,29 +62808,29 @@ function generateSorterInfo(sorterStates) {
 }
 function getSortData(data2, sortStates, childrenColumnName) {
   const innerSorterStates = sortStates.slice().sort((a2, b2) => b2.multiplePriority - a2.multiplePriority);
-  const cloneData = data2.slice();
+  const cloneData2 = data2.slice();
   const runningSorters = innerSorterStates.filter((_ref3) => {
     let {
       column: {
-        sorter
+        sorter: sorter2
       },
       sortOrder
     } = _ref3;
-    return getSortFunction(sorter) && sortOrder;
+    return getSortFunction(sorter2) && sortOrder;
   });
   if (!runningSorters.length) {
-    return cloneData;
+    return cloneData2;
   }
-  return cloneData.sort((record1, record2) => {
+  return cloneData2.sort((record1, record2) => {
     for (let i2 = 0; i2 < runningSorters.length; i2 += 1) {
       const sorterState = runningSorters[i2];
       const {
         column: {
-          sorter
+          sorter: sorter2
         },
         sortOrder
       } = sorterState;
-      const compareFn = getSortFunction(sorter);
+      const compareFn = getSortFunction(sorter2);
       if (compareFn && sortOrder) {
         const compareResult = compareFn(record1, record2, sortOrder);
         if (compareResult !== 0) {
@@ -64086,7 +64086,7 @@ const useStyle$2 = genComponentStyleHook("Table", (token2) => {
   const colorFillSecondarySolid = new TinyColor(colorFillSecondary).onBackground(colorBgContainer).toHexShortString();
   const colorFillContentSolid = new TinyColor(colorFillContent).onBackground(colorBgContainer).toHexShortString();
   const colorFillAlterSolid = new TinyColor(colorFillAlter).onBackground(colorBgContainer).toHexShortString();
-  const tableToken = merge$1(token2, {
+  const tableToken = merge$2(token2, {
     tableFontSize: fontSize,
     tableBg: colorBgContainer,
     tableRadius: borderRadiusLG,
@@ -64235,9 +64235,9 @@ const InternalTable = (props, ref) => {
       action
     });
   };
-  const onSorterChange = (sorter, sorterStates) => {
+  const onSorterChange = (sorter2, sorterStates) => {
     triggerOnChange({
-      sorter,
+      sorter: sorter2,
       sorterStates
     }, "sort", false);
   };
@@ -64575,7 +64575,7 @@ const useStyle$1 = genComponentStyleHook("Tag", (token2) => {
   } = token2;
   const tagFontSize = token2.fontSizeSM;
   const tagLineHeight = `${token2.lineHeightSM * tagFontSize}px`;
-  const tagToken = merge$1(token2, {
+  const tagToken = merge$2(token2, {
     tagFontSize,
     tagLineHeight,
     tagIconSize: fontSizeIcon - 2 * lineWidth,
@@ -64645,7 +64645,7 @@ const InternalTag = (tagProps, ref) => {
     style: style2,
     children,
     icon,
-    color,
+    color: color2,
     onClose,
     closeIcon,
     closable,
@@ -64662,15 +64662,15 @@ const InternalTag = (tagProps, ref) => {
       setVisible(props.visible);
     }
   }, [props.visible]);
-  const isInternalColor = isPresetColor(color) || isPresetStatusColor(color);
+  const isInternalColor = isPresetColor(color2) || isPresetStatusColor(color2);
   const tagStyle = Object.assign(Object.assign({
-    backgroundColor: color && !isInternalColor ? color : void 0
+    backgroundColor: color2 && !isInternalColor ? color2 : void 0
   }, tag === null || tag === void 0 ? void 0 : tag.style), style2);
   const prefixCls = getPrefixCls("tag", customizePrefixCls);
   const [wrapSSR, hashId] = useStyle$1(prefixCls);
   const tagClassName = classNames(prefixCls, tag === null || tag === void 0 ? void 0 : tag.className, {
-    [`${prefixCls}-${color}`]: isInternalColor,
-    [`${prefixCls}-has-color`]: color && !isInternalColor,
+    [`${prefixCls}-${color2}`]: isInternalColor,
+    [`${prefixCls}-has-color`]: color2 && !isInternalColor,
     [`${prefixCls}-hidden`]: !visible,
     [`${prefixCls}-rtl`]: direction === "rtl",
     [`${prefixCls}-borderless`]: !bordered
@@ -64837,12 +64837,12 @@ function format$1(message2) {
   var copyKey = (/mac os x/i.test(navigator.userAgent) ? "⌘" : "Ctrl") + "+C";
   return message2.replace(/#{\s*key\s*}/g, copyKey);
 }
-function copy(text, options) {
+function copy(text, options2) {
   var debug, message2, reselectPrevious, range3, selection, mark, success = false;
-  if (!options) {
-    options = {};
+  if (!options2) {
+    options2 = {};
   }
-  debug = options.debug || false;
+  debug = options2.debug || false;
   try {
     reselectPrevious = deselectCurrent();
     range3 = document.createRange();
@@ -64861,22 +64861,22 @@ function copy(text, options) {
     mark.style.userSelect = "text";
     mark.addEventListener("copy", function(e2) {
       e2.stopPropagation();
-      if (options.format) {
+      if (options2.format) {
         e2.preventDefault();
         if (typeof e2.clipboardData === "undefined") {
           debug && console.warn("unable to use e.clipboardData");
           debug && console.warn("trying IE specific stuff");
           window.clipboardData.clearData();
-          var format2 = clipboardToIE11Formatting[options.format] || clipboardToIE11Formatting["default"];
+          var format2 = clipboardToIE11Formatting[options2.format] || clipboardToIE11Formatting["default"];
           window.clipboardData.setData(format2, text);
         } else {
           e2.clipboardData.clearData();
-          e2.clipboardData.setData(options.format, text);
+          e2.clipboardData.setData(options2.format, text);
         }
       }
-      if (options.onCopy) {
+      if (options2.onCopy) {
         e2.preventDefault();
-        options.onCopy(e2.clipboardData);
+        options2.onCopy(e2.clipboardData);
       }
     });
     document.body.appendChild(mark);
@@ -64891,13 +64891,13 @@ function copy(text, options) {
     debug && console.error("unable to copy using execCommand: ", err);
     debug && console.warn("trying IE specific stuff");
     try {
-      window.clipboardData.setData(options.format || "text", text);
-      options.onCopy && options.onCopy(window.clipboardData);
+      window.clipboardData.setData(options2.format || "text", text);
+      options2.onCopy && options2.onCopy(window.clipboardData);
       success = true;
     } catch (err2) {
       debug && console.error("unable to copy using clipboardData: ", err2);
       debug && console.error("falling back to prompt");
-      message2 = format$1("message" in options ? options.message : defaultMessage);
+      message2 = format$1("message" in options2 ? options2.message : defaultMessage);
       window.prompt(message2, text);
     }
   } finally {
@@ -64926,14 +64926,14 @@ var EnterOutlined = function EnterOutlined2(props, ref) {
   }));
 };
 const EnterOutlined$1 = /* @__PURE__ */ reactExports.forwardRef(EnterOutlined);
-const getTitleStyle = (fontSize, lineHeight, color, token2) => {
+const getTitleStyle = (fontSize, lineHeight, color2, token2) => {
   const {
     titleMarginBottom,
     fontWeightStrong
   } = token2;
   return {
     marginBottom: titleMarginBottom,
-    color,
+    color: color2,
     fontWeight: fontWeightStrong,
     fontSize,
     lineHeight
@@ -65381,11 +65381,11 @@ function useMergedConfig(propConfig, templateConfig) {
     return [support, Object.assign(Object.assign({}, templateConfig), support && typeof propConfig === "object" ? propConfig : null)];
   }, [propConfig]);
 }
-const useUpdatedEffect = (callback, conditions) => {
+const useUpdatedEffect = (callback2, conditions) => {
   const mountRef = reactExports.useRef(false);
   reactExports.useEffect(() => {
     if (mountRef.current) {
-      callback();
+      callback2();
     } else {
       mountRef.current = true;
     }
@@ -65542,7 +65542,7 @@ const EllipsisTooltip = (_ref) => {
   if (!(tooltipProps === null || tooltipProps === void 0 ? void 0 : tooltipProps.title) || !enabledEllipsis) {
     return children;
   }
-  return /* @__PURE__ */ reactExports.createElement(Tooltip$1, Object.assign({
+  return /* @__PURE__ */ reactExports.createElement(Tooltip$2, Object.assign({
     open: isEllipsis ? void 0 : false
   }, tooltipProps), children);
 };
@@ -65844,7 +65844,7 @@ const Base = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     } = editConfig;
     const editTitle = toArray$7(tooltip)[0] || (textLocale === null || textLocale === void 0 ? void 0 : textLocale.edit);
     const ariaLabel = typeof editTitle === "string" ? editTitle : "";
-    return triggerType.includes("icon") ? /* @__PURE__ */ reactExports.createElement(Tooltip$1, {
+    return triggerType.includes("icon") ? /* @__PURE__ */ reactExports.createElement(Tooltip$2, {
       key: "edit",
       title: tooltip === false ? "" : editTitle
     }, /* @__PURE__ */ reactExports.createElement(TransButton$1, {
@@ -65868,7 +65868,7 @@ const Base = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     const copyTitle = copied ? getNode(tooltipNodes[1], textLocale === null || textLocale === void 0 ? void 0 : textLocale.copied) : getNode(tooltipNodes[0], textLocale === null || textLocale === void 0 ? void 0 : textLocale.copy);
     const systemStr = copied ? textLocale === null || textLocale === void 0 ? void 0 : textLocale.copied : textLocale === null || textLocale === void 0 ? void 0 : textLocale.copy;
     const ariaLabel = typeof copyTitle === "string" ? copyTitle : systemStr;
-    return /* @__PURE__ */ reactExports.createElement(Tooltip$1, {
+    return /* @__PURE__ */ reactExports.createElement(Tooltip$2, {
       key: "copy",
       title: copyTitle
     }, /* @__PURE__ */ reactExports.createElement(TransButton$1, {
@@ -66005,7 +66005,7 @@ var __rest$1 = globalThis && globalThis.__rest || function(s2, e2) {
   return t2;
 };
 const TITLE_ELE_LIST = [1, 2, 3, 4, 5];
-const Title$9 = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
+const Title$a = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
   const {
     level = 1
   } = props, restProps = __rest$1(props, ["level"]);
@@ -66021,11 +66021,11 @@ const Title$9 = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     component
   }));
 });
-const Title$a = Title$9;
+const Title$b = Title$a;
 const Typography = OriginTypography;
 Typography.Text = Text$6;
 Typography.Link = Link$1;
-Typography.Title = Title$a;
+Typography.Title = Title$b;
 Typography.Paragraph = Paragraph$5;
 const Typography$1 = Typography;
 function bind(fn, thisArg) {
@@ -66044,10 +66044,10 @@ const kindOfTest = (type4) => {
   return (thing) => kindOf(thing) === type4;
 };
 const typeOfTest = (type4) => (thing) => typeof thing === type4;
-const { isArray: isArray$1 } = Array;
+const { isArray: isArray$2 } = Array;
 const isUndefined$1 = typeOfTest("undefined");
 function isBuffer(val) {
-  return val !== null && !isUndefined$1(val) && val.constructor !== null && !isUndefined$1(val.constructor) && isFunction$1(val.constructor.isBuffer) && val.constructor.isBuffer(val);
+  return val !== null && !isUndefined$1(val) && val.constructor !== null && !isUndefined$1(val.constructor) && isFunction$2(val.constructor.isBuffer) && val.constructor.isBuffer(val);
 }
 const isArrayBuffer = kindOfTest("ArrayBuffer");
 function isArrayBufferView(val) {
@@ -66060,9 +66060,9 @@ function isArrayBufferView(val) {
   return result;
 }
 const isString$1 = typeOfTest("string");
-const isFunction$1 = typeOfTest("function");
-const isNumber$1 = typeOfTest("number");
-const isObject$1 = (thing) => thing !== null && typeof thing === "object";
+const isFunction$2 = typeOfTest("function");
+const isNumber$2 = typeOfTest("number");
+const isObject$2 = (thing) => thing !== null && typeof thing === "object";
 const isBoolean = (thing) => thing === true || thing === false;
 const isPlainObject = (val) => {
   if (kindOf(val) !== "object") {
@@ -66075,11 +66075,11 @@ const isDate$1 = kindOfTest("Date");
 const isFile = kindOfTest("File");
 const isBlob = kindOfTest("Blob");
 const isFileList = kindOfTest("FileList");
-const isStream = (val) => isObject$1(val) && isFunction$1(val.pipe);
+const isStream = (val) => isObject$2(val) && isFunction$2(val.pipe);
 const isFormData = (thing) => {
   let kind;
-  return thing && (typeof FormData === "function" && thing instanceof FormData || isFunction$1(thing.append) && ((kind = kindOf(thing)) === "formdata" || // detect form-data instance
-  kind === "object" && isFunction$1(thing.toString) && thing.toString() === "[object FormData]"));
+  return thing && (typeof FormData === "function" && thing instanceof FormData || isFunction$2(thing.append) && ((kind = kindOf(thing)) === "formdata" || // detect form-data instance
+  kind === "object" && isFunction$2(thing.toString) && thing.toString() === "[object FormData]"));
 };
 const isURLSearchParams = kindOfTest("URLSearchParams");
 const trim = (str) => str.trim ? str.trim() : str.replace(/^[\s\uFEFF\xA0]+|[\s\uFEFF\xA0]+$/g, "");
@@ -66092,7 +66092,7 @@ function forEach(obj, fn, { allOwnKeys = false } = {}) {
   if (typeof obj !== "object") {
     obj = [obj];
   }
-  if (isArray$1(obj)) {
+  if (isArray$2(obj)) {
     for (i2 = 0, l2 = obj.length; i2 < l2; i2++) {
       fn.call(null, obj[i2], i2, obj);
     }
@@ -66125,16 +66125,16 @@ const _global = (() => {
   return typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : global;
 })();
 const isContextDefined = (context) => !isUndefined$1(context) && context !== _global;
-function merge() {
+function merge$1() {
   const { caseless } = isContextDefined(this) && this || {};
   const result = {};
   const assignValue = (val, key) => {
     const targetKey = caseless && findKey(result, key) || key;
     if (isPlainObject(result[targetKey]) && isPlainObject(val)) {
-      result[targetKey] = merge(result[targetKey], val);
+      result[targetKey] = merge$1(result[targetKey], val);
     } else if (isPlainObject(val)) {
-      result[targetKey] = merge({}, val);
-    } else if (isArray$1(val)) {
+      result[targetKey] = merge$1({}, val);
+    } else if (isArray$2(val)) {
       result[targetKey] = val.slice();
     } else {
       result[targetKey] = val;
@@ -66147,7 +66147,7 @@ function merge() {
 }
 const extend$1 = (a2, b2, thisArg, { allOwnKeys } = {}) => {
   forEach(b2, (val, key) => {
-    if (thisArg && isFunction$1(val)) {
+    if (thisArg && isFunction$2(val)) {
       a2[key] = bind(val, thisArg);
     } else {
       a2[key] = val;
@@ -66203,10 +66203,10 @@ const endsWith = (str, searchString, position2) => {
 const toArray$1 = (thing) => {
   if (!thing)
     return null;
-  if (isArray$1(thing))
+  if (isArray$2(thing))
     return thing;
   let i2 = thing.length;
-  if (!isNumber$1(i2))
+  if (!isNumber$2(i2))
     return null;
   const arr = new Array(i2);
   while (i2-- > 0) {
@@ -66259,11 +66259,11 @@ const reduceDescriptors = (obj, reducer) => {
 };
 const freezeMethods = (obj) => {
   reduceDescriptors(obj, (descriptor, name) => {
-    if (isFunction$1(obj) && ["arguments", "caller", "callee"].indexOf(name) !== -1) {
+    if (isFunction$2(obj) && ["arguments", "caller", "callee"].indexOf(name) !== -1) {
       return false;
     }
     const value = obj[name];
-    if (!isFunction$1(value))
+    if (!isFunction$2(value))
       return;
     descriptor.enumerable = false;
     if ("writable" in descriptor) {
@@ -66284,10 +66284,10 @@ const toObjectSet = (arrayOrString, delimiter2) => {
       obj[value] = true;
     });
   };
-  isArray$1(arrayOrString) ? define(arrayOrString) : define(String(arrayOrString).split(delimiter2));
+  isArray$2(arrayOrString) ? define(arrayOrString) : define(String(arrayOrString).split(delimiter2));
   return obj;
 };
-const noop2 = () => {
+const noop$1 = () => {
 };
 const toFiniteNumber = (value, defaultValue) => {
   value = +value;
@@ -66309,18 +66309,18 @@ const generateString = (size = 16, alphabet = ALPHABET.ALPHA_DIGIT) => {
   return str;
 };
 function isSpecCompliantForm(thing) {
-  return !!(thing && isFunction$1(thing.append) && thing[Symbol.toStringTag] === "FormData" && thing[Symbol.iterator]);
+  return !!(thing && isFunction$2(thing.append) && thing[Symbol.toStringTag] === "FormData" && thing[Symbol.iterator]);
 }
 const toJSONObject = (obj) => {
   const stack = new Array(10);
   const visit = (source, i2) => {
-    if (isObject$1(source)) {
+    if (isObject$2(source)) {
       if (stack.indexOf(source) >= 0) {
         return;
       }
       if (!("toJSON" in source)) {
         stack[i2] = source;
-        const target = isArray$1(source) ? [] : {};
+        const target = isArray$2(source) ? [] : {};
         forEach(source, (value, key) => {
           const reducedValue = visit(value, i2 + 1);
           !isUndefined$1(reducedValue) && (target[key] = reducedValue);
@@ -66334,30 +66334,30 @@ const toJSONObject = (obj) => {
   return visit(obj, 0);
 };
 const isAsyncFn = kindOfTest("AsyncFunction");
-const isThenable = (thing) => thing && (isObject$1(thing) || isFunction$1(thing)) && isFunction$1(thing.then) && isFunction$1(thing.catch);
+const isThenable = (thing) => thing && (isObject$2(thing) || isFunction$2(thing)) && isFunction$2(thing.then) && isFunction$2(thing.catch);
 const utils = {
-  isArray: isArray$1,
+  isArray: isArray$2,
   isArrayBuffer,
   isBuffer,
   isFormData,
   isArrayBufferView,
   isString: isString$1,
-  isNumber: isNumber$1,
+  isNumber: isNumber$2,
   isBoolean,
-  isObject: isObject$1,
+  isObject: isObject$2,
   isPlainObject,
   isUndefined: isUndefined$1,
   isDate: isDate$1,
   isFile,
   isBlob,
   isRegExp,
-  isFunction: isFunction$1,
+  isFunction: isFunction$2,
   isStream,
   isURLSearchParams,
   isTypedArray,
   isFileList,
   forEach,
-  merge,
+  merge: merge$1,
   extend: extend$1,
   trim,
   stripBOM,
@@ -66377,7 +66377,7 @@ const utils = {
   freezeMethods,
   toObjectSet,
   toCamelCase,
-  noop: noop2,
+  noop: noop$1,
   toFiniteNumber,
   findKey,
   global: _global,
@@ -66425,7 +66425,7 @@ utils.inherits(AxiosError, Error, {
   }
 });
 const prototype$1 = AxiosError.prototype;
-const descriptors = {};
+const descriptors$1 = {};
 [
   "ERR_BAD_OPTION_VALUE",
   "ERR_BAD_OPTION",
@@ -66441,9 +66441,9 @@ const descriptors = {};
   "ERR_INVALID_URL"
   // eslint-disable-next-line func-names
 ].forEach((code) => {
-  descriptors[code] = { value: code };
+  descriptors$1[code] = { value: code };
 });
-Object.defineProperties(AxiosError, descriptors);
+Object.defineProperties(AxiosError, descriptors$1);
 Object.defineProperty(prototype$1, "isAxiosError", { value: true });
 AxiosError.from = (error, code, config, request, response, customProps) => {
   const axiosError = Object.create(prototype$1);
@@ -66468,7 +66468,7 @@ function removeBrackets(key) {
 function renderKey(path2, key, dots) {
   if (!path2)
     return key;
-  return path2.concat(key).map(function each(token2, i2) {
+  return path2.concat(key).map(function each2(token2, i2) {
     token2 = removeBrackets(token2);
     return !dots && i2 ? "[" + token2 + "]" : token2;
   }).join(dots ? "." : "");
@@ -66479,23 +66479,23 @@ function isFlatArray(arr) {
 const predicates = utils.toFlatObject(utils, {}, null, function filter2(prop) {
   return /^is[A-Z]/.test(prop);
 });
-function toFormData(obj, formData, options) {
+function toFormData(obj, formData, options2) {
   if (!utils.isObject(obj)) {
     throw new TypeError("target must be an object");
   }
   formData = formData || new FormData();
-  options = utils.toFlatObject(options, {
+  options2 = utils.toFlatObject(options2, {
     metaTokens: true,
     dots: false,
     indexes: false
-  }, false, function defined(option, source) {
+  }, false, function defined2(option, source) {
     return !utils.isUndefined(source[option]);
   });
-  const metaTokens = options.metaTokens;
-  const visitor = options.visitor || defaultVisitor;
-  const dots = options.dots;
-  const indexes = options.indexes;
-  const _Blob = options.Blob || typeof Blob !== "undefined" && Blob;
+  const metaTokens = options2.metaTokens;
+  const visitor = options2.visitor || defaultVisitor;
+  const dots = options2.dots;
+  const indexes = options2.indexes;
+  const _Blob = options2.Blob || typeof Blob !== "undefined" && Blob;
   const useBlob = _Blob && utils.isSpecCompliantForm(formData);
   if (!utils.isFunction(visitor)) {
     throw new TypeError("visitor must be a function");
@@ -66522,7 +66522,7 @@ function toFormData(obj, formData, options) {
         value = JSON.stringify(value);
       } else if (utils.isArray(value) && isFlatArray(value) || (utils.isFileList(value) || utils.endsWith(key, "[]")) && (arr = utils.toArray(value))) {
         key = removeBrackets(key);
-        arr.forEach(function each(el2, index2) {
+        arr.forEach(function each2(el2, index2) {
           !(utils.isUndefined(el2) || el2 === null) && formData.append(
             // eslint-disable-next-line no-nested-ternary
             indexes === true ? renderKey([key], index2, dots) : indexes === null ? key : key + "[]",
@@ -66551,7 +66551,7 @@ function toFormData(obj, formData, options) {
       throw Error("Circular reference detected in " + path2.join("."));
     }
     stack.push(value);
-    utils.forEach(value, function each(el2, key) {
+    utils.forEach(value, function each2(el2, key) {
       const result = !(utils.isUndefined(el2) || el2 === null) && visitor.call(
         formData,
         el2,
@@ -66585,9 +66585,9 @@ function encode$1(str) {
     return charMap[match5];
   });
 }
-function AxiosURLSearchParams(params, options) {
+function AxiosURLSearchParams(params, options2) {
   this._pairs = [];
-  params && toFormData(params, this, options);
+  params && toFormData(params, this, options2);
 }
 const prototype = AxiosURLSearchParams.prototype;
 prototype.append = function append2(name, value) {
@@ -66597,24 +66597,24 @@ prototype.toString = function toString(encoder) {
   const _encode = encoder ? function(value) {
     return encoder.call(this, value, encode$1);
   } : encode$1;
-  return this._pairs.map(function each(pair) {
+  return this._pairs.map(function each2(pair) {
     return _encode(pair[0]) + "=" + _encode(pair[1]);
   }, "").join("&");
 };
 function encode(val) {
   return encodeURIComponent(val).replace(/%3A/gi, ":").replace(/%24/g, "$").replace(/%2C/gi, ",").replace(/%20/g, "+").replace(/%5B/gi, "[").replace(/%5D/gi, "]");
 }
-function buildURL(url2, params, options) {
+function buildURL(url2, params, options2) {
   if (!params) {
     return url2;
   }
-  const _encode = options && options.encode || encode;
-  const serializeFn = options && options.serialize;
+  const _encode = options2 && options2.encode || encode;
+  const serializeFn = options2 && options2.serialize;
   let serializedParams;
   if (serializeFn) {
-    serializedParams = serializeFn(params, options);
+    serializedParams = serializeFn(params, options2);
   } else {
-    serializedParams = utils.isURLSearchParams(params) ? params.toString() : new AxiosURLSearchParams(params, options).toString(_encode);
+    serializedParams = utils.isURLSearchParams(params) ? params.toString() : new AxiosURLSearchParams(params, options2).toString(_encode);
   }
   if (serializedParams) {
     const hashmarkIndex = url2.indexOf("#");
@@ -66637,12 +66637,12 @@ class InterceptorManager {
    *
    * @return {Number} An ID used to remove interceptor later
    */
-  use(fulfilled, rejected, options) {
+  use(fulfilled, rejected, options2) {
     this.handlers.push({
       fulfilled,
       rejected,
-      synchronous: options ? options.synchronous : false,
-      runWhen: options ? options.runWhen : null
+      synchronous: options2 ? options2.synchronous : false,
+      runWhen: options2 ? options2.runWhen : null
     });
     return this.handlers.length - 1;
   }
@@ -66679,9 +66679,9 @@ class InterceptorManager {
    * @returns {void}
    */
   forEach(fn) {
-    utils.forEach(this.handlers, function forEachHandler(h2) {
-      if (h2 !== null) {
-        fn(h2);
+    utils.forEach(this.handlers, function forEachHandler(h3) {
+      if (h3 !== null) {
+        fn(h3);
       }
     });
   }
@@ -66717,7 +66717,7 @@ const platform = {
   isStandardBrowserWebWorkerEnv,
   protocols: ["http", "https", "file", "blob", "url", "data"]
 };
-function toURLEncodedForm(data2, options) {
+function toURLEncodedForm(data2, options2) {
   return toFormData(data2, new platform.classes.URLSearchParams(), Object.assign({
     visitor: function(value, key, path2, helpers) {
       if (platform.isNode && utils.isBuffer(value)) {
@@ -66726,7 +66726,7 @@ function toURLEncodedForm(data2, options) {
       }
       return helpers.defaultVisitor.apply(this, arguments);
     }
-  }, options));
+  }, options2));
 }
 function parsePropPath(name) {
   return utils.matchAll(/\w+|\[(\w*)]/g, name).map((match5) => {
@@ -66793,7 +66793,7 @@ function stringifySafely(rawValue, parser, encoder) {
   }
   return (encoder || JSON.stringify)(rawValue);
 }
-const defaults$1 = {
+const defaults$2 = {
   transitional: transitionalDefaults,
   adapter: ["xhr", "http"],
   transformRequest: [function transformRequest(data2, headers) {
@@ -66841,7 +66841,7 @@ const defaults$1 = {
     return data2;
   }],
   transformResponse: [function transformResponse(data2) {
-    const transitional2 = this.transitional || defaults$1.transitional;
+    const transitional2 = this.transitional || defaults$2.transitional;
     const forcedJSONParsing = transitional2 && transitional2.forcedJSONParsing;
     const JSONRequested = this.responseType === "json";
     if (data2 && utils.isString(data2) && (forcedJSONParsing && !this.responseType || JSONRequested)) {
@@ -66883,12 +66883,12 @@ const defaults$1 = {
   }
 };
 utils.forEach(["delete", "get", "head"], function forEachMethodNoData(method4) {
-  defaults$1.headers[method4] = {};
+  defaults$2.headers[method4] = {};
 });
 utils.forEach(["post", "put", "patch"], function forEachMethodWithData(method4) {
-  defaults$1.headers[method4] = utils.merge(DEFAULT_CONTENT_TYPE);
+  defaults$2.headers[method4] = utils.merge(DEFAULT_CONTENT_TYPE);
 });
-const defaults$2 = defaults$1;
+const defaults$3 = defaults$2;
 const ignoreDuplicateOf = utils.toObjectSet([
   "age",
   "authorization",
@@ -67141,7 +67141,7 @@ utils.freezeMethods(AxiosHeaders.prototype);
 utils.freezeMethods(AxiosHeaders);
 const AxiosHeaders$1 = AxiosHeaders;
 function transformData(fns, response) {
-  const config = this || defaults$2;
+  const config = this || defaults$3;
   const context = response || config;
   const headers = AxiosHeaders$1.from(context.headers);
   let data2 = context.data;
@@ -67161,10 +67161,10 @@ function CanceledError(message2, config, request) {
 utils.inherits(CanceledError, AxiosError, {
   __CANCEL__: true
 });
-function settle(resolve, reject, response) {
+function settle(resolve2, reject, response) {
   const validateStatus2 = response.config.validateStatus;
   if (!response.status || !validateStatus2 || validateStatus2(response.status)) {
-    resolve(response);
+    resolve2(response);
   } else {
     reject(new AxiosError(
       "Request failed with status code " + response.status,
@@ -67315,7 +67315,7 @@ function progressEventReducer(listener, isDownloadStream) {
     const total = e2.lengthComputable ? e2.total : void 0;
     const progressBytes = loaded - bytesNotified;
     const rate = _speedometer(progressBytes);
-    const inRange = loaded <= total;
+    const inRange2 = loaded <= total;
     bytesNotified = loaded;
     const data2 = {
       loaded,
@@ -67323,7 +67323,7 @@ function progressEventReducer(listener, isDownloadStream) {
       progress: total ? loaded / total : void 0,
       bytes: progressBytes,
       rate: rate ? rate : void 0,
-      estimated: rate && total && inRange ? (total - loaded) / rate : void 0,
+      estimated: rate && total && inRange2 ? (total - loaded) / rate : void 0,
       event: e2
     };
     data2[isDownloadStream ? "download" : "upload"] = true;
@@ -67332,7 +67332,7 @@ function progressEventReducer(listener, isDownloadStream) {
 }
 const isXHRAdapterSupported = typeof XMLHttpRequest !== "undefined";
 const xhrAdapter = isXHRAdapterSupported && function(config) {
-  return new Promise(function dispatchXhrRequest(resolve, reject) {
+  return new Promise(function dispatchXhrRequest(resolve2, reject) {
     let requestData = config.data;
     const requestHeaders = AxiosHeaders$1.from(config.headers).normalize();
     const responseType = config.responseType;
@@ -67377,8 +67377,8 @@ const xhrAdapter = isXHRAdapterSupported && function(config) {
         config,
         request
       };
-      settle(function _resolve(value) {
-        resolve(value);
+      settle(function _resolve2(value) {
+        resolve2(value);
         done();
       }, function _reject(err) {
         reject(err);
@@ -67483,7 +67483,7 @@ utils.forEach(knownAdapters, (fn, value) => {
     Object.defineProperty(fn, "adapterName", { value });
   }
 });
-const adapters = {
+const adapters$1 = {
   getAdapter: (adapters2) => {
     adapters2 = utils.isArray(adapters2) ? adapters2 : [adapters2];
     const { length: length2 } = adapters2;
@@ -67531,7 +67531,7 @@ function dispatchRequest(config) {
   if (["post", "put", "patch"].indexOf(config.method) !== -1) {
     config.headers.setContentType("application/x-www-form-urlencoded", false);
   }
-  const adapter = adapters.getAdapter(config.adapter || defaults$2.adapter);
+  const adapter = adapters$1.getAdapter(config.adapter || defaults$3.adapter);
   return adapter(config).then(function onAdapterResolution(response) {
     throwIfCancellationRequested(config);
     response.data = transformData.call(
@@ -67664,18 +67664,18 @@ validators$1.transitional = function transitional(validator2, version2, message2
     return validator2 ? validator2(value, opt, opts) : true;
   };
 };
-function assertOptions(options, schema, allowUnknown) {
-  if (typeof options !== "object") {
+function assertOptions(options2, schema, allowUnknown) {
+  if (typeof options2 !== "object") {
     throw new AxiosError("options must be an object", AxiosError.ERR_BAD_OPTION_VALUE);
   }
-  const keys2 = Object.keys(options);
+  const keys2 = Object.keys(options2);
   let i2 = keys2.length;
   while (i2-- > 0) {
     const opt = keys2[i2];
     const validator2 = schema[opt];
     if (validator2) {
-      const value = options[opt];
-      const result = value === void 0 || validator2(value, opt, options);
+      const value = options2[opt];
+      const result = value === void 0 || validator2(value, opt, options2);
       if (result !== true) {
         throw new AxiosError("option " + opt + " must be " + result, AxiosError.ERR_BAD_OPTION_VALUE);
       }
@@ -67838,8 +67838,8 @@ class CancelToken {
       throw new TypeError("executor must be a function.");
     }
     let resolvePromise;
-    this.promise = new Promise(function promiseExecutor(resolve) {
-      resolvePromise = resolve;
+    this.promise = new Promise(function promiseExecutor(resolve2) {
+      resolvePromise = resolve2;
     });
     const token2 = this;
     this.promise.then((cancel) => {
@@ -67852,13 +67852,13 @@ class CancelToken {
       token2._listeners = null;
     });
     this.promise.then = (onfulfilled) => {
-      let _resolve;
-      const promise = new Promise((resolve) => {
-        token2.subscribe(resolve);
-        _resolve = resolve;
+      let _resolve2;
+      const promise = new Promise((resolve2) => {
+        token2.subscribe(resolve2);
+        _resolve2 = resolve2;
       }).then(onfulfilled);
       promise.cancel = function reject() {
-        token2.unsubscribe(_resolve);
+        token2.unsubscribe(_resolve2);
       };
       return promise;
     };
@@ -67920,9 +67920,9 @@ class CancelToken {
   }
 }
 const CancelToken$1 = CancelToken;
-function spread(callback) {
+function spread(callback2) {
   return function wrap(arr) {
-    return callback.apply(null, arr);
+    return callback2.apply(null, arr);
   };
 }
 function isAxiosError(payload) {
@@ -68007,7 +68007,7 @@ function createInstance(defaultConfig2) {
   };
   return instance;
 }
-const axios = createInstance(defaults$2);
+const axios = createInstance(defaults$3);
 axios.Axios = Axios$1;
 axios.CanceledError = CanceledError;
 axios.CancelToken = CancelToken$1;
@@ -68618,181 +68618,11630 @@ var WalletOutlined = function WalletOutlined2(props, ref) {
   }));
 };
 const WalletOutlined$1 = /* @__PURE__ */ reactExports.forwardRef(WalletOutlined);
+/*!
+ * @kurkle/color v0.3.2
+ * https://github.com/kurkle/color#readme
+ * (c) 2023 Jukka Kurkela
+ * Released under the MIT License
+ */
+function round$1(v2) {
+  return v2 + 0.5 | 0;
+}
+const lim = (v2, l2, h3) => Math.max(Math.min(v2, h3), l2);
+function p2b(v2) {
+  return lim(round$1(v2 * 2.55), 0, 255);
+}
+function n2b(v2) {
+  return lim(round$1(v2 * 255), 0, 255);
+}
+function b2n(v2) {
+  return lim(round$1(v2 / 2.55) / 100, 0, 1);
+}
+function n2p(v2) {
+  return lim(round$1(v2 * 100), 0, 100);
+}
+const map$1 = { 0: 0, 1: 1, 2: 2, 3: 3, 4: 4, 5: 5, 6: 6, 7: 7, 8: 8, 9: 9, A: 10, B: 11, C: 12, D: 13, E: 14, F: 15, a: 10, b: 11, c: 12, d: 13, e: 14, f: 15 };
+const hex2 = [..."0123456789ABCDEF"];
+const h1 = (b2) => hex2[b2 & 15];
+const h2 = (b2) => hex2[(b2 & 240) >> 4] + hex2[b2 & 15];
+const eq = (b2) => (b2 & 240) >> 4 === (b2 & 15);
+const isShort = (v2) => eq(v2.r) && eq(v2.g) && eq(v2.b) && eq(v2.a);
+function hexParse(str) {
+  var len = str.length;
+  var ret;
+  if (str[0] === "#") {
+    if (len === 4 || len === 5) {
+      ret = {
+        r: 255 & map$1[str[1]] * 17,
+        g: 255 & map$1[str[2]] * 17,
+        b: 255 & map$1[str[3]] * 17,
+        a: len === 5 ? map$1[str[4]] * 17 : 255
+      };
+    } else if (len === 7 || len === 9) {
+      ret = {
+        r: map$1[str[1]] << 4 | map$1[str[2]],
+        g: map$1[str[3]] << 4 | map$1[str[4]],
+        b: map$1[str[5]] << 4 | map$1[str[6]],
+        a: len === 9 ? map$1[str[7]] << 4 | map$1[str[8]] : 255
+      };
+    }
+  }
+  return ret;
+}
+const alpha = (a2, f2) => a2 < 255 ? f2(a2) : "";
+function hexString(v2) {
+  var f2 = isShort(v2) ? h1 : h2;
+  return v2 ? "#" + f2(v2.r) + f2(v2.g) + f2(v2.b) + alpha(v2.a, f2) : void 0;
+}
+const HUE_RE = /^(hsla?|hwb|hsv)\(\s*([-+.e\d]+)(?:deg)?[\s,]+([-+.e\d]+)%[\s,]+([-+.e\d]+)%(?:[\s,]+([-+.e\d]+)(%)?)?\s*\)$/;
+function hsl2rgbn(h3, s2, l2) {
+  const a2 = s2 * Math.min(l2, 1 - l2);
+  const f2 = (n2, k2 = (n2 + h3 / 30) % 12) => l2 - a2 * Math.max(Math.min(k2 - 3, 9 - k2, 1), -1);
+  return [f2(0), f2(8), f2(4)];
+}
+function hsv2rgbn(h3, s2, v2) {
+  const f2 = (n2, k2 = (n2 + h3 / 60) % 6) => v2 - v2 * s2 * Math.max(Math.min(k2, 4 - k2, 1), 0);
+  return [f2(5), f2(3), f2(1)];
+}
+function hwb2rgbn(h3, w2, b2) {
+  const rgb = hsl2rgbn(h3, 1, 0.5);
+  let i2;
+  if (w2 + b2 > 1) {
+    i2 = 1 / (w2 + b2);
+    w2 *= i2;
+    b2 *= i2;
+  }
+  for (i2 = 0; i2 < 3; i2++) {
+    rgb[i2] *= 1 - w2 - b2;
+    rgb[i2] += w2;
+  }
+  return rgb;
+}
+function hueValue(r2, g2, b2, d2, max2) {
+  if (r2 === max2) {
+    return (g2 - b2) / d2 + (g2 < b2 ? 6 : 0);
+  }
+  if (g2 === max2) {
+    return (b2 - r2) / d2 + 2;
+  }
+  return (r2 - g2) / d2 + 4;
+}
+function rgb2hsl(v2) {
+  const range3 = 255;
+  const r2 = v2.r / range3;
+  const g2 = v2.g / range3;
+  const b2 = v2.b / range3;
+  const max2 = Math.max(r2, g2, b2);
+  const min2 = Math.min(r2, g2, b2);
+  const l2 = (max2 + min2) / 2;
+  let h3, s2, d2;
+  if (max2 !== min2) {
+    d2 = max2 - min2;
+    s2 = l2 > 0.5 ? d2 / (2 - max2 - min2) : d2 / (max2 + min2);
+    h3 = hueValue(r2, g2, b2, d2, max2);
+    h3 = h3 * 60 + 0.5;
+  }
+  return [h3 | 0, s2 || 0, l2];
+}
+function calln(f2, a2, b2, c2) {
+  return (Array.isArray(a2) ? f2(a2[0], a2[1], a2[2]) : f2(a2, b2, c2)).map(n2b);
+}
+function hsl2rgb(h3, s2, l2) {
+  return calln(hsl2rgbn, h3, s2, l2);
+}
+function hwb2rgb(h3, w2, b2) {
+  return calln(hwb2rgbn, h3, w2, b2);
+}
+function hsv2rgb(h3, s2, v2) {
+  return calln(hsv2rgbn, h3, s2, v2);
+}
+function hue(h3) {
+  return (h3 % 360 + 360) % 360;
+}
+function hueParse(str) {
+  const m2 = HUE_RE.exec(str);
+  let a2 = 255;
+  let v2;
+  if (!m2) {
+    return;
+  }
+  if (m2[5] !== v2) {
+    a2 = m2[6] ? p2b(+m2[5]) : n2b(+m2[5]);
+  }
+  const h3 = hue(+m2[2]);
+  const p1 = +m2[3] / 100;
+  const p2 = +m2[4] / 100;
+  if (m2[1] === "hwb") {
+    v2 = hwb2rgb(h3, p1, p2);
+  } else if (m2[1] === "hsv") {
+    v2 = hsv2rgb(h3, p1, p2);
+  } else {
+    v2 = hsl2rgb(h3, p1, p2);
+  }
+  return {
+    r: v2[0],
+    g: v2[1],
+    b: v2[2],
+    a: a2
+  };
+}
+function rotate(v2, deg) {
+  var h3 = rgb2hsl(v2);
+  h3[0] = hue(h3[0] + deg);
+  h3 = hsl2rgb(h3);
+  v2.r = h3[0];
+  v2.g = h3[1];
+  v2.b = h3[2];
+}
+function hslString(v2) {
+  if (!v2) {
+    return;
+  }
+  const a2 = rgb2hsl(v2);
+  const h3 = a2[0];
+  const s2 = n2p(a2[1]);
+  const l2 = n2p(a2[2]);
+  return v2.a < 255 ? `hsla(${h3}, ${s2}%, ${l2}%, ${b2n(v2.a)})` : `hsl(${h3}, ${s2}%, ${l2}%)`;
+}
+const map$2 = {
+  x: "dark",
+  Z: "light",
+  Y: "re",
+  X: "blu",
+  W: "gr",
+  V: "medium",
+  U: "slate",
+  A: "ee",
+  T: "ol",
+  S: "or",
+  B: "ra",
+  C: "lateg",
+  D: "ights",
+  R: "in",
+  Q: "turquois",
+  E: "hi",
+  P: "ro",
+  O: "al",
+  N: "le",
+  M: "de",
+  L: "yello",
+  F: "en",
+  K: "ch",
+  G: "arks",
+  H: "ea",
+  I: "ightg",
+  J: "wh"
+};
+const names$1 = {
+  OiceXe: "f0f8ff",
+  antiquewEte: "faebd7",
+  aqua: "ffff",
+  aquamarRe: "7fffd4",
+  azuY: "f0ffff",
+  beige: "f5f5dc",
+  bisque: "ffe4c4",
+  black: "0",
+  blanKedOmond: "ffebcd",
+  Xe: "ff",
+  XeviTet: "8a2be2",
+  bPwn: "a52a2a",
+  burlywood: "deb887",
+  caMtXe: "5f9ea0",
+  KartYuse: "7fff00",
+  KocTate: "d2691e",
+  cSO: "ff7f50",
+  cSnflowerXe: "6495ed",
+  cSnsilk: "fff8dc",
+  crimson: "dc143c",
+  cyan: "ffff",
+  xXe: "8b",
+  xcyan: "8b8b",
+  xgTMnPd: "b8860b",
+  xWay: "a9a9a9",
+  xgYF: "6400",
+  xgYy: "a9a9a9",
+  xkhaki: "bdb76b",
+  xmagFta: "8b008b",
+  xTivegYF: "556b2f",
+  xSange: "ff8c00",
+  xScEd: "9932cc",
+  xYd: "8b0000",
+  xsOmon: "e9967a",
+  xsHgYF: "8fbc8f",
+  xUXe: "483d8b",
+  xUWay: "2f4f4f",
+  xUgYy: "2f4f4f",
+  xQe: "ced1",
+  xviTet: "9400d3",
+  dAppRk: "ff1493",
+  dApskyXe: "bfff",
+  dimWay: "696969",
+  dimgYy: "696969",
+  dodgerXe: "1e90ff",
+  fiYbrick: "b22222",
+  flSOwEte: "fffaf0",
+  foYstWAn: "228b22",
+  fuKsia: "ff00ff",
+  gaRsbSo: "dcdcdc",
+  ghostwEte: "f8f8ff",
+  gTd: "ffd700",
+  gTMnPd: "daa520",
+  Way: "808080",
+  gYF: "8000",
+  gYFLw: "adff2f",
+  gYy: "808080",
+  honeyMw: "f0fff0",
+  hotpRk: "ff69b4",
+  RdianYd: "cd5c5c",
+  Rdigo: "4b0082",
+  ivSy: "fffff0",
+  khaki: "f0e68c",
+  lavFMr: "e6e6fa",
+  lavFMrXsh: "fff0f5",
+  lawngYF: "7cfc00",
+  NmoncEffon: "fffacd",
+  ZXe: "add8e6",
+  ZcSO: "f08080",
+  Zcyan: "e0ffff",
+  ZgTMnPdLw: "fafad2",
+  ZWay: "d3d3d3",
+  ZgYF: "90ee90",
+  ZgYy: "d3d3d3",
+  ZpRk: "ffb6c1",
+  ZsOmon: "ffa07a",
+  ZsHgYF: "20b2aa",
+  ZskyXe: "87cefa",
+  ZUWay: "778899",
+  ZUgYy: "778899",
+  ZstAlXe: "b0c4de",
+  ZLw: "ffffe0",
+  lime: "ff00",
+  limegYF: "32cd32",
+  lRF: "faf0e6",
+  magFta: "ff00ff",
+  maPon: "800000",
+  VaquamarRe: "66cdaa",
+  VXe: "cd",
+  VScEd: "ba55d3",
+  VpurpN: "9370db",
+  VsHgYF: "3cb371",
+  VUXe: "7b68ee",
+  VsprRggYF: "fa9a",
+  VQe: "48d1cc",
+  VviTetYd: "c71585",
+  midnightXe: "191970",
+  mRtcYam: "f5fffa",
+  mistyPse: "ffe4e1",
+  moccasR: "ffe4b5",
+  navajowEte: "ffdead",
+  navy: "80",
+  Tdlace: "fdf5e6",
+  Tive: "808000",
+  TivedBb: "6b8e23",
+  Sange: "ffa500",
+  SangeYd: "ff4500",
+  ScEd: "da70d6",
+  pOegTMnPd: "eee8aa",
+  pOegYF: "98fb98",
+  pOeQe: "afeeee",
+  pOeviTetYd: "db7093",
+  papayawEp: "ffefd5",
+  pHKpuff: "ffdab9",
+  peru: "cd853f",
+  pRk: "ffc0cb",
+  plum: "dda0dd",
+  powMrXe: "b0e0e6",
+  purpN: "800080",
+  YbeccapurpN: "663399",
+  Yd: "ff0000",
+  Psybrown: "bc8f8f",
+  PyOXe: "4169e1",
+  saddNbPwn: "8b4513",
+  sOmon: "fa8072",
+  sandybPwn: "f4a460",
+  sHgYF: "2e8b57",
+  sHshell: "fff5ee",
+  siFna: "a0522d",
+  silver: "c0c0c0",
+  skyXe: "87ceeb",
+  UXe: "6a5acd",
+  UWay: "708090",
+  UgYy: "708090",
+  snow: "fffafa",
+  sprRggYF: "ff7f",
+  stAlXe: "4682b4",
+  tan: "d2b48c",
+  teO: "8080",
+  tEstN: "d8bfd8",
+  tomato: "ff6347",
+  Qe: "40e0d0",
+  viTet: "ee82ee",
+  JHt: "f5deb3",
+  wEte: "ffffff",
+  wEtesmoke: "f5f5f5",
+  Lw: "ffff00",
+  LwgYF: "9acd32"
+};
+function unpack() {
+  const unpacked = {};
+  const keys2 = Object.keys(names$1);
+  const tkeys = Object.keys(map$2);
+  let i2, j2, k2, ok2, nk2;
+  for (i2 = 0; i2 < keys2.length; i2++) {
+    ok2 = nk2 = keys2[i2];
+    for (j2 = 0; j2 < tkeys.length; j2++) {
+      k2 = tkeys[j2];
+      nk2 = nk2.replace(k2, map$2[k2]);
+    }
+    k2 = parseInt(names$1[ok2], 16);
+    unpacked[nk2] = [k2 >> 16 & 255, k2 >> 8 & 255, k2 & 255];
+  }
+  return unpacked;
+}
+let names;
+function nameParse(str) {
+  if (!names) {
+    names = unpack();
+    names.transparent = [0, 0, 0, 0];
+  }
+  const a2 = names[str.toLowerCase()];
+  return a2 && {
+    r: a2[0],
+    g: a2[1],
+    b: a2[2],
+    a: a2.length === 4 ? a2[3] : 255
+  };
+}
+const RGB_RE = /^rgba?\(\s*([-+.\d]+)(%)?[\s,]+([-+.e\d]+)(%)?[\s,]+([-+.e\d]+)(%)?(?:[\s,/]+([-+.e\d]+)(%)?)?\s*\)$/;
+function rgbParse(str) {
+  const m2 = RGB_RE.exec(str);
+  let a2 = 255;
+  let r2, g2, b2;
+  if (!m2) {
+    return;
+  }
+  if (m2[7] !== r2) {
+    const v2 = +m2[7];
+    a2 = m2[8] ? p2b(v2) : lim(v2 * 255, 0, 255);
+  }
+  r2 = +m2[1];
+  g2 = +m2[3];
+  b2 = +m2[5];
+  r2 = 255 & (m2[2] ? p2b(r2) : lim(r2, 0, 255));
+  g2 = 255 & (m2[4] ? p2b(g2) : lim(g2, 0, 255));
+  b2 = 255 & (m2[6] ? p2b(b2) : lim(b2, 0, 255));
+  return {
+    r: r2,
+    g: g2,
+    b: b2,
+    a: a2
+  };
+}
+function rgbString(v2) {
+  return v2 && (v2.a < 255 ? `rgba(${v2.r}, ${v2.g}, ${v2.b}, ${b2n(v2.a)})` : `rgb(${v2.r}, ${v2.g}, ${v2.b})`);
+}
+const to$1 = (v2) => v2 <= 31308e-7 ? v2 * 12.92 : Math.pow(v2, 1 / 2.4) * 1.055 - 0.055;
+const from$1 = (v2) => v2 <= 0.04045 ? v2 / 12.92 : Math.pow((v2 + 0.055) / 1.055, 2.4);
+function interpolate$1(rgb1, rgb2, t2) {
+  const r2 = from$1(b2n(rgb1.r));
+  const g2 = from$1(b2n(rgb1.g));
+  const b2 = from$1(b2n(rgb1.b));
+  return {
+    r: n2b(to$1(r2 + t2 * (from$1(b2n(rgb2.r)) - r2))),
+    g: n2b(to$1(g2 + t2 * (from$1(b2n(rgb2.g)) - g2))),
+    b: n2b(to$1(b2 + t2 * (from$1(b2n(rgb2.b)) - b2))),
+    a: rgb1.a + t2 * (rgb2.a - rgb1.a)
+  };
+}
+function modHSL(v2, i2, ratio) {
+  if (v2) {
+    let tmp = rgb2hsl(v2);
+    tmp[i2] = Math.max(0, Math.min(tmp[i2] + tmp[i2] * ratio, i2 === 0 ? 360 : 1));
+    tmp = hsl2rgb(tmp);
+    v2.r = tmp[0];
+    v2.g = tmp[1];
+    v2.b = tmp[2];
+  }
+}
+function clone$3(v2, proto2) {
+  return v2 ? Object.assign(proto2 || {}, v2) : v2;
+}
+function fromObject(input) {
+  var v2 = { r: 0, g: 0, b: 0, a: 255 };
+  if (Array.isArray(input)) {
+    if (input.length >= 3) {
+      v2 = { r: input[0], g: input[1], b: input[2], a: 255 };
+      if (input.length > 3) {
+        v2.a = n2b(input[3]);
+      }
+    }
+  } else {
+    v2 = clone$3(input, { r: 0, g: 0, b: 0, a: 1 });
+    v2.a = n2b(v2.a);
+  }
+  return v2;
+}
+function functionParse(str) {
+  if (str.charAt(0) === "r") {
+    return rgbParse(str);
+  }
+  return hueParse(str);
+}
+class Color {
+  constructor(input) {
+    if (input instanceof Color) {
+      return input;
+    }
+    const type4 = typeof input;
+    let v2;
+    if (type4 === "object") {
+      v2 = fromObject(input);
+    } else if (type4 === "string") {
+      v2 = hexParse(input) || nameParse(input) || functionParse(input);
+    }
+    this._rgb = v2;
+    this._valid = !!v2;
+  }
+  get valid() {
+    return this._valid;
+  }
+  get rgb() {
+    var v2 = clone$3(this._rgb);
+    if (v2) {
+      v2.a = b2n(v2.a);
+    }
+    return v2;
+  }
+  set rgb(obj) {
+    this._rgb = fromObject(obj);
+  }
+  rgbString() {
+    return this._valid ? rgbString(this._rgb) : void 0;
+  }
+  hexString() {
+    return this._valid ? hexString(this._rgb) : void 0;
+  }
+  hslString() {
+    return this._valid ? hslString(this._rgb) : void 0;
+  }
+  mix(color2, weight) {
+    if (color2) {
+      const c1 = this.rgb;
+      const c2 = color2.rgb;
+      let w2;
+      const p2 = weight === w2 ? 0.5 : weight;
+      const w3 = 2 * p2 - 1;
+      const a2 = c1.a - c2.a;
+      const w1 = ((w3 * a2 === -1 ? w3 : (w3 + a2) / (1 + w3 * a2)) + 1) / 2;
+      w2 = 1 - w1;
+      c1.r = 255 & w1 * c1.r + w2 * c2.r + 0.5;
+      c1.g = 255 & w1 * c1.g + w2 * c2.g + 0.5;
+      c1.b = 255 & w1 * c1.b + w2 * c2.b + 0.5;
+      c1.a = p2 * c1.a + (1 - p2) * c2.a;
+      this.rgb = c1;
+    }
+    return this;
+  }
+  interpolate(color2, t2) {
+    if (color2) {
+      this._rgb = interpolate$1(this._rgb, color2._rgb, t2);
+    }
+    return this;
+  }
+  clone() {
+    return new Color(this.rgb);
+  }
+  alpha(a2) {
+    this._rgb.a = n2b(a2);
+    return this;
+  }
+  clearer(ratio) {
+    const rgb = this._rgb;
+    rgb.a *= 1 - ratio;
+    return this;
+  }
+  greyscale() {
+    const rgb = this._rgb;
+    const val = round$1(rgb.r * 0.3 + rgb.g * 0.59 + rgb.b * 0.11);
+    rgb.r = rgb.g = rgb.b = val;
+    return this;
+  }
+  opaquer(ratio) {
+    const rgb = this._rgb;
+    rgb.a *= 1 + ratio;
+    return this;
+  }
+  negate() {
+    const v2 = this._rgb;
+    v2.r = 255 - v2.r;
+    v2.g = 255 - v2.g;
+    v2.b = 255 - v2.b;
+    return this;
+  }
+  lighten(ratio) {
+    modHSL(this._rgb, 2, ratio);
+    return this;
+  }
+  darken(ratio) {
+    modHSL(this._rgb, 2, -ratio);
+    return this;
+  }
+  saturate(ratio) {
+    modHSL(this._rgb, 1, ratio);
+    return this;
+  }
+  desaturate(ratio) {
+    modHSL(this._rgb, 1, -ratio);
+    return this;
+  }
+  rotate(deg) {
+    rotate(this._rgb, deg);
+    return this;
+  }
+}
+/*!
+ * Chart.js v4.3.3
+ * https://www.chartjs.org
+ * (c) 2023 Chart.js Contributors
+ * Released under the MIT License
+ */
+function noop2() {
+}
+const uid = (() => {
+  let id2 = 0;
+  return () => id2++;
+})();
+function isNullOrUndef(value) {
+  return value === null || typeof value === "undefined";
+}
+function isArray$1(value) {
+  if (Array.isArray && Array.isArray(value)) {
+    return true;
+  }
+  const type4 = Object.prototype.toString.call(value);
+  if (type4.slice(0, 7) === "[object" && type4.slice(-6) === "Array]") {
+    return true;
+  }
+  return false;
+}
+function isObject$1(value) {
+  return value !== null && Object.prototype.toString.call(value) === "[object Object]";
+}
+function isNumberFinite(value) {
+  return (typeof value === "number" || value instanceof Number) && isFinite(+value);
+}
+function finiteOrDefault(value, defaultValue) {
+  return isNumberFinite(value) ? value : defaultValue;
+}
+function valueOrDefault(value, defaultValue) {
+  return typeof value === "undefined" ? defaultValue : value;
+}
+const toDimension = (value, dimension) => typeof value === "string" && value.endsWith("%") ? parseFloat(value) / 100 * dimension : +value;
+function callback(fn, args, thisArg) {
+  if (fn && typeof fn.call === "function") {
+    return fn.apply(thisArg, args);
+  }
+}
+function each(loopable, fn, thisArg, reverse) {
+  let i2, len, keys2;
+  if (isArray$1(loopable)) {
+    len = loopable.length;
+    if (reverse) {
+      for (i2 = len - 1; i2 >= 0; i2--) {
+        fn.call(thisArg, loopable[i2], i2);
+      }
+    } else {
+      for (i2 = 0; i2 < len; i2++) {
+        fn.call(thisArg, loopable[i2], i2);
+      }
+    }
+  } else if (isObject$1(loopable)) {
+    keys2 = Object.keys(loopable);
+    len = keys2.length;
+    for (i2 = 0; i2 < len; i2++) {
+      fn.call(thisArg, loopable[keys2[i2]], keys2[i2]);
+    }
+  }
+}
+function _elementsEqual(a0, a1) {
+  let i2, ilen, v0, v1;
+  if (!a0 || !a1 || a0.length !== a1.length) {
+    return false;
+  }
+  for (i2 = 0, ilen = a0.length; i2 < ilen; ++i2) {
+    v0 = a0[i2];
+    v1 = a1[i2];
+    if (v0.datasetIndex !== v1.datasetIndex || v0.index !== v1.index) {
+      return false;
+    }
+  }
+  return true;
+}
+function clone$2(source) {
+  if (isArray$1(source)) {
+    return source.map(clone$2);
+  }
+  if (isObject$1(source)) {
+    const target = /* @__PURE__ */ Object.create(null);
+    const keys2 = Object.keys(source);
+    const klen = keys2.length;
+    let k2 = 0;
+    for (; k2 < klen; ++k2) {
+      target[keys2[k2]] = clone$2(source[keys2[k2]]);
+    }
+    return target;
+  }
+  return source;
+}
+function isValidKey(key) {
+  return [
+    "__proto__",
+    "prototype",
+    "constructor"
+  ].indexOf(key) === -1;
+}
+function _merger(key, target, source, options2) {
+  if (!isValidKey(key)) {
+    return;
+  }
+  const tval = target[key];
+  const sval = source[key];
+  if (isObject$1(tval) && isObject$1(sval)) {
+    merge(tval, sval, options2);
+  } else {
+    target[key] = clone$2(sval);
+  }
+}
+function merge(target, source, options2) {
+  const sources = isArray$1(source) ? source : [
+    source
+  ];
+  const ilen = sources.length;
+  if (!isObject$1(target)) {
+    return target;
+  }
+  options2 = options2 || {};
+  const merger = options2.merger || _merger;
+  let current;
+  for (let i2 = 0; i2 < ilen; ++i2) {
+    current = sources[i2];
+    if (!isObject$1(current)) {
+      continue;
+    }
+    const keys2 = Object.keys(current);
+    for (let k2 = 0, klen = keys2.length; k2 < klen; ++k2) {
+      merger(keys2[k2], target, current, options2);
+    }
+  }
+  return target;
+}
+function mergeIf(target, source) {
+  return merge(target, source, {
+    merger: _mergerIf
+  });
+}
+function _mergerIf(key, target, source) {
+  if (!isValidKey(key)) {
+    return;
+  }
+  const tval = target[key];
+  const sval = source[key];
+  if (isObject$1(tval) && isObject$1(sval)) {
+    mergeIf(tval, sval);
+  } else if (!Object.prototype.hasOwnProperty.call(target, key)) {
+    target[key] = clone$2(sval);
+  }
+}
+const keyResolvers = {
+  // Chart.helpers.core resolveObjectKey should resolve empty key to root object
+  "": (v2) => v2,
+  // default resolvers
+  x: (o2) => o2.x,
+  y: (o2) => o2.y
+};
+function _splitKey(key) {
+  const parts = key.split(".");
+  const keys2 = [];
+  let tmp = "";
+  for (const part of parts) {
+    tmp += part;
+    if (tmp.endsWith("\\")) {
+      tmp = tmp.slice(0, -1) + ".";
+    } else {
+      keys2.push(tmp);
+      tmp = "";
+    }
+  }
+  return keys2;
+}
+function _getKeyResolver(key) {
+  const keys2 = _splitKey(key);
+  return (obj) => {
+    for (const k2 of keys2) {
+      if (k2 === "") {
+        break;
+      }
+      obj = obj && obj[k2];
+    }
+    return obj;
+  };
+}
+function resolveObjectKey(obj, key) {
+  const resolver = keyResolvers[key] || (keyResolvers[key] = _getKeyResolver(key));
+  return resolver(obj);
+}
+function _capitalize(str) {
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+const defined = (value) => typeof value !== "undefined";
+const isFunction$1 = (value) => typeof value === "function";
+const setsEqual = (a2, b2) => {
+  if (a2.size !== b2.size) {
+    return false;
+  }
+  for (const item of a2) {
+    if (!b2.has(item)) {
+      return false;
+    }
+  }
+  return true;
+};
+function _isClickEvent(e2) {
+  return e2.type === "mouseup" || e2.type === "click" || e2.type === "contextmenu";
+}
+const PI = Math.PI;
+const TAU = 2 * PI;
+const INFINITY = Number.POSITIVE_INFINITY;
+const RAD_PER_DEG = PI / 180;
+const HALF_PI = PI / 2;
+const QUARTER_PI = PI / 4;
+const TWO_THIRDS_PI = PI * 2 / 3;
+const log10 = Math.log10;
+const sign$1 = Math.sign;
+function almostEquals(x2, y2, epsilon) {
+  return Math.abs(x2 - y2) < epsilon;
+}
+function niceNum(range3) {
+  const roundedRange = Math.round(range3);
+  range3 = almostEquals(range3, roundedRange, range3 / 1e3) ? roundedRange : range3;
+  const niceRange = Math.pow(10, Math.floor(log10(range3)));
+  const fraction = range3 / niceRange;
+  const niceFraction = fraction <= 1 ? 1 : fraction <= 2 ? 2 : fraction <= 5 ? 5 : 10;
+  return niceFraction * niceRange;
+}
+function _factorize(value) {
+  const result = [];
+  const sqrt = Math.sqrt(value);
+  let i2;
+  for (i2 = 1; i2 < sqrt; i2++) {
+    if (value % i2 === 0) {
+      result.push(i2);
+      result.push(value / i2);
+    }
+  }
+  if (sqrt === (sqrt | 0)) {
+    result.push(sqrt);
+  }
+  result.sort((a2, b2) => a2 - b2).pop();
+  return result;
+}
+function isNumber$1(n2) {
+  return !isNaN(parseFloat(n2)) && isFinite(n2);
+}
+function almostWhole(x2, epsilon) {
+  const rounded = Math.round(x2);
+  return rounded - epsilon <= x2 && rounded + epsilon >= x2;
+}
+function _setMinAndMaxByKey(array4, target, property) {
+  let i2, ilen, value;
+  for (i2 = 0, ilen = array4.length; i2 < ilen; i2++) {
+    value = array4[i2][property];
+    if (!isNaN(value)) {
+      target.min = Math.min(target.min, value);
+      target.max = Math.max(target.max, value);
+    }
+  }
+}
+function toRadians(degrees) {
+  return degrees * (PI / 180);
+}
+function toDegrees(radians) {
+  return radians * (180 / PI);
+}
+function _decimalPlaces(x2) {
+  if (!isNumberFinite(x2)) {
+    return;
+  }
+  let e2 = 1;
+  let p2 = 0;
+  while (Math.round(x2 * e2) / e2 !== x2) {
+    e2 *= 10;
+    p2++;
+  }
+  return p2;
+}
+function getAngleFromPoint(centrePoint, anglePoint) {
+  const distanceFromXCenter = anglePoint.x - centrePoint.x;
+  const distanceFromYCenter = anglePoint.y - centrePoint.y;
+  const radialDistanceFromCenter = Math.sqrt(distanceFromXCenter * distanceFromXCenter + distanceFromYCenter * distanceFromYCenter);
+  let angle = Math.atan2(distanceFromYCenter, distanceFromXCenter);
+  if (angle < -0.5 * PI) {
+    angle += TAU;
+  }
+  return {
+    angle,
+    distance: radialDistanceFromCenter
+  };
+}
+function distanceBetweenPoints(pt1, pt2) {
+  return Math.sqrt(Math.pow(pt2.x - pt1.x, 2) + Math.pow(pt2.y - pt1.y, 2));
+}
+function _normalizeAngle(a2) {
+  return (a2 % TAU + TAU) % TAU;
+}
+function _angleBetween(angle, start, end, sameAngleIsFullCircle) {
+  const a2 = _normalizeAngle(angle);
+  const s2 = _normalizeAngle(start);
+  const e2 = _normalizeAngle(end);
+  const angleToStart = _normalizeAngle(s2 - a2);
+  const angleToEnd = _normalizeAngle(e2 - a2);
+  const startToAngle = _normalizeAngle(a2 - s2);
+  const endToAngle = _normalizeAngle(a2 - e2);
+  return a2 === s2 || a2 === e2 || sameAngleIsFullCircle && s2 === e2 || angleToStart > angleToEnd && startToAngle < endToAngle;
+}
+function _limitValue(value, min2, max2) {
+  return Math.max(min2, Math.min(max2, value));
+}
+function _int16Range(value) {
+  return _limitValue(value, -32768, 32767);
+}
+function _isBetween(value, start, end, epsilon = 1e-6) {
+  return value >= Math.min(start, end) - epsilon && value <= Math.max(start, end) + epsilon;
+}
+function _lookup(table, value, cmp) {
+  cmp = cmp || ((index2) => table[index2] < value);
+  let hi2 = table.length - 1;
+  let lo = 0;
+  let mid;
+  while (hi2 - lo > 1) {
+    mid = lo + hi2 >> 1;
+    if (cmp(mid)) {
+      lo = mid;
+    } else {
+      hi2 = mid;
+    }
+  }
+  return {
+    lo,
+    hi: hi2
+  };
+}
+const _lookupByKey = (table, key, value, last) => _lookup(table, value, last ? (index2) => {
+  const ti2 = table[index2][key];
+  return ti2 < value || ti2 === value && table[index2 + 1][key] === value;
+} : (index2) => table[index2][key] < value);
+const _rlookupByKey = (table, key, value) => _lookup(table, value, (index2) => table[index2][key] >= value);
+function _filterBetween(values, min2, max2) {
+  let start = 0;
+  let end = values.length;
+  while (start < end && values[start] < min2) {
+    start++;
+  }
+  while (end > start && values[end - 1] > max2) {
+    end--;
+  }
+  return start > 0 || end < values.length ? values.slice(start, end) : values;
+}
+const arrayEvents = [
+  "push",
+  "pop",
+  "shift",
+  "splice",
+  "unshift"
+];
+function listenArrayEvents(array4, listener) {
+  if (array4._chartjs) {
+    array4._chartjs.listeners.push(listener);
+    return;
+  }
+  Object.defineProperty(array4, "_chartjs", {
+    configurable: true,
+    enumerable: false,
+    value: {
+      listeners: [
+        listener
+      ]
+    }
+  });
+  arrayEvents.forEach((key) => {
+    const method4 = "_onData" + _capitalize(key);
+    const base = array4[key];
+    Object.defineProperty(array4, key, {
+      configurable: true,
+      enumerable: false,
+      value(...args) {
+        const res = base.apply(this, args);
+        array4._chartjs.listeners.forEach((object4) => {
+          if (typeof object4[method4] === "function") {
+            object4[method4](...args);
+          }
+        });
+        return res;
+      }
+    });
+  });
+}
+function unlistenArrayEvents(array4, listener) {
+  const stub = array4._chartjs;
+  if (!stub) {
+    return;
+  }
+  const listeners = stub.listeners;
+  const index2 = listeners.indexOf(listener);
+  if (index2 !== -1) {
+    listeners.splice(index2, 1);
+  }
+  if (listeners.length > 0) {
+    return;
+  }
+  arrayEvents.forEach((key) => {
+    delete array4[key];
+  });
+  delete array4._chartjs;
+}
+function _arrayUnique(items2) {
+  const set2 = new Set(items2);
+  if (set2.size === items2.length) {
+    return items2;
+  }
+  return Array.from(set2);
+}
+const requestAnimFrame = function() {
+  if (typeof window === "undefined") {
+    return function(callback2) {
+      return callback2();
+    };
+  }
+  return window.requestAnimationFrame;
+}();
+function throttled(fn, thisArg) {
+  let argsToUse = [];
+  let ticking = false;
+  return function(...args) {
+    argsToUse = args;
+    if (!ticking) {
+      ticking = true;
+      requestAnimFrame.call(window, () => {
+        ticking = false;
+        fn.apply(thisArg, argsToUse);
+      });
+    }
+  };
+}
+function debounce(fn, delay) {
+  let timeout;
+  return function(...args) {
+    if (delay) {
+      clearTimeout(timeout);
+      timeout = setTimeout(fn, delay, args);
+    } else {
+      fn.apply(this, args);
+    }
+    return delay;
+  };
+}
+const _toLeftRightCenter = (align) => align === "start" ? "left" : align === "end" ? "right" : "center";
+const _alignStartEnd = (align, start, end) => align === "start" ? start : align === "end" ? end : (start + end) / 2;
+const _textX = (align, left, right, rtl) => {
+  const check = rtl ? "left" : "right";
+  return align === check ? right : align === "center" ? (left + right) / 2 : left;
+};
+const atEdge = (t2) => t2 === 0 || t2 === 1;
+const elasticIn = (t2, s2, p2) => -(Math.pow(2, 10 * (t2 -= 1)) * Math.sin((t2 - s2) * TAU / p2));
+const elasticOut = (t2, s2, p2) => Math.pow(2, -10 * t2) * Math.sin((t2 - s2) * TAU / p2) + 1;
+const effects = {
+  linear: (t2) => t2,
+  easeInQuad: (t2) => t2 * t2,
+  easeOutQuad: (t2) => -t2 * (t2 - 2),
+  easeInOutQuad: (t2) => (t2 /= 0.5) < 1 ? 0.5 * t2 * t2 : -0.5 * (--t2 * (t2 - 2) - 1),
+  easeInCubic: (t2) => t2 * t2 * t2,
+  easeOutCubic: (t2) => (t2 -= 1) * t2 * t2 + 1,
+  easeInOutCubic: (t2) => (t2 /= 0.5) < 1 ? 0.5 * t2 * t2 * t2 : 0.5 * ((t2 -= 2) * t2 * t2 + 2),
+  easeInQuart: (t2) => t2 * t2 * t2 * t2,
+  easeOutQuart: (t2) => -((t2 -= 1) * t2 * t2 * t2 - 1),
+  easeInOutQuart: (t2) => (t2 /= 0.5) < 1 ? 0.5 * t2 * t2 * t2 * t2 : -0.5 * ((t2 -= 2) * t2 * t2 * t2 - 2),
+  easeInQuint: (t2) => t2 * t2 * t2 * t2 * t2,
+  easeOutQuint: (t2) => (t2 -= 1) * t2 * t2 * t2 * t2 + 1,
+  easeInOutQuint: (t2) => (t2 /= 0.5) < 1 ? 0.5 * t2 * t2 * t2 * t2 * t2 : 0.5 * ((t2 -= 2) * t2 * t2 * t2 * t2 + 2),
+  easeInSine: (t2) => -Math.cos(t2 * HALF_PI) + 1,
+  easeOutSine: (t2) => Math.sin(t2 * HALF_PI),
+  easeInOutSine: (t2) => -0.5 * (Math.cos(PI * t2) - 1),
+  easeInExpo: (t2) => t2 === 0 ? 0 : Math.pow(2, 10 * (t2 - 1)),
+  easeOutExpo: (t2) => t2 === 1 ? 1 : -Math.pow(2, -10 * t2) + 1,
+  easeInOutExpo: (t2) => atEdge(t2) ? t2 : t2 < 0.5 ? 0.5 * Math.pow(2, 10 * (t2 * 2 - 1)) : 0.5 * (-Math.pow(2, -10 * (t2 * 2 - 1)) + 2),
+  easeInCirc: (t2) => t2 >= 1 ? t2 : -(Math.sqrt(1 - t2 * t2) - 1),
+  easeOutCirc: (t2) => Math.sqrt(1 - (t2 -= 1) * t2),
+  easeInOutCirc: (t2) => (t2 /= 0.5) < 1 ? -0.5 * (Math.sqrt(1 - t2 * t2) - 1) : 0.5 * (Math.sqrt(1 - (t2 -= 2) * t2) + 1),
+  easeInElastic: (t2) => atEdge(t2) ? t2 : elasticIn(t2, 0.075, 0.3),
+  easeOutElastic: (t2) => atEdge(t2) ? t2 : elasticOut(t2, 0.075, 0.3),
+  easeInOutElastic(t2) {
+    const s2 = 0.1125;
+    const p2 = 0.45;
+    return atEdge(t2) ? t2 : t2 < 0.5 ? 0.5 * elasticIn(t2 * 2, s2, p2) : 0.5 + 0.5 * elasticOut(t2 * 2 - 1, s2, p2);
+  },
+  easeInBack(t2) {
+    const s2 = 1.70158;
+    return t2 * t2 * ((s2 + 1) * t2 - s2);
+  },
+  easeOutBack(t2) {
+    const s2 = 1.70158;
+    return (t2 -= 1) * t2 * ((s2 + 1) * t2 + s2) + 1;
+  },
+  easeInOutBack(t2) {
+    let s2 = 1.70158;
+    if ((t2 /= 0.5) < 1) {
+      return 0.5 * (t2 * t2 * (((s2 *= 1.525) + 1) * t2 - s2));
+    }
+    return 0.5 * ((t2 -= 2) * t2 * (((s2 *= 1.525) + 1) * t2 + s2) + 2);
+  },
+  easeInBounce: (t2) => 1 - effects.easeOutBounce(1 - t2),
+  easeOutBounce(t2) {
+    const m2 = 7.5625;
+    const d2 = 2.75;
+    if (t2 < 1 / d2) {
+      return m2 * t2 * t2;
+    }
+    if (t2 < 2 / d2) {
+      return m2 * (t2 -= 1.5 / d2) * t2 + 0.75;
+    }
+    if (t2 < 2.5 / d2) {
+      return m2 * (t2 -= 2.25 / d2) * t2 + 0.9375;
+    }
+    return m2 * (t2 -= 2.625 / d2) * t2 + 0.984375;
+  },
+  easeInOutBounce: (t2) => t2 < 0.5 ? effects.easeInBounce(t2 * 2) * 0.5 : effects.easeOutBounce(t2 * 2 - 1) * 0.5 + 0.5
+};
+function isPatternOrGradient(value) {
+  if (value && typeof value === "object") {
+    const type4 = value.toString();
+    return type4 === "[object CanvasPattern]" || type4 === "[object CanvasGradient]";
+  }
+  return false;
+}
+function color(value) {
+  return isPatternOrGradient(value) ? value : new Color(value);
+}
+function getHoverColor(value) {
+  return isPatternOrGradient(value) ? value : new Color(value).saturate(0.5).darken(0.1).hexString();
+}
+const numbers = [
+  "x",
+  "y",
+  "borderWidth",
+  "radius",
+  "tension"
+];
+const colors = [
+  "color",
+  "borderColor",
+  "backgroundColor"
+];
+function applyAnimationsDefaults(defaults2) {
+  defaults2.set("animation", {
+    delay: void 0,
+    duration: 1e3,
+    easing: "easeOutQuart",
+    fn: void 0,
+    from: void 0,
+    loop: void 0,
+    to: void 0,
+    type: void 0
+  });
+  defaults2.describe("animation", {
+    _fallback: false,
+    _indexable: false,
+    _scriptable: (name) => name !== "onProgress" && name !== "onComplete" && name !== "fn"
+  });
+  defaults2.set("animations", {
+    colors: {
+      type: "color",
+      properties: colors
+    },
+    numbers: {
+      type: "number",
+      properties: numbers
+    }
+  });
+  defaults2.describe("animations", {
+    _fallback: "animation"
+  });
+  defaults2.set("transitions", {
+    active: {
+      animation: {
+        duration: 400
+      }
+    },
+    resize: {
+      animation: {
+        duration: 0
+      }
+    },
+    show: {
+      animations: {
+        colors: {
+          from: "transparent"
+        },
+        visible: {
+          type: "boolean",
+          duration: 0
+        }
+      }
+    },
+    hide: {
+      animations: {
+        colors: {
+          to: "transparent"
+        },
+        visible: {
+          type: "boolean",
+          easing: "linear",
+          fn: (v2) => v2 | 0
+        }
+      }
+    }
+  });
+}
+function applyLayoutsDefaults(defaults2) {
+  defaults2.set("layout", {
+    autoPadding: true,
+    padding: {
+      top: 0,
+      right: 0,
+      bottom: 0,
+      left: 0
+    }
+  });
+}
+const intlCache = /* @__PURE__ */ new Map();
+function getNumberFormat(locale2, options2) {
+  options2 = options2 || {};
+  const cacheKey = locale2 + JSON.stringify(options2);
+  let formatter = intlCache.get(cacheKey);
+  if (!formatter) {
+    formatter = new Intl.NumberFormat(locale2, options2);
+    intlCache.set(cacheKey, formatter);
+  }
+  return formatter;
+}
+function formatNumber(num, locale2, options2) {
+  return getNumberFormat(locale2, options2).format(num);
+}
+const formatters = {
+  values(value) {
+    return isArray$1(value) ? value : "" + value;
+  },
+  numeric(tickValue, index2, ticks) {
+    if (tickValue === 0) {
+      return "0";
+    }
+    const locale2 = this.chart.options.locale;
+    let notation;
+    let delta = tickValue;
+    if (ticks.length > 1) {
+      const maxTick = Math.max(Math.abs(ticks[0].value), Math.abs(ticks[ticks.length - 1].value));
+      if (maxTick < 1e-4 || maxTick > 1e15) {
+        notation = "scientific";
+      }
+      delta = calculateDelta(tickValue, ticks);
+    }
+    const logDelta = log10(Math.abs(delta));
+    const numDecimal = isNaN(logDelta) ? 1 : Math.max(Math.min(-1 * Math.floor(logDelta), 20), 0);
+    const options2 = {
+      notation,
+      minimumFractionDigits: numDecimal,
+      maximumFractionDigits: numDecimal
+    };
+    Object.assign(options2, this.options.ticks.format);
+    return formatNumber(tickValue, locale2, options2);
+  },
+  logarithmic(tickValue, index2, ticks) {
+    if (tickValue === 0) {
+      return "0";
+    }
+    const remain = ticks[index2].significand || tickValue / Math.pow(10, Math.floor(log10(tickValue)));
+    if ([
+      1,
+      2,
+      3,
+      5,
+      10,
+      15
+    ].includes(remain) || index2 > 0.8 * ticks.length) {
+      return formatters.numeric.call(this, tickValue, index2, ticks);
+    }
+    return "";
+  }
+};
+function calculateDelta(tickValue, ticks) {
+  let delta = ticks.length > 3 ? ticks[2].value - ticks[1].value : ticks[1].value - ticks[0].value;
+  if (Math.abs(delta) >= 1 && tickValue !== Math.floor(tickValue)) {
+    delta = tickValue - Math.floor(tickValue);
+  }
+  return delta;
+}
+var Ticks = {
+  formatters
+};
+function applyScaleDefaults(defaults2) {
+  defaults2.set("scale", {
+    display: true,
+    offset: false,
+    reverse: false,
+    beginAtZero: false,
+    bounds: "ticks",
+    grace: 0,
+    grid: {
+      display: true,
+      lineWidth: 1,
+      drawOnChartArea: true,
+      drawTicks: true,
+      tickLength: 8,
+      tickWidth: (_ctx, options2) => options2.lineWidth,
+      tickColor: (_ctx, options2) => options2.color,
+      offset: false
+    },
+    border: {
+      display: true,
+      dash: [],
+      dashOffset: 0,
+      width: 1
+    },
+    title: {
+      display: false,
+      text: "",
+      padding: {
+        top: 4,
+        bottom: 4
+      }
+    },
+    ticks: {
+      minRotation: 0,
+      maxRotation: 50,
+      mirror: false,
+      textStrokeWidth: 0,
+      textStrokeColor: "",
+      padding: 3,
+      display: true,
+      autoSkip: true,
+      autoSkipPadding: 3,
+      labelOffset: 0,
+      callback: Ticks.formatters.values,
+      minor: {},
+      major: {},
+      align: "center",
+      crossAlign: "near",
+      showLabelBackdrop: false,
+      backdropColor: "rgba(255, 255, 255, 0.75)",
+      backdropPadding: 2
+    }
+  });
+  defaults2.route("scale.ticks", "color", "", "color");
+  defaults2.route("scale.grid", "color", "", "borderColor");
+  defaults2.route("scale.border", "color", "", "borderColor");
+  defaults2.route("scale.title", "color", "", "color");
+  defaults2.describe("scale", {
+    _fallback: false,
+    _scriptable: (name) => !name.startsWith("before") && !name.startsWith("after") && name !== "callback" && name !== "parser",
+    _indexable: (name) => name !== "borderDash" && name !== "tickBorderDash" && name !== "dash"
+  });
+  defaults2.describe("scales", {
+    _fallback: "scale"
+  });
+  defaults2.describe("scale.ticks", {
+    _scriptable: (name) => name !== "backdropPadding" && name !== "callback",
+    _indexable: (name) => name !== "backdropPadding"
+  });
+}
+const overrides = /* @__PURE__ */ Object.create(null);
+const descriptors = /* @__PURE__ */ Object.create(null);
+function getScope$1(node2, key) {
+  if (!key) {
+    return node2;
+  }
+  const keys2 = key.split(".");
+  for (let i2 = 0, n2 = keys2.length; i2 < n2; ++i2) {
+    const k2 = keys2[i2];
+    node2 = node2[k2] || (node2[k2] = /* @__PURE__ */ Object.create(null));
+  }
+  return node2;
+}
+function set$2(root2, scope, values) {
+  if (typeof scope === "string") {
+    return merge(getScope$1(root2, scope), values);
+  }
+  return merge(getScope$1(root2, ""), scope);
+}
+class Defaults {
+  constructor(_descriptors2, _appliers) {
+    this.animation = void 0;
+    this.backgroundColor = "rgba(0,0,0,0.1)";
+    this.borderColor = "rgba(0,0,0,0.1)";
+    this.color = "#666";
+    this.datasets = {};
+    this.devicePixelRatio = (context) => context.chart.platform.getDevicePixelRatio();
+    this.elements = {};
+    this.events = [
+      "mousemove",
+      "mouseout",
+      "click",
+      "touchstart",
+      "touchmove"
+    ];
+    this.font = {
+      family: "'Helvetica Neue', 'Helvetica', 'Arial', sans-serif",
+      size: 12,
+      style: "normal",
+      lineHeight: 1.2,
+      weight: null
+    };
+    this.hover = {};
+    this.hoverBackgroundColor = (ctx, options2) => getHoverColor(options2.backgroundColor);
+    this.hoverBorderColor = (ctx, options2) => getHoverColor(options2.borderColor);
+    this.hoverColor = (ctx, options2) => getHoverColor(options2.color);
+    this.indexAxis = "x";
+    this.interaction = {
+      mode: "nearest",
+      intersect: true,
+      includeInvisible: false
+    };
+    this.maintainAspectRatio = true;
+    this.onHover = null;
+    this.onClick = null;
+    this.parsing = true;
+    this.plugins = {};
+    this.responsive = true;
+    this.scale = void 0;
+    this.scales = {};
+    this.showLine = true;
+    this.drawActiveElementsOnTop = true;
+    this.describe(_descriptors2);
+    this.apply(_appliers);
+  }
+  set(scope, values) {
+    return set$2(this, scope, values);
+  }
+  get(scope) {
+    return getScope$1(this, scope);
+  }
+  describe(scope, values) {
+    return set$2(descriptors, scope, values);
+  }
+  override(scope, values) {
+    return set$2(overrides, scope, values);
+  }
+  route(scope, name, targetScope, targetName) {
+    const scopeObject = getScope$1(this, scope);
+    const targetScopeObject = getScope$1(this, targetScope);
+    const privateName = "_" + name;
+    Object.defineProperties(scopeObject, {
+      [privateName]: {
+        value: scopeObject[name],
+        writable: true
+      },
+      [name]: {
+        enumerable: true,
+        get() {
+          const local = this[privateName];
+          const target = targetScopeObject[targetName];
+          if (isObject$1(local)) {
+            return Object.assign({}, target, local);
+          }
+          return valueOrDefault(local, target);
+        },
+        set(value) {
+          this[privateName] = value;
+        }
+      }
+    });
+  }
+  apply(appliers) {
+    appliers.forEach((apply) => apply(this));
+  }
+}
+var defaults$1 = /* @__PURE__ */ new Defaults({
+  _scriptable: (name) => !name.startsWith("on"),
+  _indexable: (name) => name !== "events",
+  hover: {
+    _fallback: "interaction"
+  },
+  interaction: {
+    _scriptable: false,
+    _indexable: false
+  }
+}, [
+  applyAnimationsDefaults,
+  applyLayoutsDefaults,
+  applyScaleDefaults
+]);
+function toFontString(font) {
+  if (!font || isNullOrUndef(font.size) || isNullOrUndef(font.family)) {
+    return null;
+  }
+  return (font.style ? font.style + " " : "") + (font.weight ? font.weight + " " : "") + font.size + "px " + font.family;
+}
+function _measureText(ctx, data2, gc2, longest, string3) {
+  let textWidth = data2[string3];
+  if (!textWidth) {
+    textWidth = data2[string3] = ctx.measureText(string3).width;
+    gc2.push(string3);
+  }
+  if (textWidth > longest) {
+    longest = textWidth;
+  }
+  return longest;
+}
+function _longestText(ctx, font, arrayOfThings, cache) {
+  cache = cache || {};
+  let data2 = cache.data = cache.data || {};
+  let gc2 = cache.garbageCollect = cache.garbageCollect || [];
+  if (cache.font !== font) {
+    data2 = cache.data = {};
+    gc2 = cache.garbageCollect = [];
+    cache.font = font;
+  }
+  ctx.save();
+  ctx.font = font;
+  let longest = 0;
+  const ilen = arrayOfThings.length;
+  let i2, j2, jlen, thing, nestedThing;
+  for (i2 = 0; i2 < ilen; i2++) {
+    thing = arrayOfThings[i2];
+    if (thing !== void 0 && thing !== null && !isArray$1(thing)) {
+      longest = _measureText(ctx, data2, gc2, longest, thing);
+    } else if (isArray$1(thing)) {
+      for (j2 = 0, jlen = thing.length; j2 < jlen; j2++) {
+        nestedThing = thing[j2];
+        if (nestedThing !== void 0 && nestedThing !== null && !isArray$1(nestedThing)) {
+          longest = _measureText(ctx, data2, gc2, longest, nestedThing);
+        }
+      }
+    }
+  }
+  ctx.restore();
+  const gcLen = gc2.length / 2;
+  if (gcLen > arrayOfThings.length) {
+    for (i2 = 0; i2 < gcLen; i2++) {
+      delete data2[gc2[i2]];
+    }
+    gc2.splice(0, gcLen);
+  }
+  return longest;
+}
+function _alignPixel(chart, pixel, width) {
+  const devicePixelRatio = chart.currentDevicePixelRatio;
+  const halfWidth = width !== 0 ? Math.max(width / 2, 0.5) : 0;
+  return Math.round((pixel - halfWidth) * devicePixelRatio) / devicePixelRatio + halfWidth;
+}
+function clearCanvas(canvas, ctx) {
+  ctx = ctx || canvas.getContext("2d");
+  ctx.save();
+  ctx.resetTransform();
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.restore();
+}
+function drawPoint(ctx, options2, x2, y2) {
+  drawPointLegend(ctx, options2, x2, y2, null);
+}
+function drawPointLegend(ctx, options2, x2, y2, w2) {
+  let type4, xOffset, yOffset, size, cornerRadius, width, xOffsetW, yOffsetW;
+  const style2 = options2.pointStyle;
+  const rotation = options2.rotation;
+  const radius = options2.radius;
+  let rad = (rotation || 0) * RAD_PER_DEG;
+  if (style2 && typeof style2 === "object") {
+    type4 = style2.toString();
+    if (type4 === "[object HTMLImageElement]" || type4 === "[object HTMLCanvasElement]") {
+      ctx.save();
+      ctx.translate(x2, y2);
+      ctx.rotate(rad);
+      ctx.drawImage(style2, -style2.width / 2, -style2.height / 2, style2.width, style2.height);
+      ctx.restore();
+      return;
+    }
+  }
+  if (isNaN(radius) || radius <= 0) {
+    return;
+  }
+  ctx.beginPath();
+  switch (style2) {
+    default:
+      if (w2) {
+        ctx.ellipse(x2, y2, w2 / 2, radius, 0, 0, TAU);
+      } else {
+        ctx.arc(x2, y2, radius, 0, TAU);
+      }
+      ctx.closePath();
+      break;
+    case "triangle":
+      width = w2 ? w2 / 2 : radius;
+      ctx.moveTo(x2 + Math.sin(rad) * width, y2 - Math.cos(rad) * radius);
+      rad += TWO_THIRDS_PI;
+      ctx.lineTo(x2 + Math.sin(rad) * width, y2 - Math.cos(rad) * radius);
+      rad += TWO_THIRDS_PI;
+      ctx.lineTo(x2 + Math.sin(rad) * width, y2 - Math.cos(rad) * radius);
+      ctx.closePath();
+      break;
+    case "rectRounded":
+      cornerRadius = radius * 0.516;
+      size = radius - cornerRadius;
+      xOffset = Math.cos(rad + QUARTER_PI) * size;
+      xOffsetW = Math.cos(rad + QUARTER_PI) * (w2 ? w2 / 2 - cornerRadius : size);
+      yOffset = Math.sin(rad + QUARTER_PI) * size;
+      yOffsetW = Math.sin(rad + QUARTER_PI) * (w2 ? w2 / 2 - cornerRadius : size);
+      ctx.arc(x2 - xOffsetW, y2 - yOffset, cornerRadius, rad - PI, rad - HALF_PI);
+      ctx.arc(x2 + yOffsetW, y2 - xOffset, cornerRadius, rad - HALF_PI, rad);
+      ctx.arc(x2 + xOffsetW, y2 + yOffset, cornerRadius, rad, rad + HALF_PI);
+      ctx.arc(x2 - yOffsetW, y2 + xOffset, cornerRadius, rad + HALF_PI, rad + PI);
+      ctx.closePath();
+      break;
+    case "rect":
+      if (!rotation) {
+        size = Math.SQRT1_2 * radius;
+        width = w2 ? w2 / 2 : size;
+        ctx.rect(x2 - width, y2 - size, 2 * width, 2 * size);
+        break;
+      }
+      rad += QUARTER_PI;
+    case "rectRot":
+      xOffsetW = Math.cos(rad) * (w2 ? w2 / 2 : radius);
+      xOffset = Math.cos(rad) * radius;
+      yOffset = Math.sin(rad) * radius;
+      yOffsetW = Math.sin(rad) * (w2 ? w2 / 2 : radius);
+      ctx.moveTo(x2 - xOffsetW, y2 - yOffset);
+      ctx.lineTo(x2 + yOffsetW, y2 - xOffset);
+      ctx.lineTo(x2 + xOffsetW, y2 + yOffset);
+      ctx.lineTo(x2 - yOffsetW, y2 + xOffset);
+      ctx.closePath();
+      break;
+    case "crossRot":
+      rad += QUARTER_PI;
+    case "cross":
+      xOffsetW = Math.cos(rad) * (w2 ? w2 / 2 : radius);
+      xOffset = Math.cos(rad) * radius;
+      yOffset = Math.sin(rad) * radius;
+      yOffsetW = Math.sin(rad) * (w2 ? w2 / 2 : radius);
+      ctx.moveTo(x2 - xOffsetW, y2 - yOffset);
+      ctx.lineTo(x2 + xOffsetW, y2 + yOffset);
+      ctx.moveTo(x2 + yOffsetW, y2 - xOffset);
+      ctx.lineTo(x2 - yOffsetW, y2 + xOffset);
+      break;
+    case "star":
+      xOffsetW = Math.cos(rad) * (w2 ? w2 / 2 : radius);
+      xOffset = Math.cos(rad) * radius;
+      yOffset = Math.sin(rad) * radius;
+      yOffsetW = Math.sin(rad) * (w2 ? w2 / 2 : radius);
+      ctx.moveTo(x2 - xOffsetW, y2 - yOffset);
+      ctx.lineTo(x2 + xOffsetW, y2 + yOffset);
+      ctx.moveTo(x2 + yOffsetW, y2 - xOffset);
+      ctx.lineTo(x2 - yOffsetW, y2 + xOffset);
+      rad += QUARTER_PI;
+      xOffsetW = Math.cos(rad) * (w2 ? w2 / 2 : radius);
+      xOffset = Math.cos(rad) * radius;
+      yOffset = Math.sin(rad) * radius;
+      yOffsetW = Math.sin(rad) * (w2 ? w2 / 2 : radius);
+      ctx.moveTo(x2 - xOffsetW, y2 - yOffset);
+      ctx.lineTo(x2 + xOffsetW, y2 + yOffset);
+      ctx.moveTo(x2 + yOffsetW, y2 - xOffset);
+      ctx.lineTo(x2 - yOffsetW, y2 + xOffset);
+      break;
+    case "line":
+      xOffset = w2 ? w2 / 2 : Math.cos(rad) * radius;
+      yOffset = Math.sin(rad) * radius;
+      ctx.moveTo(x2 - xOffset, y2 - yOffset);
+      ctx.lineTo(x2 + xOffset, y2 + yOffset);
+      break;
+    case "dash":
+      ctx.moveTo(x2, y2);
+      ctx.lineTo(x2 + Math.cos(rad) * (w2 ? w2 / 2 : radius), y2 + Math.sin(rad) * radius);
+      break;
+    case false:
+      ctx.closePath();
+      break;
+  }
+  ctx.fill();
+  if (options2.borderWidth > 0) {
+    ctx.stroke();
+  }
+}
+function _isPointInArea(point, area, margin) {
+  margin = margin || 0.5;
+  return !area || point && point.x > area.left - margin && point.x < area.right + margin && point.y > area.top - margin && point.y < area.bottom + margin;
+}
+function clipArea(ctx, area) {
+  ctx.save();
+  ctx.beginPath();
+  ctx.rect(area.left, area.top, area.right - area.left, area.bottom - area.top);
+  ctx.clip();
+}
+function unclipArea(ctx) {
+  ctx.restore();
+}
+function setRenderOpts(ctx, opts) {
+  if (opts.translation) {
+    ctx.translate(opts.translation[0], opts.translation[1]);
+  }
+  if (!isNullOrUndef(opts.rotation)) {
+    ctx.rotate(opts.rotation);
+  }
+  if (opts.color) {
+    ctx.fillStyle = opts.color;
+  }
+  if (opts.textAlign) {
+    ctx.textAlign = opts.textAlign;
+  }
+  if (opts.textBaseline) {
+    ctx.textBaseline = opts.textBaseline;
+  }
+}
+function decorateText(ctx, x2, y2, line2, opts) {
+  if (opts.strikethrough || opts.underline) {
+    const metrics = ctx.measureText(line2);
+    const left = x2 - metrics.actualBoundingBoxLeft;
+    const right = x2 + metrics.actualBoundingBoxRight;
+    const top = y2 - metrics.actualBoundingBoxAscent;
+    const bottom = y2 + metrics.actualBoundingBoxDescent;
+    const yDecoration = opts.strikethrough ? (top + bottom) / 2 : bottom;
+    ctx.strokeStyle = ctx.fillStyle;
+    ctx.beginPath();
+    ctx.lineWidth = opts.decorationWidth || 2;
+    ctx.moveTo(left, yDecoration);
+    ctx.lineTo(right, yDecoration);
+    ctx.stroke();
+  }
+}
+function drawBackdrop(ctx, opts) {
+  const oldColor = ctx.fillStyle;
+  ctx.fillStyle = opts.color;
+  ctx.fillRect(opts.left, opts.top, opts.width, opts.height);
+  ctx.fillStyle = oldColor;
+}
+function renderText(ctx, text, x2, y2, font, opts = {}) {
+  const lines = isArray$1(text) ? text : [
+    text
+  ];
+  const stroke = opts.strokeWidth > 0 && opts.strokeColor !== "";
+  let i2, line2;
+  ctx.save();
+  ctx.font = font.string;
+  setRenderOpts(ctx, opts);
+  for (i2 = 0; i2 < lines.length; ++i2) {
+    line2 = lines[i2];
+    if (opts.backdrop) {
+      drawBackdrop(ctx, opts.backdrop);
+    }
+    if (stroke) {
+      if (opts.strokeColor) {
+        ctx.strokeStyle = opts.strokeColor;
+      }
+      if (!isNullOrUndef(opts.strokeWidth)) {
+        ctx.lineWidth = opts.strokeWidth;
+      }
+      ctx.strokeText(line2, x2, y2, opts.maxWidth);
+    }
+    ctx.fillText(line2, x2, y2, opts.maxWidth);
+    decorateText(ctx, x2, y2, line2, opts);
+    y2 += Number(font.lineHeight);
+  }
+  ctx.restore();
+}
+function addRoundedRectPath(ctx, rect) {
+  const { x: x2, y: y2, w: w2, h: h3, radius } = rect;
+  ctx.arc(x2 + radius.topLeft, y2 + radius.topLeft, radius.topLeft, -HALF_PI, PI, true);
+  ctx.lineTo(x2, y2 + h3 - radius.bottomLeft);
+  ctx.arc(x2 + radius.bottomLeft, y2 + h3 - radius.bottomLeft, radius.bottomLeft, PI, HALF_PI, true);
+  ctx.lineTo(x2 + w2 - radius.bottomRight, y2 + h3);
+  ctx.arc(x2 + w2 - radius.bottomRight, y2 + h3 - radius.bottomRight, radius.bottomRight, HALF_PI, 0, true);
+  ctx.lineTo(x2 + w2, y2 + radius.topRight);
+  ctx.arc(x2 + w2 - radius.topRight, y2 + radius.topRight, radius.topRight, 0, -HALF_PI, true);
+  ctx.lineTo(x2 + radius.topLeft, y2);
+}
+const LINE_HEIGHT = /^(normal|(\d+(?:\.\d+)?)(px|em|%)?)$/;
+const FONT_STYLE = /^(normal|italic|initial|inherit|unset|(oblique( -?[0-9]?[0-9]deg)?))$/;
+function toLineHeight(value, size) {
+  const matches = ("" + value).match(LINE_HEIGHT);
+  if (!matches || matches[1] === "normal") {
+    return size * 1.2;
+  }
+  value = +matches[2];
+  switch (matches[3]) {
+    case "px":
+      return value;
+    case "%":
+      value /= 100;
+      break;
+  }
+  return size * value;
+}
+const numberOrZero = (v2) => +v2 || 0;
+function _readValueToProps(value, props) {
+  const ret = {};
+  const objProps = isObject$1(props);
+  const keys2 = objProps ? Object.keys(props) : props;
+  const read = isObject$1(value) ? objProps ? (prop) => valueOrDefault(value[prop], value[props[prop]]) : (prop) => value[prop] : () => value;
+  for (const prop of keys2) {
+    ret[prop] = numberOrZero(read(prop));
+  }
+  return ret;
+}
+function toTRBL(value) {
+  return _readValueToProps(value, {
+    top: "y",
+    right: "x",
+    bottom: "y",
+    left: "x"
+  });
+}
+function toTRBLCorners(value) {
+  return _readValueToProps(value, [
+    "topLeft",
+    "topRight",
+    "bottomLeft",
+    "bottomRight"
+  ]);
+}
+function toPadding(value) {
+  const obj = toTRBL(value);
+  obj.width = obj.left + obj.right;
+  obj.height = obj.top + obj.bottom;
+  return obj;
+}
+function toFont(options2, fallback) {
+  options2 = options2 || {};
+  fallback = fallback || defaults$1.font;
+  let size = valueOrDefault(options2.size, fallback.size);
+  if (typeof size === "string") {
+    size = parseInt(size, 10);
+  }
+  let style2 = valueOrDefault(options2.style, fallback.style);
+  if (style2 && !("" + style2).match(FONT_STYLE)) {
+    console.warn('Invalid font style specified: "' + style2 + '"');
+    style2 = void 0;
+  }
+  const font = {
+    family: valueOrDefault(options2.family, fallback.family),
+    lineHeight: toLineHeight(valueOrDefault(options2.lineHeight, fallback.lineHeight), size),
+    size,
+    style: style2,
+    weight: valueOrDefault(options2.weight, fallback.weight),
+    string: ""
+  };
+  font.string = toFontString(font);
+  return font;
+}
+function resolve(inputs, context, index2, info) {
+  let cacheable = true;
+  let i2, ilen, value;
+  for (i2 = 0, ilen = inputs.length; i2 < ilen; ++i2) {
+    value = inputs[i2];
+    if (value === void 0) {
+      continue;
+    }
+    if (context !== void 0 && typeof value === "function") {
+      value = value(context);
+      cacheable = false;
+    }
+    if (index2 !== void 0 && isArray$1(value)) {
+      value = value[index2 % value.length];
+      cacheable = false;
+    }
+    if (value !== void 0) {
+      if (info && !cacheable) {
+        info.cacheable = false;
+      }
+      return value;
+    }
+  }
+}
+function _addGrace(minmax, grace, beginAtZero) {
+  const { min: min2, max: max2 } = minmax;
+  const change = toDimension(grace, (max2 - min2) / 2);
+  const keepZero = (value, add2) => beginAtZero && value === 0 ? 0 : value + add2;
+  return {
+    min: keepZero(min2, -Math.abs(change)),
+    max: keepZero(max2, change)
+  };
+}
+function createContext(parentContext, context) {
+  return Object.assign(Object.create(parentContext), context);
+}
+function _createResolver(scopes, prefixes = [
+  ""
+], rootScopes, fallback, getTarget = () => scopes[0]) {
+  const finalRootScopes = rootScopes || scopes;
+  if (typeof fallback === "undefined") {
+    fallback = _resolve("_fallback", scopes);
+  }
+  const cache = {
+    [Symbol.toStringTag]: "Object",
+    _cacheable: true,
+    _scopes: scopes,
+    _rootScopes: finalRootScopes,
+    _fallback: fallback,
+    _getTarget: getTarget,
+    override: (scope) => _createResolver([
+      scope,
+      ...scopes
+    ], prefixes, finalRootScopes, fallback)
+  };
+  return new Proxy(cache, {
+    /**
+    * A trap for the delete operator.
+    */
+    deleteProperty(target, prop) {
+      delete target[prop];
+      delete target._keys;
+      delete scopes[0][prop];
+      return true;
+    },
+    /**
+    * A trap for getting property values.
+    */
+    get(target, prop) {
+      return _cached(target, prop, () => _resolveWithPrefixes(prop, prefixes, scopes, target));
+    },
+    /**
+    * A trap for Object.getOwnPropertyDescriptor.
+    * Also used by Object.hasOwnProperty.
+    */
+    getOwnPropertyDescriptor(target, prop) {
+      return Reflect.getOwnPropertyDescriptor(target._scopes[0], prop);
+    },
+    /**
+    * A trap for Object.getPrototypeOf.
+    */
+    getPrototypeOf() {
+      return Reflect.getPrototypeOf(scopes[0]);
+    },
+    /**
+    * A trap for the in operator.
+    */
+    has(target, prop) {
+      return getKeysFromAllScopes(target).includes(prop);
+    },
+    /**
+    * A trap for Object.getOwnPropertyNames and Object.getOwnPropertySymbols.
+    */
+    ownKeys(target) {
+      return getKeysFromAllScopes(target);
+    },
+    /**
+    * A trap for setting property values.
+    */
+    set(target, prop, value) {
+      const storage = target._storage || (target._storage = getTarget());
+      target[prop] = storage[prop] = value;
+      delete target._keys;
+      return true;
+    }
+  });
+}
+function _attachContext(proxy, context, subProxy, descriptorDefaults) {
+  const cache = {
+    _cacheable: false,
+    _proxy: proxy,
+    _context: context,
+    _subProxy: subProxy,
+    _stack: /* @__PURE__ */ new Set(),
+    _descriptors: _descriptors(proxy, descriptorDefaults),
+    setContext: (ctx) => _attachContext(proxy, ctx, subProxy, descriptorDefaults),
+    override: (scope) => _attachContext(proxy.override(scope), context, subProxy, descriptorDefaults)
+  };
+  return new Proxy(cache, {
+    /**
+    * A trap for the delete operator.
+    */
+    deleteProperty(target, prop) {
+      delete target[prop];
+      delete proxy[prop];
+      return true;
+    },
+    /**
+    * A trap for getting property values.
+    */
+    get(target, prop, receiver) {
+      return _cached(target, prop, () => _resolveWithContext(target, prop, receiver));
+    },
+    /**
+    * A trap for Object.getOwnPropertyDescriptor.
+    * Also used by Object.hasOwnProperty.
+    */
+    getOwnPropertyDescriptor(target, prop) {
+      return target._descriptors.allKeys ? Reflect.has(proxy, prop) ? {
+        enumerable: true,
+        configurable: true
+      } : void 0 : Reflect.getOwnPropertyDescriptor(proxy, prop);
+    },
+    /**
+    * A trap for Object.getPrototypeOf.
+    */
+    getPrototypeOf() {
+      return Reflect.getPrototypeOf(proxy);
+    },
+    /**
+    * A trap for the in operator.
+    */
+    has(target, prop) {
+      return Reflect.has(proxy, prop);
+    },
+    /**
+    * A trap for Object.getOwnPropertyNames and Object.getOwnPropertySymbols.
+    */
+    ownKeys() {
+      return Reflect.ownKeys(proxy);
+    },
+    /**
+    * A trap for setting property values.
+    */
+    set(target, prop, value) {
+      proxy[prop] = value;
+      delete target[prop];
+      return true;
+    }
+  });
+}
+function _descriptors(proxy, defaults2 = {
+  scriptable: true,
+  indexable: true
+}) {
+  const { _scriptable = defaults2.scriptable, _indexable = defaults2.indexable, _allKeys = defaults2.allKeys } = proxy;
+  return {
+    allKeys: _allKeys,
+    scriptable: _scriptable,
+    indexable: _indexable,
+    isScriptable: isFunction$1(_scriptable) ? _scriptable : () => _scriptable,
+    isIndexable: isFunction$1(_indexable) ? _indexable : () => _indexable
+  };
+}
+const readKey = (prefix2, name) => prefix2 ? prefix2 + _capitalize(name) : name;
+const needsSubResolver = (prop, value) => isObject$1(value) && prop !== "adapters" && (Object.getPrototypeOf(value) === null || value.constructor === Object);
+function _cached(target, prop, resolve2) {
+  if (Object.prototype.hasOwnProperty.call(target, prop)) {
+    return target[prop];
+  }
+  const value = resolve2();
+  target[prop] = value;
+  return value;
+}
+function _resolveWithContext(target, prop, receiver) {
+  const { _proxy, _context, _subProxy, _descriptors: descriptors2 } = target;
+  let value = _proxy[prop];
+  if (isFunction$1(value) && descriptors2.isScriptable(prop)) {
+    value = _resolveScriptable(prop, value, target, receiver);
+  }
+  if (isArray$1(value) && value.length) {
+    value = _resolveArray(prop, value, target, descriptors2.isIndexable);
+  }
+  if (needsSubResolver(prop, value)) {
+    value = _attachContext(value, _context, _subProxy && _subProxy[prop], descriptors2);
+  }
+  return value;
+}
+function _resolveScriptable(prop, getValue2, target, receiver) {
+  const { _proxy, _context, _subProxy, _stack } = target;
+  if (_stack.has(prop)) {
+    throw new Error("Recursion detected: " + Array.from(_stack).join("->") + "->" + prop);
+  }
+  _stack.add(prop);
+  let value = getValue2(_context, _subProxy || receiver);
+  _stack.delete(prop);
+  if (needsSubResolver(prop, value)) {
+    value = createSubResolver(_proxy._scopes, _proxy, prop, value);
+  }
+  return value;
+}
+function _resolveArray(prop, value, target, isIndexable) {
+  const { _proxy, _context, _subProxy, _descriptors: descriptors2 } = target;
+  if (typeof _context.index !== "undefined" && isIndexable(prop)) {
+    return value[_context.index % value.length];
+  } else if (isObject$1(value[0])) {
+    const arr = value;
+    const scopes = _proxy._scopes.filter((s2) => s2 !== arr);
+    value = [];
+    for (const item of arr) {
+      const resolver = createSubResolver(scopes, _proxy, prop, item);
+      value.push(_attachContext(resolver, _context, _subProxy && _subProxy[prop], descriptors2));
+    }
+  }
+  return value;
+}
+function resolveFallback(fallback, prop, value) {
+  return isFunction$1(fallback) ? fallback(prop, value) : fallback;
+}
+const getScope = (key, parent) => key === true ? parent : typeof key === "string" ? resolveObjectKey(parent, key) : void 0;
+function addScopes(set2, parentScopes, key, parentFallback, value) {
+  for (const parent of parentScopes) {
+    const scope = getScope(key, parent);
+    if (scope) {
+      set2.add(scope);
+      const fallback = resolveFallback(scope._fallback, key, value);
+      if (typeof fallback !== "undefined" && fallback !== key && fallback !== parentFallback) {
+        return fallback;
+      }
+    } else if (scope === false && typeof parentFallback !== "undefined" && key !== parentFallback) {
+      return null;
+    }
+  }
+  return false;
+}
+function createSubResolver(parentScopes, resolver, prop, value) {
+  const rootScopes = resolver._rootScopes;
+  const fallback = resolveFallback(resolver._fallback, prop, value);
+  const allScopes = [
+    ...parentScopes,
+    ...rootScopes
+  ];
+  const set2 = /* @__PURE__ */ new Set();
+  set2.add(value);
+  let key = addScopesFromKey(set2, allScopes, prop, fallback || prop, value);
+  if (key === null) {
+    return false;
+  }
+  if (typeof fallback !== "undefined" && fallback !== prop) {
+    key = addScopesFromKey(set2, allScopes, fallback, key, value);
+    if (key === null) {
+      return false;
+    }
+  }
+  return _createResolver(Array.from(set2), [
+    ""
+  ], rootScopes, fallback, () => subGetTarget(resolver, prop, value));
+}
+function addScopesFromKey(set2, allScopes, key, fallback, item) {
+  while (key) {
+    key = addScopes(set2, allScopes, key, fallback, item);
+  }
+  return key;
+}
+function subGetTarget(resolver, prop, value) {
+  const parent = resolver._getTarget();
+  if (!(prop in parent)) {
+    parent[prop] = {};
+  }
+  const target = parent[prop];
+  if (isArray$1(target) && isObject$1(value)) {
+    return value;
+  }
+  return target || {};
+}
+function _resolveWithPrefixes(prop, prefixes, scopes, proxy) {
+  let value;
+  for (const prefix2 of prefixes) {
+    value = _resolve(readKey(prefix2, prop), scopes);
+    if (typeof value !== "undefined") {
+      return needsSubResolver(prop, value) ? createSubResolver(scopes, proxy, prop, value) : value;
+    }
+  }
+}
+function _resolve(key, scopes) {
+  for (const scope of scopes) {
+    if (!scope) {
+      continue;
+    }
+    const value = scope[key];
+    if (typeof value !== "undefined") {
+      return value;
+    }
+  }
+}
+function getKeysFromAllScopes(target) {
+  let keys2 = target._keys;
+  if (!keys2) {
+    keys2 = target._keys = resolveKeysFromAllScopes(target._scopes);
+  }
+  return keys2;
+}
+function resolveKeysFromAllScopes(scopes) {
+  const set2 = /* @__PURE__ */ new Set();
+  for (const scope of scopes) {
+    for (const key of Object.keys(scope).filter((k2) => !k2.startsWith("_"))) {
+      set2.add(key);
+    }
+  }
+  return Array.from(set2);
+}
+function _isDomSupported() {
+  return typeof window !== "undefined" && typeof document !== "undefined";
+}
+function _getParentNode(domNode) {
+  let parent = domNode.parentNode;
+  if (parent && parent.toString() === "[object ShadowRoot]") {
+    parent = parent.host;
+  }
+  return parent;
+}
+function parseMaxStyle(styleValue, node2, parentProperty) {
+  let valueInPixels;
+  if (typeof styleValue === "string") {
+    valueInPixels = parseInt(styleValue, 10);
+    if (styleValue.indexOf("%") !== -1) {
+      valueInPixels = valueInPixels / 100 * node2.parentNode[parentProperty];
+    }
+  } else {
+    valueInPixels = styleValue;
+  }
+  return valueInPixels;
+}
+const getComputedStyle$1 = (element) => element.ownerDocument.defaultView.getComputedStyle(element, null);
+function getStyle(el2, property) {
+  return getComputedStyle$1(el2).getPropertyValue(property);
+}
+const positions = [
+  "top",
+  "right",
+  "bottom",
+  "left"
+];
+function getPositionedStyle(styles, style2, suffix) {
+  const result = {};
+  suffix = suffix ? "-" + suffix : "";
+  for (let i2 = 0; i2 < 4; i2++) {
+    const pos = positions[i2];
+    result[pos] = parseFloat(styles[style2 + "-" + pos + suffix]) || 0;
+  }
+  result.width = result.left + result.right;
+  result.height = result.top + result.bottom;
+  return result;
+}
+const useOffsetPos = (x2, y2, target) => (x2 > 0 || y2 > 0) && (!target || !target.shadowRoot);
+function getCanvasPosition(e2, canvas) {
+  const touches = e2.touches;
+  const source = touches && touches.length ? touches[0] : e2;
+  const { offsetX, offsetY } = source;
+  let box2 = false;
+  let x2, y2;
+  if (useOffsetPos(offsetX, offsetY, e2.target)) {
+    x2 = offsetX;
+    y2 = offsetY;
+  } else {
+    const rect = canvas.getBoundingClientRect();
+    x2 = source.clientX - rect.left;
+    y2 = source.clientY - rect.top;
+    box2 = true;
+  }
+  return {
+    x: x2,
+    y: y2,
+    box: box2
+  };
+}
+function getRelativePosition(event, chart) {
+  if ("native" in event) {
+    return event;
+  }
+  const { canvas, currentDevicePixelRatio } = chart;
+  const style2 = getComputedStyle$1(canvas);
+  const borderBox = style2.boxSizing === "border-box";
+  const paddings = getPositionedStyle(style2, "padding");
+  const borders = getPositionedStyle(style2, "border", "width");
+  const { x: x2, y: y2, box: box2 } = getCanvasPosition(event, canvas);
+  const xOffset = paddings.left + (box2 && borders.left);
+  const yOffset = paddings.top + (box2 && borders.top);
+  let { width, height } = chart;
+  if (borderBox) {
+    width -= paddings.width + borders.width;
+    height -= paddings.height + borders.height;
+  }
+  return {
+    x: Math.round((x2 - xOffset) / width * canvas.width / currentDevicePixelRatio),
+    y: Math.round((y2 - yOffset) / height * canvas.height / currentDevicePixelRatio)
+  };
+}
+function getContainerSize(canvas, width, height) {
+  let maxWidth, maxHeight;
+  if (width === void 0 || height === void 0) {
+    const container2 = _getParentNode(canvas);
+    if (!container2) {
+      width = canvas.clientWidth;
+      height = canvas.clientHeight;
+    } else {
+      const rect = container2.getBoundingClientRect();
+      const containerStyle = getComputedStyle$1(container2);
+      const containerBorder = getPositionedStyle(containerStyle, "border", "width");
+      const containerPadding = getPositionedStyle(containerStyle, "padding");
+      width = rect.width - containerPadding.width - containerBorder.width;
+      height = rect.height - containerPadding.height - containerBorder.height;
+      maxWidth = parseMaxStyle(containerStyle.maxWidth, container2, "clientWidth");
+      maxHeight = parseMaxStyle(containerStyle.maxHeight, container2, "clientHeight");
+    }
+  }
+  return {
+    width,
+    height,
+    maxWidth: maxWidth || INFINITY,
+    maxHeight: maxHeight || INFINITY
+  };
+}
+const round1 = (v2) => Math.round(v2 * 10) / 10;
+function getMaximumSize(canvas, bbWidth, bbHeight, aspectRatio) {
+  const style2 = getComputedStyle$1(canvas);
+  const margins = getPositionedStyle(style2, "margin");
+  const maxWidth = parseMaxStyle(style2.maxWidth, canvas, "clientWidth") || INFINITY;
+  const maxHeight = parseMaxStyle(style2.maxHeight, canvas, "clientHeight") || INFINITY;
+  const containerSize = getContainerSize(canvas, bbWidth, bbHeight);
+  let { width, height } = containerSize;
+  if (style2.boxSizing === "content-box") {
+    const borders = getPositionedStyle(style2, "border", "width");
+    const paddings = getPositionedStyle(style2, "padding");
+    width -= paddings.width + borders.width;
+    height -= paddings.height + borders.height;
+  }
+  width = Math.max(0, width - margins.width);
+  height = Math.max(0, aspectRatio ? width / aspectRatio : height - margins.height);
+  width = round1(Math.min(width, maxWidth, containerSize.maxWidth));
+  height = round1(Math.min(height, maxHeight, containerSize.maxHeight));
+  if (width && !height) {
+    height = round1(width / 2);
+  }
+  const maintainHeight = bbWidth !== void 0 || bbHeight !== void 0;
+  if (maintainHeight && aspectRatio && containerSize.height && height > containerSize.height) {
+    height = containerSize.height;
+    width = round1(Math.floor(height * aspectRatio));
+  }
+  return {
+    width,
+    height
+  };
+}
+function retinaScale(chart, forceRatio, forceStyle) {
+  const pixelRatio = forceRatio || 1;
+  const deviceHeight = Math.floor(chart.height * pixelRatio);
+  const deviceWidth = Math.floor(chart.width * pixelRatio);
+  chart.height = Math.floor(chart.height);
+  chart.width = Math.floor(chart.width);
+  const canvas = chart.canvas;
+  if (canvas.style && (forceStyle || !canvas.style.height && !canvas.style.width)) {
+    canvas.style.height = `${chart.height}px`;
+    canvas.style.width = `${chart.width}px`;
+  }
+  if (chart.currentDevicePixelRatio !== pixelRatio || canvas.height !== deviceHeight || canvas.width !== deviceWidth) {
+    chart.currentDevicePixelRatio = pixelRatio;
+    canvas.height = deviceHeight;
+    canvas.width = deviceWidth;
+    chart.ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+    return true;
+  }
+  return false;
+}
+const supportsEventListenerOptions = function() {
+  let passiveSupported = false;
+  try {
+    const options2 = {
+      get passive() {
+        passiveSupported = true;
+        return false;
+      }
+    };
+    window.addEventListener("test", null, options2);
+    window.removeEventListener("test", null, options2);
+  } catch (e2) {
+  }
+  return passiveSupported;
+}();
+function readUsedSize(element, property) {
+  const value = getStyle(element, property);
+  const matches = value && value.match(/^(\d+)(\.\d+)?px$/);
+  return matches ? +matches[1] : void 0;
+}
+const getRightToLeftAdapter = function(rectX, width) {
+  return {
+    x(x2) {
+      return rectX + rectX + width - x2;
+    },
+    setWidth(w2) {
+      width = w2;
+    },
+    textAlign(align) {
+      if (align === "center") {
+        return align;
+      }
+      return align === "right" ? "left" : "right";
+    },
+    xPlus(x2, value) {
+      return x2 - value;
+    },
+    leftForLtr(x2, itemWidth) {
+      return x2 - itemWidth;
+    }
+  };
+};
+const getLeftToRightAdapter = function() {
+  return {
+    x(x2) {
+      return x2;
+    },
+    setWidth(w2) {
+    },
+    textAlign(align) {
+      return align;
+    },
+    xPlus(x2, value) {
+      return x2 + value;
+    },
+    leftForLtr(x2, _itemWidth) {
+      return x2;
+    }
+  };
+};
+function getRtlAdapter(rtl, rectX, width) {
+  return rtl ? getRightToLeftAdapter(rectX, width) : getLeftToRightAdapter();
+}
+function overrideTextDirection(ctx, direction) {
+  let style2, original;
+  if (direction === "ltr" || direction === "rtl") {
+    style2 = ctx.canvas.style;
+    original = [
+      style2.getPropertyValue("direction"),
+      style2.getPropertyPriority("direction")
+    ];
+    style2.setProperty("direction", direction, "important");
+    ctx.prevTextDirection = original;
+  }
+}
+function restoreTextDirection(ctx, original) {
+  if (original !== void 0) {
+    delete ctx.prevTextDirection;
+    ctx.canvas.style.setProperty("direction", original[0], original[1]);
+  }
+}
+/*!
+ * Chart.js v4.3.3
+ * https://www.chartjs.org
+ * (c) 2023 Chart.js Contributors
+ * Released under the MIT License
+ */
+class Animator {
+  constructor() {
+    this._request = null;
+    this._charts = /* @__PURE__ */ new Map();
+    this._running = false;
+    this._lastDate = void 0;
+  }
+  _notify(chart, anims, date4, type4) {
+    const callbacks = anims.listeners[type4];
+    const numSteps = anims.duration;
+    callbacks.forEach((fn) => fn({
+      chart,
+      initial: anims.initial,
+      numSteps,
+      currentStep: Math.min(date4 - anims.start, numSteps)
+    }));
+  }
+  _refresh() {
+    if (this._request) {
+      return;
+    }
+    this._running = true;
+    this._request = requestAnimFrame.call(window, () => {
+      this._update();
+      this._request = null;
+      if (this._running) {
+        this._refresh();
+      }
+    });
+  }
+  _update(date4 = Date.now()) {
+    let remaining = 0;
+    this._charts.forEach((anims, chart) => {
+      if (!anims.running || !anims.items.length) {
+        return;
+      }
+      const items2 = anims.items;
+      let i2 = items2.length - 1;
+      let draw = false;
+      let item;
+      for (; i2 >= 0; --i2) {
+        item = items2[i2];
+        if (item._active) {
+          if (item._total > anims.duration) {
+            anims.duration = item._total;
+          }
+          item.tick(date4);
+          draw = true;
+        } else {
+          items2[i2] = items2[items2.length - 1];
+          items2.pop();
+        }
+      }
+      if (draw) {
+        chart.draw();
+        this._notify(chart, anims, date4, "progress");
+      }
+      if (!items2.length) {
+        anims.running = false;
+        this._notify(chart, anims, date4, "complete");
+        anims.initial = false;
+      }
+      remaining += items2.length;
+    });
+    this._lastDate = date4;
+    if (remaining === 0) {
+      this._running = false;
+    }
+  }
+  _getAnims(chart) {
+    const charts = this._charts;
+    let anims = charts.get(chart);
+    if (!anims) {
+      anims = {
+        running: false,
+        initial: true,
+        items: [],
+        listeners: {
+          complete: [],
+          progress: []
+        }
+      };
+      charts.set(chart, anims);
+    }
+    return anims;
+  }
+  listen(chart, event, cb2) {
+    this._getAnims(chart).listeners[event].push(cb2);
+  }
+  add(chart, items2) {
+    if (!items2 || !items2.length) {
+      return;
+    }
+    this._getAnims(chart).items.push(...items2);
+  }
+  has(chart) {
+    return this._getAnims(chart).items.length > 0;
+  }
+  start(chart) {
+    const anims = this._charts.get(chart);
+    if (!anims) {
+      return;
+    }
+    anims.running = true;
+    anims.start = Date.now();
+    anims.duration = anims.items.reduce((acc, cur) => Math.max(acc, cur._duration), 0);
+    this._refresh();
+  }
+  running(chart) {
+    if (!this._running) {
+      return false;
+    }
+    const anims = this._charts.get(chart);
+    if (!anims || !anims.running || !anims.items.length) {
+      return false;
+    }
+    return true;
+  }
+  stop(chart) {
+    const anims = this._charts.get(chart);
+    if (!anims || !anims.items.length) {
+      return;
+    }
+    const items2 = anims.items;
+    let i2 = items2.length - 1;
+    for (; i2 >= 0; --i2) {
+      items2[i2].cancel();
+    }
+    anims.items = [];
+    this._notify(chart, anims, Date.now(), "complete");
+  }
+  remove(chart) {
+    return this._charts.delete(chart);
+  }
+}
+var animator = /* @__PURE__ */ new Animator();
+const transparent = "transparent";
+const interpolators = {
+  boolean(from2, to2, factor) {
+    return factor > 0.5 ? to2 : from2;
+  },
+  color(from2, to2, factor) {
+    const c0 = color(from2 || transparent);
+    const c1 = c0.valid && color(to2 || transparent);
+    return c1 && c1.valid ? c1.mix(c0, factor).hexString() : to2;
+  },
+  number(from2, to2, factor) {
+    return from2 + (to2 - from2) * factor;
+  }
+};
+class Animation {
+  constructor(cfg, target, prop, to2) {
+    const currentValue = target[prop];
+    to2 = resolve([
+      cfg.to,
+      to2,
+      currentValue,
+      cfg.from
+    ]);
+    const from2 = resolve([
+      cfg.from,
+      currentValue,
+      to2
+    ]);
+    this._active = true;
+    this._fn = cfg.fn || interpolators[cfg.type || typeof from2];
+    this._easing = effects[cfg.easing] || effects.linear;
+    this._start = Math.floor(Date.now() + (cfg.delay || 0));
+    this._duration = this._total = Math.floor(cfg.duration);
+    this._loop = !!cfg.loop;
+    this._target = target;
+    this._prop = prop;
+    this._from = from2;
+    this._to = to2;
+    this._promises = void 0;
+  }
+  active() {
+    return this._active;
+  }
+  update(cfg, to2, date4) {
+    if (this._active) {
+      this._notify(false);
+      const currentValue = this._target[this._prop];
+      const elapsed = date4 - this._start;
+      const remain = this._duration - elapsed;
+      this._start = date4;
+      this._duration = Math.floor(Math.max(remain, cfg.duration));
+      this._total += elapsed;
+      this._loop = !!cfg.loop;
+      this._to = resolve([
+        cfg.to,
+        to2,
+        currentValue,
+        cfg.from
+      ]);
+      this._from = resolve([
+        cfg.from,
+        currentValue,
+        to2
+      ]);
+    }
+  }
+  cancel() {
+    if (this._active) {
+      this.tick(Date.now());
+      this._active = false;
+      this._notify(false);
+    }
+  }
+  tick(date4) {
+    const elapsed = date4 - this._start;
+    const duration = this._duration;
+    const prop = this._prop;
+    const from2 = this._from;
+    const loop = this._loop;
+    const to2 = this._to;
+    let factor;
+    this._active = from2 !== to2 && (loop || elapsed < duration);
+    if (!this._active) {
+      this._target[prop] = to2;
+      this._notify(true);
+      return;
+    }
+    if (elapsed < 0) {
+      this._target[prop] = from2;
+      return;
+    }
+    factor = elapsed / duration % 2;
+    factor = loop && factor > 1 ? 2 - factor : factor;
+    factor = this._easing(Math.min(1, Math.max(0, factor)));
+    this._target[prop] = this._fn(from2, to2, factor);
+  }
+  wait() {
+    const promises = this._promises || (this._promises = []);
+    return new Promise((res, rej) => {
+      promises.push({
+        res,
+        rej
+      });
+    });
+  }
+  _notify(resolved) {
+    const method4 = resolved ? "res" : "rej";
+    const promises = this._promises || [];
+    for (let i2 = 0; i2 < promises.length; i2++) {
+      promises[i2][method4]();
+    }
+  }
+}
+class Animations {
+  constructor(chart, config) {
+    this._chart = chart;
+    this._properties = /* @__PURE__ */ new Map();
+    this.configure(config);
+  }
+  configure(config) {
+    if (!isObject$1(config)) {
+      return;
+    }
+    const animationOptions = Object.keys(defaults$1.animation);
+    const animatedProps = this._properties;
+    Object.getOwnPropertyNames(config).forEach((key) => {
+      const cfg = config[key];
+      if (!isObject$1(cfg)) {
+        return;
+      }
+      const resolved = {};
+      for (const option of animationOptions) {
+        resolved[option] = cfg[option];
+      }
+      (isArray$1(cfg.properties) && cfg.properties || [
+        key
+      ]).forEach((prop) => {
+        if (prop === key || !animatedProps.has(prop)) {
+          animatedProps.set(prop, resolved);
+        }
+      });
+    });
+  }
+  _animateOptions(target, values) {
+    const newOptions = values.options;
+    const options2 = resolveTargetOptions(target, newOptions);
+    if (!options2) {
+      return [];
+    }
+    const animations = this._createAnimations(options2, newOptions);
+    if (newOptions.$shared) {
+      awaitAll(target.options.$animations, newOptions).then(() => {
+        target.options = newOptions;
+      }, () => {
+      });
+    }
+    return animations;
+  }
+  _createAnimations(target, values) {
+    const animatedProps = this._properties;
+    const animations = [];
+    const running = target.$animations || (target.$animations = {});
+    const props = Object.keys(values);
+    const date4 = Date.now();
+    let i2;
+    for (i2 = props.length - 1; i2 >= 0; --i2) {
+      const prop = props[i2];
+      if (prop.charAt(0) === "$") {
+        continue;
+      }
+      if (prop === "options") {
+        animations.push(...this._animateOptions(target, values));
+        continue;
+      }
+      const value = values[prop];
+      let animation = running[prop];
+      const cfg = animatedProps.get(prop);
+      if (animation) {
+        if (cfg && animation.active()) {
+          animation.update(cfg, value, date4);
+          continue;
+        } else {
+          animation.cancel();
+        }
+      }
+      if (!cfg || !cfg.duration) {
+        target[prop] = value;
+        continue;
+      }
+      running[prop] = animation = new Animation(cfg, target, prop, value);
+      animations.push(animation);
+    }
+    return animations;
+  }
+  update(target, values) {
+    if (this._properties.size === 0) {
+      Object.assign(target, values);
+      return;
+    }
+    const animations = this._createAnimations(target, values);
+    if (animations.length) {
+      animator.add(this._chart, animations);
+      return true;
+    }
+  }
+}
+function awaitAll(animations, properties) {
+  const running = [];
+  const keys2 = Object.keys(properties);
+  for (let i2 = 0; i2 < keys2.length; i2++) {
+    const anim = animations[keys2[i2]];
+    if (anim && anim.active()) {
+      running.push(anim.wait());
+    }
+  }
+  return Promise.all(running);
+}
+function resolveTargetOptions(target, newOptions) {
+  if (!newOptions) {
+    return;
+  }
+  let options2 = target.options;
+  if (!options2) {
+    target.options = newOptions;
+    return;
+  }
+  if (options2.$shared) {
+    target.options = options2 = Object.assign({}, options2, {
+      $shared: false,
+      $animations: {}
+    });
+  }
+  return options2;
+}
+function scaleClip(scale, allowedOverflow) {
+  const opts = scale && scale.options || {};
+  const reverse = opts.reverse;
+  const min2 = opts.min === void 0 ? allowedOverflow : 0;
+  const max2 = opts.max === void 0 ? allowedOverflow : 0;
+  return {
+    start: reverse ? max2 : min2,
+    end: reverse ? min2 : max2
+  };
+}
+function defaultClip(xScale, yScale, allowedOverflow) {
+  if (allowedOverflow === false) {
+    return false;
+  }
+  const x2 = scaleClip(xScale, allowedOverflow);
+  const y2 = scaleClip(yScale, allowedOverflow);
+  return {
+    top: y2.end,
+    right: x2.end,
+    bottom: y2.start,
+    left: x2.start
+  };
+}
+function toClip(value) {
+  let t2, r2, b2, l2;
+  if (isObject$1(value)) {
+    t2 = value.top;
+    r2 = value.right;
+    b2 = value.bottom;
+    l2 = value.left;
+  } else {
+    t2 = r2 = b2 = l2 = value;
+  }
+  return {
+    top: t2,
+    right: r2,
+    bottom: b2,
+    left: l2,
+    disabled: value === false
+  };
+}
+function getSortedDatasetIndices(chart, filterVisible) {
+  const keys2 = [];
+  const metasets = chart._getSortedDatasetMetas(filterVisible);
+  let i2, ilen;
+  for (i2 = 0, ilen = metasets.length; i2 < ilen; ++i2) {
+    keys2.push(metasets[i2].index);
+  }
+  return keys2;
+}
+function applyStack(stack, value, dsIndex, options2 = {}) {
+  const keys2 = stack.keys;
+  const singleMode = options2.mode === "single";
+  let i2, ilen, datasetIndex, otherValue;
+  if (value === null) {
+    return;
+  }
+  for (i2 = 0, ilen = keys2.length; i2 < ilen; ++i2) {
+    datasetIndex = +keys2[i2];
+    if (datasetIndex === dsIndex) {
+      if (options2.all) {
+        continue;
+      }
+      break;
+    }
+    otherValue = stack.values[datasetIndex];
+    if (isNumberFinite(otherValue) && (singleMode || value === 0 || sign$1(value) === sign$1(otherValue))) {
+      value += otherValue;
+    }
+  }
+  return value;
+}
+function convertObjectDataToArray(data2) {
+  const keys2 = Object.keys(data2);
+  const adata = new Array(keys2.length);
+  let i2, ilen, key;
+  for (i2 = 0, ilen = keys2.length; i2 < ilen; ++i2) {
+    key = keys2[i2];
+    adata[i2] = {
+      x: key,
+      y: data2[key]
+    };
+  }
+  return adata;
+}
+function isStacked(scale, meta) {
+  const stacked = scale && scale.options.stacked;
+  return stacked || stacked === void 0 && meta.stack !== void 0;
+}
+function getStackKey(indexScale, valueScale, meta) {
+  return `${indexScale.id}.${valueScale.id}.${meta.stack || meta.type}`;
+}
+function getUserBounds(scale) {
+  const { min: min2, max: max2, minDefined, maxDefined } = scale.getUserBounds();
+  return {
+    min: minDefined ? min2 : Number.NEGATIVE_INFINITY,
+    max: maxDefined ? max2 : Number.POSITIVE_INFINITY
+  };
+}
+function getOrCreateStack(stacks, stackKey, indexValue) {
+  const subStack = stacks[stackKey] || (stacks[stackKey] = {});
+  return subStack[indexValue] || (subStack[indexValue] = {});
+}
+function getLastIndexInStack(stack, vScale, positive, type4) {
+  for (const meta of vScale.getMatchingVisibleMetas(type4).reverse()) {
+    const value = stack[meta.index];
+    if (positive && value > 0 || !positive && value < 0) {
+      return meta.index;
+    }
+  }
+  return null;
+}
+function updateStacks(controller, parsed) {
+  const { chart, _cachedMeta: meta } = controller;
+  const stacks = chart._stacks || (chart._stacks = {});
+  const { iScale, vScale, index: datasetIndex } = meta;
+  const iAxis = iScale.axis;
+  const vAxis = vScale.axis;
+  const key = getStackKey(iScale, vScale, meta);
+  const ilen = parsed.length;
+  let stack;
+  for (let i2 = 0; i2 < ilen; ++i2) {
+    const item = parsed[i2];
+    const { [iAxis]: index2, [vAxis]: value } = item;
+    const itemStacks = item._stacks || (item._stacks = {});
+    stack = itemStacks[vAxis] = getOrCreateStack(stacks, key, index2);
+    stack[datasetIndex] = value;
+    stack._top = getLastIndexInStack(stack, vScale, true, meta.type);
+    stack._bottom = getLastIndexInStack(stack, vScale, false, meta.type);
+    const visualValues = stack._visualValues || (stack._visualValues = {});
+    visualValues[datasetIndex] = value;
+  }
+}
+function getFirstScaleId(chart, axis) {
+  const scales = chart.scales;
+  return Object.keys(scales).filter((key) => scales[key].axis === axis).shift();
+}
+function createDatasetContext(parent, index2) {
+  return createContext(parent, {
+    active: false,
+    dataset: void 0,
+    datasetIndex: index2,
+    index: index2,
+    mode: "default",
+    type: "dataset"
+  });
+}
+function createDataContext(parent, index2, element) {
+  return createContext(parent, {
+    active: false,
+    dataIndex: index2,
+    parsed: void 0,
+    raw: void 0,
+    element,
+    index: index2,
+    mode: "default",
+    type: "data"
+  });
+}
+function clearStacks(meta, items2) {
+  const datasetIndex = meta.controller.index;
+  const axis = meta.vScale && meta.vScale.axis;
+  if (!axis) {
+    return;
+  }
+  items2 = items2 || meta._parsed;
+  for (const parsed of items2) {
+    const stacks = parsed._stacks;
+    if (!stacks || stacks[axis] === void 0 || stacks[axis][datasetIndex] === void 0) {
+      return;
+    }
+    delete stacks[axis][datasetIndex];
+    if (stacks[axis]._visualValues !== void 0 && stacks[axis]._visualValues[datasetIndex] !== void 0) {
+      delete stacks[axis]._visualValues[datasetIndex];
+    }
+  }
+}
+const isDirectUpdateMode = (mode) => mode === "reset" || mode === "none";
+const cloneIfNotShared = (cached2, shared) => shared ? cached2 : Object.assign({}, cached2);
+const createStack = (canStack, meta, chart) => canStack && !meta.hidden && meta._stacked && {
+  keys: getSortedDatasetIndices(chart, true),
+  values: null
+};
+class DatasetController {
+  static defaults = {};
+  static datasetElementType = null;
+  static dataElementType = null;
+  constructor(chart, datasetIndex) {
+    this.chart = chart;
+    this._ctx = chart.ctx;
+    this.index = datasetIndex;
+    this._cachedDataOpts = {};
+    this._cachedMeta = this.getMeta();
+    this._type = this._cachedMeta.type;
+    this.options = void 0;
+    this._parsing = false;
+    this._data = void 0;
+    this._objectData = void 0;
+    this._sharedOptions = void 0;
+    this._drawStart = void 0;
+    this._drawCount = void 0;
+    this.enableOptionSharing = false;
+    this.supportsDecimation = false;
+    this.$context = void 0;
+    this._syncList = [];
+    this.datasetElementType = new.target.datasetElementType;
+    this.dataElementType = new.target.dataElementType;
+    this.initialize();
+  }
+  initialize() {
+    const meta = this._cachedMeta;
+    this.configure();
+    this.linkScales();
+    meta._stacked = isStacked(meta.vScale, meta);
+    this.addElements();
+    if (this.options.fill && !this.chart.isPluginEnabled("filler")) {
+      console.warn("Tried to use the 'fill' option without the 'Filler' plugin enabled. Please import and register the 'Filler' plugin and make sure it is not disabled in the options");
+    }
+  }
+  updateIndex(datasetIndex) {
+    if (this.index !== datasetIndex) {
+      clearStacks(this._cachedMeta);
+    }
+    this.index = datasetIndex;
+  }
+  linkScales() {
+    const chart = this.chart;
+    const meta = this._cachedMeta;
+    const dataset = this.getDataset();
+    const chooseId = (axis, x2, y2, r2) => axis === "x" ? x2 : axis === "r" ? r2 : y2;
+    const xid = meta.xAxisID = valueOrDefault(dataset.xAxisID, getFirstScaleId(chart, "x"));
+    const yid = meta.yAxisID = valueOrDefault(dataset.yAxisID, getFirstScaleId(chart, "y"));
+    const rid = meta.rAxisID = valueOrDefault(dataset.rAxisID, getFirstScaleId(chart, "r"));
+    const indexAxis = meta.indexAxis;
+    const iid = meta.iAxisID = chooseId(indexAxis, xid, yid, rid);
+    const vid = meta.vAxisID = chooseId(indexAxis, yid, xid, rid);
+    meta.xScale = this.getScaleForId(xid);
+    meta.yScale = this.getScaleForId(yid);
+    meta.rScale = this.getScaleForId(rid);
+    meta.iScale = this.getScaleForId(iid);
+    meta.vScale = this.getScaleForId(vid);
+  }
+  getDataset() {
+    return this.chart.data.datasets[this.index];
+  }
+  getMeta() {
+    return this.chart.getDatasetMeta(this.index);
+  }
+  getScaleForId(scaleID) {
+    return this.chart.scales[scaleID];
+  }
+  _getOtherScale(scale) {
+    const meta = this._cachedMeta;
+    return scale === meta.iScale ? meta.vScale : meta.iScale;
+  }
+  reset() {
+    this._update("reset");
+  }
+  _destroy() {
+    const meta = this._cachedMeta;
+    if (this._data) {
+      unlistenArrayEvents(this._data, this);
+    }
+    if (meta._stacked) {
+      clearStacks(meta);
+    }
+  }
+  _dataCheck() {
+    const dataset = this.getDataset();
+    const data2 = dataset.data || (dataset.data = []);
+    const _data = this._data;
+    if (isObject$1(data2)) {
+      this._data = convertObjectDataToArray(data2);
+    } else if (_data !== data2) {
+      if (_data) {
+        unlistenArrayEvents(_data, this);
+        const meta = this._cachedMeta;
+        clearStacks(meta);
+        meta._parsed = [];
+      }
+      if (data2 && Object.isExtensible(data2)) {
+        listenArrayEvents(data2, this);
+      }
+      this._syncList = [];
+      this._data = data2;
+    }
+  }
+  addElements() {
+    const meta = this._cachedMeta;
+    this._dataCheck();
+    if (this.datasetElementType) {
+      meta.dataset = new this.datasetElementType();
+    }
+  }
+  buildOrUpdateElements(resetNewElements) {
+    const meta = this._cachedMeta;
+    const dataset = this.getDataset();
+    let stackChanged = false;
+    this._dataCheck();
+    const oldStacked = meta._stacked;
+    meta._stacked = isStacked(meta.vScale, meta);
+    if (meta.stack !== dataset.stack) {
+      stackChanged = true;
+      clearStacks(meta);
+      meta.stack = dataset.stack;
+    }
+    this._resyncElements(resetNewElements);
+    if (stackChanged || oldStacked !== meta._stacked) {
+      updateStacks(this, meta._parsed);
+    }
+  }
+  configure() {
+    const config = this.chart.config;
+    const scopeKeys = config.datasetScopeKeys(this._type);
+    const scopes = config.getOptionScopes(this.getDataset(), scopeKeys, true);
+    this.options = config.createResolver(scopes, this.getContext());
+    this._parsing = this.options.parsing;
+    this._cachedDataOpts = {};
+  }
+  parse(start, count) {
+    const { _cachedMeta: meta, _data: data2 } = this;
+    const { iScale, _stacked } = meta;
+    const iAxis = iScale.axis;
+    let sorted = start === 0 && count === data2.length ? true : meta._sorted;
+    let prev2 = start > 0 && meta._parsed[start - 1];
+    let i2, cur, parsed;
+    if (this._parsing === false) {
+      meta._parsed = data2;
+      meta._sorted = true;
+      parsed = data2;
+    } else {
+      if (isArray$1(data2[start])) {
+        parsed = this.parseArrayData(meta, data2, start, count);
+      } else if (isObject$1(data2[start])) {
+        parsed = this.parseObjectData(meta, data2, start, count);
+      } else {
+        parsed = this.parsePrimitiveData(meta, data2, start, count);
+      }
+      const isNotInOrderComparedToPrev = () => cur[iAxis] === null || prev2 && cur[iAxis] < prev2[iAxis];
+      for (i2 = 0; i2 < count; ++i2) {
+        meta._parsed[i2 + start] = cur = parsed[i2];
+        if (sorted) {
+          if (isNotInOrderComparedToPrev()) {
+            sorted = false;
+          }
+          prev2 = cur;
+        }
+      }
+      meta._sorted = sorted;
+    }
+    if (_stacked) {
+      updateStacks(this, parsed);
+    }
+  }
+  parsePrimitiveData(meta, data2, start, count) {
+    const { iScale, vScale } = meta;
+    const iAxis = iScale.axis;
+    const vAxis = vScale.axis;
+    const labels2 = iScale.getLabels();
+    const singleScale = iScale === vScale;
+    const parsed = new Array(count);
+    let i2, ilen, index2;
+    for (i2 = 0, ilen = count; i2 < ilen; ++i2) {
+      index2 = i2 + start;
+      parsed[i2] = {
+        [iAxis]: singleScale || iScale.parse(labels2[index2], index2),
+        [vAxis]: vScale.parse(data2[index2], index2)
+      };
+    }
+    return parsed;
+  }
+  parseArrayData(meta, data2, start, count) {
+    const { xScale, yScale } = meta;
+    const parsed = new Array(count);
+    let i2, ilen, index2, item;
+    for (i2 = 0, ilen = count; i2 < ilen; ++i2) {
+      index2 = i2 + start;
+      item = data2[index2];
+      parsed[i2] = {
+        x: xScale.parse(item[0], index2),
+        y: yScale.parse(item[1], index2)
+      };
+    }
+    return parsed;
+  }
+  parseObjectData(meta, data2, start, count) {
+    const { xScale, yScale } = meta;
+    const { xAxisKey = "x", yAxisKey = "y" } = this._parsing;
+    const parsed = new Array(count);
+    let i2, ilen, index2, item;
+    for (i2 = 0, ilen = count; i2 < ilen; ++i2) {
+      index2 = i2 + start;
+      item = data2[index2];
+      parsed[i2] = {
+        x: xScale.parse(resolveObjectKey(item, xAxisKey), index2),
+        y: yScale.parse(resolveObjectKey(item, yAxisKey), index2)
+      };
+    }
+    return parsed;
+  }
+  getParsed(index2) {
+    return this._cachedMeta._parsed[index2];
+  }
+  getDataElement(index2) {
+    return this._cachedMeta.data[index2];
+  }
+  applyStack(scale, parsed, mode) {
+    const chart = this.chart;
+    const meta = this._cachedMeta;
+    const value = parsed[scale.axis];
+    const stack = {
+      keys: getSortedDatasetIndices(chart, true),
+      values: parsed._stacks[scale.axis]._visualValues
+    };
+    return applyStack(stack, value, meta.index, {
+      mode
+    });
+  }
+  updateRangeFromParsed(range3, scale, parsed, stack) {
+    const parsedValue = parsed[scale.axis];
+    let value = parsedValue === null ? NaN : parsedValue;
+    const values = stack && parsed._stacks[scale.axis];
+    if (stack && values) {
+      stack.values = values;
+      value = applyStack(stack, parsedValue, this._cachedMeta.index);
+    }
+    range3.min = Math.min(range3.min, value);
+    range3.max = Math.max(range3.max, value);
+  }
+  getMinMax(scale, canStack) {
+    const meta = this._cachedMeta;
+    const _parsed = meta._parsed;
+    const sorted = meta._sorted && scale === meta.iScale;
+    const ilen = _parsed.length;
+    const otherScale = this._getOtherScale(scale);
+    const stack = createStack(canStack, meta, this.chart);
+    const range3 = {
+      min: Number.POSITIVE_INFINITY,
+      max: Number.NEGATIVE_INFINITY
+    };
+    const { min: otherMin, max: otherMax } = getUserBounds(otherScale);
+    let i2, parsed;
+    function _skip() {
+      parsed = _parsed[i2];
+      const otherValue = parsed[otherScale.axis];
+      return !isNumberFinite(parsed[scale.axis]) || otherMin > otherValue || otherMax < otherValue;
+    }
+    for (i2 = 0; i2 < ilen; ++i2) {
+      if (_skip()) {
+        continue;
+      }
+      this.updateRangeFromParsed(range3, scale, parsed, stack);
+      if (sorted) {
+        break;
+      }
+    }
+    if (sorted) {
+      for (i2 = ilen - 1; i2 >= 0; --i2) {
+        if (_skip()) {
+          continue;
+        }
+        this.updateRangeFromParsed(range3, scale, parsed, stack);
+        break;
+      }
+    }
+    return range3;
+  }
+  getAllParsedValues(scale) {
+    const parsed = this._cachedMeta._parsed;
+    const values = [];
+    let i2, ilen, value;
+    for (i2 = 0, ilen = parsed.length; i2 < ilen; ++i2) {
+      value = parsed[i2][scale.axis];
+      if (isNumberFinite(value)) {
+        values.push(value);
+      }
+    }
+    return values;
+  }
+  getMaxOverflow() {
+    return false;
+  }
+  getLabelAndValue(index2) {
+    const meta = this._cachedMeta;
+    const iScale = meta.iScale;
+    const vScale = meta.vScale;
+    const parsed = this.getParsed(index2);
+    return {
+      label: iScale ? "" + iScale.getLabelForValue(parsed[iScale.axis]) : "",
+      value: vScale ? "" + vScale.getLabelForValue(parsed[vScale.axis]) : ""
+    };
+  }
+  _update(mode) {
+    const meta = this._cachedMeta;
+    this.update(mode || "default");
+    meta._clip = toClip(valueOrDefault(this.options.clip, defaultClip(meta.xScale, meta.yScale, this.getMaxOverflow())));
+  }
+  update(mode) {
+  }
+  draw() {
+    const ctx = this._ctx;
+    const chart = this.chart;
+    const meta = this._cachedMeta;
+    const elements = meta.data || [];
+    const area = chart.chartArea;
+    const active = [];
+    const start = this._drawStart || 0;
+    const count = this._drawCount || elements.length - start;
+    const drawActiveElementsOnTop = this.options.drawActiveElementsOnTop;
+    let i2;
+    if (meta.dataset) {
+      meta.dataset.draw(ctx, area, start, count);
+    }
+    for (i2 = start; i2 < start + count; ++i2) {
+      const element = elements[i2];
+      if (element.hidden) {
+        continue;
+      }
+      if (element.active && drawActiveElementsOnTop) {
+        active.push(element);
+      } else {
+        element.draw(ctx, area);
+      }
+    }
+    for (i2 = 0; i2 < active.length; ++i2) {
+      active[i2].draw(ctx, area);
+    }
+  }
+  getStyle(index2, active) {
+    const mode = active ? "active" : "default";
+    return index2 === void 0 && this._cachedMeta.dataset ? this.resolveDatasetElementOptions(mode) : this.resolveDataElementOptions(index2 || 0, mode);
+  }
+  getContext(index2, active, mode) {
+    const dataset = this.getDataset();
+    let context;
+    if (index2 >= 0 && index2 < this._cachedMeta.data.length) {
+      const element = this._cachedMeta.data[index2];
+      context = element.$context || (element.$context = createDataContext(this.getContext(), index2, element));
+      context.parsed = this.getParsed(index2);
+      context.raw = dataset.data[index2];
+      context.index = context.dataIndex = index2;
+    } else {
+      context = this.$context || (this.$context = createDatasetContext(this.chart.getContext(), this.index));
+      context.dataset = dataset;
+      context.index = context.datasetIndex = this.index;
+    }
+    context.active = !!active;
+    context.mode = mode;
+    return context;
+  }
+  resolveDatasetElementOptions(mode) {
+    return this._resolveElementOptions(this.datasetElementType.id, mode);
+  }
+  resolveDataElementOptions(index2, mode) {
+    return this._resolveElementOptions(this.dataElementType.id, mode, index2);
+  }
+  _resolveElementOptions(elementType, mode = "default", index2) {
+    const active = mode === "active";
+    const cache = this._cachedDataOpts;
+    const cacheKey = elementType + "-" + mode;
+    const cached2 = cache[cacheKey];
+    const sharing = this.enableOptionSharing && defined(index2);
+    if (cached2) {
+      return cloneIfNotShared(cached2, sharing);
+    }
+    const config = this.chart.config;
+    const scopeKeys = config.datasetElementScopeKeys(this._type, elementType);
+    const prefixes = active ? [
+      `${elementType}Hover`,
+      "hover",
+      elementType,
+      ""
+    ] : [
+      elementType,
+      ""
+    ];
+    const scopes = config.getOptionScopes(this.getDataset(), scopeKeys);
+    const names2 = Object.keys(defaults$1.elements[elementType]);
+    const context = () => this.getContext(index2, active, mode);
+    const values = config.resolveNamedOptions(scopes, names2, context, prefixes);
+    if (values.$shared) {
+      values.$shared = sharing;
+      cache[cacheKey] = Object.freeze(cloneIfNotShared(values, sharing));
+    }
+    return values;
+  }
+  _resolveAnimations(index2, transition, active) {
+    const chart = this.chart;
+    const cache = this._cachedDataOpts;
+    const cacheKey = `animation-${transition}`;
+    const cached2 = cache[cacheKey];
+    if (cached2) {
+      return cached2;
+    }
+    let options2;
+    if (chart.options.animation !== false) {
+      const config = this.chart.config;
+      const scopeKeys = config.datasetAnimationScopeKeys(this._type, transition);
+      const scopes = config.getOptionScopes(this.getDataset(), scopeKeys);
+      options2 = config.createResolver(scopes, this.getContext(index2, active, transition));
+    }
+    const animations = new Animations(chart, options2 && options2.animations);
+    if (options2 && options2._cacheable) {
+      cache[cacheKey] = Object.freeze(animations);
+    }
+    return animations;
+  }
+  getSharedOptions(options2) {
+    if (!options2.$shared) {
+      return;
+    }
+    return this._sharedOptions || (this._sharedOptions = Object.assign({}, options2));
+  }
+  includeOptions(mode, sharedOptions) {
+    return !sharedOptions || isDirectUpdateMode(mode) || this.chart._animationsDisabled;
+  }
+  _getSharedOptions(start, mode) {
+    const firstOpts = this.resolveDataElementOptions(start, mode);
+    const previouslySharedOptions = this._sharedOptions;
+    const sharedOptions = this.getSharedOptions(firstOpts);
+    const includeOptions = this.includeOptions(mode, sharedOptions) || sharedOptions !== previouslySharedOptions;
+    this.updateSharedOptions(sharedOptions, mode, firstOpts);
+    return {
+      sharedOptions,
+      includeOptions
+    };
+  }
+  updateElement(element, index2, properties, mode) {
+    if (isDirectUpdateMode(mode)) {
+      Object.assign(element, properties);
+    } else {
+      this._resolveAnimations(index2, mode).update(element, properties);
+    }
+  }
+  updateSharedOptions(sharedOptions, mode, newOptions) {
+    if (sharedOptions && !isDirectUpdateMode(mode)) {
+      this._resolveAnimations(void 0, mode).update(sharedOptions, newOptions);
+    }
+  }
+  _setStyle(element, index2, mode, active) {
+    element.active = active;
+    const options2 = this.getStyle(index2, active);
+    this._resolveAnimations(index2, mode, active).update(element, {
+      options: !active && this.getSharedOptions(options2) || options2
+    });
+  }
+  removeHoverStyle(element, datasetIndex, index2) {
+    this._setStyle(element, index2, "active", false);
+  }
+  setHoverStyle(element, datasetIndex, index2) {
+    this._setStyle(element, index2, "active", true);
+  }
+  _removeDatasetHoverStyle() {
+    const element = this._cachedMeta.dataset;
+    if (element) {
+      this._setStyle(element, void 0, "active", false);
+    }
+  }
+  _setDatasetHoverStyle() {
+    const element = this._cachedMeta.dataset;
+    if (element) {
+      this._setStyle(element, void 0, "active", true);
+    }
+  }
+  _resyncElements(resetNewElements) {
+    const data2 = this._data;
+    const elements = this._cachedMeta.data;
+    for (const [method4, arg1, arg2] of this._syncList) {
+      this[method4](arg1, arg2);
+    }
+    this._syncList = [];
+    const numMeta = elements.length;
+    const numData = data2.length;
+    const count = Math.min(numData, numMeta);
+    if (count) {
+      this.parse(0, count);
+    }
+    if (numData > numMeta) {
+      this._insertElements(numMeta, numData - numMeta, resetNewElements);
+    } else if (numData < numMeta) {
+      this._removeElements(numData, numMeta - numData);
+    }
+  }
+  _insertElements(start, count, resetNewElements = true) {
+    const meta = this._cachedMeta;
+    const data2 = meta.data;
+    const end = start + count;
+    let i2;
+    const move2 = (arr) => {
+      arr.length += count;
+      for (i2 = arr.length - 1; i2 >= end; i2--) {
+        arr[i2] = arr[i2 - count];
+      }
+    };
+    move2(data2);
+    for (i2 = start; i2 < end; ++i2) {
+      data2[i2] = new this.dataElementType();
+    }
+    if (this._parsing) {
+      move2(meta._parsed);
+    }
+    this.parse(start, count);
+    if (resetNewElements) {
+      this.updateElements(data2, start, count, "reset");
+    }
+  }
+  updateElements(element, start, count, mode) {
+  }
+  _removeElements(start, count) {
+    const meta = this._cachedMeta;
+    if (this._parsing) {
+      const removed = meta._parsed.splice(start, count);
+      if (meta._stacked) {
+        clearStacks(meta, removed);
+      }
+    }
+    meta.data.splice(start, count);
+  }
+  _sync(args) {
+    if (this._parsing) {
+      this._syncList.push(args);
+    } else {
+      const [method4, arg1, arg2] = args;
+      this[method4](arg1, arg2);
+    }
+    this.chart._dataChanges.push([
+      this.index,
+      ...args
+    ]);
+  }
+  _onDataPush() {
+    const count = arguments.length;
+    this._sync([
+      "_insertElements",
+      this.getDataset().data.length - count,
+      count
+    ]);
+  }
+  _onDataPop() {
+    this._sync([
+      "_removeElements",
+      this._cachedMeta.data.length - 1,
+      1
+    ]);
+  }
+  _onDataShift() {
+    this._sync([
+      "_removeElements",
+      0,
+      1
+    ]);
+  }
+  _onDataSplice(start, count) {
+    if (count) {
+      this._sync([
+        "_removeElements",
+        start,
+        count
+      ]);
+    }
+    const newCount = arguments.length - 2;
+    if (newCount) {
+      this._sync([
+        "_insertElements",
+        start,
+        newCount
+      ]);
+    }
+  }
+  _onDataUnshift() {
+    this._sync([
+      "_insertElements",
+      0,
+      arguments.length
+    ]);
+  }
+}
+function getAllScaleValues(scale, type4) {
+  if (!scale._cache.$bar) {
+    const visibleMetas = scale.getMatchingVisibleMetas(type4);
+    let values = [];
+    for (let i2 = 0, ilen = visibleMetas.length; i2 < ilen; i2++) {
+      values = values.concat(visibleMetas[i2].controller.getAllParsedValues(scale));
+    }
+    scale._cache.$bar = _arrayUnique(values.sort((a2, b2) => a2 - b2));
+  }
+  return scale._cache.$bar;
+}
+function computeMinSampleSize(meta) {
+  const scale = meta.iScale;
+  const values = getAllScaleValues(scale, meta.type);
+  let min2 = scale._length;
+  let i2, ilen, curr, prev2;
+  const updateMinAndPrev = () => {
+    if (curr === 32767 || curr === -32768) {
+      return;
+    }
+    if (defined(prev2)) {
+      min2 = Math.min(min2, Math.abs(curr - prev2) || min2);
+    }
+    prev2 = curr;
+  };
+  for (i2 = 0, ilen = values.length; i2 < ilen; ++i2) {
+    curr = scale.getPixelForValue(values[i2]);
+    updateMinAndPrev();
+  }
+  prev2 = void 0;
+  for (i2 = 0, ilen = scale.ticks.length; i2 < ilen; ++i2) {
+    curr = scale.getPixelForTick(i2);
+    updateMinAndPrev();
+  }
+  return min2;
+}
+function computeFitCategoryTraits(index2, ruler, options2, stackCount) {
+  const thickness = options2.barThickness;
+  let size, ratio;
+  if (isNullOrUndef(thickness)) {
+    size = ruler.min * options2.categoryPercentage;
+    ratio = options2.barPercentage;
+  } else {
+    size = thickness * stackCount;
+    ratio = 1;
+  }
+  return {
+    chunk: size / stackCount,
+    ratio,
+    start: ruler.pixels[index2] - size / 2
+  };
+}
+function computeFlexCategoryTraits(index2, ruler, options2, stackCount) {
+  const pixels = ruler.pixels;
+  const curr = pixels[index2];
+  let prev2 = index2 > 0 ? pixels[index2 - 1] : null;
+  let next2 = index2 < pixels.length - 1 ? pixels[index2 + 1] : null;
+  const percent = options2.categoryPercentage;
+  if (prev2 === null) {
+    prev2 = curr - (next2 === null ? ruler.end - ruler.start : next2 - curr);
+  }
+  if (next2 === null) {
+    next2 = curr + curr - prev2;
+  }
+  const start = curr - (curr - Math.min(prev2, next2)) / 2 * percent;
+  const size = Math.abs(next2 - prev2) / 2 * percent;
+  return {
+    chunk: size / stackCount,
+    ratio: options2.barPercentage,
+    start
+  };
+}
+function parseFloatBar(entry, item, vScale, i2) {
+  const startValue = vScale.parse(entry[0], i2);
+  const endValue = vScale.parse(entry[1], i2);
+  const min2 = Math.min(startValue, endValue);
+  const max2 = Math.max(startValue, endValue);
+  let barStart = min2;
+  let barEnd = max2;
+  if (Math.abs(min2) > Math.abs(max2)) {
+    barStart = max2;
+    barEnd = min2;
+  }
+  item[vScale.axis] = barEnd;
+  item._custom = {
+    barStart,
+    barEnd,
+    start: startValue,
+    end: endValue,
+    min: min2,
+    max: max2
+  };
+}
+function parseValue(entry, item, vScale, i2) {
+  if (isArray$1(entry)) {
+    parseFloatBar(entry, item, vScale, i2);
+  } else {
+    item[vScale.axis] = vScale.parse(entry, i2);
+  }
+  return item;
+}
+function parseArrayOrPrimitive(meta, data2, start, count) {
+  const iScale = meta.iScale;
+  const vScale = meta.vScale;
+  const labels2 = iScale.getLabels();
+  const singleScale = iScale === vScale;
+  const parsed = [];
+  let i2, ilen, item, entry;
+  for (i2 = start, ilen = start + count; i2 < ilen; ++i2) {
+    entry = data2[i2];
+    item = {};
+    item[iScale.axis] = singleScale || iScale.parse(labels2[i2], i2);
+    parsed.push(parseValue(entry, item, vScale, i2));
+  }
+  return parsed;
+}
+function isFloatBar(custom) {
+  return custom && custom.barStart !== void 0 && custom.barEnd !== void 0;
+}
+function barSign(size, vScale, actualBase) {
+  if (size !== 0) {
+    return sign$1(size);
+  }
+  return (vScale.isHorizontal() ? 1 : -1) * (vScale.min >= actualBase ? 1 : -1);
+}
+function borderProps(properties) {
+  let reverse, start, end, top, bottom;
+  if (properties.horizontal) {
+    reverse = properties.base > properties.x;
+    start = "left";
+    end = "right";
+  } else {
+    reverse = properties.base < properties.y;
+    start = "bottom";
+    end = "top";
+  }
+  if (reverse) {
+    top = "end";
+    bottom = "start";
+  } else {
+    top = "start";
+    bottom = "end";
+  }
+  return {
+    start,
+    end,
+    reverse,
+    top,
+    bottom
+  };
+}
+function setBorderSkipped(properties, options2, stack, index2) {
+  let edge = options2.borderSkipped;
+  const res = {};
+  if (!edge) {
+    properties.borderSkipped = res;
+    return;
+  }
+  if (edge === true) {
+    properties.borderSkipped = {
+      top: true,
+      right: true,
+      bottom: true,
+      left: true
+    };
+    return;
+  }
+  const { start, end, reverse, top, bottom } = borderProps(properties);
+  if (edge === "middle" && stack) {
+    properties.enableBorderRadius = true;
+    if ((stack._top || 0) === index2) {
+      edge = top;
+    } else if ((stack._bottom || 0) === index2) {
+      edge = bottom;
+    } else {
+      res[parseEdge(bottom, start, end, reverse)] = true;
+      edge = top;
+    }
+  }
+  res[parseEdge(edge, start, end, reverse)] = true;
+  properties.borderSkipped = res;
+}
+function parseEdge(edge, a2, b2, reverse) {
+  if (reverse) {
+    edge = swap(edge, a2, b2);
+    edge = startEnd(edge, b2, a2);
+  } else {
+    edge = startEnd(edge, a2, b2);
+  }
+  return edge;
+}
+function swap(orig, v1, v2) {
+  return orig === v1 ? v2 : orig === v2 ? v1 : orig;
+}
+function startEnd(v2, start, end) {
+  return v2 === "start" ? start : v2 === "end" ? end : v2;
+}
+function setInflateAmount(properties, { inflateAmount }, ratio) {
+  properties.inflateAmount = inflateAmount === "auto" ? ratio === 1 ? 0.33 : 0 : inflateAmount;
+}
+class BarController extends DatasetController {
+  static id = "bar";
+  static defaults = {
+    datasetElementType: false,
+    dataElementType: "bar",
+    categoryPercentage: 0.8,
+    barPercentage: 0.9,
+    grouped: true,
+    animations: {
+      numbers: {
+        type: "number",
+        properties: [
+          "x",
+          "y",
+          "base",
+          "width",
+          "height"
+        ]
+      }
+    }
+  };
+  static overrides = {
+    scales: {
+      _index_: {
+        type: "category",
+        offset: true,
+        grid: {
+          offset: true
+        }
+      },
+      _value_: {
+        type: "linear",
+        beginAtZero: true
+      }
+    }
+  };
+  parsePrimitiveData(meta, data2, start, count) {
+    return parseArrayOrPrimitive(meta, data2, start, count);
+  }
+  parseArrayData(meta, data2, start, count) {
+    return parseArrayOrPrimitive(meta, data2, start, count);
+  }
+  parseObjectData(meta, data2, start, count) {
+    const { iScale, vScale } = meta;
+    const { xAxisKey = "x", yAxisKey = "y" } = this._parsing;
+    const iAxisKey = iScale.axis === "x" ? xAxisKey : yAxisKey;
+    const vAxisKey = vScale.axis === "x" ? xAxisKey : yAxisKey;
+    const parsed = [];
+    let i2, ilen, item, obj;
+    for (i2 = start, ilen = start + count; i2 < ilen; ++i2) {
+      obj = data2[i2];
+      item = {};
+      item[iScale.axis] = iScale.parse(resolveObjectKey(obj, iAxisKey), i2);
+      parsed.push(parseValue(resolveObjectKey(obj, vAxisKey), item, vScale, i2));
+    }
+    return parsed;
+  }
+  updateRangeFromParsed(range3, scale, parsed, stack) {
+    super.updateRangeFromParsed(range3, scale, parsed, stack);
+    const custom = parsed._custom;
+    if (custom && scale === this._cachedMeta.vScale) {
+      range3.min = Math.min(range3.min, custom.min);
+      range3.max = Math.max(range3.max, custom.max);
+    }
+  }
+  getMaxOverflow() {
+    return 0;
+  }
+  getLabelAndValue(index2) {
+    const meta = this._cachedMeta;
+    const { iScale, vScale } = meta;
+    const parsed = this.getParsed(index2);
+    const custom = parsed._custom;
+    const value = isFloatBar(custom) ? "[" + custom.start + ", " + custom.end + "]" : "" + vScale.getLabelForValue(parsed[vScale.axis]);
+    return {
+      label: "" + iScale.getLabelForValue(parsed[iScale.axis]),
+      value
+    };
+  }
+  initialize() {
+    this.enableOptionSharing = true;
+    super.initialize();
+    const meta = this._cachedMeta;
+    meta.stack = this.getDataset().stack;
+  }
+  update(mode) {
+    const meta = this._cachedMeta;
+    this.updateElements(meta.data, 0, meta.data.length, mode);
+  }
+  updateElements(bars, start, count, mode) {
+    const reset = mode === "reset";
+    const { index: index2, _cachedMeta: { vScale } } = this;
+    const base = vScale.getBasePixel();
+    const horizontal = vScale.isHorizontal();
+    const ruler = this._getRuler();
+    const { sharedOptions, includeOptions } = this._getSharedOptions(start, mode);
+    for (let i2 = start; i2 < start + count; i2++) {
+      const parsed = this.getParsed(i2);
+      const vpixels = reset || isNullOrUndef(parsed[vScale.axis]) ? {
+        base,
+        head: base
+      } : this._calculateBarValuePixels(i2);
+      const ipixels = this._calculateBarIndexPixels(i2, ruler);
+      const stack = (parsed._stacks || {})[vScale.axis];
+      const properties = {
+        horizontal,
+        base: vpixels.base,
+        enableBorderRadius: !stack || isFloatBar(parsed._custom) || index2 === stack._top || index2 === stack._bottom,
+        x: horizontal ? vpixels.head : ipixels.center,
+        y: horizontal ? ipixels.center : vpixels.head,
+        height: horizontal ? ipixels.size : Math.abs(vpixels.size),
+        width: horizontal ? Math.abs(vpixels.size) : ipixels.size
+      };
+      if (includeOptions) {
+        properties.options = sharedOptions || this.resolveDataElementOptions(i2, bars[i2].active ? "active" : mode);
+      }
+      const options2 = properties.options || bars[i2].options;
+      setBorderSkipped(properties, options2, stack, index2);
+      setInflateAmount(properties, options2, ruler.ratio);
+      this.updateElement(bars[i2], i2, properties, mode);
+    }
+  }
+  _getStacks(last, dataIndex) {
+    const { iScale } = this._cachedMeta;
+    const metasets = iScale.getMatchingVisibleMetas(this._type).filter((meta) => meta.controller.options.grouped);
+    const stacked = iScale.options.stacked;
+    const stacks = [];
+    const skipNull = (meta) => {
+      const parsed = meta.controller.getParsed(dataIndex);
+      const val = parsed && parsed[meta.vScale.axis];
+      if (isNullOrUndef(val) || isNaN(val)) {
+        return true;
+      }
+    };
+    for (const meta of metasets) {
+      if (dataIndex !== void 0 && skipNull(meta)) {
+        continue;
+      }
+      if (stacked === false || stacks.indexOf(meta.stack) === -1 || stacked === void 0 && meta.stack === void 0) {
+        stacks.push(meta.stack);
+      }
+      if (meta.index === last) {
+        break;
+      }
+    }
+    if (!stacks.length) {
+      stacks.push(void 0);
+    }
+    return stacks;
+  }
+  _getStackCount(index2) {
+    return this._getStacks(void 0, index2).length;
+  }
+  _getStackIndex(datasetIndex, name, dataIndex) {
+    const stacks = this._getStacks(datasetIndex, dataIndex);
+    const index2 = name !== void 0 ? stacks.indexOf(name) : -1;
+    return index2 === -1 ? stacks.length - 1 : index2;
+  }
+  _getRuler() {
+    const opts = this.options;
+    const meta = this._cachedMeta;
+    const iScale = meta.iScale;
+    const pixels = [];
+    let i2, ilen;
+    for (i2 = 0, ilen = meta.data.length; i2 < ilen; ++i2) {
+      pixels.push(iScale.getPixelForValue(this.getParsed(i2)[iScale.axis], i2));
+    }
+    const barThickness = opts.barThickness;
+    const min2 = barThickness || computeMinSampleSize(meta);
+    return {
+      min: min2,
+      pixels,
+      start: iScale._startPixel,
+      end: iScale._endPixel,
+      stackCount: this._getStackCount(),
+      scale: iScale,
+      grouped: opts.grouped,
+      ratio: barThickness ? 1 : opts.categoryPercentage * opts.barPercentage
+    };
+  }
+  _calculateBarValuePixels(index2) {
+    const { _cachedMeta: { vScale, _stacked, index: datasetIndex }, options: { base: baseValue, minBarLength } } = this;
+    const actualBase = baseValue || 0;
+    const parsed = this.getParsed(index2);
+    const custom = parsed._custom;
+    const floating = isFloatBar(custom);
+    let value = parsed[vScale.axis];
+    let start = 0;
+    let length2 = _stacked ? this.applyStack(vScale, parsed, _stacked) : value;
+    let head, size;
+    if (length2 !== value) {
+      start = length2 - value;
+      length2 = value;
+    }
+    if (floating) {
+      value = custom.barStart;
+      length2 = custom.barEnd - custom.barStart;
+      if (value !== 0 && sign$1(value) !== sign$1(custom.barEnd)) {
+        start = 0;
+      }
+      start += value;
+    }
+    const startValue = !isNullOrUndef(baseValue) && !floating ? baseValue : start;
+    let base = vScale.getPixelForValue(startValue);
+    if (this.chart.getDataVisibility(index2)) {
+      head = vScale.getPixelForValue(start + length2);
+    } else {
+      head = base;
+    }
+    size = head - base;
+    if (Math.abs(size) < minBarLength) {
+      size = barSign(size, vScale, actualBase) * minBarLength;
+      if (value === actualBase) {
+        base -= size / 2;
+      }
+      const startPixel = vScale.getPixelForDecimal(0);
+      const endPixel = vScale.getPixelForDecimal(1);
+      const min2 = Math.min(startPixel, endPixel);
+      const max2 = Math.max(startPixel, endPixel);
+      base = Math.max(Math.min(base, max2), min2);
+      head = base + size;
+      if (_stacked && !floating) {
+        parsed._stacks[vScale.axis]._visualValues[datasetIndex] = vScale.getValueForPixel(head) - vScale.getValueForPixel(base);
+      }
+    }
+    if (base === vScale.getPixelForValue(actualBase)) {
+      const halfGrid = sign$1(size) * vScale.getLineWidthForValue(actualBase) / 2;
+      base += halfGrid;
+      size -= halfGrid;
+    }
+    return {
+      size,
+      base,
+      head,
+      center: head + size / 2
+    };
+  }
+  _calculateBarIndexPixels(index2, ruler) {
+    const scale = ruler.scale;
+    const options2 = this.options;
+    const skipNull = options2.skipNull;
+    const maxBarThickness = valueOrDefault(options2.maxBarThickness, Infinity);
+    let center, size;
+    if (ruler.grouped) {
+      const stackCount = skipNull ? this._getStackCount(index2) : ruler.stackCount;
+      const range3 = options2.barThickness === "flex" ? computeFlexCategoryTraits(index2, ruler, options2, stackCount) : computeFitCategoryTraits(index2, ruler, options2, stackCount);
+      const stackIndex = this._getStackIndex(this.index, this._cachedMeta.stack, skipNull ? index2 : void 0);
+      center = range3.start + range3.chunk * stackIndex + range3.chunk / 2;
+      size = Math.min(maxBarThickness, range3.chunk * range3.ratio);
+    } else {
+      center = scale.getPixelForValue(this.getParsed(index2)[scale.axis], index2);
+      size = Math.min(maxBarThickness, ruler.min * ruler.ratio);
+    }
+    return {
+      base: center - size / 2,
+      head: center + size / 2,
+      center,
+      size
+    };
+  }
+  draw() {
+    const meta = this._cachedMeta;
+    const vScale = meta.vScale;
+    const rects = meta.data;
+    const ilen = rects.length;
+    let i2 = 0;
+    for (; i2 < ilen; ++i2) {
+      if (this.getParsed(i2)[vScale.axis] !== null) {
+        rects[i2].draw(this._ctx);
+      }
+    }
+  }
+}
+function abstract() {
+  throw new Error("This method is not implemented: Check that a complete date adapter is provided.");
+}
+class DateAdapterBase {
+  /**
+  * Override default date adapter methods.
+  * Accepts type parameter to define options type.
+  * @example
+  * Chart._adapters._date.override<{myAdapterOption: string}>({
+  *   init() {
+  *     console.log(this.options.myAdapterOption);
+  *   }
+  * })
+  */
+  static override(members) {
+    Object.assign(DateAdapterBase.prototype, members);
+  }
+  options;
+  constructor(options2) {
+    this.options = options2 || {};
+  }
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  init() {
+  }
+  formats() {
+    return abstract();
+  }
+  parse() {
+    return abstract();
+  }
+  format() {
+    return abstract();
+  }
+  add() {
+    return abstract();
+  }
+  diff() {
+    return abstract();
+  }
+  startOf() {
+    return abstract();
+  }
+  endOf() {
+    return abstract();
+  }
+}
+var adapters = {
+  _date: DateAdapterBase
+};
+function binarySearch(metaset, axis, value, intersect) {
+  const { controller, data: data2, _sorted } = metaset;
+  const iScale = controller._cachedMeta.iScale;
+  if (iScale && axis === iScale.axis && axis !== "r" && _sorted && data2.length) {
+    const lookupMethod = iScale._reversePixels ? _rlookupByKey : _lookupByKey;
+    if (!intersect) {
+      return lookupMethod(data2, axis, value);
+    } else if (controller._sharedOptions) {
+      const el2 = data2[0];
+      const range3 = typeof el2.getRange === "function" && el2.getRange(axis);
+      if (range3) {
+        const start = lookupMethod(data2, axis, value - range3);
+        const end = lookupMethod(data2, axis, value + range3);
+        return {
+          lo: start.lo,
+          hi: end.hi
+        };
+      }
+    }
+  }
+  return {
+    lo: 0,
+    hi: data2.length - 1
+  };
+}
+function evaluateInteractionItems(chart, axis, position2, handler, intersect) {
+  const metasets = chart.getSortedVisibleDatasetMetas();
+  const value = position2[axis];
+  for (let i2 = 0, ilen = metasets.length; i2 < ilen; ++i2) {
+    const { index: index2, data: data2 } = metasets[i2];
+    const { lo, hi: hi2 } = binarySearch(metasets[i2], axis, value, intersect);
+    for (let j2 = lo; j2 <= hi2; ++j2) {
+      const element = data2[j2];
+      if (!element.skip) {
+        handler(element, index2, j2);
+      }
+    }
+  }
+}
+function getDistanceMetricForAxis(axis) {
+  const useX = axis.indexOf("x") !== -1;
+  const useY = axis.indexOf("y") !== -1;
+  return function(pt1, pt2) {
+    const deltaX = useX ? Math.abs(pt1.x - pt2.x) : 0;
+    const deltaY = useY ? Math.abs(pt1.y - pt2.y) : 0;
+    return Math.sqrt(Math.pow(deltaX, 2) + Math.pow(deltaY, 2));
+  };
+}
+function getIntersectItems(chart, position2, axis, useFinalPosition, includeInvisible) {
+  const items2 = [];
+  if (!includeInvisible && !chart.isPointInArea(position2)) {
+    return items2;
+  }
+  const evaluationFunc = function(element, datasetIndex, index2) {
+    if (!includeInvisible && !_isPointInArea(element, chart.chartArea, 0)) {
+      return;
+    }
+    if (element.inRange(position2.x, position2.y, useFinalPosition)) {
+      items2.push({
+        element,
+        datasetIndex,
+        index: index2
+      });
+    }
+  };
+  evaluateInteractionItems(chart, axis, position2, evaluationFunc, true);
+  return items2;
+}
+function getNearestRadialItems(chart, position2, axis, useFinalPosition) {
+  let items2 = [];
+  function evaluationFunc(element, datasetIndex, index2) {
+    const { startAngle, endAngle } = element.getProps([
+      "startAngle",
+      "endAngle"
+    ], useFinalPosition);
+    const { angle } = getAngleFromPoint(element, {
+      x: position2.x,
+      y: position2.y
+    });
+    if (_angleBetween(angle, startAngle, endAngle)) {
+      items2.push({
+        element,
+        datasetIndex,
+        index: index2
+      });
+    }
+  }
+  evaluateInteractionItems(chart, axis, position2, evaluationFunc);
+  return items2;
+}
+function getNearestCartesianItems(chart, position2, axis, intersect, useFinalPosition, includeInvisible) {
+  let items2 = [];
+  const distanceMetric = getDistanceMetricForAxis(axis);
+  let minDistance = Number.POSITIVE_INFINITY;
+  function evaluationFunc(element, datasetIndex, index2) {
+    const inRange2 = element.inRange(position2.x, position2.y, useFinalPosition);
+    if (intersect && !inRange2) {
+      return;
+    }
+    const center = element.getCenterPoint(useFinalPosition);
+    const pointInArea = !!includeInvisible || chart.isPointInArea(center);
+    if (!pointInArea && !inRange2) {
+      return;
+    }
+    const distance = distanceMetric(position2, center);
+    if (distance < minDistance) {
+      items2 = [
+        {
+          element,
+          datasetIndex,
+          index: index2
+        }
+      ];
+      minDistance = distance;
+    } else if (distance === minDistance) {
+      items2.push({
+        element,
+        datasetIndex,
+        index: index2
+      });
+    }
+  }
+  evaluateInteractionItems(chart, axis, position2, evaluationFunc);
+  return items2;
+}
+function getNearestItems(chart, position2, axis, intersect, useFinalPosition, includeInvisible) {
+  if (!includeInvisible && !chart.isPointInArea(position2)) {
+    return [];
+  }
+  return axis === "r" && !intersect ? getNearestRadialItems(chart, position2, axis, useFinalPosition) : getNearestCartesianItems(chart, position2, axis, intersect, useFinalPosition, includeInvisible);
+}
+function getAxisItems(chart, position2, axis, intersect, useFinalPosition) {
+  const items2 = [];
+  const rangeMethod = axis === "x" ? "inXRange" : "inYRange";
+  let intersectsItem = false;
+  evaluateInteractionItems(chart, axis, position2, (element, datasetIndex, index2) => {
+    if (element[rangeMethod](position2[axis], useFinalPosition)) {
+      items2.push({
+        element,
+        datasetIndex,
+        index: index2
+      });
+      intersectsItem = intersectsItem || element.inRange(position2.x, position2.y, useFinalPosition);
+    }
+  });
+  if (intersect && !intersectsItem) {
+    return [];
+  }
+  return items2;
+}
+var Interaction = {
+  evaluateInteractionItems,
+  modes: {
+    index(chart, e2, options2, useFinalPosition) {
+      const position2 = getRelativePosition(e2, chart);
+      const axis = options2.axis || "x";
+      const includeInvisible = options2.includeInvisible || false;
+      const items2 = options2.intersect ? getIntersectItems(chart, position2, axis, useFinalPosition, includeInvisible) : getNearestItems(chart, position2, axis, false, useFinalPosition, includeInvisible);
+      const elements = [];
+      if (!items2.length) {
+        return [];
+      }
+      chart.getSortedVisibleDatasetMetas().forEach((meta) => {
+        const index2 = items2[0].index;
+        const element = meta.data[index2];
+        if (element && !element.skip) {
+          elements.push({
+            element,
+            datasetIndex: meta.index,
+            index: index2
+          });
+        }
+      });
+      return elements;
+    },
+    dataset(chart, e2, options2, useFinalPosition) {
+      const position2 = getRelativePosition(e2, chart);
+      const axis = options2.axis || "xy";
+      const includeInvisible = options2.includeInvisible || false;
+      let items2 = options2.intersect ? getIntersectItems(chart, position2, axis, useFinalPosition, includeInvisible) : getNearestItems(chart, position2, axis, false, useFinalPosition, includeInvisible);
+      if (items2.length > 0) {
+        const datasetIndex = items2[0].datasetIndex;
+        const data2 = chart.getDatasetMeta(datasetIndex).data;
+        items2 = [];
+        for (let i2 = 0; i2 < data2.length; ++i2) {
+          items2.push({
+            element: data2[i2],
+            datasetIndex,
+            index: i2
+          });
+        }
+      }
+      return items2;
+    },
+    point(chart, e2, options2, useFinalPosition) {
+      const position2 = getRelativePosition(e2, chart);
+      const axis = options2.axis || "xy";
+      const includeInvisible = options2.includeInvisible || false;
+      return getIntersectItems(chart, position2, axis, useFinalPosition, includeInvisible);
+    },
+    nearest(chart, e2, options2, useFinalPosition) {
+      const position2 = getRelativePosition(e2, chart);
+      const axis = options2.axis || "xy";
+      const includeInvisible = options2.includeInvisible || false;
+      return getNearestItems(chart, position2, axis, options2.intersect, useFinalPosition, includeInvisible);
+    },
+    x(chart, e2, options2, useFinalPosition) {
+      const position2 = getRelativePosition(e2, chart);
+      return getAxisItems(chart, position2, "x", options2.intersect, useFinalPosition);
+    },
+    y(chart, e2, options2, useFinalPosition) {
+      const position2 = getRelativePosition(e2, chart);
+      return getAxisItems(chart, position2, "y", options2.intersect, useFinalPosition);
+    }
+  }
+};
+const STATIC_POSITIONS = [
+  "left",
+  "top",
+  "right",
+  "bottom"
+];
+function filterByPosition(array4, position2) {
+  return array4.filter((v2) => v2.pos === position2);
+}
+function filterDynamicPositionByAxis(array4, axis) {
+  return array4.filter((v2) => STATIC_POSITIONS.indexOf(v2.pos) === -1 && v2.box.axis === axis);
+}
+function sortByWeight(array4, reverse) {
+  return array4.sort((a2, b2) => {
+    const v0 = reverse ? b2 : a2;
+    const v1 = reverse ? a2 : b2;
+    return v0.weight === v1.weight ? v0.index - v1.index : v0.weight - v1.weight;
+  });
+}
+function wrapBoxes(boxes) {
+  const layoutBoxes = [];
+  let i2, ilen, box2, pos, stack, stackWeight;
+  for (i2 = 0, ilen = (boxes || []).length; i2 < ilen; ++i2) {
+    box2 = boxes[i2];
+    ({ position: pos, options: { stack, stackWeight = 1 } } = box2);
+    layoutBoxes.push({
+      index: i2,
+      box: box2,
+      pos,
+      horizontal: box2.isHorizontal(),
+      weight: box2.weight,
+      stack: stack && pos + stack,
+      stackWeight
+    });
+  }
+  return layoutBoxes;
+}
+function buildStacks(layouts2) {
+  const stacks = {};
+  for (const wrap of layouts2) {
+    const { stack, pos, stackWeight } = wrap;
+    if (!stack || !STATIC_POSITIONS.includes(pos)) {
+      continue;
+    }
+    const _stack = stacks[stack] || (stacks[stack] = {
+      count: 0,
+      placed: 0,
+      weight: 0,
+      size: 0
+    });
+    _stack.count++;
+    _stack.weight += stackWeight;
+  }
+  return stacks;
+}
+function setLayoutDims(layouts2, params) {
+  const stacks = buildStacks(layouts2);
+  const { vBoxMaxWidth, hBoxMaxHeight } = params;
+  let i2, ilen, layout;
+  for (i2 = 0, ilen = layouts2.length; i2 < ilen; ++i2) {
+    layout = layouts2[i2];
+    const { fullSize } = layout.box;
+    const stack = stacks[layout.stack];
+    const factor = stack && layout.stackWeight / stack.weight;
+    if (layout.horizontal) {
+      layout.width = factor ? factor * vBoxMaxWidth : fullSize && params.availableWidth;
+      layout.height = hBoxMaxHeight;
+    } else {
+      layout.width = vBoxMaxWidth;
+      layout.height = factor ? factor * hBoxMaxHeight : fullSize && params.availableHeight;
+    }
+  }
+  return stacks;
+}
+function buildLayoutBoxes(boxes) {
+  const layoutBoxes = wrapBoxes(boxes);
+  const fullSize = sortByWeight(layoutBoxes.filter((wrap) => wrap.box.fullSize), true);
+  const left = sortByWeight(filterByPosition(layoutBoxes, "left"), true);
+  const right = sortByWeight(filterByPosition(layoutBoxes, "right"));
+  const top = sortByWeight(filterByPosition(layoutBoxes, "top"), true);
+  const bottom = sortByWeight(filterByPosition(layoutBoxes, "bottom"));
+  const centerHorizontal = filterDynamicPositionByAxis(layoutBoxes, "x");
+  const centerVertical = filterDynamicPositionByAxis(layoutBoxes, "y");
+  return {
+    fullSize,
+    leftAndTop: left.concat(top),
+    rightAndBottom: right.concat(centerVertical).concat(bottom).concat(centerHorizontal),
+    chartArea: filterByPosition(layoutBoxes, "chartArea"),
+    vertical: left.concat(right).concat(centerVertical),
+    horizontal: top.concat(bottom).concat(centerHorizontal)
+  };
+}
+function getCombinedMax(maxPadding, chartArea, a2, b2) {
+  return Math.max(maxPadding[a2], chartArea[a2]) + Math.max(maxPadding[b2], chartArea[b2]);
+}
+function updateMaxPadding(maxPadding, boxPadding) {
+  maxPadding.top = Math.max(maxPadding.top, boxPadding.top);
+  maxPadding.left = Math.max(maxPadding.left, boxPadding.left);
+  maxPadding.bottom = Math.max(maxPadding.bottom, boxPadding.bottom);
+  maxPadding.right = Math.max(maxPadding.right, boxPadding.right);
+}
+function updateDims(chartArea, params, layout, stacks) {
+  const { pos, box: box2 } = layout;
+  const maxPadding = chartArea.maxPadding;
+  if (!isObject$1(pos)) {
+    if (layout.size) {
+      chartArea[pos] -= layout.size;
+    }
+    const stack = stacks[layout.stack] || {
+      size: 0,
+      count: 1
+    };
+    stack.size = Math.max(stack.size, layout.horizontal ? box2.height : box2.width);
+    layout.size = stack.size / stack.count;
+    chartArea[pos] += layout.size;
+  }
+  if (box2.getPadding) {
+    updateMaxPadding(maxPadding, box2.getPadding());
+  }
+  const newWidth = Math.max(0, params.outerWidth - getCombinedMax(maxPadding, chartArea, "left", "right"));
+  const newHeight = Math.max(0, params.outerHeight - getCombinedMax(maxPadding, chartArea, "top", "bottom"));
+  const widthChanged = newWidth !== chartArea.w;
+  const heightChanged = newHeight !== chartArea.h;
+  chartArea.w = newWidth;
+  chartArea.h = newHeight;
+  return layout.horizontal ? {
+    same: widthChanged,
+    other: heightChanged
+  } : {
+    same: heightChanged,
+    other: widthChanged
+  };
+}
+function handleMaxPadding(chartArea) {
+  const maxPadding = chartArea.maxPadding;
+  function updatePos(pos) {
+    const change = Math.max(maxPadding[pos] - chartArea[pos], 0);
+    chartArea[pos] += change;
+    return change;
+  }
+  chartArea.y += updatePos("top");
+  chartArea.x += updatePos("left");
+  updatePos("right");
+  updatePos("bottom");
+}
+function getMargins(horizontal, chartArea) {
+  const maxPadding = chartArea.maxPadding;
+  function marginForPositions(positions2) {
+    const margin = {
+      left: 0,
+      top: 0,
+      right: 0,
+      bottom: 0
+    };
+    positions2.forEach((pos) => {
+      margin[pos] = Math.max(chartArea[pos], maxPadding[pos]);
+    });
+    return margin;
+  }
+  return horizontal ? marginForPositions([
+    "left",
+    "right"
+  ]) : marginForPositions([
+    "top",
+    "bottom"
+  ]);
+}
+function fitBoxes(boxes, chartArea, params, stacks) {
+  const refitBoxes = [];
+  let i2, ilen, layout, box2, refit, changed;
+  for (i2 = 0, ilen = boxes.length, refit = 0; i2 < ilen; ++i2) {
+    layout = boxes[i2];
+    box2 = layout.box;
+    box2.update(layout.width || chartArea.w, layout.height || chartArea.h, getMargins(layout.horizontal, chartArea));
+    const { same, other } = updateDims(chartArea, params, layout, stacks);
+    refit |= same && refitBoxes.length;
+    changed = changed || other;
+    if (!box2.fullSize) {
+      refitBoxes.push(layout);
+    }
+  }
+  return refit && fitBoxes(refitBoxes, chartArea, params, stacks) || changed;
+}
+function setBoxDims(box2, left, top, width, height) {
+  box2.top = top;
+  box2.left = left;
+  box2.right = left + width;
+  box2.bottom = top + height;
+  box2.width = width;
+  box2.height = height;
+}
+function placeBoxes(boxes, chartArea, params, stacks) {
+  const userPadding = params.padding;
+  let { x: x2, y: y2 } = chartArea;
+  for (const layout of boxes) {
+    const box2 = layout.box;
+    const stack = stacks[layout.stack] || {
+      count: 1,
+      placed: 0,
+      weight: 1
+    };
+    const weight = layout.stackWeight / stack.weight || 1;
+    if (layout.horizontal) {
+      const width = chartArea.w * weight;
+      const height = stack.size || box2.height;
+      if (defined(stack.start)) {
+        y2 = stack.start;
+      }
+      if (box2.fullSize) {
+        setBoxDims(box2, userPadding.left, y2, params.outerWidth - userPadding.right - userPadding.left, height);
+      } else {
+        setBoxDims(box2, chartArea.left + stack.placed, y2, width, height);
+      }
+      stack.start = y2;
+      stack.placed += width;
+      y2 = box2.bottom;
+    } else {
+      const height = chartArea.h * weight;
+      const width = stack.size || box2.width;
+      if (defined(stack.start)) {
+        x2 = stack.start;
+      }
+      if (box2.fullSize) {
+        setBoxDims(box2, x2, userPadding.top, width, params.outerHeight - userPadding.bottom - userPadding.top);
+      } else {
+        setBoxDims(box2, x2, chartArea.top + stack.placed, width, height);
+      }
+      stack.start = x2;
+      stack.placed += height;
+      x2 = box2.right;
+    }
+  }
+  chartArea.x = x2;
+  chartArea.y = y2;
+}
+var layouts = {
+  addBox(chart, item) {
+    if (!chart.boxes) {
+      chart.boxes = [];
+    }
+    item.fullSize = item.fullSize || false;
+    item.position = item.position || "top";
+    item.weight = item.weight || 0;
+    item._layers = item._layers || function() {
+      return [
+        {
+          z: 0,
+          draw(chartArea) {
+            item.draw(chartArea);
+          }
+        }
+      ];
+    };
+    chart.boxes.push(item);
+  },
+  removeBox(chart, layoutItem) {
+    const index2 = chart.boxes ? chart.boxes.indexOf(layoutItem) : -1;
+    if (index2 !== -1) {
+      chart.boxes.splice(index2, 1);
+    }
+  },
+  configure(chart, item, options2) {
+    item.fullSize = options2.fullSize;
+    item.position = options2.position;
+    item.weight = options2.weight;
+  },
+  update(chart, width, height, minPadding) {
+    if (!chart) {
+      return;
+    }
+    const padding = toPadding(chart.options.layout.padding);
+    const availableWidth = Math.max(width - padding.width, 0);
+    const availableHeight = Math.max(height - padding.height, 0);
+    const boxes = buildLayoutBoxes(chart.boxes);
+    const verticalBoxes = boxes.vertical;
+    const horizontalBoxes = boxes.horizontal;
+    each(chart.boxes, (box2) => {
+      if (typeof box2.beforeLayout === "function") {
+        box2.beforeLayout();
+      }
+    });
+    const visibleVerticalBoxCount = verticalBoxes.reduce((total, wrap) => wrap.box.options && wrap.box.options.display === false ? total : total + 1, 0) || 1;
+    const params = Object.freeze({
+      outerWidth: width,
+      outerHeight: height,
+      padding,
+      availableWidth,
+      availableHeight,
+      vBoxMaxWidth: availableWidth / 2 / visibleVerticalBoxCount,
+      hBoxMaxHeight: availableHeight / 2
+    });
+    const maxPadding = Object.assign({}, padding);
+    updateMaxPadding(maxPadding, toPadding(minPadding));
+    const chartArea = Object.assign({
+      maxPadding,
+      w: availableWidth,
+      h: availableHeight,
+      x: padding.left,
+      y: padding.top
+    }, padding);
+    const stacks = setLayoutDims(verticalBoxes.concat(horizontalBoxes), params);
+    fitBoxes(boxes.fullSize, chartArea, params, stacks);
+    fitBoxes(verticalBoxes, chartArea, params, stacks);
+    if (fitBoxes(horizontalBoxes, chartArea, params, stacks)) {
+      fitBoxes(verticalBoxes, chartArea, params, stacks);
+    }
+    handleMaxPadding(chartArea);
+    placeBoxes(boxes.leftAndTop, chartArea, params, stacks);
+    chartArea.x += chartArea.w;
+    chartArea.y += chartArea.h;
+    placeBoxes(boxes.rightAndBottom, chartArea, params, stacks);
+    chart.chartArea = {
+      left: chartArea.left,
+      top: chartArea.top,
+      right: chartArea.left + chartArea.w,
+      bottom: chartArea.top + chartArea.h,
+      height: chartArea.h,
+      width: chartArea.w
+    };
+    each(boxes.chartArea, (layout) => {
+      const box2 = layout.box;
+      Object.assign(box2, chart.chartArea);
+      box2.update(chartArea.w, chartArea.h, {
+        left: 0,
+        top: 0,
+        right: 0,
+        bottom: 0
+      });
+    });
+  }
+};
+class BasePlatform {
+  acquireContext(canvas, aspectRatio) {
+  }
+  releaseContext(context) {
+    return false;
+  }
+  addEventListener(chart, type4, listener) {
+  }
+  removeEventListener(chart, type4, listener) {
+  }
+  getDevicePixelRatio() {
+    return 1;
+  }
+  getMaximumSize(element, width, height, aspectRatio) {
+    width = Math.max(0, width || element.width);
+    height = height || element.height;
+    return {
+      width,
+      height: Math.max(0, aspectRatio ? Math.floor(width / aspectRatio) : height)
+    };
+  }
+  isAttached(canvas) {
+    return true;
+  }
+  updateConfig(config) {
+  }
+}
+class BasicPlatform extends BasePlatform {
+  acquireContext(item) {
+    return item && item.getContext && item.getContext("2d") || null;
+  }
+  updateConfig(config) {
+    config.options.animation = false;
+  }
+}
+const EXPANDO_KEY = "$chartjs";
+const EVENT_TYPES = {
+  touchstart: "mousedown",
+  touchmove: "mousemove",
+  touchend: "mouseup",
+  pointerenter: "mouseenter",
+  pointerdown: "mousedown",
+  pointermove: "mousemove",
+  pointerup: "mouseup",
+  pointerleave: "mouseout",
+  pointerout: "mouseout"
+};
+const isNullOrEmpty = (value) => value === null || value === "";
+function initCanvas(canvas, aspectRatio) {
+  const style2 = canvas.style;
+  const renderHeight = canvas.getAttribute("height");
+  const renderWidth = canvas.getAttribute("width");
+  canvas[EXPANDO_KEY] = {
+    initial: {
+      height: renderHeight,
+      width: renderWidth,
+      style: {
+        display: style2.display,
+        height: style2.height,
+        width: style2.width
+      }
+    }
+  };
+  style2.display = style2.display || "block";
+  style2.boxSizing = style2.boxSizing || "border-box";
+  if (isNullOrEmpty(renderWidth)) {
+    const displayWidth = readUsedSize(canvas, "width");
+    if (displayWidth !== void 0) {
+      canvas.width = displayWidth;
+    }
+  }
+  if (isNullOrEmpty(renderHeight)) {
+    if (canvas.style.height === "") {
+      canvas.height = canvas.width / (aspectRatio || 2);
+    } else {
+      const displayHeight = readUsedSize(canvas, "height");
+      if (displayHeight !== void 0) {
+        canvas.height = displayHeight;
+      }
+    }
+  }
+  return canvas;
+}
+const eventListenerOptions = supportsEventListenerOptions ? {
+  passive: true
+} : false;
+function addListener(node2, type4, listener) {
+  node2.addEventListener(type4, listener, eventListenerOptions);
+}
+function removeListener(chart, type4, listener) {
+  chart.canvas.removeEventListener(type4, listener, eventListenerOptions);
+}
+function fromNativeEvent(event, chart) {
+  const type4 = EVENT_TYPES[event.type] || event.type;
+  const { x: x2, y: y2 } = getRelativePosition(event, chart);
+  return {
+    type: type4,
+    chart,
+    native: event,
+    x: x2 !== void 0 ? x2 : null,
+    y: y2 !== void 0 ? y2 : null
+  };
+}
+function nodeListContains(nodeList, canvas) {
+  for (const node2 of nodeList) {
+    if (node2 === canvas || node2.contains(canvas)) {
+      return true;
+    }
+  }
+}
+function createAttachObserver(chart, type4, listener) {
+  const canvas = chart.canvas;
+  const observer = new MutationObserver((entries) => {
+    let trigger = false;
+    for (const entry of entries) {
+      trigger = trigger || nodeListContains(entry.addedNodes, canvas);
+      trigger = trigger && !nodeListContains(entry.removedNodes, canvas);
+    }
+    if (trigger) {
+      listener();
+    }
+  });
+  observer.observe(document, {
+    childList: true,
+    subtree: true
+  });
+  return observer;
+}
+function createDetachObserver(chart, type4, listener) {
+  const canvas = chart.canvas;
+  const observer = new MutationObserver((entries) => {
+    let trigger = false;
+    for (const entry of entries) {
+      trigger = trigger || nodeListContains(entry.removedNodes, canvas);
+      trigger = trigger && !nodeListContains(entry.addedNodes, canvas);
+    }
+    if (trigger) {
+      listener();
+    }
+  });
+  observer.observe(document, {
+    childList: true,
+    subtree: true
+  });
+  return observer;
+}
+const drpListeningCharts = /* @__PURE__ */ new Map();
+let oldDevicePixelRatio = 0;
+function onWindowResize() {
+  const dpr = window.devicePixelRatio;
+  if (dpr === oldDevicePixelRatio) {
+    return;
+  }
+  oldDevicePixelRatio = dpr;
+  drpListeningCharts.forEach((resize, chart) => {
+    if (chart.currentDevicePixelRatio !== dpr) {
+      resize();
+    }
+  });
+}
+function listenDevicePixelRatioChanges(chart, resize) {
+  if (!drpListeningCharts.size) {
+    window.addEventListener("resize", onWindowResize);
+  }
+  drpListeningCharts.set(chart, resize);
+}
+function unlistenDevicePixelRatioChanges(chart) {
+  drpListeningCharts.delete(chart);
+  if (!drpListeningCharts.size) {
+    window.removeEventListener("resize", onWindowResize);
+  }
+}
+function createResizeObserver(chart, type4, listener) {
+  const canvas = chart.canvas;
+  const container2 = canvas && _getParentNode(canvas);
+  if (!container2) {
+    return;
+  }
+  const resize = throttled((width, height) => {
+    const w2 = container2.clientWidth;
+    listener(width, height);
+    if (w2 < container2.clientWidth) {
+      listener();
+    }
+  }, window);
+  const observer = new ResizeObserver((entries) => {
+    const entry = entries[0];
+    const width = entry.contentRect.width;
+    const height = entry.contentRect.height;
+    if (width === 0 && height === 0) {
+      return;
+    }
+    resize(width, height);
+  });
+  observer.observe(container2);
+  listenDevicePixelRatioChanges(chart, resize);
+  return observer;
+}
+function releaseObserver(chart, type4, observer) {
+  if (observer) {
+    observer.disconnect();
+  }
+  if (type4 === "resize") {
+    unlistenDevicePixelRatioChanges(chart);
+  }
+}
+function createProxyAndListen(chart, type4, listener) {
+  const canvas = chart.canvas;
+  const proxy = throttled((event) => {
+    if (chart.ctx !== null) {
+      listener(fromNativeEvent(event, chart));
+    }
+  }, chart);
+  addListener(canvas, type4, proxy);
+  return proxy;
+}
+class DomPlatform extends BasePlatform {
+  acquireContext(canvas, aspectRatio) {
+    const context = canvas && canvas.getContext && canvas.getContext("2d");
+    if (context && context.canvas === canvas) {
+      initCanvas(canvas, aspectRatio);
+      return context;
+    }
+    return null;
+  }
+  releaseContext(context) {
+    const canvas = context.canvas;
+    if (!canvas[EXPANDO_KEY]) {
+      return false;
+    }
+    const initial = canvas[EXPANDO_KEY].initial;
+    [
+      "height",
+      "width"
+    ].forEach((prop) => {
+      const value = initial[prop];
+      if (isNullOrUndef(value)) {
+        canvas.removeAttribute(prop);
+      } else {
+        canvas.setAttribute(prop, value);
+      }
+    });
+    const style2 = initial.style || {};
+    Object.keys(style2).forEach((key) => {
+      canvas.style[key] = style2[key];
+    });
+    canvas.width = canvas.width;
+    delete canvas[EXPANDO_KEY];
+    return true;
+  }
+  addEventListener(chart, type4, listener) {
+    this.removeEventListener(chart, type4);
+    const proxies = chart.$proxies || (chart.$proxies = {});
+    const handlers = {
+      attach: createAttachObserver,
+      detach: createDetachObserver,
+      resize: createResizeObserver
+    };
+    const handler = handlers[type4] || createProxyAndListen;
+    proxies[type4] = handler(chart, type4, listener);
+  }
+  removeEventListener(chart, type4) {
+    const proxies = chart.$proxies || (chart.$proxies = {});
+    const proxy = proxies[type4];
+    if (!proxy) {
+      return;
+    }
+    const handlers = {
+      attach: releaseObserver,
+      detach: releaseObserver,
+      resize: releaseObserver
+    };
+    const handler = handlers[type4] || removeListener;
+    handler(chart, type4, proxy);
+    proxies[type4] = void 0;
+  }
+  getDevicePixelRatio() {
+    return window.devicePixelRatio;
+  }
+  getMaximumSize(canvas, width, height, aspectRatio) {
+    return getMaximumSize(canvas, width, height, aspectRatio);
+  }
+  isAttached(canvas) {
+    const container2 = _getParentNode(canvas);
+    return !!(container2 && container2.isConnected);
+  }
+}
+function _detectPlatform(canvas) {
+  if (!_isDomSupported() || typeof OffscreenCanvas !== "undefined" && canvas instanceof OffscreenCanvas) {
+    return BasicPlatform;
+  }
+  return DomPlatform;
+}
+let Element$1 = class Element2 {
+  static defaults = {};
+  static defaultRoutes = void 0;
+  x;
+  y;
+  active = false;
+  options;
+  $animations;
+  tooltipPosition(useFinalPosition) {
+    const { x: x2, y: y2 } = this.getProps([
+      "x",
+      "y"
+    ], useFinalPosition);
+    return {
+      x: x2,
+      y: y2
+    };
+  }
+  hasValue() {
+    return isNumber$1(this.x) && isNumber$1(this.y);
+  }
+  getProps(props, final) {
+    const anims = this.$animations;
+    if (!final || !anims) {
+      return this;
+    }
+    const ret = {};
+    props.forEach((prop) => {
+      ret[prop] = anims[prop] && anims[prop].active() ? anims[prop]._to : this[prop];
+    });
+    return ret;
+  }
+};
+function autoSkip(scale, ticks) {
+  const tickOpts = scale.options.ticks;
+  const determinedMaxTicks = determineMaxTicks(scale);
+  const ticksLimit = Math.min(tickOpts.maxTicksLimit || determinedMaxTicks, determinedMaxTicks);
+  const majorIndices = tickOpts.major.enabled ? getMajorIndices(ticks) : [];
+  const numMajorIndices = majorIndices.length;
+  const first = majorIndices[0];
+  const last = majorIndices[numMajorIndices - 1];
+  const newTicks = [];
+  if (numMajorIndices > ticksLimit) {
+    skipMajors(ticks, newTicks, majorIndices, numMajorIndices / ticksLimit);
+    return newTicks;
+  }
+  const spacing = calculateSpacing(majorIndices, ticks, ticksLimit);
+  if (numMajorIndices > 0) {
+    let i2, ilen;
+    const avgMajorSpacing = numMajorIndices > 1 ? Math.round((last - first) / (numMajorIndices - 1)) : null;
+    skip(ticks, newTicks, spacing, isNullOrUndef(avgMajorSpacing) ? 0 : first - avgMajorSpacing, first);
+    for (i2 = 0, ilen = numMajorIndices - 1; i2 < ilen; i2++) {
+      skip(ticks, newTicks, spacing, majorIndices[i2], majorIndices[i2 + 1]);
+    }
+    skip(ticks, newTicks, spacing, last, isNullOrUndef(avgMajorSpacing) ? ticks.length : last + avgMajorSpacing);
+    return newTicks;
+  }
+  skip(ticks, newTicks, spacing);
+  return newTicks;
+}
+function determineMaxTicks(scale) {
+  const offset2 = scale.options.offset;
+  const tickLength = scale._tickSize();
+  const maxScale = scale._length / tickLength + (offset2 ? 0 : 1);
+  const maxChart = scale._maxLength / tickLength;
+  return Math.floor(Math.min(maxScale, maxChart));
+}
+function calculateSpacing(majorIndices, ticks, ticksLimit) {
+  const evenMajorSpacing = getEvenSpacing(majorIndices);
+  const spacing = ticks.length / ticksLimit;
+  if (!evenMajorSpacing) {
+    return Math.max(spacing, 1);
+  }
+  const factors = _factorize(evenMajorSpacing);
+  for (let i2 = 0, ilen = factors.length - 1; i2 < ilen; i2++) {
+    const factor = factors[i2];
+    if (factor > spacing) {
+      return factor;
+    }
+  }
+  return Math.max(spacing, 1);
+}
+function getMajorIndices(ticks) {
+  const result = [];
+  let i2, ilen;
+  for (i2 = 0, ilen = ticks.length; i2 < ilen; i2++) {
+    if (ticks[i2].major) {
+      result.push(i2);
+    }
+  }
+  return result;
+}
+function skipMajors(ticks, newTicks, majorIndices, spacing) {
+  let count = 0;
+  let next2 = majorIndices[0];
+  let i2;
+  spacing = Math.ceil(spacing);
+  for (i2 = 0; i2 < ticks.length; i2++) {
+    if (i2 === next2) {
+      newTicks.push(ticks[i2]);
+      count++;
+      next2 = majorIndices[count * spacing];
+    }
+  }
+}
+function skip(ticks, newTicks, spacing, majorStart, majorEnd) {
+  const start = valueOrDefault(majorStart, 0);
+  const end = Math.min(valueOrDefault(majorEnd, ticks.length), ticks.length);
+  let count = 0;
+  let length2, i2, next2;
+  spacing = Math.ceil(spacing);
+  if (majorEnd) {
+    length2 = majorEnd - majorStart;
+    spacing = length2 / Math.floor(length2 / spacing);
+  }
+  next2 = start;
+  while (next2 < 0) {
+    count++;
+    next2 = Math.round(start + count * spacing);
+  }
+  for (i2 = Math.max(start, 0); i2 < end; i2++) {
+    if (i2 === next2) {
+      newTicks.push(ticks[i2]);
+      count++;
+      next2 = Math.round(start + count * spacing);
+    }
+  }
+}
+function getEvenSpacing(arr) {
+  const len = arr.length;
+  let i2, diff2;
+  if (len < 2) {
+    return false;
+  }
+  for (diff2 = arr[0], i2 = 1; i2 < len; ++i2) {
+    if (arr[i2] - arr[i2 - 1] !== diff2) {
+      return false;
+    }
+  }
+  return diff2;
+}
+const reverseAlign = (align) => align === "left" ? "right" : align === "right" ? "left" : align;
+const offsetFromEdge = (scale, edge, offset2) => edge === "top" || edge === "left" ? scale[edge] + offset2 : scale[edge] - offset2;
+const getTicksLimit = (ticksLength, maxTicksLimit) => Math.min(maxTicksLimit || ticksLength, ticksLength);
+function sample(arr, numItems) {
+  const result = [];
+  const increment = arr.length / numItems;
+  const len = arr.length;
+  let i2 = 0;
+  for (; i2 < len; i2 += increment) {
+    result.push(arr[Math.floor(i2)]);
+  }
+  return result;
+}
+function getPixelForGridLine(scale, index2, offsetGridLines) {
+  const length2 = scale.ticks.length;
+  const validIndex2 = Math.min(index2, length2 - 1);
+  const start = scale._startPixel;
+  const end = scale._endPixel;
+  const epsilon = 1e-6;
+  let lineValue = scale.getPixelForTick(validIndex2);
+  let offset2;
+  if (offsetGridLines) {
+    if (length2 === 1) {
+      offset2 = Math.max(lineValue - start, end - lineValue);
+    } else if (index2 === 0) {
+      offset2 = (scale.getPixelForTick(1) - lineValue) / 2;
+    } else {
+      offset2 = (lineValue - scale.getPixelForTick(validIndex2 - 1)) / 2;
+    }
+    lineValue += validIndex2 < index2 ? offset2 : -offset2;
+    if (lineValue < start - epsilon || lineValue > end + epsilon) {
+      return;
+    }
+  }
+  return lineValue;
+}
+function garbageCollect(caches, length2) {
+  each(caches, (cache) => {
+    const gc2 = cache.gc;
+    const gcLen = gc2.length / 2;
+    let i2;
+    if (gcLen > length2) {
+      for (i2 = 0; i2 < gcLen; ++i2) {
+        delete cache.data[gc2[i2]];
+      }
+      gc2.splice(0, gcLen);
+    }
+  });
+}
+function getTickMarkLength(options2) {
+  return options2.drawTicks ? options2.tickLength : 0;
+}
+function getTitleHeight(options2, fallback) {
+  if (!options2.display) {
+    return 0;
+  }
+  const font = toFont(options2.font, fallback);
+  const padding = toPadding(options2.padding);
+  const lines = isArray$1(options2.text) ? options2.text.length : 1;
+  return lines * font.lineHeight + padding.height;
+}
+function createScaleContext(parent, scale) {
+  return createContext(parent, {
+    scale,
+    type: "scale"
+  });
+}
+function createTickContext(parent, index2, tick) {
+  return createContext(parent, {
+    tick,
+    index: index2,
+    type: "tick"
+  });
+}
+function titleAlign(align, position2, reverse) {
+  let ret = _toLeftRightCenter(align);
+  if (reverse && position2 !== "right" || !reverse && position2 === "right") {
+    ret = reverseAlign(ret);
+  }
+  return ret;
+}
+function titleArgs(scale, offset2, position2, align) {
+  const { top, left, bottom, right, chart } = scale;
+  const { chartArea, scales } = chart;
+  let rotation = 0;
+  let maxWidth, titleX, titleY;
+  const height = bottom - top;
+  const width = right - left;
+  if (scale.isHorizontal()) {
+    titleX = _alignStartEnd(align, left, right);
+    if (isObject$1(position2)) {
+      const positionAxisID = Object.keys(position2)[0];
+      const value = position2[positionAxisID];
+      titleY = scales[positionAxisID].getPixelForValue(value) + height - offset2;
+    } else if (position2 === "center") {
+      titleY = (chartArea.bottom + chartArea.top) / 2 + height - offset2;
+    } else {
+      titleY = offsetFromEdge(scale, position2, offset2);
+    }
+    maxWidth = right - left;
+  } else {
+    if (isObject$1(position2)) {
+      const positionAxisID = Object.keys(position2)[0];
+      const value = position2[positionAxisID];
+      titleX = scales[positionAxisID].getPixelForValue(value) - width + offset2;
+    } else if (position2 === "center") {
+      titleX = (chartArea.left + chartArea.right) / 2 - width + offset2;
+    } else {
+      titleX = offsetFromEdge(scale, position2, offset2);
+    }
+    titleY = _alignStartEnd(align, bottom, top);
+    rotation = position2 === "left" ? -HALF_PI : HALF_PI;
+  }
+  return {
+    titleX,
+    titleY,
+    maxWidth,
+    rotation
+  };
+}
+class Scale extends Element$1 {
+  constructor(cfg) {
+    super();
+    this.id = cfg.id;
+    this.type = cfg.type;
+    this.options = void 0;
+    this.ctx = cfg.ctx;
+    this.chart = cfg.chart;
+    this.top = void 0;
+    this.bottom = void 0;
+    this.left = void 0;
+    this.right = void 0;
+    this.width = void 0;
+    this.height = void 0;
+    this._margins = {
+      left: 0,
+      right: 0,
+      top: 0,
+      bottom: 0
+    };
+    this.maxWidth = void 0;
+    this.maxHeight = void 0;
+    this.paddingTop = void 0;
+    this.paddingBottom = void 0;
+    this.paddingLeft = void 0;
+    this.paddingRight = void 0;
+    this.axis = void 0;
+    this.labelRotation = void 0;
+    this.min = void 0;
+    this.max = void 0;
+    this._range = void 0;
+    this.ticks = [];
+    this._gridLineItems = null;
+    this._labelItems = null;
+    this._labelSizes = null;
+    this._length = 0;
+    this._maxLength = 0;
+    this._longestTextCache = {};
+    this._startPixel = void 0;
+    this._endPixel = void 0;
+    this._reversePixels = false;
+    this._userMax = void 0;
+    this._userMin = void 0;
+    this._suggestedMax = void 0;
+    this._suggestedMin = void 0;
+    this._ticksLength = 0;
+    this._borderValue = 0;
+    this._cache = {};
+    this._dataLimitsCached = false;
+    this.$context = void 0;
+  }
+  init(options2) {
+    this.options = options2.setContext(this.getContext());
+    this.axis = options2.axis;
+    this._userMin = this.parse(options2.min);
+    this._userMax = this.parse(options2.max);
+    this._suggestedMin = this.parse(options2.suggestedMin);
+    this._suggestedMax = this.parse(options2.suggestedMax);
+  }
+  parse(raw, index2) {
+    return raw;
+  }
+  getUserBounds() {
+    let { _userMin, _userMax, _suggestedMin, _suggestedMax } = this;
+    _userMin = finiteOrDefault(_userMin, Number.POSITIVE_INFINITY);
+    _userMax = finiteOrDefault(_userMax, Number.NEGATIVE_INFINITY);
+    _suggestedMin = finiteOrDefault(_suggestedMin, Number.POSITIVE_INFINITY);
+    _suggestedMax = finiteOrDefault(_suggestedMax, Number.NEGATIVE_INFINITY);
+    return {
+      min: finiteOrDefault(_userMin, _suggestedMin),
+      max: finiteOrDefault(_userMax, _suggestedMax),
+      minDefined: isNumberFinite(_userMin),
+      maxDefined: isNumberFinite(_userMax)
+    };
+  }
+  getMinMax(canStack) {
+    let { min: min2, max: max2, minDefined, maxDefined } = this.getUserBounds();
+    let range3;
+    if (minDefined && maxDefined) {
+      return {
+        min: min2,
+        max: max2
+      };
+    }
+    const metas = this.getMatchingVisibleMetas();
+    for (let i2 = 0, ilen = metas.length; i2 < ilen; ++i2) {
+      range3 = metas[i2].controller.getMinMax(this, canStack);
+      if (!minDefined) {
+        min2 = Math.min(min2, range3.min);
+      }
+      if (!maxDefined) {
+        max2 = Math.max(max2, range3.max);
+      }
+    }
+    min2 = maxDefined && min2 > max2 ? max2 : min2;
+    max2 = minDefined && min2 > max2 ? min2 : max2;
+    return {
+      min: finiteOrDefault(min2, finiteOrDefault(max2, min2)),
+      max: finiteOrDefault(max2, finiteOrDefault(min2, max2))
+    };
+  }
+  getPadding() {
+    return {
+      left: this.paddingLeft || 0,
+      top: this.paddingTop || 0,
+      right: this.paddingRight || 0,
+      bottom: this.paddingBottom || 0
+    };
+  }
+  getTicks() {
+    return this.ticks;
+  }
+  getLabels() {
+    const data2 = this.chart.data;
+    return this.options.labels || (this.isHorizontal() ? data2.xLabels : data2.yLabels) || data2.labels || [];
+  }
+  getLabelItems(chartArea = this.chart.chartArea) {
+    const items2 = this._labelItems || (this._labelItems = this._computeLabelItems(chartArea));
+    return items2;
+  }
+  beforeLayout() {
+    this._cache = {};
+    this._dataLimitsCached = false;
+  }
+  beforeUpdate() {
+    callback(this.options.beforeUpdate, [
+      this
+    ]);
+  }
+  update(maxWidth, maxHeight, margins) {
+    const { beginAtZero, grace, ticks: tickOpts } = this.options;
+    const sampleSize = tickOpts.sampleSize;
+    this.beforeUpdate();
+    this.maxWidth = maxWidth;
+    this.maxHeight = maxHeight;
+    this._margins = margins = Object.assign({
+      left: 0,
+      right: 0,
+      top: 0,
+      bottom: 0
+    }, margins);
+    this.ticks = null;
+    this._labelSizes = null;
+    this._gridLineItems = null;
+    this._labelItems = null;
+    this.beforeSetDimensions();
+    this.setDimensions();
+    this.afterSetDimensions();
+    this._maxLength = this.isHorizontal() ? this.width + margins.left + margins.right : this.height + margins.top + margins.bottom;
+    if (!this._dataLimitsCached) {
+      this.beforeDataLimits();
+      this.determineDataLimits();
+      this.afterDataLimits();
+      this._range = _addGrace(this, grace, beginAtZero);
+      this._dataLimitsCached = true;
+    }
+    this.beforeBuildTicks();
+    this.ticks = this.buildTicks() || [];
+    this.afterBuildTicks();
+    const samplingEnabled = sampleSize < this.ticks.length;
+    this._convertTicksToLabels(samplingEnabled ? sample(this.ticks, sampleSize) : this.ticks);
+    this.configure();
+    this.beforeCalculateLabelRotation();
+    this.calculateLabelRotation();
+    this.afterCalculateLabelRotation();
+    if (tickOpts.display && (tickOpts.autoSkip || tickOpts.source === "auto")) {
+      this.ticks = autoSkip(this, this.ticks);
+      this._labelSizes = null;
+      this.afterAutoSkip();
+    }
+    if (samplingEnabled) {
+      this._convertTicksToLabels(this.ticks);
+    }
+    this.beforeFit();
+    this.fit();
+    this.afterFit();
+    this.afterUpdate();
+  }
+  configure() {
+    let reversePixels = this.options.reverse;
+    let startPixel, endPixel;
+    if (this.isHorizontal()) {
+      startPixel = this.left;
+      endPixel = this.right;
+    } else {
+      startPixel = this.top;
+      endPixel = this.bottom;
+      reversePixels = !reversePixels;
+    }
+    this._startPixel = startPixel;
+    this._endPixel = endPixel;
+    this._reversePixels = reversePixels;
+    this._length = endPixel - startPixel;
+    this._alignToPixels = this.options.alignToPixels;
+  }
+  afterUpdate() {
+    callback(this.options.afterUpdate, [
+      this
+    ]);
+  }
+  beforeSetDimensions() {
+    callback(this.options.beforeSetDimensions, [
+      this
+    ]);
+  }
+  setDimensions() {
+    if (this.isHorizontal()) {
+      this.width = this.maxWidth;
+      this.left = 0;
+      this.right = this.width;
+    } else {
+      this.height = this.maxHeight;
+      this.top = 0;
+      this.bottom = this.height;
+    }
+    this.paddingLeft = 0;
+    this.paddingTop = 0;
+    this.paddingRight = 0;
+    this.paddingBottom = 0;
+  }
+  afterSetDimensions() {
+    callback(this.options.afterSetDimensions, [
+      this
+    ]);
+  }
+  _callHooks(name) {
+    this.chart.notifyPlugins(name, this.getContext());
+    callback(this.options[name], [
+      this
+    ]);
+  }
+  beforeDataLimits() {
+    this._callHooks("beforeDataLimits");
+  }
+  determineDataLimits() {
+  }
+  afterDataLimits() {
+    this._callHooks("afterDataLimits");
+  }
+  beforeBuildTicks() {
+    this._callHooks("beforeBuildTicks");
+  }
+  buildTicks() {
+    return [];
+  }
+  afterBuildTicks() {
+    this._callHooks("afterBuildTicks");
+  }
+  beforeTickToLabelConversion() {
+    callback(this.options.beforeTickToLabelConversion, [
+      this
+    ]);
+  }
+  generateTickLabels(ticks) {
+    const tickOpts = this.options.ticks;
+    let i2, ilen, tick;
+    for (i2 = 0, ilen = ticks.length; i2 < ilen; i2++) {
+      tick = ticks[i2];
+      tick.label = callback(tickOpts.callback, [
+        tick.value,
+        i2,
+        ticks
+      ], this);
+    }
+  }
+  afterTickToLabelConversion() {
+    callback(this.options.afterTickToLabelConversion, [
+      this
+    ]);
+  }
+  beforeCalculateLabelRotation() {
+    callback(this.options.beforeCalculateLabelRotation, [
+      this
+    ]);
+  }
+  calculateLabelRotation() {
+    const options2 = this.options;
+    const tickOpts = options2.ticks;
+    const numTicks = getTicksLimit(this.ticks.length, options2.ticks.maxTicksLimit);
+    const minRotation = tickOpts.minRotation || 0;
+    const maxRotation = tickOpts.maxRotation;
+    let labelRotation = minRotation;
+    let tickWidth, maxHeight, maxLabelDiagonal;
+    if (!this._isVisible() || !tickOpts.display || minRotation >= maxRotation || numTicks <= 1 || !this.isHorizontal()) {
+      this.labelRotation = minRotation;
+      return;
+    }
+    const labelSizes = this._getLabelSizes();
+    const maxLabelWidth = labelSizes.widest.width;
+    const maxLabelHeight = labelSizes.highest.height;
+    const maxWidth = _limitValue(this.chart.width - maxLabelWidth, 0, this.maxWidth);
+    tickWidth = options2.offset ? this.maxWidth / numTicks : maxWidth / (numTicks - 1);
+    if (maxLabelWidth + 6 > tickWidth) {
+      tickWidth = maxWidth / (numTicks - (options2.offset ? 0.5 : 1));
+      maxHeight = this.maxHeight - getTickMarkLength(options2.grid) - tickOpts.padding - getTitleHeight(options2.title, this.chart.options.font);
+      maxLabelDiagonal = Math.sqrt(maxLabelWidth * maxLabelWidth + maxLabelHeight * maxLabelHeight);
+      labelRotation = toDegrees(Math.min(Math.asin(_limitValue((labelSizes.highest.height + 6) / tickWidth, -1, 1)), Math.asin(_limitValue(maxHeight / maxLabelDiagonal, -1, 1)) - Math.asin(_limitValue(maxLabelHeight / maxLabelDiagonal, -1, 1))));
+      labelRotation = Math.max(minRotation, Math.min(maxRotation, labelRotation));
+    }
+    this.labelRotation = labelRotation;
+  }
+  afterCalculateLabelRotation() {
+    callback(this.options.afterCalculateLabelRotation, [
+      this
+    ]);
+  }
+  afterAutoSkip() {
+  }
+  beforeFit() {
+    callback(this.options.beforeFit, [
+      this
+    ]);
+  }
+  fit() {
+    const minSize = {
+      width: 0,
+      height: 0
+    };
+    const { chart, options: { ticks: tickOpts, title: titleOpts, grid: gridOpts } } = this;
+    const display = this._isVisible();
+    const isHorizontal = this.isHorizontal();
+    if (display) {
+      const titleHeight = getTitleHeight(titleOpts, chart.options.font);
+      if (isHorizontal) {
+        minSize.width = this.maxWidth;
+        minSize.height = getTickMarkLength(gridOpts) + titleHeight;
+      } else {
+        minSize.height = this.maxHeight;
+        minSize.width = getTickMarkLength(gridOpts) + titleHeight;
+      }
+      if (tickOpts.display && this.ticks.length) {
+        const { first, last, widest, highest } = this._getLabelSizes();
+        const tickPadding = tickOpts.padding * 2;
+        const angleRadians = toRadians(this.labelRotation);
+        const cos = Math.cos(angleRadians);
+        const sin = Math.sin(angleRadians);
+        if (isHorizontal) {
+          const labelHeight = tickOpts.mirror ? 0 : sin * widest.width + cos * highest.height;
+          minSize.height = Math.min(this.maxHeight, minSize.height + labelHeight + tickPadding);
+        } else {
+          const labelWidth = tickOpts.mirror ? 0 : cos * widest.width + sin * highest.height;
+          minSize.width = Math.min(this.maxWidth, minSize.width + labelWidth + tickPadding);
+        }
+        this._calculatePadding(first, last, sin, cos);
+      }
+    }
+    this._handleMargins();
+    if (isHorizontal) {
+      this.width = this._length = chart.width - this._margins.left - this._margins.right;
+      this.height = minSize.height;
+    } else {
+      this.width = minSize.width;
+      this.height = this._length = chart.height - this._margins.top - this._margins.bottom;
+    }
+  }
+  _calculatePadding(first, last, sin, cos) {
+    const { ticks: { align, padding }, position: position2 } = this.options;
+    const isRotated = this.labelRotation !== 0;
+    const labelsBelowTicks = position2 !== "top" && this.axis === "x";
+    if (this.isHorizontal()) {
+      const offsetLeft = this.getPixelForTick(0) - this.left;
+      const offsetRight = this.right - this.getPixelForTick(this.ticks.length - 1);
+      let paddingLeft = 0;
+      let paddingRight = 0;
+      if (isRotated) {
+        if (labelsBelowTicks) {
+          paddingLeft = cos * first.width;
+          paddingRight = sin * last.height;
+        } else {
+          paddingLeft = sin * first.height;
+          paddingRight = cos * last.width;
+        }
+      } else if (align === "start") {
+        paddingRight = last.width;
+      } else if (align === "end") {
+        paddingLeft = first.width;
+      } else if (align !== "inner") {
+        paddingLeft = first.width / 2;
+        paddingRight = last.width / 2;
+      }
+      this.paddingLeft = Math.max((paddingLeft - offsetLeft + padding) * this.width / (this.width - offsetLeft), 0);
+      this.paddingRight = Math.max((paddingRight - offsetRight + padding) * this.width / (this.width - offsetRight), 0);
+    } else {
+      let paddingTop = last.height / 2;
+      let paddingBottom = first.height / 2;
+      if (align === "start") {
+        paddingTop = 0;
+        paddingBottom = first.height;
+      } else if (align === "end") {
+        paddingTop = last.height;
+        paddingBottom = 0;
+      }
+      this.paddingTop = paddingTop + padding;
+      this.paddingBottom = paddingBottom + padding;
+    }
+  }
+  _handleMargins() {
+    if (this._margins) {
+      this._margins.left = Math.max(this.paddingLeft, this._margins.left);
+      this._margins.top = Math.max(this.paddingTop, this._margins.top);
+      this._margins.right = Math.max(this.paddingRight, this._margins.right);
+      this._margins.bottom = Math.max(this.paddingBottom, this._margins.bottom);
+    }
+  }
+  afterFit() {
+    callback(this.options.afterFit, [
+      this
+    ]);
+  }
+  isHorizontal() {
+    const { axis, position: position2 } = this.options;
+    return position2 === "top" || position2 === "bottom" || axis === "x";
+  }
+  isFullSize() {
+    return this.options.fullSize;
+  }
+  _convertTicksToLabels(ticks) {
+    this.beforeTickToLabelConversion();
+    this.generateTickLabels(ticks);
+    let i2, ilen;
+    for (i2 = 0, ilen = ticks.length; i2 < ilen; i2++) {
+      if (isNullOrUndef(ticks[i2].label)) {
+        ticks.splice(i2, 1);
+        ilen--;
+        i2--;
+      }
+    }
+    this.afterTickToLabelConversion();
+  }
+  _getLabelSizes() {
+    let labelSizes = this._labelSizes;
+    if (!labelSizes) {
+      const sampleSize = this.options.ticks.sampleSize;
+      let ticks = this.ticks;
+      if (sampleSize < ticks.length) {
+        ticks = sample(ticks, sampleSize);
+      }
+      this._labelSizes = labelSizes = this._computeLabelSizes(ticks, ticks.length, this.options.ticks.maxTicksLimit);
+    }
+    return labelSizes;
+  }
+  _computeLabelSizes(ticks, length2, maxTicksLimit) {
+    const { ctx, _longestTextCache: caches } = this;
+    const widths = [];
+    const heights = [];
+    const increment = Math.floor(length2 / getTicksLimit(length2, maxTicksLimit));
+    let widestLabelSize = 0;
+    let highestLabelSize = 0;
+    let i2, j2, jlen, label, tickFont, fontString, cache, lineHeight, width, height, nestedLabel;
+    for (i2 = 0; i2 < length2; i2 += increment) {
+      label = ticks[i2].label;
+      tickFont = this._resolveTickFontOptions(i2);
+      ctx.font = fontString = tickFont.string;
+      cache = caches[fontString] = caches[fontString] || {
+        data: {},
+        gc: []
+      };
+      lineHeight = tickFont.lineHeight;
+      width = height = 0;
+      if (!isNullOrUndef(label) && !isArray$1(label)) {
+        width = _measureText(ctx, cache.data, cache.gc, width, label);
+        height = lineHeight;
+      } else if (isArray$1(label)) {
+        for (j2 = 0, jlen = label.length; j2 < jlen; ++j2) {
+          nestedLabel = label[j2];
+          if (!isNullOrUndef(nestedLabel) && !isArray$1(nestedLabel)) {
+            width = _measureText(ctx, cache.data, cache.gc, width, nestedLabel);
+            height += lineHeight;
+          }
+        }
+      }
+      widths.push(width);
+      heights.push(height);
+      widestLabelSize = Math.max(width, widestLabelSize);
+      highestLabelSize = Math.max(height, highestLabelSize);
+    }
+    garbageCollect(caches, length2);
+    const widest = widths.indexOf(widestLabelSize);
+    const highest = heights.indexOf(highestLabelSize);
+    const valueAt = (idx) => ({
+      width: widths[idx] || 0,
+      height: heights[idx] || 0
+    });
+    return {
+      first: valueAt(0),
+      last: valueAt(length2 - 1),
+      widest: valueAt(widest),
+      highest: valueAt(highest),
+      widths,
+      heights
+    };
+  }
+  getLabelForValue(value) {
+    return value;
+  }
+  getPixelForValue(value, index2) {
+    return NaN;
+  }
+  getValueForPixel(pixel) {
+  }
+  getPixelForTick(index2) {
+    const ticks = this.ticks;
+    if (index2 < 0 || index2 > ticks.length - 1) {
+      return null;
+    }
+    return this.getPixelForValue(ticks[index2].value);
+  }
+  getPixelForDecimal(decimal) {
+    if (this._reversePixels) {
+      decimal = 1 - decimal;
+    }
+    const pixel = this._startPixel + decimal * this._length;
+    return _int16Range(this._alignToPixels ? _alignPixel(this.chart, pixel, 0) : pixel);
+  }
+  getDecimalForPixel(pixel) {
+    const decimal = (pixel - this._startPixel) / this._length;
+    return this._reversePixels ? 1 - decimal : decimal;
+  }
+  getBasePixel() {
+    return this.getPixelForValue(this.getBaseValue());
+  }
+  getBaseValue() {
+    const { min: min2, max: max2 } = this;
+    return min2 < 0 && max2 < 0 ? max2 : min2 > 0 && max2 > 0 ? min2 : 0;
+  }
+  getContext(index2) {
+    const ticks = this.ticks || [];
+    if (index2 >= 0 && index2 < ticks.length) {
+      const tick = ticks[index2];
+      return tick.$context || (tick.$context = createTickContext(this.getContext(), index2, tick));
+    }
+    return this.$context || (this.$context = createScaleContext(this.chart.getContext(), this));
+  }
+  _tickSize() {
+    const optionTicks = this.options.ticks;
+    const rot = toRadians(this.labelRotation);
+    const cos = Math.abs(Math.cos(rot));
+    const sin = Math.abs(Math.sin(rot));
+    const labelSizes = this._getLabelSizes();
+    const padding = optionTicks.autoSkipPadding || 0;
+    const w2 = labelSizes ? labelSizes.widest.width + padding : 0;
+    const h3 = labelSizes ? labelSizes.highest.height + padding : 0;
+    return this.isHorizontal() ? h3 * cos > w2 * sin ? w2 / cos : h3 / sin : h3 * sin < w2 * cos ? h3 / cos : w2 / sin;
+  }
+  _isVisible() {
+    const display = this.options.display;
+    if (display !== "auto") {
+      return !!display;
+    }
+    return this.getMatchingVisibleMetas().length > 0;
+  }
+  _computeGridLineItems(chartArea) {
+    const axis = this.axis;
+    const chart = this.chart;
+    const options2 = this.options;
+    const { grid, position: position2, border } = options2;
+    const offset2 = grid.offset;
+    const isHorizontal = this.isHorizontal();
+    const ticks = this.ticks;
+    const ticksLength = ticks.length + (offset2 ? 1 : 0);
+    const tl2 = getTickMarkLength(grid);
+    const items2 = [];
+    const borderOpts = border.setContext(this.getContext());
+    const axisWidth = borderOpts.display ? borderOpts.width : 0;
+    const axisHalfWidth = axisWidth / 2;
+    const alignBorderValue = function(pixel) {
+      return _alignPixel(chart, pixel, axisWidth);
+    };
+    let borderValue, i2, lineValue, alignedLineValue;
+    let tx1, ty1, tx2, ty2, x1, y1, x2, y2;
+    if (position2 === "top") {
+      borderValue = alignBorderValue(this.bottom);
+      ty1 = this.bottom - tl2;
+      ty2 = borderValue - axisHalfWidth;
+      y1 = alignBorderValue(chartArea.top) + axisHalfWidth;
+      y2 = chartArea.bottom;
+    } else if (position2 === "bottom") {
+      borderValue = alignBorderValue(this.top);
+      y1 = chartArea.top;
+      y2 = alignBorderValue(chartArea.bottom) - axisHalfWidth;
+      ty1 = borderValue + axisHalfWidth;
+      ty2 = this.top + tl2;
+    } else if (position2 === "left") {
+      borderValue = alignBorderValue(this.right);
+      tx1 = this.right - tl2;
+      tx2 = borderValue - axisHalfWidth;
+      x1 = alignBorderValue(chartArea.left) + axisHalfWidth;
+      x2 = chartArea.right;
+    } else if (position2 === "right") {
+      borderValue = alignBorderValue(this.left);
+      x1 = chartArea.left;
+      x2 = alignBorderValue(chartArea.right) - axisHalfWidth;
+      tx1 = borderValue + axisHalfWidth;
+      tx2 = this.left + tl2;
+    } else if (axis === "x") {
+      if (position2 === "center") {
+        borderValue = alignBorderValue((chartArea.top + chartArea.bottom) / 2 + 0.5);
+      } else if (isObject$1(position2)) {
+        const positionAxisID = Object.keys(position2)[0];
+        const value = position2[positionAxisID];
+        borderValue = alignBorderValue(this.chart.scales[positionAxisID].getPixelForValue(value));
+      }
+      y1 = chartArea.top;
+      y2 = chartArea.bottom;
+      ty1 = borderValue + axisHalfWidth;
+      ty2 = ty1 + tl2;
+    } else if (axis === "y") {
+      if (position2 === "center") {
+        borderValue = alignBorderValue((chartArea.left + chartArea.right) / 2);
+      } else if (isObject$1(position2)) {
+        const positionAxisID = Object.keys(position2)[0];
+        const value = position2[positionAxisID];
+        borderValue = alignBorderValue(this.chart.scales[positionAxisID].getPixelForValue(value));
+      }
+      tx1 = borderValue - axisHalfWidth;
+      tx2 = tx1 - tl2;
+      x1 = chartArea.left;
+      x2 = chartArea.right;
+    }
+    const limit = valueOrDefault(options2.ticks.maxTicksLimit, ticksLength);
+    const step = Math.max(1, Math.ceil(ticksLength / limit));
+    for (i2 = 0; i2 < ticksLength; i2 += step) {
+      const context = this.getContext(i2);
+      const optsAtIndex = grid.setContext(context);
+      const optsAtIndexBorder = border.setContext(context);
+      const lineWidth = optsAtIndex.lineWidth;
+      const lineColor = optsAtIndex.color;
+      const borderDash = optsAtIndexBorder.dash || [];
+      const borderDashOffset = optsAtIndexBorder.dashOffset;
+      const tickWidth = optsAtIndex.tickWidth;
+      const tickColor = optsAtIndex.tickColor;
+      const tickBorderDash = optsAtIndex.tickBorderDash || [];
+      const tickBorderDashOffset = optsAtIndex.tickBorderDashOffset;
+      lineValue = getPixelForGridLine(this, i2, offset2);
+      if (lineValue === void 0) {
+        continue;
+      }
+      alignedLineValue = _alignPixel(chart, lineValue, lineWidth);
+      if (isHorizontal) {
+        tx1 = tx2 = x1 = x2 = alignedLineValue;
+      } else {
+        ty1 = ty2 = y1 = y2 = alignedLineValue;
+      }
+      items2.push({
+        tx1,
+        ty1,
+        tx2,
+        ty2,
+        x1,
+        y1,
+        x2,
+        y2,
+        width: lineWidth,
+        color: lineColor,
+        borderDash,
+        borderDashOffset,
+        tickWidth,
+        tickColor,
+        tickBorderDash,
+        tickBorderDashOffset
+      });
+    }
+    this._ticksLength = ticksLength;
+    this._borderValue = borderValue;
+    return items2;
+  }
+  _computeLabelItems(chartArea) {
+    const axis = this.axis;
+    const options2 = this.options;
+    const { position: position2, ticks: optionTicks } = options2;
+    const isHorizontal = this.isHorizontal();
+    const ticks = this.ticks;
+    const { align, crossAlign, padding, mirror } = optionTicks;
+    const tl2 = getTickMarkLength(options2.grid);
+    const tickAndPadding = tl2 + padding;
+    const hTickAndPadding = mirror ? -padding : tickAndPadding;
+    const rotation = -toRadians(this.labelRotation);
+    const items2 = [];
+    let i2, ilen, tick, label, x2, y2, textAlign, pixel, font, lineHeight, lineCount, textOffset;
+    let textBaseline = "middle";
+    if (position2 === "top") {
+      y2 = this.bottom - hTickAndPadding;
+      textAlign = this._getXAxisLabelAlignment();
+    } else if (position2 === "bottom") {
+      y2 = this.top + hTickAndPadding;
+      textAlign = this._getXAxisLabelAlignment();
+    } else if (position2 === "left") {
+      const ret = this._getYAxisLabelAlignment(tl2);
+      textAlign = ret.textAlign;
+      x2 = ret.x;
+    } else if (position2 === "right") {
+      const ret = this._getYAxisLabelAlignment(tl2);
+      textAlign = ret.textAlign;
+      x2 = ret.x;
+    } else if (axis === "x") {
+      if (position2 === "center") {
+        y2 = (chartArea.top + chartArea.bottom) / 2 + tickAndPadding;
+      } else if (isObject$1(position2)) {
+        const positionAxisID = Object.keys(position2)[0];
+        const value = position2[positionAxisID];
+        y2 = this.chart.scales[positionAxisID].getPixelForValue(value) + tickAndPadding;
+      }
+      textAlign = this._getXAxisLabelAlignment();
+    } else if (axis === "y") {
+      if (position2 === "center") {
+        x2 = (chartArea.left + chartArea.right) / 2 - tickAndPadding;
+      } else if (isObject$1(position2)) {
+        const positionAxisID = Object.keys(position2)[0];
+        const value = position2[positionAxisID];
+        x2 = this.chart.scales[positionAxisID].getPixelForValue(value);
+      }
+      textAlign = this._getYAxisLabelAlignment(tl2).textAlign;
+    }
+    if (axis === "y") {
+      if (align === "start") {
+        textBaseline = "top";
+      } else if (align === "end") {
+        textBaseline = "bottom";
+      }
+    }
+    const labelSizes = this._getLabelSizes();
+    for (i2 = 0, ilen = ticks.length; i2 < ilen; ++i2) {
+      tick = ticks[i2];
+      label = tick.label;
+      const optsAtIndex = optionTicks.setContext(this.getContext(i2));
+      pixel = this.getPixelForTick(i2) + optionTicks.labelOffset;
+      font = this._resolveTickFontOptions(i2);
+      lineHeight = font.lineHeight;
+      lineCount = isArray$1(label) ? label.length : 1;
+      const halfCount = lineCount / 2;
+      const color2 = optsAtIndex.color;
+      const strokeColor = optsAtIndex.textStrokeColor;
+      const strokeWidth = optsAtIndex.textStrokeWidth;
+      let tickTextAlign = textAlign;
+      if (isHorizontal) {
+        x2 = pixel;
+        if (textAlign === "inner") {
+          if (i2 === ilen - 1) {
+            tickTextAlign = !this.options.reverse ? "right" : "left";
+          } else if (i2 === 0) {
+            tickTextAlign = !this.options.reverse ? "left" : "right";
+          } else {
+            tickTextAlign = "center";
+          }
+        }
+        if (position2 === "top") {
+          if (crossAlign === "near" || rotation !== 0) {
+            textOffset = -lineCount * lineHeight + lineHeight / 2;
+          } else if (crossAlign === "center") {
+            textOffset = -labelSizes.highest.height / 2 - halfCount * lineHeight + lineHeight;
+          } else {
+            textOffset = -labelSizes.highest.height + lineHeight / 2;
+          }
+        } else {
+          if (crossAlign === "near" || rotation !== 0) {
+            textOffset = lineHeight / 2;
+          } else if (crossAlign === "center") {
+            textOffset = labelSizes.highest.height / 2 - halfCount * lineHeight;
+          } else {
+            textOffset = labelSizes.highest.height - lineCount * lineHeight;
+          }
+        }
+        if (mirror) {
+          textOffset *= -1;
+        }
+        if (rotation !== 0 && !optsAtIndex.showLabelBackdrop) {
+          x2 += lineHeight / 2 * Math.sin(rotation);
+        }
+      } else {
+        y2 = pixel;
+        textOffset = (1 - lineCount) * lineHeight / 2;
+      }
+      let backdrop;
+      if (optsAtIndex.showLabelBackdrop) {
+        const labelPadding = toPadding(optsAtIndex.backdropPadding);
+        const height = labelSizes.heights[i2];
+        const width = labelSizes.widths[i2];
+        let top = textOffset - labelPadding.top;
+        let left = 0 - labelPadding.left;
+        switch (textBaseline) {
+          case "middle":
+            top -= height / 2;
+            break;
+          case "bottom":
+            top -= height;
+            break;
+        }
+        switch (textAlign) {
+          case "center":
+            left -= width / 2;
+            break;
+          case "right":
+            left -= width;
+            break;
+        }
+        backdrop = {
+          left,
+          top,
+          width: width + labelPadding.width,
+          height: height + labelPadding.height,
+          color: optsAtIndex.backdropColor
+        };
+      }
+      items2.push({
+        label,
+        font,
+        textOffset,
+        options: {
+          rotation,
+          color: color2,
+          strokeColor,
+          strokeWidth,
+          textAlign: tickTextAlign,
+          textBaseline,
+          translation: [
+            x2,
+            y2
+          ],
+          backdrop
+        }
+      });
+    }
+    return items2;
+  }
+  _getXAxisLabelAlignment() {
+    const { position: position2, ticks } = this.options;
+    const rotation = -toRadians(this.labelRotation);
+    if (rotation) {
+      return position2 === "top" ? "left" : "right";
+    }
+    let align = "center";
+    if (ticks.align === "start") {
+      align = "left";
+    } else if (ticks.align === "end") {
+      align = "right";
+    } else if (ticks.align === "inner") {
+      align = "inner";
+    }
+    return align;
+  }
+  _getYAxisLabelAlignment(tl2) {
+    const { position: position2, ticks: { crossAlign, mirror, padding } } = this.options;
+    const labelSizes = this._getLabelSizes();
+    const tickAndPadding = tl2 + padding;
+    const widest = labelSizes.widest.width;
+    let textAlign;
+    let x2;
+    if (position2 === "left") {
+      if (mirror) {
+        x2 = this.right + padding;
+        if (crossAlign === "near") {
+          textAlign = "left";
+        } else if (crossAlign === "center") {
+          textAlign = "center";
+          x2 += widest / 2;
+        } else {
+          textAlign = "right";
+          x2 += widest;
+        }
+      } else {
+        x2 = this.right - tickAndPadding;
+        if (crossAlign === "near") {
+          textAlign = "right";
+        } else if (crossAlign === "center") {
+          textAlign = "center";
+          x2 -= widest / 2;
+        } else {
+          textAlign = "left";
+          x2 = this.left;
+        }
+      }
+    } else if (position2 === "right") {
+      if (mirror) {
+        x2 = this.left + padding;
+        if (crossAlign === "near") {
+          textAlign = "right";
+        } else if (crossAlign === "center") {
+          textAlign = "center";
+          x2 -= widest / 2;
+        } else {
+          textAlign = "left";
+          x2 -= widest;
+        }
+      } else {
+        x2 = this.left + tickAndPadding;
+        if (crossAlign === "near") {
+          textAlign = "left";
+        } else if (crossAlign === "center") {
+          textAlign = "center";
+          x2 += widest / 2;
+        } else {
+          textAlign = "right";
+          x2 = this.right;
+        }
+      }
+    } else {
+      textAlign = "right";
+    }
+    return {
+      textAlign,
+      x: x2
+    };
+  }
+  _computeLabelArea() {
+    if (this.options.ticks.mirror) {
+      return;
+    }
+    const chart = this.chart;
+    const position2 = this.options.position;
+    if (position2 === "left" || position2 === "right") {
+      return {
+        top: 0,
+        left: this.left,
+        bottom: chart.height,
+        right: this.right
+      };
+    }
+    if (position2 === "top" || position2 === "bottom") {
+      return {
+        top: this.top,
+        left: 0,
+        bottom: this.bottom,
+        right: chart.width
+      };
+    }
+  }
+  drawBackground() {
+    const { ctx, options: { backgroundColor }, left, top, width, height } = this;
+    if (backgroundColor) {
+      ctx.save();
+      ctx.fillStyle = backgroundColor;
+      ctx.fillRect(left, top, width, height);
+      ctx.restore();
+    }
+  }
+  getLineWidthForValue(value) {
+    const grid = this.options.grid;
+    if (!this._isVisible() || !grid.display) {
+      return 0;
+    }
+    const ticks = this.ticks;
+    const index2 = ticks.findIndex((t2) => t2.value === value);
+    if (index2 >= 0) {
+      const opts = grid.setContext(this.getContext(index2));
+      return opts.lineWidth;
+    }
+    return 0;
+  }
+  drawGrid(chartArea) {
+    const grid = this.options.grid;
+    const ctx = this.ctx;
+    const items2 = this._gridLineItems || (this._gridLineItems = this._computeGridLineItems(chartArea));
+    let i2, ilen;
+    const drawLine = (p1, p2, style2) => {
+      if (!style2.width || !style2.color) {
+        return;
+      }
+      ctx.save();
+      ctx.lineWidth = style2.width;
+      ctx.strokeStyle = style2.color;
+      ctx.setLineDash(style2.borderDash || []);
+      ctx.lineDashOffset = style2.borderDashOffset;
+      ctx.beginPath();
+      ctx.moveTo(p1.x, p1.y);
+      ctx.lineTo(p2.x, p2.y);
+      ctx.stroke();
+      ctx.restore();
+    };
+    if (grid.display) {
+      for (i2 = 0, ilen = items2.length; i2 < ilen; ++i2) {
+        const item = items2[i2];
+        if (grid.drawOnChartArea) {
+          drawLine({
+            x: item.x1,
+            y: item.y1
+          }, {
+            x: item.x2,
+            y: item.y2
+          }, item);
+        }
+        if (grid.drawTicks) {
+          drawLine({
+            x: item.tx1,
+            y: item.ty1
+          }, {
+            x: item.tx2,
+            y: item.ty2
+          }, {
+            color: item.tickColor,
+            width: item.tickWidth,
+            borderDash: item.tickBorderDash,
+            borderDashOffset: item.tickBorderDashOffset
+          });
+        }
+      }
+    }
+  }
+  drawBorder() {
+    const { chart, ctx, options: { border, grid } } = this;
+    const borderOpts = border.setContext(this.getContext());
+    const axisWidth = border.display ? borderOpts.width : 0;
+    if (!axisWidth) {
+      return;
+    }
+    const lastLineWidth = grid.setContext(this.getContext(0)).lineWidth;
+    const borderValue = this._borderValue;
+    let x1, x2, y1, y2;
+    if (this.isHorizontal()) {
+      x1 = _alignPixel(chart, this.left, axisWidth) - axisWidth / 2;
+      x2 = _alignPixel(chart, this.right, lastLineWidth) + lastLineWidth / 2;
+      y1 = y2 = borderValue;
+    } else {
+      y1 = _alignPixel(chart, this.top, axisWidth) - axisWidth / 2;
+      y2 = _alignPixel(chart, this.bottom, lastLineWidth) + lastLineWidth / 2;
+      x1 = x2 = borderValue;
+    }
+    ctx.save();
+    ctx.lineWidth = borderOpts.width;
+    ctx.strokeStyle = borderOpts.color;
+    ctx.beginPath();
+    ctx.moveTo(x1, y1);
+    ctx.lineTo(x2, y2);
+    ctx.stroke();
+    ctx.restore();
+  }
+  drawLabels(chartArea) {
+    const optionTicks = this.options.ticks;
+    if (!optionTicks.display) {
+      return;
+    }
+    const ctx = this.ctx;
+    const area = this._computeLabelArea();
+    if (area) {
+      clipArea(ctx, area);
+    }
+    const items2 = this.getLabelItems(chartArea);
+    for (const item of items2) {
+      const renderTextOptions = item.options;
+      const tickFont = item.font;
+      const label = item.label;
+      const y2 = item.textOffset;
+      renderText(ctx, label, 0, y2, tickFont, renderTextOptions);
+    }
+    if (area) {
+      unclipArea(ctx);
+    }
+  }
+  drawTitle() {
+    const { ctx, options: { position: position2, title, reverse } } = this;
+    if (!title.display) {
+      return;
+    }
+    const font = toFont(title.font);
+    const padding = toPadding(title.padding);
+    const align = title.align;
+    let offset2 = font.lineHeight / 2;
+    if (position2 === "bottom" || position2 === "center" || isObject$1(position2)) {
+      offset2 += padding.bottom;
+      if (isArray$1(title.text)) {
+        offset2 += font.lineHeight * (title.text.length - 1);
+      }
+    } else {
+      offset2 += padding.top;
+    }
+    const { titleX, titleY, maxWidth, rotation } = titleArgs(this, offset2, position2, align);
+    renderText(ctx, title.text, 0, 0, font, {
+      color: title.color,
+      maxWidth,
+      rotation,
+      textAlign: titleAlign(align, position2, reverse),
+      textBaseline: "middle",
+      translation: [
+        titleX,
+        titleY
+      ]
+    });
+  }
+  draw(chartArea) {
+    if (!this._isVisible()) {
+      return;
+    }
+    this.drawBackground();
+    this.drawGrid(chartArea);
+    this.drawBorder();
+    this.drawTitle();
+    this.drawLabels(chartArea);
+  }
+  _layers() {
+    const opts = this.options;
+    const tz = opts.ticks && opts.ticks.z || 0;
+    const gz = valueOrDefault(opts.grid && opts.grid.z, -1);
+    const bz = valueOrDefault(opts.border && opts.border.z, 0);
+    if (!this._isVisible() || this.draw !== Scale.prototype.draw) {
+      return [
+        {
+          z: tz,
+          draw: (chartArea) => {
+            this.draw(chartArea);
+          }
+        }
+      ];
+    }
+    return [
+      {
+        z: gz,
+        draw: (chartArea) => {
+          this.drawBackground();
+          this.drawGrid(chartArea);
+          this.drawTitle();
+        }
+      },
+      {
+        z: bz,
+        draw: () => {
+          this.drawBorder();
+        }
+      },
+      {
+        z: tz,
+        draw: (chartArea) => {
+          this.drawLabels(chartArea);
+        }
+      }
+    ];
+  }
+  getMatchingVisibleMetas(type4) {
+    const metas = this.chart.getSortedVisibleDatasetMetas();
+    const axisID = this.axis + "AxisID";
+    const result = [];
+    let i2, ilen;
+    for (i2 = 0, ilen = metas.length; i2 < ilen; ++i2) {
+      const meta = metas[i2];
+      if (meta[axisID] === this.id && (!type4 || meta.type === type4)) {
+        result.push(meta);
+      }
+    }
+    return result;
+  }
+  _resolveTickFontOptions(index2) {
+    const opts = this.options.ticks.setContext(this.getContext(index2));
+    return toFont(opts.font);
+  }
+  _maxDigits() {
+    const fontSize = this._resolveTickFontOptions(0).lineHeight;
+    return (this.isHorizontal() ? this.width : this.height) / fontSize;
+  }
+}
+class TypedRegistry {
+  constructor(type4, scope, override) {
+    this.type = type4;
+    this.scope = scope;
+    this.override = override;
+    this.items = /* @__PURE__ */ Object.create(null);
+  }
+  isForType(type4) {
+    return Object.prototype.isPrototypeOf.call(this.type.prototype, type4.prototype);
+  }
+  register(item) {
+    const proto2 = Object.getPrototypeOf(item);
+    let parentScope;
+    if (isIChartComponent(proto2)) {
+      parentScope = this.register(proto2);
+    }
+    const items2 = this.items;
+    const id2 = item.id;
+    const scope = this.scope + "." + id2;
+    if (!id2) {
+      throw new Error("class does not have id: " + item);
+    }
+    if (id2 in items2) {
+      return scope;
+    }
+    items2[id2] = item;
+    registerDefaults(item, scope, parentScope);
+    if (this.override) {
+      defaults$1.override(item.id, item.overrides);
+    }
+    return scope;
+  }
+  get(id2) {
+    return this.items[id2];
+  }
+  unregister(item) {
+    const items2 = this.items;
+    const id2 = item.id;
+    const scope = this.scope;
+    if (id2 in items2) {
+      delete items2[id2];
+    }
+    if (scope && id2 in defaults$1[scope]) {
+      delete defaults$1[scope][id2];
+      if (this.override) {
+        delete overrides[id2];
+      }
+    }
+  }
+}
+function registerDefaults(item, scope, parentScope) {
+  const itemDefaults = merge(/* @__PURE__ */ Object.create(null), [
+    parentScope ? defaults$1.get(parentScope) : {},
+    defaults$1.get(scope),
+    item.defaults
+  ]);
+  defaults$1.set(scope, itemDefaults);
+  if (item.defaultRoutes) {
+    routeDefaults(scope, item.defaultRoutes);
+  }
+  if (item.descriptors) {
+    defaults$1.describe(scope, item.descriptors);
+  }
+}
+function routeDefaults(scope, routes) {
+  Object.keys(routes).forEach((property) => {
+    const propertyParts = property.split(".");
+    const sourceName = propertyParts.pop();
+    const sourceScope = [
+      scope
+    ].concat(propertyParts).join(".");
+    const parts = routes[property].split(".");
+    const targetName = parts.pop();
+    const targetScope = parts.join(".");
+    defaults$1.route(sourceScope, sourceName, targetScope, targetName);
+  });
+}
+function isIChartComponent(proto2) {
+  return "id" in proto2 && "defaults" in proto2;
+}
+class Registry {
+  constructor() {
+    this.controllers = new TypedRegistry(DatasetController, "datasets", true);
+    this.elements = new TypedRegistry(Element$1, "elements");
+    this.plugins = new TypedRegistry(Object, "plugins");
+    this.scales = new TypedRegistry(Scale, "scales");
+    this._typedRegistries = [
+      this.controllers,
+      this.scales,
+      this.elements
+    ];
+  }
+  add(...args) {
+    this._each("register", args);
+  }
+  remove(...args) {
+    this._each("unregister", args);
+  }
+  addControllers(...args) {
+    this._each("register", args, this.controllers);
+  }
+  addElements(...args) {
+    this._each("register", args, this.elements);
+  }
+  addPlugins(...args) {
+    this._each("register", args, this.plugins);
+  }
+  addScales(...args) {
+    this._each("register", args, this.scales);
+  }
+  getController(id2) {
+    return this._get(id2, this.controllers, "controller");
+  }
+  getElement(id2) {
+    return this._get(id2, this.elements, "element");
+  }
+  getPlugin(id2) {
+    return this._get(id2, this.plugins, "plugin");
+  }
+  getScale(id2) {
+    return this._get(id2, this.scales, "scale");
+  }
+  removeControllers(...args) {
+    this._each("unregister", args, this.controllers);
+  }
+  removeElements(...args) {
+    this._each("unregister", args, this.elements);
+  }
+  removePlugins(...args) {
+    this._each("unregister", args, this.plugins);
+  }
+  removeScales(...args) {
+    this._each("unregister", args, this.scales);
+  }
+  _each(method4, args, typedRegistry) {
+    [
+      ...args
+    ].forEach((arg) => {
+      const reg = typedRegistry || this._getRegistryForType(arg);
+      if (typedRegistry || reg.isForType(arg) || reg === this.plugins && arg.id) {
+        this._exec(method4, reg, arg);
+      } else {
+        each(arg, (item) => {
+          const itemReg = typedRegistry || this._getRegistryForType(item);
+          this._exec(method4, itemReg, item);
+        });
+      }
+    });
+  }
+  _exec(method4, registry2, component) {
+    const camelMethod = _capitalize(method4);
+    callback(component["before" + camelMethod], [], component);
+    registry2[method4](component);
+    callback(component["after" + camelMethod], [], component);
+  }
+  _getRegistryForType(type4) {
+    for (let i2 = 0; i2 < this._typedRegistries.length; i2++) {
+      const reg = this._typedRegistries[i2];
+      if (reg.isForType(type4)) {
+        return reg;
+      }
+    }
+    return this.plugins;
+  }
+  _get(id2, typedRegistry, type4) {
+    const item = typedRegistry.get(id2);
+    if (item === void 0) {
+      throw new Error('"' + id2 + '" is not a registered ' + type4 + ".");
+    }
+    return item;
+  }
+}
+var registry = /* @__PURE__ */ new Registry();
+class PluginService {
+  constructor() {
+    this._init = [];
+  }
+  notify(chart, hook, args, filter3) {
+    if (hook === "beforeInit") {
+      this._init = this._createDescriptors(chart, true);
+      this._notify(this._init, chart, "install");
+    }
+    const descriptors2 = filter3 ? this._descriptors(chart).filter(filter3) : this._descriptors(chart);
+    const result = this._notify(descriptors2, chart, hook, args);
+    if (hook === "afterDestroy") {
+      this._notify(descriptors2, chart, "stop");
+      this._notify(this._init, chart, "uninstall");
+    }
+    return result;
+  }
+  _notify(descriptors2, chart, hook, args) {
+    args = args || {};
+    for (const descriptor of descriptors2) {
+      const plugin = descriptor.plugin;
+      const method4 = plugin[hook];
+      const params = [
+        chart,
+        args,
+        descriptor.options
+      ];
+      if (callback(method4, params, plugin) === false && args.cancelable) {
+        return false;
+      }
+    }
+    return true;
+  }
+  invalidate() {
+    if (!isNullOrUndef(this._cache)) {
+      this._oldCache = this._cache;
+      this._cache = void 0;
+    }
+  }
+  _descriptors(chart) {
+    if (this._cache) {
+      return this._cache;
+    }
+    const descriptors2 = this._cache = this._createDescriptors(chart);
+    this._notifyStateChanges(chart);
+    return descriptors2;
+  }
+  _createDescriptors(chart, all2) {
+    const config = chart && chart.config;
+    const options2 = valueOrDefault(config.options && config.options.plugins, {});
+    const plugins = allPlugins(config);
+    return options2 === false && !all2 ? [] : createDescriptors(chart, plugins, options2, all2);
+  }
+  _notifyStateChanges(chart) {
+    const previousDescriptors = this._oldCache || [];
+    const descriptors2 = this._cache;
+    const diff2 = (a2, b2) => a2.filter((x2) => !b2.some((y2) => x2.plugin.id === y2.plugin.id));
+    this._notify(diff2(previousDescriptors, descriptors2), chart, "stop");
+    this._notify(diff2(descriptors2, previousDescriptors), chart, "start");
+  }
+}
+function allPlugins(config) {
+  const localIds = {};
+  const plugins = [];
+  const keys2 = Object.keys(registry.plugins.items);
+  for (let i2 = 0; i2 < keys2.length; i2++) {
+    plugins.push(registry.getPlugin(keys2[i2]));
+  }
+  const local = config.plugins || [];
+  for (let i2 = 0; i2 < local.length; i2++) {
+    const plugin = local[i2];
+    if (plugins.indexOf(plugin) === -1) {
+      plugins.push(plugin);
+      localIds[plugin.id] = true;
+    }
+  }
+  return {
+    plugins,
+    localIds
+  };
+}
+function getOpts(options2, all2) {
+  if (!all2 && options2 === false) {
+    return null;
+  }
+  if (options2 === true) {
+    return {};
+  }
+  return options2;
+}
+function createDescriptors(chart, { plugins, localIds }, options2, all2) {
+  const result = [];
+  const context = chart.getContext();
+  for (const plugin of plugins) {
+    const id2 = plugin.id;
+    const opts = getOpts(options2[id2], all2);
+    if (opts === null) {
+      continue;
+    }
+    result.push({
+      plugin,
+      options: pluginOpts(chart.config, {
+        plugin,
+        local: localIds[id2]
+      }, opts, context)
+    });
+  }
+  return result;
+}
+function pluginOpts(config, { plugin, local }, opts, context) {
+  const keys2 = config.pluginScopeKeys(plugin);
+  const scopes = config.getOptionScopes(opts, keys2);
+  if (local && plugin.defaults) {
+    scopes.push(plugin.defaults);
+  }
+  return config.createResolver(scopes, context, [
+    ""
+  ], {
+    scriptable: false,
+    indexable: false,
+    allKeys: true
+  });
+}
+function getIndexAxis(type4, options2) {
+  const datasetDefaults = defaults$1.datasets[type4] || {};
+  const datasetOptions = (options2.datasets || {})[type4] || {};
+  return datasetOptions.indexAxis || options2.indexAxis || datasetDefaults.indexAxis || "x";
+}
+function getAxisFromDefaultScaleID(id2, indexAxis) {
+  let axis = id2;
+  if (id2 === "_index_") {
+    axis = indexAxis;
+  } else if (id2 === "_value_") {
+    axis = indexAxis === "x" ? "y" : "x";
+  }
+  return axis;
+}
+function getDefaultScaleIDFromAxis(axis, indexAxis) {
+  return axis === indexAxis ? "_index_" : "_value_";
+}
+function idMatchesAxis(id2) {
+  if (id2 === "x" || id2 === "y" || id2 === "r") {
+    return id2;
+  }
+}
+function axisFromPosition(position2) {
+  if (position2 === "top" || position2 === "bottom") {
+    return "x";
+  }
+  if (position2 === "left" || position2 === "right") {
+    return "y";
+  }
+}
+function determineAxis(id2, ...scaleOptions) {
+  if (idMatchesAxis(id2)) {
+    return id2;
+  }
+  for (const opts of scaleOptions) {
+    const axis = opts.axis || axisFromPosition(opts.position) || id2.length > 1 && idMatchesAxis(id2[0].toLowerCase());
+    if (axis) {
+      return axis;
+    }
+  }
+  throw new Error(`Cannot determine type of '${id2}' axis. Please provide 'axis' or 'position' option.`);
+}
+function getAxisFromDataset(id2, axis, dataset) {
+  if (dataset[axis + "AxisID"] === id2) {
+    return {
+      axis
+    };
+  }
+}
+function retrieveAxisFromDatasets(id2, config) {
+  if (config.data && config.data.datasets) {
+    const boundDs = config.data.datasets.filter((d2) => d2.xAxisID === id2 || d2.yAxisID === id2);
+    if (boundDs.length) {
+      return getAxisFromDataset(id2, "x", boundDs[0]) || getAxisFromDataset(id2, "y", boundDs[0]);
+    }
+  }
+  return {};
+}
+function mergeScaleConfig(config, options2) {
+  const chartDefaults = overrides[config.type] || {
+    scales: {}
+  };
+  const configScales = options2.scales || {};
+  const chartIndexAxis = getIndexAxis(config.type, options2);
+  const scales = /* @__PURE__ */ Object.create(null);
+  Object.keys(configScales).forEach((id2) => {
+    const scaleConf = configScales[id2];
+    if (!isObject$1(scaleConf)) {
+      return console.error(`Invalid scale configuration for scale: ${id2}`);
+    }
+    if (scaleConf._proxy) {
+      return console.warn(`Ignoring resolver passed as options for scale: ${id2}`);
+    }
+    const axis = determineAxis(id2, scaleConf, retrieveAxisFromDatasets(id2, config), defaults$1.scales[scaleConf.type]);
+    const defaultId = getDefaultScaleIDFromAxis(axis, chartIndexAxis);
+    const defaultScaleOptions = chartDefaults.scales || {};
+    scales[id2] = mergeIf(/* @__PURE__ */ Object.create(null), [
+      {
+        axis
+      },
+      scaleConf,
+      defaultScaleOptions[axis],
+      defaultScaleOptions[defaultId]
+    ]);
+  });
+  config.data.datasets.forEach((dataset) => {
+    const type4 = dataset.type || config.type;
+    const indexAxis = dataset.indexAxis || getIndexAxis(type4, options2);
+    const datasetDefaults = overrides[type4] || {};
+    const defaultScaleOptions = datasetDefaults.scales || {};
+    Object.keys(defaultScaleOptions).forEach((defaultID) => {
+      const axis = getAxisFromDefaultScaleID(defaultID, indexAxis);
+      const id2 = dataset[axis + "AxisID"] || axis;
+      scales[id2] = scales[id2] || /* @__PURE__ */ Object.create(null);
+      mergeIf(scales[id2], [
+        {
+          axis
+        },
+        configScales[id2],
+        defaultScaleOptions[defaultID]
+      ]);
+    });
+  });
+  Object.keys(scales).forEach((key) => {
+    const scale = scales[key];
+    mergeIf(scale, [
+      defaults$1.scales[scale.type],
+      defaults$1.scale
+    ]);
+  });
+  return scales;
+}
+function initOptions(config) {
+  const options2 = config.options || (config.options = {});
+  options2.plugins = valueOrDefault(options2.plugins, {});
+  options2.scales = mergeScaleConfig(config, options2);
+}
+function initData(data2) {
+  data2 = data2 || {};
+  data2.datasets = data2.datasets || [];
+  data2.labels = data2.labels || [];
+  return data2;
+}
+function initConfig(config) {
+  config = config || {};
+  config.data = initData(config.data);
+  initOptions(config);
+  return config;
+}
+const keyCache = /* @__PURE__ */ new Map();
+const keysCached = /* @__PURE__ */ new Set();
+function cachedKeys(cacheKey, generate2) {
+  let keys2 = keyCache.get(cacheKey);
+  if (!keys2) {
+    keys2 = generate2();
+    keyCache.set(cacheKey, keys2);
+    keysCached.add(keys2);
+  }
+  return keys2;
+}
+const addIfFound = (set2, obj, key) => {
+  const opts = resolveObjectKey(obj, key);
+  if (opts !== void 0) {
+    set2.add(opts);
+  }
+};
+class Config {
+  constructor(config) {
+    this._config = initConfig(config);
+    this._scopeCache = /* @__PURE__ */ new Map();
+    this._resolverCache = /* @__PURE__ */ new Map();
+  }
+  get platform() {
+    return this._config.platform;
+  }
+  get type() {
+    return this._config.type;
+  }
+  set type(type4) {
+    this._config.type = type4;
+  }
+  get data() {
+    return this._config.data;
+  }
+  set data(data2) {
+    this._config.data = initData(data2);
+  }
+  get options() {
+    return this._config.options;
+  }
+  set options(options2) {
+    this._config.options = options2;
+  }
+  get plugins() {
+    return this._config.plugins;
+  }
+  update() {
+    const config = this._config;
+    this.clearCache();
+    initOptions(config);
+  }
+  clearCache() {
+    this._scopeCache.clear();
+    this._resolverCache.clear();
+  }
+  datasetScopeKeys(datasetType) {
+    return cachedKeys(datasetType, () => [
+      [
+        `datasets.${datasetType}`,
+        ""
+      ]
+    ]);
+  }
+  datasetAnimationScopeKeys(datasetType, transition) {
+    return cachedKeys(`${datasetType}.transition.${transition}`, () => [
+      [
+        `datasets.${datasetType}.transitions.${transition}`,
+        `transitions.${transition}`
+      ],
+      [
+        `datasets.${datasetType}`,
+        ""
+      ]
+    ]);
+  }
+  datasetElementScopeKeys(datasetType, elementType) {
+    return cachedKeys(`${datasetType}-${elementType}`, () => [
+      [
+        `datasets.${datasetType}.elements.${elementType}`,
+        `datasets.${datasetType}`,
+        `elements.${elementType}`,
+        ""
+      ]
+    ]);
+  }
+  pluginScopeKeys(plugin) {
+    const id2 = plugin.id;
+    const type4 = this.type;
+    return cachedKeys(`${type4}-plugin-${id2}`, () => [
+      [
+        `plugins.${id2}`,
+        ...plugin.additionalOptionScopes || []
+      ]
+    ]);
+  }
+  _cachedScopes(mainScope, resetCache) {
+    const _scopeCache = this._scopeCache;
+    let cache = _scopeCache.get(mainScope);
+    if (!cache || resetCache) {
+      cache = /* @__PURE__ */ new Map();
+      _scopeCache.set(mainScope, cache);
+    }
+    return cache;
+  }
+  getOptionScopes(mainScope, keyLists, resetCache) {
+    const { options: options2, type: type4 } = this;
+    const cache = this._cachedScopes(mainScope, resetCache);
+    const cached2 = cache.get(keyLists);
+    if (cached2) {
+      return cached2;
+    }
+    const scopes = /* @__PURE__ */ new Set();
+    keyLists.forEach((keys2) => {
+      if (mainScope) {
+        scopes.add(mainScope);
+        keys2.forEach((key) => addIfFound(scopes, mainScope, key));
+      }
+      keys2.forEach((key) => addIfFound(scopes, options2, key));
+      keys2.forEach((key) => addIfFound(scopes, overrides[type4] || {}, key));
+      keys2.forEach((key) => addIfFound(scopes, defaults$1, key));
+      keys2.forEach((key) => addIfFound(scopes, descriptors, key));
+    });
+    const array4 = Array.from(scopes);
+    if (array4.length === 0) {
+      array4.push(/* @__PURE__ */ Object.create(null));
+    }
+    if (keysCached.has(keyLists)) {
+      cache.set(keyLists, array4);
+    }
+    return array4;
+  }
+  chartOptionScopes() {
+    const { options: options2, type: type4 } = this;
+    return [
+      options2,
+      overrides[type4] || {},
+      defaults$1.datasets[type4] || {},
+      {
+        type: type4
+      },
+      defaults$1,
+      descriptors
+    ];
+  }
+  resolveNamedOptions(scopes, names2, context, prefixes = [
+    ""
+  ]) {
+    const result = {
+      $shared: true
+    };
+    const { resolver, subPrefixes } = getResolver(this._resolverCache, scopes, prefixes);
+    let options2 = resolver;
+    if (needContext(resolver, names2)) {
+      result.$shared = false;
+      context = isFunction$1(context) ? context() : context;
+      const subResolver = this.createResolver(scopes, context, subPrefixes);
+      options2 = _attachContext(resolver, context, subResolver);
+    }
+    for (const prop of names2) {
+      result[prop] = options2[prop];
+    }
+    return result;
+  }
+  createResolver(scopes, context, prefixes = [
+    ""
+  ], descriptorDefaults) {
+    const { resolver } = getResolver(this._resolverCache, scopes, prefixes);
+    return isObject$1(context) ? _attachContext(resolver, context, void 0, descriptorDefaults) : resolver;
+  }
+}
+function getResolver(resolverCache, scopes, prefixes) {
+  let cache = resolverCache.get(scopes);
+  if (!cache) {
+    cache = /* @__PURE__ */ new Map();
+    resolverCache.set(scopes, cache);
+  }
+  const cacheKey = prefixes.join();
+  let cached2 = cache.get(cacheKey);
+  if (!cached2) {
+    const resolver = _createResolver(scopes, prefixes);
+    cached2 = {
+      resolver,
+      subPrefixes: prefixes.filter((p2) => !p2.toLowerCase().includes("hover"))
+    };
+    cache.set(cacheKey, cached2);
+  }
+  return cached2;
+}
+const hasFunction = (value) => isObject$1(value) && Object.getOwnPropertyNames(value).reduce((acc, key) => acc || isFunction$1(value[key]), false);
+function needContext(proxy, names2) {
+  const { isScriptable, isIndexable } = _descriptors(proxy);
+  for (const prop of names2) {
+    const scriptable = isScriptable(prop);
+    const indexable = isIndexable(prop);
+    const value = (indexable || scriptable) && proxy[prop];
+    if (scriptable && (isFunction$1(value) || hasFunction(value)) || indexable && isArray$1(value)) {
+      return true;
+    }
+  }
+  return false;
+}
+var version = "4.3.3";
+const KNOWN_POSITIONS = [
+  "top",
+  "bottom",
+  "left",
+  "right",
+  "chartArea"
+];
+function positionIsHorizontal(position2, axis) {
+  return position2 === "top" || position2 === "bottom" || KNOWN_POSITIONS.indexOf(position2) === -1 && axis === "x";
+}
+function compare2Level(l1, l2) {
+  return function(a2, b2) {
+    return a2[l1] === b2[l1] ? a2[l2] - b2[l2] : a2[l1] - b2[l1];
+  };
+}
+function onAnimationsComplete(context) {
+  const chart = context.chart;
+  const animationOptions = chart.options.animation;
+  chart.notifyPlugins("afterRender");
+  callback(animationOptions && animationOptions.onComplete, [
+    context
+  ], chart);
+}
+function onAnimationProgress(context) {
+  const chart = context.chart;
+  const animationOptions = chart.options.animation;
+  callback(animationOptions && animationOptions.onProgress, [
+    context
+  ], chart);
+}
+function getCanvas(item) {
+  if (_isDomSupported() && typeof item === "string") {
+    item = document.getElementById(item);
+  } else if (item && item.length) {
+    item = item[0];
+  }
+  if (item && item.canvas) {
+    item = item.canvas;
+  }
+  return item;
+}
+const instances = {};
+const getChart = (key) => {
+  const canvas = getCanvas(key);
+  return Object.values(instances).filter((c2) => c2.canvas === canvas).pop();
+};
+function moveNumericKeys(obj, start, move2) {
+  const keys2 = Object.keys(obj);
+  for (const key of keys2) {
+    const intKey = +key;
+    if (intKey >= start) {
+      const value = obj[key];
+      delete obj[key];
+      if (move2 > 0 || intKey > start) {
+        obj[intKey + move2] = value;
+      }
+    }
+  }
+}
+function determineLastEvent(e2, lastEvent, inChartArea, isClick) {
+  if (!inChartArea || e2.type === "mouseout") {
+    return null;
+  }
+  if (isClick) {
+    return lastEvent;
+  }
+  return e2;
+}
+function getDatasetArea(meta) {
+  const { xScale, yScale } = meta;
+  if (xScale && yScale) {
+    return {
+      left: xScale.left,
+      right: xScale.right,
+      top: yScale.top,
+      bottom: yScale.bottom
+    };
+  }
+}
+let Chart$1 = class Chart {
+  static defaults = defaults$1;
+  static instances = instances;
+  static overrides = overrides;
+  static registry = registry;
+  static version = version;
+  static getChart = getChart;
+  static register(...items2) {
+    registry.add(...items2);
+    invalidatePlugins();
+  }
+  static unregister(...items2) {
+    registry.remove(...items2);
+    invalidatePlugins();
+  }
+  constructor(item, userConfig) {
+    const config = this.config = new Config(userConfig);
+    const initialCanvas = getCanvas(item);
+    const existingChart = getChart(initialCanvas);
+    if (existingChart) {
+      throw new Error("Canvas is already in use. Chart with ID '" + existingChart.id + "' must be destroyed before the canvas with ID '" + existingChart.canvas.id + "' can be reused.");
+    }
+    const options2 = config.createResolver(config.chartOptionScopes(), this.getContext());
+    this.platform = new (config.platform || _detectPlatform(initialCanvas))();
+    this.platform.updateConfig(config);
+    const context = this.platform.acquireContext(initialCanvas, options2.aspectRatio);
+    const canvas = context && context.canvas;
+    const height = canvas && canvas.height;
+    const width = canvas && canvas.width;
+    this.id = uid();
+    this.ctx = context;
+    this.canvas = canvas;
+    this.width = width;
+    this.height = height;
+    this._options = options2;
+    this._aspectRatio = this.aspectRatio;
+    this._layers = [];
+    this._metasets = [];
+    this._stacks = void 0;
+    this.boxes = [];
+    this.currentDevicePixelRatio = void 0;
+    this.chartArea = void 0;
+    this._active = [];
+    this._lastEvent = void 0;
+    this._listeners = {};
+    this._responsiveListeners = void 0;
+    this._sortedMetasets = [];
+    this.scales = {};
+    this._plugins = new PluginService();
+    this.$proxies = {};
+    this._hiddenIndices = {};
+    this.attached = false;
+    this._animationsDisabled = void 0;
+    this.$context = void 0;
+    this._doResize = debounce((mode) => this.update(mode), options2.resizeDelay || 0);
+    this._dataChanges = [];
+    instances[this.id] = this;
+    if (!context || !canvas) {
+      console.error("Failed to create chart: can't acquire context from the given item");
+      return;
+    }
+    animator.listen(this, "complete", onAnimationsComplete);
+    animator.listen(this, "progress", onAnimationProgress);
+    this._initialize();
+    if (this.attached) {
+      this.update();
+    }
+  }
+  get aspectRatio() {
+    const { options: { aspectRatio, maintainAspectRatio }, width, height, _aspectRatio } = this;
+    if (!isNullOrUndef(aspectRatio)) {
+      return aspectRatio;
+    }
+    if (maintainAspectRatio && _aspectRatio) {
+      return _aspectRatio;
+    }
+    return height ? width / height : null;
+  }
+  get data() {
+    return this.config.data;
+  }
+  set data(data2) {
+    this.config.data = data2;
+  }
+  get options() {
+    return this._options;
+  }
+  set options(options2) {
+    this.config.options = options2;
+  }
+  get registry() {
+    return registry;
+  }
+  _initialize() {
+    this.notifyPlugins("beforeInit");
+    if (this.options.responsive) {
+      this.resize();
+    } else {
+      retinaScale(this, this.options.devicePixelRatio);
+    }
+    this.bindEvents();
+    this.notifyPlugins("afterInit");
+    return this;
+  }
+  clear() {
+    clearCanvas(this.canvas, this.ctx);
+    return this;
+  }
+  stop() {
+    animator.stop(this);
+    return this;
+  }
+  resize(width, height) {
+    if (!animator.running(this)) {
+      this._resize(width, height);
+    } else {
+      this._resizeBeforeDraw = {
+        width,
+        height
+      };
+    }
+  }
+  _resize(width, height) {
+    const options2 = this.options;
+    const canvas = this.canvas;
+    const aspectRatio = options2.maintainAspectRatio && this.aspectRatio;
+    const newSize = this.platform.getMaximumSize(canvas, width, height, aspectRatio);
+    const newRatio = options2.devicePixelRatio || this.platform.getDevicePixelRatio();
+    const mode = this.width ? "resize" : "attach";
+    this.width = newSize.width;
+    this.height = newSize.height;
+    this._aspectRatio = this.aspectRatio;
+    if (!retinaScale(this, newRatio, true)) {
+      return;
+    }
+    this.notifyPlugins("resize", {
+      size: newSize
+    });
+    callback(options2.onResize, [
+      this,
+      newSize
+    ], this);
+    if (this.attached) {
+      if (this._doResize(mode)) {
+        this.render();
+      }
+    }
+  }
+  ensureScalesHaveIDs() {
+    const options2 = this.options;
+    const scalesOptions = options2.scales || {};
+    each(scalesOptions, (axisOptions, axisID) => {
+      axisOptions.id = axisID;
+    });
+  }
+  buildOrUpdateScales() {
+    const options2 = this.options;
+    const scaleOpts = options2.scales;
+    const scales = this.scales;
+    const updated = Object.keys(scales).reduce((obj, id2) => {
+      obj[id2] = false;
+      return obj;
+    }, {});
+    let items2 = [];
+    if (scaleOpts) {
+      items2 = items2.concat(Object.keys(scaleOpts).map((id2) => {
+        const scaleOptions = scaleOpts[id2];
+        const axis = determineAxis(id2, scaleOptions);
+        const isRadial = axis === "r";
+        const isHorizontal = axis === "x";
+        return {
+          options: scaleOptions,
+          dposition: isRadial ? "chartArea" : isHorizontal ? "bottom" : "left",
+          dtype: isRadial ? "radialLinear" : isHorizontal ? "category" : "linear"
+        };
+      }));
+    }
+    each(items2, (item) => {
+      const scaleOptions = item.options;
+      const id2 = scaleOptions.id;
+      const axis = determineAxis(id2, scaleOptions);
+      const scaleType = valueOrDefault(scaleOptions.type, item.dtype);
+      if (scaleOptions.position === void 0 || positionIsHorizontal(scaleOptions.position, axis) !== positionIsHorizontal(item.dposition)) {
+        scaleOptions.position = item.dposition;
+      }
+      updated[id2] = true;
+      let scale = null;
+      if (id2 in scales && scales[id2].type === scaleType) {
+        scale = scales[id2];
+      } else {
+        const scaleClass = registry.getScale(scaleType);
+        scale = new scaleClass({
+          id: id2,
+          type: scaleType,
+          ctx: this.ctx,
+          chart: this
+        });
+        scales[scale.id] = scale;
+      }
+      scale.init(scaleOptions, options2);
+    });
+    each(updated, (hasUpdated, id2) => {
+      if (!hasUpdated) {
+        delete scales[id2];
+      }
+    });
+    each(scales, (scale) => {
+      layouts.configure(this, scale, scale.options);
+      layouts.addBox(this, scale);
+    });
+  }
+  _updateMetasets() {
+    const metasets = this._metasets;
+    const numData = this.data.datasets.length;
+    const numMeta = metasets.length;
+    metasets.sort((a2, b2) => a2.index - b2.index);
+    if (numMeta > numData) {
+      for (let i2 = numData; i2 < numMeta; ++i2) {
+        this._destroyDatasetMeta(i2);
+      }
+      metasets.splice(numData, numMeta - numData);
+    }
+    this._sortedMetasets = metasets.slice(0).sort(compare2Level("order", "index"));
+  }
+  _removeUnreferencedMetasets() {
+    const { _metasets: metasets, data: { datasets } } = this;
+    if (metasets.length > datasets.length) {
+      delete this._stacks;
+    }
+    metasets.forEach((meta, index2) => {
+      if (datasets.filter((x2) => x2 === meta._dataset).length === 0) {
+        this._destroyDatasetMeta(index2);
+      }
+    });
+  }
+  buildOrUpdateControllers() {
+    const newControllers = [];
+    const datasets = this.data.datasets;
+    let i2, ilen;
+    this._removeUnreferencedMetasets();
+    for (i2 = 0, ilen = datasets.length; i2 < ilen; i2++) {
+      const dataset = datasets[i2];
+      let meta = this.getDatasetMeta(i2);
+      const type4 = dataset.type || this.config.type;
+      if (meta.type && meta.type !== type4) {
+        this._destroyDatasetMeta(i2);
+        meta = this.getDatasetMeta(i2);
+      }
+      meta.type = type4;
+      meta.indexAxis = dataset.indexAxis || getIndexAxis(type4, this.options);
+      meta.order = dataset.order || 0;
+      meta.index = i2;
+      meta.label = "" + dataset.label;
+      meta.visible = this.isDatasetVisible(i2);
+      if (meta.controller) {
+        meta.controller.updateIndex(i2);
+        meta.controller.linkScales();
+      } else {
+        const ControllerClass = registry.getController(type4);
+        const { datasetElementType, dataElementType } = defaults$1.datasets[type4];
+        Object.assign(ControllerClass, {
+          dataElementType: registry.getElement(dataElementType),
+          datasetElementType: datasetElementType && registry.getElement(datasetElementType)
+        });
+        meta.controller = new ControllerClass(this, i2);
+        newControllers.push(meta.controller);
+      }
+    }
+    this._updateMetasets();
+    return newControllers;
+  }
+  _resetElements() {
+    each(this.data.datasets, (dataset, datasetIndex) => {
+      this.getDatasetMeta(datasetIndex).controller.reset();
+    }, this);
+  }
+  reset() {
+    this._resetElements();
+    this.notifyPlugins("reset");
+  }
+  update(mode) {
+    const config = this.config;
+    config.update();
+    const options2 = this._options = config.createResolver(config.chartOptionScopes(), this.getContext());
+    const animsDisabled = this._animationsDisabled = !options2.animation;
+    this._updateScales();
+    this._checkEventBindings();
+    this._updateHiddenIndices();
+    this._plugins.invalidate();
+    if (this.notifyPlugins("beforeUpdate", {
+      mode,
+      cancelable: true
+    }) === false) {
+      return;
+    }
+    const newControllers = this.buildOrUpdateControllers();
+    this.notifyPlugins("beforeElementsUpdate");
+    let minPadding = 0;
+    for (let i2 = 0, ilen = this.data.datasets.length; i2 < ilen; i2++) {
+      const { controller } = this.getDatasetMeta(i2);
+      const reset = !animsDisabled && newControllers.indexOf(controller) === -1;
+      controller.buildOrUpdateElements(reset);
+      minPadding = Math.max(+controller.getMaxOverflow(), minPadding);
+    }
+    minPadding = this._minPadding = options2.layout.autoPadding ? minPadding : 0;
+    this._updateLayout(minPadding);
+    if (!animsDisabled) {
+      each(newControllers, (controller) => {
+        controller.reset();
+      });
+    }
+    this._updateDatasets(mode);
+    this.notifyPlugins("afterUpdate", {
+      mode
+    });
+    this._layers.sort(compare2Level("z", "_idx"));
+    const { _active, _lastEvent } = this;
+    if (_lastEvent) {
+      this._eventHandler(_lastEvent, true);
+    } else if (_active.length) {
+      this._updateHoverStyles(_active, _active, true);
+    }
+    this.render();
+  }
+  _updateScales() {
+    each(this.scales, (scale) => {
+      layouts.removeBox(this, scale);
+    });
+    this.ensureScalesHaveIDs();
+    this.buildOrUpdateScales();
+  }
+  _checkEventBindings() {
+    const options2 = this.options;
+    const existingEvents = new Set(Object.keys(this._listeners));
+    const newEvents = new Set(options2.events);
+    if (!setsEqual(existingEvents, newEvents) || !!this._responsiveListeners !== options2.responsive) {
+      this.unbindEvents();
+      this.bindEvents();
+    }
+  }
+  _updateHiddenIndices() {
+    const { _hiddenIndices } = this;
+    const changes = this._getUniformDataChanges() || [];
+    for (const { method: method4, start, count } of changes) {
+      const move2 = method4 === "_removeElements" ? -count : count;
+      moveNumericKeys(_hiddenIndices, start, move2);
+    }
+  }
+  _getUniformDataChanges() {
+    const _dataChanges = this._dataChanges;
+    if (!_dataChanges || !_dataChanges.length) {
+      return;
+    }
+    this._dataChanges = [];
+    const datasetCount = this.data.datasets.length;
+    const makeSet = (idx) => new Set(_dataChanges.filter((c2) => c2[0] === idx).map((c2, i2) => i2 + "," + c2.splice(1).join(",")));
+    const changeSet = makeSet(0);
+    for (let i2 = 1; i2 < datasetCount; i2++) {
+      if (!setsEqual(changeSet, makeSet(i2))) {
+        return;
+      }
+    }
+    return Array.from(changeSet).map((c2) => c2.split(",")).map((a2) => ({
+      method: a2[1],
+      start: +a2[2],
+      count: +a2[3]
+    }));
+  }
+  _updateLayout(minPadding) {
+    if (this.notifyPlugins("beforeLayout", {
+      cancelable: true
+    }) === false) {
+      return;
+    }
+    layouts.update(this, this.width, this.height, minPadding);
+    const area = this.chartArea;
+    const noArea = area.width <= 0 || area.height <= 0;
+    this._layers = [];
+    each(this.boxes, (box2) => {
+      if (noArea && box2.position === "chartArea") {
+        return;
+      }
+      if (box2.configure) {
+        box2.configure();
+      }
+      this._layers.push(...box2._layers());
+    }, this);
+    this._layers.forEach((item, index2) => {
+      item._idx = index2;
+    });
+    this.notifyPlugins("afterLayout");
+  }
+  _updateDatasets(mode) {
+    if (this.notifyPlugins("beforeDatasetsUpdate", {
+      mode,
+      cancelable: true
+    }) === false) {
+      return;
+    }
+    for (let i2 = 0, ilen = this.data.datasets.length; i2 < ilen; ++i2) {
+      this.getDatasetMeta(i2).controller.configure();
+    }
+    for (let i2 = 0, ilen = this.data.datasets.length; i2 < ilen; ++i2) {
+      this._updateDataset(i2, isFunction$1(mode) ? mode({
+        datasetIndex: i2
+      }) : mode);
+    }
+    this.notifyPlugins("afterDatasetsUpdate", {
+      mode
+    });
+  }
+  _updateDataset(index2, mode) {
+    const meta = this.getDatasetMeta(index2);
+    const args = {
+      meta,
+      index: index2,
+      mode,
+      cancelable: true
+    };
+    if (this.notifyPlugins("beforeDatasetUpdate", args) === false) {
+      return;
+    }
+    meta.controller._update(mode);
+    args.cancelable = false;
+    this.notifyPlugins("afterDatasetUpdate", args);
+  }
+  render() {
+    if (this.notifyPlugins("beforeRender", {
+      cancelable: true
+    }) === false) {
+      return;
+    }
+    if (animator.has(this)) {
+      if (this.attached && !animator.running(this)) {
+        animator.start(this);
+      }
+    } else {
+      this.draw();
+      onAnimationsComplete({
+        chart: this
+      });
+    }
+  }
+  draw() {
+    let i2;
+    if (this._resizeBeforeDraw) {
+      const { width, height } = this._resizeBeforeDraw;
+      this._resize(width, height);
+      this._resizeBeforeDraw = null;
+    }
+    this.clear();
+    if (this.width <= 0 || this.height <= 0) {
+      return;
+    }
+    if (this.notifyPlugins("beforeDraw", {
+      cancelable: true
+    }) === false) {
+      return;
+    }
+    const layers = this._layers;
+    for (i2 = 0; i2 < layers.length && layers[i2].z <= 0; ++i2) {
+      layers[i2].draw(this.chartArea);
+    }
+    this._drawDatasets();
+    for (; i2 < layers.length; ++i2) {
+      layers[i2].draw(this.chartArea);
+    }
+    this.notifyPlugins("afterDraw");
+  }
+  _getSortedDatasetMetas(filterVisible) {
+    const metasets = this._sortedMetasets;
+    const result = [];
+    let i2, ilen;
+    for (i2 = 0, ilen = metasets.length; i2 < ilen; ++i2) {
+      const meta = metasets[i2];
+      if (!filterVisible || meta.visible) {
+        result.push(meta);
+      }
+    }
+    return result;
+  }
+  getSortedVisibleDatasetMetas() {
+    return this._getSortedDatasetMetas(true);
+  }
+  _drawDatasets() {
+    if (this.notifyPlugins("beforeDatasetsDraw", {
+      cancelable: true
+    }) === false) {
+      return;
+    }
+    const metasets = this.getSortedVisibleDatasetMetas();
+    for (let i2 = metasets.length - 1; i2 >= 0; --i2) {
+      this._drawDataset(metasets[i2]);
+    }
+    this.notifyPlugins("afterDatasetsDraw");
+  }
+  _drawDataset(meta) {
+    const ctx = this.ctx;
+    const clip = meta._clip;
+    const useClip = !clip.disabled;
+    const area = getDatasetArea(meta) || this.chartArea;
+    const args = {
+      meta,
+      index: meta.index,
+      cancelable: true
+    };
+    if (this.notifyPlugins("beforeDatasetDraw", args) === false) {
+      return;
+    }
+    if (useClip) {
+      clipArea(ctx, {
+        left: clip.left === false ? 0 : area.left - clip.left,
+        right: clip.right === false ? this.width : area.right + clip.right,
+        top: clip.top === false ? 0 : area.top - clip.top,
+        bottom: clip.bottom === false ? this.height : area.bottom + clip.bottom
+      });
+    }
+    meta.controller.draw();
+    if (useClip) {
+      unclipArea(ctx);
+    }
+    args.cancelable = false;
+    this.notifyPlugins("afterDatasetDraw", args);
+  }
+  isPointInArea(point) {
+    return _isPointInArea(point, this.chartArea, this._minPadding);
+  }
+  getElementsAtEventForMode(e2, mode, options2, useFinalPosition) {
+    const method4 = Interaction.modes[mode];
+    if (typeof method4 === "function") {
+      return method4(this, e2, options2, useFinalPosition);
+    }
+    return [];
+  }
+  getDatasetMeta(datasetIndex) {
+    const dataset = this.data.datasets[datasetIndex];
+    const metasets = this._metasets;
+    let meta = metasets.filter((x2) => x2 && x2._dataset === dataset).pop();
+    if (!meta) {
+      meta = {
+        type: null,
+        data: [],
+        dataset: null,
+        controller: null,
+        hidden: null,
+        xAxisID: null,
+        yAxisID: null,
+        order: dataset && dataset.order || 0,
+        index: datasetIndex,
+        _dataset: dataset,
+        _parsed: [],
+        _sorted: false
+      };
+      metasets.push(meta);
+    }
+    return meta;
+  }
+  getContext() {
+    return this.$context || (this.$context = createContext(null, {
+      chart: this,
+      type: "chart"
+    }));
+  }
+  getVisibleDatasetCount() {
+    return this.getSortedVisibleDatasetMetas().length;
+  }
+  isDatasetVisible(datasetIndex) {
+    const dataset = this.data.datasets[datasetIndex];
+    if (!dataset) {
+      return false;
+    }
+    const meta = this.getDatasetMeta(datasetIndex);
+    return typeof meta.hidden === "boolean" ? !meta.hidden : !dataset.hidden;
+  }
+  setDatasetVisibility(datasetIndex, visible) {
+    const meta = this.getDatasetMeta(datasetIndex);
+    meta.hidden = !visible;
+  }
+  toggleDataVisibility(index2) {
+    this._hiddenIndices[index2] = !this._hiddenIndices[index2];
+  }
+  getDataVisibility(index2) {
+    return !this._hiddenIndices[index2];
+  }
+  _updateVisibility(datasetIndex, dataIndex, visible) {
+    const mode = visible ? "show" : "hide";
+    const meta = this.getDatasetMeta(datasetIndex);
+    const anims = meta.controller._resolveAnimations(void 0, mode);
+    if (defined(dataIndex)) {
+      meta.data[dataIndex].hidden = !visible;
+      this.update();
+    } else {
+      this.setDatasetVisibility(datasetIndex, visible);
+      anims.update(meta, {
+        visible
+      });
+      this.update((ctx) => ctx.datasetIndex === datasetIndex ? mode : void 0);
+    }
+  }
+  hide(datasetIndex, dataIndex) {
+    this._updateVisibility(datasetIndex, dataIndex, false);
+  }
+  show(datasetIndex, dataIndex) {
+    this._updateVisibility(datasetIndex, dataIndex, true);
+  }
+  _destroyDatasetMeta(datasetIndex) {
+    const meta = this._metasets[datasetIndex];
+    if (meta && meta.controller) {
+      meta.controller._destroy();
+    }
+    delete this._metasets[datasetIndex];
+  }
+  _stop() {
+    let i2, ilen;
+    this.stop();
+    animator.remove(this);
+    for (i2 = 0, ilen = this.data.datasets.length; i2 < ilen; ++i2) {
+      this._destroyDatasetMeta(i2);
+    }
+  }
+  destroy() {
+    this.notifyPlugins("beforeDestroy");
+    const { canvas, ctx } = this;
+    this._stop();
+    this.config.clearCache();
+    if (canvas) {
+      this.unbindEvents();
+      clearCanvas(canvas, ctx);
+      this.platform.releaseContext(ctx);
+      this.canvas = null;
+      this.ctx = null;
+    }
+    delete instances[this.id];
+    this.notifyPlugins("afterDestroy");
+  }
+  toBase64Image(...args) {
+    return this.canvas.toDataURL(...args);
+  }
+  bindEvents() {
+    this.bindUserEvents();
+    if (this.options.responsive) {
+      this.bindResponsiveEvents();
+    } else {
+      this.attached = true;
+    }
+  }
+  bindUserEvents() {
+    const listeners = this._listeners;
+    const platform2 = this.platform;
+    const _add = (type4, listener2) => {
+      platform2.addEventListener(this, type4, listener2);
+      listeners[type4] = listener2;
+    };
+    const listener = (e2, x2, y2) => {
+      e2.offsetX = x2;
+      e2.offsetY = y2;
+      this._eventHandler(e2);
+    };
+    each(this.options.events, (type4) => _add(type4, listener));
+  }
+  bindResponsiveEvents() {
+    if (!this._responsiveListeners) {
+      this._responsiveListeners = {};
+    }
+    const listeners = this._responsiveListeners;
+    const platform2 = this.platform;
+    const _add = (type4, listener2) => {
+      platform2.addEventListener(this, type4, listener2);
+      listeners[type4] = listener2;
+    };
+    const _remove = (type4, listener2) => {
+      if (listeners[type4]) {
+        platform2.removeEventListener(this, type4, listener2);
+        delete listeners[type4];
+      }
+    };
+    const listener = (width, height) => {
+      if (this.canvas) {
+        this.resize(width, height);
+      }
+    };
+    let detached;
+    const attached = () => {
+      _remove("attach", attached);
+      this.attached = true;
+      this.resize();
+      _add("resize", listener);
+      _add("detach", detached);
+    };
+    detached = () => {
+      this.attached = false;
+      _remove("resize", listener);
+      this._stop();
+      this._resize(0, 0);
+      _add("attach", attached);
+    };
+    if (platform2.isAttached(this.canvas)) {
+      attached();
+    } else {
+      detached();
+    }
+  }
+  unbindEvents() {
+    each(this._listeners, (listener, type4) => {
+      this.platform.removeEventListener(this, type4, listener);
+    });
+    this._listeners = {};
+    each(this._responsiveListeners, (listener, type4) => {
+      this.platform.removeEventListener(this, type4, listener);
+    });
+    this._responsiveListeners = void 0;
+  }
+  updateHoverStyle(items2, mode, enabled) {
+    const prefix2 = enabled ? "set" : "remove";
+    let meta, item, i2, ilen;
+    if (mode === "dataset") {
+      meta = this.getDatasetMeta(items2[0].datasetIndex);
+      meta.controller["_" + prefix2 + "DatasetHoverStyle"]();
+    }
+    for (i2 = 0, ilen = items2.length; i2 < ilen; ++i2) {
+      item = items2[i2];
+      const controller = item && this.getDatasetMeta(item.datasetIndex).controller;
+      if (controller) {
+        controller[prefix2 + "HoverStyle"](item.element, item.datasetIndex, item.index);
+      }
+    }
+  }
+  getActiveElements() {
+    return this._active || [];
+  }
+  setActiveElements(activeElements) {
+    const lastActive = this._active || [];
+    const active = activeElements.map(({ datasetIndex, index: index2 }) => {
+      const meta = this.getDatasetMeta(datasetIndex);
+      if (!meta) {
+        throw new Error("No dataset found at index " + datasetIndex);
+      }
+      return {
+        datasetIndex,
+        element: meta.data[index2],
+        index: index2
+      };
+    });
+    const changed = !_elementsEqual(active, lastActive);
+    if (changed) {
+      this._active = active;
+      this._lastEvent = null;
+      this._updateHoverStyles(active, lastActive);
+    }
+  }
+  notifyPlugins(hook, args, filter3) {
+    return this._plugins.notify(this, hook, args, filter3);
+  }
+  isPluginEnabled(pluginId) {
+    return this._plugins._cache.filter((p2) => p2.plugin.id === pluginId).length === 1;
+  }
+  _updateHoverStyles(active, lastActive, replay) {
+    const hoverOptions = this.options.hover;
+    const diff2 = (a2, b2) => a2.filter((x2) => !b2.some((y2) => x2.datasetIndex === y2.datasetIndex && x2.index === y2.index));
+    const deactivated = diff2(lastActive, active);
+    const activated = replay ? active : diff2(active, lastActive);
+    if (deactivated.length) {
+      this.updateHoverStyle(deactivated, hoverOptions.mode, false);
+    }
+    if (activated.length && hoverOptions.mode) {
+      this.updateHoverStyle(activated, hoverOptions.mode, true);
+    }
+  }
+  _eventHandler(e2, replay) {
+    const args = {
+      event: e2,
+      replay,
+      cancelable: true,
+      inChartArea: this.isPointInArea(e2)
+    };
+    const eventFilter = (plugin) => (plugin.options.events || this.options.events).includes(e2.native.type);
+    if (this.notifyPlugins("beforeEvent", args, eventFilter) === false) {
+      return;
+    }
+    const changed = this._handleEvent(e2, replay, args.inChartArea);
+    args.cancelable = false;
+    this.notifyPlugins("afterEvent", args, eventFilter);
+    if (changed || args.changed) {
+      this.render();
+    }
+    return this;
+  }
+  _handleEvent(e2, replay, inChartArea) {
+    const { _active: lastActive = [], options: options2 } = this;
+    const useFinalPosition = replay;
+    const active = this._getActiveElements(e2, lastActive, inChartArea, useFinalPosition);
+    const isClick = _isClickEvent(e2);
+    const lastEvent = determineLastEvent(e2, this._lastEvent, inChartArea, isClick);
+    if (inChartArea) {
+      this._lastEvent = null;
+      callback(options2.onHover, [
+        e2,
+        active,
+        this
+      ], this);
+      if (isClick) {
+        callback(options2.onClick, [
+          e2,
+          active,
+          this
+        ], this);
+      }
+    }
+    const changed = !_elementsEqual(active, lastActive);
+    if (changed || replay) {
+      this._active = active;
+      this._updateHoverStyles(active, lastActive, replay);
+    }
+    this._lastEvent = lastEvent;
+    return changed;
+  }
+  _getActiveElements(e2, lastActive, inChartArea, useFinalPosition) {
+    if (e2.type === "mouseout") {
+      return [];
+    }
+    if (!inChartArea) {
+      return lastActive;
+    }
+    const hoverOptions = this.options.hover;
+    return this.getElementsAtEventForMode(e2, hoverOptions.mode, hoverOptions, useFinalPosition);
+  }
+};
+function invalidatePlugins() {
+  return each(Chart$1.instances, (chart) => chart._plugins.invalidate());
+}
+function getBarBounds(bar, useFinalPosition) {
+  const { x: x2, y: y2, base, width, height } = bar.getProps([
+    "x",
+    "y",
+    "base",
+    "width",
+    "height"
+  ], useFinalPosition);
+  let left, right, top, bottom, half;
+  if (bar.horizontal) {
+    half = height / 2;
+    left = Math.min(x2, base);
+    right = Math.max(x2, base);
+    top = y2 - half;
+    bottom = y2 + half;
+  } else {
+    half = width / 2;
+    left = x2 - half;
+    right = x2 + half;
+    top = Math.min(y2, base);
+    bottom = Math.max(y2, base);
+  }
+  return {
+    left,
+    top,
+    right,
+    bottom
+  };
+}
+function skipOrLimit(skip2, value, min2, max2) {
+  return skip2 ? 0 : _limitValue(value, min2, max2);
+}
+function parseBorderWidth(bar, maxW, maxH) {
+  const value = bar.options.borderWidth;
+  const skip2 = bar.borderSkipped;
+  const o2 = toTRBL(value);
+  return {
+    t: skipOrLimit(skip2.top, o2.top, 0, maxH),
+    r: skipOrLimit(skip2.right, o2.right, 0, maxW),
+    b: skipOrLimit(skip2.bottom, o2.bottom, 0, maxH),
+    l: skipOrLimit(skip2.left, o2.left, 0, maxW)
+  };
+}
+function parseBorderRadius(bar, maxW, maxH) {
+  const { enableBorderRadius } = bar.getProps([
+    "enableBorderRadius"
+  ]);
+  const value = bar.options.borderRadius;
+  const o2 = toTRBLCorners(value);
+  const maxR = Math.min(maxW, maxH);
+  const skip2 = bar.borderSkipped;
+  const enableBorder = enableBorderRadius || isObject$1(value);
+  return {
+    topLeft: skipOrLimit(!enableBorder || skip2.top || skip2.left, o2.topLeft, 0, maxR),
+    topRight: skipOrLimit(!enableBorder || skip2.top || skip2.right, o2.topRight, 0, maxR),
+    bottomLeft: skipOrLimit(!enableBorder || skip2.bottom || skip2.left, o2.bottomLeft, 0, maxR),
+    bottomRight: skipOrLimit(!enableBorder || skip2.bottom || skip2.right, o2.bottomRight, 0, maxR)
+  };
+}
+function boundingRects(bar) {
+  const bounds = getBarBounds(bar);
+  const width = bounds.right - bounds.left;
+  const height = bounds.bottom - bounds.top;
+  const border = parseBorderWidth(bar, width / 2, height / 2);
+  const radius = parseBorderRadius(bar, width / 2, height / 2);
+  return {
+    outer: {
+      x: bounds.left,
+      y: bounds.top,
+      w: width,
+      h: height,
+      radius
+    },
+    inner: {
+      x: bounds.left + border.l,
+      y: bounds.top + border.t,
+      w: width - border.l - border.r,
+      h: height - border.t - border.b,
+      radius: {
+        topLeft: Math.max(0, radius.topLeft - Math.max(border.t, border.l)),
+        topRight: Math.max(0, radius.topRight - Math.max(border.t, border.r)),
+        bottomLeft: Math.max(0, radius.bottomLeft - Math.max(border.b, border.l)),
+        bottomRight: Math.max(0, radius.bottomRight - Math.max(border.b, border.r))
+      }
+    }
+  };
+}
+function inRange(bar, x2, y2, useFinalPosition) {
+  const skipX = x2 === null;
+  const skipY = y2 === null;
+  const skipBoth = skipX && skipY;
+  const bounds = bar && !skipBoth && getBarBounds(bar, useFinalPosition);
+  return bounds && (skipX || _isBetween(x2, bounds.left, bounds.right)) && (skipY || _isBetween(y2, bounds.top, bounds.bottom));
+}
+function hasRadius(radius) {
+  return radius.topLeft || radius.topRight || radius.bottomLeft || radius.bottomRight;
+}
+function addNormalRectPath(ctx, rect) {
+  ctx.rect(rect.x, rect.y, rect.w, rect.h);
+}
+function inflateRect(rect, amount, refRect = {}) {
+  const x2 = rect.x !== refRect.x ? -amount : 0;
+  const y2 = rect.y !== refRect.y ? -amount : 0;
+  const w2 = (rect.x + rect.w !== refRect.x + refRect.w ? amount : 0) - x2;
+  const h3 = (rect.y + rect.h !== refRect.y + refRect.h ? amount : 0) - y2;
+  return {
+    x: rect.x + x2,
+    y: rect.y + y2,
+    w: rect.w + w2,
+    h: rect.h + h3,
+    radius: rect.radius
+  };
+}
+class BarElement extends Element$1 {
+  static id = "bar";
+  static defaults = {
+    borderSkipped: "start",
+    borderWidth: 0,
+    borderRadius: 0,
+    inflateAmount: "auto",
+    pointStyle: void 0
+  };
+  static defaultRoutes = {
+    backgroundColor: "backgroundColor",
+    borderColor: "borderColor"
+  };
+  constructor(cfg) {
+    super();
+    this.options = void 0;
+    this.horizontal = void 0;
+    this.base = void 0;
+    this.width = void 0;
+    this.height = void 0;
+    this.inflateAmount = void 0;
+    if (cfg) {
+      Object.assign(this, cfg);
+    }
+  }
+  draw(ctx) {
+    const { inflateAmount, options: { borderColor, backgroundColor } } = this;
+    const { inner, outer } = boundingRects(this);
+    const addRectPath = hasRadius(outer.radius) ? addRoundedRectPath : addNormalRectPath;
+    ctx.save();
+    if (outer.w !== inner.w || outer.h !== inner.h) {
+      ctx.beginPath();
+      addRectPath(ctx, inflateRect(outer, inflateAmount, inner));
+      ctx.clip();
+      addRectPath(ctx, inflateRect(inner, -inflateAmount, outer));
+      ctx.fillStyle = borderColor;
+      ctx.fill("evenodd");
+    }
+    ctx.beginPath();
+    addRectPath(ctx, inflateRect(inner, inflateAmount));
+    ctx.fillStyle = backgroundColor;
+    ctx.fill();
+    ctx.restore();
+  }
+  inRange(mouseX, mouseY, useFinalPosition) {
+    return inRange(this, mouseX, mouseY, useFinalPosition);
+  }
+  inXRange(mouseX, useFinalPosition) {
+    return inRange(this, mouseX, null, useFinalPosition);
+  }
+  inYRange(mouseY, useFinalPosition) {
+    return inRange(this, null, mouseY, useFinalPosition);
+  }
+  getCenterPoint(useFinalPosition) {
+    const { x: x2, y: y2, base, horizontal } = this.getProps([
+      "x",
+      "y",
+      "base",
+      "horizontal"
+    ], useFinalPosition);
+    return {
+      x: horizontal ? (x2 + base) / 2 : x2,
+      y: horizontal ? y2 : (y2 + base) / 2
+    };
+  }
+  getRange(axis) {
+    return axis === "x" ? this.width / 2 : this.height / 2;
+  }
+}
+const getBoxSize = (labelOpts, fontSize) => {
+  let { boxHeight = fontSize, boxWidth = fontSize } = labelOpts;
+  if (labelOpts.usePointStyle) {
+    boxHeight = Math.min(boxHeight, fontSize);
+    boxWidth = labelOpts.pointStyleWidth || Math.min(boxWidth, fontSize);
+  }
+  return {
+    boxWidth,
+    boxHeight,
+    itemHeight: Math.max(fontSize, boxHeight)
+  };
+};
+const itemsEqual = (a2, b2) => a2 !== null && b2 !== null && a2.datasetIndex === b2.datasetIndex && a2.index === b2.index;
+class Legend extends Element$1 {
+  constructor(config) {
+    super();
+    this._added = false;
+    this.legendHitBoxes = [];
+    this._hoveredItem = null;
+    this.doughnutMode = false;
+    this.chart = config.chart;
+    this.options = config.options;
+    this.ctx = config.ctx;
+    this.legendItems = void 0;
+    this.columnSizes = void 0;
+    this.lineWidths = void 0;
+    this.maxHeight = void 0;
+    this.maxWidth = void 0;
+    this.top = void 0;
+    this.bottom = void 0;
+    this.left = void 0;
+    this.right = void 0;
+    this.height = void 0;
+    this.width = void 0;
+    this._margins = void 0;
+    this.position = void 0;
+    this.weight = void 0;
+    this.fullSize = void 0;
+  }
+  update(maxWidth, maxHeight, margins) {
+    this.maxWidth = maxWidth;
+    this.maxHeight = maxHeight;
+    this._margins = margins;
+    this.setDimensions();
+    this.buildLabels();
+    this.fit();
+  }
+  setDimensions() {
+    if (this.isHorizontal()) {
+      this.width = this.maxWidth;
+      this.left = this._margins.left;
+      this.right = this.width;
+    } else {
+      this.height = this.maxHeight;
+      this.top = this._margins.top;
+      this.bottom = this.height;
+    }
+  }
+  buildLabels() {
+    const labelOpts = this.options.labels || {};
+    let legendItems = callback(labelOpts.generateLabels, [
+      this.chart
+    ], this) || [];
+    if (labelOpts.filter) {
+      legendItems = legendItems.filter((item) => labelOpts.filter(item, this.chart.data));
+    }
+    if (labelOpts.sort) {
+      legendItems = legendItems.sort((a2, b2) => labelOpts.sort(a2, b2, this.chart.data));
+    }
+    if (this.options.reverse) {
+      legendItems.reverse();
+    }
+    this.legendItems = legendItems;
+  }
+  fit() {
+    const { options: options2, ctx } = this;
+    if (!options2.display) {
+      this.width = this.height = 0;
+      return;
+    }
+    const labelOpts = options2.labels;
+    const labelFont = toFont(labelOpts.font);
+    const fontSize = labelFont.size;
+    const titleHeight = this._computeTitleHeight();
+    const { boxWidth, itemHeight } = getBoxSize(labelOpts, fontSize);
+    let width, height;
+    ctx.font = labelFont.string;
+    if (this.isHorizontal()) {
+      width = this.maxWidth;
+      height = this._fitRows(titleHeight, fontSize, boxWidth, itemHeight) + 10;
+    } else {
+      height = this.maxHeight;
+      width = this._fitCols(titleHeight, labelFont, boxWidth, itemHeight) + 10;
+    }
+    this.width = Math.min(width, options2.maxWidth || this.maxWidth);
+    this.height = Math.min(height, options2.maxHeight || this.maxHeight);
+  }
+  _fitRows(titleHeight, fontSize, boxWidth, itemHeight) {
+    const { ctx, maxWidth, options: { labels: { padding } } } = this;
+    const hitboxes = this.legendHitBoxes = [];
+    const lineWidths = this.lineWidths = [
+      0
+    ];
+    const lineHeight = itemHeight + padding;
+    let totalHeight = titleHeight;
+    ctx.textAlign = "left";
+    ctx.textBaseline = "middle";
+    let row = -1;
+    let top = -lineHeight;
+    this.legendItems.forEach((legendItem, i2) => {
+      const itemWidth = boxWidth + fontSize / 2 + ctx.measureText(legendItem.text).width;
+      if (i2 === 0 || lineWidths[lineWidths.length - 1] + itemWidth + 2 * padding > maxWidth) {
+        totalHeight += lineHeight;
+        lineWidths[lineWidths.length - (i2 > 0 ? 0 : 1)] = 0;
+        top += lineHeight;
+        row++;
+      }
+      hitboxes[i2] = {
+        left: 0,
+        top,
+        row,
+        width: itemWidth,
+        height: itemHeight
+      };
+      lineWidths[lineWidths.length - 1] += itemWidth + padding;
+    });
+    return totalHeight;
+  }
+  _fitCols(titleHeight, labelFont, boxWidth, _itemHeight) {
+    const { ctx, maxHeight, options: { labels: { padding } } } = this;
+    const hitboxes = this.legendHitBoxes = [];
+    const columnSizes = this.columnSizes = [];
+    const heightLimit = maxHeight - titleHeight;
+    let totalWidth = padding;
+    let currentColWidth = 0;
+    let currentColHeight = 0;
+    let left = 0;
+    let col = 0;
+    this.legendItems.forEach((legendItem, i2) => {
+      const { itemWidth, itemHeight } = calculateItemSize(boxWidth, labelFont, ctx, legendItem, _itemHeight);
+      if (i2 > 0 && currentColHeight + itemHeight + 2 * padding > heightLimit) {
+        totalWidth += currentColWidth + padding;
+        columnSizes.push({
+          width: currentColWidth,
+          height: currentColHeight
+        });
+        left += currentColWidth + padding;
+        col++;
+        currentColWidth = currentColHeight = 0;
+      }
+      hitboxes[i2] = {
+        left,
+        top: currentColHeight,
+        col,
+        width: itemWidth,
+        height: itemHeight
+      };
+      currentColWidth = Math.max(currentColWidth, itemWidth);
+      currentColHeight += itemHeight + padding;
+    });
+    totalWidth += currentColWidth;
+    columnSizes.push({
+      width: currentColWidth,
+      height: currentColHeight
+    });
+    return totalWidth;
+  }
+  adjustHitBoxes() {
+    if (!this.options.display) {
+      return;
+    }
+    const titleHeight = this._computeTitleHeight();
+    const { legendHitBoxes: hitboxes, options: { align, labels: { padding }, rtl } } = this;
+    const rtlHelper = getRtlAdapter(rtl, this.left, this.width);
+    if (this.isHorizontal()) {
+      let row = 0;
+      let left = _alignStartEnd(align, this.left + padding, this.right - this.lineWidths[row]);
+      for (const hitbox of hitboxes) {
+        if (row !== hitbox.row) {
+          row = hitbox.row;
+          left = _alignStartEnd(align, this.left + padding, this.right - this.lineWidths[row]);
+        }
+        hitbox.top += this.top + titleHeight + padding;
+        hitbox.left = rtlHelper.leftForLtr(rtlHelper.x(left), hitbox.width);
+        left += hitbox.width + padding;
+      }
+    } else {
+      let col = 0;
+      let top = _alignStartEnd(align, this.top + titleHeight + padding, this.bottom - this.columnSizes[col].height);
+      for (const hitbox of hitboxes) {
+        if (hitbox.col !== col) {
+          col = hitbox.col;
+          top = _alignStartEnd(align, this.top + titleHeight + padding, this.bottom - this.columnSizes[col].height);
+        }
+        hitbox.top = top;
+        hitbox.left += this.left + padding;
+        hitbox.left = rtlHelper.leftForLtr(rtlHelper.x(hitbox.left), hitbox.width);
+        top += hitbox.height + padding;
+      }
+    }
+  }
+  isHorizontal() {
+    return this.options.position === "top" || this.options.position === "bottom";
+  }
+  draw() {
+    if (this.options.display) {
+      const ctx = this.ctx;
+      clipArea(ctx, this);
+      this._draw();
+      unclipArea(ctx);
+    }
+  }
+  _draw() {
+    const { options: opts, columnSizes, lineWidths, ctx } = this;
+    const { align, labels: labelOpts } = opts;
+    const defaultColor = defaults$1.color;
+    const rtlHelper = getRtlAdapter(opts.rtl, this.left, this.width);
+    const labelFont = toFont(labelOpts.font);
+    const { padding } = labelOpts;
+    const fontSize = labelFont.size;
+    const halfFontSize = fontSize / 2;
+    let cursor;
+    this.drawTitle();
+    ctx.textAlign = rtlHelper.textAlign("left");
+    ctx.textBaseline = "middle";
+    ctx.lineWidth = 0.5;
+    ctx.font = labelFont.string;
+    const { boxWidth, boxHeight, itemHeight } = getBoxSize(labelOpts, fontSize);
+    const drawLegendBox = function(x2, y2, legendItem) {
+      if (isNaN(boxWidth) || boxWidth <= 0 || isNaN(boxHeight) || boxHeight < 0) {
+        return;
+      }
+      ctx.save();
+      const lineWidth = valueOrDefault(legendItem.lineWidth, 1);
+      ctx.fillStyle = valueOrDefault(legendItem.fillStyle, defaultColor);
+      ctx.lineCap = valueOrDefault(legendItem.lineCap, "butt");
+      ctx.lineDashOffset = valueOrDefault(legendItem.lineDashOffset, 0);
+      ctx.lineJoin = valueOrDefault(legendItem.lineJoin, "miter");
+      ctx.lineWidth = lineWidth;
+      ctx.strokeStyle = valueOrDefault(legendItem.strokeStyle, defaultColor);
+      ctx.setLineDash(valueOrDefault(legendItem.lineDash, []));
+      if (labelOpts.usePointStyle) {
+        const drawOptions = {
+          radius: boxHeight * Math.SQRT2 / 2,
+          pointStyle: legendItem.pointStyle,
+          rotation: legendItem.rotation,
+          borderWidth: lineWidth
+        };
+        const centerX = rtlHelper.xPlus(x2, boxWidth / 2);
+        const centerY = y2 + halfFontSize;
+        drawPointLegend(ctx, drawOptions, centerX, centerY, labelOpts.pointStyleWidth && boxWidth);
+      } else {
+        const yBoxTop = y2 + Math.max((fontSize - boxHeight) / 2, 0);
+        const xBoxLeft = rtlHelper.leftForLtr(x2, boxWidth);
+        const borderRadius = toTRBLCorners(legendItem.borderRadius);
+        ctx.beginPath();
+        if (Object.values(borderRadius).some((v2) => v2 !== 0)) {
+          addRoundedRectPath(ctx, {
+            x: xBoxLeft,
+            y: yBoxTop,
+            w: boxWidth,
+            h: boxHeight,
+            radius: borderRadius
+          });
+        } else {
+          ctx.rect(xBoxLeft, yBoxTop, boxWidth, boxHeight);
+        }
+        ctx.fill();
+        if (lineWidth !== 0) {
+          ctx.stroke();
+        }
+      }
+      ctx.restore();
+    };
+    const fillText = function(x2, y2, legendItem) {
+      renderText(ctx, legendItem.text, x2, y2 + itemHeight / 2, labelFont, {
+        strikethrough: legendItem.hidden,
+        textAlign: rtlHelper.textAlign(legendItem.textAlign)
+      });
+    };
+    const isHorizontal = this.isHorizontal();
+    const titleHeight = this._computeTitleHeight();
+    if (isHorizontal) {
+      cursor = {
+        x: _alignStartEnd(align, this.left + padding, this.right - lineWidths[0]),
+        y: this.top + padding + titleHeight,
+        line: 0
+      };
+    } else {
+      cursor = {
+        x: this.left + padding,
+        y: _alignStartEnd(align, this.top + titleHeight + padding, this.bottom - columnSizes[0].height),
+        line: 0
+      };
+    }
+    overrideTextDirection(this.ctx, opts.textDirection);
+    const lineHeight = itemHeight + padding;
+    this.legendItems.forEach((legendItem, i2) => {
+      ctx.strokeStyle = legendItem.fontColor;
+      ctx.fillStyle = legendItem.fontColor;
+      const textWidth = ctx.measureText(legendItem.text).width;
+      const textAlign = rtlHelper.textAlign(legendItem.textAlign || (legendItem.textAlign = labelOpts.textAlign));
+      const width = boxWidth + halfFontSize + textWidth;
+      let x2 = cursor.x;
+      let y2 = cursor.y;
+      rtlHelper.setWidth(this.width);
+      if (isHorizontal) {
+        if (i2 > 0 && x2 + width + padding > this.right) {
+          y2 = cursor.y += lineHeight;
+          cursor.line++;
+          x2 = cursor.x = _alignStartEnd(align, this.left + padding, this.right - lineWidths[cursor.line]);
+        }
+      } else if (i2 > 0 && y2 + lineHeight > this.bottom) {
+        x2 = cursor.x = x2 + columnSizes[cursor.line].width + padding;
+        cursor.line++;
+        y2 = cursor.y = _alignStartEnd(align, this.top + titleHeight + padding, this.bottom - columnSizes[cursor.line].height);
+      }
+      const realX = rtlHelper.x(x2);
+      drawLegendBox(realX, y2, legendItem);
+      x2 = _textX(textAlign, x2 + boxWidth + halfFontSize, isHorizontal ? x2 + width : this.right, opts.rtl);
+      fillText(rtlHelper.x(x2), y2, legendItem);
+      if (isHorizontal) {
+        cursor.x += width + padding;
+      } else if (typeof legendItem.text !== "string") {
+        const fontLineHeight = labelFont.lineHeight;
+        cursor.y += calculateLegendItemHeight(legendItem, fontLineHeight) + padding;
+      } else {
+        cursor.y += lineHeight;
+      }
+    });
+    restoreTextDirection(this.ctx, opts.textDirection);
+  }
+  drawTitle() {
+    const opts = this.options;
+    const titleOpts = opts.title;
+    const titleFont = toFont(titleOpts.font);
+    const titlePadding = toPadding(titleOpts.padding);
+    if (!titleOpts.display) {
+      return;
+    }
+    const rtlHelper = getRtlAdapter(opts.rtl, this.left, this.width);
+    const ctx = this.ctx;
+    const position2 = titleOpts.position;
+    const halfFontSize = titleFont.size / 2;
+    const topPaddingPlusHalfFontSize = titlePadding.top + halfFontSize;
+    let y2;
+    let left = this.left;
+    let maxWidth = this.width;
+    if (this.isHorizontal()) {
+      maxWidth = Math.max(...this.lineWidths);
+      y2 = this.top + topPaddingPlusHalfFontSize;
+      left = _alignStartEnd(opts.align, left, this.right - maxWidth);
+    } else {
+      const maxHeight = this.columnSizes.reduce((acc, size) => Math.max(acc, size.height), 0);
+      y2 = topPaddingPlusHalfFontSize + _alignStartEnd(opts.align, this.top, this.bottom - maxHeight - opts.labels.padding - this._computeTitleHeight());
+    }
+    const x2 = _alignStartEnd(position2, left, left + maxWidth);
+    ctx.textAlign = rtlHelper.textAlign(_toLeftRightCenter(position2));
+    ctx.textBaseline = "middle";
+    ctx.strokeStyle = titleOpts.color;
+    ctx.fillStyle = titleOpts.color;
+    ctx.font = titleFont.string;
+    renderText(ctx, titleOpts.text, x2, y2, titleFont);
+  }
+  _computeTitleHeight() {
+    const titleOpts = this.options.title;
+    const titleFont = toFont(titleOpts.font);
+    const titlePadding = toPadding(titleOpts.padding);
+    return titleOpts.display ? titleFont.lineHeight + titlePadding.height : 0;
+  }
+  _getLegendItemAt(x2, y2) {
+    let i2, hitBox, lh2;
+    if (_isBetween(x2, this.left, this.right) && _isBetween(y2, this.top, this.bottom)) {
+      lh2 = this.legendHitBoxes;
+      for (i2 = 0; i2 < lh2.length; ++i2) {
+        hitBox = lh2[i2];
+        if (_isBetween(x2, hitBox.left, hitBox.left + hitBox.width) && _isBetween(y2, hitBox.top, hitBox.top + hitBox.height)) {
+          return this.legendItems[i2];
+        }
+      }
+    }
+    return null;
+  }
+  handleEvent(e2) {
+    const opts = this.options;
+    if (!isListened(e2.type, opts)) {
+      return;
+    }
+    const hoveredItem = this._getLegendItemAt(e2.x, e2.y);
+    if (e2.type === "mousemove" || e2.type === "mouseout") {
+      const previous = this._hoveredItem;
+      const sameItem = itemsEqual(previous, hoveredItem);
+      if (previous && !sameItem) {
+        callback(opts.onLeave, [
+          e2,
+          previous,
+          this
+        ], this);
+      }
+      this._hoveredItem = hoveredItem;
+      if (hoveredItem && !sameItem) {
+        callback(opts.onHover, [
+          e2,
+          hoveredItem,
+          this
+        ], this);
+      }
+    } else if (hoveredItem) {
+      callback(opts.onClick, [
+        e2,
+        hoveredItem,
+        this
+      ], this);
+    }
+  }
+}
+function calculateItemSize(boxWidth, labelFont, ctx, legendItem, _itemHeight) {
+  const itemWidth = calculateItemWidth(legendItem, boxWidth, labelFont, ctx);
+  const itemHeight = calculateItemHeight(_itemHeight, legendItem, labelFont.lineHeight);
+  return {
+    itemWidth,
+    itemHeight
+  };
+}
+function calculateItemWidth(legendItem, boxWidth, labelFont, ctx) {
+  let legendItemText = legendItem.text;
+  if (legendItemText && typeof legendItemText !== "string") {
+    legendItemText = legendItemText.reduce((a2, b2) => a2.length > b2.length ? a2 : b2);
+  }
+  return boxWidth + labelFont.size / 2 + ctx.measureText(legendItemText).width;
+}
+function calculateItemHeight(_itemHeight, legendItem, fontLineHeight) {
+  let itemHeight = _itemHeight;
+  if (typeof legendItem.text !== "string") {
+    itemHeight = calculateLegendItemHeight(legendItem, fontLineHeight);
+  }
+  return itemHeight;
+}
+function calculateLegendItemHeight(legendItem, fontLineHeight) {
+  const labelHeight = legendItem.text ? legendItem.text.length : 0;
+  return fontLineHeight * labelHeight;
+}
+function isListened(type4, opts) {
+  if ((type4 === "mousemove" || type4 === "mouseout") && (opts.onHover || opts.onLeave)) {
+    return true;
+  }
+  if (opts.onClick && (type4 === "click" || type4 === "mouseup")) {
+    return true;
+  }
+  return false;
+}
+var plugin_legend = {
+  id: "legend",
+  _element: Legend,
+  start(chart, _args, options2) {
+    const legend = chart.legend = new Legend({
+      ctx: chart.ctx,
+      options: options2,
+      chart
+    });
+    layouts.configure(chart, legend, options2);
+    layouts.addBox(chart, legend);
+  },
+  stop(chart) {
+    layouts.removeBox(chart, chart.legend);
+    delete chart.legend;
+  },
+  beforeUpdate(chart, _args, options2) {
+    const legend = chart.legend;
+    layouts.configure(chart, legend, options2);
+    legend.options = options2;
+  },
+  afterUpdate(chart) {
+    const legend = chart.legend;
+    legend.buildLabels();
+    legend.adjustHitBoxes();
+  },
+  afterEvent(chart, args) {
+    if (!args.replay) {
+      chart.legend.handleEvent(args.event);
+    }
+  },
+  defaults: {
+    display: true,
+    position: "top",
+    align: "center",
+    fullSize: true,
+    reverse: false,
+    weight: 1e3,
+    onClick(e2, legendItem, legend) {
+      const index2 = legendItem.datasetIndex;
+      const ci2 = legend.chart;
+      if (ci2.isDatasetVisible(index2)) {
+        ci2.hide(index2);
+        legendItem.hidden = true;
+      } else {
+        ci2.show(index2);
+        legendItem.hidden = false;
+      }
+    },
+    onHover: null,
+    onLeave: null,
+    labels: {
+      color: (ctx) => ctx.chart.options.color,
+      boxWidth: 40,
+      padding: 10,
+      generateLabels(chart) {
+        const datasets = chart.data.datasets;
+        const { labels: { usePointStyle, pointStyle, textAlign, color: color2, useBorderRadius, borderRadius } } = chart.legend.options;
+        return chart._getSortedDatasetMetas().map((meta) => {
+          const style2 = meta.controller.getStyle(usePointStyle ? 0 : void 0);
+          const borderWidth = toPadding(style2.borderWidth);
+          return {
+            text: datasets[meta.index].label,
+            fillStyle: style2.backgroundColor,
+            fontColor: color2,
+            hidden: !meta.visible,
+            lineCap: style2.borderCapStyle,
+            lineDash: style2.borderDash,
+            lineDashOffset: style2.borderDashOffset,
+            lineJoin: style2.borderJoinStyle,
+            lineWidth: (borderWidth.width + borderWidth.height) / 4,
+            strokeStyle: style2.borderColor,
+            pointStyle: pointStyle || style2.pointStyle,
+            rotation: style2.rotation,
+            textAlign: textAlign || style2.textAlign,
+            borderRadius: useBorderRadius && (borderRadius || style2.borderRadius),
+            datasetIndex: meta.index
+          };
+        }, this);
+      }
+    },
+    title: {
+      color: (ctx) => ctx.chart.options.color,
+      display: false,
+      position: "center",
+      text: ""
+    }
+  },
+  descriptors: {
+    _scriptable: (name) => !name.startsWith("on"),
+    labels: {
+      _scriptable: (name) => ![
+        "generateLabels",
+        "filter",
+        "sort"
+      ].includes(name)
+    }
+  }
+};
+let Title$9 = class Title extends Element$1 {
+  constructor(config) {
+    super();
+    this.chart = config.chart;
+    this.options = config.options;
+    this.ctx = config.ctx;
+    this._padding = void 0;
+    this.top = void 0;
+    this.bottom = void 0;
+    this.left = void 0;
+    this.right = void 0;
+    this.width = void 0;
+    this.height = void 0;
+    this.position = void 0;
+    this.weight = void 0;
+    this.fullSize = void 0;
+  }
+  update(maxWidth, maxHeight) {
+    const opts = this.options;
+    this.left = 0;
+    this.top = 0;
+    if (!opts.display) {
+      this.width = this.height = this.right = this.bottom = 0;
+      return;
+    }
+    this.width = this.right = maxWidth;
+    this.height = this.bottom = maxHeight;
+    const lineCount = isArray$1(opts.text) ? opts.text.length : 1;
+    this._padding = toPadding(opts.padding);
+    const textSize = lineCount * toFont(opts.font).lineHeight + this._padding.height;
+    if (this.isHorizontal()) {
+      this.height = textSize;
+    } else {
+      this.width = textSize;
+    }
+  }
+  isHorizontal() {
+    const pos = this.options.position;
+    return pos === "top" || pos === "bottom";
+  }
+  _drawArgs(offset2) {
+    const { top, left, bottom, right, options: options2 } = this;
+    const align = options2.align;
+    let rotation = 0;
+    let maxWidth, titleX, titleY;
+    if (this.isHorizontal()) {
+      titleX = _alignStartEnd(align, left, right);
+      titleY = top + offset2;
+      maxWidth = right - left;
+    } else {
+      if (options2.position === "left") {
+        titleX = left + offset2;
+        titleY = _alignStartEnd(align, bottom, top);
+        rotation = PI * -0.5;
+      } else {
+        titleX = right - offset2;
+        titleY = _alignStartEnd(align, top, bottom);
+        rotation = PI * 0.5;
+      }
+      maxWidth = bottom - top;
+    }
+    return {
+      titleX,
+      titleY,
+      maxWidth,
+      rotation
+    };
+  }
+  draw() {
+    const ctx = this.ctx;
+    const opts = this.options;
+    if (!opts.display) {
+      return;
+    }
+    const fontOpts = toFont(opts.font);
+    const lineHeight = fontOpts.lineHeight;
+    const offset2 = lineHeight / 2 + this._padding.top;
+    const { titleX, titleY, maxWidth, rotation } = this._drawArgs(offset2);
+    renderText(ctx, opts.text, 0, 0, fontOpts, {
+      color: opts.color,
+      maxWidth,
+      rotation,
+      textAlign: _toLeftRightCenter(opts.align),
+      textBaseline: "middle",
+      translation: [
+        titleX,
+        titleY
+      ]
+    });
+  }
+};
+function createTitle(chart, titleOpts) {
+  const title = new Title$9({
+    ctx: chart.ctx,
+    options: titleOpts,
+    chart
+  });
+  layouts.configure(chart, title, titleOpts);
+  layouts.addBox(chart, title);
+  chart.titleBlock = title;
+}
+var plugin_title = {
+  id: "title",
+  _element: Title$9,
+  start(chart, _args, options2) {
+    createTitle(chart, options2);
+  },
+  stop(chart) {
+    const titleBlock = chart.titleBlock;
+    layouts.removeBox(chart, titleBlock);
+    delete chart.titleBlock;
+  },
+  beforeUpdate(chart, _args, options2) {
+    const title = chart.titleBlock;
+    layouts.configure(chart, title, options2);
+    title.options = options2;
+  },
+  defaults: {
+    align: "center",
+    display: false,
+    font: {
+      weight: "bold"
+    },
+    fullSize: true,
+    padding: 10,
+    position: "top",
+    text: "",
+    weight: 2e3
+  },
+  defaultRoutes: {
+    color: "color"
+  },
+  descriptors: {
+    _scriptable: true,
+    _indexable: false
+  }
+};
+const positioners = {
+  average(items2) {
+    if (!items2.length) {
+      return false;
+    }
+    let i2, len;
+    let x2 = 0;
+    let y2 = 0;
+    let count = 0;
+    for (i2 = 0, len = items2.length; i2 < len; ++i2) {
+      const el2 = items2[i2].element;
+      if (el2 && el2.hasValue()) {
+        const pos = el2.tooltipPosition();
+        x2 += pos.x;
+        y2 += pos.y;
+        ++count;
+      }
+    }
+    return {
+      x: x2 / count,
+      y: y2 / count
+    };
+  },
+  nearest(items2, eventPosition) {
+    if (!items2.length) {
+      return false;
+    }
+    let x2 = eventPosition.x;
+    let y2 = eventPosition.y;
+    let minDistance = Number.POSITIVE_INFINITY;
+    let i2, len, nearestElement;
+    for (i2 = 0, len = items2.length; i2 < len; ++i2) {
+      const el2 = items2[i2].element;
+      if (el2 && el2.hasValue()) {
+        const center = el2.getCenterPoint();
+        const d2 = distanceBetweenPoints(eventPosition, center);
+        if (d2 < minDistance) {
+          minDistance = d2;
+          nearestElement = el2;
+        }
+      }
+    }
+    if (nearestElement) {
+      const tp = nearestElement.tooltipPosition();
+      x2 = tp.x;
+      y2 = tp.y;
+    }
+    return {
+      x: x2,
+      y: y2
+    };
+  }
+};
+function pushOrConcat(base, toPush) {
+  if (toPush) {
+    if (isArray$1(toPush)) {
+      Array.prototype.push.apply(base, toPush);
+    } else {
+      base.push(toPush);
+    }
+  }
+  return base;
+}
+function splitNewlines(str) {
+  if ((typeof str === "string" || str instanceof String) && str.indexOf("\n") > -1) {
+    return str.split("\n");
+  }
+  return str;
+}
+function createTooltipItem(chart, item) {
+  const { element, datasetIndex, index: index2 } = item;
+  const controller = chart.getDatasetMeta(datasetIndex).controller;
+  const { label, value } = controller.getLabelAndValue(index2);
+  return {
+    chart,
+    label,
+    parsed: controller.getParsed(index2),
+    raw: chart.data.datasets[datasetIndex].data[index2],
+    formattedValue: value,
+    dataset: controller.getDataset(),
+    dataIndex: index2,
+    datasetIndex,
+    element
+  };
+}
+function getTooltipSize(tooltip, options2) {
+  const ctx = tooltip.chart.ctx;
+  const { body, footer, title } = tooltip;
+  const { boxWidth, boxHeight } = options2;
+  const bodyFont = toFont(options2.bodyFont);
+  const titleFont = toFont(options2.titleFont);
+  const footerFont = toFont(options2.footerFont);
+  const titleLineCount = title.length;
+  const footerLineCount = footer.length;
+  const bodyLineItemCount = body.length;
+  const padding = toPadding(options2.padding);
+  let height = padding.height;
+  let width = 0;
+  let combinedBodyLength = body.reduce((count, bodyItem) => count + bodyItem.before.length + bodyItem.lines.length + bodyItem.after.length, 0);
+  combinedBodyLength += tooltip.beforeBody.length + tooltip.afterBody.length;
+  if (titleLineCount) {
+    height += titleLineCount * titleFont.lineHeight + (titleLineCount - 1) * options2.titleSpacing + options2.titleMarginBottom;
+  }
+  if (combinedBodyLength) {
+    const bodyLineHeight = options2.displayColors ? Math.max(boxHeight, bodyFont.lineHeight) : bodyFont.lineHeight;
+    height += bodyLineItemCount * bodyLineHeight + (combinedBodyLength - bodyLineItemCount) * bodyFont.lineHeight + (combinedBodyLength - 1) * options2.bodySpacing;
+  }
+  if (footerLineCount) {
+    height += options2.footerMarginTop + footerLineCount * footerFont.lineHeight + (footerLineCount - 1) * options2.footerSpacing;
+  }
+  let widthPadding = 0;
+  const maxLineWidth = function(line2) {
+    width = Math.max(width, ctx.measureText(line2).width + widthPadding);
+  };
+  ctx.save();
+  ctx.font = titleFont.string;
+  each(tooltip.title, maxLineWidth);
+  ctx.font = bodyFont.string;
+  each(tooltip.beforeBody.concat(tooltip.afterBody), maxLineWidth);
+  widthPadding = options2.displayColors ? boxWidth + 2 + options2.boxPadding : 0;
+  each(body, (bodyItem) => {
+    each(bodyItem.before, maxLineWidth);
+    each(bodyItem.lines, maxLineWidth);
+    each(bodyItem.after, maxLineWidth);
+  });
+  widthPadding = 0;
+  ctx.font = footerFont.string;
+  each(tooltip.footer, maxLineWidth);
+  ctx.restore();
+  width += padding.width;
+  return {
+    width,
+    height
+  };
+}
+function determineYAlign(chart, size) {
+  const { y: y2, height } = size;
+  if (y2 < height / 2) {
+    return "top";
+  } else if (y2 > chart.height - height / 2) {
+    return "bottom";
+  }
+  return "center";
+}
+function doesNotFitWithAlign(xAlign, chart, options2, size) {
+  const { x: x2, width } = size;
+  const caret2 = options2.caretSize + options2.caretPadding;
+  if (xAlign === "left" && x2 + width + caret2 > chart.width) {
+    return true;
+  }
+  if (xAlign === "right" && x2 - width - caret2 < 0) {
+    return true;
+  }
+}
+function determineXAlign(chart, options2, size, yAlign) {
+  const { x: x2, width } = size;
+  const { width: chartWidth, chartArea: { left, right } } = chart;
+  let xAlign = "center";
+  if (yAlign === "center") {
+    xAlign = x2 <= (left + right) / 2 ? "left" : "right";
+  } else if (x2 <= width / 2) {
+    xAlign = "left";
+  } else if (x2 >= chartWidth - width / 2) {
+    xAlign = "right";
+  }
+  if (doesNotFitWithAlign(xAlign, chart, options2, size)) {
+    xAlign = "center";
+  }
+  return xAlign;
+}
+function determineAlignment(chart, options2, size) {
+  const yAlign = size.yAlign || options2.yAlign || determineYAlign(chart, size);
+  return {
+    xAlign: size.xAlign || options2.xAlign || determineXAlign(chart, options2, size, yAlign),
+    yAlign
+  };
+}
+function alignX(size, xAlign) {
+  let { x: x2, width } = size;
+  if (xAlign === "right") {
+    x2 -= width;
+  } else if (xAlign === "center") {
+    x2 -= width / 2;
+  }
+  return x2;
+}
+function alignY(size, yAlign, paddingAndSize) {
+  let { y: y2, height } = size;
+  if (yAlign === "top") {
+    y2 += paddingAndSize;
+  } else if (yAlign === "bottom") {
+    y2 -= height + paddingAndSize;
+  } else {
+    y2 -= height / 2;
+  }
+  return y2;
+}
+function getBackgroundPoint(options2, size, alignment, chart) {
+  const { caretSize, caretPadding, cornerRadius } = options2;
+  const { xAlign, yAlign } = alignment;
+  const paddingAndSize = caretSize + caretPadding;
+  const { topLeft, topRight, bottomLeft, bottomRight } = toTRBLCorners(cornerRadius);
+  let x2 = alignX(size, xAlign);
+  const y2 = alignY(size, yAlign, paddingAndSize);
+  if (yAlign === "center") {
+    if (xAlign === "left") {
+      x2 += paddingAndSize;
+    } else if (xAlign === "right") {
+      x2 -= paddingAndSize;
+    }
+  } else if (xAlign === "left") {
+    x2 -= Math.max(topLeft, bottomLeft) + caretSize;
+  } else if (xAlign === "right") {
+    x2 += Math.max(topRight, bottomRight) + caretSize;
+  }
+  return {
+    x: _limitValue(x2, 0, chart.width - size.width),
+    y: _limitValue(y2, 0, chart.height - size.height)
+  };
+}
+function getAlignedX(tooltip, align, options2) {
+  const padding = toPadding(options2.padding);
+  return align === "center" ? tooltip.x + tooltip.width / 2 : align === "right" ? tooltip.x + tooltip.width - padding.right : tooltip.x + padding.left;
+}
+function getBeforeAfterBodyLines(callback2) {
+  return pushOrConcat([], splitNewlines(callback2));
+}
+function createTooltipContext(parent, tooltip, tooltipItems) {
+  return createContext(parent, {
+    tooltip,
+    tooltipItems,
+    type: "tooltip"
+  });
+}
+function overrideCallbacks(callbacks, context) {
+  const override = context && context.dataset && context.dataset.tooltip && context.dataset.tooltip.callbacks;
+  return override ? callbacks.override(override) : callbacks;
+}
+const defaultCallbacks = {
+  beforeTitle: noop2,
+  title(tooltipItems) {
+    if (tooltipItems.length > 0) {
+      const item = tooltipItems[0];
+      const labels2 = item.chart.data.labels;
+      const labelCount = labels2 ? labels2.length : 0;
+      if (this && this.options && this.options.mode === "dataset") {
+        return item.dataset.label || "";
+      } else if (item.label) {
+        return item.label;
+      } else if (labelCount > 0 && item.dataIndex < labelCount) {
+        return labels2[item.dataIndex];
+      }
+    }
+    return "";
+  },
+  afterTitle: noop2,
+  beforeBody: noop2,
+  beforeLabel: noop2,
+  label(tooltipItem) {
+    if (this && this.options && this.options.mode === "dataset") {
+      return tooltipItem.label + ": " + tooltipItem.formattedValue || tooltipItem.formattedValue;
+    }
+    let label = tooltipItem.dataset.label || "";
+    if (label) {
+      label += ": ";
+    }
+    const value = tooltipItem.formattedValue;
+    if (!isNullOrUndef(value)) {
+      label += value;
+    }
+    return label;
+  },
+  labelColor(tooltipItem) {
+    const meta = tooltipItem.chart.getDatasetMeta(tooltipItem.datasetIndex);
+    const options2 = meta.controller.getStyle(tooltipItem.dataIndex);
+    return {
+      borderColor: options2.borderColor,
+      backgroundColor: options2.backgroundColor,
+      borderWidth: options2.borderWidth,
+      borderDash: options2.borderDash,
+      borderDashOffset: options2.borderDashOffset,
+      borderRadius: 0
+    };
+  },
+  labelTextColor() {
+    return this.options.bodyColor;
+  },
+  labelPointStyle(tooltipItem) {
+    const meta = tooltipItem.chart.getDatasetMeta(tooltipItem.datasetIndex);
+    const options2 = meta.controller.getStyle(tooltipItem.dataIndex);
+    return {
+      pointStyle: options2.pointStyle,
+      rotation: options2.rotation
+    };
+  },
+  afterLabel: noop2,
+  afterBody: noop2,
+  beforeFooter: noop2,
+  footer: noop2,
+  afterFooter: noop2
+};
+function invokeCallbackWithFallback(callbacks, name, ctx, arg) {
+  const result = callbacks[name].call(ctx, arg);
+  if (typeof result === "undefined") {
+    return defaultCallbacks[name].call(ctx, arg);
+  }
+  return result;
+}
+class Tooltip2 extends Element$1 {
+  static positioners = positioners;
+  constructor(config) {
+    super();
+    this.opacity = 0;
+    this._active = [];
+    this._eventPosition = void 0;
+    this._size = void 0;
+    this._cachedAnimations = void 0;
+    this._tooltipItems = [];
+    this.$animations = void 0;
+    this.$context = void 0;
+    this.chart = config.chart;
+    this.options = config.options;
+    this.dataPoints = void 0;
+    this.title = void 0;
+    this.beforeBody = void 0;
+    this.body = void 0;
+    this.afterBody = void 0;
+    this.footer = void 0;
+    this.xAlign = void 0;
+    this.yAlign = void 0;
+    this.x = void 0;
+    this.y = void 0;
+    this.height = void 0;
+    this.width = void 0;
+    this.caretX = void 0;
+    this.caretY = void 0;
+    this.labelColors = void 0;
+    this.labelPointStyles = void 0;
+    this.labelTextColors = void 0;
+  }
+  initialize(options2) {
+    this.options = options2;
+    this._cachedAnimations = void 0;
+    this.$context = void 0;
+  }
+  _resolveAnimations() {
+    const cached2 = this._cachedAnimations;
+    if (cached2) {
+      return cached2;
+    }
+    const chart = this.chart;
+    const options2 = this.options.setContext(this.getContext());
+    const opts = options2.enabled && chart.options.animation && options2.animations;
+    const animations = new Animations(this.chart, opts);
+    if (opts._cacheable) {
+      this._cachedAnimations = Object.freeze(animations);
+    }
+    return animations;
+  }
+  getContext() {
+    return this.$context || (this.$context = createTooltipContext(this.chart.getContext(), this, this._tooltipItems));
+  }
+  getTitle(context, options2) {
+    const { callbacks } = options2;
+    const beforeTitle = invokeCallbackWithFallback(callbacks, "beforeTitle", this, context);
+    const title = invokeCallbackWithFallback(callbacks, "title", this, context);
+    const afterTitle = invokeCallbackWithFallback(callbacks, "afterTitle", this, context);
+    let lines = [];
+    lines = pushOrConcat(lines, splitNewlines(beforeTitle));
+    lines = pushOrConcat(lines, splitNewlines(title));
+    lines = pushOrConcat(lines, splitNewlines(afterTitle));
+    return lines;
+  }
+  getBeforeBody(tooltipItems, options2) {
+    return getBeforeAfterBodyLines(invokeCallbackWithFallback(options2.callbacks, "beforeBody", this, tooltipItems));
+  }
+  getBody(tooltipItems, options2) {
+    const { callbacks } = options2;
+    const bodyItems = [];
+    each(tooltipItems, (context) => {
+      const bodyItem = {
+        before: [],
+        lines: [],
+        after: []
+      };
+      const scoped = overrideCallbacks(callbacks, context);
+      pushOrConcat(bodyItem.before, splitNewlines(invokeCallbackWithFallback(scoped, "beforeLabel", this, context)));
+      pushOrConcat(bodyItem.lines, invokeCallbackWithFallback(scoped, "label", this, context));
+      pushOrConcat(bodyItem.after, splitNewlines(invokeCallbackWithFallback(scoped, "afterLabel", this, context)));
+      bodyItems.push(bodyItem);
+    });
+    return bodyItems;
+  }
+  getAfterBody(tooltipItems, options2) {
+    return getBeforeAfterBodyLines(invokeCallbackWithFallback(options2.callbacks, "afterBody", this, tooltipItems));
+  }
+  getFooter(tooltipItems, options2) {
+    const { callbacks } = options2;
+    const beforeFooter = invokeCallbackWithFallback(callbacks, "beforeFooter", this, tooltipItems);
+    const footer = invokeCallbackWithFallback(callbacks, "footer", this, tooltipItems);
+    const afterFooter = invokeCallbackWithFallback(callbacks, "afterFooter", this, tooltipItems);
+    let lines = [];
+    lines = pushOrConcat(lines, splitNewlines(beforeFooter));
+    lines = pushOrConcat(lines, splitNewlines(footer));
+    lines = pushOrConcat(lines, splitNewlines(afterFooter));
+    return lines;
+  }
+  _createItems(options2) {
+    const active = this._active;
+    const data2 = this.chart.data;
+    const labelColors = [];
+    const labelPointStyles = [];
+    const labelTextColors = [];
+    let tooltipItems = [];
+    let i2, len;
+    for (i2 = 0, len = active.length; i2 < len; ++i2) {
+      tooltipItems.push(createTooltipItem(this.chart, active[i2]));
+    }
+    if (options2.filter) {
+      tooltipItems = tooltipItems.filter((element, index2, array4) => options2.filter(element, index2, array4, data2));
+    }
+    if (options2.itemSort) {
+      tooltipItems = tooltipItems.sort((a2, b2) => options2.itemSort(a2, b2, data2));
+    }
+    each(tooltipItems, (context) => {
+      const scoped = overrideCallbacks(options2.callbacks, context);
+      labelColors.push(invokeCallbackWithFallback(scoped, "labelColor", this, context));
+      labelPointStyles.push(invokeCallbackWithFallback(scoped, "labelPointStyle", this, context));
+      labelTextColors.push(invokeCallbackWithFallback(scoped, "labelTextColor", this, context));
+    });
+    this.labelColors = labelColors;
+    this.labelPointStyles = labelPointStyles;
+    this.labelTextColors = labelTextColors;
+    this.dataPoints = tooltipItems;
+    return tooltipItems;
+  }
+  update(changed, replay) {
+    const options2 = this.options.setContext(this.getContext());
+    const active = this._active;
+    let properties;
+    let tooltipItems = [];
+    if (!active.length) {
+      if (this.opacity !== 0) {
+        properties = {
+          opacity: 0
+        };
+      }
+    } else {
+      const position2 = positioners[options2.position].call(this, active, this._eventPosition);
+      tooltipItems = this._createItems(options2);
+      this.title = this.getTitle(tooltipItems, options2);
+      this.beforeBody = this.getBeforeBody(tooltipItems, options2);
+      this.body = this.getBody(tooltipItems, options2);
+      this.afterBody = this.getAfterBody(tooltipItems, options2);
+      this.footer = this.getFooter(tooltipItems, options2);
+      const size = this._size = getTooltipSize(this, options2);
+      const positionAndSize = Object.assign({}, position2, size);
+      const alignment = determineAlignment(this.chart, options2, positionAndSize);
+      const backgroundPoint = getBackgroundPoint(options2, positionAndSize, alignment, this.chart);
+      this.xAlign = alignment.xAlign;
+      this.yAlign = alignment.yAlign;
+      properties = {
+        opacity: 1,
+        x: backgroundPoint.x,
+        y: backgroundPoint.y,
+        width: size.width,
+        height: size.height,
+        caretX: position2.x,
+        caretY: position2.y
+      };
+    }
+    this._tooltipItems = tooltipItems;
+    this.$context = void 0;
+    if (properties) {
+      this._resolveAnimations().update(this, properties);
+    }
+    if (changed && options2.external) {
+      options2.external.call(this, {
+        chart: this.chart,
+        tooltip: this,
+        replay
+      });
+    }
+  }
+  drawCaret(tooltipPoint, ctx, size, options2) {
+    const caretPosition = this.getCaretPosition(tooltipPoint, size, options2);
+    ctx.lineTo(caretPosition.x1, caretPosition.y1);
+    ctx.lineTo(caretPosition.x2, caretPosition.y2);
+    ctx.lineTo(caretPosition.x3, caretPosition.y3);
+  }
+  getCaretPosition(tooltipPoint, size, options2) {
+    const { xAlign, yAlign } = this;
+    const { caretSize, cornerRadius } = options2;
+    const { topLeft, topRight, bottomLeft, bottomRight } = toTRBLCorners(cornerRadius);
+    const { x: ptX, y: ptY } = tooltipPoint;
+    const { width, height } = size;
+    let x1, x2, x3, y1, y2, y3;
+    if (yAlign === "center") {
+      y2 = ptY + height / 2;
+      if (xAlign === "left") {
+        x1 = ptX;
+        x2 = x1 - caretSize;
+        y1 = y2 + caretSize;
+        y3 = y2 - caretSize;
+      } else {
+        x1 = ptX + width;
+        x2 = x1 + caretSize;
+        y1 = y2 - caretSize;
+        y3 = y2 + caretSize;
+      }
+      x3 = x1;
+    } else {
+      if (xAlign === "left") {
+        x2 = ptX + Math.max(topLeft, bottomLeft) + caretSize;
+      } else if (xAlign === "right") {
+        x2 = ptX + width - Math.max(topRight, bottomRight) - caretSize;
+      } else {
+        x2 = this.caretX;
+      }
+      if (yAlign === "top") {
+        y1 = ptY;
+        y2 = y1 - caretSize;
+        x1 = x2 - caretSize;
+        x3 = x2 + caretSize;
+      } else {
+        y1 = ptY + height;
+        y2 = y1 + caretSize;
+        x1 = x2 + caretSize;
+        x3 = x2 - caretSize;
+      }
+      y3 = y1;
+    }
+    return {
+      x1,
+      x2,
+      x3,
+      y1,
+      y2,
+      y3
+    };
+  }
+  drawTitle(pt, ctx, options2) {
+    const title = this.title;
+    const length2 = title.length;
+    let titleFont, titleSpacing, i2;
+    if (length2) {
+      const rtlHelper = getRtlAdapter(options2.rtl, this.x, this.width);
+      pt.x = getAlignedX(this, options2.titleAlign, options2);
+      ctx.textAlign = rtlHelper.textAlign(options2.titleAlign);
+      ctx.textBaseline = "middle";
+      titleFont = toFont(options2.titleFont);
+      titleSpacing = options2.titleSpacing;
+      ctx.fillStyle = options2.titleColor;
+      ctx.font = titleFont.string;
+      for (i2 = 0; i2 < length2; ++i2) {
+        ctx.fillText(title[i2], rtlHelper.x(pt.x), pt.y + titleFont.lineHeight / 2);
+        pt.y += titleFont.lineHeight + titleSpacing;
+        if (i2 + 1 === length2) {
+          pt.y += options2.titleMarginBottom - titleSpacing;
+        }
+      }
+    }
+  }
+  _drawColorBox(ctx, pt, i2, rtlHelper, options2) {
+    const labelColor = this.labelColors[i2];
+    const labelPointStyle = this.labelPointStyles[i2];
+    const { boxHeight, boxWidth } = options2;
+    const bodyFont = toFont(options2.bodyFont);
+    const colorX = getAlignedX(this, "left", options2);
+    const rtlColorX = rtlHelper.x(colorX);
+    const yOffSet = boxHeight < bodyFont.lineHeight ? (bodyFont.lineHeight - boxHeight) / 2 : 0;
+    const colorY = pt.y + yOffSet;
+    if (options2.usePointStyle) {
+      const drawOptions = {
+        radius: Math.min(boxWidth, boxHeight) / 2,
+        pointStyle: labelPointStyle.pointStyle,
+        rotation: labelPointStyle.rotation,
+        borderWidth: 1
+      };
+      const centerX = rtlHelper.leftForLtr(rtlColorX, boxWidth) + boxWidth / 2;
+      const centerY = colorY + boxHeight / 2;
+      ctx.strokeStyle = options2.multiKeyBackground;
+      ctx.fillStyle = options2.multiKeyBackground;
+      drawPoint(ctx, drawOptions, centerX, centerY);
+      ctx.strokeStyle = labelColor.borderColor;
+      ctx.fillStyle = labelColor.backgroundColor;
+      drawPoint(ctx, drawOptions, centerX, centerY);
+    } else {
+      ctx.lineWidth = isObject$1(labelColor.borderWidth) ? Math.max(...Object.values(labelColor.borderWidth)) : labelColor.borderWidth || 1;
+      ctx.strokeStyle = labelColor.borderColor;
+      ctx.setLineDash(labelColor.borderDash || []);
+      ctx.lineDashOffset = labelColor.borderDashOffset || 0;
+      const outerX = rtlHelper.leftForLtr(rtlColorX, boxWidth);
+      const innerX = rtlHelper.leftForLtr(rtlHelper.xPlus(rtlColorX, 1), boxWidth - 2);
+      const borderRadius = toTRBLCorners(labelColor.borderRadius);
+      if (Object.values(borderRadius).some((v2) => v2 !== 0)) {
+        ctx.beginPath();
+        ctx.fillStyle = options2.multiKeyBackground;
+        addRoundedRectPath(ctx, {
+          x: outerX,
+          y: colorY,
+          w: boxWidth,
+          h: boxHeight,
+          radius: borderRadius
+        });
+        ctx.fill();
+        ctx.stroke();
+        ctx.fillStyle = labelColor.backgroundColor;
+        ctx.beginPath();
+        addRoundedRectPath(ctx, {
+          x: innerX,
+          y: colorY + 1,
+          w: boxWidth - 2,
+          h: boxHeight - 2,
+          radius: borderRadius
+        });
+        ctx.fill();
+      } else {
+        ctx.fillStyle = options2.multiKeyBackground;
+        ctx.fillRect(outerX, colorY, boxWidth, boxHeight);
+        ctx.strokeRect(outerX, colorY, boxWidth, boxHeight);
+        ctx.fillStyle = labelColor.backgroundColor;
+        ctx.fillRect(innerX, colorY + 1, boxWidth - 2, boxHeight - 2);
+      }
+    }
+    ctx.fillStyle = this.labelTextColors[i2];
+  }
+  drawBody(pt, ctx, options2) {
+    const { body } = this;
+    const { bodySpacing, bodyAlign, displayColors, boxHeight, boxWidth, boxPadding } = options2;
+    const bodyFont = toFont(options2.bodyFont);
+    let bodyLineHeight = bodyFont.lineHeight;
+    let xLinePadding = 0;
+    const rtlHelper = getRtlAdapter(options2.rtl, this.x, this.width);
+    const fillLineOfText = function(line2) {
+      ctx.fillText(line2, rtlHelper.x(pt.x + xLinePadding), pt.y + bodyLineHeight / 2);
+      pt.y += bodyLineHeight + bodySpacing;
+    };
+    const bodyAlignForCalculation = rtlHelper.textAlign(bodyAlign);
+    let bodyItem, textColor, lines, i2, j2, ilen, jlen;
+    ctx.textAlign = bodyAlign;
+    ctx.textBaseline = "middle";
+    ctx.font = bodyFont.string;
+    pt.x = getAlignedX(this, bodyAlignForCalculation, options2);
+    ctx.fillStyle = options2.bodyColor;
+    each(this.beforeBody, fillLineOfText);
+    xLinePadding = displayColors && bodyAlignForCalculation !== "right" ? bodyAlign === "center" ? boxWidth / 2 + boxPadding : boxWidth + 2 + boxPadding : 0;
+    for (i2 = 0, ilen = body.length; i2 < ilen; ++i2) {
+      bodyItem = body[i2];
+      textColor = this.labelTextColors[i2];
+      ctx.fillStyle = textColor;
+      each(bodyItem.before, fillLineOfText);
+      lines = bodyItem.lines;
+      if (displayColors && lines.length) {
+        this._drawColorBox(ctx, pt, i2, rtlHelper, options2);
+        bodyLineHeight = Math.max(bodyFont.lineHeight, boxHeight);
+      }
+      for (j2 = 0, jlen = lines.length; j2 < jlen; ++j2) {
+        fillLineOfText(lines[j2]);
+        bodyLineHeight = bodyFont.lineHeight;
+      }
+      each(bodyItem.after, fillLineOfText);
+    }
+    xLinePadding = 0;
+    bodyLineHeight = bodyFont.lineHeight;
+    each(this.afterBody, fillLineOfText);
+    pt.y -= bodySpacing;
+  }
+  drawFooter(pt, ctx, options2) {
+    const footer = this.footer;
+    const length2 = footer.length;
+    let footerFont, i2;
+    if (length2) {
+      const rtlHelper = getRtlAdapter(options2.rtl, this.x, this.width);
+      pt.x = getAlignedX(this, options2.footerAlign, options2);
+      pt.y += options2.footerMarginTop;
+      ctx.textAlign = rtlHelper.textAlign(options2.footerAlign);
+      ctx.textBaseline = "middle";
+      footerFont = toFont(options2.footerFont);
+      ctx.fillStyle = options2.footerColor;
+      ctx.font = footerFont.string;
+      for (i2 = 0; i2 < length2; ++i2) {
+        ctx.fillText(footer[i2], rtlHelper.x(pt.x), pt.y + footerFont.lineHeight / 2);
+        pt.y += footerFont.lineHeight + options2.footerSpacing;
+      }
+    }
+  }
+  drawBackground(pt, ctx, tooltipSize, options2) {
+    const { xAlign, yAlign } = this;
+    const { x: x2, y: y2 } = pt;
+    const { width, height } = tooltipSize;
+    const { topLeft, topRight, bottomLeft, bottomRight } = toTRBLCorners(options2.cornerRadius);
+    ctx.fillStyle = options2.backgroundColor;
+    ctx.strokeStyle = options2.borderColor;
+    ctx.lineWidth = options2.borderWidth;
+    ctx.beginPath();
+    ctx.moveTo(x2 + topLeft, y2);
+    if (yAlign === "top") {
+      this.drawCaret(pt, ctx, tooltipSize, options2);
+    }
+    ctx.lineTo(x2 + width - topRight, y2);
+    ctx.quadraticCurveTo(x2 + width, y2, x2 + width, y2 + topRight);
+    if (yAlign === "center" && xAlign === "right") {
+      this.drawCaret(pt, ctx, tooltipSize, options2);
+    }
+    ctx.lineTo(x2 + width, y2 + height - bottomRight);
+    ctx.quadraticCurveTo(x2 + width, y2 + height, x2 + width - bottomRight, y2 + height);
+    if (yAlign === "bottom") {
+      this.drawCaret(pt, ctx, tooltipSize, options2);
+    }
+    ctx.lineTo(x2 + bottomLeft, y2 + height);
+    ctx.quadraticCurveTo(x2, y2 + height, x2, y2 + height - bottomLeft);
+    if (yAlign === "center" && xAlign === "left") {
+      this.drawCaret(pt, ctx, tooltipSize, options2);
+    }
+    ctx.lineTo(x2, y2 + topLeft);
+    ctx.quadraticCurveTo(x2, y2, x2 + topLeft, y2);
+    ctx.closePath();
+    ctx.fill();
+    if (options2.borderWidth > 0) {
+      ctx.stroke();
+    }
+  }
+  _updateAnimationTarget(options2) {
+    const chart = this.chart;
+    const anims = this.$animations;
+    const animX = anims && anims.x;
+    const animY = anims && anims.y;
+    if (animX || animY) {
+      const position2 = positioners[options2.position].call(this, this._active, this._eventPosition);
+      if (!position2) {
+        return;
+      }
+      const size = this._size = getTooltipSize(this, options2);
+      const positionAndSize = Object.assign({}, position2, this._size);
+      const alignment = determineAlignment(chart, options2, positionAndSize);
+      const point = getBackgroundPoint(options2, positionAndSize, alignment, chart);
+      if (animX._to !== point.x || animY._to !== point.y) {
+        this.xAlign = alignment.xAlign;
+        this.yAlign = alignment.yAlign;
+        this.width = size.width;
+        this.height = size.height;
+        this.caretX = position2.x;
+        this.caretY = position2.y;
+        this._resolveAnimations().update(this, point);
+      }
+    }
+  }
+  _willRender() {
+    return !!this.opacity;
+  }
+  draw(ctx) {
+    const options2 = this.options.setContext(this.getContext());
+    let opacity = this.opacity;
+    if (!opacity) {
+      return;
+    }
+    this._updateAnimationTarget(options2);
+    const tooltipSize = {
+      width: this.width,
+      height: this.height
+    };
+    const pt = {
+      x: this.x,
+      y: this.y
+    };
+    opacity = Math.abs(opacity) < 1e-3 ? 0 : opacity;
+    const padding = toPadding(options2.padding);
+    const hasTooltipContent = this.title.length || this.beforeBody.length || this.body.length || this.afterBody.length || this.footer.length;
+    if (options2.enabled && hasTooltipContent) {
+      ctx.save();
+      ctx.globalAlpha = opacity;
+      this.drawBackground(pt, ctx, tooltipSize, options2);
+      overrideTextDirection(ctx, options2.textDirection);
+      pt.y += padding.top;
+      this.drawTitle(pt, ctx, options2);
+      this.drawBody(pt, ctx, options2);
+      this.drawFooter(pt, ctx, options2);
+      restoreTextDirection(ctx, options2.textDirection);
+      ctx.restore();
+    }
+  }
+  getActiveElements() {
+    return this._active || [];
+  }
+  setActiveElements(activeElements, eventPosition) {
+    const lastActive = this._active;
+    const active = activeElements.map(({ datasetIndex, index: index2 }) => {
+      const meta = this.chart.getDatasetMeta(datasetIndex);
+      if (!meta) {
+        throw new Error("Cannot find a dataset at index " + datasetIndex);
+      }
+      return {
+        datasetIndex,
+        element: meta.data[index2],
+        index: index2
+      };
+    });
+    const changed = !_elementsEqual(lastActive, active);
+    const positionChanged = this._positionChanged(active, eventPosition);
+    if (changed || positionChanged) {
+      this._active = active;
+      this._eventPosition = eventPosition;
+      this._ignoreReplayEvents = true;
+      this.update(true);
+    }
+  }
+  handleEvent(e2, replay, inChartArea = true) {
+    if (replay && this._ignoreReplayEvents) {
+      return false;
+    }
+    this._ignoreReplayEvents = false;
+    const options2 = this.options;
+    const lastActive = this._active || [];
+    const active = this._getActiveElements(e2, lastActive, replay, inChartArea);
+    const positionChanged = this._positionChanged(active, e2);
+    const changed = replay || !_elementsEqual(active, lastActive) || positionChanged;
+    if (changed) {
+      this._active = active;
+      if (options2.enabled || options2.external) {
+        this._eventPosition = {
+          x: e2.x,
+          y: e2.y
+        };
+        this.update(true, replay);
+      }
+    }
+    return changed;
+  }
+  _getActiveElements(e2, lastActive, replay, inChartArea) {
+    const options2 = this.options;
+    if (e2.type === "mouseout") {
+      return [];
+    }
+    if (!inChartArea) {
+      return lastActive;
+    }
+    const active = this.chart.getElementsAtEventForMode(e2, options2.mode, options2, replay);
+    if (options2.reverse) {
+      active.reverse();
+    }
+    return active;
+  }
+  _positionChanged(active, e2) {
+    const { caretX, caretY, options: options2 } = this;
+    const position2 = positioners[options2.position].call(this, active, e2);
+    return position2 !== false && (caretX !== position2.x || caretY !== position2.y);
+  }
+}
+var plugin_tooltip = {
+  id: "tooltip",
+  _element: Tooltip2,
+  positioners,
+  afterInit(chart, _args, options2) {
+    if (options2) {
+      chart.tooltip = new Tooltip2({
+        chart,
+        options: options2
+      });
+    }
+  },
+  beforeUpdate(chart, _args, options2) {
+    if (chart.tooltip) {
+      chart.tooltip.initialize(options2);
+    }
+  },
+  reset(chart, _args, options2) {
+    if (chart.tooltip) {
+      chart.tooltip.initialize(options2);
+    }
+  },
+  afterDraw(chart) {
+    const tooltip = chart.tooltip;
+    if (tooltip && tooltip._willRender()) {
+      const args = {
+        tooltip
+      };
+      if (chart.notifyPlugins("beforeTooltipDraw", {
+        ...args,
+        cancelable: true
+      }) === false) {
+        return;
+      }
+      tooltip.draw(chart.ctx);
+      chart.notifyPlugins("afterTooltipDraw", args);
+    }
+  },
+  afterEvent(chart, args) {
+    if (chart.tooltip) {
+      const useFinalPosition = args.replay;
+      if (chart.tooltip.handleEvent(args.event, useFinalPosition, args.inChartArea)) {
+        args.changed = true;
+      }
+    }
+  },
+  defaults: {
+    enabled: true,
+    external: null,
+    position: "average",
+    backgroundColor: "rgba(0,0,0,0.8)",
+    titleColor: "#fff",
+    titleFont: {
+      weight: "bold"
+    },
+    titleSpacing: 2,
+    titleMarginBottom: 6,
+    titleAlign: "left",
+    bodyColor: "#fff",
+    bodySpacing: 2,
+    bodyFont: {},
+    bodyAlign: "left",
+    footerColor: "#fff",
+    footerSpacing: 2,
+    footerMarginTop: 6,
+    footerFont: {
+      weight: "bold"
+    },
+    footerAlign: "left",
+    padding: 6,
+    caretPadding: 2,
+    caretSize: 5,
+    cornerRadius: 6,
+    boxHeight: (ctx, opts) => opts.bodyFont.size,
+    boxWidth: (ctx, opts) => opts.bodyFont.size,
+    multiKeyBackground: "#fff",
+    displayColors: true,
+    boxPadding: 0,
+    borderColor: "rgba(0,0,0,0)",
+    borderWidth: 0,
+    animation: {
+      duration: 400,
+      easing: "easeOutQuart"
+    },
+    animations: {
+      numbers: {
+        type: "number",
+        properties: [
+          "x",
+          "y",
+          "width",
+          "height",
+          "caretX",
+          "caretY"
+        ]
+      },
+      opacity: {
+        easing: "linear",
+        duration: 200
+      }
+    },
+    callbacks: defaultCallbacks
+  },
+  defaultRoutes: {
+    bodyFont: "font",
+    footerFont: "font",
+    titleFont: "font"
+  },
+  descriptors: {
+    _scriptable: (name) => name !== "filter" && name !== "itemSort" && name !== "external",
+    _indexable: false,
+    callbacks: {
+      _scriptable: false,
+      _indexable: false
+    },
+    animation: {
+      _fallback: false
+    },
+    animations: {
+      _fallback: "animation"
+    }
+  },
+  additionalOptionScopes: [
+    "interaction"
+  ]
+};
+const addIfString = (labels2, raw, index2, addedLabels) => {
+  if (typeof raw === "string") {
+    index2 = labels2.push(raw) - 1;
+    addedLabels.unshift({
+      index: index2,
+      label: raw
+    });
+  } else if (isNaN(raw)) {
+    index2 = null;
+  }
+  return index2;
+};
+function findOrAddLabel(labels2, raw, index2, addedLabels) {
+  const first = labels2.indexOf(raw);
+  if (first === -1) {
+    return addIfString(labels2, raw, index2, addedLabels);
+  }
+  const last = labels2.lastIndexOf(raw);
+  return first !== last ? index2 : first;
+}
+const validIndex = (index2, max2) => index2 === null ? null : _limitValue(Math.round(index2), 0, max2);
+function _getLabelForValue(value) {
+  const labels2 = this.getLabels();
+  if (value >= 0 && value < labels2.length) {
+    return labels2[value];
+  }
+  return value;
+}
+class CategoryScale extends Scale {
+  static id = "category";
+  static defaults = {
+    ticks: {
+      callback: _getLabelForValue
+    }
+  };
+  constructor(cfg) {
+    super(cfg);
+    this._startValue = void 0;
+    this._valueRange = 0;
+    this._addedLabels = [];
+  }
+  init(scaleOptions) {
+    const added = this._addedLabels;
+    if (added.length) {
+      const labels2 = this.getLabels();
+      for (const { index: index2, label } of added) {
+        if (labels2[index2] === label) {
+          labels2.splice(index2, 1);
+        }
+      }
+      this._addedLabels = [];
+    }
+    super.init(scaleOptions);
+  }
+  parse(raw, index2) {
+    if (isNullOrUndef(raw)) {
+      return null;
+    }
+    const labels2 = this.getLabels();
+    index2 = isFinite(index2) && labels2[index2] === raw ? index2 : findOrAddLabel(labels2, raw, valueOrDefault(index2, raw), this._addedLabels);
+    return validIndex(index2, labels2.length - 1);
+  }
+  determineDataLimits() {
+    const { minDefined, maxDefined } = this.getUserBounds();
+    let { min: min2, max: max2 } = this.getMinMax(true);
+    if (this.options.bounds === "ticks") {
+      if (!minDefined) {
+        min2 = 0;
+      }
+      if (!maxDefined) {
+        max2 = this.getLabels().length - 1;
+      }
+    }
+    this.min = min2;
+    this.max = max2;
+  }
+  buildTicks() {
+    const min2 = this.min;
+    const max2 = this.max;
+    const offset2 = this.options.offset;
+    const ticks = [];
+    let labels2 = this.getLabels();
+    labels2 = min2 === 0 && max2 === labels2.length - 1 ? labels2 : labels2.slice(min2, max2 + 1);
+    this._valueRange = Math.max(labels2.length - (offset2 ? 0 : 1), 1);
+    this._startValue = this.min - (offset2 ? 0.5 : 0);
+    for (let value = min2; value <= max2; value++) {
+      ticks.push({
+        value
+      });
+    }
+    return ticks;
+  }
+  getLabelForValue(value) {
+    return _getLabelForValue.call(this, value);
+  }
+  configure() {
+    super.configure();
+    if (!this.isHorizontal()) {
+      this._reversePixels = !this._reversePixels;
+    }
+  }
+  getPixelForValue(value) {
+    if (typeof value !== "number") {
+      value = this.parse(value);
+    }
+    return value === null ? NaN : this.getPixelForDecimal((value - this._startValue) / this._valueRange);
+  }
+  getPixelForTick(index2) {
+    const ticks = this.ticks;
+    if (index2 < 0 || index2 > ticks.length - 1) {
+      return null;
+    }
+    return this.getPixelForValue(ticks[index2].value);
+  }
+  getValueForPixel(pixel) {
+    return Math.round(this._startValue + this.getDecimalForPixel(pixel) * this._valueRange);
+  }
+  getBasePixel() {
+    return this.bottom;
+  }
+}
+function generateTicks$1(generationOptions, dataRange) {
+  const ticks = [];
+  const MIN_SPACING = 1e-14;
+  const { bounds, step, min: min2, max: max2, precision, count, maxTicks, maxDigits, includeBounds } = generationOptions;
+  const unit = step || 1;
+  const maxSpaces = maxTicks - 1;
+  const { min: rmin, max: rmax } = dataRange;
+  const minDefined = !isNullOrUndef(min2);
+  const maxDefined = !isNullOrUndef(max2);
+  const countDefined = !isNullOrUndef(count);
+  const minSpacing = (rmax - rmin) / (maxDigits + 1);
+  let spacing = niceNum((rmax - rmin) / maxSpaces / unit) * unit;
+  let factor, niceMin, niceMax, numSpaces;
+  if (spacing < MIN_SPACING && !minDefined && !maxDefined) {
+    return [
+      {
+        value: rmin
+      },
+      {
+        value: rmax
+      }
+    ];
+  }
+  numSpaces = Math.ceil(rmax / spacing) - Math.floor(rmin / spacing);
+  if (numSpaces > maxSpaces) {
+    spacing = niceNum(numSpaces * spacing / maxSpaces / unit) * unit;
+  }
+  if (!isNullOrUndef(precision)) {
+    factor = Math.pow(10, precision);
+    spacing = Math.ceil(spacing * factor) / factor;
+  }
+  if (bounds === "ticks") {
+    niceMin = Math.floor(rmin / spacing) * spacing;
+    niceMax = Math.ceil(rmax / spacing) * spacing;
+  } else {
+    niceMin = rmin;
+    niceMax = rmax;
+  }
+  if (minDefined && maxDefined && step && almostWhole((max2 - min2) / step, spacing / 1e3)) {
+    numSpaces = Math.round(Math.min((max2 - min2) / spacing, maxTicks));
+    spacing = (max2 - min2) / numSpaces;
+    niceMin = min2;
+    niceMax = max2;
+  } else if (countDefined) {
+    niceMin = minDefined ? min2 : niceMin;
+    niceMax = maxDefined ? max2 : niceMax;
+    numSpaces = count - 1;
+    spacing = (niceMax - niceMin) / numSpaces;
+  } else {
+    numSpaces = (niceMax - niceMin) / spacing;
+    if (almostEquals(numSpaces, Math.round(numSpaces), spacing / 1e3)) {
+      numSpaces = Math.round(numSpaces);
+    } else {
+      numSpaces = Math.ceil(numSpaces);
+    }
+  }
+  const decimalPlaces = Math.max(_decimalPlaces(spacing), _decimalPlaces(niceMin));
+  factor = Math.pow(10, isNullOrUndef(precision) ? decimalPlaces : precision);
+  niceMin = Math.round(niceMin * factor) / factor;
+  niceMax = Math.round(niceMax * factor) / factor;
+  let j2 = 0;
+  if (minDefined) {
+    if (includeBounds && niceMin !== min2) {
+      ticks.push({
+        value: min2
+      });
+      if (niceMin < min2) {
+        j2++;
+      }
+      if (almostEquals(Math.round((niceMin + j2 * spacing) * factor) / factor, min2, relativeLabelSize(min2, minSpacing, generationOptions))) {
+        j2++;
+      }
+    } else if (niceMin < min2) {
+      j2++;
+    }
+  }
+  for (; j2 < numSpaces; ++j2) {
+    const tickValue = Math.round((niceMin + j2 * spacing) * factor) / factor;
+    if (maxDefined && tickValue > max2) {
+      break;
+    }
+    ticks.push({
+      value: tickValue
+    });
+  }
+  if (maxDefined && includeBounds && niceMax !== max2) {
+    if (ticks.length && almostEquals(ticks[ticks.length - 1].value, max2, relativeLabelSize(max2, minSpacing, generationOptions))) {
+      ticks[ticks.length - 1].value = max2;
+    } else {
+      ticks.push({
+        value: max2
+      });
+    }
+  } else if (!maxDefined || niceMax === max2) {
+    ticks.push({
+      value: niceMax
+    });
+  }
+  return ticks;
+}
+function relativeLabelSize(value, minSpacing, { horizontal, minRotation }) {
+  const rad = toRadians(minRotation);
+  const ratio = (horizontal ? Math.sin(rad) : Math.cos(rad)) || 1e-3;
+  const length2 = 0.75 * minSpacing * ("" + value).length;
+  return Math.min(minSpacing / ratio, length2);
+}
+class LinearScaleBase extends Scale {
+  constructor(cfg) {
+    super(cfg);
+    this.start = void 0;
+    this.end = void 0;
+    this._startValue = void 0;
+    this._endValue = void 0;
+    this._valueRange = 0;
+  }
+  parse(raw, index2) {
+    if (isNullOrUndef(raw)) {
+      return null;
+    }
+    if ((typeof raw === "number" || raw instanceof Number) && !isFinite(+raw)) {
+      return null;
+    }
+    return +raw;
+  }
+  handleTickRangeOptions() {
+    const { beginAtZero } = this.options;
+    const { minDefined, maxDefined } = this.getUserBounds();
+    let { min: min2, max: max2 } = this;
+    const setMin = (v2) => min2 = minDefined ? min2 : v2;
+    const setMax = (v2) => max2 = maxDefined ? max2 : v2;
+    if (beginAtZero) {
+      const minSign = sign$1(min2);
+      const maxSign = sign$1(max2);
+      if (minSign < 0 && maxSign < 0) {
+        setMax(0);
+      } else if (minSign > 0 && maxSign > 0) {
+        setMin(0);
+      }
+    }
+    if (min2 === max2) {
+      let offset2 = max2 === 0 ? 1 : Math.abs(max2 * 0.05);
+      setMax(max2 + offset2);
+      if (!beginAtZero) {
+        setMin(min2 - offset2);
+      }
+    }
+    this.min = min2;
+    this.max = max2;
+  }
+  getTickLimit() {
+    const tickOpts = this.options.ticks;
+    let { maxTicksLimit, stepSize } = tickOpts;
+    let maxTicks;
+    if (stepSize) {
+      maxTicks = Math.ceil(this.max / stepSize) - Math.floor(this.min / stepSize) + 1;
+      if (maxTicks > 1e3) {
+        console.warn(`scales.${this.id}.ticks.stepSize: ${stepSize} would result generating up to ${maxTicks} ticks. Limiting to 1000.`);
+        maxTicks = 1e3;
+      }
+    } else {
+      maxTicks = this.computeTickLimit();
+      maxTicksLimit = maxTicksLimit || 11;
+    }
+    if (maxTicksLimit) {
+      maxTicks = Math.min(maxTicksLimit, maxTicks);
+    }
+    return maxTicks;
+  }
+  computeTickLimit() {
+    return Number.POSITIVE_INFINITY;
+  }
+  buildTicks() {
+    const opts = this.options;
+    const tickOpts = opts.ticks;
+    let maxTicks = this.getTickLimit();
+    maxTicks = Math.max(2, maxTicks);
+    const numericGeneratorOptions = {
+      maxTicks,
+      bounds: opts.bounds,
+      min: opts.min,
+      max: opts.max,
+      precision: tickOpts.precision,
+      step: tickOpts.stepSize,
+      count: tickOpts.count,
+      maxDigits: this._maxDigits(),
+      horizontal: this.isHorizontal(),
+      minRotation: tickOpts.minRotation || 0,
+      includeBounds: tickOpts.includeBounds !== false
+    };
+    const dataRange = this._range || this;
+    const ticks = generateTicks$1(numericGeneratorOptions, dataRange);
+    if (opts.bounds === "ticks") {
+      _setMinAndMaxByKey(ticks, this, "value");
+    }
+    if (opts.reverse) {
+      ticks.reverse();
+      this.start = this.max;
+      this.end = this.min;
+    } else {
+      this.start = this.min;
+      this.end = this.max;
+    }
+    return ticks;
+  }
+  configure() {
+    const ticks = this.ticks;
+    let start = this.min;
+    let end = this.max;
+    super.configure();
+    if (this.options.offset && ticks.length) {
+      const offset2 = (end - start) / Math.max(ticks.length - 1, 1) / 2;
+      start -= offset2;
+      end += offset2;
+    }
+    this._startValue = start;
+    this._endValue = end;
+    this._valueRange = end - start;
+  }
+  getLabelForValue(value) {
+    return formatNumber(value, this.chart.options.locale, this.options.ticks.format);
+  }
+}
+class LinearScale extends LinearScaleBase {
+  static id = "linear";
+  static defaults = {
+    ticks: {
+      callback: Ticks.formatters.numeric
+    }
+  };
+  determineDataLimits() {
+    const { min: min2, max: max2 } = this.getMinMax(true);
+    this.min = isNumberFinite(min2) ? min2 : 0;
+    this.max = isNumberFinite(max2) ? max2 : 1;
+    this.handleTickRangeOptions();
+  }
+  computeTickLimit() {
+    const horizontal = this.isHorizontal();
+    const length2 = horizontal ? this.width : this.height;
+    const minRotation = toRadians(this.options.ticks.minRotation);
+    const ratio = (horizontal ? Math.sin(minRotation) : Math.cos(minRotation)) || 1e-3;
+    const tickFont = this._resolveTickFontOptions(0);
+    return Math.ceil(length2 / Math.min(40, tickFont.lineHeight / ratio));
+  }
+  getPixelForValue(value) {
+    return value === null ? NaN : this.getPixelForDecimal((value - this._startValue) / this._valueRange);
+  }
+  getValueForPixel(pixel) {
+    return this._startValue + this.getDecimalForPixel(pixel) * this._valueRange;
+  }
+}
+const log10Floor = (v2) => Math.floor(log10(v2));
+const changeExponent = (v2, m2) => Math.pow(10, log10Floor(v2) + m2);
+function isMajor(tickVal) {
+  const remain = tickVal / Math.pow(10, log10Floor(tickVal));
+  return remain === 1;
+}
+function steps(min2, max2, rangeExp) {
+  const rangeStep = Math.pow(10, rangeExp);
+  const start = Math.floor(min2 / rangeStep);
+  const end = Math.ceil(max2 / rangeStep);
+  return end - start;
+}
+function startExp(min2, max2) {
+  const range3 = max2 - min2;
+  let rangeExp = log10Floor(range3);
+  while (steps(min2, max2, rangeExp) > 10) {
+    rangeExp++;
+  }
+  while (steps(min2, max2, rangeExp) < 10) {
+    rangeExp--;
+  }
+  return Math.min(rangeExp, log10Floor(min2));
+}
+function generateTicks(generationOptions, { min: min2, max: max2 }) {
+  min2 = finiteOrDefault(generationOptions.min, min2);
+  const ticks = [];
+  const minExp = log10Floor(min2);
+  let exp = startExp(min2, max2);
+  let precision = exp < 0 ? Math.pow(10, Math.abs(exp)) : 1;
+  const stepSize = Math.pow(10, exp);
+  const base = minExp > exp ? Math.pow(10, minExp) : 0;
+  const start = Math.round((min2 - base) * precision) / precision;
+  const offset2 = Math.floor((min2 - base) / stepSize / 10) * stepSize * 10;
+  let significand = Math.floor((start - offset2) / Math.pow(10, exp));
+  let value = finiteOrDefault(generationOptions.min, Math.round((base + offset2 + significand * Math.pow(10, exp)) * precision) / precision);
+  while (value < max2) {
+    ticks.push({
+      value,
+      major: isMajor(value),
+      significand
+    });
+    if (significand >= 10) {
+      significand = significand < 15 ? 15 : 20;
+    } else {
+      significand++;
+    }
+    if (significand >= 20) {
+      exp++;
+      significand = 2;
+      precision = exp >= 0 ? 1 : precision;
+    }
+    value = Math.round((base + offset2 + significand * Math.pow(10, exp)) * precision) / precision;
+  }
+  const lastTick = finiteOrDefault(generationOptions.max, value);
+  ticks.push({
+    value: lastTick,
+    major: isMajor(lastTick),
+    significand
+  });
+  return ticks;
+}
+class LogarithmicScale extends Scale {
+  static id = "logarithmic";
+  static defaults = {
+    ticks: {
+      callback: Ticks.formatters.logarithmic,
+      major: {
+        enabled: true
+      }
+    }
+  };
+  constructor(cfg) {
+    super(cfg);
+    this.start = void 0;
+    this.end = void 0;
+    this._startValue = void 0;
+    this._valueRange = 0;
+  }
+  parse(raw, index2) {
+    const value = LinearScaleBase.prototype.parse.apply(this, [
+      raw,
+      index2
+    ]);
+    if (value === 0) {
+      this._zero = true;
+      return void 0;
+    }
+    return isNumberFinite(value) && value > 0 ? value : null;
+  }
+  determineDataLimits() {
+    const { min: min2, max: max2 } = this.getMinMax(true);
+    this.min = isNumberFinite(min2) ? Math.max(0, min2) : null;
+    this.max = isNumberFinite(max2) ? Math.max(0, max2) : null;
+    if (this.options.beginAtZero) {
+      this._zero = true;
+    }
+    if (this._zero && this.min !== this._suggestedMin && !isNumberFinite(this._userMin)) {
+      this.min = min2 === changeExponent(this.min, 0) ? changeExponent(this.min, -1) : changeExponent(this.min, 0);
+    }
+    this.handleTickRangeOptions();
+  }
+  handleTickRangeOptions() {
+    const { minDefined, maxDefined } = this.getUserBounds();
+    let min2 = this.min;
+    let max2 = this.max;
+    const setMin = (v2) => min2 = minDefined ? min2 : v2;
+    const setMax = (v2) => max2 = maxDefined ? max2 : v2;
+    if (min2 === max2) {
+      if (min2 <= 0) {
+        setMin(1);
+        setMax(10);
+      } else {
+        setMin(changeExponent(min2, -1));
+        setMax(changeExponent(max2, 1));
+      }
+    }
+    if (min2 <= 0) {
+      setMin(changeExponent(max2, -1));
+    }
+    if (max2 <= 0) {
+      setMax(changeExponent(min2, 1));
+    }
+    this.min = min2;
+    this.max = max2;
+  }
+  buildTicks() {
+    const opts = this.options;
+    const generationOptions = {
+      min: this._userMin,
+      max: this._userMax
+    };
+    const ticks = generateTicks(generationOptions, this);
+    if (opts.bounds === "ticks") {
+      _setMinAndMaxByKey(ticks, this, "value");
+    }
+    if (opts.reverse) {
+      ticks.reverse();
+      this.start = this.max;
+      this.end = this.min;
+    } else {
+      this.start = this.min;
+      this.end = this.max;
+    }
+    return ticks;
+  }
+  getLabelForValue(value) {
+    return value === void 0 ? "0" : formatNumber(value, this.chart.options.locale, this.options.ticks.format);
+  }
+  configure() {
+    const start = this.min;
+    super.configure();
+    this._startValue = log10(start);
+    this._valueRange = log10(this.max) - log10(start);
+  }
+  getPixelForValue(value) {
+    if (value === void 0 || value === 0) {
+      value = this.min;
+    }
+    if (value === null || isNaN(value)) {
+      return NaN;
+    }
+    return this.getPixelForDecimal(value === this.min ? 0 : (log10(value) - this._startValue) / this._valueRange);
+  }
+  getValueForPixel(pixel) {
+    const decimal = this.getDecimalForPixel(pixel);
+    return Math.pow(10, this._startValue + decimal * this._valueRange);
+  }
+}
+function getTickBackdropHeight(opts) {
+  const tickOpts = opts.ticks;
+  if (tickOpts.display && opts.display) {
+    const padding = toPadding(tickOpts.backdropPadding);
+    return valueOrDefault(tickOpts.font && tickOpts.font.size, defaults$1.font.size) + padding.height;
+  }
+  return 0;
+}
+function measureLabelSize(ctx, font, label) {
+  label = isArray$1(label) ? label : [
+    label
+  ];
+  return {
+    w: _longestText(ctx, font.string, label),
+    h: label.length * font.lineHeight
+  };
+}
+function determineLimits(angle, pos, size, min2, max2) {
+  if (angle === min2 || angle === max2) {
+    return {
+      start: pos - size / 2,
+      end: pos + size / 2
+    };
+  } else if (angle < min2 || angle > max2) {
+    return {
+      start: pos - size,
+      end: pos
+    };
+  }
+  return {
+    start: pos,
+    end: pos + size
+  };
+}
+function fitWithPointLabels(scale) {
+  const orig = {
+    l: scale.left + scale._padding.left,
+    r: scale.right - scale._padding.right,
+    t: scale.top + scale._padding.top,
+    b: scale.bottom - scale._padding.bottom
+  };
+  const limits = Object.assign({}, orig);
+  const labelSizes = [];
+  const padding = [];
+  const valueCount = scale._pointLabels.length;
+  const pointLabelOpts = scale.options.pointLabels;
+  const additionalAngle = pointLabelOpts.centerPointLabels ? PI / valueCount : 0;
+  for (let i2 = 0; i2 < valueCount; i2++) {
+    const opts = pointLabelOpts.setContext(scale.getPointLabelContext(i2));
+    padding[i2] = opts.padding;
+    const pointPosition = scale.getPointPosition(i2, scale.drawingArea + padding[i2], additionalAngle);
+    const plFont = toFont(opts.font);
+    const textSize = measureLabelSize(scale.ctx, plFont, scale._pointLabels[i2]);
+    labelSizes[i2] = textSize;
+    const angleRadians = _normalizeAngle(scale.getIndexAngle(i2) + additionalAngle);
+    const angle = Math.round(toDegrees(angleRadians));
+    const hLimits = determineLimits(angle, pointPosition.x, textSize.w, 0, 180);
+    const vLimits = determineLimits(angle, pointPosition.y, textSize.h, 90, 270);
+    updateLimits(limits, orig, angleRadians, hLimits, vLimits);
+  }
+  scale.setCenterPoint(orig.l - limits.l, limits.r - orig.r, orig.t - limits.t, limits.b - orig.b);
+  scale._pointLabelItems = buildPointLabelItems(scale, labelSizes, padding);
+}
+function updateLimits(limits, orig, angle, hLimits, vLimits) {
+  const sin = Math.abs(Math.sin(angle));
+  const cos = Math.abs(Math.cos(angle));
+  let x2 = 0;
+  let y2 = 0;
+  if (hLimits.start < orig.l) {
+    x2 = (orig.l - hLimits.start) / sin;
+    limits.l = Math.min(limits.l, orig.l - x2);
+  } else if (hLimits.end > orig.r) {
+    x2 = (hLimits.end - orig.r) / sin;
+    limits.r = Math.max(limits.r, orig.r + x2);
+  }
+  if (vLimits.start < orig.t) {
+    y2 = (orig.t - vLimits.start) / cos;
+    limits.t = Math.min(limits.t, orig.t - y2);
+  } else if (vLimits.end > orig.b) {
+    y2 = (vLimits.end - orig.b) / cos;
+    limits.b = Math.max(limits.b, orig.b + y2);
+  }
+}
+function createPointLabelItem(scale, index2, itemOpts) {
+  const outerDistance = scale.drawingArea;
+  const { extra, additionalAngle, padding, size } = itemOpts;
+  const pointLabelPosition = scale.getPointPosition(index2, outerDistance + extra + padding, additionalAngle);
+  const angle = Math.round(toDegrees(_normalizeAngle(pointLabelPosition.angle + HALF_PI)));
+  const y2 = yForAngle(pointLabelPosition.y, size.h, angle);
+  const textAlign = getTextAlignForAngle(angle);
+  const left = leftForTextAlign(pointLabelPosition.x, size.w, textAlign);
+  return {
+    visible: true,
+    x: pointLabelPosition.x,
+    y: y2,
+    textAlign,
+    left,
+    top: y2,
+    right: left + size.w,
+    bottom: y2 + size.h
+  };
+}
+function isNotOverlapped(item, area) {
+  if (!area) {
+    return true;
+  }
+  const { left, top, right, bottom } = item;
+  const apexesInArea = _isPointInArea({
+    x: left,
+    y: top
+  }, area) || _isPointInArea({
+    x: left,
+    y: bottom
+  }, area) || _isPointInArea({
+    x: right,
+    y: top
+  }, area) || _isPointInArea({
+    x: right,
+    y: bottom
+  }, area);
+  return !apexesInArea;
+}
+function buildPointLabelItems(scale, labelSizes, padding) {
+  const items2 = [];
+  const valueCount = scale._pointLabels.length;
+  const opts = scale.options;
+  const { centerPointLabels, display } = opts.pointLabels;
+  const itemOpts = {
+    extra: getTickBackdropHeight(opts) / 2,
+    additionalAngle: centerPointLabels ? PI / valueCount : 0
+  };
+  let area;
+  for (let i2 = 0; i2 < valueCount; i2++) {
+    itemOpts.padding = padding[i2];
+    itemOpts.size = labelSizes[i2];
+    const item = createPointLabelItem(scale, i2, itemOpts);
+    items2.push(item);
+    if (display === "auto") {
+      item.visible = isNotOverlapped(item, area);
+      if (item.visible) {
+        area = item;
+      }
+    }
+  }
+  return items2;
+}
+function getTextAlignForAngle(angle) {
+  if (angle === 0 || angle === 180) {
+    return "center";
+  } else if (angle < 180) {
+    return "left";
+  }
+  return "right";
+}
+function leftForTextAlign(x2, w2, align) {
+  if (align === "right") {
+    x2 -= w2;
+  } else if (align === "center") {
+    x2 -= w2 / 2;
+  }
+  return x2;
+}
+function yForAngle(y2, h3, angle) {
+  if (angle === 90 || angle === 270) {
+    y2 -= h3 / 2;
+  } else if (angle > 270 || angle < 90) {
+    y2 -= h3;
+  }
+  return y2;
+}
+function drawPointLabelBox(ctx, opts, item) {
+  const { left, top, right, bottom } = item;
+  const { backdropColor } = opts;
+  if (!isNullOrUndef(backdropColor)) {
+    const borderRadius = toTRBLCorners(opts.borderRadius);
+    const padding = toPadding(opts.backdropPadding);
+    ctx.fillStyle = backdropColor;
+    const backdropLeft = left - padding.left;
+    const backdropTop = top - padding.top;
+    const backdropWidth = right - left + padding.width;
+    const backdropHeight = bottom - top + padding.height;
+    if (Object.values(borderRadius).some((v2) => v2 !== 0)) {
+      ctx.beginPath();
+      addRoundedRectPath(ctx, {
+        x: backdropLeft,
+        y: backdropTop,
+        w: backdropWidth,
+        h: backdropHeight,
+        radius: borderRadius
+      });
+      ctx.fill();
+    } else {
+      ctx.fillRect(backdropLeft, backdropTop, backdropWidth, backdropHeight);
+    }
+  }
+}
+function drawPointLabels(scale, labelCount) {
+  const { ctx, options: { pointLabels } } = scale;
+  for (let i2 = labelCount - 1; i2 >= 0; i2--) {
+    const item = scale._pointLabelItems[i2];
+    if (!item.visible) {
+      continue;
+    }
+    const optsAtIndex = pointLabels.setContext(scale.getPointLabelContext(i2));
+    drawPointLabelBox(ctx, optsAtIndex, item);
+    const plFont = toFont(optsAtIndex.font);
+    const { x: x2, y: y2, textAlign } = item;
+    renderText(ctx, scale._pointLabels[i2], x2, y2 + plFont.lineHeight / 2, plFont, {
+      color: optsAtIndex.color,
+      textAlign,
+      textBaseline: "middle"
+    });
+  }
+}
+function pathRadiusLine(scale, radius, circular, labelCount) {
+  const { ctx } = scale;
+  if (circular) {
+    ctx.arc(scale.xCenter, scale.yCenter, radius, 0, TAU);
+  } else {
+    let pointPosition = scale.getPointPosition(0, radius);
+    ctx.moveTo(pointPosition.x, pointPosition.y);
+    for (let i2 = 1; i2 < labelCount; i2++) {
+      pointPosition = scale.getPointPosition(i2, radius);
+      ctx.lineTo(pointPosition.x, pointPosition.y);
+    }
+  }
+}
+function drawRadiusLine(scale, gridLineOpts, radius, labelCount, borderOpts) {
+  const ctx = scale.ctx;
+  const circular = gridLineOpts.circular;
+  const { color: color2, lineWidth } = gridLineOpts;
+  if (!circular && !labelCount || !color2 || !lineWidth || radius < 0) {
+    return;
+  }
+  ctx.save();
+  ctx.strokeStyle = color2;
+  ctx.lineWidth = lineWidth;
+  ctx.setLineDash(borderOpts.dash);
+  ctx.lineDashOffset = borderOpts.dashOffset;
+  ctx.beginPath();
+  pathRadiusLine(scale, radius, circular, labelCount);
+  ctx.closePath();
+  ctx.stroke();
+  ctx.restore();
+}
+function createPointLabelContext(parent, index2, label) {
+  return createContext(parent, {
+    label,
+    index: index2,
+    type: "pointLabel"
+  });
+}
+class RadialLinearScale extends LinearScaleBase {
+  static id = "radialLinear";
+  static defaults = {
+    display: true,
+    animate: true,
+    position: "chartArea",
+    angleLines: {
+      display: true,
+      lineWidth: 1,
+      borderDash: [],
+      borderDashOffset: 0
+    },
+    grid: {
+      circular: false
+    },
+    startAngle: 0,
+    ticks: {
+      showLabelBackdrop: true,
+      callback: Ticks.formatters.numeric
+    },
+    pointLabels: {
+      backdropColor: void 0,
+      backdropPadding: 2,
+      display: true,
+      font: {
+        size: 10
+      },
+      callback(label) {
+        return label;
+      },
+      padding: 5,
+      centerPointLabels: false
+    }
+  };
+  static defaultRoutes = {
+    "angleLines.color": "borderColor",
+    "pointLabels.color": "color",
+    "ticks.color": "color"
+  };
+  static descriptors = {
+    angleLines: {
+      _fallback: "grid"
+    }
+  };
+  constructor(cfg) {
+    super(cfg);
+    this.xCenter = void 0;
+    this.yCenter = void 0;
+    this.drawingArea = void 0;
+    this._pointLabels = [];
+    this._pointLabelItems = [];
+  }
+  setDimensions() {
+    const padding = this._padding = toPadding(getTickBackdropHeight(this.options) / 2);
+    const w2 = this.width = this.maxWidth - padding.width;
+    const h3 = this.height = this.maxHeight - padding.height;
+    this.xCenter = Math.floor(this.left + w2 / 2 + padding.left);
+    this.yCenter = Math.floor(this.top + h3 / 2 + padding.top);
+    this.drawingArea = Math.floor(Math.min(w2, h3) / 2);
+  }
+  determineDataLimits() {
+    const { min: min2, max: max2 } = this.getMinMax(false);
+    this.min = isNumberFinite(min2) && !isNaN(min2) ? min2 : 0;
+    this.max = isNumberFinite(max2) && !isNaN(max2) ? max2 : 0;
+    this.handleTickRangeOptions();
+  }
+  computeTickLimit() {
+    return Math.ceil(this.drawingArea / getTickBackdropHeight(this.options));
+  }
+  generateTickLabels(ticks) {
+    LinearScaleBase.prototype.generateTickLabels.call(this, ticks);
+    this._pointLabels = this.getLabels().map((value, index2) => {
+      const label = callback(this.options.pointLabels.callback, [
+        value,
+        index2
+      ], this);
+      return label || label === 0 ? label : "";
+    }).filter((v2, i2) => this.chart.getDataVisibility(i2));
+  }
+  fit() {
+    const opts = this.options;
+    if (opts.display && opts.pointLabels.display) {
+      fitWithPointLabels(this);
+    } else {
+      this.setCenterPoint(0, 0, 0, 0);
+    }
+  }
+  setCenterPoint(leftMovement, rightMovement, topMovement, bottomMovement) {
+    this.xCenter += Math.floor((leftMovement - rightMovement) / 2);
+    this.yCenter += Math.floor((topMovement - bottomMovement) / 2);
+    this.drawingArea -= Math.min(this.drawingArea / 2, Math.max(leftMovement, rightMovement, topMovement, bottomMovement));
+  }
+  getIndexAngle(index2) {
+    const angleMultiplier = TAU / (this._pointLabels.length || 1);
+    const startAngle = this.options.startAngle || 0;
+    return _normalizeAngle(index2 * angleMultiplier + toRadians(startAngle));
+  }
+  getDistanceFromCenterForValue(value) {
+    if (isNullOrUndef(value)) {
+      return NaN;
+    }
+    const scalingFactor = this.drawingArea / (this.max - this.min);
+    if (this.options.reverse) {
+      return (this.max - value) * scalingFactor;
+    }
+    return (value - this.min) * scalingFactor;
+  }
+  getValueForDistanceFromCenter(distance) {
+    if (isNullOrUndef(distance)) {
+      return NaN;
+    }
+    const scaledDistance = distance / (this.drawingArea / (this.max - this.min));
+    return this.options.reverse ? this.max - scaledDistance : this.min + scaledDistance;
+  }
+  getPointLabelContext(index2) {
+    const pointLabels = this._pointLabels || [];
+    if (index2 >= 0 && index2 < pointLabels.length) {
+      const pointLabel = pointLabels[index2];
+      return createPointLabelContext(this.getContext(), index2, pointLabel);
+    }
+  }
+  getPointPosition(index2, distanceFromCenter, additionalAngle = 0) {
+    const angle = this.getIndexAngle(index2) - HALF_PI + additionalAngle;
+    return {
+      x: Math.cos(angle) * distanceFromCenter + this.xCenter,
+      y: Math.sin(angle) * distanceFromCenter + this.yCenter,
+      angle
+    };
+  }
+  getPointPositionForValue(index2, value) {
+    return this.getPointPosition(index2, this.getDistanceFromCenterForValue(value));
+  }
+  getBasePosition(index2) {
+    return this.getPointPositionForValue(index2 || 0, this.getBaseValue());
+  }
+  getPointLabelPosition(index2) {
+    const { left, top, right, bottom } = this._pointLabelItems[index2];
+    return {
+      left,
+      top,
+      right,
+      bottom
+    };
+  }
+  drawBackground() {
+    const { backgroundColor, grid: { circular } } = this.options;
+    if (backgroundColor) {
+      const ctx = this.ctx;
+      ctx.save();
+      ctx.beginPath();
+      pathRadiusLine(this, this.getDistanceFromCenterForValue(this._endValue), circular, this._pointLabels.length);
+      ctx.closePath();
+      ctx.fillStyle = backgroundColor;
+      ctx.fill();
+      ctx.restore();
+    }
+  }
+  drawGrid() {
+    const ctx = this.ctx;
+    const opts = this.options;
+    const { angleLines, grid, border } = opts;
+    const labelCount = this._pointLabels.length;
+    let i2, offset2, position2;
+    if (opts.pointLabels.display) {
+      drawPointLabels(this, labelCount);
+    }
+    if (grid.display) {
+      this.ticks.forEach((tick, index2) => {
+        if (index2 !== 0) {
+          offset2 = this.getDistanceFromCenterForValue(tick.value);
+          const context = this.getContext(index2);
+          const optsAtIndex = grid.setContext(context);
+          const optsAtIndexBorder = border.setContext(context);
+          drawRadiusLine(this, optsAtIndex, offset2, labelCount, optsAtIndexBorder);
+        }
+      });
+    }
+    if (angleLines.display) {
+      ctx.save();
+      for (i2 = labelCount - 1; i2 >= 0; i2--) {
+        const optsAtIndex = angleLines.setContext(this.getPointLabelContext(i2));
+        const { color: color2, lineWidth } = optsAtIndex;
+        if (!lineWidth || !color2) {
+          continue;
+        }
+        ctx.lineWidth = lineWidth;
+        ctx.strokeStyle = color2;
+        ctx.setLineDash(optsAtIndex.borderDash);
+        ctx.lineDashOffset = optsAtIndex.borderDashOffset;
+        offset2 = this.getDistanceFromCenterForValue(opts.ticks.reverse ? this.min : this.max);
+        position2 = this.getPointPosition(i2, offset2);
+        ctx.beginPath();
+        ctx.moveTo(this.xCenter, this.yCenter);
+        ctx.lineTo(position2.x, position2.y);
+        ctx.stroke();
+      }
+      ctx.restore();
+    }
+  }
+  drawBorder() {
+  }
+  drawLabels() {
+    const ctx = this.ctx;
+    const opts = this.options;
+    const tickOpts = opts.ticks;
+    if (!tickOpts.display) {
+      return;
+    }
+    const startAngle = this.getIndexAngle(0);
+    let offset2, width;
+    ctx.save();
+    ctx.translate(this.xCenter, this.yCenter);
+    ctx.rotate(startAngle);
+    ctx.textAlign = "center";
+    ctx.textBaseline = "middle";
+    this.ticks.forEach((tick, index2) => {
+      if (index2 === 0 && !opts.reverse) {
+        return;
+      }
+      const optsAtIndex = tickOpts.setContext(this.getContext(index2));
+      const tickFont = toFont(optsAtIndex.font);
+      offset2 = this.getDistanceFromCenterForValue(this.ticks[index2].value);
+      if (optsAtIndex.showLabelBackdrop) {
+        ctx.font = tickFont.string;
+        width = ctx.measureText(tick.label).width;
+        ctx.fillStyle = optsAtIndex.backdropColor;
+        const padding = toPadding(optsAtIndex.backdropPadding);
+        ctx.fillRect(-width / 2 - padding.left, -offset2 - tickFont.size / 2 - padding.top, width + padding.width, tickFont.size + padding.height);
+      }
+      renderText(ctx, tick.label, 0, -offset2, tickFont, {
+        color: optsAtIndex.color,
+        strokeColor: optsAtIndex.textStrokeColor,
+        strokeWidth: optsAtIndex.textStrokeWidth
+      });
+    });
+    ctx.restore();
+  }
+  drawTitle() {
+  }
+}
+const INTERVALS = {
+  millisecond: {
+    common: true,
+    size: 1,
+    steps: 1e3
+  },
+  second: {
+    common: true,
+    size: 1e3,
+    steps: 60
+  },
+  minute: {
+    common: true,
+    size: 6e4,
+    steps: 60
+  },
+  hour: {
+    common: true,
+    size: 36e5,
+    steps: 24
+  },
+  day: {
+    common: true,
+    size: 864e5,
+    steps: 30
+  },
+  week: {
+    common: false,
+    size: 6048e5,
+    steps: 4
+  },
+  month: {
+    common: true,
+    size: 2628e6,
+    steps: 12
+  },
+  quarter: {
+    common: false,
+    size: 7884e6,
+    steps: 4
+  },
+  year: {
+    common: true,
+    size: 3154e7
+  }
+};
+const UNITS = /* @__PURE__ */ Object.keys(INTERVALS);
+function sorter(a2, b2) {
+  return a2 - b2;
+}
+function parse(scale, input) {
+  if (isNullOrUndef(input)) {
+    return null;
+  }
+  const adapter = scale._adapter;
+  const { parser, round: round2, isoWeekday } = scale._parseOpts;
+  let value = input;
+  if (typeof parser === "function") {
+    value = parser(value);
+  }
+  if (!isNumberFinite(value)) {
+    value = typeof parser === "string" ? adapter.parse(value, parser) : adapter.parse(value);
+  }
+  if (value === null) {
+    return null;
+  }
+  if (round2) {
+    value = round2 === "week" && (isNumber$1(isoWeekday) || isoWeekday === true) ? adapter.startOf(value, "isoWeek", isoWeekday) : adapter.startOf(value, round2);
+  }
+  return +value;
+}
+function determineUnitForAutoTicks(minUnit, min2, max2, capacity) {
+  const ilen = UNITS.length;
+  for (let i2 = UNITS.indexOf(minUnit); i2 < ilen - 1; ++i2) {
+    const interval = INTERVALS[UNITS[i2]];
+    const factor = interval.steps ? interval.steps : Number.MAX_SAFE_INTEGER;
+    if (interval.common && Math.ceil((max2 - min2) / (factor * interval.size)) <= capacity) {
+      return UNITS[i2];
+    }
+  }
+  return UNITS[ilen - 1];
+}
+function determineUnitForFormatting(scale, numTicks, minUnit, min2, max2) {
+  for (let i2 = UNITS.length - 1; i2 >= UNITS.indexOf(minUnit); i2--) {
+    const unit = UNITS[i2];
+    if (INTERVALS[unit].common && scale._adapter.diff(max2, min2, unit) >= numTicks - 1) {
+      return unit;
+    }
+  }
+  return UNITS[minUnit ? UNITS.indexOf(minUnit) : 0];
+}
+function determineMajorUnit(unit) {
+  for (let i2 = UNITS.indexOf(unit) + 1, ilen = UNITS.length; i2 < ilen; ++i2) {
+    if (INTERVALS[UNITS[i2]].common) {
+      return UNITS[i2];
+    }
+  }
+}
+function addTick(ticks, time, timestamps) {
+  if (!timestamps) {
+    ticks[time] = true;
+  } else if (timestamps.length) {
+    const { lo, hi: hi2 } = _lookup(timestamps, time);
+    const timestamp = timestamps[lo] >= time ? timestamps[lo] : timestamps[hi2];
+    ticks[timestamp] = true;
+  }
+}
+function setMajorTicks(scale, ticks, map2, majorUnit) {
+  const adapter = scale._adapter;
+  const first = +adapter.startOf(ticks[0].value, majorUnit);
+  const last = ticks[ticks.length - 1].value;
+  let major, index2;
+  for (major = first; major <= last; major = +adapter.add(major, 1, majorUnit)) {
+    index2 = map2[major];
+    if (index2 >= 0) {
+      ticks[index2].major = true;
+    }
+  }
+  return ticks;
+}
+function ticksFromTimestamps(scale, values, majorUnit) {
+  const ticks = [];
+  const map2 = {};
+  const ilen = values.length;
+  let i2, value;
+  for (i2 = 0; i2 < ilen; ++i2) {
+    value = values[i2];
+    map2[value] = i2;
+    ticks.push({
+      value,
+      major: false
+    });
+  }
+  return ilen === 0 || !majorUnit ? ticks : setMajorTicks(scale, ticks, map2, majorUnit);
+}
+class TimeScale extends Scale {
+  static id = "time";
+  static defaults = {
+    bounds: "data",
+    adapters: {},
+    time: {
+      parser: false,
+      unit: false,
+      round: false,
+      isoWeekday: false,
+      minUnit: "millisecond",
+      displayFormats: {}
+    },
+    ticks: {
+      source: "auto",
+      callback: false,
+      major: {
+        enabled: false
+      }
+    }
+  };
+  constructor(props) {
+    super(props);
+    this._cache = {
+      data: [],
+      labels: [],
+      all: []
+    };
+    this._unit = "day";
+    this._majorUnit = void 0;
+    this._offsets = {};
+    this._normalized = false;
+    this._parseOpts = void 0;
+  }
+  init(scaleOpts, opts = {}) {
+    const time = scaleOpts.time || (scaleOpts.time = {});
+    const adapter = this._adapter = new adapters._date(scaleOpts.adapters.date);
+    adapter.init(opts);
+    mergeIf(time.displayFormats, adapter.formats());
+    this._parseOpts = {
+      parser: time.parser,
+      round: time.round,
+      isoWeekday: time.isoWeekday
+    };
+    super.init(scaleOpts);
+    this._normalized = opts.normalized;
+  }
+  parse(raw, index2) {
+    if (raw === void 0) {
+      return null;
+    }
+    return parse(this, raw);
+  }
+  beforeLayout() {
+    super.beforeLayout();
+    this._cache = {
+      data: [],
+      labels: [],
+      all: []
+    };
+  }
+  determineDataLimits() {
+    const options2 = this.options;
+    const adapter = this._adapter;
+    const unit = options2.time.unit || "day";
+    let { min: min2, max: max2, minDefined, maxDefined } = this.getUserBounds();
+    function _applyBounds(bounds) {
+      if (!minDefined && !isNaN(bounds.min)) {
+        min2 = Math.min(min2, bounds.min);
+      }
+      if (!maxDefined && !isNaN(bounds.max)) {
+        max2 = Math.max(max2, bounds.max);
+      }
+    }
+    if (!minDefined || !maxDefined) {
+      _applyBounds(this._getLabelBounds());
+      if (options2.bounds !== "ticks" || options2.ticks.source !== "labels") {
+        _applyBounds(this.getMinMax(false));
+      }
+    }
+    min2 = isNumberFinite(min2) && !isNaN(min2) ? min2 : +adapter.startOf(Date.now(), unit);
+    max2 = isNumberFinite(max2) && !isNaN(max2) ? max2 : +adapter.endOf(Date.now(), unit) + 1;
+    this.min = Math.min(min2, max2 - 1);
+    this.max = Math.max(min2 + 1, max2);
+  }
+  _getLabelBounds() {
+    const arr = this.getLabelTimestamps();
+    let min2 = Number.POSITIVE_INFINITY;
+    let max2 = Number.NEGATIVE_INFINITY;
+    if (arr.length) {
+      min2 = arr[0];
+      max2 = arr[arr.length - 1];
+    }
+    return {
+      min: min2,
+      max: max2
+    };
+  }
+  buildTicks() {
+    const options2 = this.options;
+    const timeOpts = options2.time;
+    const tickOpts = options2.ticks;
+    const timestamps = tickOpts.source === "labels" ? this.getLabelTimestamps() : this._generate();
+    if (options2.bounds === "ticks" && timestamps.length) {
+      this.min = this._userMin || timestamps[0];
+      this.max = this._userMax || timestamps[timestamps.length - 1];
+    }
+    const min2 = this.min;
+    const max2 = this.max;
+    const ticks = _filterBetween(timestamps, min2, max2);
+    this._unit = timeOpts.unit || (tickOpts.autoSkip ? determineUnitForAutoTicks(timeOpts.minUnit, this.min, this.max, this._getLabelCapacity(min2)) : determineUnitForFormatting(this, ticks.length, timeOpts.minUnit, this.min, this.max));
+    this._majorUnit = !tickOpts.major.enabled || this._unit === "year" ? void 0 : determineMajorUnit(this._unit);
+    this.initOffsets(timestamps);
+    if (options2.reverse) {
+      ticks.reverse();
+    }
+    return ticksFromTimestamps(this, ticks, this._majorUnit);
+  }
+  afterAutoSkip() {
+    if (this.options.offsetAfterAutoskip) {
+      this.initOffsets(this.ticks.map((tick) => +tick.value));
+    }
+  }
+  initOffsets(timestamps = []) {
+    let start = 0;
+    let end = 0;
+    let first, last;
+    if (this.options.offset && timestamps.length) {
+      first = this.getDecimalForValue(timestamps[0]);
+      if (timestamps.length === 1) {
+        start = 1 - first;
+      } else {
+        start = (this.getDecimalForValue(timestamps[1]) - first) / 2;
+      }
+      last = this.getDecimalForValue(timestamps[timestamps.length - 1]);
+      if (timestamps.length === 1) {
+        end = last;
+      } else {
+        end = (last - this.getDecimalForValue(timestamps[timestamps.length - 2])) / 2;
+      }
+    }
+    const limit = timestamps.length < 3 ? 0.5 : 0.25;
+    start = _limitValue(start, 0, limit);
+    end = _limitValue(end, 0, limit);
+    this._offsets = {
+      start,
+      end,
+      factor: 1 / (start + 1 + end)
+    };
+  }
+  _generate() {
+    const adapter = this._adapter;
+    const min2 = this.min;
+    const max2 = this.max;
+    const options2 = this.options;
+    const timeOpts = options2.time;
+    const minor = timeOpts.unit || determineUnitForAutoTicks(timeOpts.minUnit, min2, max2, this._getLabelCapacity(min2));
+    const stepSize = valueOrDefault(options2.ticks.stepSize, 1);
+    const weekday = minor === "week" ? timeOpts.isoWeekday : false;
+    const hasWeekday = isNumber$1(weekday) || weekday === true;
+    const ticks = {};
+    let first = min2;
+    let time, count;
+    if (hasWeekday) {
+      first = +adapter.startOf(first, "isoWeek", weekday);
+    }
+    first = +adapter.startOf(first, hasWeekday ? "day" : minor);
+    if (adapter.diff(max2, min2, minor) > 1e5 * stepSize) {
+      throw new Error(min2 + " and " + max2 + " are too far apart with stepSize of " + stepSize + " " + minor);
+    }
+    const timestamps = options2.ticks.source === "data" && this.getDataTimestamps();
+    for (time = first, count = 0; time < max2; time = +adapter.add(time, stepSize, minor), count++) {
+      addTick(ticks, time, timestamps);
+    }
+    if (time === max2 || options2.bounds === "ticks" || count === 1) {
+      addTick(ticks, time, timestamps);
+    }
+    return Object.keys(ticks).sort(sorter).map((x2) => +x2);
+  }
+  getLabelForValue(value) {
+    const adapter = this._adapter;
+    const timeOpts = this.options.time;
+    if (timeOpts.tooltipFormat) {
+      return adapter.format(value, timeOpts.tooltipFormat);
+    }
+    return adapter.format(value, timeOpts.displayFormats.datetime);
+  }
+  format(value, format2) {
+    const options2 = this.options;
+    const formats = options2.time.displayFormats;
+    const unit = this._unit;
+    const fmt = format2 || formats[unit];
+    return this._adapter.format(value, fmt);
+  }
+  _tickFormatFunction(time, index2, ticks, format2) {
+    const options2 = this.options;
+    const formatter = options2.ticks.callback;
+    if (formatter) {
+      return callback(formatter, [
+        time,
+        index2,
+        ticks
+      ], this);
+    }
+    const formats = options2.time.displayFormats;
+    const unit = this._unit;
+    const majorUnit = this._majorUnit;
+    const minorFormat = unit && formats[unit];
+    const majorFormat = majorUnit && formats[majorUnit];
+    const tick = ticks[index2];
+    const major = majorUnit && majorFormat && tick && tick.major;
+    return this._adapter.format(time, format2 || (major ? majorFormat : minorFormat));
+  }
+  generateTickLabels(ticks) {
+    let i2, ilen, tick;
+    for (i2 = 0, ilen = ticks.length; i2 < ilen; ++i2) {
+      tick = ticks[i2];
+      tick.label = this._tickFormatFunction(tick.value, i2, ticks);
+    }
+  }
+  getDecimalForValue(value) {
+    return value === null ? NaN : (value - this.min) / (this.max - this.min);
+  }
+  getPixelForValue(value) {
+    const offsets = this._offsets;
+    const pos = this.getDecimalForValue(value);
+    return this.getPixelForDecimal((offsets.start + pos) * offsets.factor);
+  }
+  getValueForPixel(pixel) {
+    const offsets = this._offsets;
+    const pos = this.getDecimalForPixel(pixel) / offsets.factor - offsets.end;
+    return this.min + pos * (this.max - this.min);
+  }
+  _getLabelSize(label) {
+    const ticksOpts = this.options.ticks;
+    const tickLabelWidth = this.ctx.measureText(label).width;
+    const angle = toRadians(this.isHorizontal() ? ticksOpts.maxRotation : ticksOpts.minRotation);
+    const cosRotation = Math.cos(angle);
+    const sinRotation = Math.sin(angle);
+    const tickFontSize = this._resolveTickFontOptions(0).size;
+    return {
+      w: tickLabelWidth * cosRotation + tickFontSize * sinRotation,
+      h: tickLabelWidth * sinRotation + tickFontSize * cosRotation
+    };
+  }
+  _getLabelCapacity(exampleTime) {
+    const timeOpts = this.options.time;
+    const displayFormats = timeOpts.displayFormats;
+    const format2 = displayFormats[timeOpts.unit] || displayFormats.millisecond;
+    const exampleLabel = this._tickFormatFunction(exampleTime, 0, ticksFromTimestamps(this, [
+      exampleTime
+    ], this._majorUnit), format2);
+    const size = this._getLabelSize(exampleLabel);
+    const capacity = Math.floor(this.isHorizontal() ? this.width / size.w : this.height / size.h) - 1;
+    return capacity > 0 ? capacity : 1;
+  }
+  getDataTimestamps() {
+    let timestamps = this._cache.data || [];
+    let i2, ilen;
+    if (timestamps.length) {
+      return timestamps;
+    }
+    const metas = this.getMatchingVisibleMetas();
+    if (this._normalized && metas.length) {
+      return this._cache.data = metas[0].controller.getAllParsedValues(this);
+    }
+    for (i2 = 0, ilen = metas.length; i2 < ilen; ++i2) {
+      timestamps = timestamps.concat(metas[i2].controller.getAllParsedValues(this));
+    }
+    return this._cache.data = this.normalize(timestamps);
+  }
+  getLabelTimestamps() {
+    const timestamps = this._cache.labels || [];
+    let i2, ilen;
+    if (timestamps.length) {
+      return timestamps;
+    }
+    const labels2 = this.getLabels();
+    for (i2 = 0, ilen = labels2.length; i2 < ilen; ++i2) {
+      timestamps.push(parse(this, labels2[i2]));
+    }
+    return this._cache.labels = this._normalized ? timestamps : this.normalize(timestamps);
+  }
+  normalize(values) {
+    return _arrayUnique(values.sort(sorter));
+  }
+}
+function interpolate(table, val, reverse) {
+  let lo = 0;
+  let hi2 = table.length - 1;
+  let prevSource, nextSource, prevTarget, nextTarget;
+  if (reverse) {
+    if (val >= table[lo].pos && val <= table[hi2].pos) {
+      ({ lo, hi: hi2 } = _lookupByKey(table, "pos", val));
+    }
+    ({ pos: prevSource, time: prevTarget } = table[lo]);
+    ({ pos: nextSource, time: nextTarget } = table[hi2]);
+  } else {
+    if (val >= table[lo].time && val <= table[hi2].time) {
+      ({ lo, hi: hi2 } = _lookupByKey(table, "time", val));
+    }
+    ({ time: prevSource, pos: prevTarget } = table[lo]);
+    ({ time: nextSource, pos: nextTarget } = table[hi2]);
+  }
+  const span = nextSource - prevSource;
+  return span ? prevTarget + (nextTarget - prevTarget) * (val - prevSource) / span : prevTarget;
+}
+class TimeSeriesScale extends TimeScale {
+  static id = "timeseries";
+  static defaults = TimeScale.defaults;
+  constructor(props) {
+    super(props);
+    this._table = [];
+    this._minPos = void 0;
+    this._tableRange = void 0;
+  }
+  initOffsets() {
+    const timestamps = this._getTimestampsForTable();
+    const table = this._table = this.buildLookupTable(timestamps);
+    this._minPos = interpolate(table, this.min);
+    this._tableRange = interpolate(table, this.max) - this._minPos;
+    super.initOffsets(timestamps);
+  }
+  buildLookupTable(timestamps) {
+    const { min: min2, max: max2 } = this;
+    const items2 = [];
+    const table = [];
+    let i2, ilen, prev2, curr, next2;
+    for (i2 = 0, ilen = timestamps.length; i2 < ilen; ++i2) {
+      curr = timestamps[i2];
+      if (curr >= min2 && curr <= max2) {
+        items2.push(curr);
+      }
+    }
+    if (items2.length < 2) {
+      return [
+        {
+          time: min2,
+          pos: 0
+        },
+        {
+          time: max2,
+          pos: 1
+        }
+      ];
+    }
+    for (i2 = 0, ilen = items2.length; i2 < ilen; ++i2) {
+      next2 = items2[i2 + 1];
+      prev2 = items2[i2 - 1];
+      curr = items2[i2];
+      if (Math.round((next2 + prev2) / 2) !== curr) {
+        table.push({
+          time: curr,
+          pos: i2 / (ilen - 1)
+        });
+      }
+    }
+    return table;
+  }
+  _generate() {
+    const min2 = this.min;
+    const max2 = this.max;
+    let timestamps = super.getDataTimestamps();
+    if (!timestamps.includes(min2) || !timestamps.length) {
+      timestamps.splice(0, 0, min2);
+    }
+    if (!timestamps.includes(max2) || timestamps.length === 1) {
+      timestamps.push(max2);
+    }
+    return timestamps.sort((a2, b2) => a2 - b2);
+  }
+  _getTimestampsForTable() {
+    let timestamps = this._cache.all || [];
+    if (timestamps.length) {
+      return timestamps;
+    }
+    const data2 = this.getDataTimestamps();
+    const label = this.getLabelTimestamps();
+    if (data2.length && label.length) {
+      timestamps = this.normalize(data2.concat(label));
+    } else {
+      timestamps = data2.length ? data2 : label;
+    }
+    timestamps = this._cache.all = timestamps;
+    return timestamps;
+  }
+  getDecimalForValue(value) {
+    return (interpolate(this._table, value) - this._minPos) / this._tableRange;
+  }
+  getValueForPixel(pixel) {
+    const offsets = this._offsets;
+    const decimal = this.getDecimalForPixel(pixel) / offsets.factor - offsets.end;
+    return interpolate(this._table, decimal * this._tableRange + this._minPos, true);
+  }
+}
+const defaultDatasetIdKey = "label";
+function reforwardRef(ref, value) {
+  if (typeof ref === "function") {
+    ref(value);
+  } else if (ref) {
+    ref.current = value;
+  }
+}
+function setOptions(chart, nextOptions) {
+  const options2 = chart.options;
+  if (options2 && nextOptions) {
+    Object.assign(options2, nextOptions);
+  }
+}
+function setLabels(currentData, nextLabels) {
+  currentData.labels = nextLabels;
+}
+function setDatasets(currentData, nextDatasets) {
+  let datasetIdKey = arguments.length > 2 && arguments[2] !== void 0 ? arguments[2] : defaultDatasetIdKey;
+  const addedDatasets = [];
+  currentData.datasets = nextDatasets.map((nextDataset) => {
+    const currentDataset = currentData.datasets.find((dataset) => dataset[datasetIdKey] === nextDataset[datasetIdKey]);
+    if (!currentDataset || !nextDataset.data || addedDatasets.includes(currentDataset)) {
+      return {
+        ...nextDataset
+      };
+    }
+    addedDatasets.push(currentDataset);
+    Object.assign(currentDataset, nextDataset);
+    return currentDataset;
+  });
+}
+function cloneData(data2) {
+  let datasetIdKey = arguments.length > 1 && arguments[1] !== void 0 ? arguments[1] : defaultDatasetIdKey;
+  const nextData = {
+    labels: [],
+    datasets: []
+  };
+  setLabels(nextData, data2.labels);
+  setDatasets(nextData, data2.datasets, datasetIdKey);
+  return nextData;
+}
+function ChartComponent(props, ref) {
+  const { height = 150, width = 300, redraw = false, datasetIdKey, type: type4, data: data2, options: options2, plugins = [], fallbackContent, updateMode, ...canvasProps } = props;
+  const canvasRef = reactExports.useRef(null);
+  const chartRef = reactExports.useRef();
+  const renderChart = () => {
+    if (!canvasRef.current)
+      return;
+    chartRef.current = new Chart$1(canvasRef.current, {
+      type: type4,
+      data: cloneData(data2, datasetIdKey),
+      options: options2 && {
+        ...options2
+      },
+      plugins
+    });
+    reforwardRef(ref, chartRef.current);
+  };
+  const destroyChart = () => {
+    reforwardRef(ref, null);
+    if (chartRef.current) {
+      chartRef.current.destroy();
+      chartRef.current = null;
+    }
+  };
+  reactExports.useEffect(() => {
+    if (!redraw && chartRef.current && options2) {
+      setOptions(chartRef.current, options2);
+    }
+  }, [
+    redraw,
+    options2
+  ]);
+  reactExports.useEffect(() => {
+    if (!redraw && chartRef.current) {
+      setLabels(chartRef.current.config.data, data2.labels);
+    }
+  }, [
+    redraw,
+    data2.labels
+  ]);
+  reactExports.useEffect(() => {
+    if (!redraw && chartRef.current && data2.datasets) {
+      setDatasets(chartRef.current.config.data, data2.datasets, datasetIdKey);
+    }
+  }, [
+    redraw,
+    data2.datasets
+  ]);
+  reactExports.useEffect(() => {
+    if (!chartRef.current)
+      return;
+    if (redraw) {
+      destroyChart();
+      setTimeout(renderChart);
+    } else {
+      chartRef.current.update(updateMode);
+    }
+  }, [
+    redraw,
+    options2,
+    data2.labels,
+    data2.datasets,
+    updateMode
+  ]);
+  reactExports.useEffect(() => {
+    if (!chartRef.current)
+      return;
+    destroyChart();
+    setTimeout(renderChart);
+  }, [
+    type4
+  ]);
+  reactExports.useEffect(() => {
+    renderChart();
+    return () => destroyChart();
+  }, []);
+  return /* @__PURE__ */ React.createElement("canvas", Object.assign({
+    ref: canvasRef,
+    role: "img",
+    height,
+    width
+  }, canvasProps), fallbackContent);
+}
+const Chart2 = /* @__PURE__ */ reactExports.forwardRef(ChartComponent);
+function createTypedChart(type4, registerables) {
+  Chart$1.register(registerables);
+  return /* @__PURE__ */ reactExports.forwardRef((props, ref) => /* @__PURE__ */ React.createElement(Chart2, Object.assign({}, props, {
+    ref,
+    type: type4
+  })));
+}
+const Bar = /* @__PURE__ */ createTypedChart("bar", BarController);
+Chart$1.register(CategoryScale, LinearScale, BarElement, plugin_title, plugin_tooltip, plugin_legend);
+const options = {
+  responsive: true,
+  plugins: {
+    legend: {
+      position: "top"
+    },
+    title: {
+      display: true,
+      text: "Visitas nos últimos 7 dias"
+    }
+  },
+  scales: {
+    x: {
+      grid: {
+        display: false
+      }
+    }
+  }
+};
+const labels = ["Seg", "Ter", "Qua", "Qui", "Sex", "Sab", "Dom"];
+const data$1 = {
+  labels,
+  datasets: [
+    {
+      label: "Visitas",
+      data: [100, 239, 123, 234, 123, 342, 123],
+      borderColor: "#2FAA53",
+      showLine: false,
+      backgroundColor: "rgb(47, 170, 83, 0.5)"
+    }
+  ]
+};
+const ChartBar = () => {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    Bar,
+    {
+      options: {
+        ...options,
+        scales: {
+          x: {
+            grid: {
+              display: false
+            }
+          },
+          y: {
+            grid: {
+              display: false
+            },
+            ticks: {
+              display: false
+            }
+          }
+        }
+      },
+      data: data$1
+    }
+  );
+};
 const { Title: Title$8, Paragraph: Paragraph$2 } = Typography$1;
 const Dashboard = () => {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(Container$g, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(RowMetrics, { children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs(CardTitle, { children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Avatar$1,
-          {
-            size: "large",
-            icon: /* @__PURE__ */ jsxRuntimeExports.jsx(FaConciergeBell, { style: { color: "#0583F2" } }),
-            style: {
-              backgroundColor: "#BEE3F8",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center"
-            }
-          }
-        ) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(Title$8, { level: 5, style: { margin: "0", color: "#A0AEC0" }, italic: true, children: "Pedidos Recebidos" })
-      ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs(
-        "div",
-        {
-          style: {
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "flex-start",
-            gap: "0.5rem"
-          },
-          children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Paragraph$2, { strong: true, style: { margin: "0", fontSize: "1.75rem", color: "#0583F2" }, children: "1569" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              Statistic$1,
-              {
-                value: 11.28,
-                precision: 2,
-                valueStyle: { color: "#3f8600", fontSize: "0.75rem" },
-                prefix: /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowUpOutlined$1, {}),
-                suffix: "%"
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$g, { children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(RowMetrics, { children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(CardTitle, { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Avatar$1,
+            {
+              size: "large",
+              icon: /* @__PURE__ */ jsxRuntimeExports.jsx(FaConciergeBell, { style: { color: "#0583F2" } }),
+              style: {
+                backgroundColor: "#BEE3F8",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center"
               }
-            )
-          ]
-        }
-      )
+            }
+          ) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Title$8, { level: 5, style: { margin: "0", color: "#A0AEC0" }, italic: true, children: "Pedidos Recebidos" })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "div",
+          {
+            style: {
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "flex-start",
+              gap: "0.5rem"
+            },
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Paragraph$2, { strong: true, style: { margin: "0", fontSize: "1.75rem", color: "#0583F2" }, children: "1569" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Statistic$1,
+                {
+                  value: 11.28,
+                  precision: 2,
+                  valueStyle: { color: "#3f8600", fontSize: "0.75rem" },
+                  prefix: /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowUpOutlined$1, {}),
+                  suffix: "%"
+                }
+              )
+            ]
+          }
+        )
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(CardTitle, { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Avatar$1,
+            {
+              size: "large",
+              icon: /* @__PURE__ */ jsxRuntimeExports.jsx(FaMoneyBillWave, { style: { color: "#31AB56" } }),
+              style: {
+                backgroundColor: "#C6F6D5",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center"
+              }
+            }
+          ) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Title$8, { level: 5, style: { margin: "0", color: "#A0AEC0" }, italic: true, children: "Rendimento Total" })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "div",
+          {
+            style: {
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "flex-start",
+              gap: "0.5rem"
+            },
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Paragraph$2, { strong: true, style: { margin: "0", fontSize: "1.75rem", color: "#31AB56" }, children: formatCurrency(18934) }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Statistic$1,
+                {
+                  value: 11.28,
+                  precision: 2,
+                  valueStyle: { color: "#3f8600", fontSize: "0.75rem" },
+                  prefix: /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowUpOutlined$1, {}),
+                  suffix: "%"
+                }
+              )
+            ]
+          }
+        )
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(CardTitle, { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Avatar$1,
+            {
+              size: "large",
+              icon: /* @__PURE__ */ jsxRuntimeExports.jsx(FaUserFriends, { style: { color: "#DD6B20" } }),
+              style: {
+                backgroundColor: "#FEEBC8",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center"
+              }
+            }
+          ) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Title$8, { level: 5, style: { margin: "0", color: "#A0AEC0" }, italic: true, children: "Visitas diárias" })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "div",
+          {
+            style: {
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "flex-start",
+              gap: "0.5rem"
+            },
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Paragraph$2, { strong: true, style: { margin: "0", fontSize: "1.75rem", color: "#DD6B20" }, children: "1569" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Statistic$1,
+                {
+                  value: 11.28,
+                  precision: 2,
+                  valueStyle: { color: "#cf1322", fontSize: "0.75rem" },
+                  prefix: /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowDownOutlined$1, {}),
+                  suffix: "%"
+                }
+              )
+            ]
+          }
+        )
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(CardTitle, { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Avatar$1,
+            {
+              size: "large",
+              icon: /* @__PURE__ */ jsxRuntimeExports.jsx(FaUserCheck, { style: { color: "#8D6ADA" } }),
+              style: {
+                backgroundColor: "#E9D8FD",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center"
+              }
+            }
+          ) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Title$8, { level: 5, style: { margin: "0", color: "#A0AEC0" }, italic: true, children: "Gastos com estoque" })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "div",
+          {
+            style: {
+              display: "flex",
+              alignItems: "flex-start",
+              flexDirection: "row",
+              gap: "0.5rem"
+            },
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(Paragraph$2, { strong: true, style: { margin: "0", fontSize: "1.75rem", color: "#8D6ADA" }, children: [
+                formatCurrency(1406),
+                " "
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Statistic$1,
+                {
+                  value: 11.28,
+                  precision: 2,
+                  valueStyle: { color: "#3f8600", fontSize: "0.75rem" },
+                  prefix: /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowUpOutlined$1, {}),
+                  suffix: "%"
+                }
+              )
+            ]
+          }
+        )
+      ] })
     ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs(CardTitle, { children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Avatar$1,
-          {
-            size: "large",
-            icon: /* @__PURE__ */ jsxRuntimeExports.jsx(FaMoneyBillWave, { style: { color: "#31AB56" } }),
-            style: {
-              backgroundColor: "#C6F6D5",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center"
-            }
-          }
-        ) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(Title$8, { level: 5, style: { margin: "0", color: "#A0AEC0" }, italic: true, children: "Rendimento Total" })
-      ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs(
-        "div",
-        {
-          style: {
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "flex-start",
-            gap: "0.5rem"
-          },
-          children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Paragraph$2, { strong: true, style: { margin: "0", fontSize: "1.75rem", color: "#31AB56" }, children: formatCurrency(18934) }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              Statistic$1,
-              {
-                value: 11.28,
-                precision: 2,
-                valueStyle: { color: "#3f8600", fontSize: "0.75rem" },
-                prefix: /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowUpOutlined$1, {}),
-                suffix: "%"
-              }
-            )
-          ]
-        }
-      )
-    ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs(CardTitle, { children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Avatar$1,
-          {
-            size: "large",
-            icon: /* @__PURE__ */ jsxRuntimeExports.jsx(FaUserFriends, { style: { color: "#DD6B20" } }),
-            style: {
-              backgroundColor: "#FEEBC8",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center"
-            }
-          }
-        ) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(Title$8, { level: 5, style: { margin: "0", color: "#A0AEC0" }, italic: true, children: "Visitas diárias" })
-      ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs(
-        "div",
-        {
-          style: {
-            display: "flex",
-            flexDirection: "row",
-            alignItems: "flex-start",
-            gap: "0.5rem"
-          },
-          children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Paragraph$2, { strong: true, style: { margin: "0", fontSize: "1.75rem", color: "#DD6B20" }, children: "1569" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              Statistic$1,
-              {
-                value: 11.28,
-                precision: 2,
-                valueStyle: { color: "#cf1322", fontSize: "0.75rem" },
-                prefix: /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowDownOutlined$1, {}),
-                suffix: "%"
-              }
-            )
-          ]
-        }
-      )
-    ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs(CardTitle, { children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Avatar$1,
-          {
-            size: "large",
-            icon: /* @__PURE__ */ jsxRuntimeExports.jsx(FaUserCheck, { style: { color: "#8D6ADA" } }),
-            style: {
-              backgroundColor: "#E9D8FD",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center"
-            }
-          }
-        ) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(Title$8, { level: 5, style: { margin: "0", color: "#A0AEC0" }, italic: true, children: "Gastos com estoque" })
-      ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs(
-        "div",
-        {
-          style: {
-            display: "flex",
-            alignItems: "flex-start",
-            flexDirection: "row",
-            gap: "0.5rem"
-          },
-          children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsxs(Paragraph$2, { strong: true, style: { margin: "0", fontSize: "1.75rem", color: "#8D6ADA" }, children: [
-              formatCurrency(1406),
-              " "
-            ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              Statistic$1,
-              {
-                value: 11.28,
-                precision: 2,
-                valueStyle: { color: "#3f8600", fontSize: "0.75rem" },
-                prefix: /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowUpOutlined$1, {}),
-                suffix: "%"
-              }
-            )
-          ]
-        }
-      )
-    ] })
-  ] }) });
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "div",
+      {
+        style: {
+          width: "50%",
+          height: "350px",
+          backgroundColor: "#fff",
+          borderRadius: "0.5rem",
+          padding: "1rem",
+          boxShadow: "0 0 0.5rem rgba(0, 0, 0, 0.1)"
+        },
+        children: /* @__PURE__ */ jsxRuntimeExports.jsx(ChartBar, {})
+      }
+    )
+  ] });
 };
 const Container$f = st.div`
   width: 100%;
@@ -68842,11 +80291,11 @@ function TerminalProvider({ children }) {
   const [cart, setCart] = reactExports.useState([]);
   const [loadingSelectedBill, setLoadingSelectedBill] = reactExports.useState(false);
   function fetchBills() {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve2, reject) => {
       setCart([]);
       api.get("/bill/?open=true").then((response) => {
         setBills(response.data);
-        resolve(response.data);
+        resolve2(response.data);
       }).catch((error) => {
         errorActions(error);
         reject(error);
@@ -68854,11 +80303,11 @@ function TerminalProvider({ children }) {
     });
   }
   function fetchBill(id2) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve2, reject) => {
       setLoadingSelectedBill(true);
       api.get(`/bill/${id2}/`).then((response) => {
         setSelectedBill(response.data);
-        resolve(response.data);
+        resolve2(response.data);
       }).catch((error) => {
         errorActions(error);
         reject(error);
@@ -69440,7 +80889,7 @@ const P = reactExports.forwardRef((t2, r2) => {
     color: o$12,
     size: n2,
     weight: c2,
-    mirrored: h2,
+    mirrored: h3,
     children: p2,
     weights: u2
   } = m2, C2 = a(m2, [
@@ -69471,7 +80920,7 @@ const P = reactExports.forwardRef((t2, r2) => {
       height: n2 != null ? n2 : i2,
       fill: o$12 != null ? o$12 : v2,
       viewBox: "0 0 256 256",
-      transform: h2 || I2 ? "scale(-1, 1)" : void 0
+      transform: h3 || I2 ? "scale(-1, 1)" : void 0
     }, E2), C2),
     !!e2 && /* @__PURE__ */ React.createElement("title", null, e2),
     p2,
@@ -69948,9 +81397,9 @@ function ProductsProvider({ children }) {
     });
   }
   function createProduct(productData) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve2, reject) => {
       api.post("/product/", productData).then((response) => {
-        resolve(response.data);
+        resolve2(response.data);
         setSelectedProduct(response.data);
         setCurrentTab(2);
         fetchProducts();
@@ -69963,9 +81412,9 @@ function ProductsProvider({ children }) {
     });
   }
   function patchProduct(productData) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve2, reject) => {
       api.patch(`/product/${selectedProduct?.id}/`, productData).then((response) => {
-        resolve(response.data);
+        resolve2(response.data);
         setSelectedProduct(response.data);
         fetchProducts();
         success("Produto atualizado com sucesso!");
@@ -70112,8 +81561,8 @@ var hookCallback;
 function hooks() {
   return hookCallback.apply(null, arguments);
 }
-function setHookCallback(callback) {
-  hookCallback = callback;
+function setHookCallback(callback2) {
+  hookCallback = callback2;
 }
 function isArray(input) {
   return input instanceof Array || Object.prototype.toString.call(input) === "[object Array]";
@@ -70420,11 +81869,11 @@ function zeroFill(number4, targetLength, forceSign) {
   return (sign2 ? forceSign ? "+" : "" : "-") + Math.pow(10, Math.max(0, zerosToFill)).toString().substr(1) + absNumber;
 }
 var formattingTokens = /(\[[^\[]*\])|(\\)?([Hh]mm(ss)?|Mo|MM?M?M?|Do|DDDo|DD?D?D?|ddd?d?|do?|w[o|w]?|W[o|W]?|Qo?|N{1,5}|YYYYYY|YYYYY|YYYY|YY|y{2,4}|yo?|gg(ggg?)?|GG(GGG?)?|e|E|a|A|hh?|HH?|kk?|mm?|ss?|S{1,9}|x|X|zz?|ZZ?|.)/g, localFormattingTokens = /(\[[^\[]*\])|(\\)?(LTS|LT|LL?L?L?|l{1,4})/g, formatFunctions = {}, formatTokenFunctions = {};
-function addFormatToken(token2, padded, ordinal2, callback) {
-  var func = callback;
-  if (typeof callback === "string") {
+function addFormatToken(token2, padded, ordinal2, callback2) {
+  var func = callback2;
+  if (typeof callback2 === "string") {
     func = function() {
-      return this[callback]();
+      return this[callback2]();
     };
   }
   if (token2) {
@@ -70676,14 +82125,14 @@ function regexEscape(s2) {
   return s2.replace(/[-\/\\^$*+?.()|[\]{}]/g, "\\$&");
 }
 var tokens = {};
-function addParseToken(token2, callback) {
-  var i2, func = callback, tokenLen;
+function addParseToken(token2, callback2) {
+  var i2, func = callback2, tokenLen;
   if (typeof token2 === "string") {
     token2 = [token2];
   }
-  if (isNumber(callback)) {
+  if (isNumber(callback2)) {
     func = function(input, array4) {
-      array4[callback] = toInt(input);
+      array4[callback2] = toInt(input);
     };
   }
   tokenLen = token2.length;
@@ -70691,10 +82140,10 @@ function addParseToken(token2, callback) {
     tokens[token2[i2]] = func;
   }
 }
-function addWeekParseToken(token2, callback) {
+function addWeekParseToken(token2, callback2) {
   addParseToken(token2, function(input, array4, config, token3) {
     config._w = config._w || {};
-    callback(input, config._w, config, token3);
+    callback2(input, config._w, config, token3);
   });
 }
 function addTimeToArrayFromToken(token2, input, config) {
@@ -70984,15 +82433,15 @@ var getSetYear = makeGetSet("FullYear", true);
 function getIsLeapYear() {
   return isLeapYear(this.year());
 }
-function createDate(y2, m2, d2, h2, M2, s2, ms) {
+function createDate(y2, m2, d2, h3, M2, s2, ms) {
   var date4;
   if (y2 < 100 && y2 >= 0) {
-    date4 = new Date(y2 + 400, m2, d2, h2, M2, s2, ms);
+    date4 = new Date(y2 + 400, m2, d2, h3, M2, s2, ms);
     if (isFinite(date4.getFullYear())) {
       date4.setFullYear(y2);
     }
   } else {
-    date4 = new Date(y2, m2, d2, h2, M2, s2, ms);
+    date4 = new Date(y2, m2, d2, h3, M2, s2, ms);
   }
   return date4;
 }
@@ -71814,8 +83263,8 @@ function calculateOffset(obsOffset, militaryOffset, numOffset) {
   } else if (militaryOffset) {
     return 0;
   } else {
-    var hm = parseInt(numOffset, 10), m2 = hm % 100, h2 = (hm - m2) / 100;
-    return h2 * 60 + m2;
+    var hm = parseInt(numOffset, 10), m2 = hm % 100, h3 = (hm - m2) / 100;
+    return h3 * 60 + m2;
   }
 }
 function configFromRFC2822(config) {
@@ -74457,14 +85906,14 @@ function CashierProvider({ children }) {
     }).catch((err) => console.log(err.response?.data));
   }
   function getCashier(open2) {
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve2, reject) => {
       api.get(`/cashier/?open=${open2}`).then((response) => {
         localStorage.setItem("cashier", JSON.stringify(response.data[0]));
         setCashier(response.data[0]);
         if (response.data[0]?.id) {
           getTransactions(response.data[0]?.id);
         }
-        resolve(response.data[0]);
+        resolve2(response.data[0]);
       }).catch((error) => {
         errorActions(error);
         reject(error);
@@ -76333,7 +87782,7 @@ const items = [
   }
 ];
 const Header$1 = ({ titleHeader, setCollapsed, collapsedValue }) => {
-  const [color, setColor] = reactExports.useState(ColorList[0]);
+  const [color2, setColor] = reactExports.useState(ColorList[0]);
   const [status, setStatus] = reactExports.useState(false);
   const hasUpdated = reactExports.useRef(false);
   const { cashier, wsConnected, handleConnectionWs, loadingConnectSocket } = useCashier();
@@ -76473,7 +87922,7 @@ const Header$1 = ({ titleHeader, setCollapsed, collapsedValue }) => {
                 Avatar$1,
                 {
                   style: {
-                    backgroundColor: color,
+                    backgroundColor: color2,
                     verticalAlign: "middle",
                     fontWeight: "bold",
                     cursor: "pointer"
@@ -78632,7 +90081,7 @@ const ModalCashier = () => {
     }
   );
 };
-const { Text, Title } = Typography$1;
+const { Text, Title: Title2 } = Typography$1;
 const columns = [
   {
     title: "MÉTODO DE PAGAMENTO",
@@ -78808,7 +90257,7 @@ const CashierPage = () => {
                         }
                       ),
                       /* @__PURE__ */ jsxRuntimeExports.jsx(
-                        Title,
+                        Title2,
                         {
                           level: 1,
                           style: {
