@@ -7,8 +7,7 @@ import { MdRestaurantMenu } from 'react-icons/md'
 import { CgMenuOreos } from 'react-icons/cg'
 import { LogoutOutlined, TeamOutlined, UserOutlined } from '@ant-design/icons'
 import { setLogout } from '../../services/auth'
-import { StatusWebSocket } from '@renderer/types'
-import { useBill, useCashier } from '@renderer/hooks'
+import { useCashier } from '@renderer/hooks'
 
 const items: MenuProps['items'] = [
   {

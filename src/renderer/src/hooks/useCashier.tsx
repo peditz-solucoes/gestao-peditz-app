@@ -2,7 +2,7 @@ import api from '@renderer/services/api'
 import { Cashier, Payments } from '@renderer/types'
 import { Order } from '@renderer/utils/Printers'
 import { errorActions } from '@renderer/utils/errorActions'
-import { AxiosError } from 'axios'
+import { AxiosError, AxiosResponse } from 'axios'
 
 import { createContext, useContext, useState } from 'react'
 
@@ -48,7 +48,7 @@ export function CashierProvider({ children }: CashierProviderProps): JSX.Element
   async function connectSocket() {
     setLoadingConnectSocket(true)
     api.get('/restaurant/')
-    .then((response) => {
+    .then((response:AxiosResponse) => {
       if(!socket){
          const newSocket = new WebSocket(`wss://api.peditz.com/ws/pedidos/${response.data[0].id}/`)
       
@@ -96,7 +96,7 @@ export function CashierProvider({ children }: CashierProviderProps): JSX.Element
 
           return () => newSocket.close()
         }
-    })
+    }).catch((err:AxiosError)=> console.log(err.response?.data))
   }
 
   function getCashier(open: boolean): Promise<Cashier> {
