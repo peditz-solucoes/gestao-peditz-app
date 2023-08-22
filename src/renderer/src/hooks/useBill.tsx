@@ -154,7 +154,7 @@ export function BillProvider({ children }: BillProviderProps): JSX.Element {
         setPayments,
         DeletePayment,
         setOrders,
-        setSelectedBills
+        setSelectedBills,
       }}
     >
       {children}

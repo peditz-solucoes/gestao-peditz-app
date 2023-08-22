@@ -249,6 +249,12 @@ export const Command: React.FC = () => {
     return order.orders
   })
 
+  // Resume finance
+  const total = orders.map((o) => Number(o.total)).reduce((a, b) => a + b, 0) + onTip
+  const paid = payments.map((p) => Number(p.value)).reduce((a, b) => a + b, 0)
+  const missing = total - paid < 0 ? 0 : total - paid
+  const change = paid - total < 0 ? 0 : paid - total
+
   function handleTip(): void {
     if (!tipApply) {
       setTipApply(true)
@@ -262,12 +268,6 @@ export const Command: React.FC = () => {
       setOnTip(0)
     }
   }
-
-  // Resume finance
-  const total = orders.map((o) => Number(o.total)).reduce((a, b) => a + b, 0) + onTip
-  const paid = payments.map((p) => Number(p.value)).reduce((a, b) => a + b, 0)
-  const missing = total - paid < 0 ? 0 : total - paid
-  const change = paid - total < 0 ? 0 : paid - total
 
   return (
     <>
@@ -427,20 +427,22 @@ export const Command: React.FC = () => {
                   flexDirection: 'row'
                 }}
               >
-                <Button
-                  type="primary"
-                  icon={<PlusOutlined />}
-                  size="large"
-                  onClick={(): void => setVisibleJoinCommandModal(true)}
-                  style={{
-                    display: 'flex',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    fontWeight: 'bold'
-                  }}
-                >
-                  Comanda
-                </Button>
+                {!tipApply && (
+                  <Button
+                    type="primary"
+                    icon={<PlusOutlined />}
+                    size="large"
+                    onClick={(): void => setVisibleJoinCommandModal(true)}
+                    style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      fontWeight: 'bold'
+                    }}
+                  >
+                    Comanda
+                  </Button>
+                )}
                 <Button
                   type="primary"
                   icon={<AiFillPrinter size={24} />}
