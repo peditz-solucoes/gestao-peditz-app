@@ -1,6 +1,6 @@
 import { Avatar, Dropdown, MenuProps, Switch, Tag } from 'antd'
 import { Header as HeaderAnt } from 'antd/es/layout/layout'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { ColorList } from '../../utils/ColorList'
 import { Link } from 'react-router-dom'
 import { MdRestaurantMenu } from 'react-icons/md'
@@ -47,12 +47,15 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ titleHeader, setCollapsed, collapsedValue }) => {
   const [color, setColor] = useState(ColorList[0])
   const [status, setStatus] = useState<boolean>(false)
+  const hasUpdated = useRef(false)
  
-  const { connectSocket, cashier, getCashier, wsConnected } = useCashier()
+  const { cashier, wsConnected,handleConnectionWs, loadingConnectSocket } = useCashier()
 
   useEffect(() => {
-    getCashier(true)
-    handleConnectionWs()
+    if(!hasUpdated.current){
+      aux()
+      hasUpdated.current = true
+    }
 
     // a cada 5 segundos verifica se o usuário está online
     setInterval(() => {
@@ -62,12 +65,11 @@ export const Header: React.FC<HeaderProps> = ({ titleHeader, setCollapsed, colla
     setColor(getRandomColor())
   }, [])
 
-  function handleConnectionWs(value?: boolean) {
-    const wsStatus = localStorage.getItem('connectedWs')
-    if (wsStatus === 'CONNECTED') {
-      connectSocket()
+  function aux(){
+    const connectedWs = localStorage.getItem('connectedWs')
+    if(connectedWs === 'CONNECTED'){
+      handleConnectionWs(true)
     }
-    
   }
 
   function getRandomColor() {
@@ -153,10 +155,11 @@ export const Header: React.FC<HeaderProps> = ({ titleHeader, setCollapsed, colla
         }}
       >
         <Switch
+          loading={loadingConnectSocket}
           checked={wsConnected}
           checkedChildren="Imprimir pedidos online"
           unCheckedChildren="Não imprimir pedidos online"
-          onChange={(e) => console.log(e)}
+          onChange={(e) => handleConnectionWs(e)}
         />
 
         {status ? (

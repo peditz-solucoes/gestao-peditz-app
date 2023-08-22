@@ -18,7 +18,9 @@ interface CashierContextData {
   openCashierModal: boolean
   setOpenCashierModal: React.Dispatch<React.SetStateAction<boolean>>
   connectSocket: () => void
+  handleConnectionWs: (value: boolean) => void
   wsConnected: boolean
+  loadingConnectSocket: boolean
 }
 
 export const CashierContext = createContext({} as CashierContextData)
@@ -29,36 +31,71 @@ export function CashierProvider({ children }: CashierProviderProps): JSX.Element
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [wsConnected, setWsConnected] = useState<boolean>(false)
   const [transactions, setTransactions] = useState<Payments[]>([])
+  const [socket, setSocket] = useState<WebSocket>()
+  const [loadingConnectSocket, setLoadingConnectSocket] = useState<boolean>(false)
+
+  function handleConnectionWs(value:boolean = false){
+    setWsConnected(value)
+    if(value){
+      connectSocket()
+    }
+    if(!value){
+      localStorage.setItem('connectedWs', 'DISCONNECTED')
+      window.location.reload()
+    }
+  }
 
   async function connectSocket() {
-    const connectedWs = localStorage.getItem('connectedWs')
-    getCashier(true).then((response) => {
-      const socket = new WebSocket(`wss://api.peditz.com/ws/pedidos/${cashier?.restaurant?.id}/`)
-      socket.onopen = () => {
-        console.log('Conectado ao WebSocket')
-      }
+    setLoadingConnectSocket(true)
+    api.get('/restaurant/')
+    .then((response) => {
+      if(!socket){
+         const newSocket = new WebSocket(`wss://api.peditz.com/ws/pedidos/${response.data[0].id}/`)
+      
+          newSocket.onopen = () => {
+            console.log('Conectado ao WebSocket')
+            localStorage.setItem('connectedWs', 'CONNECTED')
+            setLoadingConnectSocket(false)
+            setSocket(socket)
+            setWsConnected(true)
+          }
 
-      socket.onmessage = (event) => {
-        const order = JSON.parse(event.data)
-        console.log('order', order.message)
-        if (connectedWs === 'CONNECTED') {
-          Order(...order.message)
+          
+          
+          newSocket.onmessage = (event) => {
+            const eventParse = JSON.parse(event.data)
+            console.log('event', eventParse)  
+            const order = JSON.parse(eventParse?.order)
+            console.log(order)
+              if(order){
+                Order(
+                  order.restaurant.title,
+                  order.bill?.table?.title || '',
+                  String(order.bill?.number) || '',
+                  order.order_items,
+                  order?.collaborator_name || '',
+                  order?.created || ''
+                )
+              }
+            
+
+            console.log('Mensagem recebida:', event.data)
+          }
+
+          newSocket.onerror = (error) => {
+            console.log('Erro no WebSocket:', error)
+            localStorage.setItem('connectedWs', 'DISCONNECTED')
+            setWsConnected(false)
+          }
+
+          newSocket.onclose = () => {
+            console.log('Conexão WebSocket fechada')
+            localStorage.setItem('connectedWs', 'DISCONNECTED')
+            setWsConnected(false)
+          }
+
+          return () => newSocket.close()
         }
-
-        console.log('Mensagem recebida:', event.data)
-      }
-
-      socket.onerror = (error) => {
-        console.log('Erro no WebSocket:', error)
-        setWsConnected(false)
-      }
-
-      socket.onclose = () => {
-        console.log('Conexão WebSocket fechada')
-        setWsConnected(false)
-      }
-
-      return () => socket.close()
     })
   }
 
@@ -106,7 +143,9 @@ export function CashierProvider({ children }: CashierProviderProps): JSX.Element
         openCashierModal,
         setOpenCashierModal,
         connectSocket,
-        wsConnected
+        handleConnectionWs,
+        wsConnected,
+        loadingConnectSocket
       }}
     >
       {children}
