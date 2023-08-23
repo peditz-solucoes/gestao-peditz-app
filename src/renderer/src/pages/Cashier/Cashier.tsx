@@ -102,6 +102,11 @@ export const CashierPage: React.FC = () => {
       .flatMap((payment) => payment)
   }
 
+  const totalCashier =
+    transactions
+      .map((transaction) => Number(transaction.total))
+      .reduce((acc, curr) => acc + Number(curr), 0) + Number(cashier.initial_value)
+
   return (
     <>
       <S.Container>
@@ -138,7 +143,7 @@ export const CashierPage: React.FC = () => {
                     color: '#2FAA54'
                   }}
                 >
-                  {formatCurrency(Number(cashier.initial_value))}
+                  {formatCurrency(totalCashier)}
                 </Text>
               </div>
               <div
