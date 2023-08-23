@@ -15,60 +15,12 @@ type CategoryGroup = {
   products: Product[]
 }
 
-const columns: ColumnsType<Product> = [
-  {
-    title: 'Nome',
-    dataIndex: 'title',
-    align: 'center',
-    key: 'name'
-  },
-  {
-    title: 'Categoria',
-    dataIndex: 'category',
-    align: 'center',
-    sorter: (a, b) => {
-      return a.category.title.localeCompare(b.category.title)
-    },
-    render: (category: { title: string }) => category.title,
-    sortDirections: ['descend'],
-    key: 'category'
-  },
-  {
-    title: 'Preço',
-    dataIndex: 'price',
-    align: 'center',
-    key: 'price',
-    render: (price: string) => formatCurrency(Number(price))
-  },
-  {
-    title: 'Ações',
-    key: 'action',
-    align: 'center',
-    render: (record: Product) => (
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          gap: '8px',
-          justifyContent: 'center'
-        }}
-      >
-        <Button type="primary" size="small" onClick={() => console.log(record.id)}>
-          Editar
-        </Button>
-        <Button type="primary" danger size="small" onClick={() => console.log(record.id)}>
-          Excluir
-        </Button>
-      </div>
-    )
-  }
-]
-
 export const Products: React.FC = () => {
   const [visibleFilter, setVisibleFilter] = React.useState(false)
   const [visibleCardProduct, setVisibleCardProduct] = React.useState(false)
   const [visibleDrawerProduct, setVisibleDrawerProduct] = React.useState(false)
-  const { products, fetchProducts, setSelectedProduct, isLoading } = useProducts()
+  const { products, fetchProducts, setSelectedProduct, isLoading, handleDeleteProduct } =
+    useProducts()
 
   useEffect(() => {
     fetchProducts()
@@ -87,6 +39,62 @@ export const Products: React.FC = () => {
 
     return Object.values(categoryGroups)
   }
+
+  const columns: ColumnsType<Product> = [
+    {
+      title: 'Nome',
+      dataIndex: 'title',
+      align: 'center',
+      key: 'name'
+    },
+    {
+      title: 'Categoria',
+      dataIndex: 'category',
+      align: 'center',
+      sorter: (a, b) => {
+        return a.category.title.localeCompare(b.category.title)
+      },
+      render: (category: { title: string }) => category.title,
+      sortDirections: ['descend'],
+      key: 'category'
+    },
+    {
+      title: 'Preço',
+      dataIndex: 'price',
+      align: 'center',
+      key: 'price',
+      render: (price: string) => formatCurrency(Number(price))
+    },
+    {
+      title: 'Ações',
+      key: 'action',
+      align: 'center',
+      render: (record: Product) => (
+        <div
+          style={{
+            display: 'flex',
+            flexDirection: 'row',
+            gap: '8px',
+            justifyContent: 'center'
+          }}
+        >
+          <Button
+            type="primary"
+            size="small"
+            onClick={() => {
+              setSelectedProduct(record)
+              setVisibleDrawerProduct(true)
+            }}
+          >
+            Editar
+          </Button>
+          <Button type="primary" danger size="small" onClick={() => handleDeleteProduct(record.id)}>
+            Excluir
+          </Button>
+        </div>
+      )
+    }
+  ]
 
   return (
     <>

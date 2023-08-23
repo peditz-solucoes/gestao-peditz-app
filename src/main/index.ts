@@ -39,8 +39,6 @@ autoUpdater.on('update-available', () => {
   } catch (error) {}
 })
 
-
-
 function createWindow(): void {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
@@ -63,12 +61,19 @@ function createWindow(): void {
     return { action: 'deny' }
   })
 
+  // mainWindow.webContents.on('before-input-event', (_, input) => {
+  //   if (input.key.toLowerCase() === 'f5') {
+  //     console.log('F5 pressed. Reloading...')
+  //     mainWindow.webContents.reloadIgnoringCache()
+  //     app.relaunch()
+  //     app.exit()
+  //   }
+  // })
+
   autoUpdater.on('download-progress', (a) => {
     try {
       mainWindow.setTitle(`Baixando nova versao ${Math.round(a.percent)}%`)
-    } catch (error) {
-
-    }
+    } catch (error) {}
     console.log(`Baixando nova versao ${Math.round(a.percent)}%`)
   })
 
@@ -77,22 +82,26 @@ function createWindow(): void {
     console.log('Downlaod finalizado...')
 
     try {
-      dialog.showMessageBox({
-        type:'info',
-        buttons: ['Reiniciar', 'Depois'],
-        title: 'Atualizaçao',
-        detail: 'Uma nova versão foi baixada! Deseja reiniciar o Peditz?',
-        message: 'Reinicie! 😍😍'
-      }).then((returnValue) => {
-        dialogOpen = 0
-        if (returnValue.response === 0) autoUpdater.quitAndInstall()
-      })
-
-
+      dialog
+        .showMessageBox({
+          type: 'info',
+          buttons: ['Reiniciar', 'Depois'],
+          title: 'Atualizaçao',
+          detail: 'Uma nova versão foi baixada! Deseja reiniciar o Peditz?',
+          message: 'Reinicie! 😍😍'
+        })
+        .then((returnValue) => {
+          dialogOpen = 0
+          if (returnValue.response === 0) autoUpdater.quitAndInstall()
+        })
     } catch (error) {
       console.log('Errou ao atualizar', error)
     }
   })
+
+  ipcMain.on('reload-page', () => {
+    mainWindow.webContents.reloadIgnoringCache(); // Recarrega a página ignorando o cache
+  });
 
   // HMR for renderer base on electron-vite cli.
   // Load the remote URL for development or the local html file for production.
@@ -135,6 +144,8 @@ ipcMain.on('print-line', (_, line, printerName) => {
       ${line}
   `)}`
   )
+
+
 
   // Imprimir quando estiver pronto
   win.webContents.on('did-finish-load', () => {

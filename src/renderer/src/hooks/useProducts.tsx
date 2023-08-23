@@ -24,6 +24,7 @@ interface ProductsContextData {
   setSelectedProduct: (product: Product | null) => void
   patchProduct: (data: ProductPatchFormData) => Promise<unknown>
   isLoading: boolean
+  handleDeleteProduct: (id: string) => void
 }
 
 interface filterProducts {
@@ -185,6 +186,21 @@ export function ProductsProvider({ children }: ProductsProviderProps) {
     })
   }
 
+  function handleDeleteProduct(id: string) {
+    setIsLoading(true)
+    api
+      .delete(`/product/${id}`)
+      .then(() => {
+        fetchProducts()
+      })
+      .catch((error: AxiosError) => {
+        console.log(error)
+      })
+      .finally(() => {
+        setIsLoading(false)
+      })
+  }
+
   return (
     <ProductsContext.Provider
       value={{
@@ -201,7 +217,8 @@ export function ProductsProvider({ children }: ProductsProviderProps) {
         selectedProduct,
         patchProduct,
         setSelectedProduct,
-        isLoading
+        isLoading,
+        handleDeleteProduct
       }}
     >
       {children}

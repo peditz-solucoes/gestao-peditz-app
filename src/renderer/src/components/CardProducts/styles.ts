@@ -7,9 +7,11 @@ export const Container = styled.div`
   min-height: 390px;
   border-radius: 15px;
   background-color: #fff;
-  padding: 10px 20px;
+  padding: 15px 20px;
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 
   &:hover {
     box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
@@ -24,7 +26,7 @@ export const ContainerImage = styled.div`
   gap: 10px;
 `
 export const ButtonGroup = styled.div`
-  flex-grow: 1;
+  /* flex-grow: 1; */
   display: flex;
   justify-content: center;
   align-items: flex-end;

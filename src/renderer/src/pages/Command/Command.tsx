@@ -129,6 +129,16 @@ export const Command: React.FC = () => {
         </Tag>
       )
     },
+    // {
+    //   title: 'Comanda',
+    //   key: 'bill',
+    //   align: 'center',
+    //   render: (r) => (
+    //     <Tag>
+    //       {r}
+    //     </Tag>
+    //   )
+    // },
     {
       title: 'Ações',
       key: 'action',
