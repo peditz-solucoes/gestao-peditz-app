@@ -78,8 +78,7 @@ export function TestPrint(props: TestPrintProps): void {
       <title>Teste de impressão</title>
       <style>
         @page{
-            margin: 10mm 0mm;
-            size: 70mm 120mm ;
+            margin: 0mm 0mm;
         }
         body {
             font-family: Arial, Helvetica, sans-serif;
@@ -219,7 +218,6 @@ function aux(
 }
 
 export function BillPrinter(props: BillPrinterProps): void {
-  console.log(props)
 
   const html = `<!DOCTYPE html>
   <html>
@@ -243,7 +241,7 @@ export function BillPrinter(props: BillPrinterProps): void {
       <h3 style="margin-bottom: 5px">Atelie do chefe</h3>
       <p style="margin: 0; margin-bottom: 2px">Rua 15 de novembro, 123</p>
       <p style="margin: 0; margin-bottom: 2px">65900-231, centro Imperatriz/MA</p>
-      <p style="margin: 0; margin-bottom: 2px">(99) 99194 7191</p>
+      <p style="margin: 0; margin-bottom: 2px">(99) 9999199-0506</p>
       <p style="margin: 0; margin-bottom: 2px">ateliedochefe.mkt@gmail.com</p>
       <hr style="border-style: dashed" />
 
@@ -257,7 +255,7 @@ export function BillPrinter(props: BillPrinterProps): void {
       <hr style="border-style: dashed" />
       <div style="display: flex; justify-content: space-between; margin-top: 10px;">
         <strong>SubTotal:</strong>
-        <span>${formatCurrency(props.subtotal)}</span>
+        <span>${formatCurrency(props.total)}</span>
       </div>
       <div style="display: flex; justify-content: space-between; margin-top: 10px;">
         <strong>Taxa de serviço:</strong>
@@ -265,7 +263,7 @@ export function BillPrinter(props: BillPrinterProps): void {
       </div>
       <div style="display: flex; justify-content: space-between; margin-top: 10px;">
         <strong>Total:</strong>
-        <span>${formatCurrency(props.total)}</span>
+        <span>${formatCurrency(props.subtotal)}</span>
       </div>
       <hr style="border-style: dashed" />
 
@@ -280,9 +278,7 @@ export function BillPrinter(props: BillPrinterProps): void {
     </body>
   </html>`
 
-  console.log(html)
-
-  window.electronBridge.printLine('massas', html)
+  window.electronBridge.printLine('caixa', html)
 }
 // <div style="display: flex; justify-content: flex-end; margin-top: 10px; gap: 5px;">
 // <strong>Permanencia: </strong>

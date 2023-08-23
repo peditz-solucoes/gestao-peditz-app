@@ -77,6 +77,9 @@ function createWindow() {
       console.log("Errou ao atualizar", error);
     }
   });
+  electron.ipcMain.on("reload-page", () => {
+    mainWindow.webContents.reloadIgnoringCache();
+  });
   if (utils.is.dev && process.env["ELECTRON_RENDERER_URL"]) {
     mainWindow.loadURL(process.env["ELECTRON_RENDERER_URL"]);
   } else {
