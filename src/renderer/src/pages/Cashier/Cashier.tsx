@@ -105,7 +105,7 @@ export const CashierPage: React.FC = () => {
   const totalCashier =
     transactions
       .map((transaction) => Number(transaction.total))
-      .reduce((acc, curr) => acc + Number(curr), 0) + Number(cashier.initial_value)
+      .reduce((acc, curr) => acc + Number(curr), 0) + Number(cashier?.initial_value)
 
   return (
     <>

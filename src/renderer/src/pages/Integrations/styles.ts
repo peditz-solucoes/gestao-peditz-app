@@ -2,7 +2,7 @@ import { styled } from 'styled-components'
 
 export const Container = styled.div`
   width: 100%;
-  height: 100vh; /* Define a altura total da janela de visualização */
+  height: calc(100vh - 80px); /* Define a altura total da janela de visualização */
   display: flex;
   flex-direction: column;
   align-items: center;
