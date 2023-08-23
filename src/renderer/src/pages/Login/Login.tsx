@@ -42,7 +42,12 @@ export const LoginPage: React.FC = () => {
       .post('/auth/login/', { email, password })
       .then((response: AxiosResponse) => {
         setLogin(response.data.access)
-        navigate('/dashboard')
+        api.get('/restaurant/')
+        .then(response => {
+          localStorage.setItem('restaurant-info', JSON.stringify(response.data[0]))
+          navigate('/dashboard')
+        })
+        // navigate('/dashboard')
       })
       .catch((error: AxiosError) => {
         if (error.response?.status === 400) {

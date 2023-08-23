@@ -1,5 +1,6 @@
 import moment from 'moment'
 import { formatCurrency } from './formatCurrency'
+import { formatPhoneNumber } from './formatPhone'
 
 interface OpenCashierProps {
   data: {
@@ -218,7 +219,7 @@ function aux(
 }
 
 export function BillPrinter(props: BillPrinterProps): void {
-
+  const restaurant = JSON.parse(localStorage.getItem('restaurant-info') || '{}')
   const html = `<!DOCTYPE html>
   <html>
     <head>
@@ -238,11 +239,11 @@ export function BillPrinter(props: BillPrinterProps): void {
       </style>
     </head>
     <body>
-      <h3 style="margin-bottom: 5px">Atelie do chefe</h3>
-      <p style="margin: 0; margin-bottom: 2px">Rua 15 de novembro, 123</p>
-      <p style="margin: 0; margin-bottom: 2px">65900-231, centro Imperatriz/MA</p>
-      <p style="margin: 0; margin-bottom: 2px">(99) 9999199-0506</p>
-      <p style="margin: 0; margin-bottom: 2px">ateliedochefe.mkt@gmail.com</p>
+      <h3 style="margin-bottom: 5px">${restaurant?.title}</h3>
+      <p style="margin: 0; margin-bottom: 2px">${restaurant?.street}, ${restaurant?.number}</p>
+      <p style="margin: 0; margin-bottom: 2px">${restaurant?.zip_code}, ${restaurant?.complement} ${restaurant?.city}/${restaurant?.state}</p>
+      <p style="margin: 0; margin-bottom: 2px">${formatPhoneNumber(restaurant.phone)}</p>
+      <p style="margin: 0; margin-bottom: 2px">${restaurant?.email}</p>
       <hr style="border-style: dashed" />
 
       <h4 style="margin: 0">Nº DA COMANDA: ${props.number}</h4>
