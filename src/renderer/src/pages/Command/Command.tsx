@@ -182,24 +182,6 @@ export const Command: React.FC = () => {
   }
 
   function handlePrint(): void {
-    // console.log(
-    //   orders
-    //     .map((order) => {
-    //       return order.orders.map((product) => {
-    //         return {
-    //           name: product.product.title,
-    //           amount: Number(product.quantity),
-    //           price: Number(product.total),
-    //           complementItems: product.complements.map((complement) => {
-    //             return complement.items.map((item) => {
-    //               return { title: item.complement_title, quantity: item.quantity }
-    //             })
-    //           })
-    //         }
-    //       })
-    //     })
-    //     .flatMap((product) => product) as any
-    // )
     BillPrinter({
       number: `${selectedBills.map((bill) => bill.number).join(', ')}`,
       serviceTax: onTip,
@@ -250,10 +232,9 @@ export const Command: React.FC = () => {
   })
 
   // Resume finance
+  const subTotal = orders.map((o) => Number(o.total)).reduce((a, b) => a + b, 0)
   const total = orders.map((o) => Number(o.total)).reduce((a, b) => a + b, 0) + onTip
   const paid = payments.map((p) => Number(p.value)).reduce((a, b) => a + b, 0)
-  const missing = total - paid < 0 ? 0 : total - paid
-  const change = paid - total < 0 ? 0 : paid - total
 
   function handleTip(): void {
     if (!tipApply) {
@@ -553,7 +534,7 @@ export const Command: React.FC = () => {
                       fontSize: 20
                     }}
                   >
-                    Valor Total:
+                    SubTotal:
                   </Text>
                   <Text
                     style={{
@@ -564,35 +545,7 @@ export const Command: React.FC = () => {
                     }}
                   >
                     {' '}
-                    {formatCurrency(total)}{' '}
-                    <Badge count={<FaWallet style={{ color: '#2FAA54' }} />} />
-                  </Text>
-                </div>
-                <div
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'row',
-                    justifyContent: 'space-between'
-                  }}
-                >
-                  <Text
-                    strong
-                    style={{
-                      fontSize: 20
-                    }}
-                  >
-                    Pago:
-                  </Text>
-                  <Text
-                    style={{
-                      fontSize: 20,
-                      display: 'flex',
-                      alignItems: 'center',
-                      gap: '5px'
-                    }}
-                  >
-                    {' '}
-                    {formatCurrency(paid)}{' '}
+                    {formatCurrency(subTotal)}{' '}
                     <Badge count={<BsCashCoin style={{ color: '#2FAA54' }} />} />
                   </Text>
                 </div>
@@ -609,8 +562,8 @@ export const Command: React.FC = () => {
                       fontSize: 20
                     }}
                   >
-                    Faltante:
-                  </Text>{' '}
+                    Taxa de serviço:
+                  </Text>
                   <Text
                     style={{
                       fontSize: 20,
@@ -619,8 +572,8 @@ export const Command: React.FC = () => {
                       gap: '5px'
                     }}
                   >
-                    {formatCurrency(missing)}
-                    <Badge count={<ClockCircleOutlined style={{ color: '#f5222d' }} />} />
+                    {formatCurrency(onTip)}{' '}
+                    <Badge count={<BsFillDatabaseFill style={{ color: '#a49d16' }} />} />
                   </Text>
                 </div>
                 <div
@@ -636,7 +589,7 @@ export const Command: React.FC = () => {
                       fontSize: 20
                     }}
                   >
-                    Troco:
+                    Total:
                   </Text>
                   <Text
                     style={{
@@ -646,8 +599,9 @@ export const Command: React.FC = () => {
                       gap: '5px'
                     }}
                   >
-                    {formatCurrency(change)}
-                    <Badge count={<BsFillDatabaseFill style={{ color: '#a49d16' }} />} />
+                    {' '}
+                    {formatCurrency(total)}{' '}
+                    <Badge count={<FaWallet style={{ color: '#2FAA54' }} />} />
                   </Text>
                 </div>
               </div>
@@ -668,7 +622,7 @@ export const Command: React.FC = () => {
                   style={{ flex: 1 }}
                   onClick={handleApplyPayment}
                   loading={isLoading}
-                  disabled={missing > 0}
+                  disabled={paid < total}
                 >
                   Finalizar Comanda
                 </Button>
