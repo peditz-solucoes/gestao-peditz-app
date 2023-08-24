@@ -194,7 +194,8 @@ export const SideBar: React.FC<SideBarProps> = ({ collapsed }) => {
         height: '100vh',
         backgroundColor: '#47aa54',
         padding: '20px',
-        transition: 'all 1s'
+        transition: 'all 1s',
+        
       }}
     >
       <div
@@ -236,7 +237,10 @@ export const SideBar: React.FC<SideBarProps> = ({ collapsed }) => {
           display: 'flex',
           flexDirection: 'column',
           justifyContent: 'center',
-          gap: '10px'
+          gap: '10px',
+          height: 'calc(100vh-150px)',
+          maxHeight: '600px',
+          overflowY: 'auto'
         }}
         mode="inline"
         theme="dark"

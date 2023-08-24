@@ -1,4 +1,3 @@
-import { StackSimple } from '@phosphor-icons/react'
 import { useEffect, useState } from 'react'
 import * as S from './styles'
 import { Avatar, Badge, Button, Typography } from 'antd'
@@ -9,6 +8,7 @@ import { Tables } from '../../types'
 import { errorActions } from '../../utils/errorActions'
 import { AxiosError } from 'axios'
 import { CreateTable } from '../../components/CreateTable'
+import { MdTableRestaurant } from 'react-icons/md'
 
 const { Title, Text } = Typography
 
@@ -70,7 +70,7 @@ export const TablesPage: React.FC = () => {
                       backgroundColor: '#E2E8F0'
                     }}
                     icon={
-                      <StackSimple
+                      <MdTableRestaurant
                         size={32}
                         style={{
                           color: '#718096'

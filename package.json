@@ -1,6 +1,6 @@
 {
   "name": "gestao-peditz-utils",
-  "version": "1.0.9",
+  "version": "1.1.0",
   "description": "Gestão Peditz",
   "main": "./out/main/index.js",
   "author": "Peditz solucoes",
@@ -22,23 +22,17 @@
     "build:linux": "electron-vite build && electron-builder --linux --config"
   },
   "dependencies": {
-    "@ant-design/charts": "^1.4.2",
     "@electron-toolkit/preload": "^2.0.0",
     "@electron-toolkit/utils": "^1.0.2",
-    "@phosphor-icons/react": "^2.0.10",
     "antd": "^5.8.3",
     "axios": "^1.4.0",
     "chart.js": "^4.3.3",
     "electron-log": "^4.4.8",
     "electron-updater": "^5.3.0",
     "moment": "^2.29.4",
-    "numeral": "^2.0.6",
     "react-chartjs-2": "^5.2.0",
-    "react-electron-web-view": "^2.0.1",
     "react-icons": "^4.10.1",
     "react-router-dom": "^6.15.0",
-    "socket.io": "^4.7.2",
-    "socket.io-client": "^4.7.2",
     "styled-components": "^6.0.7"
   },
   "devDependencies": {

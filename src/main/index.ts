@@ -42,18 +42,28 @@ autoUpdater.on('update-available', () => {
 function createWindow(): void {
   // Create the browser window.
   const mainWindow = new BrowserWindow({
+    title: 'Peditz Gestão',
     simpleFullscreen: true,
     show: false,
     autoHideMenuBar: true,
-    ...(process.platform === 'linux' ? { icon } : {}),
+    ...(process.platform === 'linux' ? { icon } : { icon }),
     webPreferences: {
       preload: join(__dirname, '../preload/index.js'),
       sandbox: false
     }
   })
 
+
   mainWindow.on('ready-to-show', () => {
     mainWindow.show()
+  })
+
+  mainWindow.webContents.on('before-input-event', (_, input) => {
+    if (input.key.toLowerCase() === 'f5') {
+      mainWindow.webContents.reloadIgnoringCache()
+      app.relaunch()
+      // app.exit()
+    }
   })
 
   mainWindow.webContents.setWindowOpenHandler((details) => {
@@ -100,8 +110,8 @@ function createWindow(): void {
   })
 
   ipcMain.on('reload-page', () => {
-    mainWindow.webContents.reloadIgnoringCache(); // Recarrega a página ignorando o cache
-  });
+    mainWindow.webContents.reloadIgnoringCache() // Recarrega a página ignorando o cache
+  })
 
   // HMR for renderer base on electron-vite cli.
   // Load the remote URL for development or the local html file for production.
@@ -115,6 +125,9 @@ function createWindow(): void {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
+
+app.commandLine.appendSwitch('disable-http-cache')
+
 app.whenReady().then(() => {
   // Set app user model id for windows
   electronApp.setAppUserModelId('com.electron')
@@ -144,8 +157,6 @@ ipcMain.on('print-line', (_, line, printerName) => {
       ${line}
   `)}`
   )
-
-
 
   // Imprimir quando estiver pronto
   win.webContents.on('did-finish-load', () => {

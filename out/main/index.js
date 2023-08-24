@@ -35,10 +35,11 @@ electronUpdater.autoUpdater.on("update-available", () => {
 });
 function createWindow() {
   const mainWindow = new electron.BrowserWindow({
+    title: "Peditz Gestão",
     simpleFullscreen: true,
     show: false,
     autoHideMenuBar: true,
-    ...process.platform === "linux" ? { icon } : {},
+    ...process.platform === "linux" ? { icon } : { icon },
     webPreferences: {
       preload: path.join(__dirname, "../preload/index.js"),
       sandbox: false
@@ -46,6 +47,12 @@ function createWindow() {
   });
   mainWindow.on("ready-to-show", () => {
     mainWindow.show();
+  });
+  mainWindow.webContents.on("before-input-event", (_, input) => {
+    if (input.key.toLowerCase() === "f5") {
+      mainWindow.webContents.reloadIgnoringCache();
+      electron.app.relaunch();
+    }
   });
   mainWindow.webContents.setWindowOpenHandler((details) => {
     electron.shell.openExternal(details.url);
@@ -86,6 +93,7 @@ function createWindow() {
     mainWindow.loadFile(path.join(__dirname, "../renderer/index.html"));
   }
 }
+electron.app.commandLine.appendSwitch("disable-http-cache");
 electron.app.whenReady().then(() => {
   utils.electronApp.setAppUserModelId("com.electron");
   electronUpdater.autoUpdater.checkForUpdatesAndNotify();
