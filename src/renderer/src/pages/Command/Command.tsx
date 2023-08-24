@@ -5,7 +5,7 @@ import { AiFillPrinter, AiOutlineCheckCircle } from 'react-icons/ai'
 import { ImBin } from 'react-icons/im'
 import Table, { ColumnsType } from 'antd/es/table'
 import { formatCurrency } from '../../utils'
-import { PlusOutlined, DeleteOutlined } from '@ant-design/icons'
+import { PlusOutlined, DeleteOutlined, BorderlessTableOutlined } from '@ant-design/icons'
 import { BsCashCoin, BsFillDatabaseFill } from 'react-icons/bs'
 import { FaBookReader, FaUserAlt, FaUserTie, FaWallet } from 'react-icons/fa'
 import { MdTableRestaurant } from 'react-icons/md'
@@ -245,6 +245,7 @@ export const Command: React.FC = () => {
   const subTotal = orders.map((o) => Number(o.total)).reduce((a, b) => a + b, 0)
   const total = orders.map((o) => Number(o.total)).reduce((a, b) => a + b, 0) + onTip
   const paid = payments.map((p) => Number(p.value)).reduce((a, b) => a + b, 0)
+  const missing = total - paid
 
   function handleTip(): void {
     if (!tipApply) {
@@ -385,7 +386,7 @@ export const Command: React.FC = () => {
               }}
             >
               {selectedBills[0]?.open && (
-                <Space.Compact style={{ width: 300 }}>
+                <Space.Compact style={{ width: 250 }}>
                   <Select defaultValue={'percent'} onChange={(value) => setTypeOnTip(value)}>
                     <Option value="percent">%</Option>
                     <Option value="cash">R$</Option>
@@ -394,21 +395,23 @@ export const Command: React.FC = () => {
                     defaultValue={tipInput}
                     value={tipInput}
                     onChange={(e) => setTipInput(Number(e.target.value))}
+                    style={{
+                      width: '60px'
+                    }}
                   />
                   <Button
                     type={tipApply ? 'primary' : 'dashed'}
-                    icon={onTip && <AiOutlineCheckCircle />}
+                    icon={tipApply && <AiOutlineCheckCircle /> }
                     onClick={() => {
                       handleTip()
                     }}
                     style={{
                       display: 'flex',
                       alignItems: 'center',
-                      fontWeight: 'bold'
+                      fontWeight: 'bold',
+                      justifyContent: 'center'
                     }}
-                  >
-                    {tipApply ? 'Gorjeta Aplicada' : 'Aplicar Gorjeta'}
-                  </Button>
+                  >{!tipApply && 'Aplicar gorjeta'}</Button>
                 </Space.Compact>
               )}
               <div
@@ -611,6 +614,34 @@ export const Command: React.FC = () => {
                   >
                     {' '}
                     {formatCurrency(total)}{' '}
+                    <Badge count={<FaWallet style={{ color: '#2FAA54' }} />} />
+                  </Text>
+                </div>
+                <div
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    justifyContent: 'space-between'
+                  }}
+                >
+                  <Text
+                    strong
+                    style={{
+                      fontSize: 20
+                    }}
+                  >
+                    Faltante:
+                  </Text>
+                  <Text
+                    style={{
+                      fontSize: 20,
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '5px'
+                    }}
+                  >
+                    {' '}
+                    {formatCurrency(missing)}{' '}
                     <Badge count={<FaWallet style={{ color: '#2FAA54' }} />} />
                   </Text>
                 </div>
