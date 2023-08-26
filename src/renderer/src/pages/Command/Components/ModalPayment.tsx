@@ -2,7 +2,7 @@ import { useBill } from '@renderer/hooks'
 import api from '@renderer/services/api'
 import { FormOfPayment } from '@renderer/types'
 import { errorActions } from '@renderer/utils/errorActions'
-import { Button, Form, InputNumber, Modal, Typography } from 'antd'
+import { Button, Form, Input, InputNumber, Modal, Typography, InputRef } from 'antd'
 import { AxiosError } from 'axios'
 import React, { useEffect, useRef, useState } from 'react'
 
@@ -12,7 +12,7 @@ export const ModalPayment: React.FC = () => {
   const [formOfPayment, setFormOfPayment] = useState<FormOfPayment>({} as FormOfPayment)
   const { showModalPayment, selectedPayment, OnCloseModalPayment, setPayments } = useBill()
   const [form] = Form.useForm()
-  const inputRef = useRef<HTMLInputElement>(null)
+  const inputRef = useRef<InputRef>(null)
 
   useEffect(() => {
     fetchFormOfPayments()
@@ -35,6 +35,14 @@ export const ModalPayment: React.FC = () => {
       })
   }
 
+  function brlToNumber(value: string): number {
+    // Remove o prefixo R$, espaços e outros caracteres não-numéricos, e substitui vírgula por ponto
+    const sanitizedValue = value.replace(/R\$\s?|[^0-9,]/g, '').replace(',', '.')
+
+    // Converte a string limpa para um número
+    return parseFloat(sanitizedValue)
+  }
+
   function addPayment(value: number): void {
     setPayments((oldPayments) => [
       ...oldPayments,
@@ -47,9 +55,26 @@ export const ModalPayment: React.FC = () => {
   }
 
   const onFinish = (values: any) => {
-    addPayment(values.value)
+    addPayment(brlToNumber(values.value))
     OnCloseModalPayment()
     form.resetFields()
+  }
+
+  function formatToBRL(value: string): string {
+    // Limpa os caracteres que não são números
+    const onlyNumbers = value.replace(/\D+/g, '')
+
+    // Converte para um formato numérico para facilitar a formatação
+    const numberValue = parseInt(onlyNumbers, 10) || 0
+
+    // Divide por 100 para obter os centavos
+    const floatNumber = numberValue / 100
+
+    // Usa o objeto Intl para formatar para a moeda brasileira
+    return new Intl.NumberFormat('pt-BR', {
+      style: 'currency',
+      currency: 'BRL'
+    }).format(floatNumber)
   }
 
   return (
@@ -75,7 +100,16 @@ export const ModalPayment: React.FC = () => {
             }
           ]}
         >
-          <InputNumber ref={inputRef} size="large" style={{ width: 300 }} />
+          <Input
+            onChange={(e): void => {
+              form.setFieldsValue({
+                value: formatToBRL(e.target.value)
+              })
+            }}
+            ref={inputRef}
+            size="large"
+            style={{ width: 300 }}
+          />
         </Form.Item>
         <div style={{ display: 'flex', flexDirection: 'row', width: '100%', gap: '20px' }}>
           <Form.Item style={{ width: '100%' }}>
