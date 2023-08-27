@@ -225,7 +225,7 @@ export const Command: React.FC = () => {
         payments_methods: [],
         tax_items: selectedRows.map((item) => {
           return {
-            product_id: item.product.id as string,
+            product_id: item.product?.id as string,
             title: item.product_title,
             quantity: Number(item.quantity),
             price: Number(item.total)

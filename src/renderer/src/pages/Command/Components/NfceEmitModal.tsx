@@ -4,6 +4,7 @@ import {
   Button,
   Divider,
   Form,
+  Input,
   InputNumber,
   Modal,
   Select,
@@ -43,6 +44,7 @@ export const NfceEmitModal: React.FC<NfceEmitModalProps> = ({ data, onClose, vis
 
   const onFinish = (values: {
     payments_methods: { forma_pagamento: string; valor_pagamento: number }[]
+    cpf_cnpj: string
   }) => {
     console.log(values.payments_methods)
     if (!values.payments_methods) {
@@ -62,6 +64,21 @@ export const NfceEmitModal: React.FC<NfceEmitModalProps> = ({ data, onClose, vis
     }
 
     handleEmitNfce(values)
+  }
+
+  function formatCPFOrCNPJ(input: string): string {
+    const cleanInput = input.replace(/\D/g, '') // Remove todos os caracteres não numéricos
+
+    if (cleanInput.length === 11) {
+      // Formata como CPF (123.456.789-01)
+      return cleanInput.replace(/(\d{3})(\d{3})(\d{3})(\d{2})/, '$1.$2.$3-$4')
+    } else if (cleanInput.length === 14) {
+      // Formata como CNPJ (12.345.678/0001-01)
+      return cleanInput.replace(/(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, '$1.$2.$3/$4-$5')
+    } else {
+      // Tamanho de entrada inválido
+      return input
+    }
   }
 
   function handleEmitNfce(values: any) {
@@ -143,7 +160,22 @@ export const NfceEmitModal: React.FC<NfceEmitModalProps> = ({ data, onClose, vis
           onFinish={onFinish}
           style={{ maxWidth: 600 }}
           autoComplete="off"
+          layout="vertical"
         >
+          <Form.Item
+            name="cpf_cnpj"
+            label="CPF/CNPJ:"
+            tooltip="Para informar se a nota será emitida no cpf ou cnpj do solicitante."
+          >
+            <Input
+              placeholder="Digite o cnpj ou cpf"
+              onChange={(e): void => {
+                form.setFieldsValue({
+                  cpf_cnpj: formatCPFOrCNPJ(e.target.value)
+                })
+              }}
+            />
+          </Form.Item>
           <Form.List name="payments_methods">
             {(fields, { add, remove }) => (
               <>
