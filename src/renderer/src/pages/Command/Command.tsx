@@ -665,7 +665,7 @@ export const Command: React.FC = () => {
                   style={{ flex: 1 }}
                   onClick={handleApplyPayment}
                   loading={isLoading}
-                  disabled={paid < total}
+                  disabled={paid <= total}
                 >
                   Finalizar Comanda
                 </Button>
