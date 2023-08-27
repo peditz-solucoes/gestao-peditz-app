@@ -13,22 +13,25 @@ interface ProductsContextData {
   currentTab: number
   setCurrentTab: (tab: number) => void
   products: Product[]
+  filteredProducts: Product[]
   categories: ProductCategory[]
   productForm: ProductFormData
   setProductForm: (data: ProductFormData) => void
   fetchProducts: () => void
   fetchCategories: () => void
-  filteredProducts: (data: filterProducts) => void
+  filterProducts: (data: filterProducts) => void
   createProduct: (data: ProductFormData) => Promise<unknown>
   selectedProduct: Product | null
   setSelectedProduct: (product: Product | null) => void
   patchProduct: (data: ProductPatchFormData) => Promise<unknown>
   isLoading: boolean
   handleDeleteProduct: (id: string) => void
+  setFilteredProducts: (data: Product[]) => void
 }
 
 interface filterProducts {
-  productCategoryId?: string
+  name?: string
+  category?: string
   active?: boolean
   listed?: boolean
   printer?: string
@@ -85,6 +88,7 @@ export const ProductsContext = createContext({} as ProductsContextData)
 export function ProductsProvider({ children }: ProductsProviderProps) {
   const [currentTab, setCurrentTab] = useState(1)
   const [products, setProducts] = useState<Product[]>([])
+  const [filteredProducts, setFilteredProducts] = useState<Product[]>([])
   const [categories, setCategories] = useState<ProductCategory[]>([])
   const [selectedProduct, setSelectedProduct] = useState<Product | null>(null)
   const [isLoading, setIsLoading] = useState(false)
@@ -111,6 +115,7 @@ export function ProductsProvider({ children }: ProductsProviderProps) {
       .get('/product')
       .then((response) => {
         setProducts(response.data)
+        setFilteredProducts(response.data) 
       })
       .catch((error: AxiosError) => {
         errorActions(error)
@@ -131,22 +136,27 @@ export function ProductsProvider({ children }: ProductsProviderProps) {
       })
   }
 
-  function filteredProducts(data: filterProducts) {
-    api
-      .get('/product', {
-        params: {
-          product_category: data.productCategoryId,
-          active: data.active,
-          listed: data.listed,
-          printer: data.printer
-        }
-      })
-      .then((response) => {
-        setProducts(response.data)
-      })
-      .catch((error) => {
-        errorActions(error)
-      })
+  function filterProducts(data: filterProducts) {
+    console.log('tô chegando assim', data)
+    const filteredProducts = products.filter((product) => {
+      const isNameMatch =
+        data.name
+          ? product.title.toLowerCase().startsWith(data.name.toLowerCase())
+          : product.title !== ''
+
+      const isCategoryMatch = !data.category ? true : product.category.title.toLowerCase() === data.category.toLowerCase()
+
+      const isActiveMatch = product.active === data.active
+      const isListedMatch = product.listed === data.listed
+
+      console.log(data.printer)
+
+      const isPrinterMatch = !data.printer ? true : product.printer_detail?.name === data.printer
+
+      return isNameMatch && isCategoryMatch && isActiveMatch && isListedMatch && isPrinterMatch
+    })
+    console.log('products', filteredProducts)
+    setFilteredProducts(filteredProducts)
   }
 
   function createProduct(productData: ProductFormData) {
@@ -207,18 +217,20 @@ export function ProductsProvider({ children }: ProductsProviderProps) {
         currentTab,
         setCurrentTab,
         products,
+        filteredProducts,
         categories,
         productForm,
         setProductForm,
         fetchProducts,
         fetchCategories,
-        filteredProducts,
+        filterProducts,
         createProduct,
         selectedProduct,
         patchProduct,
         setSelectedProduct,
         isLoading,
-        handleDeleteProduct
+        handleDeleteProduct,
+        setFilteredProducts,
       }}
     >
       {children}

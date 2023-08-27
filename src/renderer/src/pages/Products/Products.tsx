@@ -19,7 +19,7 @@ export const Products: React.FC = () => {
   const [visibleFilter, setVisibleFilter] = React.useState(false)
   const [visibleCardProduct, setVisibleCardProduct] = React.useState(false)
   const [visibleDrawerProduct, setVisibleDrawerProduct] = React.useState(false)
-  const { products, fetchProducts, setSelectedProduct, isLoading, handleDeleteProduct } =
+  const { products, filteredProducts, fetchProducts, setSelectedProduct, isLoading, handleDeleteProduct } =
     useProducts()
 
   useEffect(() => {
@@ -29,7 +29,7 @@ export const Products: React.FC = () => {
   function groupProductsByCategory(): CategoryGroup[] {
     const categoryGroups: { [key: string]: CategoryGroup } = {}
 
-    products.forEach((Product) => {
+    filteredProducts.forEach((Product) => {
       const category = Product.category.title
       if (!categoryGroups[category]) {
         categoryGroups[category] = { category, products: [] }

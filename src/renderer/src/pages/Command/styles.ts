@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { Table } from 'antd'
 
 export const Container = styled.div`
   width: calc(100vw - 18rem);
@@ -58,4 +59,14 @@ export const CardInfo = styled.div`
   flex-direction: row;
   align-items: center;
   gap: 10px;
+`
+
+export const TableAux = styled(Table)`
+  width: 100%;
+  flex: 1;
+
+  .ant-table-wrapper .ant-table-container {
+    max-height: calc(100vh - 18rem);
+    overflow-y: auto;
+  }
 `

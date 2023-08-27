@@ -1,3 +1,12 @@
+export type ProductCategory = {
+  id?: string
+  created?: string
+  modified?: string
+  title: string
+  order: number
+  restaurant?: string
+}
+
 export type Product = {
   id: string
   created: string
@@ -14,8 +23,12 @@ export type Product = {
   icms_aliquota: string
   icms_base_calculo: string
   icms_modalidade_base_calculo: '0' | '1' | '2' | '3' | '4' | '5' | '6' | '7'
-  category: productCategory
-  printer: number
+  category: ProductCategory
+  printer: string
+  printer_detail: {
+    id: string
+    name: string
+  }
   title: string
   product_category: string
   codigo_produto?: string
@@ -52,15 +65,6 @@ export type ProductComplementItem = {
   max_value: number
   min_value: number
   complement_product?: string
-}
-
-export type ProductCategory = {
-  id?: string
-  created?: string
-  modified?: string
-  title: string
-  order: number
-  restaurant?: string
 }
 
 export type Tables = {

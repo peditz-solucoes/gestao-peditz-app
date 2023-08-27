@@ -5,7 +5,7 @@ import { AiFillPrinter, AiOutlineCheckCircle } from 'react-icons/ai'
 import { ImBin } from 'react-icons/im'
 import Table, { ColumnsType } from 'antd/es/table'
 import { formatCurrency } from '../../utils'
-import { PlusOutlined, DeleteOutlined, BorderlessTableOutlined } from '@ant-design/icons'
+import { PlusOutlined, DeleteOutlined } from '@ant-design/icons'
 import { BsCashCoin, BsFillDatabaseFill } from 'react-icons/bs'
 import { FaBookReader, FaUserAlt, FaUserTie, FaWallet } from 'react-icons/fa'
 import { MdTableRestaurant } from 'react-icons/md'
@@ -401,7 +401,7 @@ export const Command: React.FC = () => {
                   />
                   <Button
                     type={tipApply ? 'primary' : 'dashed'}
-                    icon={tipApply && <AiOutlineCheckCircle /> }
+                    icon={tipApply && <AiOutlineCheckCircle />}
                     onClick={() => {
                       handleTip()
                     }}
@@ -411,7 +411,9 @@ export const Command: React.FC = () => {
                       fontWeight: 'bold',
                       justifyContent: 'center'
                     }}
-                  >{!tipApply && 'Aplicar gorjeta'}</Button>
+                  >
+                    {!tipApply && 'Aplicar gorjeta'}
+                  </Button>
                 </Space.Compact>
               )}
               <div
@@ -630,7 +632,7 @@ export const Command: React.FC = () => {
                       fontSize: 20
                     }}
                   >
-                    Faltante:
+                    Restante:
                   </Text>
                   <Text
                     style={{
@@ -641,17 +643,17 @@ export const Command: React.FC = () => {
                     }}
                   >
                     {' '}
-                    {formatCurrency(missing)}{' '}
+                    {missing < 0 ? formatCurrency(0) : formatCurrency(missing)}{' '}
                     <Badge count={<FaWallet style={{ color: '#2FAA54' }} />} />
                   </Text>
                 </div>
               </div>
               <div>
                 <Table
-                  columns={columnsFormOfPayments}
+                  columns={columnsFormOfPayments as []}
                   dataSource={payments}
                   pagination={false}
-                  scroll={{ y: 380 }}
+                  scroll={{ y: 'calc(100vh - 4em)' }}
                   rowKey={(record): string => record.id as string}
                 />
               </div>
