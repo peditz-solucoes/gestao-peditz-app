@@ -12,12 +12,13 @@ import { Icon } from '../../components/Icon'
 import { Typography, Table, Button, Tag } from 'antd'
 import { ColumnsType } from 'antd/es/table'
 import { ModalCashier } from '../../components/ModalCashier/ModalCashier'
-import { formatToBRL } from '../../utils'
+import { formatCurrency, formatToBRL } from '../../utils'
 import { useCashier } from '@renderer/hooks'
 
 const { Text, Title } = Typography
 
 interface payment {
+  id: string
   methodPayment: string
   value: string
   tax: string
@@ -90,6 +91,7 @@ export const CashierPage: React.FC = () => {
       .map((transaction) => {
         return transaction.payments.map((payment) => {
           return {
+            id: payment.id,
             methodPayment: payment.payment_method_title,
             bills: transaction.bills.map((bill) => bill.number).join(', '),
             tax: formatToBRL(transaction.tip),
@@ -143,7 +145,7 @@ export const CashierPage: React.FC = () => {
                     color: '#2FAA54'
                   }}
                 >
-                  {formatToBRL(`${totalCashier}`)}
+                  {formatCurrency(totalCashier)}
                 </Text>
               </div>
               <div
@@ -258,14 +260,15 @@ export const CashierPage: React.FC = () => {
                 color: '#4C0677'
               }}
             >
-              {formatToBRL(
-                `${transactions
+              {formatCurrency(
+                transactions
                   .map((transaction) =>
                     transaction.payments
                       .filter((pay) => pay.payment_method_title === 'Cartão de Débito')
                       .map((item) => item.value)
                   )
-                  .reduce((acc, curr) => Number(acc) + Number(curr), 0)}`
+                  .flatMap((item) => item)
+                  .reduce((acc, curr) => Number(acc) + Number(curr), 0)
               )}
             </Text>
           </S.CardInfoFinance>
@@ -300,14 +303,14 @@ export const CashierPage: React.FC = () => {
                 color: '#0583F2'
               }}
             >
-              {formatToBRL(
-                `${transactions
+              {formatCurrency(
+                transactions
                   .map((transaction) =>
                     transaction.payments
                       .filter((pay) => pay.payment_method_title === 'Cartão de Crédito')
                       .map((item) => item.value)
                   )
-                  .reduce((acc, curr) => Number(acc) + Number(curr), 0)}`
+                  .reduce((acc, curr) => Number(acc) + Number(curr), 0)
               )}
             </Text>
           </S.CardInfoFinance>
@@ -342,14 +345,14 @@ export const CashierPage: React.FC = () => {
                 color: '#2FAA54'
               }}
             >
-              {formatToBRL(
-                `${transactions
+              {formatCurrency(
+                transactions
                   .map((transaction) =>
                     transaction.payments
                       .filter((pay) => pay.payment_method_title === 'Dinheiro')
                       .map((item) => item.value)
                   )
-                  .reduce((acc, curr) => Number(acc) + Number(curr), 0)}`
+                  .reduce((acc, curr) => Number(acc) + Number(curr), 0)
               )}
             </Text>
           </S.CardInfoFinance>
@@ -384,14 +387,14 @@ export const CashierPage: React.FC = () => {
                 color: '#DD6B20'
               }}
             >
-              {formatToBRL(
-                `${transactions
+              {formatCurrency(
+                transactions
                   .map((transaction) =>
                     transaction.payments
                       .filter((pay) => pay.payment_method_title === 'PIX')
                       .map((item) => item.value)
                   )
-                  .reduce((acc, curr) => Number(acc) + Number(curr), 0)}`
+                  .reduce((acc, curr) => Number(acc) + Number(curr), 0)
               )}
             </Text>
           </S.CardInfoFinance>
@@ -426,10 +429,10 @@ export const CashierPage: React.FC = () => {
                 color: '#0583F2'
               }}
             >
-              {formatToBRL(
-                `${transactions
+              {formatCurrency(
+                transactions
                   .map((transaction) => Number(transaction.tip))
-                  .reduce((acc, curr) => acc + Number(curr), 0)}`
+                  .reduce((acc, curr) => acc + Number(curr), 0)
               )}
             </Text>
           </S.CardInfoFinance>
@@ -442,6 +445,7 @@ export const CashierPage: React.FC = () => {
           scroll={{ y: 555 }}
           size="middle"
           loading={isLoading}
+          rowKey={(row) => row.id}
         />
       </S.Container>
       <ModalCashier />

@@ -199,7 +199,6 @@ function aux(
     }[]
   }[]
 ) {
-  console.log('tô chegando assim', item)
   let row = ''
   for (let product of item) {
     row += `
@@ -340,10 +339,22 @@ export function Order(
   operator: string,
   date: string
 ): void {
+  // console.log(items)
+  const grouped: { [key: string]: ItemsOrdersProps[] } = {};
   for (const i of items) {
-    if (i.printer_name) {
+    const printerName = i.printer_name || 'caixa'
+    if (printerName !== null) {
+        if (!grouped[printerName]) {
+            grouped[printerName] = [];
+        }
+        grouped[printerName].push(i);
+    }
+  }
+  for (const i in grouped) {
+    const itemsPrinter =  grouped[i].forEach((item) => addOrderItemInString(item))
+
       window.electronBridge.printLine(
-        i.printer_name || '',
+        i,
         `
         <!DOCTYPE html>
         <html>
@@ -383,13 +394,13 @@ export function Order(
           <h4 style="margin: 0; text-align: center; margin-top: 5px">Responsável ${operator}</h4>
           <hr style="border-style: dashed" />
           <ul style="padding: 0; font-size: 24px">
-          ${addOrderItemInString(i)}
+          ${itemsPrinter}
           <hr style="border-style: dashed" />
           <div
             style="margin-top: 10px ; font-size: 14px;"
           >
             <strong style="font-size: 14px;">Impressora:</strong>
-            <span style="font-size: 14px;">${i.printer_name}</span>
+            <span style="font-size: 14px;">${i}</span>
           </div>
           <br>
           <p style="margin: 0; text-align: center; font-size: 12px">
@@ -400,7 +411,4 @@ export function Order(
     `
       )
     }
-    console.log('items', items)
-    console.log('restaurant', restaurant)
   }
-}
