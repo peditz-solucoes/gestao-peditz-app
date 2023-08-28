@@ -1,6 +1,6 @@
 import { useBill } from '@renderer/hooks'
 import api from '@renderer/services/api'
-import { formatToBRL } from '@renderer/utils'
+import { formatCurrency } from '@renderer/utils'
 import { Alert, Input, Modal, Typography } from 'antd'
 import { AxiosError } from 'axios'
 import React from 'react'
@@ -75,7 +75,7 @@ export const ModalConfirmDeleteItem: React.FC<ModalConfirmDeleteItemProps> = ({
       okButtonProps={{
         loading: isLoading,
         danger: true,
-        disabled: operatorCode.length > 0 ? false : true    
+        disabled: operatorCode.length > 0 ? false : true
       }}
     >
       <div
@@ -89,7 +89,7 @@ export const ModalConfirmDeleteItem: React.FC<ModalConfirmDeleteItemProps> = ({
           Nome do item: <strong>{data.name}</strong>
         </Text>
         <Text>
-          Preço do item: <strong>{formatToBRL(data.price)}</strong>
+          Preço do item: <strong>{formatCurrency(Number(data.price))}</strong>
         </Text>
         <Text>
           Quantidade: <strong>{Number(data.amount)}</strong>

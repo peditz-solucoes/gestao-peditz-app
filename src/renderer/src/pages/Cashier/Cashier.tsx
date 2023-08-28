@@ -12,7 +12,7 @@ import { Icon } from '../../components/Icon'
 import { Typography, Table, Button, Tag } from 'antd'
 import { ColumnsType } from 'antd/es/table'
 import { ModalCashier } from '../../components/ModalCashier/ModalCashier'
-import { formatCurrency, formatToBRL } from '../../utils'
+import { formatCurrency } from '../../utils'
 import { useCashier } from '@renderer/hooks'
 
 const { Text, Title } = Typography
@@ -94,9 +94,9 @@ export const CashierPage: React.FC = () => {
             id: payment.id,
             methodPayment: payment.payment_method_title,
             bills: transaction.bills.map((bill) => bill.number).join(', '),
-            tax: formatToBRL(transaction.tip),
+            tax: formatCurrency(Number(transaction.tip)),
             date: new Date(transaction.created).toLocaleString(),
-            value: formatToBRL(payment.value),
+            value: formatCurrency(Number(payment.value)),
             type: mapTypePayment(transaction.type)
           } as payment
         })

@@ -1,6 +1,6 @@
 import { Button, Typography } from "antd";
 import React from "react";
-import { formatToBRL } from "../../../../utils";
+import { formatCurrency } from "../../../../utils";
 
 interface CheckBoxComplementProps {
   title: string;
@@ -53,7 +53,7 @@ export const CheckBoxComplement: React.FC<CheckBoxComplementProps> = ({
               }
             }}
           >
-            {`${item.title} - ${formatToBRL(`${item.price}`)}`}
+            {`${item.title} - ${formatCurrency(item.price)}`}
           </Button>
         ))}
       </div>

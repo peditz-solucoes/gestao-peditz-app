@@ -1,6 +1,6 @@
 import { Button, List, Typography } from "antd";
 import React from "react";
-import { formatToBRL } from "../../../../utils";
+import { formatCurrency } from "../../../../utils";
 import { MinusOutlined, PlusOutlined } from "@ant-design/icons";
 
 interface NumberComplementProps {
@@ -61,7 +61,7 @@ export const NumberComplement: React.FC<NumberComplementProps> = ({
           renderItem={(item) => (
             <List.Item>
               <Typography.Title level={5}>
-                {item.item_title} - {formatToBRL(item.item_price)}
+                {item.item_title} - {formatCurrency(Number(item.item_price))}
               </Typography.Title>
               <div
                 style={{

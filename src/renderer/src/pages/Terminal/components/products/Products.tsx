@@ -1,7 +1,7 @@
 import { CaretRightOutlined, DeleteOutlined, ReloadOutlined } from '@ant-design/icons'
 import { Alert, Button, Card, Collapse, Input, InputRef, List, Modal, Typography } from 'antd'
 import React, { useEffect } from 'react'
-import { formatToBRL } from '../../../../utils'
+import { formatCurrency } from '../../../../utils'
 import { useTerminal } from '../../../../hooks/useTerminal'
 import { OrderGroupList, Product } from '../../../../types'
 import api from '../../../../services/api'
@@ -59,7 +59,7 @@ export const Products: React.FC = () => {
 
     p.forEach((Product) => {
       const category = Product.category.title
-      const categoryId = Product.category.id
+      const categoryId = Product.category.id as string
       if (!categoryGroups[category]) {
         categoryGroups[category] = { category, categoryId, products: [] }
       }
@@ -361,7 +361,7 @@ export const Products: React.FC = () => {
                           }}
                           level={5}
                         >
-                          {formatToBRL(product.price)}
+                          {formatCurrency(Number(product.price))}
                         </Typography.Title>
                       </Card>
                     ))}

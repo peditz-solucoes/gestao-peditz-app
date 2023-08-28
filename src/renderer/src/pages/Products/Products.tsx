@@ -7,7 +7,7 @@ import { DrawerFilterProducts } from '../../components/DrawerFilterProducts/Draw
 import { DrawerProduct } from '../../components/DrawerProduct/DrawerProduct'
 import { Product } from '../../types'
 import { ColumnsType } from 'antd/es/table'
-import { formatToBRL } from '../../utils'
+import { formatCurrency } from '../../utils'
 import { useProducts } from '../../hooks'
 
 type CategoryGroup = {
@@ -63,7 +63,7 @@ export const Products: React.FC = () => {
       dataIndex: 'price',
       align: 'center',
       key: 'price',
-      render: (price: string) => formatToBRL(price)
+      render: (price: string) => formatCurrency(Number(price))
     },
     {
       title: 'Ações',

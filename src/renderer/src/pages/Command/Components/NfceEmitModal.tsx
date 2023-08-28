@@ -7,6 +7,8 @@ import {
   Input,
   InputNumber,
   Modal,
+  Radio,
+  RadioChangeEvent,
   Select,
   Space,
   Typography
@@ -16,7 +18,7 @@ import React, { useEffect, useState } from 'react'
 import { AxiosError } from 'axios'
 import { errorActions } from '@renderer/utils/errorActions'
 import api from '@renderer/services/api'
-import { formatToBRL } from '@renderer/utils'
+import { formatCurrency } from '@renderer/utils'
 import { formatCPFOrCNPJ } from '@renderer/utils/formatCpfCnpj'
 
 const { Title } = Typography
@@ -30,9 +32,14 @@ interface NfceEmitModalProps {
 export const NfceEmitModal: React.FC<NfceEmitModalProps> = ({ data, onClose, visible }) => {
   const [formOfPayment, setFormOfPayment] = useState<FormOfPayment[]>([] as FormOfPayment[])
   const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [valueRadio, setValueRadio] = useState<string>('Nenhum')
   const [error, setError] = useState<string>('')
   const [linkNfce, setLinkNfce] = useState<string>('')
   const [form] = Form.useForm()
+
+  const onChange = (e: RadioChangeEvent) => {
+    setValueRadio(e.target.value)
+  }
 
   useEffect(() => {
     fetchFormOfPayments()
@@ -131,13 +138,13 @@ export const NfceEmitModal: React.FC<NfceEmitModalProps> = ({ data, onClose, vis
             <span>
               {item.quantity} - {item.title}
             </span>{' '}
-            <span>{formatToBRL(`${item.price}`)}</span>
+            <span>{formatCurrency(item.price)}</span>
           </div>
         ))}
       </div>
       <Divider orientation="right">
         Valor Total:{' '}
-        {formatToBRL(`${data?.tax_items?.map((item) => item.price).reduce((a, b) => a + b, 0)}`)}
+        {formatCurrency(data?.tax_items?.map((item) => item.price).reduce((a, b) => a + b, 0))}
       </Divider>
       <div>
         <Form
@@ -148,20 +155,49 @@ export const NfceEmitModal: React.FC<NfceEmitModalProps> = ({ data, onClose, vis
           autoComplete="off"
           layout="vertical"
         >
-          <Form.Item
-            name="cpf_cnpj"
-            label="CPF/CNPJ:"
-            tooltip="Para informar se a nota será emitida no cpf ou cnpj do solicitante."
-          >
-            <Input
-              placeholder="Digite o cnpj ou cpf"
-              onChange={(e): void => {
-                form.setFieldsValue({
-                  cpf_cnpj: formatCPFOrCNPJ(e.target.value)
-                })
-              }}
-            />
-          </Form.Item>
+          <div style={{
+            marginBottom: '10px'
+          }}>
+            <Radio.Group onChange={onChange} value={valueRadio}>
+              <Radio value={'CPF'}>CPF</Radio>
+              <Radio value={'CNPJ'}>CNPJ</Radio>
+              <Radio value="Nenhum">Nenhum</Radio>
+            </Radio.Group>
+          </div>
+          {valueRadio === 'Nenhum' && null}
+          {valueRadio === 'CPF' && (
+            <Form.Item
+              name="cpf"
+              label="CPF:"
+              tooltip="Para informar se a nota será emitida no cpf ou cnpj do solicitante."
+            >
+              <Input
+                placeholder="Digite o cpf"
+                onChange={(e): void => {
+                  form.setFieldsValue({
+                    cpf_cnpj: formatCPFOrCNPJ(e.target.value)
+                  })
+                }}
+              />
+            </Form.Item>
+          )}
+          {valueRadio === 'CNPJ' && (
+            <Form.Item
+              name="cnpj"
+              label="CNPJ:"
+              tooltip="Para informar se a nota será emitida no cpf ou cnpj do solicitante."
+            >
+              <Input
+                placeholder="Digite o cnpj"
+                onChange={(e): void => {
+                  form.setFieldsValue({
+                    cpf_cnpj: formatCPFOrCNPJ(e.target.value)
+                  })
+                }}
+              />
+            </Form.Item>
+          )}
+
           <Form.List name="payments_methods">
             {(fields, { add, remove }) => (
               <>
