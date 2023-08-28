@@ -65,7 +65,7 @@ export const NfceEmitModal: React.FC<NfceEmitModalProps> = ({ data, onClose, vis
       .map((item) => item.valor_pagamento)
       .reduce((a, b) => a + b, 0)
 
-    if (totalPricePayment !== totalPriceProduct) {
+    if (formatCurrency(totalPricePayment) !== formatCurrency(totalPriceProduct)) {
       console.log(totalPricePayment, totalPriceProduct)
       setError('O valor total dos pagamentos não é igual ao valor total dos produtos!')
       return
@@ -155,9 +155,11 @@ export const NfceEmitModal: React.FC<NfceEmitModalProps> = ({ data, onClose, vis
           autoComplete="off"
           layout="vertical"
         >
-          <div style={{
-            marginBottom: '10px'
-          }}>
+          <div
+            style={{
+              marginBottom: '10px'
+            }}
+          >
             <Radio.Group onChange={onChange} value={valueRadio}>
               <Radio value={'CPF'}>CPF</Radio>
               <Radio value={'CNPJ'}>CNPJ</Radio>
