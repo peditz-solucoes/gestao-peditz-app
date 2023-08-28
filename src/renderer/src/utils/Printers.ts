@@ -240,7 +240,9 @@ export function BillPrinter(props: BillPrinterProps): void {
     <body>
       <h3 style="margin-bottom: 5px">${restaurant?.title}</h3>
       <p style="margin: 0; margin-bottom: 2px">${restaurant?.street}, ${restaurant?.number}</p>
-      <p style="margin: 0; margin-bottom: 2px">${restaurant?.zip_code}, ${restaurant?.complement} ${restaurant?.city}/${restaurant?.state}</p>
+      <p style="margin: 0; margin-bottom: 2px">${restaurant?.zip_code}, ${restaurant?.complement} ${
+    restaurant?.city
+  }/${restaurant?.state}</p>
       <p style="margin: 0; margin-bottom: 2px">${formatPhoneNumber(restaurant.phone)}</p>
       <p style="margin: 0; margin-bottom: 2px">${restaurant?.email}</p>
       <hr style="border-style: dashed" />
@@ -302,9 +304,10 @@ interface ItemsOrdersProps {
   quantity: number
 }
 
-function addOrderItemInString(i: ItemsOrdersProps): string {
+function addOrderItemInString(itens: ItemsOrdersProps[]): string {
   let row = ''
-  row += `<li style="list-style: none">
+  for (const i of itens) {
+    row += `<li style="list-style: none">
     <div style="font-size: 24px">
       <strong style="font-size: 24px">${i.quantity}x ${i.product_title}</strong>
     </div>
@@ -316,18 +319,19 @@ function addOrderItemInString(i: ItemsOrdersProps): string {
         : ''
     }
     `
-  if (i.items.length > 0) {
-    for (const j of i.items) {
-      row += `<ul style="padding: 2px 0 0 5mm">`
-      for (const k of j.items) {
-        row += `<li style="list-style: none; display: flex">`
-        row += `<span style="font-size: 24px">- ${k.item_title}</span>`
-        row += `</li>`
+    if (i.items.length > 0) {
+      for (const j of i.items) {
+        row += `<ul style="padding: 2px 0 0 5mm">`
+        for (const k of j.items) {
+          row += `<li style="list-style: none; display: flex">`
+          row += `<span style="font-size: 24px">- ${k.item_title}</span>`
+          row += `</li>`
+        }
+        row += `</ul>`
       }
-      row += `</ul>`
     }
+    row += `</li>`
   }
-  row += `</li>`
   return row
 }
 
@@ -340,22 +344,20 @@ export function Order(
   date: string
 ): void {
   // console.log(items)
-  const grouped: { [key: string]: ItemsOrdersProps[] } = {};
+  const grouped: { [key: string]: ItemsOrdersProps[] } = {}
   for (const i of items) {
     const printerName = i.printer_name || 'caixa'
     if (printerName !== null) {
-        if (!grouped[printerName]) {
-            grouped[printerName] = [];
-        }
-        grouped[printerName].push(i);
+      if (!grouped[printerName]) {
+        grouped[printerName] = []
+      }
+      grouped[printerName].push(i)
     }
   }
   for (const i in grouped) {
-    const itemsPrinter =  grouped[i].forEach((item) => addOrderItemInString(item))
-
-      window.electronBridge.printLine(
-        i,
-        `
+    window.electronBridge.printLine(
+      i,
+      `
         <!DOCTYPE html>
         <html>
         <head>
@@ -394,7 +396,7 @@ export function Order(
           <h4 style="margin: 0; text-align: center; margin-top: 5px">Responsável ${operator}</h4>
           <hr style="border-style: dashed" />
           <ul style="padding: 0; font-size: 24px">
-          ${itemsPrinter}
+          ${addOrderItemInString(grouped[i])}
           <hr style="border-style: dashed" />
           <div
             style="margin-top: 10px ; font-size: 14px;"
@@ -409,6 +411,6 @@ export function Order(
         </body>
       </html>
     `
-      )
-    }
+    )
   }
+}
