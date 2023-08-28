@@ -1,2 +1,2 @@
-export { formatCurrency } from './formatCurrency'
+export { brlToNumber, formatToBRL, formatCurrency } from './formatCurrency'
 export { ColorList } from './ColorList'

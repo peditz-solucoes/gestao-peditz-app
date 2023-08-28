@@ -191,7 +191,7 @@ export const Command: React.FC = () => {
       })
   }
 
-  function handlePrint(): void {
+  function handlePrint(): void {  
     BillPrinter({
       number: `${selectedBills.map((bill) => bill.number).join(', ')}`,
       serviceTax: onTip,
@@ -202,7 +202,7 @@ export const Command: React.FC = () => {
         .map((order) => {
           return order.orders.map((product) => {
             return {
-              title: product.product.title,
+              title: product.product?.title,
               quantity: Number(product.quantity),
               price: Number(product.total),
               complementItems: product.complements.map((complement) => {

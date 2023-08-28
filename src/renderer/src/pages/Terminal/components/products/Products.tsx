@@ -1,7 +1,7 @@
 import { CaretRightOutlined, DeleteOutlined, ReloadOutlined } from '@ant-design/icons'
 import { Alert, Button, Card, Collapse, Input, InputRef, List, Modal, Typography } from 'antd'
 import React, { useEffect } from 'react'
-import { formatCurrency } from '../../../../utils'
+import { formatToBRL } from '../../../../utils'
 import { useTerminal } from '../../../../hooks/useTerminal'
 import { OrderGroupList, Product } from '../../../../types'
 import api from '../../../../services/api'
@@ -361,7 +361,7 @@ export const Products: React.FC = () => {
                           }}
                           level={5}
                         >
-                          {formatCurrency(Number(product.price))}
+                          {formatToBRL(product.price)}
                         </Typography.Title>
                       </Card>
                     ))}

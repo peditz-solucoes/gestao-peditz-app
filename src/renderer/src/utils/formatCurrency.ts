@@ -1,6 +1,6 @@
 export function formatToBRL(value: string): string {
   // Limpa os caracteres que não são números
-  const onlyNumbers = value.replace(/\D+/g, '')
+  const onlyNumbers = value?.replace(/\D+/g, '')
 
   // Converte para um formato numérico para facilitar a formatação
   const numberValue = parseInt(onlyNumbers, 10) || 0
@@ -21,4 +21,13 @@ export function brlToNumber(value: string): number {
 
   // Converte a string limpa para um número
   return parseFloat(sanitizedValue)
+}
+
+export function formatCurrency(
+  value: number,
+  locale: string = 'pt-BR',
+  currency: string = 'BRL'
+): string {
+  const formattedValue = value?.toLocaleString(locale, { style: 'currency', currency })
+  return formattedValue
 }

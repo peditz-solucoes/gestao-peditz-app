@@ -4,7 +4,7 @@ import { DeleteOutlined, EditOutlined } from '@ant-design/icons'
 import { Product } from '../../types'
 import api from '../../services/api'
 import { AxiosError } from 'axios'
-import { formatCurrency } from '../../utils'
+import { formatToBRL } from '../../utils'
 import * as S from './styles'
 import { truncateText } from '@renderer/utils/truncate'
 
@@ -77,7 +77,7 @@ export const CardProducts: React.FC<CardProductsProps> = ({ data, onUpdate, onEd
               padding: '10px'
             }}
           >
-            {formatCurrency(Number(data.price))}
+            {formatToBRL(data.price)}
           </Tag>
         </div>
         <S.ButtonGroup>

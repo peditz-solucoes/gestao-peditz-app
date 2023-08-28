@@ -3,7 +3,7 @@ import api from '@renderer/services/api'
 import { FormOfPayment } from '@renderer/types'
 import { errorActions } from '@renderer/utils/errorActions'
 import { brlToNumber, formatToBRL } from '@renderer/utils/formatCurrency'
-import { Button, Form, Input, InputNumber, Modal, Typography, InputRef } from 'antd'
+import { Button, Form, Input, Modal, Typography, InputRef } from 'antd'
 import { AxiosError } from 'axios'
 import React, { useEffect, useRef, useState } from 'react'
 

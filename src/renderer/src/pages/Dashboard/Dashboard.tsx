@@ -2,7 +2,7 @@ import React from 'react'
 import * as S from './styles'
 import { Avatar, Statistic, Typography } from 'antd'
 import { FaConciergeBell, FaMoneyBillWave, FaUserCheck, FaUserFriends } from 'react-icons/fa'
-import { formatCurrency } from '@renderer/utils'
+import { formatToBRL } from '@renderer/utils'
 import { ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons'
 // import { ChartBar } from './components/ChartBar'
 
@@ -111,7 +111,7 @@ export const Dashboard: React.FC = () => {
             }}
           >
             <Paragraph strong style={{ margin: '0', fontSize: '1.75rem', color: '#31AB56' }}>
-              {formatCurrency(18934)}
+              {formatToBRL('18934')}
             </Paragraph>
             <Statistic
               value={11.28}
@@ -187,7 +187,7 @@ export const Dashboard: React.FC = () => {
             }}
           >
             <Paragraph strong style={{ margin: '0', fontSize: '1.75rem', color: '#8D6ADA' }}>
-              {formatCurrency(1406)}{' '}
+              {formatToBRL('1406')}{' '}
             </Paragraph>
 
             <Statistic
