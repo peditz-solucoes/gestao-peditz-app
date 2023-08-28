@@ -278,7 +278,7 @@ export function BillPrinter(props: BillPrinterProps): void {
       </p>
     </body>
   </html>`
-
+  console.log('cheguei')
   window.electronBridge.printLine('caixa', html)
 }
 // <div style="display: flex; justify-content: flex-end; margin-top: 10px; gap: 5px;">

@@ -16,7 +16,7 @@ import React, { useEffect, useState } from 'react'
 import { AxiosError } from 'axios'
 import { errorActions } from '@renderer/utils/errorActions'
 import api from '@renderer/services/api'
-import { formatCurrency } from '@renderer/utils'
+import { formatToBRL } from '@renderer/utils'
 import { formatCPFOrCNPJ } from '@renderer/utils/formatCpfCnpj'
 
 const { Title } = Typography
@@ -131,13 +131,13 @@ export const NfceEmitModal: React.FC<NfceEmitModalProps> = ({ data, onClose, vis
             <span>
               {item.quantity} - {item.title}
             </span>{' '}
-            <span>{formatCurrency(item.price)}</span>
+            <span>{formatToBRL(`${item.price}`)}</span>
           </div>
         ))}
       </div>
       <Divider orientation="right">
         Valor Total:{' '}
-        {formatCurrency(data?.tax_items?.map((item) => item.price).reduce((a, b) => a + b, 0))}
+        {formatToBRL(`${data?.tax_items?.map((item) => item.price).reduce((a, b) => a + b, 0)}`)}
       </Divider>
       <div>
         <Form
