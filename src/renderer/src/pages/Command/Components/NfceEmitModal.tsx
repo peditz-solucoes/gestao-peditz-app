@@ -4,6 +4,7 @@ import {
   Button,
   Divider,
   Form,
+  Input,
   InputNumber,
   Modal,
   Select,
@@ -16,6 +17,7 @@ import { AxiosError } from 'axios'
 import { errorActions } from '@renderer/utils/errorActions'
 import api from '@renderer/services/api'
 import { formatCurrency } from '@renderer/utils'
+import { formatCPFOrCNPJ } from '@renderer/utils/formatCpfCnpj'
 
 const { Title } = Typography
 
@@ -43,6 +45,7 @@ export const NfceEmitModal: React.FC<NfceEmitModalProps> = ({ data, onClose, vis
 
   const onFinish = (values: {
     payments_methods: { forma_pagamento: string; valor_pagamento: number }[]
+    cpf_cnpj: string
   }) => {
     console.log(values.payments_methods)
     if (!values.payments_methods) {
@@ -143,7 +146,22 @@ export const NfceEmitModal: React.FC<NfceEmitModalProps> = ({ data, onClose, vis
           onFinish={onFinish}
           style={{ maxWidth: 600 }}
           autoComplete="off"
+          layout="vertical"
         >
+          <Form.Item
+            name="cpf_cnpj"
+            label="CPF/CNPJ:"
+            tooltip="Para informar se a nota será emitida no cpf ou cnpj do solicitante."
+          >
+            <Input
+              placeholder="Digite o cnpj ou cpf"
+              onChange={(e): void => {
+                form.setFieldsValue({
+                  cpf_cnpj: formatCPFOrCNPJ(e.target.value)
+                })
+              }}
+            />
+          </Form.Item>
           <Form.List name="payments_methods">
             {(fields, { add, remove }) => (
               <>
