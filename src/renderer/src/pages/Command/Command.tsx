@@ -48,11 +48,13 @@ export const Command: React.FC = () => {
   const [onTip, setOnTip] = useState<number>(0)
   const [typeOnTip, setTypeOnTip] = useState<string>('percent')
   const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [height, setHeight] = useState<number>(0)
   const { id } = useParams()
 
   useEffect(() => {
     addBill(id as string, true)
     fetchFormOfPayments()
+    setHeight(window.innerHeight)
   }, [])
 
   const columnsFormOfPayments: ColumnsType<DataFormOfPaymentsType> = [
@@ -191,7 +193,7 @@ export const Command: React.FC = () => {
       })
   }
 
-  function handlePrint(): void {  
+  function handlePrint(): void {
     BillPrinter({
       number: `${selectedBills.map((bill) => bill.number).join(', ')}`,
       serviceTax: onTip,
@@ -484,7 +486,7 @@ export const Command: React.FC = () => {
               columns={columns}
               dataSource={dataTable}
               pagination={false}
-              scroll={{ y: selectedBills[0]?.open ? 455 : 250 }}
+              scroll={{ y: selectedBills[0]?.open ? height - 550 : 250 }}
               rowKey={(record): string => record.id as string}
               rowSelection={{
                 type: 'checkbox',
@@ -665,7 +667,7 @@ export const Command: React.FC = () => {
                   style={{ flex: 1 }}
                   onClick={handleApplyPayment}
                   loading={isLoading}
-                  disabled={paid <= total}
+                  disabled={paid < total}
                 >
                   Finalizar Comanda
                 </Button>
