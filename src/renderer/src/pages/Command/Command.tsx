@@ -664,28 +664,26 @@ export const Command: React.FC = () => {
               </div>
 
               <S.ActionsPayments>
-                {paid < total ? (
-                  <Button
-                    danger
-                    type="primary"
-                    size="large"
-                    style={{ flex: 1 }}
-                    onClick={() => setVisibleModalCloseBill(true)}
-                  >
-                    Fechar Comanda
-                  </Button>
-                ) : (
-                  <Button
-                    type="primary"
-                    size="large"
-                    style={{ flex: 1 }}
-                    onClick={handleApplyPayment}
-                    loading={isLoading}
-                    disabled={paid < total}
-                  >
-                    Finalizar Comanda
-                  </Button>
-                )}
+                <Button
+                  danger
+                  type="primary"
+                  size="large"
+                  style={{ flex: 1 }}
+                  onClick={() => setVisibleModalCloseBill(true)}
+                >
+                  Fechar Comanda
+                </Button>
+
+                <Button
+                  type="primary"
+                  size="large"
+                  style={{ flex: 1 }}
+                  onClick={handleApplyPayment}
+                  loading={isLoading}
+                  disabled={paid < total}
+                >
+                  Finalizar Comanda
+                </Button>
               </S.ActionsPayments>
             </S.ResumeFinance>
           )}
