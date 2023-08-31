@@ -200,7 +200,7 @@ function aux(
   }[]
 ) {
   let row = ''
-  for (let product of item) {
+  for (const product of item) {
     row += `
     <li style="list-style: none; margin-top: 10px">
       <div style="display: flex; justify-content: space-between">
@@ -232,7 +232,7 @@ export function BillPrinter(props: BillPrinterProps): void {
         }
         @page {
           size: 80mm auto;
-          margin: 0mm;
+          margin: 6mm;
           padding: 0mm;
         }
       </style>
@@ -371,7 +371,7 @@ export function Order(
             }
             @page {
               size: 80mm auto;
-              margin: 0mm;
+              margin: 6mm;
               padding: 0mm,
             }
           </style>
