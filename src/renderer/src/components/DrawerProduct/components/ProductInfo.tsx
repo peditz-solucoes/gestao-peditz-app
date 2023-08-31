@@ -7,54 +7,93 @@ import {
   Select,
   Slider,
   Space,
-  Switch,
-} from "antd";
-import React from "react";
-import { useProducts } from "../../../hooks";
-import { SliderMarks } from "antd/es/slider";
-import { ProductFormData } from "../../../hooks/useProducts";
+  Switch
+} from 'antd'
+import React, { useState } from 'react'
+import { useProducts } from '../../../hooks'
+import { SliderMarks } from 'antd/es/slider'
+import { ProductFormData } from '../../../hooks/useProducts'
+import Upload, { RcFile, UploadFile, UploadProps } from 'antd/es/upload'
+import ImgCrop from 'antd-img-crop'
 
 interface ProductInfoProps {
-  formRef: React.RefObject<FormInstance>;
+  formRef: React.RefObject<FormInstance>
 }
 
+// const getBase64 = (file: RcFile): Promise<string> =>
+//   new Promise((resolve, reject) => {
+//     const reader = new FileReader()
+//     reader.readAsDataURL(file)
+//     reader.onload = () => resolve(reader.result as string)
+//     reader.onerror = (error) => reject(error)
+//   })
+
 export const ProductInfo: React.FC<ProductInfoProps> = ({ formRef }) => {
-  const { categories, createProduct, selectedProduct, patchProduct } =
-    useProducts();
-  const [loading, setLoading] = React.useState(false);
+  const { categories, createProduct, selectedProduct, patchProduct } = useProducts()
+  const [loading, setLoading] = useState(false)
+  const [fileList, setFileList] = useState<UploadFile[]>([])
+
+  const onChange: UploadProps['onChange'] = ({ fileList: newFileList }) => {
+    setFileList(newFileList)
+  }
+
+  const onPreview = async (file: UploadFile) => {
+    let src = file.url as string
+    if (!src) {
+      src = await new Promise((resolve) => {
+        const reader = new FileReader()
+        reader.readAsDataURL(file.originFileObj as RcFile)
+        reader.onload = () => resolve(reader.result as string)
+      })
+    }
+    const image = new Image()
+    image.src = src
+    const imgWindow = window.open(src)
+    imgWindow?.document.write(image.outerHTML)
+  }
 
   const onFinish = (values: ProductFormData) => {
-    setLoading(true);
+    setLoading(true)
     selectedProduct
-      ? patchProduct({ ...selectedProduct, ...values }).finally(() =>
+      ? patchProduct({ ...selectedProduct, ...values } as ProductFormData).finally(() =>
           setLoading(false)
         )
-      : createProduct(values).finally(() => setLoading(false));
-  };
+      : createProduct(values).finally(() => setLoading(false))
+  }
 
   const marks: SliderMarks = {
-    0: "0",
-    1: "1",
-    2: "2",
-    3: "3",
-    4: "4",
-    5: "5",
-    6: "6",
-  };
+    0: '0',
+    1: '1',
+    2: '2',
+    3: '3',
+    4: '4',
+    5: '5',
+    6: '6'
+  }
 
   return (
     <>
-      <Form
-        layout="vertical"
-        name="product_info"
-        onFinish={onFinish}
-        ref={formRef}
-      >
+      <Form layout="vertical" name="product_info" onFinish={onFinish} ref={formRef}>
+        <Space>
+          <Form.Item name="photo" label="Imagens do produto">
+            <ImgCrop rotationSlider>
+              <Upload
+                action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                listType="picture-card"
+                fileList={fileList}
+                onChange={onChange}
+                onPreview={onPreview}
+              >
+                {fileList.length < 5 && '+ Adicionar'}
+              </Upload>
+            </ImgCrop>
+          </Form.Item>
+        </Space>
         <Space
           direction="vertical"
           style={{
-            display: "flex",
-            flexDirection: "column",
+            display: 'flex',
+            flexDirection: 'column'
           }}
         >
           <Form.Item
@@ -63,8 +102,8 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ formRef }) => {
             rules={[
               {
                 required: true,
-                message: "Por favor, insira o nome do produto",
-              },
+                message: 'Por favor, insira o nome do produto'
+              }
             ]}
           >
             <Input placeholder="Nome do produto" size="large" />
@@ -74,8 +113,8 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ formRef }) => {
               rules={[
                 {
                   required: true,
-                  message: "Por favor, insira uma categoria",
-                },
+                  message: 'Por favor, insira uma categoria'
+                }
               ]}
               required
               label="Categoria"
@@ -86,18 +125,16 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ formRef }) => {
                 placeholder="Busque e selecione uma categoria"
                 optionFilterProp="children"
                 filterOption={(input, option) =>
-                  (option?.label ?? "")
-                    .toLowerCase()
-                    .startsWith(input.toLowerCase())
+                  (option?.label ?? '').toLowerCase().startsWith(input.toLowerCase())
                 }
                 filterSort={(optionA, optionB) =>
-                  (optionA?.label ?? "")
+                  (optionA?.label ?? '')
                     .toLowerCase()
-                    .localeCompare((optionB?.label ?? "").toLowerCase())
+                    .localeCompare((optionB?.label ?? '').toLowerCase())
                 }
                 options={categories.map((category) => ({
                   value: category.id,
-                  label: category.title,
+                  label: category.title
                 }))}
               />
             </Form.Item>
@@ -105,20 +142,16 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ formRef }) => {
               <Input />
             </Form.Item>
           </Space>
-          <Form.Item
-            label="serve quantas pessoas?"
-            name="size"
-            initialValue={1}
-          >
+          <Form.Item label="serve quantas pessoas?" name="size" initialValue={1}>
             <Slider defaultValue={0} min={0} max={6} marks={marks} />
           </Form.Item>
           <Space
             direction="horizontal"
             style={{
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-between",
-              alignItems: "center",
+              display: 'flex',
+              flexDirection: 'row',
+              justifyContent: 'space-between',
+              alignItems: 'center'
             }}
           >
             <Form.Item
@@ -127,19 +160,19 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ formRef }) => {
               rules={[
                 {
                   required: true,
-                  message: "Por favor, insira o preço do produto",
-                },
+                  message: 'Por favor, insira o preço do produto'
+                }
               ]}
-              initialValue={"0"}
+              initialValue={'0'}
               style={{
-                width: "100%",
+                width: '100%'
               }}
             >
               <InputNumber
                 size="large"
-                min={"0" as string}
+                min={'0' as string}
                 style={{
-                  width: "80%",
+                  width: '80%'
                 }}
                 // formatter={(value) =>
                 //   `$ ${value}`.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.")
@@ -147,16 +180,12 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ formRef }) => {
                 // parser={(value) => value!.replace(/\$\s?|(,*)/g, "")}
               />
             </Form.Item>
-            <Form.Item
-              label="Ordem de visualização"
-              name="order"
-              initialValue={0}
-            >
+            <Form.Item label="Ordem de visualização" name="order" initialValue={0}>
               <InputNumber
-                min={"0" as string}
+                min={'0' as string}
                 size="large"
                 style={{
-                  width: "80%",
+                  width: '80%'
                 }}
               />
             </Form.Item>
@@ -168,31 +197,27 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ formRef }) => {
               rules={[
                 {
                   required: true,
-                  message: "Por favor, insira o tempo de preparo do produto",
-                },
+                  message: 'Por favor, insira o tempo de preparo do produto'
+                }
               ]}
             >
               <InputNumber
                 size="large"
-                min={"0" as string}
+                min={'0' as string}
                 style={{
-                  width: "80%",
+                  width: '80%'
                 }}
               />
             </Form.Item>
           </Space>
-          <Form.Item
-            label="Codigo de barras"
-            name="ean"
-            tooltip="Codigo de barras do produto"
-          >
+          <Form.Item label="Codigo de barras" name="ean" tooltip="Codigo de barras do produto">
             <Input size="large" />
           </Form.Item>
           <Space
             style={{
-              display: "flex",
-              flexDirection: "row",
-              gap: "60px",
+              display: 'flex',
+              flexDirection: 'row',
+              gap: '60px'
             }}
           >
             <Form.Item
@@ -201,11 +226,7 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ formRef }) => {
               tooltip="Se o produto está ativo ele está disponivel para lançamento de pedidos"
               initialValue={true}
             >
-              <Switch
-                checkedChildren="Sim"
-                unCheckedChildren="Não"
-                defaultChecked
-              />
+              <Switch checkedChildren="Sim" unCheckedChildren="Não" defaultChecked />
             </Form.Item>
             <Form.Item
               label="Será visualizado no site?"
@@ -213,11 +234,7 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ formRef }) => {
               tooltip="Se aparecerá no catalogo online!"
               initialValue={true}
             >
-              <Switch
-                checkedChildren="Sim"
-                unCheckedChildren="Não"
-                defaultChecked
-              />
+              <Switch checkedChildren="Sim" unCheckedChildren="Não" defaultChecked />
             </Form.Item>
             <Form.Item
               label="tipo de venda"
@@ -227,11 +244,11 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ formRef }) => {
             >
               <Select
                 // onChange={handleChange}
-                defaultValue={"UN"}
+                defaultValue={'UN'}
                 options={[
-                  { value: "KG", label: "Quilograma" },
-                  { value: "L", label: "Litro" },
-                  { value: "UN", label: "Unidade" },
+                  { value: 'KG', label: 'Quilograma' },
+                  { value: 'L', label: 'Litro' },
+                  { value: 'UN', label: 'Unidade' }
                 ]}
               />
             </Form.Item>
@@ -242,18 +259,13 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ formRef }) => {
         </Space>
         <div
           style={{
-            display: "flex",
-            flexDirection: "row",
-            justifyContent: "space-between",
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'space-between'
           }}
         >
           <Form.Item>
-            <Button
-              type="default"
-              size="large"
-              danger
-              style={{ width: "100%" }}
-            >
+            <Button type="default" size="large" danger style={{ width: '100%' }}>
               Cancelar
             </Button>
           </Form.Item>
@@ -262,14 +274,14 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ formRef }) => {
               type="primary"
               htmlType="submit"
               size="large"
-              style={{ width: "100%" }}
+              style={{ width: '100%' }}
               loading={loading}
             >
-              {selectedProduct ? "Salvar" : "Próximo"}
+              {selectedProduct ? 'Salvar' : 'Próximo'}
             </Button>
           </Form.Item>
         </div>
       </Form>
     </>
-  );
-};
+  )
+}

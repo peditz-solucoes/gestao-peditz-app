@@ -21,6 +21,7 @@ import { ModalConfirmDeleteItem } from './Components/ModalConfirmDeleteItem'
 import { BillPrinter } from '@renderer/utils/Printers'
 import { NfceEmitModal } from './Components/NfceEmitModal'
 import { Option } from 'antd/es/mentions'
+import { ModalCloseBill } from './Components/ModalCloseBill'
 
 const { Text, Title } = Typography
 
@@ -42,12 +43,14 @@ export const Command: React.FC = () => {
   const [visibleModalNfce, setVisibleModalNfce] = useState<boolean>(false)
   const [visibleModal, setVisibleModal] = useState<boolean>(false)
   const [selectExcluseItem, setSelectExcluseItem] = useState<OrderList>({} as OrderList)
-  const { selectedBills, orders, addBill, addPayment, payments, DeletePayment } = useBill()
+  const { selectedBills, orders, addBill, addPayment, payments, DeletePayment, fetchBill } =
+    useBill()
   const [tipInput, setTipInput] = useState<number>(0)
   const [tipApply, setTipApply] = useState<boolean>(false)
   const [onTip, setOnTip] = useState<number>(0)
   const [typeOnTip, setTypeOnTip] = useState<string>('percent')
   const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [visibleModalCloseBill, setVisibleModalCloseBill] = useState<boolean>(false)
   const [height, setHeight] = useState<number>(0)
   const { id } = useParams()
 
@@ -661,16 +664,28 @@ export const Command: React.FC = () => {
               </div>
 
               <S.ActionsPayments>
-                <Button
-                  type="primary"
-                  size="large"
-                  style={{ flex: 1 }}
-                  onClick={handleApplyPayment}
-                  loading={isLoading}
-                  disabled={paid < total}
-                >
-                  Finalizar Comanda
-                </Button>
+                {paid < total ? (
+                  <Button
+                    danger
+                    type="primary"
+                    size="large"
+                    style={{ flex: 1 }}
+                    onClick={() => setVisibleModalCloseBill(true)}
+                  >
+                    Fechar Comanda
+                  </Button>
+                ) : (
+                  <Button
+                    type="primary"
+                    size="large"
+                    style={{ flex: 1 }}
+                    onClick={handleApplyPayment}
+                    loading={isLoading}
+                    disabled={paid < total}
+                  >
+                    Finalizar Comanda
+                  </Button>
+                )}
               </S.ActionsPayments>
             </S.ResumeFinance>
           )}
@@ -697,6 +712,12 @@ export const Command: React.FC = () => {
         onClose={() => setVisibleModalNfce(false)}
         visible={visibleModalNfce}
         data={selectedNfce}
+      />
+      <ModalCloseBill
+        visible={visibleModalCloseBill}
+        onClose={() => setVisibleModalCloseBill(false)}
+        onFetch={() => fetchBill(id as string)}
+        billId={id as string}
       />
     </>
   )

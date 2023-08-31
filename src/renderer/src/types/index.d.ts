@@ -9,6 +9,7 @@ export type ProductCategory = {
 
 export type Product = {
   id: string
+  photo: string
   created: string
   modified: string
   complemet_limit: number

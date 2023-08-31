@@ -7,6 +7,7 @@ import { AxiosError } from 'axios'
 import { formatCurrency } from '../../utils'
 import * as S from './styles'
 import { truncateText } from '@renderer/utils/truncate'
+import NotImage from '../../assets/Image_not_available.png'
 
 const { Paragraph, Title } = Typography
 
@@ -17,9 +18,6 @@ interface CardProductsProps {
 }
 
 export const CardProducts: React.FC<CardProductsProps> = ({ data, onUpdate, onEditClick }) => {
-  const [productImage] = useState(
-    'https://peditz.sfo3.digitaloceanspaces.com/products/1682781368244-blob'
-  )
   const [isLoading, setIsLoading] = useState(false)
 
   function handleDeleteProduct() {
@@ -42,11 +40,13 @@ export const CardProducts: React.FC<CardProductsProps> = ({ data, onUpdate, onEd
       <S.Container>
         <S.ContainerImage>
           <Image
-            src={productImage}
+            src={data.photo || NotImage}
+            preview={data.photo ? { src: data.photo } : false}
             style={{
               width: 120,
               height: 120,
-              borderRadius: '50%'
+              borderRadius: '50%',
+              objectFit: 'contain'
             }}
           />
           <Title level={5} italic>

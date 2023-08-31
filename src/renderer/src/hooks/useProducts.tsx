@@ -39,6 +39,7 @@ interface filterProducts {
 type type_of_sale = 'KG' | 'L' | 'UN'
 export interface ProductPatchFormData {
   id?: string
+  photo?: Blob[]
   created?: string
   modified?: string
   complemet_limit?: number
@@ -70,6 +71,7 @@ export interface ProductPatchFormData {
 }
 export interface ProductFormData {
   title: string
+  photo?: Blob[]
   product_category: string
   codigo_produto?: string
   size?: number
