@@ -289,7 +289,7 @@ export const ProductDrawer: React.FC<ProductDrawerProps> = ({ onClose, visible }
               onChange={(value) => {
                 setDataToAdd({
                   ...dataToadd,
-                  quantity: Number(value.target.value.replace(',', '.')) || 0
+                  quantity: value.target.value || 0
                 })
               }}
               onKeyUp={(e) => {
