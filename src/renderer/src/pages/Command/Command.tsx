@@ -4,7 +4,7 @@ import { Avatar, Badge, Button, Empty, Input, Select, Space, Tag, Typography } f
 import { AiFillPrinter, AiOutlineCheckCircle } from 'react-icons/ai'
 import { ImBin } from 'react-icons/im'
 import Table, { ColumnsType } from 'antd/es/table'
-import { formatCurrency } from '../../utils'
+import { brlToNumber, formatCurrency, formatToBRL } from '../../utils'
 import { PlusOutlined, DeleteOutlined } from '@ant-design/icons'
 import { BsCashCoin, BsFillDatabaseFill } from 'react-icons/bs'
 import { FaBookReader, FaUserAlt, FaUserTie, FaWallet } from 'react-icons/fa'
@@ -45,7 +45,7 @@ export const Command: React.FC = () => {
   const [selectExcluseItem, setSelectExcluseItem] = useState<OrderList>({} as OrderList)
   const { selectedBills, orders, addBill, addPayment, payments, DeletePayment, fetchBill } =
     useBill()
-  const [tipInput, setTipInput] = useState<number>(0)
+  const [tipInput, setTipInput] = useState<string>('10')
   const [tipApply, setTipApply] = useState<boolean>(false)
   const [onTip, setOnTip] = useState<number>(0)
   const [typeOnTip, setTypeOnTip] = useState<string>('percent')
@@ -253,12 +253,13 @@ export const Command: React.FC = () => {
   const missing = total - paid
 
   function handleTip(): void {
+    const input = brlToNumber(tipInput)
     if (!tipApply) {
       setTipApply(true)
       if (typeOnTip === 'percent') {
-        setOnTip((tipInput / 100) * total)
+        setOnTip((Number(input) / 100) * total)
       } else {
-        setOnTip(tipInput)
+        setOnTip(Number(input))
       }
     } else {
       setTipApply(false)
@@ -391,22 +392,35 @@ export const Command: React.FC = () => {
               }}
             >
               {selectedBills[0]?.open && (
-                <Space.Compact style={{ width: 250 }}>
-                  <Select defaultValue={'percent'} onChange={(value) => setTypeOnTip(value)}>
+                <Space.Compact style={{ width: 300 }}>
+                  <Select
+                    defaultValue={'percent'}
+                    onChange={(value) => {
+                      setTipInput('')
+                      setTipApply(false)
+                      setOnTip(0)
+                      setTypeOnTip(value)
+                    }}
+                  >
                     <Option value="percent">%</Option>
                     <Option value="cash">R$</Option>
                   </Select>
                   <Input
                     defaultValue={tipInput}
                     value={tipInput}
-                    onChange={(e) => setTipInput(Number(e.target.value))}
+                    onChange={(e) =>
+                      typeOnTip === 'cash'
+                        ? setTipInput(formatToBRL(e.target.value))
+                        : setTipInput(e.target.value)
+                    }
                     style={{
-                      width: '60px'
+                      width: '100px'
                     }}
                   />
                   <Button
                     type={tipApply ? 'primary' : 'dashed'}
                     icon={tipApply && <AiOutlineCheckCircle />}
+                    disabled={tipInput === ''}
                     onClick={() => {
                       handleTip()
                     }}
