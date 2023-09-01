@@ -41,9 +41,11 @@ export const Terminal: React.FC = () => {
           alignItems: 'center'
         }}
       >
-        <Button size="large" type="default" onClick={(): void => navigate('/comandas/')}>
-          Voltar
-        </Button>
+        {JSON.parse(localStorage.getItem('userPermissions') || '[]').length > 1 && (
+          <Button size="large" type="default" onClick={(): void => navigate('/comandas')}>
+            Voltar
+          </Button>
+        )}
         <Image src={logo} width={130} preview={false} />
         <Typography.Title level={4} style={{ color: 'white' }}>
           Terminal

@@ -137,7 +137,40 @@ export const Products: React.FC = () => {
       setLoadingSend(false)
     }
   }
-
+  function sendOrderWCode(): void {
+    setLoadingSend(true)
+    setSendError('')
+    api
+      .post('/order/', {
+        bill_id: selectedBill.id,
+        order_items: cart
+      })
+      .then((response) => {
+        setCart([])
+        console.log(response.data)
+        Order(
+          response.data.restaurant.title,
+          response.data.bill?.table?.title || '',
+          String(response.data.bill?.number) || '',
+          response.data.order_items,
+          response.data?.collaborator_name || '',
+          response.data?.created || ''
+        )
+        setOperatorCode('')
+        setModalCodeOpen(false)
+        setCurrentTab('1')
+      })
+      .catch((error) => {
+        if (error.response?.data?.detail) {
+          setSendError(error.response?.data?.detail)
+        } else {
+          setSendError('Erro ao enviar pedido')
+        }
+      })
+      .finally(() => {
+        setLoadingSend(false)
+      })
+  }
   return (
     <div
       style={{
@@ -240,7 +273,8 @@ export const Products: React.FC = () => {
                       wordWrap: 'break-word'
                     }}
                   >
-                    {Number(order.quantity)}x {order.product_title}
+                    {Number(order.quantity)}x {order.product_title} -{' '}
+                    {formatCurrency(Number(order.unit_price) * order.quantity)}
                   </Typography.Text>
                   <br />
                   <Typography.Text
@@ -474,7 +508,8 @@ export const Products: React.FC = () => {
                                   marginLeft: '30px'
                                 }}
                               >
-                                {ite.quantity > 1 ? ite.quantity + 'x ' : '-'} {ite.item_title}
+                                {Number(ite.quantity) > 1 ? Number(ite.quantity) + 'x ' : '-'}{' '}
+                                {ite.item_title}
                               </Typography.Text>
                             </div>
                           ))}
@@ -496,7 +531,9 @@ export const Products: React.FC = () => {
             loading={loadingSend}
             disabled={cart.length === 0}
             onClick={(): void => {
-              setModalCodeOpen(true)
+              JSON.parse(localStorage.getItem('userPermissions') || '[]').length > 1
+                ? sendOrderWCode()
+                : setModalCodeOpen(true)
               setTimeout(() => {
                 operatorCodePassInput.current?.focus()
               }, 100)

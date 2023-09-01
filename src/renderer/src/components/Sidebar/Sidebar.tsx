@@ -63,7 +63,7 @@ export const SideBar: React.FC<SideBarProps> = ({ collapsed }) => {
         const permissions = (response.data as UserPermissions[])
           .map((permission) => permission.sidebar_permissions.map((sidebar) => sidebar.title))
           .flat()
-
+        localStorage.setItem('userPermissions', JSON.stringify(permissions))
         setUserPermissions(permissions)
       })
       .catch((error: AxiosError) => {
@@ -194,8 +194,7 @@ export const SideBar: React.FC<SideBarProps> = ({ collapsed }) => {
         height: '100vh',
         backgroundColor: '#47aa54',
         padding: '20px',
-        transition: 'all 1s',
-        
+        transition: 'all 1s'
       }}
     >
       <div
