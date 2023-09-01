@@ -508,7 +508,8 @@ export const Products: React.FC = () => {
                                   marginLeft: '30px'
                                 }}
                               >
-                                {ite.quantity > 1 ? ite.quantity + 'x ' : '-'} {ite.item_title}
+                                {Number(ite.quantity) > 1 ? Number(ite.quantity) + 'x ' : '-'}{' '}
+                                {ite.item_title}
                               </Typography.Text>
                             </div>
                           ))}
