@@ -264,7 +264,7 @@ export const CashierPage: React.FC = () => {
                 transactions
                   .map((transaction) =>
                     transaction.payments
-                      .filter((pay) => pay.payment_method_title === 'Cartão de Débito')
+                      .filter((pay) => pay.payment_method_title === 'Cartão de débito')
                       .map((item) => item.value)
                   )
                   .flatMap((item) => item)
