@@ -250,7 +250,7 @@ export const Command: React.FC = () => {
   const subTotal = orders.map((o) => Number(o.total)).reduce((a, b) => a + b, 0)
   const total = orders.map((o) => Number(o.total)).reduce((a, b) => a + b, 0) + onTip
   const paid = payments.map((p) => Number(p.value)).reduce((a, b) => a + b, 0)
-  const missing = total - paid
+  const missing = Number((total - paid).toFixed(2))
 
   function handleTip(): void {
     const input = brlToNumber(tipInput)
@@ -694,7 +694,7 @@ export const Command: React.FC = () => {
                   style={{ flex: 1 }}
                   onClick={handleApplyPayment}
                   loading={isLoading}
-                  disabled={paid < total}
+                  disabled={missing > 0}
                 >
                   Finalizar Comanda
                 </Button>
