@@ -36,7 +36,7 @@ interface ProductComplement {
 
 interface DataToAdd {
   product_id: string
-  quantity: number
+  quantity: number | string
   product_title: string
   notes: string
   complements: {
@@ -68,7 +68,7 @@ export const ProductDrawer: React.FC<ProductDrawerProps> = ({ onClose, visible }
         console.log(error)
       })
   }
-  const fetchProduct = (id: string) => {
+  const fetchProduct = (id: string): void => {
     setProductLoading(true)
     api
       .get(`/product/${id}/`)
@@ -132,7 +132,7 @@ export const ProductDrawer: React.FC<ProductDrawerProps> = ({ onClose, visible }
           <Input.TextArea
             size="large"
             value={dataToadd.notes}
-            onChange={(e) => {
+            onChange={(e): void => {
               setDataToAdd({ ...dataToadd, notes: e.target.value })
             }}
           />
@@ -146,7 +146,7 @@ export const ProductDrawer: React.FC<ProductDrawerProps> = ({ onClose, visible }
                   ?.find((x) => x.complement_id === complement.id)
                   ?.items.map((i) => i.item_id) || []
               }
-              onChange={(items) => {
+              onChange={(items): void => {
                 const complementIndex = dataToadd.complements.findIndex(
                   (x) => x.complement_id === complement.id
                 )
@@ -257,11 +257,11 @@ export const ProductDrawer: React.FC<ProductDrawerProps> = ({ onClose, visible }
               }}
             >
               <Button
-                onClick={() => {
-                  if (dataToadd.quantity > 1) {
+                onClick={(): void => {
+                  if (Number(dataToadd.quantity) > 1) {
                     setDataToAdd({
                       ...dataToadd,
-                      quantity: dataToadd.quantity - 1
+                      quantity: Number(dataToadd.quantity) - 1
                     })
                   }
                 }}
@@ -271,10 +271,10 @@ export const ProductDrawer: React.FC<ProductDrawerProps> = ({ onClose, visible }
               <InputNumber value={dataToadd.quantity} readOnly controls={false} size="large" />
 
               <Button
-                onClick={() => {
+                onClick={(): void => {
                   setDataToAdd({
                     ...dataToadd,
-                    quantity: dataToadd.quantity + 1
+                    quantity: Number(dataToadd.quantity) + 1
                   })
                 }}
               >
@@ -286,13 +286,13 @@ export const ProductDrawer: React.FC<ProductDrawerProps> = ({ onClose, visible }
               ref={quantityInput}
               type="number"
               value={dataToadd.quantity}
-              onChange={(value) => {
+              onChange={(value): void => {
                 setDataToAdd({
                   ...dataToadd,
                   quantity: value.target.value || 0
                 })
               }}
-              onKeyUp={(e) => {
+              onKeyUp={(e): void => {
                 if (e.key === 'Enter') {
                   if (buttonRef.current) {
                     buttonRef.current.focus()
@@ -307,7 +307,7 @@ export const ProductDrawer: React.FC<ProductDrawerProps> = ({ onClose, visible }
             />
           )}
           <Button
-            onClick={() => {
+            onClick={(): void => {
               setCart([...cart, dataToadd])
               onClose()
             }}
