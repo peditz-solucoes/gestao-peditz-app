@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Drawer, Form, Input, InputNumber, Skeleton, Typography } from 'antd'
+import { Button, Drawer, Form, Input, InputNumber, Skeleton, Typography, InputRef } from 'antd'
 import api from '../../../../services/api'
 import { Product } from '../../../../types'
 import { MinusOutlined, PlusOutlined } from '@ant-design/icons'
@@ -56,7 +56,7 @@ export const ProductDrawer: React.FC<ProductDrawerProps> = ({ onClose, visible }
   const [productComplements, setProductComplements] = useState<ProductComplement[]>([])
   const { setCart, cart } = useTerminal()
   const [dataToadd, setDataToAdd] = useState<DataToAdd>({} as DataToAdd)
-  const quantityInput = React.useRef<HTMLInputElement>(null)
+  const quantityInput = React.useRef<InputRef>(null)
   const buttonRef = React.useRef<HTMLButtonElement>(null)
   const fetchComplements = (id: string) => {
     api
@@ -282,17 +282,27 @@ export const ProductDrawer: React.FC<ProductDrawerProps> = ({ onClose, visible }
               </Button>
             </div>
           ) : (
-            <InputNumber
+            <Input
               ref={quantityInput}
+              type="number"
               value={dataToadd.quantity}
               onChange={(value) => {
-                setDataToAdd({ ...dataToadd, quantity: value || 0 })
+                setDataToAdd({
+                  ...dataToadd,
+                  quantity: Number(value.target.value.replace(',', '.')) || 0
+                })
+              }}
+              onKeyUp={(e) => {
+                if (e.key === 'Enter') {
+                  if (buttonRef.current) {
+                    buttonRef.current.focus()
+                  }
+                }
               }}
               style={{
                 width: '40%',
                 height: '50px'
               }}
-              controls={false}
               size="large"
             />
           )}
