@@ -42,11 +42,7 @@ export const Terminal: React.FC = () => {
         }}
       >
         {JSON.parse(localStorage.getItem('userPermissions') || '[]').length > 1 && (
-          <Button
-            size="large"
-            type="default"
-            onClick={(): string => (window.location.href = '/comandas')}
-          >
+          <Button size="large" type="default" onClick={(): void => navigate('/comandas')}>
             Voltar
           </Button>
         )}
