@@ -22,7 +22,7 @@ interface TerminalContextData {
 
 interface CartData {
   product_id: string
-  quantity: number
+  quantity: number | string
   product_title: string
   notes: string
   complements: {
@@ -31,7 +31,7 @@ interface CartData {
     items: {
       item_id: string
       item_title: string
-      quantity: number
+      quantity: number | string
     }[]
   }[]
 }

@@ -58,7 +58,7 @@ export const ProductDrawer: React.FC<ProductDrawerProps> = ({ onClose, visible }
   const [dataToadd, setDataToAdd] = useState<DataToAdd>({} as DataToAdd)
   const quantityInput = React.useRef<InputRef>(null)
   const buttonRef = React.useRef<HTMLButtonElement>(null)
-  const fetchComplements = (id: string) => {
+  const fetchComplements = (id: string): void => {
     api
       .get(`/product-complement/?products=${id}&active=true`)
       .then((response) => {
@@ -201,7 +201,7 @@ export const ProductDrawer: React.FC<ProductDrawerProps> = ({ onClose, visible }
                     ?.items.find((x) => x.item_id === item.id)?.quantity || 0,
                 item_price: item.price
               }))}
-              onChange={(value) => {
+              onChange={(value): void => {
                 const complementIndex = dataToadd.complements.findIndex(
                   (x) => x.complement_id === complement.id
                 )
