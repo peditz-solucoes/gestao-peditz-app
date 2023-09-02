@@ -8,6 +8,7 @@ import { CgMenuOreos } from 'react-icons/cg'
 import { LogoutOutlined, TeamOutlined, UserOutlined, ReloadOutlined } from '@ant-design/icons'
 import { setLogout } from '../../services/auth'
 import { useCashier } from '@renderer/hooks'
+import { useSocket } from '@renderer/hooks/useSocket'
 
 const items: MenuProps['items'] = [
   {
@@ -22,7 +23,7 @@ const items: MenuProps['items'] = [
   },
   {
     label: (
-      <Link to="/login" onClick={() => setLogout()}>
+      <Link to="/login" onClick={(): void => setLogout()}>
         Sair
       </Link>
     ),
@@ -41,16 +42,11 @@ interface HeaderProps {
 export const Header: React.FC<HeaderProps> = ({ titleHeader, setCollapsed, collapsedValue }) => {
   const [color, setColor] = useState(ColorList[0])
   const [status, setStatus] = useState<boolean>(false)
-  const hasUpdated = useRef(false)
 
-  const { cashier, wsConnected, handleConnectionWs, loadingConnectSocket } = useCashier()
+  const { cashier } = useCashier()
+  const { loadingConnectSocket, handleConnectionWs, isConnected } = useSocket()
 
   useEffect(() => {
-    if (!hasUpdated.current) {
-      aux()
-      hasUpdated.current = true
-    }
-
     // a cada 5 segundos verifica se o usuário está online
     setInterval(() => {
       setStatus(window.navigator.onLine)
@@ -59,14 +55,7 @@ export const Header: React.FC<HeaderProps> = ({ titleHeader, setCollapsed, colla
     setColor(getRandomColor())
   }, [])
 
-  function aux() {
-    const connectedWs = localStorage.getItem('connectedWs')
-    if (connectedWs === 'CONNECTED') {
-      handleConnectionWs(true)
-    }
-  }
-
-  function getRandomColor() {
+  function getRandomColor(): string {
     const randomIndex = Math.floor(Math.random() * ColorList.length)
     return ColorList[randomIndex]
   }
@@ -107,14 +96,15 @@ export const Header: React.FC<HeaderProps> = ({ titleHeader, setCollapsed, colla
           icon={<ReloadOutlined />}
           size="large"
           type="text"
-          onClick={() => window.location.reload()}
+          onClick={(): void => window.location.reload()}
         />
         <Switch
           loading={loadingConnectSocket}
-          checked={wsConnected}
+          defaultChecked={localStorage.getItem('connectedWs') === 'CONNECTED'}
+          checked={isConnected}
           checkedChildren="Imprimir pedidos online"
           unCheckedChildren="Não imprimir pedidos online"
-          onChange={(e) => handleConnectionWs(e)}
+          onChange={(e): void => handleConnectionWs(e)}
         />
 
         {status ? (

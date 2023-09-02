@@ -1,8 +1,7 @@
 import api from '@renderer/services/api'
 import { Cashier, Payments } from '@renderer/types'
-import { Order } from '@renderer/utils/Printers'
 import { errorActions } from '@renderer/utils/errorActions'
-import { AxiosError, AxiosResponse } from 'axios'
+import { AxiosError } from 'axios'
 
 import { createContext, useContext, useState } from 'react'
 
@@ -17,10 +16,6 @@ interface CashierContextData {
   transactions: Payments[]
   openCashierModal: boolean
   setOpenCashierModal: React.Dispatch<React.SetStateAction<boolean>>
-  connectSocket: () => void
-  handleConnectionWs: (value: boolean) => void
-  wsConnected: boolean
-  loadingConnectSocket: boolean
 }
 
 export const CashierContext = createContext({} as CashierContextData)
@@ -29,75 +24,7 @@ export function CashierProvider({ children }: CashierProviderProps): JSX.Element
   const [openCashierModal, setOpenCashierModal] = useState<boolean>(false)
   const [cashier, setCashier] = useState<Cashier>({} as Cashier)
   const [isLoading, setIsLoading] = useState<boolean>(false)
-  const [wsConnected, setWsConnected] = useState<boolean>(false)
   const [transactions, setTransactions] = useState<Payments[]>([])
-  const [socket, setSocket] = useState<WebSocket>()
-  const [loadingConnectSocket, setLoadingConnectSocket] = useState<boolean>(false)
-
-  function handleConnectionWs(value:boolean = false){
-    setWsConnected(value)
-    if(value){
-      connectSocket()
-    }
-    if(!value){
-      localStorage.setItem('connectedWs', 'DISCONNECTED')
-      window.location.reload()
-    }
-  }
-
-  async function connectSocket() {
-    setLoadingConnectSocket(true)
-    api.get('/restaurant/')
-    .then((response:AxiosResponse) => {
-      if(!socket){
-         const newSocket = new WebSocket(`wss://api.peditz.com/ws/pedidos/${response.data[0].id}/`)
-      
-          newSocket.onopen = () => {
-            console.log('Conectado ao WebSocket')
-            localStorage.setItem('connectedWs', 'CONNECTED')
-            setLoadingConnectSocket(false)
-            setSocket(socket)
-            setWsConnected(true)
-          }
-
-          
-          
-          newSocket.onmessage = (event) => {
-            const eventParse = JSON.parse(event.data)
-            console.log('event', eventParse)  
-            const order = JSON.parse(eventParse?.order)
-            console.log(order)
-              if(order){
-                Order(
-                  order.restaurant.title,
-                  order.bill?.table?.title || '',
-                  String(order.bill?.number) || '',
-                  order.order_items,
-                  order?.collaborator_name || '',
-                  order?.created || ''
-                )
-              }
-            
-
-            console.log('Mensagem recebida:', event.data)
-          }
-
-          newSocket.onerror = (error) => {
-            console.log('Erro no WebSocket:', error)
-            localStorage.setItem('connectedWs', 'DISCONNECTED')
-            setWsConnected(false)
-          }
-
-          newSocket.onclose = () => {
-            console.log('Conexão WebSocket fechada')
-            localStorage.setItem('connectedWs', 'DISCONNECTED')
-            setWsConnected(false)
-          }
-
-          // return () => newSocket.close()
-        }
-    }).catch((err:AxiosError)=> console.log(err.response?.data))
-  }
 
   function getCashier(open: boolean): Promise<Cashier> {
     return new Promise((resolve, reject) => {
@@ -118,7 +45,7 @@ export function CashierProvider({ children }: CashierProviderProps): JSX.Element
     })
   }
 
-  function getTransactions(cashierId: string) {
+  function getTransactions(cashierId: string): void {
     setIsLoading(true)
     api
       .get(`/list-payment/?cashier=${cashierId}`)
@@ -141,11 +68,7 @@ export function CashierProvider({ children }: CashierProviderProps): JSX.Element
         transactions,
         isLoading,
         openCashierModal,
-        setOpenCashierModal,
-        connectSocket,
-        handleConnectionWs,
-        wsConnected,
-        loadingConnectSocket
+        setOpenCashierModal
       }}
     >
       {children}

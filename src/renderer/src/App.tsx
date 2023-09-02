@@ -7,8 +7,9 @@ import { ConfigProvider, FloatButton, message } from 'antd'
 import { BillProvider, PrinterProvider, ProductsProvider } from './hooks'
 import { QuestionCircleOutlined } from '@ant-design/icons'
 import { CashierProvider } from './hooks'
+import { SocketProvider } from './hooks/useSocket'
 
-function App() {
+function App(): JSX.Element {
   const [, contextHolder] = message.useMessage()
 
   return (
@@ -19,23 +20,25 @@ function App() {
           token: theme.tokens
         }}
       >
-        <ThemeProvider theme={theme}>
-          <GlobalStyle />
-          <CashierProvider>
-            <ProductsProvider>
-              <PrinterProvider>
-                <BillProvider>
-                  <Navigation />
-                  <FloatButton
-                    icon={<QuestionCircleOutlined />}
-                    type="primary"
-                    style={{ right: 24 }}
-                  />
-                </BillProvider>
-              </PrinterProvider>
-            </ProductsProvider>
-          </CashierProvider>
-        </ThemeProvider>
+        <SocketProvider>
+          <ThemeProvider theme={theme}>
+            <GlobalStyle />
+            <CashierProvider>
+              <ProductsProvider>
+                <PrinterProvider>
+                  <BillProvider>
+                    <Navigation />
+                    <FloatButton
+                      icon={<QuestionCircleOutlined />}
+                      type="primary"
+                      style={{ right: 24 }}
+                    />
+                  </BillProvider>
+                </PrinterProvider>
+              </ProductsProvider>
+            </CashierProvider>
+          </ThemeProvider>
+        </SocketProvider>
       </ConfigProvider>
     </Router>
   )

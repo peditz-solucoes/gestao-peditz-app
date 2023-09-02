@@ -73,7 +73,7 @@ export const Dashboard: React.FC = () => {
             }}
           >
             <Paragraph strong style={{ margin: '0', fontSize: '1.75rem', color: '#0583F2' }}>
-              1569
+              0
             </Paragraph>
             <Statistic
               value={11.28}
@@ -111,7 +111,7 @@ export const Dashboard: React.FC = () => {
             }}
           >
             <Paragraph strong style={{ margin: '0', fontSize: '1.75rem', color: '#31AB56' }}>
-              {formatCurrency(18934)}
+              {formatCurrency(0)}
             </Paragraph>
             <Statistic
               value={11.28}
@@ -149,7 +149,7 @@ export const Dashboard: React.FC = () => {
             }}
           >
             <Paragraph strong style={{ margin: '0', fontSize: '1.75rem', color: '#DD6B20' }}>
-              1569
+              0
             </Paragraph>
             <Statistic
               value={11.28}
@@ -187,7 +187,7 @@ export const Dashboard: React.FC = () => {
             }}
           >
             <Paragraph strong style={{ margin: '0', fontSize: '1.75rem', color: '#8D6ADA' }}>
-              {formatCurrency(1406)}{' '}
+              {formatCurrency(0)}{' '}
             </Paragraph>
 
             <Statistic
