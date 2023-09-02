@@ -109,6 +109,14 @@ export const CashierPage: React.FC = () => {
       .map((transaction) => Number(transaction.total))
       .reduce((acc, curr) => acc + Number(curr), 0) + Number(cashier?.initial_value)
 
+  console.log(
+    'tax',
+    transactions
+      .map((transaction) => Number(transaction.tip))
+      .reduce((acc, curr) => acc + Number(curr), 0)
+      .toFixed(2)
+  )
+
   return (
     <>
       <S.Container>
@@ -261,14 +269,17 @@ export const CashierPage: React.FC = () => {
               }}
             >
               {formatCurrency(
-                transactions
-                  .map((transaction) =>
-                    transaction.payments
-                      .filter((pay) => pay.payment_method_title === 'Cartão de débito')
-                      .map((item) => item.value)
-                  )
-                  .flatMap((item) => item)
-                  .reduce((acc, curr) => Number(acc) + Number(curr), 0)
+                Number(
+                  transactions
+                    .map((transaction) =>
+                      transaction.payments
+                        .filter((pay) => pay.payment_method_title === 'Cartão de débito')
+                        .map((item) => item.value)
+                    )
+                    .flatMap((item) => item)
+                    .reduce((acc, curr) => Number(acc) + Number(curr), 0)
+                    .toFixed(2)
+                )
               )}
             </Text>
           </S.CardInfoFinance>
@@ -304,13 +315,17 @@ export const CashierPage: React.FC = () => {
               }}
             >
               {formatCurrency(
-                transactions
-                  .map((transaction) =>
-                    transaction.payments
-                      .filter((pay) => pay.payment_method_title === 'Cartão de Crédito')
-                      .map((item) => item.value)
-                  )
-                  .reduce((acc, curr) => Number(acc) + Number(curr), 0)
+                Number(
+                  transactions
+                    .map((transaction) =>
+                      transaction.payments
+                        .filter((pay) => pay.payment_method_title === 'Cartão de Crédito')
+                        .map((item) => item.value)
+                    )
+                    .flatMap((item) => item)
+                    .reduce((acc, curr) => Number(acc) + Number(curr), 0)
+                    .toFixed(2)
+                )
               )}
             </Text>
           </S.CardInfoFinance>
@@ -346,13 +361,17 @@ export const CashierPage: React.FC = () => {
               }}
             >
               {formatCurrency(
-                transactions
-                  .map((transaction) =>
-                    transaction.payments
-                      .filter((pay) => pay.payment_method_title === 'Dinheiro')
-                      .map((item) => item.value)
-                  )
-                  .reduce((acc, curr) => Number(acc) + Number(curr), 0)
+                Number(
+                  transactions
+                    .map((transaction) =>
+                      transaction.payments
+                        .filter((pay) => pay.payment_method_title === 'Dinheiro')
+                        .map((item) => item.value)
+                    )
+                    .flatMap((item) => item)
+                    .reduce((acc, curr) => Number(acc) + Number(curr), 0)
+                    .toFixed(2)
+                )
               )}
             </Text>
           </S.CardInfoFinance>
@@ -388,13 +407,17 @@ export const CashierPage: React.FC = () => {
               }}
             >
               {formatCurrency(
-                transactions
-                  .map((transaction) =>
-                    transaction.payments
-                      .filter((pay) => pay.payment_method_title === 'PIX')
-                      .map((item) => item.value)
-                  )
-                  .reduce((acc, curr) => Number(acc) + Number(curr), 0)
+                Number(
+                  transactions
+                    .map((transaction) =>
+                      transaction.payments
+                        .filter((pay) => pay.payment_method_title === 'PIX')
+                        .map((item) => item.value)
+                    )
+                    .flatMap((item) => item)
+                    .reduce((acc, curr) => Number(acc) + Number(curr), 0)
+                    .toFixed(2)
+                )
               )}
             </Text>
           </S.CardInfoFinance>
@@ -430,9 +453,12 @@ export const CashierPage: React.FC = () => {
               }}
             >
               {formatCurrency(
-                transactions
-                  .map((transaction) => Number(transaction.tip))
-                  .reduce((acc, curr) => acc + Number(curr), 0)
+                Number(
+                  transactions
+                    .map((transaction) => Number(transaction.tip))
+                    .reduce((acc, curr) => acc + Number(curr), 0)
+                    .toFixed(2)
+                )
               )}
             </Text>
           </S.CardInfoFinance>
