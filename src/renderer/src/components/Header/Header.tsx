@@ -1,6 +1,6 @@
 import { Avatar, Button, Dropdown, MenuProps, Switch, Tag } from 'antd'
 import { Header as HeaderAnt } from 'antd/es/layout/layout'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { ColorList } from '../../utils/ColorList'
 import { Link } from 'react-router-dom'
 import { MdRestaurantMenu } from 'react-icons/md'

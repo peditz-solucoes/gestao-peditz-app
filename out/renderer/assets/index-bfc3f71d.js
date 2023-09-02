@@ -71415,7 +71415,7 @@ const Dashboard = () => {
             gap: "0.5rem"
           },
           children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Paragraph$2, { strong: true, style: { margin: "0", fontSize: "1.75rem", color: "#0583F2" }, children: "1569" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Paragraph$2, { strong: true, style: { margin: "0", fontSize: "1.75rem", color: "#0583F2" }, children: "0" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx(
               Statistic$1,
               {
@@ -71457,7 +71457,7 @@ const Dashboard = () => {
             gap: "0.5rem"
           },
           children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Paragraph$2, { strong: true, style: { margin: "0", fontSize: "1.75rem", color: "#31AB56" }, children: formatCurrency(18934) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Paragraph$2, { strong: true, style: { margin: "0", fontSize: "1.75rem", color: "#31AB56" }, children: formatCurrency(0) }),
             /* @__PURE__ */ jsxRuntimeExports.jsx(
               Statistic$1,
               {
@@ -71499,7 +71499,7 @@ const Dashboard = () => {
             gap: "0.5rem"
           },
           children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Paragraph$2, { strong: true, style: { margin: "0", fontSize: "1.75rem", color: "#DD6B20" }, children: "1569" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Paragraph$2, { strong: true, style: { margin: "0", fontSize: "1.75rem", color: "#DD6B20" }, children: "0" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx(
               Statistic$1,
               {
@@ -71542,7 +71542,7 @@ const Dashboard = () => {
           },
           children: [
             /* @__PURE__ */ jsxRuntimeExports.jsxs(Paragraph$2, { strong: true, style: { margin: "0", fontSize: "1.75rem", color: "#8D6ADA" }, children: [
-              formatCurrency(1406),
+              formatCurrency(0),
               " "
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -76799,7 +76799,7 @@ function TestPrint(props) {
 }
 function aux(item) {
   let row = "";
-  for (let product of item) {
+  for (const product of item) {
     row += `
     <li style="list-style: none; margin-top: 10px">
       <div style="display: flex; justify-content: space-between">
@@ -76828,7 +76828,7 @@ function BillPrinter(props) {
         }
         @page {
           size: 80mm auto;
-          margin: 0mm;
+          margin: 6mm;
           padding: 0mm;
         }
       </style>
@@ -76930,7 +76930,7 @@ function Order(restaurant, table, command, items2, operator, date4) {
             }
             @page {
               size: 80mm auto;
-              margin: 0mm;
+              margin: 6mm;
               padding: 0mm,
             }
           </style>
@@ -77089,62 +77089,7 @@ function CashierProvider({ children }) {
   const [openCashierModal, setOpenCashierModal] = reactExports.useState(false);
   const [cashier, setCashier] = reactExports.useState({});
   const [isLoading, setIsLoading] = reactExports.useState(false);
-  const [wsConnected, setWsConnected] = reactExports.useState(false);
   const [transactions, setTransactions] = reactExports.useState([]);
-  const [socket, setSocket] = reactExports.useState();
-  const [loadingConnectSocket, setLoadingConnectSocket] = reactExports.useState(false);
-  function handleConnectionWs(value = false) {
-    setWsConnected(value);
-    if (value) {
-      connectSocket();
-    }
-    if (!value) {
-      localStorage.setItem("connectedWs", "DISCONNECTED");
-      window.location.reload();
-    }
-  }
-  async function connectSocket() {
-    setLoadingConnectSocket(true);
-    api.get("/restaurant/").then((response) => {
-      if (!socket) {
-        const newSocket = new WebSocket(`wss://api.peditz.com/ws/pedidos/${response.data[0].id}/`);
-        newSocket.onopen = () => {
-          console.log("Conectado ao WebSocket");
-          localStorage.setItem("connectedWs", "CONNECTED");
-          setLoadingConnectSocket(false);
-          setSocket(socket);
-          setWsConnected(true);
-        };
-        newSocket.onmessage = (event) => {
-          const eventParse = JSON.parse(event.data);
-          console.log("event", eventParse);
-          const order = JSON.parse(eventParse?.order);
-          console.log(order);
-          if (order) {
-            Order(
-              order.restaurant.title,
-              order.bill?.table?.title || "",
-              String(order.bill?.number) || "",
-              order.order_items,
-              order?.collaborator_name || "",
-              order?.created || ""
-            );
-          }
-          console.log("Mensagem recebida:", event.data);
-        };
-        newSocket.onerror = (error) => {
-          console.log("Erro no WebSocket:", error);
-          localStorage.setItem("connectedWs", "DISCONNECTED");
-          setWsConnected(false);
-        };
-        newSocket.onclose = () => {
-          console.log("Conexão WebSocket fechada");
-          localStorage.setItem("connectedWs", "DISCONNECTED");
-          setWsConnected(false);
-        };
-      }
-    }).catch((err) => console.log(err.response?.data));
-  }
   function getCashier(open2) {
     return new Promise((resolve, reject) => {
       api.get(`/cashier/?open=${open2}`).then((response) => {
@@ -77179,11 +77124,7 @@ function CashierProvider({ children }) {
         transactions,
         isLoading,
         openCashierModal,
-        setOpenCashierModal,
-        connectSocket,
-        handleConnectionWs,
-        wsConnected,
-        loadingConnectSocket
+        setOpenCashierModal
       },
       children
     }
@@ -80137,6 +80078,7 @@ const SideBar = ({ collapsed }) => {
   function fetchUserPermission() {
     api.get("/user-permissions/").then((response) => {
       const permissions = response.data.map((permission) => permission.sidebar_permissions.map((sidebar) => sidebar.title)).flat();
+      localStorage.setItem("userPermissions", JSON.stringify(permissions));
       setUserPermissions(permissions);
     }).catch((error) => {
       errorActions(error);
@@ -80322,6 +80264,93 @@ const SideBar = ({ collapsed }) => {
 function CgMenuOreos(props) {
   return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 24 24", "fill": "none" }, "child": [{ "tag": "path", "attr": { "d": "M7 3C5.34315 3 4 4.34315 4 6H20C20 4.34315 18.6569 3 17 3H7Z", "fill": "currentColor" } }, { "tag": "path", "attr": { "d": "M7 11C5.34315 11 4 9.65685 4 8H20C20 9.65685 18.6569 11 17 11H7Z", "fill": "currentColor" } }, { "tag": "path", "attr": { "d": "M7 13C5.34315 13 4 14.3431 4 16H20C20 14.3431 18.6569 13 17 13H7Z", "fill": "currentColor" } }, { "tag": "path", "attr": { "d": "M7 21C5.34315 21 4 19.6569 4 18H20C20 19.6569 18.6569 21 17 21H7Z", "fill": "currentColor" } }] })(props);
 }
+const SocketContext = reactExports.createContext({});
+function SocketProvider({ children }) {
+  const [socket, setSocket] = reactExports.useState(null);
+  const [loadingConnectSocket, setLoadingConnectSocket] = reactExports.useState(false);
+  const [isConnected, setIsConnected] = reactExports.useState(false);
+  const hasUpdated = reactExports.useRef(false);
+  function handleConnectionWs(value = false) {
+    if (value) {
+      connectSocket();
+    }
+    if (!value) {
+      localStorage.setItem("connectedWs", "DISCONNECTED");
+      window.location.reload();
+    }
+  }
+  function makeConnection() {
+    setIsConnected(true);
+    localStorage.setItem("connectedWs", "CONNECTED");
+  }
+  function closeConnection() {
+    setIsConnected(false);
+    localStorage.setItem("connectedWs", "DISCONNECTED");
+  }
+  async function connectSocket() {
+    setLoadingConnectSocket(true);
+    api.get("/restaurant/").then((response) => {
+      if (!socket) {
+        const newSocket = new WebSocket(`wss://api.peditz.com/ws/pedidos/${response.data[0].id}/`);
+        newSocket.onopen = () => {
+          console.log("Conectado ao WebSocket");
+          makeConnection();
+          setLoadingConnectSocket(false);
+          setSocket(socket);
+        };
+        newSocket.onmessage = (event) => {
+          const eventParse = JSON.parse(event.data);
+          const order = JSON.parse(eventParse?.order);
+          if (order) {
+            Order(
+              order.restaurant.title,
+              order.bill?.table?.title || "",
+              String(order.bill?.number) || "",
+              order.order_items,
+              order?.collaborator_name || "",
+              order?.created || ""
+            );
+          }
+        };
+        newSocket.onerror = (error) => {
+          console.log("Erro no WebSocket:", error);
+          closeConnection();
+          setSocket(null);
+          setLoadingConnectSocket(false);
+        };
+        newSocket.onclose = () => {
+          console.log("Conexão WebSocket fechada");
+          closeConnection();
+          setSocket(null);
+          setLoadingConnectSocket(false);
+        };
+      }
+    }).catch((err) => console.log(err.response?.data));
+  }
+  reactExports.useEffect(() => {
+    if (!hasUpdated.current) {
+      hasUpdated.current = true;
+      if (localStorage.getItem("connectedWs") === "CONNECTED") {
+        connectSocket();
+      }
+    }
+  }, []);
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    SocketContext.Provider,
+    {
+      value: {
+        handleConnectionWs,
+        loadingConnectSocket,
+        isConnected
+      },
+      children
+    }
+  );
+}
+function useSocket() {
+  const context = reactExports.useContext(SocketContext);
+  return context;
+}
 const items = [
   {
     label: /* @__PURE__ */ jsxRuntimeExports.jsx(Link$2, { to: "/", children: "Conta" }),
@@ -80343,24 +80372,14 @@ const items = [
 const Header$1 = ({ titleHeader, setCollapsed, collapsedValue }) => {
   const [color, setColor] = reactExports.useState(ColorList[0]);
   const [status, setStatus] = reactExports.useState(false);
-  const hasUpdated = reactExports.useRef(false);
-  const { cashier, wsConnected, handleConnectionWs, loadingConnectSocket } = useCashier();
+  const { cashier } = useCashier();
+  const { loadingConnectSocket, handleConnectionWs, isConnected } = useSocket();
   reactExports.useEffect(() => {
-    if (!hasUpdated.current) {
-      aux2();
-      hasUpdated.current = true;
-    }
     setInterval(() => {
       setStatus(window.navigator.onLine);
     }, 5e3);
     setColor(getRandomColor());
   }, []);
-  function aux2() {
-    const connectedWs = localStorage.getItem("connectedWs");
-    if (connectedWs === "CONNECTED") {
-      handleConnectionWs(true);
-    }
-  }
   function getRandomColor() {
     const randomIndex = Math.floor(Math.random() * ColorList.length);
     return ColorList[randomIndex];
@@ -80415,7 +80434,8 @@ const Header$1 = ({ titleHeader, setCollapsed, collapsedValue }) => {
                 Switch$1,
                 {
                   loading: loadingConnectSocket,
-                  checked: wsConnected,
+                  defaultChecked: localStorage.getItem("connectedWs") === "CONNECTED",
+                  checked: isConnected,
                   checkedChildren: "Imprimir pedidos online",
                   unCheckedChildren: "Não imprimir pedidos online",
                   onChange: (e2) => handleConnectionWs(e2)
@@ -80464,10 +80484,7 @@ const Header$1 = ({ titleHeader, setCollapsed, collapsedValue }) => {
   );
 };
 const { Content } = Layout$1;
-const AddSidebar = ({
-  children,
-  titleHeader
-}) => {
+const AddSidebar = ({ children, titleHeader }) => {
   const [collapsed, setCollapsed] = reactExports.useState(false);
   function toggleCollapsed() {
     setCollapsed(!collapsed);
@@ -81371,7 +81388,7 @@ const Command = () => {
   const subTotal = orders.map((o2) => Number(o2.total)).reduce((a, b2) => a + b2, 0);
   const total = orders.map((o2) => Number(o2.total)).reduce((a, b2) => a + b2, 0) + onTip;
   const paid = payments.map((p2) => Number(p2.value)).reduce((a, b2) => a + b2, 0);
-  const missing = total - paid;
+  const missing = Number((total - paid).toFixed(2));
   function handleTip() {
     const input = brlToNumber(tipInput);
     if (!tipApply) {
@@ -81875,7 +81892,7 @@ const Command = () => {
                     style: { flex: 1 },
                     onClick: handleApplyPayment,
                     loading: isLoading,
-                    disabled: paid < total,
+                    disabled: missing > 0,
                     children: "Finalizar Comanda"
                   }
                 )
@@ -82887,6 +82904,10 @@ const CashierPage = () => {
     }).flatMap((payment) => payment);
   }
   const totalCashier = transactions.map((transaction) => Number(transaction.total)).reduce((acc, curr) => acc + Number(curr), 0) + Number(cashier?.initial_value);
+  console.log(
+    "tax",
+    transactions.map((transaction) => Number(transaction.tip)).reduce((acc, curr) => acc + Number(curr), 0).toFixed(2)
+  );
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$5, { children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx(CardInfo, { children: cashier?.open ? /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
@@ -83071,9 +83092,11 @@ const CashierPage = () => {
                 color: "#4C0677"
               },
               children: formatCurrency(
-                transactions.map(
-                  (transaction) => transaction.payments.filter((pay) => pay.payment_method_title === "Cartão de Débito").map((item) => item.value)
-                ).flatMap((item) => item).reduce((acc, curr) => Number(acc) + Number(curr), 0)
+                Number(
+                  transactions.map(
+                    (transaction) => transaction.payments.filter((pay) => pay.payment_method_title === "Cartão de débito").map((item) => item.value)
+                  ).flatMap((item) => item).reduce((acc, curr) => Number(acc) + Number(curr), 0).toFixed(2)
+                )
               )
             }
           )
@@ -83118,9 +83141,11 @@ const CashierPage = () => {
                 color: "#0583F2"
               },
               children: formatCurrency(
-                transactions.map(
-                  (transaction) => transaction.payments.filter((pay) => pay.payment_method_title === "Cartão de Crédito").map((item) => item.value)
-                ).reduce((acc, curr) => Number(acc) + Number(curr), 0)
+                Number(
+                  transactions.map(
+                    (transaction) => transaction.payments.filter((pay) => pay.payment_method_title === "Cartão de Crédito").map((item) => item.value)
+                  ).flatMap((item) => item).reduce((acc, curr) => Number(acc) + Number(curr), 0).toFixed(2)
+                )
               )
             }
           )
@@ -83165,9 +83190,11 @@ const CashierPage = () => {
                 color: "#2FAA54"
               },
               children: formatCurrency(
-                transactions.map(
-                  (transaction) => transaction.payments.filter((pay) => pay.payment_method_title === "Dinheiro").map((item) => item.value)
-                ).reduce((acc, curr) => Number(acc) + Number(curr), 0)
+                Number(
+                  transactions.map(
+                    (transaction) => transaction.payments.filter((pay) => pay.payment_method_title === "Dinheiro").map((item) => item.value)
+                  ).flatMap((item) => item).reduce((acc, curr) => Number(acc) + Number(curr), 0).toFixed(2)
+                )
               )
             }
           )
@@ -83212,9 +83239,11 @@ const CashierPage = () => {
                 color: "#DD6B20"
               },
               children: formatCurrency(
-                transactions.map(
-                  (transaction) => transaction.payments.filter((pay) => pay.payment_method_title === "PIX").map((item) => item.value)
-                ).reduce((acc, curr) => Number(acc) + Number(curr), 0)
+                Number(
+                  transactions.map(
+                    (transaction) => transaction.payments.filter((pay) => pay.payment_method_title === "PIX").map((item) => item.value)
+                  ).flatMap((item) => item).reduce((acc, curr) => Number(acc) + Number(curr), 0).toFixed(2)
+                )
               )
             }
           )
@@ -83259,7 +83288,9 @@ const CashierPage = () => {
                 color: "#0583F2"
               },
               children: formatCurrency(
-                transactions.map((transaction) => Number(transaction.tip)).reduce((acc, curr) => acc + Number(curr), 0)
+                Number(
+                  transactions.map((transaction) => Number(transaction.tip)).reduce((acc, curr) => acc + Number(curr), 0).toFixed(2)
+                )
               )
             }
           )
@@ -84429,10 +84460,10 @@ const ProductDrawer = ({ onClose, visible }) => {
                           Button$2,
                           {
                             onClick: () => {
-                              if (dataToadd.quantity > 1) {
+                              if (Number(dataToadd.quantity) > 1) {
                                 setDataToAdd({
                                   ...dataToadd,
-                                  quantity: dataToadd.quantity - 1
+                                  quantity: Number(dataToadd.quantity) - 1
                                 });
                               }
                             },
@@ -84446,7 +84477,7 @@ const ProductDrawer = ({ onClose, visible }) => {
                             onClick: () => {
                               setDataToAdd({
                                 ...dataToadd,
-                                quantity: dataToadd.quantity + 1
+                                quantity: Number(dataToadd.quantity) + 1
                               });
                             },
                             children: /* @__PURE__ */ jsxRuntimeExports.jsx(PlusOutlined$1, {})
@@ -84455,18 +84486,28 @@ const ProductDrawer = ({ onClose, visible }) => {
                       ]
                     }
                   ) : /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    InputNumber$1,
+                    Input$1,
                     {
                       ref: quantityInput,
+                      type: "number",
                       value: dataToadd.quantity,
                       onChange: (value) => {
-                        setDataToAdd({ ...dataToadd, quantity: value || 0 });
+                        setDataToAdd({
+                          ...dataToadd,
+                          quantity: value.target.value || 0
+                        });
+                      },
+                      onKeyUp: (e2) => {
+                        if (e2.key === "Enter") {
+                          if (buttonRef.current) {
+                            buttonRef.current.focus();
+                          }
+                        }
                       },
                       style: {
                         width: "40%",
                         height: "50px"
                       },
-                      controls: false,
                       size: "large"
                     }
                   ),
@@ -84596,6 +84637,36 @@ const Products = () => {
       setLoadingSend(false);
     }
   }
+  function sendOrderWCode() {
+    setLoadingSend(true);
+    setSendError("");
+    api.post("/order/", {
+      bill_id: selectedBill.id,
+      order_items: cart
+    }).then((response) => {
+      setCart([]);
+      console.log(response.data);
+      Order(
+        response.data.restaurant.title,
+        response.data.bill?.table?.title || "",
+        String(response.data.bill?.number) || "",
+        response.data.order_items,
+        response.data?.collaborator_name || "",
+        response.data?.created || ""
+      );
+      setOperatorCode("");
+      setModalCodeOpen(false);
+      setCurrentTab("1");
+    }).catch((error) => {
+      if (error.response?.data?.detail) {
+        setSendError(error.response?.data?.detail);
+      } else {
+        setSendError("Erro ao enviar pedido");
+      }
+    }).finally(() => {
+      setLoadingSend(false);
+    });
+  }
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(
     "div",
     {
@@ -84718,7 +84789,10 @@ const Products = () => {
                                     children: [
                                       Number(order.quantity),
                                       "x ",
-                                      order.product_title
+                                      order.product_title,
+                                      " -",
+                                      " ",
+                                      formatCurrency(Number(order.unit_price) * order.quantity)
                                     ]
                                   }
                                 ),
@@ -84996,7 +85070,7 @@ const Products = () => {
                                                   marginLeft: "30px"
                                                 },
                                                 children: [
-                                                  ite.quantity > 1 ? ite.quantity + "x " : "-",
+                                                  Number(ite.quantity) > 1 ? Number(ite.quantity) + "x " : "-",
                                                   " ",
                                                   ite.item_title
                                                 ]
@@ -85026,7 +85100,7 @@ const Products = () => {
                         loading: loadingSend,
                         disabled: cart.length === 0,
                         onClick: () => {
-                          setModalCodeOpen(true);
+                          JSON.parse(localStorage.getItem("userPermissions") || "[]").length > 1 ? sendOrderWCode() : setModalCodeOpen(true);
                           setTimeout(() => {
                             operatorCodePassInput.current?.focus();
                           }, 100);
@@ -85117,7 +85191,7 @@ const Terminal = () => {
               alignItems: "center"
             },
             children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(Button$2, { size: "large", type: "default", onClick: () => navigate("/comandas/"), children: "Voltar" }),
+              JSON.parse(localStorage.getItem("userPermissions") || "[]").length > 1 && /* @__PURE__ */ jsxRuntimeExports.jsx(Button$2, { size: "large", type: "default", onClick: () => navigate("/comandas"), children: "Voltar" }),
               /* @__PURE__ */ jsxRuntimeExports.jsx(Image$2, { src: logo, width: 130, preview: false }),
               /* @__PURE__ */ jsxRuntimeExports.jsx(Typography$1.Title, { level: 4, style: { color: "white" }, children: "Terminal" })
             ]
@@ -85407,7 +85481,7 @@ function App() {
         theme: {
           token: theme$1.tokens
         },
-        children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Xe, { theme: theme$1, children: [
+        children: /* @__PURE__ */ jsxRuntimeExports.jsx(SocketProvider, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Xe, { theme: theme$1, children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(GlobalStyle, {}),
           /* @__PURE__ */ jsxRuntimeExports.jsx(CashierProvider, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(ProductsProvider, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(PrinterProvider, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(BillProvider, { children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(Navigation, {}),
@@ -85420,7 +85494,7 @@ function App() {
               }
             )
           ] }) }) }) })
-        ] })
+        ] }) })
       }
     )
   ] });
