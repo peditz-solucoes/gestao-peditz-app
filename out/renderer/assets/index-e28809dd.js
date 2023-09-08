@@ -10147,7 +10147,7 @@ function useLinkClickHandler(to2, _temp) {
     }
   }, [location, navigate, path2, replaceProp, state, target, to2, preventScrollReset, relative]);
 }
-const Container$h = st.div`
+const Container$i = st.div`
   width: 100%;
   height: 100vh;
   display: flex;
@@ -70841,7 +70841,7 @@ const LoginPage = () => {
       setIsLoading(false);
     });
   };
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(Container$h, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Box, { children: [
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Container$i, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Box, { children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx(
       Image$2,
       {
@@ -70953,7 +70953,7 @@ const LoginPage = () => {
     )
   ] }) });
 };
-const Container$g = st.div`
+const Container$h = st.div`
   width: 100%;
   height: calc(100vh - 50px);
   padding: 20px;
@@ -71387,7 +71387,7 @@ var WalletOutlined = function WalletOutlined2(props, ref) {
 const WalletOutlined$1 = /* @__PURE__ */ reactExports.forwardRef(WalletOutlined);
 const { Title: Title$8, Paragraph: Paragraph$2 } = Typography$1;
 const Dashboard = () => {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(Container$g, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(RowMetrics, { children: [
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Container$h, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(RowMetrics, { children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs(Card, { children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs(CardTitle, { children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -71561,7 +71561,7 @@ const Dashboard = () => {
     ] })
   ] }) });
 };
-const Container$f = st.div`
+const Container$g = st.div`
   width: 100%;
   padding: 20px 20px;
 `;
@@ -71811,7 +71811,7 @@ const CreateCommandModal = ({
     )
   ] }) });
 };
-const Container$e = st.div`
+const Container$f = st.div`
   width: 280px;
   height: auto;
   cursor: pointer;
@@ -71853,7 +71853,7 @@ st.div`
 const { Title: Title$7, Text: Text$4 } = Typography$1;
 const CardBill = (props) => {
   const navigate = useNavigate();
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$e, { onClick: () => navigate(`/comandas/${props.data.id}`), children: [
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$f, { onClick: () => navigate(`/comandas/${props.data.id}`), children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs(InfoBill, { children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
         Avatar$1,
@@ -71900,7 +71900,7 @@ const Commands = () => {
     });
   }
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$f, { children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$g, { children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx(HeaderFilter$1, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
         "div",
         {
@@ -71944,8 +71944,22 @@ const Commands = () => {
     /* @__PURE__ */ jsxRuntimeExports.jsx(CreateCommandModal, { visible: isModalVisible, onClose: () => setIsModalVisible(false) })
   ] });
 };
+const Container$e = st.div`
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+`;
+st.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+`;
+st.div`
+
+`;
 const Reports = () => {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { children: "Relatorios" }) });
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Container$e, { children: /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { children: "Reports" }) });
 };
 const Container$d = st.div`
   width: 100%;
@@ -80157,11 +80171,34 @@ const SideBar = ({ collapsed }) => {
     }),
     getItem({
       key: "9",
-      label: /* @__PURE__ */ jsxRuntimeExports.jsx(Link$2, { to: "/relatorios", children: "Relatórios" }),
+      label: "Relatórios",
       icon: /* @__PURE__ */ jsxRuntimeExports.jsx(SolutionOutlined$1, {}),
       style: {
-        display: userPermissions.includes("Relatorios") ? "flex" : "none"
-      }
+        display: userPermissions.includes("Produtos") ? "flex" : "none",
+        flexDirection: "column"
+      },
+      children: [
+        getItem({
+          key: "9.1",
+          label: "Vendas por período"
+        }),
+        getItem({
+          key: "9.2",
+          label: "Vendas por produto"
+        }),
+        getItem({
+          key: "9.3",
+          label: "Relatório geral"
+        }),
+        getItem({
+          key: "9.4",
+          label: "Caixas passados"
+        }),
+        getItem({
+          key: "9.5",
+          label: "Taxas de serviço"
+        })
+      ]
     }),
     getItem({
       key: "10",
@@ -80197,6 +80234,7 @@ const SideBar = ({ collapsed }) => {
       collapsed,
       style: {
         height: "100vh",
+        overflowY: "auto",
         backgroundColor: "#47aa54",
         padding: "20px",
         transition: "all 1s"
@@ -80246,11 +80284,7 @@ const SideBar = ({ collapsed }) => {
               fontWeight: "600",
               display: "flex",
               flexDirection: "column",
-              justifyContent: "center",
-              gap: "10px",
-              height: "calc(100vh-150px)",
-              maxHeight: "600px",
-              overflowY: "auto"
+              gap: "10px"
             },
             mode: "inline",
             theme: "dark",
@@ -85462,7 +85496,7 @@ html {
   display: flex;
   flex-direction: column;
   width: 100%;
-  overflow-y: auto;
+  overflow-y: hidden;
 }
 
 body {

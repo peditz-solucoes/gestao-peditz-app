@@ -1,9 +1,10 @@
-import React from "react";
+import React from 'react'
+import * as S from './styles'
 
-export const Reports:React.FC = () => {
+export const Reports: React.FC = () => {
   return (
-    <div>
-      <h1>Relatorios</h1>
-    </div>
-  );
+    <S.Container>
+      <h1>Reports</h1>
+    </S.Container>
+  )
 }

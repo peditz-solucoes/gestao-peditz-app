@@ -150,11 +150,34 @@ export const SideBar: React.FC<SideBarProps> = ({ collapsed }) => {
 
     getItem({
       key: '9',
-      label: <Link to={'/relatorios'}>Relatórios</Link>,
+      label: 'Relatórios',
       icon: <SolutionOutlined />,
       style: {
-        display: userPermissions.includes('Relatorios') ? 'flex' : 'none'
-      }
+        display: userPermissions.includes('Produtos') ? 'flex' : 'none',
+        flexDirection: 'column'
+      },
+      children: [
+        getItem({
+          key: '9.1',
+          label: 'Vendas por período'
+        }),
+        getItem({
+          key: '9.2',
+          label: 'Vendas por produto'
+        }),
+        getItem({
+          key: '9.3',
+          label: 'Relatório geral'
+        }),
+        getItem({
+          key: '9.4',
+          label: 'Caixas passados'
+        }),
+        getItem({
+          key: '9.5',
+          label: 'Taxas de serviço'
+        })
+      ]
     }),
 
     getItem({
@@ -192,6 +215,7 @@ export const SideBar: React.FC<SideBarProps> = ({ collapsed }) => {
       collapsed={collapsed}
       style={{
         height: '100vh',
+        overflowY: 'auto',
         backgroundColor: '#47aa54',
         padding: '20px',
         transition: 'all 1s'
@@ -235,11 +259,7 @@ export const SideBar: React.FC<SideBarProps> = ({ collapsed }) => {
           fontWeight: '600',
           display: 'flex',
           flexDirection: 'column',
-          justifyContent: 'center',
-          gap: '10px',
-          height: 'calc(100vh-150px)',
-          maxHeight: '600px',
-          overflowY: 'auto'
+          gap: '10px'
         }}
         mode="inline"
         theme="dark"
