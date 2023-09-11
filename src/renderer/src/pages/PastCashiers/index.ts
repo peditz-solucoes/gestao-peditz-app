@@ -1,0 +1,1 @@
+export { PastCashiers } from './PastCashiers'
