@@ -56,7 +56,7 @@ export const SideBar: React.FC<SideBarProps> = ({ collapsed }) => {
     fetchUserPermission()
   }, [])
 
-  function fetchUserPermission() {
+  function fetchUserPermission(): void {
     api
       .get('/user-permissions/')
       .then((response) => {
@@ -171,7 +171,7 @@ export const SideBar: React.FC<SideBarProps> = ({ collapsed }) => {
         }),
         getItem({
           key: '9.4',
-          label: 'Caixas passados'
+          label: <Link to={'/relatorios/caixas-passados'}>Caixas Passados</Link>
         }),
         getItem({
           key: '9.5',

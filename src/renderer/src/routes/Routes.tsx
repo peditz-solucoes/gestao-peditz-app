@@ -21,8 +21,10 @@ import { EmployerViewPage } from '../pages/EmployerView/EmployerView'
 import { Terminal } from '../pages/Terminal'
 import { TerminalProvider } from '../hooks/useTerminal'
 import { BillClosedPage } from '@renderer/pages/BillCLosed'
+import { PastCashiers } from '@renderer/pages/PastCashiers'
+import { CashierDetail } from '@renderer/pages/CashierDetail'
 
-export function Navigation() {
+export function Navigation(): JSX.Element {
   return (
     <Routes>
       {/* Rota de comandas fechadas */}
@@ -109,6 +111,26 @@ export function Navigation() {
           element={
             <AddSidebar titleHeader="Relatórios">
               <Reports />
+            </AddSidebar>
+          }
+        />
+      </Route>
+      <Route path="/relatorios/caixas-passados/" element={<PrivateRoute />}>
+        <Route
+          path="/relatorios/caixas-passados/"
+          element={
+            <AddSidebar titleHeader="Relatórios">
+              <PastCashiers />
+            </AddSidebar>
+          }
+        />
+      </Route>
+      <Route path="/relatorios/caixas-passados/:id" element={<PrivateRoute />}>
+        <Route
+          path="/relatorios/caixas-passados/:id"
+          element={
+            <AddSidebar titleHeader="Reltório de caixa">
+              <CashierDetail />
             </AddSidebar>
           }
         />
