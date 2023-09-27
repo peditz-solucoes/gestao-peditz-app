@@ -20,6 +20,7 @@ export function SocketProvider({ children }: SocketProviderProps): JSX.Element {
   const [loadingConnectSocket, setLoadingConnectSocket] = useState<boolean>(false)
   const [isConnected, setIsConnected] = useState<boolean>(false)
   const hasUpdated = useRef<boolean>(false)
+  
   function handleConnectionWs(value = false): void {
     if (value) {
       connectSocket()

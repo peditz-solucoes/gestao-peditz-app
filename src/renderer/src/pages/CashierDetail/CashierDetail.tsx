@@ -85,11 +85,13 @@ const columns: ColumnsType<DataType> = [
   {
     title: 'type',
     dataIndex: 'type',
-    width: 100
+    width: 100,
+    align: 'center'
   },
   {
     title: 'Comandas',
     dataIndex: 'bills',
+    align: 'center',
     render: (bills) =>
       bills.map((bill) => (
         <Tag color="gold" key={bill.id}>
@@ -100,6 +102,7 @@ const columns: ColumnsType<DataType> = [
   {
     title: 'Pagamentos',
     dataIndex: 'payments',
+    align: 'center',
     render: (payments) =>
       payments.map((payment) => (
         <div key={payment.id}>
@@ -114,6 +117,7 @@ const columns: ColumnsType<DataType> = [
   {
     title: 'Data',
     dataIndex: 'created',
+    align: 'center',
     // sorter: {
     //   compare: (a, b) => moment(a.created).unix() - moment(b.created).unix(),
     //   multiple: 2
@@ -122,10 +126,12 @@ const columns: ColumnsType<DataType> = [
   },
   {
     title: 'Total',
+    align: 'center',
     dataIndex: 'total'
   },
   {
     title: 'Taxa de serviço',
+    align: 'center',
     dataIndex: 'tip'
   }
 ]
@@ -271,15 +277,20 @@ export const CashierDetail: React.FC = () => {
                 <Text type="secondary">
                   em {moment(cashier?.created).format('DD/MM/YYYY HH:mm:ss')}
                 </Text>
-                <Text type="secondary">
-                  Caixa fechado por:{' '}
-                  {cashier?.closed_by?.first_name
-                    ? `${cashier?.closed_by?.first_name} ${cashier?.closed_by?.last_name}`
-                    : cashier?.closed_by_name}
-                </Text>
-                <Text type="secondary">
-                  em {moment(cashier?.closed_at).format('DD/MM/YYYY HH:mm:ss')}
-                </Text>
+                {cashier?.closed_at && (
+                  <Text type="secondary">
+                    Caixa fechado por:{' '}
+                    {cashier?.closed_by?.first_name
+                      ? `${cashier?.closed_by?.first_name} ${cashier?.closed_by?.last_name}`
+                      : cashier?.closed_by_name}
+                  </Text>
+                )}
+
+                {cashier?.closed_at && (
+                  <Text type="secondary">
+                    em {moment(cashier?.closed_at).format('DD/MM/YYYY HH:mm:ss')}
+                  </Text>
+                )}
               </div>
             </>
           </S.CardInfo>

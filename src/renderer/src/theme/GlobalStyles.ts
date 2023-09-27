@@ -20,8 +20,13 @@ const GlobalStyle = createGlobalStyle`
     border-radius: 5px;
   }
 
-  .ant-menu.ant-menu-sub{
+
+  .ant-menu{
     background: transparent !important;
+  }
+
+  .ant-menu-sub {
+    background: #2FAA54 !important;
   }
 
 }

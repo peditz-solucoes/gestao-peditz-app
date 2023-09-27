@@ -7,7 +7,8 @@ import {
   ReconciliationOutlined,
   ShoppingOutlined,
   SolutionOutlined,
-  WalletOutlined
+  WalletOutlined,
+  ShopOutlined
 } from '@ant-design/icons'
 import { IoFastFood } from 'react-icons//io5'
 import { Layout, Menu, MenuProps } from 'antd'
@@ -91,7 +92,17 @@ export const SideBar: React.FC<SideBarProps> = ({ collapsed }) => {
     }),
 
     getItem({
-      key: 'sub1',
+      key: '3',
+      label:  <Link to={'/pedidos-balcao/'}>Pedidos de balcão</Link>,
+      icon: <ShopOutlined />
+      // style: {
+      //   display: userPermissions.includes('Balcão') ? 'flex' : 'none',
+      //   flexDirection: 'column'
+      // },
+    }),
+
+    getItem({
+      key: '4',
       label: 'Produtos',
       icon: <IoFastFood />,
       style: {
@@ -100,18 +111,18 @@ export const SideBar: React.FC<SideBarProps> = ({ collapsed }) => {
       },
       children: [
         getItem({
-          key: '4',
+          key: '4.1',
           label: <Link to={'/produtos'}>Lista de produtos</Link>
         }),
         getItem({
-          key: '5',
+          key: '4.2',
           label: <Link to={'/produtos/categorias'}>Categorias</Link>
         })
       ]
     }),
 
     getItem({
-      key: '6',
+      key: '5',
       label: 'Comandas',
       icon: <WalletOutlined />,
       style: {
@@ -120,18 +131,18 @@ export const SideBar: React.FC<SideBarProps> = ({ collapsed }) => {
       },
       children: [
         getItem({
-          key: '6.1',
+          key: '5.1',
           label: <Link to={'/comandas'}>Abertas</Link>
         }),
         getItem({
-          key: '6.2',
+          key: '5.2',
           label: <Link to={'/comandas-fechadas'}>Fechadas</Link>
         })
       ]
     }),
 
     getItem({
-      key: '7',
+      key: '6',
       label: <Link to={'/mesas'}>Mesas</Link>,
       icon: <BlockOutlined />,
       style: {
@@ -140,7 +151,7 @@ export const SideBar: React.FC<SideBarProps> = ({ collapsed }) => {
     }),
 
     getItem({
-      key: '8',
+      key: '7',
       label: <Link to={'/estoque'}>Estoques</Link>,
       icon: <ShoppingOutlined />,
       style: {
@@ -149,7 +160,7 @@ export const SideBar: React.FC<SideBarProps> = ({ collapsed }) => {
     }),
 
     getItem({
-      key: '9',
+      key: '8',
       label: 'Relatórios',
       icon: <SolutionOutlined />,
       style: {
@@ -158,30 +169,30 @@ export const SideBar: React.FC<SideBarProps> = ({ collapsed }) => {
       },
       children: [
         getItem({
-          key: '9.1',
+          key: '8.1',
           label: 'Vendas por período'
         }),
         getItem({
-          key: '9.2',
+          key: '8.2',
           label: 'Vendas por produto'
         }),
         getItem({
-          key: '9.3',
+          key: '8.3',
           label: 'Relatório geral'
         }),
         getItem({
-          key: '9.4',
+          key: '8.4',
           label: <Link to={'/relatorios/caixas-passados'}>Caixas Passados</Link>
         }),
         getItem({
-          key: '9.5',
+          key: '8.5',
           label: 'Taxas de serviço'
         })
       ]
     }),
 
     getItem({
-      key: '10',
+      key: '9',
       label: <Link to={'/aplicativos'}>Aplicativos</Link>,
       icon: <AppstoreAddOutlined />,
       style: {
@@ -190,7 +201,7 @@ export const SideBar: React.FC<SideBarProps> = ({ collapsed }) => {
     }),
 
     getItem({
-      key: '11',
+      key: '10',
       label: <Link to={'/integracoes'}>Integrações</Link>,
       icon: <ApiOutlined />,
       style: {
@@ -198,7 +209,7 @@ export const SideBar: React.FC<SideBarProps> = ({ collapsed }) => {
       }
     }),
     getItem({
-      key: '12',
+      key: '11',
       label: <Link to={'/terminal'}>Terminal de pedidos</Link>,
       icon: <ReconciliationOutlined />,
       style: {

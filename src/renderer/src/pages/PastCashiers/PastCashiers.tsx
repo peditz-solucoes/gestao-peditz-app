@@ -19,16 +19,21 @@ const columns: ColumnsType<DataType> = [
   {
     title: '',
     dataIndex: 'number',
-    width: 50
+    width: 50,
+    align: 'center'
   },
   {
     title: 'Identificador',
     dataIndex: 'identifier',
-    render: (identifier) => <Tag color="gold">{identifier}</Tag>
+    render: (identifier) => (
+      <Tag color={identifier ? 'gold' : 'red'}>{identifier ? identifier : 'Sem idenficador'}</Tag>
+    ),
+    align: 'center'
   },
   {
     title: 'Operador',
-    dataIndex: 'operator'
+    dataIndex: 'operator',
+    align: 'center'
   },
   {
     title: 'Data',
@@ -37,14 +42,16 @@ const columns: ColumnsType<DataType> = [
       compare: (a, b) => moment(a.created).unix() - moment(b.created).unix(),
       multiple: 2
     },
-    render: (created) => moment(created).format('DD/MM/YYYY HH:mm')
+    render: (created) => moment(created).format('DD/MM/YYYY HH:mm'),
+    align: 'center'
   },
   {
     title: 'Ação',
     dataIndex: 'id',
+    align: 'center',
     render: (a) => (
       <Link to={a}>
-        <Button type="primary">Abrir</Button>
+        <Button type="primary">Detalhes</Button>
       </Link>
     )
   }
@@ -86,7 +93,7 @@ export const PastCashiers: React.FC = () => {
 
   return (
     <S.Container>
-      <Typography.Title level={3}>Todos os caixas</Typography.Title>
+      {/* <Typography.Title level={3}>Todos os caixas</Typography.Title> */}
       <Table
         columns={columns}
         dataSource={cashiers}

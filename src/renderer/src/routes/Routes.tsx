@@ -23,6 +23,7 @@ import { TerminalProvider } from '../hooks/useTerminal'
 import { BillClosedPage } from '@renderer/pages/BillCLosed'
 import { PastCashiers } from '@renderer/pages/PastCashiers'
 import { CashierDetail } from '@renderer/pages/CashierDetail'
+import { Takeout } from '@renderer/pages/Takeout'
 
 export function Navigation(): JSX.Element {
   return (
@@ -104,22 +105,23 @@ export function Navigation(): JSX.Element {
         />
       </Route>
 
-      {/* Rota de relatórios */}
-      <Route path="/relatorios/" element={<PrivateRoute />}>
+      {/*Pedidos de balcão */}
+      <Route path="/pedidos-balcao/" element={<PrivateRoute />}>
         <Route
-          path="/relatorios/"
+          path="/pedidos-balcao/"
           element={
-            <AddSidebar titleHeader="Relatórios">
-              <Reports />
+            <AddSidebar>
+              <Takeout />
             </AddSidebar>
           }
         />
       </Route>
+
       <Route path="/relatorios/caixas-passados/" element={<PrivateRoute />}>
         <Route
           path="/relatorios/caixas-passados/"
           element={
-            <AddSidebar titleHeader="Relatórios">
+            <AddSidebar titleHeader="Caixas passados">
               <PastCashiers />
             </AddSidebar>
           }
@@ -129,7 +131,7 @@ export function Navigation(): JSX.Element {
         <Route
           path="/relatorios/caixas-passados/:id"
           element={
-            <AddSidebar titleHeader="Reltório de caixa">
+            <AddSidebar titleHeader="Relatório de caixa">
               <CashierDetail />
             </AddSidebar>
           }
