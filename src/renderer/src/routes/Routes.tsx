@@ -2,7 +2,6 @@ import { Route, Routes } from 'react-router-dom'
 import { LoginPage } from '../pages/Login'
 import { Dashboard } from '../pages/Dashboard'
 import { Commands } from '../pages/Commands'
-import { Reports } from '../pages/Reports'
 import { Stocks } from '../pages/Stocks'
 import { Tables } from '../pages/Tables'
 import { Apps } from '../pages/Apps'
@@ -25,6 +24,7 @@ import { PastCashiers } from '@renderer/pages/PastCashiers'
 import { CashierDetail } from '@renderer/pages/CashierDetail'
 import { Takeout } from '@renderer/pages/Takeout'
 import { OrdersManager } from '@renderer/pages/OrdersManager'
+import { FinancialStats } from '@renderer/pages/FinancialStats'
 
 export function Navigation(): JSX.Element {
   return (
@@ -118,8 +118,8 @@ export function Navigation(): JSX.Element {
         />
       </Route>
 
-          {/*Pedidos de balcão */}
-          <Route path="/pedidos/" element={<PrivateRoute />}>
+      {/*Pedidos de balcão */}
+      <Route path="/pedidos/" element={<PrivateRoute />}>
         <Route
           path="/pedidos/"
           element={
@@ -136,6 +136,16 @@ export function Navigation(): JSX.Element {
           element={
             <AddSidebar titleHeader="Caixas passados">
               <PastCashiers />
+            </AddSidebar>
+          }
+        />
+      </Route>
+      <Route path="/relatorios/financeiro/" element={<PrivateRoute />}>
+        <Route
+          path="/relatorios/financeiro/"
+          element={
+            <AddSidebar titleHeader="Relatório por período">
+              <FinancialStats />
             </AddSidebar>
           }
         />

@@ -1,48 +1,64 @@
-import React from 'react'
+import React, { useCallback, useEffect } from 'react'
 import * as S from './styles'
-import { Avatar, Statistic, Typography } from 'antd'
-import { FaConciergeBell, FaMoneyBillWave, FaUserCheck, FaUserFriends } from 'react-icons/fa'
+import { Avatar, Spin, Statistic, Typography } from 'antd'
+import {
+  FaCalendarCheck,
+  FaConciergeBell,
+  FaMoneyBillWave,
+  FaUserCheck,
+  FaUserFriends
+} from 'react-icons/fa'
 import { formatCurrency } from '@renderer/utils'
 import { ArrowUpOutlined, ArrowDownOutlined } from '@ant-design/icons'
-// import { ChartBar } from './components/ChartBar'
+import api from '@renderer/services/api'
+import dayjs from 'dayjs'
 
 const { Title, Paragraph } = Typography
 
+interface PaymentType {
+  id: string
+  payments: {
+    payment_method_title: string
+    value: string
+    note: string | null
+    created: string
+    id: string
+  }[]
+  bills: {
+    id: string
+    number?: number
+  }[]
+  created: string
+  modified: string
+  type: string
+  tip: string
+  total: string
+  cashier: string
+}
+
 export const Dashboard: React.FC = () => {
-  // const data = [
-  //   { year: '1991', value: 3 },
-  //   { year: '1992', value: 4 },
-  //   { year: '1993', value: 3.5 },
-  //   { year: '1994', value: 5 },
-  //   { year: '1995', value: 4.9 },
-  //   { year: '1996', value: 6 },
-  //   { year: '1997', value: 7 },
-  //   { year: '1998', value: 9 },
-  //   { year: '1999', value: 13 }
-  // ]
-
-  // const config = {
-  //   data,
-  //   width: 800,
-  //   height: 400,
-  //   autoFit: false,
-  //   xField: 'year',
-  //   yField: 'value',
-  //   point: {
-  //     size: 5,
-  //     shape: 'diamond'
-  //   },
-  //   label: {
-  //     style: {
-  //       fill: '#aaa'
-  //     }
-  //   }
-  // }
-
-  // let chart
-
-  // return <Line {...config} onReady={(chartInstance) => (chart = chartInstance)} />
-
+  const [loadingP, setLoadingP] = React.useState(false)
+  const [payments, setPayments] = React.useState<PaymentType[]>([])
+  const hasUpdate = React.useRef(false)
+  useEffect(() => {
+    if (!hasUpdate.current) {
+      fecthPayments(dayjs().startOf('month').format(), dayjs().format(), '')
+      hasUpdate.current = true
+    }
+  }, [])
+  const fecthPayments = useCallback((startdate: string, endDate: string, cashier?: string) => {
+    setLoadingP(true)
+    api
+      .get(
+        `/list-payment/?cashier=${cashier}&datetime_range_after=${startdate}&datetime_range_before=${endDate}`
+      )
+      .then((response) => {
+        setPayments(response.data)
+      })
+      .finally(() => {
+        setLoadingP(false)
+      })
+  }, [])
   return (
     <S.Container>
       <S.RowMetrics>
@@ -76,7 +92,7 @@ export const Dashboard: React.FC = () => {
               0
             </Paragraph>
             <Statistic
-              value={11.28}
+              value={0}
               precision={2}
               valueStyle={{ color: '#3f8600', fontSize: '0.75rem' }}
               prefix={<ArrowUpOutlined />}
@@ -84,44 +100,45 @@ export const Dashboard: React.FC = () => {
             />
           </div>
         </S.Card>
-        <S.Card>
-          <S.CardTitle>
-            <div>
-              <Avatar
-                size={'large'}
-                icon={<FaMoneyBillWave style={{ color: '#31AB56' }} />}
-                style={{
-                  backgroundColor: '#C6F6D5',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center'
-                }}
+        <Spin spinning={loadingP}>
+          <S.Card>
+            <S.CardTitle>
+              <div>
+                <Avatar
+                  size={'large'}
+                  icon={<FaMoneyBillWave style={{ color: '#31AB56' }} />}
+                  style={{
+                    backgroundColor: '#C6F6D5',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center'
+                  }}
+                />
+              </div>
+              <Title level={5} style={{ margin: '0', color: '#A0AEC0' }} italic>
+                Rendimento Total
+              </Title>
+            </S.CardTitle>
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                alignItems: 'flex-start',
+                gap: '0.5rem'
+              }}
+            >
+              <Paragraph strong style={{ margin: '0', fontSize: '1.75rem', color: '#31AB56' }}>
+                {formatCurrency(payments.reduce((acc, curr) => acc + Number(curr.total), 0))}
+              </Paragraph>
+              <Statistic
+                value={dayjs().format('MMMM/YYYY')}
+                precision={2}
+                valueStyle={{ color: '#3f8600', fontSize: '0.75rem' }}
+                prefix={<FaCalendarCheck />}
               />
             </div>
-            <Title level={5} style={{ margin: '0', color: '#A0AEC0' }} italic>
-              Rendimento Total
-            </Title>
-          </S.CardTitle>
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'flex-start',
-              gap: '0.5rem'
-            }}
-          >
-            <Paragraph strong style={{ margin: '0', fontSize: '1.75rem', color: '#31AB56' }}>
-              {formatCurrency(0)}
-            </Paragraph>
-            <Statistic
-              value={11.28}
-              precision={2}
-              valueStyle={{ color: '#3f8600', fontSize: '0.75rem' }}
-              prefix={<ArrowUpOutlined />}
-              suffix="%"
-            />
-          </div>
-        </S.Card>
+          </S.Card>
+        </Spin>
         <S.Card>
           <S.CardTitle>
             <div>
@@ -152,7 +169,7 @@ export const Dashboard: React.FC = () => {
               0
             </Paragraph>
             <Statistic
-              value={11.28}
+              value={0}
               precision={2}
               valueStyle={{ color: '#cf1322', fontSize: '0.75rem' }}
               prefix={<ArrowDownOutlined />}
@@ -191,7 +208,7 @@ export const Dashboard: React.FC = () => {
             </Paragraph>
 
             <Statistic
-              value={11.28}
+              value={0}
               precision={2}
               valueStyle={{ color: '#3f8600', fontSize: '0.75rem' }}
               prefix={<ArrowUpOutlined />}

@@ -21,7 +21,7 @@ import { UserPermissions } from '@renderer/types'
 import api from '@renderer/services/api'
 import { AxiosError } from 'axios'
 import { errorActions } from '@renderer/utils/errorActions'
-import { PiNotepadBold } from "react-icons/pi";
+import { PiNotepadBold } from 'react-icons/pi'
 
 const { Sider } = Layout
 
@@ -94,17 +94,17 @@ export const SideBar: React.FC<SideBarProps> = ({ collapsed }) => {
 
     getItem({
       key: '3',
-      label:  <Link to={'/pedidos-balcao/'}>Pedidos de balcão</Link>,
+      label: <Link to={'/pedidos-balcao/'}>Pedidos de balcão</Link>,
       icon: <ShopOutlined />
       // style: {
       //   display: userPermissions.includes('Balcão') ? 'flex' : 'none',
       //   flexDirection: 'column'
       // },
     }),
-    
+
     getItem({
       key: '4',
-      label:  <Link to={'/pedidos/'}>Gerenciador de pedidos</Link>,
+      label: <Link to={'/pedidos/'}>Gerenciador de pedidos</Link>,
       icon: <PiNotepadBold />
       // style: {
       //   display: userPermissions.includes('Balcão') ? 'flex' : 'none',
@@ -181,7 +181,7 @@ export const SideBar: React.FC<SideBarProps> = ({ collapsed }) => {
       children: [
         getItem({
           key: '9.1',
-          label: 'Vendas por período'
+          label: <Link to={'/relatorios/financeiro'}>Vendas por período</Link>
         }),
         getItem({
           key: '9.2',
