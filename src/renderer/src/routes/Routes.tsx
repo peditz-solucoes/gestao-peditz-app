@@ -24,6 +24,7 @@ import { BillClosedPage } from '@renderer/pages/BillCLosed'
 import { PastCashiers } from '@renderer/pages/PastCashiers'
 import { CashierDetail } from '@renderer/pages/CashierDetail'
 import { Takeout } from '@renderer/pages/Takeout'
+import { OrdersManager } from '@renderer/pages/OrdersManager'
 
 export function Navigation(): JSX.Element {
   return (
@@ -112,6 +113,18 @@ export function Navigation(): JSX.Element {
           element={
             <AddSidebar>
               <Takeout />
+            </AddSidebar>
+          }
+        />
+      </Route>
+
+          {/*Pedidos de balcão */}
+          <Route path="/pedidos/" element={<PrivateRoute />}>
+        <Route
+          path="/pedidos/"
+          element={
+            <AddSidebar>
+              <OrdersManager />
             </AddSidebar>
           }
         />

@@ -74,7 +74,8 @@ export const Header: React.FC<HeaderProps> = ({ titleHeader, setCollapsed, colla
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
-        padding: '0 20px'
+        padding: '0 20px',
+        borderBottom: '1px solid #E9E9E9'
       }}
     >
       <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>

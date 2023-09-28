@@ -1,4 +1,3 @@
-
 export const theme = {
   tokens: {
     colorPrimary: '#2FAA54',
@@ -15,6 +14,6 @@ export const theme = {
     colorWarningBase: '#FAAD14',
     colorTextPlaceholder: 'rgba(0, 0, 0, 0.25)',
     colorTextSecondary: '#A0AEC0',
-    colorSuccessBase: 'rgba(82, 196, 26, 1)',
-  },
+    colorSuccessBase: 'rgba(82, 196, 26, 1)'
+  }
 }
