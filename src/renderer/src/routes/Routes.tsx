@@ -25,6 +25,7 @@ import { CashierDetail } from '@renderer/pages/CashierDetail'
 import { Takeout } from '@renderer/pages/Takeout'
 import { OrdersManager } from '@renderer/pages/OrdersManager'
 import { FinancialStats } from '@renderer/pages/FinancialStats'
+import { TakeoutPayment } from '@renderer/pages/TakeoutPayment/TakeoutPayment'
 
 export function Navigation(): JSX.Element {
   return (
@@ -113,6 +114,18 @@ export function Navigation(): JSX.Element {
           element={
             <AddSidebar>
               <Takeout />
+            </AddSidebar>
+          }
+        />
+      </Route>
+
+      {/*Pagamentos Pedidos de balcão */}
+      <Route path="/pedidos-balcao/pagamentos/" element={<PrivateRoute />}>
+        <Route
+          path="/pedidos-balcao/pagamentos/"
+          element={
+            <AddSidebar>
+              <TakeoutPayment />
             </AddSidebar>
           }
         />

@@ -27,7 +27,7 @@ import localeData from 'dayjs/plugin/localeData'
 import weekday from 'dayjs/plugin/weekday'
 import weekOfYear from 'dayjs/plugin/weekOfYear'
 import weekYear from 'dayjs/plugin/weekYear'
-import { PieChart } from './components/pieChat'
+import { PieChart } from './components/PieChat'
 import { ColumnsType, TableProps } from 'antd/es/table'
 dayjs.locale('pt-br')
 dayjs.extend(customParseFormat)

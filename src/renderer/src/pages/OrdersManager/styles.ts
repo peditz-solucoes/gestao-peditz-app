@@ -51,6 +51,7 @@ export const OrdersContainer = styled.div`
   overflow-y: auto;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   grid-row-gap: 20px;
+  grid-column-gap: 10px;
   padding: 20px 0;
   margin-top: 15px;
   display: grid;

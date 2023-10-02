@@ -1,14 +1,14 @@
 import {
   ApiOutlined,
-  AppstoreAddOutlined,
+  // AppstoreAddOutlined,
   BlockOutlined,
   DesktopOutlined,
   PieChartOutlined,
   ReconciliationOutlined,
-  ShoppingOutlined,
+  // ShoppingOutlined,
   SolutionOutlined,
   WalletOutlined,
-  ShopOutlined
+  // ShopOutlined
 } from '@ant-design/icons'
 import { IoFastFood } from 'react-icons//io5'
 import { Layout, Menu, MenuProps } from 'antd'
@@ -21,7 +21,7 @@ import { UserPermissions } from '@renderer/types'
 import api from '@renderer/services/api'
 import { AxiosError } from 'axios'
 import { errorActions } from '@renderer/utils/errorActions'
-import { PiNotepadBold } from 'react-icons/pi'
+// import { PiNotepadBold } from 'react-icons/pi'
 
 const { Sider } = Layout
 
@@ -92,25 +92,25 @@ export const SideBar: React.FC<SideBarProps> = ({ collapsed }) => {
       }
     }),
 
-    getItem({
-      key: '3',
-      label: <Link to={'/pedidos-balcao/'}>Pedidos de balcão</Link>,
-      icon: <ShopOutlined />
-      // style: {
-      //   display: userPermissions.includes('Balcão') ? 'flex' : 'none',
-      //   flexDirection: 'column'
-      // },
-    }),
+    // getItem({
+    //   key: '3',
+    //   label: <Link to={'/pedidos-balcao/'}>Pedidos de balcão</Link>,
+    //   icon: <ShopOutlined />
+    //   // style: {
+    //   //   display: userPermissions.includes('Balcão') ? 'flex' : 'none',
+    //   //   flexDirection: 'column'
+    //   // },
+    // }),
 
-    getItem({
-      key: '4',
-      label: <Link to={'/pedidos/'}>Gerenciador de pedidos</Link>,
-      icon: <PiNotepadBold />
-      // style: {
-      //   display: userPermissions.includes('Balcão') ? 'flex' : 'none',
-      //   flexDirection: 'column'
-      // },
-    }),
+    // getItem({
+    //   key: '4',
+    //   label: <Link to={'/pedidos/'}>Gerenciador de pedidos</Link>,
+    //   icon: <PiNotepadBold />
+    //   // style: {
+    //   //   display: userPermissions.includes('Balcão') ? 'flex' : 'none',
+    //   //   flexDirection: 'column'
+    //   // },
+    // }),
 
     getItem({
       key: '5',
@@ -161,14 +161,14 @@ export const SideBar: React.FC<SideBarProps> = ({ collapsed }) => {
       }
     }),
 
-    getItem({
-      key: '8',
-      label: <Link to={'/estoque'}>Estoques</Link>,
-      icon: <ShoppingOutlined />,
-      style: {
-        display: userPermissions.includes('Estoques') ? 'flex' : 'none'
-      }
-    }),
+    // getItem({
+    //   key: '8',
+    //   label: <Link to={'/estoque'}>Estoques</Link>,
+    //   icon: <ShoppingOutlined />,
+    //   style: {
+    //     display: userPermissions.includes('Estoques') ? 'flex' : 'none'
+    //   }
+    // }),
 
     getItem({
       key: '9',
@@ -183,33 +183,33 @@ export const SideBar: React.FC<SideBarProps> = ({ collapsed }) => {
           key: '9.1',
           label: <Link to={'/relatorios/financeiro'}>Vendas por período</Link>
         }),
-        getItem({
-          key: '9.2',
-          label: 'Vendas por produto'
-        }),
-        getItem({
-          key: '9.3',
-          label: 'Relatório geral'
-        }),
+        // getItem({
+        //   key: '9.2',
+        //   label: 'Vendas por produto'
+        // }),
+        // getItem({
+        //   key: '9.3',
+        //   label: 'Relatório geral'
+        // }),
         getItem({
           key: '9.4',
           label: <Link to={'/relatorios/caixas-passados'}>Caixas Passados</Link>
-        }),
-        getItem({
-          key: '9.5',
-          label: 'Taxas de serviço'
         })
+        // getItem({
+        //   key: '9.5',
+        //   label: 'Taxas de serviço'
+        // })
       ]
     }),
 
-    getItem({
-      key: '10',
-      label: <Link to={'/aplicativos'}>Aplicativos</Link>,
-      icon: <AppstoreAddOutlined />,
-      style: {
-        display: userPermissions.includes('Aplicativos') ? 'flex' : 'none'
-      }
-    }),
+    // getItem({
+    //   key: '10',
+    //   label: <Link to={'/aplicativos'}>Aplicativos</Link>,
+    //   icon: <AppstoreAddOutlined />,
+    //   style: {
+    //     display: userPermissions.includes('Aplicativos') ? 'flex' : 'none'
+    //   }
+    // }),
 
     getItem({
       key: '11',

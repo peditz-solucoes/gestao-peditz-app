@@ -3,7 +3,7 @@ import * as S from './styles'
 import { Button, Dropdown, MenuProps, Typography } from 'antd'
 import { SlOptionsVertical } from 'react-icons/sl'
 import { UserOutlined, ShoppingOutlined } from '@ant-design/icons'
-import { BsCash, BsCashCoin } from 'react-icons/bs'
+import { BsCash } from 'react-icons/bs'
 import { formatCurrency } from '@renderer/utils'
 
 const { Title, Paragraph } = Typography
@@ -120,7 +120,7 @@ export const CardOrder: React.FC = () => {
             display: 'flex',
             flexDirection: 'row',
             justifyContent: 'space-between',
-            alignItems: 'center',
+            alignItems: 'center'
           }}
         >
           <Paragraph

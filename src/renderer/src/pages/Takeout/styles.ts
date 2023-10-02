@@ -3,6 +3,19 @@ import styled from 'styled-components'
 export const Container = styled.div`
   padding: 20px;
   width: 100%;
+
+  ::-webkit-scrollbar {
+    width: 0 !important;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: transparent !important;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: transparent !important;
+    border-radius: 0;
+  }
 `
 
 export const Header = styled.div`
@@ -14,10 +27,11 @@ export const Header = styled.div`
 `
 
 export const ContentProducts = styled.div`
-  width: 100%;
+  width: 70%;
   border-radius: 10px;
   background-color: #fff;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.05);
+  overflow-y: scroll;
 `
 
 export const Title = styled.h3`
@@ -53,18 +67,18 @@ export const CountProduct = styled.div`
 `
 
 export const CategoryProducts = styled.div`
-  width: 100%;
+  max-width: 100%;
+  overflow-x: scroll;
   border-bottom: 1px solid #fff;
   background-color: #f2f2f2;
   padding: 8px;
   display: flex;
-  flex-direction: row;
-  gap: 20px;
   align-items: center;
+  gap: 20px;
 `
 
 export const ContentInfo = styled.div`
-  width: 100%;
+  width: 30%;
   border-radius: 10px;
   background-color: #fff;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.05);

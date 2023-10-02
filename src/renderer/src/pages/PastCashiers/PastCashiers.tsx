@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect } from 'react'
 import * as S from './styles'
-import { Button, Table, TableProps, Tag, Typography } from 'antd'
+import { Button, Table, TableProps, Tag } from 'antd'
 import { ColumnsType } from 'antd/es/table'
 import moment from 'moment'
 import api from '@renderer/services/api'

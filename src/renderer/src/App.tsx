@@ -3,9 +3,8 @@ import { theme } from './theme'
 import { Navigation } from './routes/Routes'
 import { HashRouter as Router } from 'react-router-dom'
 import GlobalStyle from './theme/GlobalStyles'
-import { ConfigProvider, FloatButton, message } from 'antd'
+import { ConfigProvider, message } from 'antd'
 import { BillProvider, PrinterProvider, ProductsProvider } from './hooks'
-import { QuestionCircleOutlined } from '@ant-design/icons'
 import { CashierProvider } from './hooks'
 import { SocketProvider } from './hooks/useSocket'
 
@@ -28,11 +27,6 @@ function App(): JSX.Element {
                 <PrinterProvider>
                   <BillProvider>
                     <Navigation />
-                    <FloatButton
-                      icon={<QuestionCircleOutlined />}
-                      type="primary"
-                      style={{ right: 24 }}
-                    />
                   </BillProvider>
                 </PrinterProvider>
               </ProductsProvider>

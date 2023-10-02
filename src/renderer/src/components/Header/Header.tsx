@@ -1,4 +1,4 @@
-import { Avatar, Button, Dropdown, MenuProps, Switch, Tag } from 'antd'
+import { Avatar, Button, Dropdown, MenuProps, Tag } from 'antd'
 import { Header as HeaderAnt } from 'antd/es/layout/layout'
 import React, { useEffect, useState } from 'react'
 import { ColorList } from '../../utils/ColorList'
