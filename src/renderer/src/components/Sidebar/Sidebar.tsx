@@ -8,7 +8,7 @@ import {
   // ShoppingOutlined,
   SolutionOutlined,
   WalletOutlined,
-  ShopOutlined
+  // ShopOutlined
 } from '@ant-design/icons'
 import { IoFastFood } from 'react-icons//io5'
 import { Layout, Menu, MenuProps } from 'antd'
@@ -21,7 +21,7 @@ import { UserPermissions } from '@renderer/types'
 import api from '@renderer/services/api'
 import { AxiosError } from 'axios'
 import { errorActions } from '@renderer/utils/errorActions'
-import { PiNotepadBold } from 'react-icons/pi'
+// import { PiNotepadBold } from 'react-icons/pi'
 
 const { Sider } = Layout
 
