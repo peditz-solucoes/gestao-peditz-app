@@ -26,6 +26,7 @@ import { Takeout } from '@renderer/pages/Takeout'
 import { OrdersManager } from '@renderer/pages/OrdersManager'
 import { FinancialStats } from '@renderer/pages/FinancialStats'
 import { TakeoutPayment } from '@renderer/pages/TakeoutPayment/TakeoutPayment'
+import { Complements } from '@renderer/pages/Complements'
 
 export function Navigation(): JSX.Element {
   return (
@@ -90,6 +91,16 @@ export function Navigation(): JSX.Element {
           element={
             <AddSidebar titleHeader="Comandas">
               <Commands />
+            </AddSidebar>
+          }
+        />
+      </Route>
+      <Route path="/complementos/" element={<PrivateRoute />}>
+        <Route
+          path="/complementos/"
+          element={
+            <AddSidebar titleHeader="Complementos">
+              <Complements />
             </AddSidebar>
           }
         />

@@ -17,10 +17,16 @@ type CategoryGroup = {
 
 export const Products: React.FC = () => {
   const [visibleFilter, setVisibleFilter] = React.useState(false)
-  const [visibleCardProduct, setVisibleCardProduct] = React.useState(false)
+  const [visibleCardProduct, setVisibleCardProduct] = React.useState(true)
   const [visibleDrawerProduct, setVisibleDrawerProduct] = React.useState(false)
-  const { products, filteredProducts, fetchProducts, setSelectedProduct, isLoading, handleDeleteProduct } =
-    useProducts()
+  const {
+    products,
+    filteredProducts,
+    fetchProducts,
+    setSelectedProduct,
+    isLoading,
+    handleDeleteProduct
+  } = useProducts()
 
   useEffect(() => {
     fetchProducts()
@@ -51,7 +57,7 @@ export const Products: React.FC = () => {
       title: 'Categoria',
       dataIndex: 'category',
       align: 'center',
-      sorter: (a, b) => {
+      sorter: (a, b): number => {
         return a.category.title.localeCompare(b.category.title)
       },
       render: (category: { title: string }) => category.title,
@@ -64,6 +70,24 @@ export const Products: React.FC = () => {
       align: 'center',
       key: 'price',
       render: (price: string) => formatCurrency(Number(price))
+    },
+    {
+      title: 'Ipressora',
+      dataIndex: 'printer_detail',
+      align: 'center',
+      key: 'printer_detail',
+      render: (printer_detail: { id: number; name: string }) => printer_detail.name
+    },
+    {
+      title: 'Código',
+      dataIndex: 'codigo_produto',
+      align: 'center',
+      key: 'codigo_produto',
+      sorter: (a, b): number => {
+        return Number(a?.codigo_produto || 0) - Number(b?.codigo_produto || 0)
+      },
+      sortDirections: ['ascend', 'descend'],
+      render: (codigo_produto: string) => codigo_produto
     },
     {
       title: 'Ações',
@@ -81,14 +105,19 @@ export const Products: React.FC = () => {
           <Button
             type="primary"
             size="small"
-            onClick={() => {
+            onClick={(): void => {
               setSelectedProduct(record)
               setVisibleDrawerProduct(true)
             }}
           >
             Editar
           </Button>
-          <Button type="primary" danger size="small" onClick={() => handleDeleteProduct(record.id)}>
+          <Button
+            type="primary"
+            danger
+            size="small"
+            onClick={(): void => handleDeleteProduct(record.id)}
+          >
             Excluir
           </Button>
         </div>
@@ -105,14 +134,14 @@ export const Products: React.FC = () => {
             style={{
               backgroundColor: '#2FAA54'
             }}
-            onClick={() => setVisibleDrawerProduct(true)}
+            onClick={(): void => setVisibleDrawerProduct(true)}
           >
             <ShoppingOutlined /> Criar um produto
           </Button>
-          <Button type="default" onClick={() => setVisibleCardProduct(!visibleCardProduct)}>
+          <Button type="default" onClick={(): void => setVisibleCardProduct(!visibleCardProduct)}>
             {visibleCardProduct ? <AppstoreOutlined /> : <BarsOutlined />}
           </Button>
-          <Button onClick={() => setVisibleFilter(!visibleFilter)}>
+          <Button onClick={(): void => setVisibleFilter(!visibleFilter)}>
             <FilterOutlined />
           </Button>
         </S.Header>
@@ -143,7 +172,7 @@ export const Products: React.FC = () => {
                               key={Product.id}
                               data={Product}
                               onUpdate={fetchProducts}
-                              onEditClick={(product) => {
+                              onEditClick={(product): void => {
                                 setVisibleDrawerProduct(true)
                                 setSelectedProduct(product)
                               }}
@@ -174,12 +203,12 @@ export const Products: React.FC = () => {
       </S.Container>
       <DrawerFilterProducts
         visible={visibleFilter}
-        onClose={() => setVisibleFilter(false)}
+        onClose={(): void => setVisibleFilter(false)}
         products={products}
       />
       <DrawerProduct
         visible={visibleDrawerProduct}
-        onClose={() => setVisibleDrawerProduct(false)}
+        onClose={(): void => setVisibleDrawerProduct(false)}
       />
     </>
   )

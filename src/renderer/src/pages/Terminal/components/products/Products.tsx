@@ -1,6 +1,6 @@
 import { CaretRightOutlined, DeleteOutlined, ReloadOutlined } from '@ant-design/icons'
 import { Alert, Button, Card, Collapse, Input, InputRef, List, Modal, Typography } from 'antd'
-import React, { useEffect } from 'react'
+import React, { ReactElement, useEffect } from 'react'
 import { formatCurrency } from '../../../../utils'
 import { useTerminal } from '../../../../hooks/useTerminal'
 import { OrderGroupList, Product } from '../../../../types'
@@ -42,7 +42,7 @@ export const Products: React.FC = () => {
   const fetchProducts = async (): Promise<void> => {
     setLoading(true)
     api
-      .get('/product/')
+      .get('/product/?active=true')
       .then((response) => {
         setProducts(response.data)
         setFilteredProducts(response.data)
@@ -346,7 +346,9 @@ export const Products: React.FC = () => {
               //   ghost
               size="large"
               accordion
-              expandIcon={({ isActive }) => <CaretRightOutlined rotate={isActive ? 90 : 0} />}
+              expandIcon={({ isActive }): ReactElement => (
+                <CaretRightOutlined rotate={isActive ? 90 : 0} />
+              )}
               items={groupProductsByCategory(filteredProducts).map((category) => ({
                 key: category.categoryId,
                 label: category.category,
@@ -372,7 +374,7 @@ export const Products: React.FC = () => {
                           cursor: 'pointer',
                           minHeight: '120px'
                         }}
-                        onClick={() => setSelectedProduct(product.id)}
+                        onClick={(): void => setSelectedProduct(product.id)}
                       >
                         <Typography.Title
                           style={{
@@ -426,7 +428,7 @@ export const Products: React.FC = () => {
             header={<Typography.Title level={4}>Resumo</Typography.Title>}
             bordered
             dataSource={cart}
-            renderItem={(item, index) => (
+            renderItem={(item, index): ReactElement => (
               <List.Item
                 style={{
                   padding: '0.5rem'
@@ -448,7 +450,7 @@ export const Products: React.FC = () => {
                     >
                       <Button
                         size="large"
-                        onClick={() => {
+                        onClick={(): void => {
                           const itemIndex = index
                           const newCart = [...cart]
                           newCart.splice(itemIndex, 1)
@@ -488,7 +490,7 @@ export const Products: React.FC = () => {
                     </Typography.Text>
                     {item.complements.map((complement) => {
                       return (
-                        <div>
+                        <div key={complement.complement_id}>
                           <Typography.Text
                             style={{
                               margin: '0',
@@ -500,7 +502,7 @@ export const Products: React.FC = () => {
                             {complement.complement_title}
                           </Typography.Text>
                           {complement.items.map((ite) => (
-                            <div>
+                            <div key={ite.item_id}>
                               <Typography.Text
                                 style={{
                                   margin: '0',

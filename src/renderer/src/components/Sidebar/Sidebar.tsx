@@ -128,6 +128,10 @@ export const SideBar: React.FC<SideBarProps> = ({ collapsed }) => {
         getItem({
           key: '5.2',
           label: <Link to={'/produtos/categorias'}>Categorias</Link>
+        }),
+        getItem({
+          key: '5.3',
+          label: <Link to={'/complementos'}>Complementos</Link>
         })
       ]
     }),

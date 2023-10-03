@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useCallback, useEffect } from 'react'
 import * as S from './styles'
 import {
   Button,
@@ -20,37 +20,6 @@ import { errorActions } from '../../utils/errorActions'
 import { formatPhoneNumber } from '../../utils/formatPhone'
 import { brlToNumber, formatToBRL } from '@renderer/utils'
 
-// const tagRender = (props: CustomTagProps) => {
-// 	const { label, value, closable, onClose } = props;
-// 	const onPreventMouseDown = (event: React.MouseEvent<HTMLSpanElement>) => {
-// 		event.preventDefault();
-// 		event.stopPropagation();
-// 	};
-// 	return (
-// 		<Tag
-// 			color={value}
-// 			onMouseDown={onPreventMouseDown}
-// 			closable={closable}
-// 			onClose={onClose}
-// 			style={{ marginRight: 10, fontSize: 16 }}
-// 		>
-// 			{label}
-// 		</Tag>
-// 	);
-// };
-
-// const options = [
-// 	{ label: 'Dashboard', value: 'red' },
-// 	{ label: 'Caixa', value: 'green' },
-// 	{ label: 'Produtos', value: 'blue' },
-// 	{ label: 'Comandas', value: 'yellow' },
-// 	{ label: 'Mesas', value: 'orange' },
-// 	{ label: 'Estoque', value: 'purple' },
-// 	{ label: 'Relatórios', value: 'cyan' },
-// 	{ label: 'Aplicativos', value: 'magenta' },
-// 	{ label: 'Integrações', value: 'geekblue' },
-// ];
-
 interface FormEmployerProps {
   type: 'create' | 'edit'
   employerId?: string
@@ -60,15 +29,31 @@ export const FormEmployer: React.FC<FormEmployerProps> = ({ type, employerId }) 
   const [isLoading, setIsLoading] = React.useState(false)
   const navigate = useNavigate()
   const [form] = Form.useForm()
-  const [switchValue, setSwitchValue] = React.useState(false)
-
+  const [switchValue, setSwitchValue] = React.useState(true)
+  const [sidebarPermissions, setSidebarPermissions] = React.useState<
+    {
+      id: string
+      title: string
+    }[]
+  >([])
+  const fetchSidebarPermissions = useCallback(() => {
+    api
+      .get('/sidebar/')
+      .then((response) => {
+        setSidebarPermissions(response.data)
+      })
+      .catch((error: AxiosError) => {
+        errorActions(error)
+      })
+  }, [])
   useEffect(() => {
     if (type === 'edit' && employerId) {
       fetchEmployer()
     }
+    fetchSidebarPermissions()
   }, [])
 
-  function fetchEmployer() {
+  function fetchEmployer(): void {
     setIsLoading(true)
     api
       .get(`/employer/${employerId}/`)
@@ -84,7 +69,7 @@ export const FormEmployer: React.FC<FormEmployerProps> = ({ type, employerId }) 
       })
   }
 
-  function createEmployer(values: any) {
+  function createEmployer(values: unknown): void {
     setIsLoading(true)
     api
       .post('/employer/', values)
@@ -92,8 +77,12 @@ export const FormEmployer: React.FC<FormEmployerProps> = ({ type, employerId }) 
         message.success('Colaborador criado com sucesso!')
         navigate('/colaboradores/')
       })
-      .catch((error: AxiosError) => {
-        message.error('Erro ao criar colaborador')
+      .catch((error) => {
+        if (error.response?.data?.detail) {
+          message.error(error.response?.data?.detail, 5)
+        } else {
+          message.error('Erro ao criar colaborador', 5)
+        }
         errorActions(error)
       })
       .finally(() => {
@@ -101,7 +90,7 @@ export const FormEmployer: React.FC<FormEmployerProps> = ({ type, employerId }) 
       })
   }
 
-  function editEmployer(values: any) {
+  function editEmployer(values: unknown): void {
     api
       .patch(`/employer/${employerId}/`, values)
       .then(() => {
@@ -116,23 +105,24 @@ export const FormEmployer: React.FC<FormEmployerProps> = ({ type, employerId }) 
       })
   }
 
-  const onFinish = (values: any) => {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const onFinish = (values: any): void => {
     if (type === 'create') {
-      values.phone = '+55' + values.phone.replace(/\D/g, '')
-			values.sallary = brlToNumber(values.sallary)
+      values.phone = values.phone ? '+55' + values.phone.replace(/\D/g, '') : ''
+      values.sallary = brlToNumber(values.sallary || '0')
       createEmployer(values)
     } else {
-			values.sallary = brlToNumber(values.sallary)
+      values.sallary = brlToNumber(values.sallary || '0')
       editEmployer(values)
     }
   }
 
-  const handleSwitchChange = (value: any) => {
+  const handleSwitchChange = (value: boolean): void => {
     setSwitchValue(value)
     form.setFieldValue('active', value)
   }
 
-  const confirm = () => {
+  const confirm = (): void => {
     navigate('/colaboradores/')
     message.success('Cancelou cadastro')
   }
@@ -151,10 +141,30 @@ export const FormEmployer: React.FC<FormEmployerProps> = ({ type, employerId }) 
               gap: '20px'
             }}
           >
-            <Form.Item label="Nome" name="first_name" style={{ width: '100%' }}>
+            <Form.Item
+              label="Nome"
+              name="first_name"
+              style={{ width: '100%' }}
+              rules={[
+                {
+                  required: true,
+                  message: 'Por favor, digite um nome'
+                }
+              ]}
+            >
               <Input type="text" placeholder="Nome do colaborador" size="large" />
             </Form.Item>
-            <Form.Item label="Sobrenome" name="last_name" style={{ width: '100%' }}>
+            <Form.Item
+              rules={[
+                {
+                  required: true,
+                  message: 'Por favor, digite um sobrenome'
+                }
+              ]}
+              label="Sobrenome"
+              name="last_name"
+              style={{ width: '100%' }}
+            >
               <Input type="text" placeholder="Sobrenome do colaborador" size="large" />
             </Form.Item>
           </div>
@@ -174,6 +184,10 @@ export const FormEmployer: React.FC<FormEmployerProps> = ({ type, employerId }) 
                 {
                   type: 'email',
                   message: 'Digite um e-mail válido'
+                },
+                {
+                  required: true,
+                  message: 'Por favor, digite um e-mail'
                 }
               ]}
               style={{ width: '100%' }}
@@ -204,6 +218,12 @@ export const FormEmployer: React.FC<FormEmployerProps> = ({ type, employerId }) 
               name="role"
               tooltip="A competência define as suas atividades"
               style={{ width: '100%' }}
+              rules={[
+                {
+                  required: true,
+                  message: 'Por favor, escolha uma competência'
+                }
+              ]}
             >
               <Select
                 placeholder="Escolha uma competência"
@@ -350,11 +370,11 @@ export const FormEmployer: React.FC<FormEmployerProps> = ({ type, employerId }) 
           <Form.Item
             name="phone"
             label="Número de telefone"
-            getValueFromEvent={(e) => formatPhoneNumber(e.target.value)}
+            getValueFromEvent={(e): string => formatPhoneNumber(e.target.value)}
           >
             <Input
               prefix={type === 'create' ? '+55' : null}
-              placeholder="Digite o número de telefone"
+              placeholder="(99) 9 9999-9999"
               size="large"
               style={{ width: '100%' }}
             />
@@ -368,7 +388,12 @@ export const FormEmployer: React.FC<FormEmployerProps> = ({ type, employerId }) 
               gap: '20px'
             }}
           >
-            <Form.Item label=" O colaborador está ativo ?" name="active" style={{ width: '30%' }}>
+            <Form.Item
+              label=" O colaborador está ativo ?"
+              name="active"
+              style={{ width: '30%' }}
+              initialValue={true}
+            >
               <Switch
                 size="default"
                 checkedChildren={<CheckOutlined />}
@@ -395,6 +420,12 @@ export const FormEmployer: React.FC<FormEmployerProps> = ({ type, employerId }) 
               tooltip="O código operacional é um código único que identifica o colaborador"
               name="code"
               style={{ width: '100%' }}
+              rules={[
+                {
+                  required: true,
+                  message: 'Por favor, digite um código operacional'
+                }
+              ]}
             >
               <InputNumber
                 controls={false}
@@ -405,8 +436,35 @@ export const FormEmployer: React.FC<FormEmployerProps> = ({ type, employerId }) 
               />
             </Form.Item>
           </div>
+          <Form.Item
+            label="Permissões do colaborador"
+            name="sidebar_permissions"
+            style={{ width: '100%' }}
+          >
+            <Select
+              placeholder="Pemissões"
+              size="large"
+              options={sidebarPermissions.map((s) => {
+                return {
+                  label: s.title,
+                  value: s.id
+                }
+              })}
+              mode="multiple"
+            />
+          </Form.Item>
           {type === 'create' && (
-            <Form.Item label="Senha do colaborador" name="password" style={{ width: '100%' }}>
+            <Form.Item
+              label="Senha do colaborador"
+              name="password"
+              style={{ width: '100%' }}
+              rules={[
+                {
+                  required: true,
+                  message: 'Por favor, digite uma senha'
+                }
+              ]}
+            >
               <Input.Password placeholder="Senha do colaborador" size="large" />
             </Form.Item>
           )}
@@ -423,7 +481,7 @@ export const FormEmployer: React.FC<FormEmployerProps> = ({ type, employerId }) 
               <Popconfirm
                 title="Cancelar o cadastro do colaborador?"
                 description="Ao cancelar o cadastro do colaborador, todas as informações inseridas serão perdidas."
-                onConfirm={() => confirm()}
+                onConfirm={(): void => confirm()}
                 // onCancel={cancel}
                 okText="Sim"
                 cancelText="Não"

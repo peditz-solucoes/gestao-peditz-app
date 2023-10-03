@@ -54,6 +54,7 @@ export type ProductComplement = {
   max_value: number
   min_value: number
   product: string
+  products: string[]
   complement_items?: productComplementItem[]
 }
 
