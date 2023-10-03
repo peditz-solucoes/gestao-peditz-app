@@ -4,6 +4,7 @@ import { usePrinter, useProducts } from '../../../hooks'
 import { ProductFormData } from '../../../hooks/useProducts'
 import Upload, { RcFile, UploadFile, UploadProps } from 'antd/es/upload'
 import ImgCrop from 'antd-img-crop'
+import { formatToBRL } from '@renderer/utils'
 
 interface ProductInfoProps {
   formRef: React.RefObject<FormInstance>
@@ -46,10 +47,15 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ formRef }) => {
   const onFinish = (values: ProductFormData): void => {
     setLoading(true)
     selectedProduct
-      ? patchProduct({ ...selectedProduct, ...values } as ProductFormData).finally(() =>
-          setLoading(false)
-        )
-      : createProduct(values).finally(() => setLoading(false))
+      ? patchProduct({
+          ...selectedProduct,
+          ...values,
+          price: values.price.replace('R$', '').replace('.', '').replace(',', '.')
+        } as ProductFormData).finally(() => setLoading(false))
+      : createProduct({
+          ...values,
+          price: values.price.replace('R$', '').replace('.', '').replace(',', '.')
+        }).finally(() => setLoading(false))
   }
 
   return (
@@ -138,16 +144,17 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ formRef }) => {
                 width: '100%'
               }}
             >
-              <InputNumber
+              <Input
                 size="large"
                 min={'0' as string}
                 style={{
                   width: '100%'
                 }}
-                // formatter={(value) =>
-                //   `$ ${value}`.replace(/(\d)(?=(\d{3})+(?!\d))/g, "$1.")
-                // }
-                // parser={(value) => value!.replace(/\$\s?|(,*)/g, "")}
+                onChange={(e): void => {
+                  formRef.current?.setFieldsValue({
+                    price: formatToBRL(e.target.value)
+                  })
+                }}
               />
             </Form.Item>
             <Form.Item label="Ordem" name="order" initialValue={0}>

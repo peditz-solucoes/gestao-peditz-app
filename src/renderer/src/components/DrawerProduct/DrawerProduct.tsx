@@ -5,6 +5,7 @@ import { ProductInfo } from './components/ProductInfo'
 import { ProductFiscal } from './components/ProductFiscal'
 import { ProductComplement } from './components/ProductComplement'
 import { Prices } from './components/Prices'
+import { formatToBRL } from '@renderer/utils'
 
 interface DrawerProductProps {
   visible: boolean
@@ -24,7 +25,7 @@ export const DrawerProduct: React.FC<DrawerProductProps> = ({ onClose, visible }
         title: selectedProduct.title,
         product_category: selectedProduct.product_category,
         description: selectedProduct.description,
-        price: selectedProduct.price,
+        price: formatToBRL(selectedProduct.price),
         codigo_produto: selectedProduct.codigo_produto,
         order: selectedProduct.order,
         active: selectedProduct.active,
@@ -47,7 +48,7 @@ export const DrawerProduct: React.FC<DrawerProductProps> = ({ onClose, visible }
       key: '4',
       label: <h4>Preços</h4>,
       children: <Prices />,
-      disabled: `${currentTab}` !== '1' && selectedProduct == null
+      disabled: `${currentTab}` !== '4' && selectedProduct == null
     },
     {
       key: '2',

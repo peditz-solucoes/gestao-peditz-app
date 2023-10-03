@@ -1,7 +1,16 @@
 import React, { useEffect } from 'react'
 import * as S from './styles'
-import { Button, Col, Divider, Spin, Table } from 'antd'
-import { AppstoreOutlined, BarsOutlined, FilterOutlined, ShoppingOutlined } from '@ant-design/icons'
+import { Button, Col, Divider, Spin, Table, Tooltip, theme as antheme } from 'antd'
+import {
+  AppstoreOutlined,
+  BarsOutlined,
+  CheckSquareFilled,
+  CloseCircleFilled,
+  FilterOutlined,
+  ShoppingOutlined,
+  EditOutlined,
+  DeleteOutlined
+} from '@ant-design/icons'
 import { CardProducts } from '../../components/CardProducts/CardProducts'
 import { DrawerFilterProducts } from '../../components/DrawerFilterProducts/DrawerFilterProducts'
 import { DrawerProduct } from '../../components/DrawerProduct/DrawerProduct'
@@ -9,7 +18,7 @@ import { Product } from '../../types'
 import { ColumnsType } from 'antd/es/table'
 import { formatCurrency } from '../../utils'
 import { useProducts } from '../../hooks'
-
+import { theme } from '@renderer/theme'
 type CategoryGroup = {
   category: string
   products: Product[]
@@ -78,6 +87,7 @@ export const Products: React.FC = () => {
       key: 'printer_detail',
       render: (printer_detail: { id: number; name: string }) => printer_detail.name
     },
+
     {
       title: 'Código',
       dataIndex: 'codigo_produto',
@@ -88,6 +98,26 @@ export const Products: React.FC = () => {
       },
       sortDirections: ['ascend', 'descend'],
       render: (codigo_produto: string) => codigo_produto
+    },
+    {
+      title: 'Ativo',
+      dataIndex: 'active',
+      align: 'center',
+      key: 'active',
+      render: (active) =>
+        active ? (
+          <CheckSquareFilled
+            style={{
+              color: theme.tokens.colorPrimary
+            }}
+          />
+        ) : (
+          <CloseCircleFilled
+            style={{
+              color: antheme.defaultConfig.token.red
+            }}
+          />
+        )
     },
     {
       title: 'Ações',
@@ -102,24 +132,28 @@ export const Products: React.FC = () => {
             justifyContent: 'center'
           }}
         >
-          <Button
-            type="primary"
-            size="small"
-            onClick={(): void => {
-              setSelectedProduct(record)
-              setVisibleDrawerProduct(true)
-            }}
-          >
-            Editar
-          </Button>
-          <Button
-            type="primary"
-            danger
-            size="small"
-            onClick={(): void => handleDeleteProduct(record.id)}
-          >
-            Excluir
-          </Button>
+          <Tooltip title="Editar">
+            <Button
+              type="primary"
+              size="small"
+              shape="circle"
+              onClick={(): void => {
+                setSelectedProduct(record)
+                setVisibleDrawerProduct(true)
+              }}
+              icon={<EditOutlined />}
+            ></Button>
+          </Tooltip>
+          <Tooltip title="Deletar">
+            <Button
+              type="primary"
+              icon={<DeleteOutlined />}
+              danger
+              shape="circle"
+              size="small"
+              onClick={(): void => handleDeleteProduct(record.id)}
+            ></Button>
+          </Tooltip>
         </div>
       )
     }

@@ -126,7 +126,6 @@ export const TableComplemts: React.FC<TableComplemtsProps> = ({
   const hasChanged = React.useRef(false)
   const [loading, setLoading] = React.useState(false)
   useEffect(() => {
-    console.log('data')
     if (!hasChanged.current) return
     const updateItemsInBackend = async (): Promise<void> => {
       setLoading(true)
@@ -154,7 +153,6 @@ export const TableComplemts: React.FC<TableComplemtsProps> = ({
       setDataSource((previous) => {
         const activeIndex = previous.findIndex((i) => i.key === active.id)
         const overIndex = previous.findIndex((i) => i.key === over?.id)
-        console.log(arrayMove(previous, activeIndex, overIndex))
         return arrayMove(previous, activeIndex, overIndex)
       })
     }
