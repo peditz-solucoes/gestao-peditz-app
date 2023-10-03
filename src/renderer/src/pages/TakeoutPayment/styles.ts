@@ -9,8 +9,8 @@ export const Container = styled.div`
 `
 export const Spacer = styled.div`
   background-color: #fff;
-  height: 150px;
+  height: auto;
   border-radius: 10px;
   box-shadow: 0px 0px 10px #0000000d;
-  padding: 10px;
+  padding: 15px;
 `
