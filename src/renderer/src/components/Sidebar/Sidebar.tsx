@@ -8,7 +8,7 @@ import {
   // ShoppingOutlined,
   SolutionOutlined,
   WalletOutlined,
-  // ShopOutlined
+  ShopOutlined
 } from '@ant-design/icons'
 import { IoFastFood } from 'react-icons//io5'
 import { Layout, Menu, MenuProps } from 'antd'
@@ -21,7 +21,7 @@ import { UserPermissions } from '@renderer/types'
 import api from '@renderer/services/api'
 import { AxiosError } from 'axios'
 import { errorActions } from '@renderer/utils/errorActions'
-// import { PiNotepadBold } from 'react-icons/pi'
+import { PiNotepadBold } from 'react-icons/pi'
 
 const { Sider } = Layout
 
@@ -92,25 +92,25 @@ export const SideBar: React.FC<SideBarProps> = ({ collapsed }) => {
       }
     }),
 
-    // getItem({
-    //   key: '3',
-    //   label: <Link to={'/pedidos-balcao/'}>Pedidos de balcão</Link>,
-    //   icon: <ShopOutlined />
-    //   // style: {
-    //   //   display: userPermissions.includes('Balcão') ? 'flex' : 'none',
-    //   //   flexDirection: 'column'
-    //   // },
-    // }),
+    getItem({
+      key: '3',
+      label: <Link to={'/pedidos-balcao/'}>Pedidos de balcão</Link>,
+      icon: <ShopOutlined />
+      // style: {
+      //   display: userPermissions.includes('Balcão') ? 'flex' : 'none',
+      //   flexDirection: 'column'
+      // },
+    }),
 
-    // getItem({
-    //   key: '4',
-    //   label: <Link to={'/pedidos/'}>Gerenciador de pedidos</Link>,
-    //   icon: <PiNotepadBold />
-    //   // style: {
-    //   //   display: userPermissions.includes('Balcão') ? 'flex' : 'none',
-    //   //   flexDirection: 'column'
-    //   // },
-    // }),
+    getItem({
+      key: '4',
+      label: <Link to={'/pedidos/'}>Gerenciador de pedidos</Link>,
+      icon: <PiNotepadBold />
+      // style: {
+      //   display: userPermissions.includes('Balcão') ? 'flex' : 'none',
+      //   flexDirection: 'column'
+      // },
+    }),
 
     getItem({
       key: '5',
