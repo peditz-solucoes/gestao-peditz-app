@@ -9,14 +9,22 @@ import {
   verticalListSortingStrategy
 } from '@dnd-kit/sortable'
 import { CSS } from '@dnd-kit/utilities'
-import React, { ReactElement, useState } from 'react'
-import { Button, Input, Table } from 'antd'
+import React, { ReactElement, useEffect } from 'react'
+import { Button, Table } from 'antd'
 import type { ColumnsType } from 'antd/es/table'
+import { ProductComplement } from '@renderer/types'
+import api from '@renderer/services/api'
 
-interface DataType {
+export interface DataType {
   key: string
   title: string
-  price: number
+  input_type: 'checkbox' | 'radio' | 'number'
+  business_rule: 'media' | 'maior' | 'soma'
+  order: number
+  complement: {
+    complement: ProductComplement
+    onClick: (complement: ProductComplement) => void
+  }
 }
 
 const columns: ColumnsType<DataType> = [
@@ -25,31 +33,36 @@ const columns: ColumnsType<DataType> = [
     width: '5%'
   },
   {
-    title: 'Nome',
+    title: 'Título',
     dataIndex: 'title',
-    render: (text) => <Input value={text} />,
+    render: (text) => text,
     width: '25%'
   },
   {
-    title: 'Preço',
-    dataIndex: 'price',
+    title: 'tipo',
+    dataIndex: 'input_type',
     width: '20%'
   },
   {
-    title: 'Valor mínimo',
-    dataIndex: 'min_value',
+    title: 'Regra',
+    dataIndex: 'business_rule',
     width: '20%'
   },
   {
-    title: 'Valor máximo',
-    dataIndex: 'max_value',
-    width: '20%'
+    title: 'Ordem',
+    dataIndex: 'order',
+    width: '20%',
+    render: (text) => text + 1
   },
   {
     title: 'Ações',
-    dataIndex: 'actions',
+    dataIndex: 'complement',
     width: '10%',
-    render: () => <Button type="primary">Salvar</Button>
+    render: (complement) => (
+      <Button type="primary" onClick={(): void => complement.onClick(complement.complement)}>
+        Editar
+      </Button>
+    )
   }
 ]
 
@@ -97,39 +110,51 @@ const Row = ({ children, ...props }: RowProps): ReactElement => {
   )
 }
 
-export const TableComplemts: React.FC = () => {
-  const [dataSource, setDataSource] = useState([
-    {
-      key: '1',
-      title: 'John Brown',
-      price: 32,
-      min_value: 32,
-      max_value: 32,
-      actions: 'actions'
-    },
-    {
-      key: '2',
-      title: 'Jim Green',
-      price: 42,
-      min_value: 32,
-      max_value: 32,
-      actions: 'actions'
-    },
-    {
-      key: '3',
-      title: 'Joe Black',
-      price: 32,
-      min_value: 32,
-      max_value: 32,
-      actions: 'actions'
+interface TableComplemtsProps {
+  dataSource: DataType[]
+  updateDataSource: () => void
+  isLoading?: boolean
+  setDataSource: React.Dispatch<React.SetStateAction<DataType[]>>
+}
+
+export const TableComplemts: React.FC<TableComplemtsProps> = ({
+  dataSource,
+  updateDataSource,
+  isLoading,
+  setDataSource
+}) => {
+  const hasChanged = React.useRef(false)
+  const [loading, setLoading] = React.useState(false)
+  useEffect(() => {
+    console.log('data')
+    if (!hasChanged.current) return
+    const updateItemsInBackend = async (): Promise<void> => {
+      setLoading(true)
+      try {
+        for (const item in dataSource) {
+          await api.patch(`product-complement/${dataSource[item].complement.complement.id}/`, {
+            order: item
+          })
+        }
+        updateDataSource()
+      } catch (error) {
+        console.error('Erro ao atualizar os itens:', error)
+      } finally {
+        hasChanged.current = false
+        setLoading(false)
+      }
     }
-  ])
+
+    updateItemsInBackend()
+  }, [dataSource])
 
   const onDragEnd = ({ active, over }: DragEndEvent): void => {
     if (active.id !== over?.id) {
+      hasChanged.current = true
       setDataSource((previous) => {
         const activeIndex = previous.findIndex((i) => i.key === active.id)
         const overIndex = previous.findIndex((i) => i.key === over?.id)
+        console.log(arrayMove(previous, activeIndex, overIndex))
         return arrayMove(previous, activeIndex, overIndex)
       })
     }
@@ -148,10 +173,12 @@ export const TableComplemts: React.FC = () => {
               row: Row
             }
           }}
+          loading={loading || isLoading}
           rowKey="key"
           columns={columns}
           pagination={false}
           dataSource={dataSource}
+          scroll={{ y: 'calc(100vh - 220px)' }}
         />
       </SortableContext>
     </DndContext>

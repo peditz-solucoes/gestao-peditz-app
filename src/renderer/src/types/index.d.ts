@@ -49,7 +49,7 @@ export type ProductComplement = {
   title: string
   order: number
   active: boolean
-  input_type: 'checkbox' | 'radio' | 'increment'
+  input_type: 'checkbox' | 'radio' | 'number'
   business_rules: 'maior' | 'soma' | 'media'
   max_value: number
   min_value: number
