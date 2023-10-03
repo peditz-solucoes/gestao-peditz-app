@@ -7,8 +7,8 @@ import {
   ReconciliationOutlined,
   // ShoppingOutlined,
   SolutionOutlined,
-  WalletOutlined,
-  ShopOutlined
+  WalletOutlined
+  // ShopOutlined
 } from '@ant-design/icons'
 import { IoFastFood } from 'react-icons//io5'
 import { Layout, Menu, MenuProps } from 'antd'
@@ -92,15 +92,15 @@ export const SideBar: React.FC<SideBarProps> = ({ collapsed }) => {
       }
     }),
 
-    getItem({
-      key: '3',
-      label: <Link to={'/pedidos-balcao/'}>Pedidos de balcão</Link>,
-      icon: <ShopOutlined />
-      // style: {
-      //   display: userPermissions.includes('Balcão') ? 'flex' : 'none',
-      //   flexDirection: 'column'
-      // },
-    }),
+    // getItem({
+    //   key: '3',
+    //   label: <Link to={'/pedidos-balcao/'}>Pedidos de balcão</Link>,
+    //   icon: <ShopOutlined />
+    //   // style: {
+    //   //   display: userPermissions.includes('Balcão') ? 'flex' : 'none',
+    //   //   flexDirection: 'column'
+    //   // },
+    // }),
 
     getItem({
       key: '4',

@@ -22,10 +22,10 @@ import { TerminalProvider } from '../hooks/useTerminal'
 import { BillClosedPage } from '@renderer/pages/BillCLosed'
 import { PastCashiers } from '@renderer/pages/PastCashiers'
 import { CashierDetail } from '@renderer/pages/CashierDetail'
-import { Takeout } from '@renderer/pages/Takeout'
+// import { Takeout } from '@renderer/pages/Takeout'
 import { OrdersManager } from '@renderer/pages/OrdersManager'
 import { FinancialStats } from '@renderer/pages/FinancialStats'
-import { TakeoutPayment } from '@renderer/pages/TakeoutPayment/TakeoutPayment'
+// import { TakeoutPayment } from '@renderer/pages/TakeoutPayment/TakeoutPayment'
 import { Complements } from '@renderer/pages/Complements'
 
 export function Navigation(): JSX.Element {
@@ -119,7 +119,7 @@ export function Navigation(): JSX.Element {
       </Route>
 
       {/*Pedidos de balcão */}
-      <Route path="/pedidos-balcao/" element={<PrivateRoute />}>
+      {/* <Route path="/pedidos-balcao/" element={<PrivateRoute />}>
         <Route
           path="/pedidos-balcao/"
           element={
@@ -128,10 +128,10 @@ export function Navigation(): JSX.Element {
             </AddSidebar>
           }
         />
-      </Route>
+      </Route> */}
 
       {/*Pagamentos Pedidos de balcão */}
-      <Route path="/pedidos-balcao/pagamentos/" element={<PrivateRoute />}>
+      {/* <Route path="/pedidos-balcao/pagamentos/" element={<PrivateRoute />}>
         <Route
           path="/pedidos-balcao/pagamentos/"
           element={
@@ -140,7 +140,7 @@ export function Navigation(): JSX.Element {
             </AddSidebar>
           }
         />
-      </Route>
+      </Route> */}
 
       {/*Pedidos de balcão */}
       <Route path="/pedidos/" element={<PrivateRoute />}>
