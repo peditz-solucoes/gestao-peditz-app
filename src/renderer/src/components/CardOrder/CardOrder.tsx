@@ -8,7 +8,11 @@ import { formatCurrency } from '@renderer/utils'
 
 const { Title, Paragraph } = Typography
 
-export const CardOrder: React.FC = () => {
+interface CardOrderProps {
+  onClick?: () => void
+}
+
+export const CardOrder: React.FC<CardOrderProps> = ({ onClick }) => {
   const items: MenuProps['items'] = [
     {
       label: (
@@ -54,7 +58,7 @@ export const CardOrder: React.FC = () => {
 
   return (
     <Dropdown menu={{ items }} trigger={['contextMenu']}>
-      <S.Container>
+      <S.Container onClick={onClick}>
         <header
           style={{
             display: 'flex',
@@ -66,7 +70,7 @@ export const CardOrder: React.FC = () => {
           <Title level={5} style={{ margin: 0 }}>
             #0001
           </Title>
-          <Dropdown menu={{ items }} trigger={['click']}>
+          {/* <Dropdown menu={{ items }} trigger={['click']}>
             <Button
               size="small"
               type="default"
@@ -80,7 +84,7 @@ export const CardOrder: React.FC = () => {
                 padding: '5px'
               }}
             />
-          </Dropdown>
+          </Dropdown> */}
         </header>
         <S.OrderInfo>
           <Paragraph

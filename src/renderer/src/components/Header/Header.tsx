@@ -1,4 +1,4 @@
-import { Avatar, Button, Dropdown, MenuProps, Tag } from 'antd'
+import { Avatar, Button, Dropdown, MenuProps, Switch, Tag, Typography, Tooltip } from 'antd'
 import { Header as HeaderAnt } from 'antd/es/layout/layout'
 import React, { useEffect, useState } from 'react'
 import { ColorList } from '../../utils/ColorList'
@@ -15,6 +15,8 @@ import {
 import { setLogout } from '../../services/auth'
 import { useCashier } from '@renderer/hooks'
 import { useSocket } from '@renderer/hooks/useSocket'
+
+const { Title } = Typography
 
 const items: MenuProps['items'] = [
   {
@@ -49,10 +51,11 @@ export const Header: React.FC<HeaderProps> = ({ titleHeader, setCollapsed, colla
   const [color, setColor] = useState(ColorList[0])
   const [status, setStatus] = useState<boolean>(false)
 
-  const { cashier } = useCashier()
+  const { getCashier, cashier } = useCashier()
   const { loadingConnectSocket, handleConnectionWs, isConnected } = useSocket()
 
   useEffect(() => {
+    getCashier(true)
     // a cada 5 segundos verifica se o usuário está online
     setInterval(() => {
       setStatus(window.navigator.onLine)
@@ -99,29 +102,24 @@ export const Header: React.FC<HeaderProps> = ({ titleHeader, setCollapsed, colla
           gap: '10px'
         }}
       >
-        <Button
-          icon={<ReloadOutlined />}
-          size="large"
-          type="text"
-          onClick={(): void => window.location.reload()}
-        />
-        {/* <Switch
-          loading={loadingConnectSocket}
-          defaultChecked={localStorage.getItem('connectedWs') === 'CONNECTED'}
-          checked={isConnected}
-          checkedChildren="Imprimir pedidos online"
-          unCheckedChildren="Não imprimir pedidos online"
-          onChange={(e): void => handleConnectionWs(e)}
-        /> */}
-        <Button
-          type="primary"
-          icon={<PoweroffOutlined />}
-          loading={loadingConnectSocket}
-          onClick={() => handleConnectionWs(!isConnected)}
-          danger={isConnected}
-        >
-          {isConnected ? 'Desativar pedidos online' : 'Ativar pedidos online'}
-        </Button>
+        <Tooltip title="Recarregar pagina">
+          <Button
+            icon={<ReloadOutlined />}
+            size="large"
+            type="text"
+            onClick={(): void => window.location.reload()}
+          />
+        </Tooltip>
+        <Tooltip title="Imprimir Pedidos online">
+          <Switch
+            loading={loadingConnectSocket}
+            defaultChecked={localStorage.getItem('connectedWs') === 'CONNECTED'}
+            checked={isConnected}
+            checkedChildren="Sim"
+            unCheckedChildren="Não"
+            onChange={(e): void => handleConnectionWs(e)}
+          />
+        </Tooltip>
 
         {status ? (
           <Tag
@@ -144,20 +142,35 @@ export const Header: React.FC<HeaderProps> = ({ titleHeader, setCollapsed, colla
             Offline
           </Tag>
         )}
-        <Dropdown menu={{ items }} trigger={['click']} placement="bottomRight">
-          <Avatar
-            style={{
-              backgroundColor: color,
-              verticalAlign: 'middle',
-              fontWeight: 'bold',
-              cursor: 'pointer'
-            }}
-            size="large"
-            icon={<UserOutlined />}
-          >
-            {cashier?.opened_by?.first_name}
-          </Avatar>
-        </Dropdown>
+        <div
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '10px',
+            flexDirection: 'row'
+          }}
+        >
+          <Title level={5} style={{ margin: 0, color: 'rgb(91, 101, 117)' }}>
+            {cashier?.restaurant?.title}
+          </Title>
+          <Dropdown menu={{ items }} trigger={['click']} placement="bottomRight">
+            <Tooltip title={cashier?.opened_by_name} placement="left">
+              <Avatar
+                style={{
+                  backgroundColor: color,
+                  verticalAlign: 'middle',
+                  fontWeight: 'bold',
+                  cursor: 'pointer'
+                }}
+                size="large"
+              >
+                {cashier?.opened_by?.first_name[0] + cashier?.opened_by?.last_name[0] || (
+                  <UserOutlined />
+                )}
+              </Avatar>
+            </Tooltip>
+          </Dropdown>
+        </div>
       </div>
     </HeaderAnt>
   )

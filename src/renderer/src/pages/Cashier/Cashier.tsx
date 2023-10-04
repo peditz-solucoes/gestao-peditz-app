@@ -67,11 +67,11 @@ const columns: ColumnsType<payment> = [
 ]
 
 export const CashierPage: React.FC = () => {
-  const { getCashier, transactions, cashier, setOpenCashierModal, isLoading } = useCashier()
+  const { transactions, cashier, setOpenCashierModal, isLoading } = useCashier()
 
-  useEffect(() => {
-    getCashier(true)
-  }, [])
+  // useEffect(() => {
+  //   getCashier(true)
+  // }, [])
 
   const mapTypePayment = (type: string) => {
     switch (type) {
@@ -108,14 +108,6 @@ export const CashierPage: React.FC = () => {
     transactions
       .map((transaction) => Number(transaction.total))
       .reduce((acc, curr) => acc + Number(curr), 0) + Number(cashier?.initial_value)
-
-  console.log(
-    'tax',
-    transactions
-      .map((transaction) => Number(transaction.tip))
-      .reduce((acc, curr) => acc + Number(curr), 0)
-      .toFixed(2)
-  )
 
   return (
     <>
