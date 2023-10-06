@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import * as S from './styles'
 import {
   FaCashRegister,
@@ -73,7 +72,7 @@ export const CashierPage: React.FC = () => {
   //   getCashier(true)
   // }, [])
 
-  const mapTypePayment = (type: string) => {
+  const mapTypePayment = (type: string): string => {
     switch (type) {
       case 'BILL':
         return 'Comanda'

@@ -10108,7 +10108,7 @@ function useLinkClickHandler(to2, _temp) {
     }
   }, [location, navigate, path2, replaceProp, state, target, to2, preventScrollReset, relative]);
 }
-const Container$n = st.div`
+const Container$r = st.div`
   width: 100%;
   height: 100vh;
   display: flex;
@@ -14182,7 +14182,7 @@ function getAlphaColor$1(frontColor, backgroundColor) {
     a: 1
   }).toRgbString();
 }
-var __rest$1i = globalThis && globalThis.__rest || function(s, e2) {
+var __rest$1k = globalThis && globalThis.__rest || function(s, e2) {
   var t2 = {};
   for (var p2 in s)
     if (Object.prototype.hasOwnProperty.call(s, p2) && e2.indexOf(p2) < 0)
@@ -14197,7 +14197,7 @@ var __rest$1i = globalThis && globalThis.__rest || function(s, e2) {
 function formatToken(derivativeToken) {
   const {
     override
-  } = derivativeToken, restToken = __rest$1i(derivativeToken, ["override"]);
+  } = derivativeToken, restToken = __rest$1k(derivativeToken, ["override"]);
   const overrideTokens = Object.assign({}, override);
   Object.keys(seedToken$1).forEach((token2) => {
     delete overrideTokens[token2];
@@ -14351,7 +14351,7 @@ function formatToken(derivativeToken) {
   }), overrideTokens);
   return aliasToken;
 }
-var __rest$1h = globalThis && globalThis.__rest || function(s, e2) {
+var __rest$1j = globalThis && globalThis.__rest || function(s, e2) {
   var t2 = {};
   for (var p2 in s)
     if (Object.prototype.hasOwnProperty.call(s, p2) && e2.indexOf(p2) < 0)
@@ -14367,7 +14367,7 @@ const getComputedToken2 = (originToken, overrideToken, theme2) => {
   const derivativeToken = theme2.getDerivativeToken(originToken);
   const {
     override
-  } = overrideToken, components = __rest$1h(overrideToken, ["override"]);
+  } = overrideToken, components = __rest$1j(overrideToken, ["override"]);
   let mergedDerivativeToken = Object.assign(Object.assign({}, derivativeToken), {
     override
   });
@@ -14377,7 +14377,7 @@ const getComputedToken2 = (originToken, overrideToken, theme2) => {
       let [key, value] = _ref;
       const {
         theme: componentTheme
-      } = value, componentTokens = __rest$1h(value, ["theme"]);
+      } = value, componentTokens = __rest$1j(value, ["theme"]);
       let mergedComponentToken = componentTokens;
       if (componentTheme) {
         mergedComponentToken = getComputedToken2(Object.assign(Object.assign({}, mergedDerivativeToken), componentTokens), {
@@ -15535,7 +15535,7 @@ function MotionWrapper(props) {
   }
   return children;
 }
-const useStyle$G = (iconPrefixCls, csp) => {
+const useStyle$H = (iconPrefixCls, csp) => {
   const [theme2, token2] = useToken$2();
   return useStyleRegister({
     theme: theme2,
@@ -15551,8 +15551,8 @@ const useStyle$G = (iconPrefixCls, csp) => {
     })
   }]);
 };
-const useStyle$H = useStyle$G;
-var __rest$1g = globalThis && globalThis.__rest || function(s, e2) {
+const useStyle$I = useStyle$H;
+var __rest$1i = globalThis && globalThis.__rest || function(s, e2) {
   var t2 = {};
   for (var p2 in s)
     if (Object.prototype.hasOwnProperty.call(s, p2) && e2.indexOf(p2) < 0)
@@ -15676,7 +15676,7 @@ const ProviderChildren = (props) => {
     timeline,
     timePicker,
     upload: upload2,
-    notification,
+    notification: notification2,
     tree,
     colorPicker,
     datePicker,
@@ -15695,7 +15695,7 @@ const ProviderChildren = (props) => {
   const iconPrefixCls = customIconPrefixCls || parentContext.iconPrefixCls || defaultIconPrefixCls;
   const shouldWrapSSR = iconPrefixCls !== parentContext.iconPrefixCls;
   const csp = customCsp || parentContext.csp;
-  const wrapSSR = useStyle$H(iconPrefixCls, csp);
+  const wrapSSR = useStyle$I(iconPrefixCls, csp);
   const mergedTheme = useTheme(theme2, parentContext.theme);
   const baseConfig2 = {
     csp,
@@ -15752,7 +15752,7 @@ const ProviderChildren = (props) => {
     timeline,
     timePicker,
     upload: upload2,
-    notification,
+    notification: notification2,
     tree,
     colorPicker,
     datePicker,
@@ -15811,7 +15811,7 @@ const ProviderChildren = (props) => {
       algorithm,
       token: token2,
       components
-    } = _a, rest = __rest$1g(_a, ["algorithm", "token", "components"]);
+    } = _a, rest = __rest$1i(_a, ["algorithm", "token", "components"]);
     const themeObj = algorithm && (!Array.isArray(algorithm) || algorithm.length > 0) ? createTheme(algorithm) : defaultTheme;
     const parsedComponents = {};
     Object.entries(components || {}).forEach((_ref2) => {
@@ -16639,7 +16639,7 @@ const genActionStyle = (token2) => {
   };
 };
 const genAlertStyle = (token2) => [genBaseStyle$d(token2), genTypeStyle(token2), genActionStyle(token2)];
-const useStyle$F = genComponentStyleHook("Alert", (token2) => {
+const useStyle$G = genComponentStyleHook("Alert", (token2) => {
   const {
     fontSizeHeading3
   } = token2;
@@ -16650,7 +16650,7 @@ const useStyle$F = genComponentStyleHook("Alert", (token2) => {
   });
   return [genAlertStyle(alertToken)];
 });
-var __rest$1f = globalThis && globalThis.__rest || function(s, e2) {
+var __rest$1h = globalThis && globalThis.__rest || function(s, e2) {
   var t2 = {};
   for (var p2 in s)
     if (Object.prototype.hasOwnProperty.call(s, p2) && e2.indexOf(p2) < 0)
@@ -16721,7 +16721,7 @@ const Alert$2 = (props) => {
     closeText,
     closeIcon,
     action
-  } = props, otherProps = __rest$1f(props, ["description", "prefixCls", "message", "banner", "className", "rootClassName", "style", "onMouseEnter", "onMouseLeave", "onClick", "afterClose", "showIcon", "closable", "closeText", "closeIcon", "action"]);
+  } = props, otherProps = __rest$1h(props, ["description", "prefixCls", "message", "banner", "className", "rootClassName", "style", "onMouseEnter", "onMouseLeave", "onClick", "afterClose", "showIcon", "closable", "closeText", "closeIcon", "action"]);
   const [closed, setClosed] = reactExports.useState(false);
   const ref = reactExports.useRef(null);
   const {
@@ -16730,7 +16730,7 @@ const Alert$2 = (props) => {
     alert
   } = reactExports.useContext(ConfigContext);
   const prefixCls = getPrefixCls("alert", customizePrefixCls);
-  const [wrapSSR, hashId] = useStyle$F(prefixCls);
+  const [wrapSSR, hashId] = useStyle$G(prefixCls);
   const handleClose = (e2) => {
     var _a;
     setClosed(true);
@@ -17715,7 +17715,7 @@ function mergeConfig$1() {
   });
   return clone2;
 }
-function useNotification() {
+function useNotification$1() {
   var rootConfig = arguments.length > 0 && arguments[0] !== void 0 ? arguments[0] : {};
   var _rootConfig$getContai = rootConfig.getContainer, getContainer2 = _rootConfig$getContai === void 0 ? defaultGetContainer : _rootConfig$getContai, motion2 = rootConfig.motion, prefixCls = rootConfig.prefixCls, maxCount = rootConfig.maxCount, className = rootConfig.className, style2 = rootConfig.style, onAllRemoved = rootConfig.onAllRemoved, shareConfig = _objectWithoutProperties(rootConfig, _excluded$R);
   var _React$useState = reactExports.useState(), _React$useState2 = _slicedToArray(_React$useState, 2), container2 = _React$useState2[0], setContainer = _React$useState2[1];
@@ -17935,7 +17935,7 @@ const genMessageStyle = (token2) => {
     }
   ];
 };
-const useStyle$E = genComponentStyleHook("Message", (token2) => {
+const useStyle$F = genComponentStyleHook("Message", (token2) => {
   const combinedToken = merge$2(token2, {
     height: 150
   });
@@ -17947,7 +17947,7 @@ const useStyle$E = genComponentStyleHook("Message", (token2) => {
 }), {
   clientOnly: true
 });
-var __rest$1e = globalThis && globalThis.__rest || function(s, e2) {
+var __rest$1g = globalThis && globalThis.__rest || function(s, e2) {
   var t2 = {};
   for (var p2 in s)
     if (Object.prototype.hasOwnProperty.call(s, p2) && e2.indexOf(p2) < 0)
@@ -17966,7 +17966,7 @@ const TypeIcon = {
   warning: /* @__PURE__ */ reactExports.createElement(ExclamationCircleFilled$3, null),
   loading: /* @__PURE__ */ reactExports.createElement(LoadingOutlined$1, null)
 };
-const PureContent = (_ref) => {
+const PureContent$1 = (_ref) => {
   let {
     prefixCls,
     type: type4,
@@ -17977,33 +17977,33 @@ const PureContent = (_ref) => {
     className: classNames$1(`${prefixCls}-custom-content`, `${prefixCls}-${type4}`)
   }, icon || TypeIcon[type4], /* @__PURE__ */ reactExports.createElement("span", null, children));
 };
-const PurePanel$c = (props) => {
+const PurePanel$e = (props) => {
   const {
     prefixCls: staticPrefixCls,
     className,
     type: type4,
     icon,
     content
-  } = props, restProps = __rest$1e(props, ["prefixCls", "className", "type", "icon", "content"]);
+  } = props, restProps = __rest$1g(props, ["prefixCls", "className", "type", "icon", "content"]);
   const {
     getPrefixCls
   } = reactExports.useContext(ConfigContext);
   const prefixCls = staticPrefixCls || getPrefixCls("message");
-  const [, hashId] = useStyle$E(prefixCls);
+  const [, hashId] = useStyle$F(prefixCls);
   return /* @__PURE__ */ reactExports.createElement(Notify, Object.assign({}, restProps, {
     prefixCls,
     className: classNames$1(className, hashId, `${prefixCls}-notice-pure-panel`),
     eventKey: "pure",
     duration: null,
-    content: /* @__PURE__ */ reactExports.createElement(PureContent, {
+    content: /* @__PURE__ */ reactExports.createElement(PureContent$1, {
       prefixCls,
       type: type4,
       icon
     }, content)
   }));
 };
-const PurePanel$d = PurePanel$c;
-function getMotion$2(prefixCls, transitionName) {
+const PurePanel$f = PurePanel$e;
+function getMotion$3(prefixCls, transitionName) {
   return {
     motionName: transitionName !== null && transitionName !== void 0 ? transitionName : `${prefixCls}-move-up`
   };
@@ -18022,7 +18022,7 @@ function wrapPromiseFn(openFn) {
   result.promise = closePromise;
   return result;
 }
-var __rest$1d = globalThis && globalThis.__rest || function(s, e2) {
+var __rest$1f = globalThis && globalThis.__rest || function(s, e2) {
   var t2 = {};
   for (var p2 in s)
     if (Object.prototype.hasOwnProperty.call(s, p2) && e2.indexOf(p2) < 0)
@@ -18034,15 +18034,15 @@ var __rest$1d = globalThis && globalThis.__rest || function(s, e2) {
     }
   return t2;
 };
-const DEFAULT_OFFSET = 8;
-const DEFAULT_DURATION = 3;
-const Holder = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
+const DEFAULT_OFFSET$1 = 8;
+const DEFAULT_DURATION$1 = 3;
+const Holder$1 = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
   const {
     top,
     prefixCls: staticPrefixCls,
     getContainer: staticGetContainer,
     maxCount,
-    duration = DEFAULT_DURATION,
+    duration = DEFAULT_DURATION$1,
     rtl,
     transitionName,
     onAllRemoved
@@ -18053,22 +18053,22 @@ const Holder = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     message: message2
   } = reactExports.useContext(ConfigContext);
   const prefixCls = staticPrefixCls || getPrefixCls("message");
-  const [, hashId] = useStyle$E(prefixCls);
+  const [, hashId] = useStyle$F(prefixCls);
   const getStyle2 = () => ({
     left: "50%",
     transform: "translateX(-50%)",
-    top: top !== null && top !== void 0 ? top : DEFAULT_OFFSET
+    top: top !== null && top !== void 0 ? top : DEFAULT_OFFSET$1
   });
   const getClassName = () => classNames$1(hashId, {
     [`${prefixCls}-rtl`]: rtl
   });
-  const getNotificationMotion = () => getMotion$2(prefixCls, transitionName);
+  const getNotificationMotion = () => getMotion$3(prefixCls, transitionName);
   const mergedCloseIcon = /* @__PURE__ */ reactExports.createElement("span", {
     className: `${prefixCls}-close-x`
   }, /* @__PURE__ */ reactExports.createElement(CloseOutlined$3, {
     className: `${prefixCls}-close-icon`
   }));
-  const [api2, holder] = useNotification({
+  const [api2, holder] = useNotification$1({
     prefixCls,
     style: getStyle2,
     className: getClassName,
@@ -18118,7 +18118,7 @@ function useInternalMessage(messageConfig) {
         className,
         style: style2,
         onClose
-      } = config, restConfig = __rest$1d(config, ["content", "icon", "type", "key", "className", "style", "onClose"]);
+      } = config, restConfig = __rest$1f(config, ["content", "icon", "type", "key", "className", "style", "onClose"]);
       let mergedKey = key;
       if (mergedKey === void 0 || mergedKey === null) {
         keyIndex += 1;
@@ -18127,7 +18127,7 @@ function useInternalMessage(messageConfig) {
       return wrapPromiseFn((resolve2) => {
         originOpen(Object.assign(Object.assign({}, restConfig), {
           key: mergedKey,
-          content: /* @__PURE__ */ reactExports.createElement(PureContent, {
+          content: /* @__PURE__ */ reactExports.createElement(PureContent$1, {
             prefixCls,
             type: type4,
             icon
@@ -18188,7 +18188,7 @@ function useInternalMessage(messageConfig) {
     });
     return clone2;
   }, []);
-  return [wrapAPI, /* @__PURE__ */ reactExports.createElement(Holder, Object.assign({
+  return [wrapAPI, /* @__PURE__ */ reactExports.createElement(Holder$1, Object.assign({
     key: "message-holder"
   }, messageConfig, {
     ref: holderRef
@@ -18681,7 +18681,7 @@ const genWaveStyle = (token2) => {
     }
   };
 };
-const useStyle$D = genComponentStyleHook("Wave", (token2) => [genWaveStyle(token2)]);
+const useStyle$E = genComponentStyleHook("Wave", (token2) => [genWaveStyle(token2)]);
 function isNotGrey(color2) {
   const match5 = (color2 || "").match(/rgba?\((\d*), (\d*), (\d*)(, [\d.]*)?\)/);
   if (match5 && match5[1] && match5[2] && match5[3]) {
@@ -18867,7 +18867,7 @@ const Wave = (props) => {
   } = reactExports.useContext(ConfigContext);
   const containerRef = reactExports.useRef(null);
   const prefixCls = getPrefixCls("wave");
-  const [, hashId] = useStyle$D(prefixCls);
+  const [, hashId] = useStyle$E(prefixCls);
   const showWave = useWave(containerRef, classNames$1(prefixCls, hashId), component);
   React.useEffect(() => {
     const node2 = containerRef.current;
@@ -18963,12 +18963,12 @@ const genSpaceStyle = (token2) => {
     }
   };
 };
-const useStyle$C = genComponentStyleHook("Space", (token2) => [genSpaceStyle(token2), genSpaceCompactStyle$1(token2)], () => ({}), {
+const useStyle$D = genComponentStyleHook("Space", (token2) => [genSpaceStyle(token2), genSpaceCompactStyle$1(token2)], () => ({}), {
   // Space component don't apply extra font style
   // https://github.com/ant-design/ant-design/issues/40315
   resetStyle: false
 });
-var __rest$1c = globalThis && globalThis.__rest || function(s, e2) {
+var __rest$1e = globalThis && globalThis.__rest || function(s, e2) {
   var t2 = {};
   for (var p2 in s)
     if (Object.prototype.hasOwnProperty.call(s, p2) && e2.indexOf(p2) < 0)
@@ -19016,7 +19016,7 @@ const NoCompactStyle = (_ref) => {
 const CompactItem = (_a) => {
   var {
     children
-  } = _a, otherProps = __rest$1c(_a, ["children"]);
+  } = _a, otherProps = __rest$1e(_a, ["children"]);
   return /* @__PURE__ */ reactExports.createElement(SpaceCompactItemContext.Provider, {
     value: otherProps
   }, children);
@@ -19034,10 +19034,10 @@ const Compact = (props) => {
     className,
     rootClassName,
     children
-  } = props, restProps = __rest$1c(props, ["size", "direction", "block", "prefixCls", "className", "rootClassName", "children"]);
+  } = props, restProps = __rest$1e(props, ["size", "direction", "block", "prefixCls", "className", "rootClassName", "children"]);
   const mergedSize = useSize$1((ctx) => size !== null && size !== void 0 ? size : ctx);
   const prefixCls = getPrefixCls("space-compact", customizePrefixCls);
-  const [wrapSSR, hashId] = useStyle$C(prefixCls);
+  const [wrapSSR, hashId] = useStyle$D(prefixCls);
   const clx = classNames$1(prefixCls, hashId, {
     [`${prefixCls}-rtl`]: directionConfig === "rtl",
     [`${prefixCls}-block`]: block,
@@ -19146,7 +19146,7 @@ const LoadingIcon = (props) => {
   });
 };
 const LoadingIcon$1 = LoadingIcon;
-var __rest$1b = globalThis && globalThis.__rest || function(s, e2) {
+var __rest$1d = globalThis && globalThis.__rest || function(s, e2) {
   var t2 = {};
   for (var p2 in s)
     if (Object.prototype.hasOwnProperty.call(s, p2) && e2.indexOf(p2) < 0)
@@ -19168,7 +19168,7 @@ const ButtonGroup$1 = (props) => {
     prefixCls: customizePrefixCls,
     size,
     className
-  } = props, others = __rest$1b(props, ["prefixCls", "size", "className"]);
+  } = props, others = __rest$1d(props, ["prefixCls", "size", "className"]);
   const prefixCls = getPrefixCls("btn-group", customizePrefixCls);
   const [, , hashId] = useToken$2();
   let sizeCls = "";
@@ -19733,7 +19733,7 @@ const genBlockButtonStyle = (token2) => {
     }
   };
 };
-const useStyle$B = genComponentStyleHook("Button", (token2) => {
+const useStyle$C = genComponentStyleHook("Button", (token2) => {
   const {
     controlTmpOutline,
     paddingContentHorizontal
@@ -19762,7 +19762,7 @@ const useStyle$B = genComponentStyleHook("Button", (token2) => {
     genCompactItemVerticalStyle(token2)
   ];
 });
-var __rest$1a = globalThis && globalThis.__rest || function(s, e2) {
+var __rest$1c = globalThis && globalThis.__rest || function(s, e2) {
   var t2 = {};
   for (var p2 in s)
     if (Object.prototype.hasOwnProperty.call(s, p2) && e2.indexOf(p2) < 0)
@@ -19819,7 +19819,7 @@ const InternalButton = (props, ref) => {
     htmlType = "button",
     classNames: customClassNames,
     style: customStyle = {}
-  } = props, rest = __rest$1a(props, ["loading", "prefixCls", "type", "danger", "shape", "size", "styles", "disabled", "className", "rootClassName", "children", "icon", "ghost", "block", "htmlType", "classNames", "style"]);
+  } = props, rest = __rest$1c(props, ["loading", "prefixCls", "type", "danger", "shape", "size", "styles", "disabled", "className", "rootClassName", "children", "icon", "ghost", "block", "htmlType", "classNames", "style"]);
   const {
     getPrefixCls,
     autoInsertSpaceInButton,
@@ -19827,7 +19827,7 @@ const InternalButton = (props, ref) => {
     button
   } = reactExports.useContext(ConfigContext);
   const prefixCls = getPrefixCls("btn", customizePrefixCls);
-  const [wrapSSR, hashId] = useStyle$B(prefixCls);
+  const [wrapSSR, hashId] = useStyle$C(prefixCls);
   const disabled = reactExports.useContext(DisabledContext$1);
   const mergedDisabled = customDisabled !== null && customDisabled !== void 0 ? customDisabled : disabled;
   const groupSize = reactExports.useContext(GroupSizeContext);
@@ -24692,7 +24692,7 @@ const genWireframeStyle$1 = (token2) => {
     }
   };
 };
-const useStyle$A = genComponentStyleHook("Modal", (token2) => {
+const useStyle$B = genComponentStyleHook("Modal", (token2) => {
   const headerPaddingVertical = token2.padding;
   const headerFontSize = token2.fontSizeHeading5;
   const headerLineHeight = token2.lineHeightHeading5;
@@ -24722,7 +24722,7 @@ const useStyle$A = genComponentStyleHook("Modal", (token2) => {
   contentBg: token2.colorBgElevated,
   titleColor: token2.colorTextHeading
 }));
-var __rest$19 = globalThis && globalThis.__rest || function(s, e2) {
+var __rest$1b = globalThis && globalThis.__rest || function(s, e2) {
   var t2 = {};
   for (var p2 in s)
     if (Object.prototype.hasOwnProperty.call(s, p2) && e2.indexOf(p2) < 0)
@@ -24783,10 +24783,10 @@ const Modal$2 = (props) => {
     visible,
     width = 520,
     footer
-  } = props, restProps = __rest$19(props, ["prefixCls", "className", "rootClassName", "open", "wrapClassName", "centered", "getContainer", "closeIcon", "closable", "focusTriggerAfterClose", "style", "visible", "width", "footer"]);
+  } = props, restProps = __rest$1b(props, ["prefixCls", "className", "rootClassName", "open", "wrapClassName", "centered", "getContainer", "closeIcon", "closable", "focusTriggerAfterClose", "style", "visible", "width", "footer"]);
   const prefixCls = getPrefixCls("modal", customizePrefixCls);
   const rootPrefixCls = getPrefixCls();
-  const [wrapSSR, hashId] = useStyle$A(prefixCls);
+  const [wrapSSR, hashId] = useStyle$B(prefixCls);
   const wrapClassNameExtended = classNames$1(wrapClassName, {
     [`${prefixCls}-centered`]: !!centered,
     [`${prefixCls}-wrap-rtl`]: direction === "rtl"
@@ -24969,7 +24969,7 @@ const ConfirmDialog = (props) => {
 const ConfirmDialog$1 = ConfirmDialog;
 const destroyFns = [];
 const destroyFns$1 = destroyFns;
-var __rest$18 = globalThis && globalThis.__rest || function(s, e2) {
+var __rest$1a = globalThis && globalThis.__rest || function(s, e2) {
   var t2 = {};
   for (var p2 in s)
     if (Object.prototype.hasOwnProperty.call(s, p2) && e2.indexOf(p2) < 0)
@@ -25016,7 +25016,7 @@ function confirm$1(config) {
       cancelText,
       prefixCls: customizePrefixCls,
       getContainer: getContainer2
-    } = _a, props = __rest$18(_a, ["okText", "cancelText", "prefixCls", "getContainer"]);
+    } = _a, props = __rest$1a(_a, ["okText", "cancelText", "prefixCls", "getContainer"]);
     clearTimeout(timeoutId);
     timeoutId = setTimeout(() => {
       const runtimeLocale2 = getConfirmLocale();
@@ -25109,7 +25109,7 @@ function modalGlobalConfig(_ref) {
   } = _ref;
   defaultRootPrefixCls = rootPrefixCls;
 }
-var __rest$17 = globalThis && globalThis.__rest || function(s, e2) {
+var __rest$19 = globalThis && globalThis.__rest || function(s, e2) {
   var t2 = {};
   for (var p2 in s)
     if (Object.prototype.hasOwnProperty.call(s, p2) && e2.indexOf(p2) < 0)
@@ -25126,7 +25126,7 @@ const HookModal = (_a, ref) => {
   var {
     afterClose: hookAfterClose,
     config
-  } = _a, restProps = __rest$17(_a, ["afterClose", "config"]);
+  } = _a, restProps = __rest$19(_a, ["afterClose", "config"]);
   const [open2, setOpen] = reactExports.useState(true);
   const [innerConfig, setInnerConfig] = reactExports.useState(config);
   const {
@@ -25259,6 +25259,585 @@ function useModal() {
     key: "modal-holder",
     ref: holderRef
   })];
+}
+const genNotificationPlacementStyle = (token2) => {
+  const {
+    componentCls,
+    width,
+    notificationMarginEdge
+  } = token2;
+  const notificationTopFadeIn = new Keyframe("antNotificationTopFadeIn", {
+    "0%": {
+      marginTop: "-100%",
+      opacity: 0
+    },
+    "100%": {
+      marginTop: 0,
+      opacity: 1
+    }
+  });
+  const notificationBottomFadeIn = new Keyframe("antNotificationBottomFadeIn", {
+    "0%": {
+      marginBottom: "-100%",
+      opacity: 0
+    },
+    "100%": {
+      marginBottom: 0,
+      opacity: 1
+    }
+  });
+  const notificationLeftFadeIn = new Keyframe("antNotificationLeftFadeIn", {
+    "0%": {
+      right: {
+        _skip_check_: true,
+        value: width
+      },
+      opacity: 0
+    },
+    "100%": {
+      right: {
+        _skip_check_: true,
+        value: 0
+      },
+      opacity: 1
+    }
+  });
+  return {
+    [`&${componentCls}-top, &${componentCls}-bottom`]: {
+      marginInline: 0
+    },
+    [`&${componentCls}-top`]: {
+      [`${componentCls}-fade-enter${componentCls}-fade-enter-active, ${componentCls}-fade-appear${componentCls}-fade-appear-active`]: {
+        animationName: notificationTopFadeIn
+      }
+    },
+    [`&${componentCls}-bottom`]: {
+      [`${componentCls}-fade-enter${componentCls}-fade-enter-active, ${componentCls}-fade-appear${componentCls}-fade-appear-active`]: {
+        animationName: notificationBottomFadeIn
+      }
+    },
+    [`&${componentCls}-topLeft, &${componentCls}-bottomLeft`]: {
+      marginInlineEnd: 0,
+      marginInlineStart: notificationMarginEdge,
+      [`${componentCls}-fade-enter${componentCls}-fade-enter-active, ${componentCls}-fade-appear${componentCls}-fade-appear-active`]: {
+        animationName: notificationLeftFadeIn
+      }
+    }
+  };
+};
+const genNotificationPlacementStyle$1 = genNotificationPlacementStyle;
+const genNotificationStyle = (token2) => {
+  const {
+    iconCls,
+    componentCls,
+    // .ant-notification
+    boxShadow,
+    fontSizeLG,
+    notificationMarginBottom,
+    borderRadiusLG,
+    colorSuccess,
+    colorInfo,
+    colorWarning,
+    colorError,
+    colorTextHeading,
+    notificationBg,
+    notificationPadding,
+    notificationMarginEdge,
+    motionDurationMid,
+    motionEaseInOut,
+    fontSize,
+    lineHeight,
+    width,
+    notificationIconSize,
+    colorText
+  } = token2;
+  const noticeCls = `${componentCls}-notice`;
+  const notificationFadeIn = new Keyframe("antNotificationFadeIn", {
+    "0%": {
+      left: {
+        _skip_check_: true,
+        value: width
+      },
+      opacity: 0
+    },
+    "100%": {
+      left: {
+        _skip_check_: true,
+        value: 0
+      },
+      opacity: 1
+    }
+  });
+  const notificationFadeOut = new Keyframe("antNotificationFadeOut", {
+    "0%": {
+      maxHeight: token2.animationMaxHeight,
+      marginBottom: notificationMarginBottom,
+      opacity: 1
+    },
+    "100%": {
+      maxHeight: 0,
+      marginBottom: 0,
+      paddingTop: 0,
+      paddingBottom: 0,
+      opacity: 0
+    }
+  });
+  const noticeStyle = {
+    position: "relative",
+    width,
+    maxWidth: `calc(100vw - ${notificationMarginEdge * 2}px)`,
+    marginBottom: notificationMarginBottom,
+    marginInlineStart: "auto",
+    padding: notificationPadding,
+    overflow: "hidden",
+    lineHeight,
+    wordWrap: "break-word",
+    background: notificationBg,
+    borderRadius: borderRadiusLG,
+    boxShadow,
+    [`${componentCls}-close-icon`]: {
+      fontSize,
+      cursor: "pointer"
+    },
+    [`${noticeCls}-message`]: {
+      marginBottom: token2.marginXS,
+      color: colorTextHeading,
+      fontSize: fontSizeLG,
+      lineHeight: token2.lineHeightLG
+    },
+    [`${noticeCls}-description`]: {
+      fontSize,
+      color: colorText
+    },
+    [`&${noticeCls}-closable ${noticeCls}-message`]: {
+      paddingInlineEnd: token2.paddingLG
+    },
+    [`${noticeCls}-with-icon ${noticeCls}-message`]: {
+      marginBottom: token2.marginXS,
+      marginInlineStart: token2.marginSM + notificationIconSize,
+      fontSize: fontSizeLG
+    },
+    [`${noticeCls}-with-icon ${noticeCls}-description`]: {
+      marginInlineStart: token2.marginSM + notificationIconSize,
+      fontSize
+    },
+    // Icon & color style in different selector level
+    // https://github.com/ant-design/ant-design/issues/16503
+    // https://github.com/ant-design/ant-design/issues/15512
+    [`${noticeCls}-icon`]: {
+      position: "absolute",
+      fontSize: notificationIconSize,
+      lineHeight: 0,
+      // icon-font
+      [`&-success${iconCls}`]: {
+        color: colorSuccess
+      },
+      [`&-info${iconCls}`]: {
+        color: colorInfo
+      },
+      [`&-warning${iconCls}`]: {
+        color: colorWarning
+      },
+      [`&-error${iconCls}`]: {
+        color: colorError
+      }
+    },
+    [`${noticeCls}-close`]: {
+      position: "absolute",
+      top: token2.notificationPaddingVertical,
+      insetInlineEnd: token2.notificationPaddingHorizontal,
+      color: token2.colorIcon,
+      outline: "none",
+      width: token2.notificationCloseButtonSize,
+      height: token2.notificationCloseButtonSize,
+      borderRadius: token2.borderRadiusSM,
+      transition: `background-color ${token2.motionDurationMid}, color ${token2.motionDurationMid}`,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      "&:hover": {
+        color: token2.colorIconHover,
+        backgroundColor: token2.wireframe ? "transparent" : token2.colorFillContent
+      }
+    },
+    [`${noticeCls}-btn`]: {
+      float: "right",
+      marginTop: token2.marginSM
+    }
+  };
+  return [
+    // ============================ Holder ============================
+    {
+      [componentCls]: Object.assign(Object.assign(Object.assign(Object.assign({}, resetComponent(token2)), {
+        position: "fixed",
+        zIndex: token2.zIndexPopup,
+        marginInlineEnd: notificationMarginEdge,
+        [`${componentCls}-hook-holder`]: {
+          position: "relative"
+        },
+        [`&${componentCls}-top, &${componentCls}-bottom`]: {
+          [noticeCls]: {
+            marginInline: "auto auto"
+          }
+        },
+        [`&${componentCls}-topLeft, &${componentCls}-bottomLeft`]: {
+          [noticeCls]: {
+            marginInlineEnd: "auto",
+            marginInlineStart: 0
+          }
+        },
+        //  animation
+        [`${componentCls}-fade-enter, ${componentCls}-fade-appear`]: {
+          animationDuration: token2.motionDurationMid,
+          animationTimingFunction: motionEaseInOut,
+          animationFillMode: "both",
+          opacity: 0,
+          animationPlayState: "paused"
+        },
+        [`${componentCls}-fade-leave`]: {
+          animationTimingFunction: motionEaseInOut,
+          animationFillMode: "both",
+          animationDuration: motionDurationMid,
+          animationPlayState: "paused"
+        },
+        [`${componentCls}-fade-enter${componentCls}-fade-enter-active, ${componentCls}-fade-appear${componentCls}-fade-appear-active`]: {
+          animationName: notificationFadeIn,
+          animationPlayState: "running"
+        },
+        [`${componentCls}-fade-leave${componentCls}-fade-leave-active`]: {
+          animationName: notificationFadeOut,
+          animationPlayState: "running"
+        }
+      }), genNotificationPlacementStyle$1(token2)), {
+        // RTL
+        "&-rtl": {
+          direction: "rtl",
+          [`${noticeCls}-btn`]: {
+            float: "left"
+          }
+        }
+      })
+    },
+    // ============================ Notice ============================
+    {
+      [componentCls]: {
+        [noticeCls]: Object.assign({}, noticeStyle)
+      }
+    },
+    // ============================= Pure =============================
+    {
+      [`${noticeCls}-pure-panel`]: Object.assign(Object.assign({}, noticeStyle), {
+        margin: 0
+      })
+    }
+  ];
+};
+const useStyle$A = genComponentStyleHook("Notification", (token2) => {
+  const notificationPaddingVertical = token2.paddingMD;
+  const notificationPaddingHorizontal = token2.paddingLG;
+  const notificationToken = merge$2(token2, {
+    // index.less variables
+    notificationBg: token2.colorBgElevated,
+    notificationPaddingVertical,
+    notificationPaddingHorizontal,
+    notificationIconSize: token2.fontSizeLG * token2.lineHeightLG,
+    notificationCloseButtonSize: token2.controlHeightLG * 0.55,
+    notificationMarginBottom: token2.margin,
+    notificationPadding: `${token2.paddingMD}px ${token2.paddingContentHorizontalLG}px`,
+    notificationMarginEdge: token2.marginLG,
+    animationMaxHeight: 150
+  });
+  return [genNotificationStyle(notificationToken)];
+}, (token2) => ({
+  zIndexPopup: token2.zIndexPopupBase + 50,
+  width: 384
+}), {
+  clientOnly: true
+});
+var __rest$18 = globalThis && globalThis.__rest || function(s, e2) {
+  var t2 = {};
+  for (var p2 in s)
+    if (Object.prototype.hasOwnProperty.call(s, p2) && e2.indexOf(p2) < 0)
+      t2[p2] = s[p2];
+  if (s != null && typeof Object.getOwnPropertySymbols === "function")
+    for (var i2 = 0, p2 = Object.getOwnPropertySymbols(s); i2 < p2.length; i2++) {
+      if (e2.indexOf(p2[i2]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p2[i2]))
+        t2[p2[i2]] = s[p2[i2]];
+    }
+  return t2;
+};
+function getCloseIcon(prefixCls, closeIcon) {
+  if (closeIcon === null || closeIcon === false) {
+    return null;
+  }
+  return closeIcon || /* @__PURE__ */ reactExports.createElement("span", {
+    className: `${prefixCls}-close-x`
+  }, /* @__PURE__ */ reactExports.createElement(CloseOutlined$3, {
+    className: `${prefixCls}-close-icon`
+  }));
+}
+const typeToIcon = {
+  success: CheckCircleFilled$1,
+  info: InfoCircleFilled$1,
+  error: CloseCircleFilled$3,
+  warning: ExclamationCircleFilled$3
+};
+const PureContent = (props) => {
+  const {
+    prefixCls,
+    icon,
+    type: type4,
+    message: message2,
+    description,
+    btn,
+    role = "alert"
+  } = props;
+  let iconNode = null;
+  if (icon) {
+    iconNode = /* @__PURE__ */ reactExports.createElement("span", {
+      className: `${prefixCls}-icon`
+    }, icon);
+  } else if (type4) {
+    iconNode = /* @__PURE__ */ reactExports.createElement(typeToIcon[type4] || null, {
+      className: classNames$1(`${prefixCls}-icon`, `${prefixCls}-icon-${type4}`)
+    });
+  }
+  return /* @__PURE__ */ reactExports.createElement("div", {
+    className: classNames$1({
+      [`${prefixCls}-with-icon`]: iconNode
+    }),
+    role
+  }, iconNode, /* @__PURE__ */ reactExports.createElement("div", {
+    className: `${prefixCls}-message`
+  }, message2), /* @__PURE__ */ reactExports.createElement("div", {
+    className: `${prefixCls}-description`
+  }, description), btn && /* @__PURE__ */ reactExports.createElement("div", {
+    className: `${prefixCls}-btn`
+  }, btn));
+};
+const PurePanel$c = (props) => {
+  const {
+    prefixCls: staticPrefixCls,
+    className,
+    icon,
+    type: type4,
+    message: message2,
+    description,
+    btn,
+    closable = true,
+    closeIcon
+  } = props, restProps = __rest$18(props, ["prefixCls", "className", "icon", "type", "message", "description", "btn", "closable", "closeIcon"]);
+  const {
+    getPrefixCls
+  } = reactExports.useContext(ConfigContext);
+  const prefixCls = staticPrefixCls || getPrefixCls("notification");
+  const noticePrefixCls = `${prefixCls}-notice`;
+  const [, hashId] = useStyle$A(prefixCls);
+  return /* @__PURE__ */ reactExports.createElement(Notify, Object.assign({}, restProps, {
+    prefixCls,
+    className: classNames$1(className, hashId, `${noticePrefixCls}-pure-panel`),
+    eventKey: "pure",
+    duration: null,
+    closable,
+    closeIcon: getCloseIcon(prefixCls, closeIcon),
+    content: /* @__PURE__ */ reactExports.createElement(PureContent, {
+      prefixCls: noticePrefixCls,
+      icon,
+      type: type4,
+      message: message2,
+      description,
+      btn
+    })
+  }));
+};
+const PurePanel$d = PurePanel$c;
+function getPlacementStyle(placement, top, bottom) {
+  let style2;
+  switch (placement) {
+    case "top":
+      style2 = {
+        left: "50%",
+        transform: "translateX(-50%)",
+        right: "auto",
+        top,
+        bottom: "auto"
+      };
+      break;
+    case "topLeft":
+      style2 = {
+        left: 0,
+        top,
+        bottom: "auto"
+      };
+      break;
+    case "topRight":
+      style2 = {
+        right: 0,
+        top,
+        bottom: "auto"
+      };
+      break;
+    case "bottom":
+      style2 = {
+        left: "50%",
+        transform: "translateX(-50%)",
+        right: "auto",
+        top: "auto",
+        bottom
+      };
+      break;
+    case "bottomLeft":
+      style2 = {
+        left: 0,
+        top: "auto",
+        bottom
+      };
+      break;
+    default:
+      style2 = {
+        right: 0,
+        top: "auto",
+        bottom
+      };
+      break;
+  }
+  return style2;
+}
+function getMotion$2(prefixCls) {
+  return {
+    motionName: `${prefixCls}-fade`
+  };
+}
+var __rest$17 = globalThis && globalThis.__rest || function(s, e2) {
+  var t2 = {};
+  for (var p2 in s)
+    if (Object.prototype.hasOwnProperty.call(s, p2) && e2.indexOf(p2) < 0)
+      t2[p2] = s[p2];
+  if (s != null && typeof Object.getOwnPropertySymbols === "function")
+    for (var i2 = 0, p2 = Object.getOwnPropertySymbols(s); i2 < p2.length; i2++) {
+      if (e2.indexOf(p2[i2]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p2[i2]))
+        t2[p2[i2]] = s[p2[i2]];
+    }
+  return t2;
+};
+const DEFAULT_OFFSET = 24;
+const DEFAULT_DURATION = 4.5;
+const DEFAULT_PLACEMENT = "topRight";
+const Holder = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
+  const {
+    top,
+    bottom,
+    prefixCls: staticPrefixCls,
+    getContainer: staticGetContainer,
+    maxCount,
+    rtl,
+    onAllRemoved
+  } = props;
+  const {
+    getPrefixCls,
+    getPopupContainer,
+    notification: notification2
+  } = reactExports.useContext(ConfigContext);
+  const prefixCls = staticPrefixCls || getPrefixCls("notification");
+  const getStyle2 = (placement) => getPlacementStyle(placement, top !== null && top !== void 0 ? top : DEFAULT_OFFSET, bottom !== null && bottom !== void 0 ? bottom : DEFAULT_OFFSET);
+  const [, hashId] = useStyle$A(prefixCls);
+  const getClassName = () => classNames$1(hashId, {
+    [`${prefixCls}-rtl`]: rtl
+  });
+  const getNotificationMotion = () => getMotion$2(prefixCls);
+  const [api2, holder] = useNotification$1({
+    prefixCls,
+    style: getStyle2,
+    className: getClassName,
+    motion: getNotificationMotion,
+    closable: true,
+    closeIcon: getCloseIcon(prefixCls),
+    duration: DEFAULT_DURATION,
+    getContainer: () => (staticGetContainer === null || staticGetContainer === void 0 ? void 0 : staticGetContainer()) || (getPopupContainer === null || getPopupContainer === void 0 ? void 0 : getPopupContainer()) || document.body,
+    maxCount,
+    onAllRemoved
+  });
+  reactExports.useImperativeHandle(ref, () => Object.assign(Object.assign({}, api2), {
+    prefixCls,
+    hashId,
+    notification: notification2
+  }));
+  return holder;
+});
+function useInternalNotification(notificationConfig) {
+  const holderRef = reactExports.useRef(null);
+  const wrapAPI = reactExports.useMemo(() => {
+    const open2 = (config) => {
+      var _a;
+      if (!holderRef.current) {
+        return;
+      }
+      const {
+        open: originOpen,
+        prefixCls,
+        hashId,
+        notification: notification2
+      } = holderRef.current;
+      const noticePrefixCls = `${prefixCls}-notice`;
+      const {
+        message: message2,
+        description,
+        icon,
+        type: type4,
+        btn,
+        className,
+        style: style2,
+        role = "alert",
+        closeIcon
+      } = config, restConfig = __rest$17(config, ["message", "description", "icon", "type", "btn", "className", "style", "role", "closeIcon"]);
+      const realCloseIcon = getCloseIcon(noticePrefixCls, closeIcon);
+      return originOpen(Object.assign(Object.assign({
+        // use placement from props instead of hard-coding "topRight"
+        placement: (_a = notificationConfig === null || notificationConfig === void 0 ? void 0 : notificationConfig.placement) !== null && _a !== void 0 ? _a : DEFAULT_PLACEMENT
+      }, restConfig), {
+        content: /* @__PURE__ */ reactExports.createElement(PureContent, {
+          prefixCls: noticePrefixCls,
+          icon,
+          type: type4,
+          message: message2,
+          description,
+          btn,
+          role
+        }),
+        className: classNames$1(type4 && `${noticePrefixCls}-${type4}`, hashId, className, notification2 === null || notification2 === void 0 ? void 0 : notification2.className),
+        style: Object.assign(Object.assign({}, notification2 === null || notification2 === void 0 ? void 0 : notification2.style), style2),
+        closeIcon: realCloseIcon,
+        closable: !!realCloseIcon
+      }));
+    };
+    const destroy2 = (key) => {
+      var _a, _b;
+      if (key !== void 0) {
+        (_a = holderRef.current) === null || _a === void 0 ? void 0 : _a.close(key);
+      } else {
+        (_b = holderRef.current) === null || _b === void 0 ? void 0 : _b.destroy();
+      }
+    };
+    const clone2 = {
+      open: open2,
+      destroy: destroy2
+    };
+    const keys2 = ["success", "info", "warning", "error"];
+    keys2.forEach((type4) => {
+      clone2[type4] = (config) => open2(Object.assign(Object.assign({}, config), {
+        type: type4
+      }));
+    });
+    return clone2;
+  }, []);
+  return [wrapAPI, /* @__PURE__ */ reactExports.createElement(Holder, Object.assign({
+    key: "notification-holder"
+  }, notificationConfig, {
+    ref: holderRef
+  }))];
+}
+function useNotification(notificationConfig) {
+  return useInternalNotification(notificationConfig);
 }
 function withPureRenderTheme(Component) {
   return function PureRenderThemeComponent(props) {
@@ -34731,15 +35310,15 @@ var BarsOutlined$2 = function BarsOutlined(props, ref) {
   }));
 };
 const BarsOutlined$3 = /* @__PURE__ */ reactExports.forwardRef(BarsOutlined$2);
-var LeftOutlined$2 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M724 218.3V141c0-6.7-7.7-10.4-12.9-6.3L260.3 486.8a31.86 31.86 0 000 50.3l450.8 352.1c5.3 4.1 12.9.4 12.9-6.3v-77.3c0-4.9-2.3-9.6-6.1-12.6l-360-281 360-281.1c3.8-3 6.1-7.7 6.1-12.6z" } }] }, "name": "left", "theme": "outlined" };
-const LeftOutlinedSvg = LeftOutlined$2;
-var LeftOutlined = function LeftOutlined2(props, ref) {
+var LeftOutlined$4 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M724 218.3V141c0-6.7-7.7-10.4-12.9-6.3L260.3 486.8a31.86 31.86 0 000 50.3l450.8 352.1c5.3 4.1 12.9.4 12.9-6.3v-77.3c0-4.9-2.3-9.6-6.1-12.6l-360-281 360-281.1c3.8-3 6.1-7.7 6.1-12.6z" } }] }, "name": "left", "theme": "outlined" };
+const LeftOutlinedSvg = LeftOutlined$4;
+var LeftOutlined$2 = function LeftOutlined(props, ref) {
   return /* @__PURE__ */ reactExports.createElement(AntdIcon$1, _extends$1({}, props, {
     ref,
     icon: LeftOutlinedSvg
   }));
 };
-const LeftOutlined$1 = /* @__PURE__ */ reactExports.forwardRef(LeftOutlined);
+const LeftOutlined$3 = /* @__PURE__ */ reactExports.forwardRef(LeftOutlined$2);
 const isNumeric = (value) => !isNaN(parseFloat(value)) && isFinite(value);
 const isNumeric$1 = isNumeric;
 const genLayoutLightStyle = (token2) => {
@@ -35049,7 +35628,7 @@ const Layout$2 = generator({
   tagName: "div",
   displayName: "Layout"
 })(BasicLayout);
-const Header$9 = generator({
+const Header$a = generator({
   suffixCls: "header",
   tagName: "header",
   displayName: "Header"
@@ -35185,8 +35764,8 @@ const Sider$1 = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
       style: zeroWidthTriggerStyle
     }, trigger || /* @__PURE__ */ reactExports.createElement(BarsOutlined$3, null)) : null;
     const iconObj = {
-      expanded: reverseArrow ? /* @__PURE__ */ reactExports.createElement(RightOutlined$1, null) : /* @__PURE__ */ reactExports.createElement(LeftOutlined$1, null),
-      collapsed: reverseArrow ? /* @__PURE__ */ reactExports.createElement(LeftOutlined$1, null) : /* @__PURE__ */ reactExports.createElement(RightOutlined$1, null)
+      expanded: reverseArrow ? /* @__PURE__ */ reactExports.createElement(RightOutlined$1, null) : /* @__PURE__ */ reactExports.createElement(LeftOutlined$3, null),
+      collapsed: reverseArrow ? /* @__PURE__ */ reactExports.createElement(LeftOutlined$3, null) : /* @__PURE__ */ reactExports.createElement(RightOutlined$1, null)
     };
     const status = collapsed ? "collapsed" : "expanded";
     const defaultTrigger = iconObj[status];
@@ -39093,7 +39672,7 @@ function DateBody(props) {
 var HIDDEN_STYLE$1 = {
   visibility: "hidden"
 };
-function Header$8(_ref) {
+function Header$9(_ref) {
   var prefixCls = _ref.prefixCls, _ref$prevIcon = _ref.prevIcon, prevIcon = _ref$prevIcon === void 0 ? "‹" : _ref$prevIcon, _ref$nextIcon = _ref.nextIcon, nextIcon = _ref$nextIcon === void 0 ? "›" : _ref$nextIcon, _ref$superPrevIcon = _ref.superPrevIcon, superPrevIcon = _ref$superPrevIcon === void 0 ? "«" : _ref$superPrevIcon, _ref$superNextIcon = _ref.superNextIcon, superNextIcon = _ref$superNextIcon === void 0 ? "»" : _ref$superNextIcon, onSuperPrev = _ref.onSuperPrev, onSuperNext = _ref.onSuperNext, onPrev = _ref.onPrev, onNext = _ref.onNext, children = _ref.children;
   var _React$useContext = reactExports.useContext(PanelContext), hideNextBtn = _React$useContext.hideNextBtn, hidePrevBtn = _React$useContext.hidePrevBtn;
   return /* @__PURE__ */ reactExports.createElement("div", {
@@ -39158,7 +39737,7 @@ function DateHeader(props) {
     generateConfig: generateConfig2
   }) : monthsLocale[month]);
   var monthYearNodes = locale2.monthBeforeYear ? [monthNode, yearNode] : [yearNode, monthNode];
-  return /* @__PURE__ */ reactExports.createElement(Header$8, _extends$1({}, props, {
+  return /* @__PURE__ */ reactExports.createElement(Header$9, _extends$1({}, props, {
     prefixCls: headerPrefixCls,
     onSuperPrev: onPrevYear,
     onPrev: onPrevMonth,
@@ -39239,7 +39818,7 @@ function TimeHeader(props) {
   }
   var prefixCls = props.prefixCls, generateConfig2 = props.generateConfig, locale2 = props.locale, value = props.value, format3 = props.format;
   var headerPrefixCls = "".concat(prefixCls, "-header");
-  return /* @__PURE__ */ reactExports.createElement(Header$8, {
+  return /* @__PURE__ */ reactExports.createElement(Header$9, {
     prefixCls: headerPrefixCls
   }, value ? formatValue(value, {
     locale: locale2,
@@ -39675,7 +40254,7 @@ function DecadeHeader(props) {
   var yearNumber = generateConfig2.getYear(viewDate);
   var startYear = Math.floor(yearNumber / DECADE_DISTANCE_COUNT) * DECADE_DISTANCE_COUNT;
   var endYear = startYear + DECADE_DISTANCE_COUNT - 1;
-  return /* @__PURE__ */ reactExports.createElement(Header$8, _extends$1({}, props, {
+  return /* @__PURE__ */ reactExports.createElement(Header$9, _extends$1({}, props, {
     prefixCls: headerPrefixCls,
     onSuperPrev: onPrevDecades,
     onSuperNext: onNextDecades
@@ -39773,7 +40352,7 @@ function MonthHeader(props) {
     return null;
   }
   var headerPrefixCls = "".concat(prefixCls, "-header");
-  return /* @__PURE__ */ reactExports.createElement(Header$8, _extends$1({}, props, {
+  return /* @__PURE__ */ reactExports.createElement(Header$9, _extends$1({}, props, {
     prefixCls: headerPrefixCls,
     onSuperPrev: onPrevYear,
     onSuperNext: onNextYear
@@ -39896,7 +40475,7 @@ function QuarterHeader(props) {
     return null;
   }
   var headerPrefixCls = "".concat(prefixCls, "-header");
-  return /* @__PURE__ */ reactExports.createElement(Header$8, _extends$1({}, props, {
+  return /* @__PURE__ */ reactExports.createElement(Header$9, _extends$1({}, props, {
     prefixCls: headerPrefixCls,
     onSuperPrev: onPrevYear,
     onSuperNext: onNextYear
@@ -40075,7 +40654,7 @@ function YearHeader(props) {
   var yearNumber = generateConfig2.getYear(viewDate);
   var startYear = Math.floor(yearNumber / YEAR_DECADE_COUNT) * YEAR_DECADE_COUNT;
   var endYear = startYear + YEAR_DECADE_COUNT - 1;
-  return /* @__PURE__ */ reactExports.createElement(Header$8, _extends$1({}, props, {
+  return /* @__PURE__ */ reactExports.createElement(Header$9, _extends$1({}, props, {
     prefixCls: headerPrefixCls,
     onSuperPrev: onPrevDecade,
     onSuperNext: onNextDecade
@@ -45043,7 +45622,7 @@ const SkeletonNode = (props) => {
   }, content)));
 };
 const SkeletonNode$1 = SkeletonNode;
-const Paragraph$8 = (props) => {
+const Paragraph$c = (props) => {
   const getWidth = (index2) => {
     const {
       width,
@@ -45077,8 +45656,8 @@ const Paragraph$8 = (props) => {
     style: style2
   }, rowList);
 };
-const Paragraph$9 = Paragraph$8;
-const Title$g = (_ref) => {
+const Paragraph$d = Paragraph$c;
+const Title$n = (_ref) => {
   let {
     prefixCls,
     className,
@@ -45092,7 +45671,7 @@ const Title$g = (_ref) => {
     }, style2)
   });
 };
-const Title$h = Title$g;
+const Title$o = Title$n;
 function getComponentProps(prop) {
   if (prop && typeof prop === "object") {
     return prop;
@@ -45177,14 +45756,14 @@ const Skeleton = (props) => {
         const titleProps = Object.assign(Object.assign({
           prefixCls: `${prefixCls}-title`
         }, getTitleBasicProps(hasAvatar, hasParagraph)), getComponentProps(title));
-        $title = /* @__PURE__ */ reactExports.createElement(Title$h, Object.assign({}, titleProps));
+        $title = /* @__PURE__ */ reactExports.createElement(Title$o, Object.assign({}, titleProps));
       }
       let paragraphNode;
       if (hasParagraph) {
         const paragraphProps = Object.assign(Object.assign({
           prefixCls: `${prefixCls}-paragraph`
         }, getParagraphBasicProps(hasAvatar, hasTitle)), getComponentProps(paragraph));
-        paragraphNode = /* @__PURE__ */ reactExports.createElement(Paragraph$9, Object.assign({}, paragraphProps));
+        paragraphNode = /* @__PURE__ */ reactExports.createElement(Paragraph$d, Object.assign({}, paragraphProps));
       }
       contentNode = /* @__PURE__ */ reactExports.createElement("div", {
         className: `${prefixCls}-content`
@@ -52458,15 +53037,15 @@ Input2.Search = Search$6;
 Input2.TextArea = TextArea$1;
 Input2.Password = Password$1;
 const Input$1 = Input2;
-var CalendarOutlined$2 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M880 184H712v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H384v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H144c-17.7 0-32 14.3-32 32v664c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V216c0-17.7-14.3-32-32-32zm-40 656H184V460h656v380zM184 392V256h128v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h256v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h128v136H184z" } }] }, "name": "calendar", "theme": "outlined" };
-const CalendarOutlinedSvg = CalendarOutlined$2;
-var CalendarOutlined = function CalendarOutlined2(props, ref) {
+var CalendarOutlined$4 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M880 184H712v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H384v-64c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v64H144c-17.7 0-32 14.3-32 32v664c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V216c0-17.7-14.3-32-32-32zm-40 656H184V460h656v380zM184 392V256h128v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h256v48c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-48h128v136H184z" } }] }, "name": "calendar", "theme": "outlined" };
+const CalendarOutlinedSvg = CalendarOutlined$4;
+var CalendarOutlined$2 = function CalendarOutlined(props, ref) {
   return /* @__PURE__ */ reactExports.createElement(AntdIcon$1, _extends$1({}, props, {
     ref,
     icon: CalendarOutlinedSvg
   }));
 };
-const CalendarOutlined$1 = /* @__PURE__ */ reactExports.forwardRef(CalendarOutlined);
+const CalendarOutlined$3 = /* @__PURE__ */ reactExports.forwardRef(CalendarOutlined$2);
 var ClockCircleOutlined$2 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M512 64C264.6 64 64 264.6 64 512s200.6 448 448 448 448-200.6 448-448S759.4 64 512 64zm0 820c-205.4 0-372-166.6-372-372s166.6-372 372-372 372 166.6 372 372-166.6 372-372 372z" } }, { "tag": "path", "attrs": { "d": "M686.7 638.6L544.1 535.5V288c0-4.4-3.6-8-8-8H488c-4.4 0-8 3.6-8 8v275.4c0 2.6 1.2 5 3.3 6.5l165.4 120.6c3.6 2.6 8.6 1.8 11.2-1.7l28.6-39c2.6-3.7 1.8-8.7-1.8-11.2z" } }] }, "name": "clock-circle", "theme": "outlined" };
 const ClockCircleOutlinedSvg = ClockCircleOutlined$2;
 var ClockCircleOutlined = function ClockCircleOutlined2(props, ref) {
@@ -52698,7 +53277,7 @@ function generateRangePicker(generateConfig2) {
       status: contextStatus,
       feedbackIcon
     } = formItemContext;
-    const suffixNode = /* @__PURE__ */ reactExports.createElement(reactExports.Fragment, null, picker === "time" ? /* @__PURE__ */ reactExports.createElement(ClockCircleOutlined$1, null) : /* @__PURE__ */ reactExports.createElement(CalendarOutlined$1, null), hasFeedback && feedbackIcon);
+    const suffixNode = /* @__PURE__ */ reactExports.createElement(reactExports.Fragment, null, picker === "time" ? /* @__PURE__ */ reactExports.createElement(ClockCircleOutlined$1, null) : /* @__PURE__ */ reactExports.createElement(CalendarOutlined$3, null), hasFeedback && feedbackIcon);
     reactExports.useImperativeHandle(ref, () => ({
       focus: () => {
         var _a;
@@ -52841,7 +53420,7 @@ function generatePicker$1(generateConfig2) {
         status: contextStatus,
         feedbackIcon
       } = formItemContext;
-      const suffixNode = /* @__PURE__ */ reactExports.createElement(reactExports.Fragment, null, mergedPicker === "time" ? /* @__PURE__ */ reactExports.createElement(ClockCircleOutlined$1, null) : /* @__PURE__ */ reactExports.createElement(CalendarOutlined$1, null), hasFeedback && feedbackIcon);
+      const suffixNode = /* @__PURE__ */ reactExports.createElement(reactExports.Fragment, null, mergedPicker === "time" ? /* @__PURE__ */ reactExports.createElement(ClockCircleOutlined$1, null) : /* @__PURE__ */ reactExports.createElement(CalendarOutlined$3, null), hasFeedback && feedbackIcon);
       const [contextLocale] = useLocale$1("DatePicker", enUS);
       const locale2 = Object.assign(Object.assign({}, contextLocale), props.locale);
       return wrapSSR(/* @__PURE__ */ reactExports.createElement(Picker, Object.assign({
@@ -53774,7 +54353,7 @@ const Space = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
   });
   const mergedAlign = align === void 0 && direction === "horizontal" ? "center" : align;
   const prefixCls = getPrefixCls("space", customizePrefixCls);
-  const [wrapSSR, hashId] = useStyle$C(prefixCls);
+  const [wrapSSR, hashId] = useStyle$D(prefixCls);
   const cn = classNames$1(prefixCls, space === null || space === void 0 ? void 0 : space.className, hashId, `${prefixCls}-${direction}`, {
     [`${prefixCls}-rtl`]: directionConfig === "rtl",
     [`${prefixCls}-align-${mergedAlign}`]: mergedAlign
@@ -53941,6 +54520,8 @@ const DropdownButton$1 = DropdownButton;
 const Dropdown = InternalDropdown;
 Dropdown.Button = DropdownButton$1;
 const Dropdown$1 = Dropdown;
+var FileTextOutlined$2 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M854.6 288.6L639.4 73.4c-6-6-14.1-9.4-22.6-9.4H192c-17.7 0-32 14.3-32 32v832c0 17.7 14.3 32 32 32h640c17.7 0 32-14.3 32-32V311.3c0-8.5-3.4-16.7-9.4-22.7zM790.2 326H602V137.8L790.2 326zm1.8 562H232V136h302v216a42 42 0 0042 42h216v494zM504 618H320c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h184c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8zM312 490v48c0 4.4 3.6 8 8 8h384c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8H320c-4.4 0-8 3.6-8 8z" } }] }, "name": "file-text", "theme": "outlined" };
+const FileTextOutlinedSvg = FileTextOutlined$2;
 function useDebounce(value) {
   const [cacheValue, setCacheValue] = reactExports.useState(value);
   reactExports.useEffect(() => {
@@ -56466,7 +57047,7 @@ const icons$1 = {
   zoomIn: /* @__PURE__ */ reactExports.createElement(ZoomInOutlined$1, null),
   zoomOut: /* @__PURE__ */ reactExports.createElement(ZoomOutOutlined$1, null),
   close: /* @__PURE__ */ reactExports.createElement(CloseOutlined$3, null),
-  left: /* @__PURE__ */ reactExports.createElement(LeftOutlined$1, null),
+  left: /* @__PURE__ */ reactExports.createElement(LeftOutlined$3, null),
   right: /* @__PURE__ */ reactExports.createElement(RightOutlined$1, null),
   flipX: /* @__PURE__ */ reactExports.createElement(SwapOutlined$1, null),
   flipY: /* @__PURE__ */ reactExports.createElement(SwapOutlined$1, {
@@ -56568,7 +57149,7 @@ const Image$1 = (props) => {
 Image$1.PreviewGroup = PreviewGroup;
 const Image$2 = Image$1;
 const Layout = InternalLayout;
-Layout.Header = Header$9;
+Layout.Header = Header$a;
 Layout.Footer = Footer$2;
 Layout.Content = Content$2;
 Layout.Sider = Sider$2;
@@ -57956,12 +58537,12 @@ const Pagination = (props) => {
       className: `${prefixCls}-item-link`,
       type: "button",
       tabIndex: -1
-    }, direction === "rtl" ? /* @__PURE__ */ reactExports.createElement(RightOutlined$1, null) : /* @__PURE__ */ reactExports.createElement(LeftOutlined$1, null));
+    }, direction === "rtl" ? /* @__PURE__ */ reactExports.createElement(RightOutlined$1, null) : /* @__PURE__ */ reactExports.createElement(LeftOutlined$3, null));
     const nextIcon = /* @__PURE__ */ reactExports.createElement("button", {
       className: `${prefixCls}-item-link`,
       type: "button",
       tabIndex: -1
-    }, direction === "rtl" ? /* @__PURE__ */ reactExports.createElement(LeftOutlined$1, null) : /* @__PURE__ */ reactExports.createElement(RightOutlined$1, null));
+    }, direction === "rtl" ? /* @__PURE__ */ reactExports.createElement(LeftOutlined$3, null) : /* @__PURE__ */ reactExports.createElement(RightOutlined$1, null));
     const jumpPrevIcon = /* @__PURE__ */ reactExports.createElement("a", {
       className: `${prefixCls}-item-link`
     }, /* @__PURE__ */ reactExports.createElement("div", {
@@ -59701,10 +60282,10 @@ Mentions.getMentions = function() {
   }).filter((entity) => !!entity && !!entity.value);
 };
 let message = null;
-let act = (callback2) => callback2();
-let taskQueue = [];
-let defaultGlobalConfig = {};
-function getGlobalContext() {
+let act$1 = (callback2) => callback2();
+let taskQueue$1 = [];
+let defaultGlobalConfig$1 = {};
+function getGlobalContext$1() {
   const {
     prefixCls: globalPrefixCls2,
     getContainer: globalGetContainer,
@@ -59712,7 +60293,7 @@ function getGlobalContext() {
     rtl,
     maxCount,
     top
-  } = defaultGlobalConfig;
+  } = defaultGlobalConfig$1;
   const mergedPrefixCls = globalPrefixCls2 !== null && globalPrefixCls2 !== void 0 ? globalPrefixCls2 : globalConfig().getPrefixCls("message");
   const mergedContainer = (globalGetContainer === null || globalGetContainer === void 0 ? void 0 : globalGetContainer()) || document.body;
   return {
@@ -59724,7 +60305,7 @@ function getGlobalContext() {
     top
   };
 }
-const GlobalHolder = /* @__PURE__ */ reactExports.forwardRef((_2, ref) => {
+const GlobalHolder$1 = /* @__PURE__ */ reactExports.forwardRef((_2, ref) => {
   const initializeMessageConfig = () => {
     const {
       prefixCls,
@@ -59733,7 +60314,7 @@ const GlobalHolder = /* @__PURE__ */ reactExports.forwardRef((_2, ref) => {
       duration,
       rtl,
       top
-    } = getGlobalContext();
+    } = getGlobalContext$1();
     return {
       prefixCls,
       getContainer: () => container2,
@@ -59772,15 +60353,15 @@ const GlobalHolder = /* @__PURE__ */ reactExports.forwardRef((_2, ref) => {
     theme: theme2
   }, holder);
 });
-function flushNotice() {
+function flushNotice$1() {
   if (!message) {
     const holderFragment = document.createDocumentFragment();
     const newMessage = {
       fragment: holderFragment
     };
     message = newMessage;
-    act(() => {
-      render(/* @__PURE__ */ reactExports.createElement(GlobalHolder, {
+    act$1(() => {
+      render(/* @__PURE__ */ reactExports.createElement(GlobalHolder$1, {
         ref: (node2) => {
           const {
             instance,
@@ -59790,7 +60371,7 @@ function flushNotice() {
             if (!newMessage.instance && instance) {
               newMessage.instance = instance;
               newMessage.sync = sync;
-              flushNotice();
+              flushNotice$1();
             }
           });
         }
@@ -59801,7 +60382,7 @@ function flushNotice() {
   if (!message.instance) {
     return;
   }
-  taskQueue.forEach((task) => {
+  taskQueue$1.forEach((task) => {
     const {
       type: type4,
       skipped
@@ -59809,20 +60390,20 @@ function flushNotice() {
     if (!skipped) {
       switch (type4) {
         case "open": {
-          act(() => {
-            const closeFn = message.instance.open(Object.assign(Object.assign({}, defaultGlobalConfig), task.config));
+          act$1(() => {
+            const closeFn = message.instance.open(Object.assign(Object.assign({}, defaultGlobalConfig$1), task.config));
             closeFn === null || closeFn === void 0 ? void 0 : closeFn.then(task.resolve);
             task.setCloseFn(closeFn);
           });
           break;
         }
         case "destroy":
-          act(() => {
+          act$1(() => {
             message === null || message === void 0 ? void 0 : message.instance.destroy(task.key);
           });
           break;
         default: {
-          act(() => {
+          act$1(() => {
             var _message$instance;
             const closeFn = (_message$instance = message.instance)[type4].apply(_message$instance, _toConsumableArray(task.args));
             closeFn === null || closeFn === void 0 ? void 0 : closeFn.then(task.resolve);
@@ -59832,16 +60413,16 @@ function flushNotice() {
       }
     }
   });
-  taskQueue = [];
+  taskQueue$1 = [];
 }
 function setMessageGlobalConfig(config) {
-  defaultGlobalConfig = Object.assign(Object.assign({}, defaultGlobalConfig), config);
-  act(() => {
+  defaultGlobalConfig$1 = Object.assign(Object.assign({}, defaultGlobalConfig$1), config);
+  act$1(() => {
     var _a;
     (_a = message === null || message === void 0 ? void 0 : message.sync) === null || _a === void 0 ? void 0 : _a.call(message);
   });
 }
-function open(config) {
+function open$1(config) {
   const result = wrapPromiseFn((resolve2) => {
     let closeFn;
     const task = {
@@ -59852,10 +60433,10 @@ function open(config) {
         closeFn = fn;
       }
     };
-    taskQueue.push(task);
+    taskQueue$1.push(task);
     return () => {
       if (closeFn) {
-        act(() => {
+        act$1(() => {
           closeFn();
         });
       } else {
@@ -59863,7 +60444,7 @@ function open(config) {
       }
     };
   });
-  flushNotice();
+  flushNotice$1();
   return result;
 }
 function typeOpen(type4, args) {
@@ -59877,10 +60458,10 @@ function typeOpen(type4, args) {
         closeFn = fn;
       }
     };
-    taskQueue.push(task);
+    taskQueue$1.push(task);
     return () => {
       if (closeFn) {
-        act(() => {
+        act$1(() => {
           closeFn();
         });
       } else {
@@ -59888,34 +60469,34 @@ function typeOpen(type4, args) {
       }
     };
   });
-  flushNotice();
+  flushNotice$1();
   return result;
 }
-function destroy(key) {
-  taskQueue.push({
+function destroy$1(key) {
+  taskQueue$1.push({
     type: "destroy",
     key
   });
-  flushNotice();
+  flushNotice$1();
 }
-const methods = ["success", "info", "warning", "error", "loading"];
-const baseStaticMethods = {
-  open,
-  destroy,
+const methods$1 = ["success", "info", "warning", "error", "loading"];
+const baseStaticMethods$1 = {
+  open: open$1,
+  destroy: destroy$1,
   config: setMessageGlobalConfig,
   useMessage,
-  _InternalPanelDoNotUseOrYouWillBeFired: PurePanel$d
+  _InternalPanelDoNotUseOrYouWillBeFired: PurePanel$f
 };
-const staticMethods = baseStaticMethods;
-methods.forEach((type4) => {
-  staticMethods[type4] = function() {
+const staticMethods$1 = baseStaticMethods$1;
+methods$1.forEach((type4) => {
+  staticMethods$1[type4] = function() {
     for (var _len = arguments.length, args = new Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
     return typeOpen(type4, args);
   };
 });
-const message$1 = staticMethods;
+const message$1 = staticMethods$1;
 var __rest$j = globalThis && globalThis.__rest || function(s, e2) {
   var t2 = {};
   for (var p2 in s)
@@ -59943,7 +60524,7 @@ const PurePanel$2 = (props) => {
   } = reactExports.useContext(ConfigContext);
   const rootPrefixCls = getPrefixCls();
   const prefixCls = customizePrefixCls || getPrefixCls("modal");
-  const [, hashId] = useStyle$A(prefixCls);
+  const [, hashId] = useStyle$B(prefixCls);
   const confirmPrefixCls = `${prefixCls}-confirm`;
   let additionalProps = {};
   if (type4) {
@@ -60004,6 +60585,167 @@ Modal.destroyAll = function destroyAllFn() {
 Modal.config = modalGlobalConfig;
 Modal._InternalPanelDoNotUseOrYouWillBeFired = PurePanel$3;
 const Modal$1 = Modal;
+let notification = null;
+let act = (callback2) => callback2();
+let taskQueue = [];
+let defaultGlobalConfig = {};
+function getGlobalContext() {
+  const {
+    prefixCls: globalPrefixCls2,
+    getContainer: globalGetContainer,
+    rtl,
+    maxCount,
+    top,
+    bottom
+  } = defaultGlobalConfig;
+  const mergedPrefixCls = globalPrefixCls2 !== null && globalPrefixCls2 !== void 0 ? globalPrefixCls2 : globalConfig().getPrefixCls("notification");
+  const mergedContainer = (globalGetContainer === null || globalGetContainer === void 0 ? void 0 : globalGetContainer()) || document.body;
+  return {
+    prefixCls: mergedPrefixCls,
+    container: mergedContainer,
+    rtl,
+    maxCount,
+    top,
+    bottom
+  };
+}
+const GlobalHolder = /* @__PURE__ */ reactExports.forwardRef((_2, ref) => {
+  const [prefixCls, setPrefixCls] = reactExports.useState();
+  const [container2, setContainer] = reactExports.useState();
+  const [maxCount, setMaxCount] = reactExports.useState();
+  const [rtl, setRTL] = reactExports.useState();
+  const [top, setTop] = reactExports.useState();
+  const [bottom, setBottom] = reactExports.useState();
+  const [api2, holder] = useInternalNotification({
+    prefixCls,
+    getContainer: () => container2,
+    maxCount,
+    rtl,
+    top,
+    bottom
+  });
+  const global2 = globalConfig();
+  const rootPrefixCls = global2.getRootPrefixCls();
+  const rootIconPrefixCls = global2.getIconPrefixCls();
+  const theme2 = global2.getTheme();
+  const sync = () => {
+    const {
+      prefixCls: nextGlobalPrefixCls,
+      container: nextGlobalContainer,
+      maxCount: nextGlobalMaxCount,
+      rtl: nextGlobalRTL,
+      top: nextTop,
+      bottom: nextBottom
+    } = getGlobalContext();
+    setPrefixCls(nextGlobalPrefixCls);
+    setContainer(nextGlobalContainer);
+    setMaxCount(nextGlobalMaxCount);
+    setRTL(nextGlobalRTL);
+    setTop(nextTop);
+    setBottom(nextBottom);
+  };
+  reactExports.useEffect(sync, []);
+  reactExports.useImperativeHandle(ref, () => {
+    const instance = Object.assign({}, api2);
+    Object.keys(instance).forEach((method4) => {
+      instance[method4] = function() {
+        sync();
+        return api2[method4].apply(api2, arguments);
+      };
+    });
+    return {
+      instance,
+      sync
+    };
+  });
+  return /* @__PURE__ */ reactExports.createElement(ConfigProvider$1, {
+    prefixCls: rootPrefixCls,
+    iconPrefixCls: rootIconPrefixCls,
+    theme: theme2
+  }, holder);
+});
+function flushNotice() {
+  if (!notification) {
+    const holderFragment = document.createDocumentFragment();
+    const newNotification = {
+      fragment: holderFragment
+    };
+    notification = newNotification;
+    act(() => {
+      render(/* @__PURE__ */ reactExports.createElement(GlobalHolder, {
+        ref: (node2) => {
+          const {
+            instance,
+            sync
+          } = node2 || {};
+          Promise.resolve().then(() => {
+            if (!newNotification.instance && instance) {
+              newNotification.instance = instance;
+              newNotification.sync = sync;
+              flushNotice();
+            }
+          });
+        }
+      }), holderFragment);
+    });
+    return;
+  }
+  if (!notification.instance) {
+    return;
+  }
+  taskQueue.forEach((task) => {
+    switch (task.type) {
+      case "open": {
+        act(() => {
+          notification.instance.open(Object.assign(Object.assign({}, defaultGlobalConfig), task.config));
+        });
+        break;
+      }
+      case "destroy":
+        act(() => {
+          notification === null || notification === void 0 ? void 0 : notification.instance.destroy(task.key);
+        });
+        break;
+    }
+  });
+  taskQueue = [];
+}
+function setNotificationGlobalConfig(config) {
+  defaultGlobalConfig = Object.assign(Object.assign({}, defaultGlobalConfig), config);
+  act(() => {
+    var _a;
+    (_a = notification === null || notification === void 0 ? void 0 : notification.sync) === null || _a === void 0 ? void 0 : _a.call(notification);
+  });
+}
+function open(config) {
+  taskQueue.push({
+    type: "open",
+    config
+  });
+  flushNotice();
+}
+function destroy(key) {
+  taskQueue.push({
+    type: "destroy",
+    key
+  });
+  flushNotice();
+}
+const methods = ["success", "info", "warning", "error"];
+const baseStaticMethods = {
+  open,
+  destroy,
+  config: setNotificationGlobalConfig,
+  useNotification,
+  _InternalPanelDoNotUseOrYouWillBeFired: PurePanel$d
+};
+const staticMethods = baseStaticMethods;
+methods.forEach((type4) => {
+  staticMethods[type4] = (config) => open(Object.assign(Object.assign({}, config), {
+    type: type4
+  }));
+});
+const notification$1 = staticMethods;
 const genBaseStyle$5 = (token2) => {
   const {
     componentCls,
@@ -63859,7 +64601,7 @@ function parseHeaderRows(rootColumns) {
   }
   return rows;
 }
-function Header$6(props) {
+function Header$7(props) {
   var stickyOffsets = props.stickyOffsets, columns2 = props.columns, flattenColumns = props.flattenColumns, onHeaderRow = props.onHeaderRow;
   var _useContext = useContext(TableContext, ["prefixCls", "getComponent"]), prefixCls = _useContext.prefixCls, getComponent = _useContext.getComponent;
   var rows = reactExports.useMemo(function() {
@@ -63886,7 +64628,7 @@ function Header$6(props) {
     return rowNode;
   }));
 }
-const Header$7 = responseImmutable(Header$6);
+const Header$8 = responseImmutable(Header$7);
 var _excluded$6 = ["children"], _excluded2 = ["fixed"];
 function convertChildrenToColumns(children) {
   return toArray$a(children).filter(function(node2) {
@@ -64547,7 +65289,7 @@ function Table$3(tableProps) {
     }
   });
   var renderFixedHeaderTable = reactExports.useCallback(function(fixedHolderPassProps) {
-    return /* @__PURE__ */ reactExports.createElement(reactExports.Fragment, null, /* @__PURE__ */ reactExports.createElement(Header$7, fixedHolderPassProps), fixFooter === "top" && /* @__PURE__ */ reactExports.createElement(Footer$1, fixedHolderPassProps, summaryNode));
+    return /* @__PURE__ */ reactExports.createElement(reactExports.Fragment, null, /* @__PURE__ */ reactExports.createElement(Header$8, fixedHolderPassProps), fixFooter === "top" && /* @__PURE__ */ reactExports.createElement(Footer$1, fixedHolderPassProps, summaryNode));
   }, [fixFooter, summaryNode]);
   var renderFixedFooterTable = reactExports.useCallback(function(fixedHolderPassProps) {
     return /* @__PURE__ */ reactExports.createElement(Footer$1, fixedHolderPassProps, summaryNode);
@@ -64678,7 +65420,7 @@ function Table$3(tableProps) {
       style: _objectSpread2(_objectSpread2({}, scrollTableStyle), {}, {
         tableLayout: mergedTableLayout
       })
-    }, ariaProps), captionElement, bodyColGroup, showHeader !== false && /* @__PURE__ */ reactExports.createElement(Header$7, _extends$1({}, headerProps, columnContext)), bodyTable, summaryNode && /* @__PURE__ */ reactExports.createElement(Footer$1, {
+    }, ariaProps), captionElement, bodyColGroup, showHeader !== false && /* @__PURE__ */ reactExports.createElement(Header$8, _extends$1({}, headerProps, columnContext)), bodyTable, summaryNode && /* @__PURE__ */ reactExports.createElement(Footer$1, {
       stickyOffsets,
       flattenColumns,
       columns: columns2
@@ -71482,13 +72224,13 @@ const Operation = (props) => {
     size: "small",
     disabled: disabled || !rightActive,
     onClick: moveToRight,
-    icon: direction !== "rtl" ? /* @__PURE__ */ reactExports.createElement(RightOutlined$1, null) : /* @__PURE__ */ reactExports.createElement(LeftOutlined$1, null)
+    icon: direction !== "rtl" ? /* @__PURE__ */ reactExports.createElement(RightOutlined$1, null) : /* @__PURE__ */ reactExports.createElement(LeftOutlined$3, null)
   }, rightArrowText), !oneWay && /* @__PURE__ */ reactExports.createElement(Button$2, {
     type: "primary",
     size: "small",
     disabled: disabled || !leftActive,
     onClick: moveToLeft,
-    icon: direction !== "rtl" ? /* @__PURE__ */ reactExports.createElement(LeftOutlined$1, null) : /* @__PURE__ */ reactExports.createElement(RightOutlined$1, null)
+    icon: direction !== "rtl" ? /* @__PURE__ */ reactExports.createElement(LeftOutlined$3, null) : /* @__PURE__ */ reactExports.createElement(RightOutlined$1, null)
   }, leftArrowText));
 };
 const Operation$1 = Operation;
@@ -73223,12 +73965,12 @@ const Link = /* @__PURE__ */ reactExports.forwardRef((_a, ref) => {
   }));
 });
 const Link$1 = Link;
-const Paragraph$6 = /* @__PURE__ */ reactExports.forwardRef((props, ref) => /* @__PURE__ */ reactExports.createElement(Base$1, Object.assign({
+const Paragraph$a = /* @__PURE__ */ reactExports.forwardRef((props, ref) => /* @__PURE__ */ reactExports.createElement(Base$1, Object.assign({
   ref
 }, props, {
   component: "div"
 })));
-const Paragraph$7 = Paragraph$6;
+const Paragraph$b = Paragraph$a;
 var __rest$4 = globalThis && globalThis.__rest || function(s, e2) {
   var t2 = {};
   for (var p2 in s)
@@ -73241,7 +73983,7 @@ var __rest$4 = globalThis && globalThis.__rest || function(s, e2) {
     }
   return t2;
 };
-const Text$9 = (_a, ref) => {
+const Text$b = (_a, ref) => {
   var {
     ellipsis
   } = _a, restProps = __rest$4(_a, ["ellipsis"]);
@@ -73258,7 +74000,7 @@ const Text$9 = (_a, ref) => {
     component: "span"
   }));
 };
-const Text$a = /* @__PURE__ */ reactExports.forwardRef(Text$9);
+const Text$c = /* @__PURE__ */ reactExports.forwardRef(Text$b);
 var __rest$3 = globalThis && globalThis.__rest || function(s, e2) {
   var t2 = {};
   for (var p2 in s)
@@ -73272,7 +74014,7 @@ var __rest$3 = globalThis && globalThis.__rest || function(s, e2) {
   return t2;
 };
 const TITLE_ELE_LIST = [1, 2, 3, 4, 5];
-const Title$e = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
+const Title$l = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
   const {
     level = 1
   } = props, restProps = __rest$3(props, ["level"]);
@@ -73288,12 +74030,12 @@ const Title$e = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     component
   }));
 });
-const Title$f = Title$e;
+const Title$m = Title$l;
 const Typography = OriginTypography;
-Typography.Text = Text$a;
+Typography.Text = Text$c;
 Typography.Link = Link$1;
-Typography.Title = Title$f;
-Typography.Paragraph = Paragraph$7;
+Typography.Title = Title$m;
+Typography.Paragraph = Paragraph$b;
 const Typography$1 = Typography;
 function getError(option, xhr) {
   var msg = "cannot ".concat(option.method, " ").concat(option.action, " ").concat(xhr.status, "'");
@@ -77211,8 +77953,8 @@ const setLogout = () => {
   localStorage.removeItem(TOKEN_KEY);
 };
 const api = axios$1.create({
-  baseURL: "https://api.peditz.com/api/v1/",
-  // baseURL: 'http://localhost:8000/api/v1/',
+  // baseURL: 'https://api.peditz.com/api/v1/',
+  baseURL: "http://localhost:8000/api/v1/",
   // baseURL: 'https://api-hml.peditz.com/api/v1/',
   headers: {
     "Content-Type": "application/json;charset=UTF-8"
@@ -77234,7 +77976,7 @@ api.interceptors.request.use(async (config) => {
   return config;
 });
 const logo$1 = "" + new URL("logo-green-24b4ae3d.png", import.meta.url).href;
-const { Paragraph: Paragraph$5 } = Typography$1;
+const { Paragraph: Paragraph$9 } = Typography$1;
 const LoginPage = () => {
   const [isLoading, setIsLoading] = reactExports.useState(false);
   const [error, setError] = reactExports.useState(null);
@@ -77266,7 +78008,7 @@ const LoginPage = () => {
       setIsLoading(false);
     });
   };
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(Container$n, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Box, { children: [
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Container$r, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Box, { children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx(
       Image$2,
       {
@@ -77277,9 +78019,9 @@ const LoginPage = () => {
         }
       }
     ),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(Paragraph$5, { children: "Seu negócio ainda não faz parte da Peditz?" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(Paragraph$9, { children: "Seu negócio ainda não faz parte da Peditz?" }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(
-      Paragraph$5,
+      Paragraph$9,
       {
         strong: true,
         style: {
@@ -77378,7 +78120,7 @@ const LoginPage = () => {
     )
   ] }) });
 };
-const Container$m = st.div`
+const Container$q = st.div`
   width: 100%;
   height: calc(100vh - 50px);
   padding: 20px;
@@ -77481,6 +78223,9 @@ function IconBase$1(props) {
 }
 function FaWhatsapp(props) {
   return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 448 512" }, "child": [{ "tag": "path", "attr": { "d": "M380.9 97.1C339 55.1 283.2 32 223.9 32c-122.4 0-222 99.6-222 222 0 39.1 10.2 77.3 29.6 111L0 480l117.7-30.9c32.4 17.7 68.9 27 106.1 27h.1c122.3 0 224.1-99.6 224.1-222 0-59.3-25.2-115-67.1-157zm-157 341.6c-33.2 0-65.7-8.9-94-25.7l-6.7-4-69.8 18.3L72 359.2l-4.4-7c-18.5-29.4-28.2-63.3-28.2-98.2 0-101.7 82.8-184.5 184.6-184.5 49.3 0 95.6 19.2 130.4 54.1 34.8 34.9 56.2 81.2 56.1 130.5 0 101.8-84.9 184.6-186.6 184.6zm101.2-138.2c-5.5-2.8-32.8-16.2-37.9-18-5.1-1.9-8.8-2.8-12.5 2.8-3.7 5.6-14.3 18-17.6 21.8-3.2 3.7-6.5 4.2-12 1.4-32.6-16.3-54-29.1-75.5-66-5.7-9.8 5.7-9.1 16.3-30.3 1.8-3.7.9-6.9-.5-9.7-1.4-2.8-12.5-30.1-17.1-41.2-4.5-10.8-9.1-9.3-12.5-9.5-3.2-.2-6.9-.2-10.6-.2-3.7 0-9.7 1.4-14.8 6.9-5.1 5.6-19.4 19-19.4 46.3 0 27.3 19.9 53.7 22.6 57.4 2.8 3.7 39.1 59.7 94.8 83.8 35.2 15.2 49 16.5 66.6 13.9 10.7-1.6 32.8-13.4 37.4-26.4 4.6-13 4.6-24.1 3.2-26.4-1.3-2.5-5-3.9-10.5-6.6z" } }] })(props);
+}
+function FaBookOpen(props) {
+  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 576 512" }, "child": [{ "tag": "path", "attr": { "d": "M542.22 32.05c-54.8 3.11-163.72 14.43-230.96 55.59-4.64 2.84-7.27 7.89-7.27 13.17v363.87c0 11.55 12.63 18.85 23.28 13.49 69.18-34.82 169.23-44.32 218.7-46.92 16.89-.89 30.02-14.43 30.02-30.66V62.75c.01-17.71-15.35-31.74-33.77-30.7zM264.73 87.64C197.5 46.48 88.58 35.17 33.78 32.05 15.36 31.01 0 45.04 0 62.75V400.6c0 16.24 13.13 29.78 30.02 30.66 49.49 2.6 149.59 12.11 218.77 46.95 10.62 5.35 23.21-1.94 23.21-13.46V100.63c0-5.29-2.62-10.14-7.27-12.99z" } }] })(props);
 }
 function FaBookReader(props) {
   return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 512 512" }, "child": [{ "tag": "path", "attr": { "d": "M352 96c0-53.02-42.98-96-96-96s-96 42.98-96 96 42.98 96 96 96 96-42.98 96-96zM233.59 241.1c-59.33-36.32-155.43-46.3-203.79-49.05C13.55 191.13 0 203.51 0 219.14v222.8c0 14.33 11.59 26.28 26.49 27.05 43.66 2.29 131.99 10.68 193.04 41.43 9.37 4.72 20.48-1.71 20.48-11.87V252.56c-.01-4.67-2.32-8.95-6.42-11.46zm248.61-49.05c-48.35 2.74-144.46 12.73-203.78 49.05-4.1 2.51-6.41 6.96-6.41 11.63v245.79c0 10.19 11.14 16.63 20.54 11.9 61.04-30.72 149.32-39.11 192.97-41.4 14.9-.78 26.49-12.73 26.49-27.06V219.14c-.01-15.63-13.56-28.01-29.81-27.09z" } }] })(props);
@@ -77835,6 +78580,31 @@ var BlockOutlined = function BlockOutlined2(props, ref) {
   }));
 };
 const BlockOutlined$1 = /* @__PURE__ */ reactExports.forwardRef(BlockOutlined);
+var BookOutlined$2 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M832 64H192c-17.7 0-32 14.3-32 32v832c0 17.7 14.3 32 32 32h640c17.7 0 32-14.3 32-32V96c0-17.7-14.3-32-32-32zm-260 72h96v209.9L621.5 312 572 347.4V136zm220 752H232V136h280v296.9c0 3.3 1 6.6 3 9.3a15.9 15.9 0 0022.3 3.7l83.8-59.9 81.4 59.4c2.7 2 6 3.1 9.4 3.1 8.8 0 16-7.2 16-16V136h64v752z" } }] }, "name": "book", "theme": "outlined" };
+const BookOutlinedSvg = BookOutlined$2;
+var BookOutlined = function BookOutlined2(props, ref) {
+  return /* @__PURE__ */ reactExports.createElement(AntdIcon, _extends$1({}, props, {
+    ref,
+    icon: BookOutlinedSvg
+  }));
+};
+const BookOutlined$1 = /* @__PURE__ */ reactExports.forwardRef(BookOutlined);
+var CalendarOutlined2 = function CalendarOutlined3(props, ref) {
+  return /* @__PURE__ */ reactExports.createElement(AntdIcon, _extends$1({}, props, {
+    ref,
+    icon: CalendarOutlinedSvg
+  }));
+};
+const CalendarOutlined$1 = /* @__PURE__ */ reactExports.forwardRef(CalendarOutlined2);
+var CameraOutlined$2 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M864 248H728l-32.4-90.8a32.07 32.07 0 00-30.2-21.2H358.6c-13.5 0-25.6 8.5-30.1 21.2L296 248H160c-44.2 0-80 35.8-80 80v456c0 44.2 35.8 80 80 80h704c44.2 0 80-35.8 80-80V328c0-44.2-35.8-80-80-80zm8 536c0 4.4-3.6 8-8 8H160c-4.4 0-8-3.6-8-8V328c0-4.4 3.6-8 8-8h186.7l17.1-47.8 22.9-64.2h250.5l22.9 64.2 17.1 47.8H864c4.4 0 8 3.6 8 8v456zM512 384c-88.4 0-160 71.6-160 160s71.6 160 160 160 160-71.6 160-160-71.6-160-160-160zm0 256c-53 0-96-43-96-96s43-96 96-96 96 43 96 96-43 96-96 96z" } }] }, "name": "camera", "theme": "outlined" };
+const CameraOutlinedSvg = CameraOutlined$2;
+var CameraOutlined = function CameraOutlined2(props, ref) {
+  return /* @__PURE__ */ reactExports.createElement(AntdIcon, _extends$1({}, props, {
+    ref,
+    icon: CameraOutlinedSvg
+  }));
+};
+const CameraOutlined$1 = /* @__PURE__ */ reactExports.forwardRef(CameraOutlined);
 var CaretRightOutlined$2 = { "icon": { "tag": "svg", "attrs": { "viewBox": "0 0 1024 1024", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M715.8 493.5L335 165.1c-14.2-12.2-35-1.2-35 18.5v656.8c0 19.7 20.8 30.7 35 18.5l380.8-328.4c10.9-9.4 10.9-27.6 0-37z" } }] }, "name": "caret-right", "theme": "outlined" };
 const CaretRightOutlinedSvg = CaretRightOutlined$2;
 var CaretRightOutlined = function CaretRightOutlined2(props, ref) {
@@ -77922,6 +78692,31 @@ var ExclamationCircleFilled2 = function ExclamationCircleFilled3(props, ref) {
   }));
 };
 const ExclamationCircleFilled$1 = /* @__PURE__ */ reactExports.forwardRef(ExclamationCircleFilled2);
+var ExportOutlined$2 = { "icon": { "tag": "svg", "attrs": { "fill-rule": "evenodd", "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M880 912H144c-17.7 0-32-14.3-32-32V144c0-17.7 14.3-32 32-32h360c4.4 0 8 3.6 8 8v56c0 4.4-3.6 8-8 8H184v656h656V520c0-4.4 3.6-8 8-8h56c4.4 0 8 3.6 8 8v360c0 17.7-14.3 32-32 32zM770.87 199.13l-52.2-52.2a8.01 8.01 0 014.7-13.6l179.4-21c5.1-.6 9.5 3.7 8.9 8.9l-21 179.4c-.8 6.6-8.9 9.4-13.6 4.7l-52.4-52.4-256.2 256.2a8.03 8.03 0 01-11.3 0l-42.4-42.4a8.03 8.03 0 010-11.3l256.1-256.3z" } }] }, "name": "export", "theme": "outlined" };
+const ExportOutlinedSvg = ExportOutlined$2;
+var ExportOutlined = function ExportOutlined2(props, ref) {
+  return /* @__PURE__ */ reactExports.createElement(AntdIcon, _extends$1({}, props, {
+    ref,
+    icon: ExportOutlinedSvg
+  }));
+};
+const ExportOutlined$1 = /* @__PURE__ */ reactExports.forwardRef(ExportOutlined);
+var FilePdfOutlined$2 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M531.3 574.4l.3-1.4c5.8-23.9 13.1-53.7 7.4-80.7-3.8-21.3-19.5-29.6-32.9-30.2-15.8-.7-29.9 8.3-33.4 21.4-6.6 24-.7 56.8 10.1 98.6-13.6 32.4-35.3 79.5-51.2 107.5-29.6 15.3-69.3 38.9-75.2 68.7-1.2 5.5.2 12.5 3.5 18.8 3.7 7 9.6 12.4 16.5 15 3 1.1 6.6 2 10.8 2 17.6 0 46.1-14.2 84.1-79.4 5.8-1.9 11.8-3.9 17.6-5.9 27.2-9.2 55.4-18.8 80.9-23.1 28.2 15.1 60.3 24.8 82.1 24.8 21.6 0 30.1-12.8 33.3-20.5 5.6-13.5 2.9-30.5-6.2-39.6-13.2-13-45.3-16.4-95.3-10.2-24.6-15-40.7-35.4-52.4-65.8zM421.6 726.3c-13.9 20.2-24.4 30.3-30.1 34.7 6.7-12.3 19.8-25.3 30.1-34.7zm87.6-235.5c5.2 8.9 4.5 35.8.5 49.4-4.9-19.9-5.6-48.1-2.7-51.4.8.1 1.5.7 2.2 2zm-1.6 120.5c10.7 18.5 24.2 34.4 39.1 46.2-21.6 4.9-41.3 13-58.9 20.2-4.2 1.7-8.3 3.4-12.3 5 13.3-24.1 24.4-51.4 32.1-71.4zm155.6 65.5c.1.2.2.5-.4.9h-.2l-.2.3c-.8.5-9 5.3-44.3-8.6 40.6-1.9 45 7.3 45.1 7.4zm191.4-388.2L639.4 73.4c-6-6-14.1-9.4-22.6-9.4H192c-17.7 0-32 14.3-32 32v832c0 17.7 14.3 32 32 32h640c17.7 0 32-14.3 32-32V311.3c0-8.5-3.4-16.7-9.4-22.7zM790.2 326H602V137.8L790.2 326zm1.8 562H232V136h302v216a42 42 0 0042 42h216v494z" } }] }, "name": "file-pdf", "theme": "outlined" };
+const FilePdfOutlinedSvg = FilePdfOutlined$2;
+var FilePdfOutlined = function FilePdfOutlined2(props, ref) {
+  return /* @__PURE__ */ reactExports.createElement(AntdIcon, _extends$1({}, props, {
+    ref,
+    icon: FilePdfOutlinedSvg
+  }));
+};
+const FilePdfOutlined$1 = /* @__PURE__ */ reactExports.forwardRef(FilePdfOutlined);
+var FileTextOutlined = function FileTextOutlined2(props, ref) {
+  return /* @__PURE__ */ reactExports.createElement(AntdIcon, _extends$1({}, props, {
+    ref,
+    icon: FileTextOutlinedSvg
+  }));
+};
+const FileTextOutlined$1 = /* @__PURE__ */ reactExports.forwardRef(FileTextOutlined);
 var FilterOutlined$2 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M880.1 154H143.9c-24.5 0-39.8 26.7-27.5 48L349 597.4V838c0 17.7 14.2 32 31.8 32h262.4c17.6 0 31.8-14.3 31.8-32V597.4L907.7 202c12.2-21.3-3.1-48-27.6-48zM603.4 798H420.6V642h182.9v156zm9.6-236.6l-9.5 16.6h-183l-9.5-16.6L212.7 226h598.6L613 561.4z" } }] }, "name": "filter", "theme": "outlined" };
 const FilterOutlinedSvg = FilterOutlined$2;
 var FilterOutlined = function FilterOutlined2(props, ref) {
@@ -77931,6 +78726,22 @@ var FilterOutlined = function FilterOutlined2(props, ref) {
   }));
 };
 const FilterOutlined$1 = /* @__PURE__ */ reactExports.forwardRef(FilterOutlined);
+var LeftOutlined2 = function LeftOutlined3(props, ref) {
+  return /* @__PURE__ */ reactExports.createElement(AntdIcon, _extends$1({}, props, {
+    ref,
+    icon: LeftOutlinedSvg
+  }));
+};
+const LeftOutlined$1 = /* @__PURE__ */ reactExports.forwardRef(LeftOutlined2);
+var LinkOutlined$2 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M574 665.4a8.03 8.03 0 00-11.3 0L446.5 781.6c-53.8 53.8-144.6 59.5-204 0-59.5-59.5-53.8-150.2 0-204l116.2-116.2c3.1-3.1 3.1-8.2 0-11.3l-39.8-39.8a8.03 8.03 0 00-11.3 0L191.4 526.5c-84.6 84.6-84.6 221.5 0 306s221.5 84.6 306 0l116.2-116.2c3.1-3.1 3.1-8.2 0-11.3L574 665.4zm258.6-474c-84.6-84.6-221.5-84.6-306 0L410.3 307.6a8.03 8.03 0 000 11.3l39.7 39.7c3.1 3.1 8.2 3.1 11.3 0l116.2-116.2c53.8-53.8 144.6-59.5 204 0 59.5 59.5 53.8 150.2 0 204L665.3 562.6a8.03 8.03 0 000 11.3l39.8 39.8c3.1 3.1 8.2 3.1 11.3 0l116.2-116.2c84.5-84.6 84.5-221.5 0-306.1zM610.1 372.3a8.03 8.03 0 00-11.3 0L372.3 598.7a8.03 8.03 0 000 11.3l39.6 39.6c3.1 3.1 8.2 3.1 11.3 0l226.4-226.4c3.1-3.1 3.1-8.2 0-11.3l-39.5-39.6z" } }] }, "name": "link", "theme": "outlined" };
+const LinkOutlinedSvg = LinkOutlined$2;
+var LinkOutlined = function LinkOutlined2(props, ref) {
+  return /* @__PURE__ */ reactExports.createElement(AntdIcon, _extends$1({}, props, {
+    ref,
+    icon: LinkOutlinedSvg
+  }));
+};
+const LinkOutlined$1 = /* @__PURE__ */ reactExports.forwardRef(LinkOutlined);
 var LogoutOutlined$2 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M868 732h-70.3c-4.8 0-9.3 2.1-12.3 5.8-7 8.5-14.5 16.7-22.4 24.5a353.84 353.84 0 01-112.7 75.9A352.8 352.8 0 01512.4 866c-47.9 0-94.3-9.4-137.9-27.8a353.84 353.84 0 01-112.7-75.9 353.28 353.28 0 01-76-112.5C167.3 606.2 158 559.9 158 512s9.4-94.2 27.8-137.8c17.8-42.1 43.4-80 76-112.5s70.5-58.1 112.7-75.9c43.6-18.4 90-27.8 137.9-27.8 47.9 0 94.3 9.3 137.9 27.8 42.2 17.8 80.1 43.4 112.7 75.9 7.9 7.9 15.3 16.1 22.4 24.5 3 3.7 7.6 5.8 12.3 5.8H868c6.3 0 10.2-7 6.7-12.3C798 160.5 663.8 81.6 511.3 82 271.7 82.6 79.6 277.1 82 516.4 84.4 751.9 276.2 942 512.4 942c152.1 0 285.7-78.8 362.3-197.7 3.4-5.3-.4-12.3-6.7-12.3zm88.9-226.3L815 393.7c-5.3-4.2-13-.4-13 6.3v76H488c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h314v76c0 6.7 7.8 10.5 13 6.3l141.9-112a8 8 0 000-12.6z" } }] }, "name": "logout", "theme": "outlined" };
 const LogoutOutlinedSvg = LogoutOutlined$2;
 var LogoutOutlined = function LogoutOutlined2(props, ref) {
@@ -77967,6 +78778,24 @@ var MinusOutlined = function MinusOutlined2(props, ref) {
   }));
 };
 const MinusOutlined$1 = /* @__PURE__ */ reactExports.forwardRef(MinusOutlined);
+var MobileOutlined$2 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M744 62H280c-35.3 0-64 28.7-64 64v768c0 35.3 28.7 64 64 64h464c35.3 0 64-28.7 64-64V126c0-35.3-28.7-64-64-64zm-8 824H288V134h448v752zM472 784a40 40 0 1080 0 40 40 0 10-80 0z" } }] }, "name": "mobile", "theme": "outlined" };
+const MobileOutlinedSvg = MobileOutlined$2;
+var MobileOutlined = function MobileOutlined2(props, ref) {
+  return /* @__PURE__ */ reactExports.createElement(AntdIcon, _extends$1({}, props, {
+    ref,
+    icon: MobileOutlinedSvg
+  }));
+};
+const MobileOutlined$1 = /* @__PURE__ */ reactExports.forwardRef(MobileOutlined);
+var PhoneOutlined$2 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M877.1 238.7L770.6 132.3c-13-13-30.4-20.3-48.8-20.3s-35.8 7.2-48.8 20.3L558.3 246.8c-13 13-20.3 30.5-20.3 48.9 0 18.5 7.2 35.8 20.3 48.9l89.6 89.7a405.46 405.46 0 01-86.4 127.3c-36.7 36.9-79.6 66-127.2 86.6l-89.6-89.7c-13-13-30.4-20.3-48.8-20.3a68.2 68.2 0 00-48.8 20.3L132.3 673c-13 13-20.3 30.5-20.3 48.9 0 18.5 7.2 35.8 20.3 48.9l106.4 106.4c22.2 22.2 52.8 34.9 84.2 34.9 6.5 0 12.8-.5 19.2-1.6 132.4-21.8 263.8-92.3 369.9-198.3C818 606 888.4 474.6 910.4 342.1c6.3-37.6-6.3-76.3-33.3-103.4zm-37.6 91.5c-19.5 117.9-82.9 235.5-178.4 331s-213 158.9-330.9 178.4c-14.8 2.5-30-2.5-40.8-13.2L184.9 721.9 295.7 611l119.8 120 .9.9 21.6-8a481.29 481.29 0 00285.7-285.8l8-21.6-120.8-120.7 110.8-110.9 104.5 104.5c10.8 10.8 15.8 26 13.3 40.8z" } }] }, "name": "phone", "theme": "outlined" };
+const PhoneOutlinedSvg = PhoneOutlined$2;
+var PhoneOutlined = function PhoneOutlined2(props, ref) {
+  return /* @__PURE__ */ reactExports.createElement(AntdIcon, _extends$1({}, props, {
+    ref,
+    icon: PhoneOutlinedSvg
+  }));
+};
+const PhoneOutlined$1 = /* @__PURE__ */ reactExports.forwardRef(PhoneOutlined);
 var PieChartOutlined$2 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M864 518H506V160c0-4.4-3.6-8-8-8h-26a398.46 398.46 0 00-282.8 117.1 398.19 398.19 0 00-85.7 127.1A397.61 397.61 0 0072 552a398.46 398.46 0 00117.1 282.8c36.7 36.7 79.5 65.6 127.1 85.7A397.61 397.61 0 00472 952a398.46 398.46 0 00282.8-117.1c36.7-36.7 65.6-79.5 85.7-127.1A397.61 397.61 0 00872 552v-26c0-4.4-3.6-8-8-8zM705.7 787.8A331.59 331.59 0 01470.4 884c-88.1-.4-170.9-34.9-233.2-97.2C174.5 724.1 140 640.7 140 552c0-88.7 34.5-172.1 97.2-234.8 54.6-54.6 124.9-87.9 200.8-95.5V586h364.3c-7.7 76.3-41.3 147-96.6 201.8zM952 462.4l-2.6-28.2c-8.5-92.1-49.4-179-115.2-244.6A399.4 399.4 0 00589 74.6L560.7 72c-4.7-.4-8.7 3.2-8.7 7.9V464c0 4.4 3.6 8 8 8l384-1c4.7 0 8.4-4 8-8.6zm-332.2-58.2V147.6a332.24 332.24 0 01166.4 89.8c45.7 45.6 77 103.6 90 166.1l-256.4.7z" } }] }, "name": "pie-chart", "theme": "outlined" };
 const PieChartOutlinedSvg = PieChartOutlined$2;
 var PieChartOutlined = function PieChartOutlined2(props, ref) {
@@ -77983,15 +78812,6 @@ var PlusOutlined2 = function PlusOutlined3(props, ref) {
   }));
 };
 const PlusOutlined$1 = /* @__PURE__ */ reactExports.forwardRef(PlusOutlined2);
-var PoweroffOutlined$2 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M705.6 124.9a8 8 0 00-11.6 7.2v64.2c0 5.5 2.9 10.6 7.5 13.6a352.2 352.2 0 0162.2 49.8c32.7 32.8 58.4 70.9 76.3 113.3a355 355 0 0127.9 138.7c0 48.1-9.4 94.8-27.9 138.7a355.92 355.92 0 01-76.3 113.3 353.06 353.06 0 01-113.2 76.4c-43.8 18.6-90.5 28-138.5 28s-94.7-9.4-138.5-28a353.06 353.06 0 01-113.2-76.4A355.92 355.92 0 01184 650.4a355 355 0 01-27.9-138.7c0-48.1 9.4-94.8 27.9-138.7 17.9-42.4 43.6-80.5 76.3-113.3 19-19 39.8-35.6 62.2-49.8 4.7-2.9 7.5-8.1 7.5-13.6V132c0-6-6.3-9.8-11.6-7.2C178.5 195.2 82 339.3 80 506.3 77.2 745.1 272.5 943.5 511.2 944c239 .5 432.8-193.3 432.8-432.4 0-169.2-97-315.7-238.4-386.7zM480 560h64c4.4 0 8-3.6 8-8V88c0-4.4-3.6-8-8-8h-64c-4.4 0-8 3.6-8 8v464c0 4.4 3.6 8 8 8z" } }] }, "name": "poweroff", "theme": "outlined" };
-const PoweroffOutlinedSvg = PoweroffOutlined$2;
-var PoweroffOutlined = function PoweroffOutlined2(props, ref) {
-  return /* @__PURE__ */ reactExports.createElement(AntdIcon, _extends$1({}, props, {
-    ref,
-    icon: PoweroffOutlinedSvg
-  }));
-};
-const PoweroffOutlined$1 = /* @__PURE__ */ reactExports.forwardRef(PoweroffOutlined);
 var PrinterOutlined$2 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M820 436h-40c-4.4 0-8 3.6-8 8v40c0 4.4 3.6 8 8 8h40c4.4 0 8-3.6 8-8v-40c0-4.4-3.6-8-8-8zm32-104H732V120c0-4.4-3.6-8-8-8H300c-4.4 0-8 3.6-8 8v212H172c-44.2 0-80 35.8-80 80v328c0 17.7 14.3 32 32 32h168v132c0 4.4 3.6 8 8 8h424c4.4 0 8-3.6 8-8V772h168c17.7 0 32-14.3 32-32V412c0-44.2-35.8-80-80-80zM360 180h304v152H360V180zm304 664H360V568h304v276zm200-140H732V500H292v204H160V412c0-6.6 5.4-12 12-12h680c6.6 0 12 5.4 12 12v292z" } }] }, "name": "printer", "theme": "outlined" };
 const PrinterOutlinedSvg = PrinterOutlined$2;
 var PrinterOutlined = function PrinterOutlined2(props, ref) {
@@ -78024,6 +78844,15 @@ var ReloadOutlined = function ReloadOutlined2(props, ref) {
   }));
 };
 const ReloadOutlined$1 = /* @__PURE__ */ reactExports.forwardRef(ReloadOutlined);
+var SaveOutlined$2 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M893.3 293.3L730.7 130.7c-7.5-7.5-16.7-13-26.7-16V112H144c-17.7 0-32 14.3-32 32v736c0 17.7 14.3 32 32 32h736c17.7 0 32-14.3 32-32V338.5c0-17-6.7-33.2-18.7-45.2zM384 184h256v104H384V184zm456 656H184V184h136v136c0 17.7 14.3 32 32 32h320c17.7 0 32-14.3 32-32V205.8l136 136V840zM512 442c-79.5 0-144 64.5-144 144s64.5 144 144 144 144-64.5 144-144-64.5-144-144-144zm0 224c-44.2 0-80-35.8-80-80s35.8-80 80-80 80 35.8 80 80-35.8 80-80 80z" } }] }, "name": "save", "theme": "outlined" };
+const SaveOutlinedSvg = SaveOutlined$2;
+var SaveOutlined = function SaveOutlined2(props, ref) {
+  return /* @__PURE__ */ reactExports.createElement(AntdIcon, _extends$1({}, props, {
+    ref,
+    icon: SaveOutlinedSvg
+  }));
+};
+const SaveOutlined$1 = /* @__PURE__ */ reactExports.forwardRef(SaveOutlined);
 var ScanOutlined$2 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M136 384h56c4.4 0 8-3.6 8-8V200h176c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8H196c-37.6 0-68 30.4-68 68v180c0 4.4 3.6 8 8 8zm512-184h176v176c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8V196c0-37.6-30.4-68-68-68H648c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zM376 824H200V648c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v180c0 37.6 30.4 68 68 68h180c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8zm512-184h-56c-4.4 0-8 3.6-8 8v176H648c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h180c37.6 0 68-30.4 68-68V648c0-4.4-3.6-8-8-8zm16-164H120c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8h784c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8z" } }] }, "name": "scan", "theme": "outlined" };
 const ScanOutlinedSvg = ScanOutlined$2;
 var ScanOutlined = function ScanOutlined2(props, ref) {
@@ -78033,6 +78862,15 @@ var ScanOutlined = function ScanOutlined2(props, ref) {
   }));
 };
 const ScanOutlined$1 = /* @__PURE__ */ reactExports.forwardRef(ScanOutlined);
+var ShopOutlined$2 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M882 272.1V144c0-17.7-14.3-32-32-32H174c-17.7 0-32 14.3-32 32v128.1c-16.7 1-30 14.9-30 31.9v131.7a177 177 0 0014.4 70.4c4.3 10.2 9.6 19.8 15.6 28.9v345c0 17.6 14.3 32 32 32h676c17.7 0 32-14.3 32-32V535a175 175 0 0015.6-28.9c9.5-22.3 14.4-46 14.4-70.4V304c0-17-13.3-30.9-30-31.9zM214 184h596v88H214v-88zm362 656.1H448V736h128v104.1zm234 0H640V704c0-17.7-14.3-32-32-32H416c-17.7 0-32 14.3-32 32v136.1H214V597.9c2.9 1.4 5.9 2.8 9 4 22.3 9.4 46 14.1 70.4 14.1s48-4.7 70.4-14.1c13.8-5.8 26.8-13.2 38.7-22.1.2-.1.4-.1.6 0a180.4 180.4 0 0038.7 22.1c22.3 9.4 46 14.1 70.4 14.1 24.4 0 48-4.7 70.4-14.1 13.8-5.8 26.8-13.2 38.7-22.1.2-.1.4-.1.6 0a180.4 180.4 0 0038.7 22.1c22.3 9.4 46 14.1 70.4 14.1 24.4 0 48-4.7 70.4-14.1 3-1.3 6-2.6 9-4v242.2zm30-404.4c0 59.8-49 108.3-109.3 108.3-40.8 0-76.4-22.1-95.2-54.9-2.9-5-8.1-8.1-13.9-8.1h-.6c-5.7 0-11 3.1-13.9 8.1A109.24 109.24 0 01512 544c-40.7 0-76.2-22-95-54.7-3-5.1-8.4-8.3-14.3-8.3s-11.4 3.2-14.3 8.3a109.63 109.63 0 01-95.1 54.7C233 544 184 495.5 184 435.7v-91.2c0-.3.2-.5.5-.5h655c.3 0 .5.2.5.5v91.2z" } }] }, "name": "shop", "theme": "outlined" };
+const ShopOutlinedSvg = ShopOutlined$2;
+var ShopOutlined = function ShopOutlined2(props, ref) {
+  return /* @__PURE__ */ reactExports.createElement(AntdIcon, _extends$1({}, props, {
+    ref,
+    icon: ShopOutlinedSvg
+  }));
+};
+const ShopOutlined$1 = /* @__PURE__ */ reactExports.forwardRef(ShopOutlined);
 var ShoppingOutlined$2 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M832 312H696v-16c0-101.6-82.4-184-184-184s-184 82.4-184 184v16H192c-17.7 0-32 14.3-32 32v536c0 17.7 14.3 32 32 32h640c17.7 0 32-14.3 32-32V344c0-17.7-14.3-32-32-32zm-432-16c0-61.9 50.1-112 112-112s112 50.1 112 112v16H400v-16zm392 544H232V384h96v88c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-88h224v88c0 4.4 3.6 8 8 8h56c4.4 0 8-3.6 8-8v-88h96v456z" } }] }, "name": "shopping", "theme": "outlined" };
 const ShoppingOutlinedSvg = ShoppingOutlined$2;
 var ShoppingOutlined = function ShoppingOutlined2(props, ref) {
@@ -78379,7 +79217,7 @@ var dayjs_min = { exports: {} };
 })(dayjs_min);
 var dayjs_minExports = dayjs_min.exports;
 const dayjs = /* @__PURE__ */ getDefaultExportFromCjs(dayjs_minExports);
-const { Title: Title$d, Paragraph: Paragraph$4 } = Typography$1;
+const { Title: Title$k, Paragraph: Paragraph$8 } = Typography$1;
 const Dashboard = () => {
   const [loadingP, setLoadingP] = React.useState(false);
   const [payments, setPayments] = React.useState([]);
@@ -78400,7 +79238,7 @@ const Dashboard = () => {
       setLoadingP(false);
     });
   }, []);
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(Container$m, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(RowMetrics$1, { children: [
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Container$q, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(RowMetrics$1, { children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs(Card$1, { children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs(CardTitle$1, { children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -78416,7 +79254,7 @@ const Dashboard = () => {
             }
           }
         ) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(Title$d, { level: 5, style: { margin: "0", color: "#A0AEC0" }, italic: true, children: "Pedidos Recebidos" })
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Title$k, { level: 5, style: { margin: "0", color: "#A0AEC0" }, italic: true, children: "Pedidos Recebidos" })
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs(
         "div",
@@ -78428,7 +79266,7 @@ const Dashboard = () => {
             gap: "0.5rem"
           },
           children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Paragraph$4, { strong: true, style: { margin: "0", fontSize: "1.75rem", color: "#0583F2" }, children: "0" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Paragraph$8, { strong: true, style: { margin: "0", fontSize: "1.75rem", color: "#0583F2" }, children: "0" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx(
               Statistic$1,
               {
@@ -78458,7 +79296,7 @@ const Dashboard = () => {
             }
           }
         ) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(Title$d, { level: 5, style: { margin: "0", color: "#A0AEC0" }, italic: true, children: "Rendimento Total" })
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Title$k, { level: 5, style: { margin: "0", color: "#A0AEC0" }, italic: true, children: "Rendimento Total" })
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs(
         "div",
@@ -78470,7 +79308,7 @@ const Dashboard = () => {
             gap: "0.5rem"
           },
           children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Paragraph$4, { strong: true, style: { margin: "0", fontSize: "1.75rem", color: "#31AB56" }, children: formatCurrency(payments.reduce((acc, curr) => acc + Number(curr.total), 0)) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Paragraph$8, { strong: true, style: { margin: "0", fontSize: "1.75rem", color: "#31AB56" }, children: formatCurrency(payments.reduce((acc, curr) => acc + Number(curr.total), 0)) }),
             /* @__PURE__ */ jsxRuntimeExports.jsx(
               Statistic$1,
               {
@@ -78499,7 +79337,7 @@ const Dashboard = () => {
             }
           }
         ) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(Title$d, { level: 5, style: { margin: "0", color: "#A0AEC0" }, italic: true, children: "Visitas diárias" })
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Title$k, { level: 5, style: { margin: "0", color: "#A0AEC0" }, italic: true, children: "Visitas diárias" })
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs(
         "div",
@@ -78511,7 +79349,7 @@ const Dashboard = () => {
             gap: "0.5rem"
           },
           children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Paragraph$4, { strong: true, style: { margin: "0", fontSize: "1.75rem", color: "#DD6B20" }, children: "0" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Paragraph$8, { strong: true, style: { margin: "0", fontSize: "1.75rem", color: "#DD6B20" }, children: "0" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx(
               Statistic$1,
               {
@@ -78541,7 +79379,7 @@ const Dashboard = () => {
             }
           }
         ) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(Title$d, { level: 5, style: { margin: "0", color: "#A0AEC0" }, italic: true, children: "Gastos com estoque" })
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Title$k, { level: 5, style: { margin: "0", color: "#A0AEC0" }, italic: true, children: "Gastos com estoque" })
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs(
         "div",
@@ -78553,7 +79391,7 @@ const Dashboard = () => {
             gap: "0.5rem"
           },
           children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsxs(Paragraph$4, { strong: true, style: { margin: "0", fontSize: "1.75rem", color: "#8D6ADA" }, children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(Paragraph$8, { strong: true, style: { margin: "0", fontSize: "1.75rem", color: "#8D6ADA" }, children: [
               formatCurrency(0),
               " "
             ] }),
@@ -78573,7 +79411,7 @@ const Dashboard = () => {
     ] })
   ] }) });
 };
-const Container$l = st.div`
+const Container$p = st.div`
   width: 100%;
   padding: 20px 20px;
 `;
@@ -78828,7 +79666,7 @@ const CreateCommandModal = ({
     ] }) })
   ] });
 };
-const Container$k = st.div`
+const Container$o = st.div`
   width: 280px;
   height: auto;
   cursor: pointer;
@@ -78867,10 +79705,10 @@ st.div`
   justify-content: center;
   padding: 5px;
 `;
-const { Title: Title$c, Text: Text$8 } = Typography$1;
+const { Title: Title$j, Text: Text$a } = Typography$1;
 const CardBill = (props) => {
   const navigate = useNavigate();
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$k, { onClick: () => navigate(`/comandas/${props.data.id}`), children: [
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$o, { onClick: () => navigate(`/comandas/${props.data.id}`), children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs(InfoBill, { children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
         Avatar$1,
@@ -78882,18 +79720,18 @@ const CardBill = (props) => {
           icon: /* @__PURE__ */ jsxRuntimeExports.jsx(DollarOutlined$1, { style: { color: "#2FAA54" } })
         }
       ) }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(Title$c, { level: 3, children: props.data.number }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs(Text$8, { strong: true, style: { fontSize: "18px" }, children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Title$j, { level: 3, children: props.data.number }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(Text$a, { strong: true, style: { fontSize: "18px" }, children: [
         " ",
         "Mesa: ",
         props.data.table_datail.title
       ] }),
-      props.data.client_name && /* @__PURE__ */ jsxRuntimeExports.jsxs(Text$8, { strong: true, style: { fontSize: "18px" }, children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(Text$8, { underline: true, style: { fontSize: "18px" }, children: "Cliente:" }),
+      props.data.client_name && /* @__PURE__ */ jsxRuntimeExports.jsxs(Text$a, { strong: true, style: { fontSize: "18px" }, children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Text$a, { underline: true, style: { fontSize: "18px" }, children: "Cliente:" }),
         " ",
         props.data.client_name.split(" ").length > 2 ? `${props.data.client_name.split(" ")[0]} ${props.data.client_name.split(" ")[1]}` : `${props.data.client_name}`
       ] }),
-      props.data.opened_by_name && /* @__PURE__ */ jsxRuntimeExports.jsxs(Text$8, { strong: true, style: { fontSize: "18px" }, children: [
+      props.data.opened_by_name && /* @__PURE__ */ jsxRuntimeExports.jsxs(Text$a, { strong: true, style: { fontSize: "18px" }, children: [
         "Aberto por: ",
         props.data.opened_by_name
       ] })
@@ -78917,7 +79755,7 @@ const Commands = () => {
     });
   }
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$l, { children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$p, { children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx(HeaderFilter$1, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
         "div",
         {
@@ -78961,18 +79799,18 @@ const Commands = () => {
     /* @__PURE__ */ jsxRuntimeExports.jsx(CreateCommandModal, { visible: isModalVisible, onClose: () => setIsModalVisible(false) })
   ] });
 };
-const Container$j = st.div`
+const Container$n = st.div`
   width: 100%;
   height: 100vh;
   padding: 20px;
 `;
-const Header$5 = st.div`
+const Header$6 = st.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
   margin-bottom: 20px;
 `;
-const columns$5 = [
+const columns$6 = [
   {
     title: "Nome",
     dataIndex: "name",
@@ -79024,7 +79862,7 @@ const columns$5 = [
     )
   }
 ];
-const data = [
+const data$1 = [
   {
     key: "1",
     name: "Arroz",
@@ -79163,8 +80001,8 @@ const data = [
   }
 ];
 const Stocks = () => {
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$j, { children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx(Header$5, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$n, { children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(Header$6, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
       "div",
       {
         style: {
@@ -79181,20 +80019,20 @@ const Stocks = () => {
     /* @__PURE__ */ jsxRuntimeExports.jsx(
       Table$2,
       {
-        columns: columns$5,
-        dataSource: data,
+        columns: columns$6,
+        dataSource: data$1,
         pagination: false,
         scroll: { y: 700 }
       }
     )
   ] });
 };
-const Container$i = st.div`
+const Container$m = st.div`
   width: 100%;
   height: 100%;
   padding: 20px;
 `;
-const Header$4 = st.div`
+const Header$5 = st.div`
   width: 100%;
   padding: 10px 0;
   display: flex;
@@ -79349,7 +80187,7 @@ function MdRestaurantMenu(props) {
 function MdTableRestaurant(props) {
   return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 24 24" }, "child": [{ "tag": "path", "attr": { "fill": "none", "d": "M0 0h24v24H0z" } }, { "tag": "path", "attr": { "d": "M21.96 9.73l-1.43-5a.996.996 0 00-.96-.73H4.43c-.45 0-.84.3-.96.73l-1.43 5c-.18.63.3 1.27.96 1.27h2.2L4 20h2l.67-5h10.67l.66 5h2l-1.2-9H21c.66 0 1.14-.64.96-1.27zM6.93 13l.27-2h9.6l.27 2H6.93z" } }] })(props);
 }
-const { Title: Title$b, Text: Text$7 } = Typography$1;
+const { Title: Title$i, Text: Text$9 } = Typography$1;
 const TablesPage = () => {
   const navigate = useNavigate();
   const [tables, setTables] = reactExports.useState([]);
@@ -79365,8 +80203,8 @@ const TablesPage = () => {
     });
   }
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$i, { children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(Header$4, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$m, { children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Header$5, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
         Button$2,
         {
           type: "primary",
@@ -79411,11 +80249,11 @@ const TablesPage = () => {
                     )
                   }
                 ),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs(Title$b, { level: 4, children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(Title$i, { level: 4, children: [
                   "Mesa ",
                   table.title
                 ] }),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs(Text$7, { type: "secondary", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(Text$9, { type: "secondary", children: [
                   table.capacity,
                   " lugares"
                 ] })
@@ -79439,10 +80277,10 @@ const TablesPage = () => {
 const Apps = () => {
   return /* @__PURE__ */ jsxRuntimeExports.jsx("webview", { src: "https://www.google.com" });
 };
-const Container$h = st.div`
+const Container$l = st.div`
   width: 100%;
 `;
-const Header$3 = st.header`
+const Header$4 = st.header`
   width: 100%;
   height: 50px;
   display: flex;
@@ -79478,7 +80316,7 @@ const RowProduct = st.div`
   gap: 15px;
   padding: 0 30px;
 `;
-const Container$g = st.div`
+const Container$k = st.div`
   width: 320px;
   min-width: 320px;
   height: 390px;
@@ -79516,8 +80354,8 @@ function truncateText(text, limit, simbol = "...") {
     return text.substring(0, limit) + simbol;
   }
 }
-const NotImage = "" + new URL("Image_not_available-1998827c.png", import.meta.url).href;
-const { Paragraph: Paragraph$3, Title: Title$a } = Typography$1;
+const NotImage$1 = "" + new URL("Image_not_available-1998827c.png", import.meta.url).href;
+const { Paragraph: Paragraph$7, Title: Title$h } = Typography$1;
 const CardProducts = ({ data: data2, onUpdate, onEditClick }) => {
   const [isLoading, setIsLoading] = reactExports.useState(false);
   function handleDeleteProduct() {
@@ -79530,12 +80368,12 @@ const CardProducts = ({ data: data2, onUpdate, onEditClick }) => {
       setIsLoading(false);
     });
   }
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$g, { children: [
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$k, { children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs(ContainerImage, { children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx(
         Image$2,
         {
-          src: data2.photo || NotImage,
+          src: data2.photo || NotImage$1,
           preview: data2.photo ? { src: data2.photo } : false,
           style: {
             width: 120,
@@ -79545,9 +80383,9 @@ const CardProducts = ({ data: data2, onUpdate, onEditClick }) => {
           }
         }
       ),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(Title$a, { level: 5, italic: true, children: truncateText(data2.title, 30, "...") })
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Title$h, { level: 5, italic: true, children: truncateText(data2.title, 30, "...") })
     ] }),
-    data2.description ? /* @__PURE__ */ jsxRuntimeExports.jsx(Paragraph$3, { children: truncateText(data2.description, 100, "...") }) : /* @__PURE__ */ jsxRuntimeExports.jsx(Paragraph$3, { children: "Sem descrição disponível. Detalhes do prato são essenciais para guiar a sua escolha e proporcionar uma experiência deliciosa." }),
+    data2.description ? /* @__PURE__ */ jsxRuntimeExports.jsx(Paragraph$7, { children: truncateText(data2.description, 100, "...") }) : /* @__PURE__ */ jsxRuntimeExports.jsx(Paragraph$7, { children: "Sem descrição disponível. Detalhes do prato são essenciais para guiar a sua escolha e proporcionar uma experiência deliciosa." }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(
       "div",
       {
@@ -84154,6 +84992,56 @@ function useCashier() {
   const context = reactExports.useContext(CashierContext);
   return context;
 }
+const TakeoutContext = reactExports.createContext({});
+function TakeoutProvider({ children }) {
+  const [productsSelected, setProductsSelected] = reactExports.useState([]);
+  function addProductToTakeout(product) {
+    const productSelected = productsSelected.find((p2) => p2.id === product.id);
+    if (productSelected) {
+      productSelected.quantity += 1;
+      productSelected.total = productSelected.price * productSelected.quantity;
+      setProductsSelected([...productsSelected]);
+    } else {
+      const newProductSelected = {
+        id: product.id,
+        title: product.title,
+        quantity: 1,
+        price: Number(product.price),
+        total: Number(product.price)
+      };
+      setProductsSelected([...productsSelected, newProductSelected]);
+    }
+  }
+  function removeProductToTakeout(id2) {
+    const productExists = productsSelected.find((x2) => x2.id === id2);
+    if (productExists && productExists.quantity > 1) {
+      productExists.quantity -= 1;
+      productExists.total = productExists.quantity * productExists.price;
+      setProductsSelected([...productsSelected]);
+    } else {
+      setProductsSelected(productsSelected.filter((x2) => x2.id !== id2));
+    }
+  }
+  function clearTakeout() {
+    setProductsSelected([]);
+  }
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    TakeoutContext.Provider,
+    {
+      value: {
+        productsSelected,
+        addProductToTakeout,
+        clearTakeout,
+        removeProductToTakeout
+      },
+      children
+    }
+  );
+}
+function useTakeout() {
+  const context = reactExports.useContext(TakeoutContext);
+  return context;
+}
 const DrawerFilterProducts = ({ visible, onClose }) => {
   const [open2, setOpen] = reactExports.useState(false);
   const [form] = Form$1.useForm();
@@ -86400,7 +87288,7 @@ function CgClose(props) {
 function CgMenuOreos(props) {
   return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 24 24", "fill": "none" }, "child": [{ "tag": "path", "attr": { "d": "M7 3C5.34315 3 4 4.34315 4 6H20C20 4.34315 18.6569 3 17 3H7Z", "fill": "currentColor" } }, { "tag": "path", "attr": { "d": "M7 11C5.34315 11 4 9.65685 4 8H20C20 9.65685 18.6569 11 17 11H7Z", "fill": "currentColor" } }, { "tag": "path", "attr": { "d": "M7 13C5.34315 13 4 14.3431 4 16H20C20 14.3431 18.6569 13 17 13H7Z", "fill": "currentColor" } }, { "tag": "path", "attr": { "d": "M7 21C5.34315 21 4 19.6569 4 18H20C20 19.6569 18.6569 21 17 21H7Z", "fill": "currentColor" } }] })(props);
 }
-const { Text: Text$6 } = Typography$1;
+const { Text: Text$8 } = Typography$1;
 const Prices = () => {
   const { selectedProduct } = useProducts();
   const [loading, setLoading] = reactExports.useState(false);
@@ -86437,7 +87325,7 @@ const Prices = () => {
       },
       children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Text$6,
+          Text$8,
           {
             style: {
               marginBottom: "1rem"
@@ -86899,8 +87787,8 @@ const Products$1 = () => {
     }
   ];
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$h, { children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs(Header$3, { children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$l, { children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(Header$4, { children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs(
           Button$2,
           {
@@ -86930,7 +87818,7 @@ const Products$1 = () => {
             flexDirection: "column",
             gap: "40px"
           },
-          children: !visibleCardProduct ? groupProductsByCategory().map((category, k2) => {
+          children: !visibleCardProduct ? groupProductsByCategory().map((category) => {
             return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
               /* @__PURE__ */ jsxRuntimeExports.jsxs(TitleCategory, { children: [
                 category.category,
@@ -86951,7 +87839,7 @@ const Products$1 = () => {
                   Product2.id
                 ) }, Product2.id);
               }) })
-            ] }, k2);
+            ] }, category.category);
           }) : /* @__PURE__ */ jsxRuntimeExports.jsx(
             "div",
             {
@@ -86989,7 +87877,7 @@ const Products$1 = () => {
     )
   ] });
 };
-const Container$f = st.div`
+const Container$j = st.div`
   width: 100%;
   height: calc(100vh - 80px); /* Define a altura total da janela de visualização */
   display: flex;
@@ -87000,7 +87888,7 @@ const Container$f = st.div`
   gap: 80px;
   padding: 0 30px;
 `;
-const Title$9 = st.div`
+const Title$g = st.div`
   width: 100%;
   display: flex;
   justify-content: center;
@@ -87321,7 +88209,7 @@ const PrinterModal = () => {
 const Integrations = () => {
   const { setShowModal } = usePrinter();
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$f, { children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$j, { children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
         "p",
         {
@@ -87331,7 +88219,7 @@ const Integrations = () => {
           children: "Configure as integrações da sua loja"
         }
       ) }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs(Title$9, { children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(Title$g, { children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "Integrações internas" }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs(Content$1, { children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -87418,7 +88306,7 @@ const Integrations = () => {
           )
         ] })
       ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs(Title$9, { children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(Title$g, { children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "Integrações Externas" }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs(Content$1, { children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -87497,6 +88385,9 @@ function IoRadioButtonOn(props) {
 }
 const logo = "" + new URL("logo-branca-ecee0344.png", import.meta.url).href;
 const miniLogo = "" + new URL("peditz-b44a92a1.jpeg", import.meta.url).href;
+function PiNotepadBold(props) {
+  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 256 256", "fill": "currentColor" }, "child": [{ "tag": "path", "attr": { "d": "M172,124a12,12,0,0,1-12,12H96a12,12,0,0,1,0-24h64A12,12,0,0,1,172,124Zm-12,28H96a12,12,0,0,0,0,24h64a12,12,0,0,0,0-24ZM220,48V200a36,36,0,0,1-36,36H72a36,36,0,0,1-36-36V48A20,20,0,0,1,56,28H72V24a12,12,0,0,1,24,0v4h20V24a12,12,0,0,1,24,0v4h20V24a12,12,0,0,1,24,0v4h16A20,20,0,0,1,220,48Zm-24,4H184v4a12,12,0,0,1-24,0V52H140v4a12,12,0,0,1-24,0V52H96v4a12,12,0,0,1-24,0V52H60V200a12,12,0,0,0,12,12H184a12,12,0,0,0,12-12Z" } }] })(props);
+}
 const { Sider } = Layout$1;
 function getItem({ key, label, children, icon, style: style2, type: type4 }) {
   return {
@@ -87539,24 +88430,24 @@ const SideBar = ({ collapsed }) => {
         display: userPermissions.includes("Caixa") ? "flex" : "none"
       }
     }),
-    // getItem({
-    //   key: '3',
-    //   label: <Link to={'/pedidos-balcao/'}>Pedidos de balcão</Link>,
-    //   icon: <ShopOutlined />
-    //   // style: {
-    //   //   display: userPermissions.includes('Balcão') ? 'flex' : 'none',
-    //   //   flexDirection: 'column'
-    //   // },
-    // }),
-    // getItem({
-    //   key: '4',
-    //   label: <Link to={'/pedidos/'}>Gerenciador de pedidos</Link>,
-    //   icon: <PiNotepadBold />
-    //   // style: {
-    //   //   display: userPermissions.includes('Balcão') ? 'flex' : 'none',
-    //   //   flexDirection: 'column'
-    //   // },
-    // }),
+    getItem({
+      key: "3",
+      label: /* @__PURE__ */ jsxRuntimeExports.jsx(Link$2, { to: "/pedidos-balcao/", children: "Pedidos de balcão" }),
+      icon: /* @__PURE__ */ jsxRuntimeExports.jsx(ShopOutlined$1, {})
+      // style: {
+      //   display: userPermissions.includes('Balcão') ? 'flex' : 'none',
+      //   flexDirection: 'column'
+      // },
+    }),
+    getItem({
+      key: "4",
+      label: /* @__PURE__ */ jsxRuntimeExports.jsx(Link$2, { to: "/pedidos/", children: "Gerenciador de pedidos" }),
+      icon: /* @__PURE__ */ jsxRuntimeExports.jsx(PiNotepadBold, {})
+      // style: {
+      //   display: userPermissions.includes('Balcão') ? 'flex' : 'none',
+      //   flexDirection: 'column'
+      // },
+    }),
     getItem({
       key: "5",
       label: "Produtos",
@@ -87579,6 +88470,15 @@ const SideBar = ({ collapsed }) => {
           label: /* @__PURE__ */ jsxRuntimeExports.jsx(Link$2, { to: "/complementos", children: "Complementos" })
         })
       ]
+    }),
+    getItem({
+      key: "4",
+      label: /* @__PURE__ */ jsxRuntimeExports.jsx(Link$2, { to: "/cardapios/", children: "Cardápios" }),
+      icon: /* @__PURE__ */ jsxRuntimeExports.jsx(FaBookOpen, {})
+      // style: {
+      //   display: userPermissions.includes('Balcão') ? 'flex' : 'none',
+      //   flexDirection: 'column'
+      // },
     }),
     getItem({
       key: "6",
@@ -87654,6 +88554,14 @@ const SideBar = ({ collapsed }) => {
     //     display: userPermissions.includes('Aplicativos') ? 'flex' : 'none'
     //   }
     // }),
+    getItem({
+      key: "11",
+      label: /* @__PURE__ */ jsxRuntimeExports.jsx(Link$2, { to: "/notas", children: "Notas Fiscais" }),
+      icon: /* @__PURE__ */ jsxRuntimeExports.jsx(FileTextOutlined$1, {})
+      // style: {
+      //   display: userPermissions.includes('Integracoes') ? 'flex' : 'none'
+      // }
+    }),
     getItem({
       key: "11",
       label: /* @__PURE__ */ jsxRuntimeExports.jsx(Link$2, { to: "/integracoes", children: "Integrações" }),
@@ -87828,6 +88736,7 @@ function useSocket() {
   const context = reactExports.useContext(SocketContext);
   return context;
 }
+const { Title: Title$f } = Typography$1;
 const items$1 = [
   {
     label: /* @__PURE__ */ jsxRuntimeExports.jsx(Link$2, { to: "/", children: "Conta" }),
@@ -87846,12 +88755,13 @@ const items$1 = [
     key: "3"
   }
 ];
-const Header$2 = ({ titleHeader, setCollapsed, collapsedValue }) => {
+const Header$3 = ({ titleHeader, setCollapsed, collapsedValue }) => {
   const [color2, setColor] = reactExports.useState(ColorList[0]);
   const [status, setStatus] = reactExports.useState(false);
-  const { cashier } = useCashier();
+  const { getCashier, cashier } = useCashier();
   const { loadingConnectSocket, handleConnectionWs, isConnected } = useSocket();
   reactExports.useEffect(() => {
+    getCashier(true);
     setInterval(() => {
       setStatus(window.navigator.onLine);
     }, 5e3);
@@ -87862,7 +88772,7 @@ const Header$2 = ({ titleHeader, setCollapsed, collapsedValue }) => {
     return ColorList[randomIndex];
   }
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(
-    Header$9,
+    Header$a,
     {
       style: {
         width: "100%",
@@ -87899,7 +88809,7 @@ const Header$2 = ({ titleHeader, setCollapsed, collapsedValue }) => {
               gap: "10px"
             },
             children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip$2, { title: "Recarregar pagina", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
                 Button$2,
                 {
                   icon: /* @__PURE__ */ jsxRuntimeExports.jsx(ReloadOutlined$1, {}),
@@ -87907,18 +88817,18 @@ const Header$2 = ({ titleHeader, setCollapsed, collapsedValue }) => {
                   type: "text",
                   onClick: () => window.location.reload()
                 }
-              ),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                Button$2,
+              ) }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip$2, { title: "Imprimir Pedidos online", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Switch$1,
                 {
-                  type: "primary",
-                  icon: /* @__PURE__ */ jsxRuntimeExports.jsx(PoweroffOutlined$1, {}),
                   loading: loadingConnectSocket,
-                  onClick: () => handleConnectionWs(!isConnected),
-                  danger: isConnected,
-                  children: isConnected ? "Desativar pedidos online" : "Ativar pedidos online"
+                  defaultChecked: localStorage.getItem("connectedWs") === "CONNECTED",
+                  checked: isConnected,
+                  checkedChildren: "Sim",
+                  unCheckedChildren: "Não",
+                  onChange: (e2) => handleConnectionWs(e2)
                 }
-              ),
+              ) }),
               status ? /* @__PURE__ */ jsxRuntimeExports.jsx(
                 Tag$1,
                 {
@@ -87940,20 +88850,33 @@ const Header$2 = ({ titleHeader, setCollapsed, collapsedValue }) => {
                   children: "Offline"
                 }
               ),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(Dropdown$1, { menu: { items: items$1 }, trigger: ["click"], placement: "bottomRight", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                Avatar$1,
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                "div",
                 {
                   style: {
-                    backgroundColor: color2,
-                    verticalAlign: "middle",
-                    fontWeight: "bold",
-                    cursor: "pointer"
+                    display: "flex",
+                    alignItems: "center",
+                    gap: "10px",
+                    flexDirection: "row"
                   },
-                  size: "large",
-                  icon: /* @__PURE__ */ jsxRuntimeExports.jsx(UserOutlined$1, {}),
-                  children: cashier?.opened_by?.first_name
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(Title$f, { level: 5, style: { margin: 0, color: "rgb(91, 101, 117)" }, children: cashier?.restaurant?.title }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(Dropdown$1, { menu: { items: items$1 }, trigger: ["click"], placement: "bottomRight", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip$2, { title: cashier?.opened_by_name, placement: "left", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      Avatar$1,
+                      {
+                        style: {
+                          backgroundColor: color2,
+                          verticalAlign: "middle",
+                          fontWeight: "bold",
+                          cursor: "pointer"
+                        },
+                        size: "large",
+                        children: cashier?.opened_by?.first_name[0] + cashier?.opened_by?.last_name[0] || /* @__PURE__ */ jsxRuntimeExports.jsx(UserOutlined$1, {})
+                      }
+                    ) }) })
+                  ]
                 }
-              ) })
+              )
             ]
           }
         )
@@ -87987,7 +88910,7 @@ const AddSidebar = ({ children, titleHeader }) => {
             },
             children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx(
-                Header$2,
+                Header$3,
                 {
                   titleHeader,
                   setCollapsed: toggleCollapsed,
@@ -88002,7 +88925,7 @@ const AddSidebar = ({ children, titleHeader }) => {
     }
   ) });
 };
-const Container$e = st.div`
+const Container$i = st.div`
   width: calc(100vw - 18rem);
   padding: 36px;
   display: flex;
@@ -88134,7 +89057,7 @@ const JoinCommandModal = ({ onCancel, visible }) => {
     }
   );
 };
-const { Paragraph: Paragraph$2 } = Typography$1;
+const { Paragraph: Paragraph$6 } = Typography$1;
 const ModalPayment = () => {
   const [formOfPayment, setFormOfPayment] = reactExports.useState({});
   const { showModalPayment, selectedPayment, OnCloseModalPayment, setPayments } = useBill();
@@ -88178,7 +89101,7 @@ const ModalPayment = () => {
       onCancel: OnCloseModalPayment,
       footer: null,
       children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsxs(Paragraph$2, { style: { color: "rgba(0, 0, 0, 0.54)" }, children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(Paragraph$6, { style: { color: "rgba(0, 0, 0, 0.54)" }, children: [
           "Por favor, insira os valores que você está recebendo na modalidade",
           " ",
           /* @__PURE__ */ jsxRuntimeExports.jsx("b", { children: formOfPayment.title })
@@ -88220,7 +89143,7 @@ const ModalPayment = () => {
     }
   );
 };
-const { Text: Text$5 } = Typography$1;
+const { Text: Text$7 } = Typography$1;
 const ModalConfirmDeleteItem = ({
   visible,
   onClose,
@@ -88282,15 +89205,15 @@ const ModalConfirmDeleteItem = ({
               gap: "10px"
             },
             children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsxs(Text$5, { children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(Text$7, { children: [
                 "Nome do item: ",
                 /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: data2.name })
               ] }),
-              /* @__PURE__ */ jsxRuntimeExports.jsxs(Text$5, { children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(Text$7, { children: [
                 "Preço do item: ",
                 /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: formatCurrency(Number(data2.price)) })
               ] }),
-              /* @__PURE__ */ jsxRuntimeExports.jsxs(Text$5, { children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(Text$7, { children: [
                 "Quantidade: ",
                 /* @__PURE__ */ jsxRuntimeExports.jsx("strong", { children: Number(data2.amount) })
               ] }),
@@ -88344,7 +89267,7 @@ function formatCPFOrCNPJ(input) {
     return input;
   }
 }
-const { Title: Title$8 } = Typography$1;
+const { Title: Title$e } = Typography$1;
 const NfceEmitModal = ({ data: data2, onClose, visible }) => {
   const [formOfPayment, setFormOfPayment] = reactExports.useState([]);
   const [isLoading, setIsLoading] = reactExports.useState(false);
@@ -88422,7 +89345,7 @@ const NfceEmitModal = ({ data: data2, onClose, visible }) => {
               paddingBottom: "10px"
             },
             children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(Title$8, { level: 5, italic: true, children: "Produtos selecionados:" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Title$e, { level: 5, italic: true, children: "Produtos selecionados:" }),
               data2.tax_items?.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
                 "div",
                 {
@@ -88682,7 +89605,7 @@ const ModalCloseBill = ({
     }
   );
 };
-const { Text: Text$4, Title: Title$7 } = Typography$1;
+const { Text: Text$6, Title: Title$d } = Typography$1;
 const Command = () => {
   const [visibleJoinCommandModal, setVisibleJoinCommandModal] = reactExports.useState(false);
   const [formOfPayment, setFormOfPayment] = reactExports.useState([]);
@@ -88888,7 +89811,7 @@ const Command = () => {
     }
   }
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$e, { children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$i, { children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs(RowCards, { children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs(CardInfo$2, { children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -88902,9 +89825,9 @@ const Command = () => {
             }
           ),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Title$7, { level: 3, style: { margin: 0 }, children: "Comanda:" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Title$d, { level: 3, style: { margin: 0 }, children: "Comanda:" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx(
-              Text$4,
+              Text$6,
               {
                 type: "secondary",
                 strong: true,
@@ -88928,9 +89851,9 @@ const Command = () => {
             }
           ),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Title$7, { level: 3, style: { margin: 0 }, children: "Mesa:" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Title$d, { level: 3, style: { margin: 0 }, children: "Mesa:" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx(
-              Text$4,
+              Text$6,
               {
                 type: "secondary",
                 strong: true,
@@ -88954,9 +89877,9 @@ const Command = () => {
             }
           ),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Title$7, { level: 3, style: { margin: 0 }, children: "Garçom:" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Title$d, { level: 3, style: { margin: 0 }, children: "Garçom:" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx(
-              Text$4,
+              Text$6,
               {
                 type: "secondary",
                 strong: true,
@@ -88980,9 +89903,9 @@ const Command = () => {
             }
           ),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Title$7, { level: 3, style: { margin: 0 }, children: "Cliente:" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Title$d, { level: 3, style: { margin: 0 }, children: "Cliente:" }),
             /* @__PURE__ */ jsxRuntimeExports.jsx(
-              Text$4,
+              Text$6,
               {
                 type: "secondary",
                 strong: true,
@@ -89127,7 +90050,7 @@ const Command = () => {
               !selectedBills[0]?.open && /* @__PURE__ */ jsxRuntimeExports.jsx(
                 Empty$1,
                 {
-                  description: /* @__PURE__ */ jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(Title$7, { level: 4, children: "Comanda fechada" }) })
+                  description: /* @__PURE__ */ jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(Title$d, { level: 4, children: "Comanda fechada" }) })
                 }
               ),
               /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -89198,7 +90121,7 @@ const Command = () => {
                         },
                         children: [
                           /* @__PURE__ */ jsxRuntimeExports.jsx(
-                            Text$4,
+                            Text$6,
                             {
                               strong: true,
                               style: {
@@ -89208,7 +90131,7 @@ const Command = () => {
                             }
                           ),
                           /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                            Text$4,
+                            Text$6,
                             {
                               style: {
                                 fontSize: 20,
@@ -89237,7 +90160,7 @@ const Command = () => {
                         },
                         children: [
                           /* @__PURE__ */ jsxRuntimeExports.jsx(
-                            Text$4,
+                            Text$6,
                             {
                               strong: true,
                               style: {
@@ -89247,7 +90170,7 @@ const Command = () => {
                             }
                           ),
                           /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                            Text$4,
+                            Text$6,
                             {
                               style: {
                                 fontSize: 20,
@@ -89275,7 +90198,7 @@ const Command = () => {
                         },
                         children: [
                           /* @__PURE__ */ jsxRuntimeExports.jsx(
-                            Text$4,
+                            Text$6,
                             {
                               strong: true,
                               style: {
@@ -89285,7 +90208,7 @@ const Command = () => {
                             }
                           ),
                           /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                            Text$4,
+                            Text$6,
                             {
                               style: {
                                 fontSize: 20,
@@ -89314,7 +90237,7 @@ const Command = () => {
                         },
                         children: [
                           /* @__PURE__ */ jsxRuntimeExports.jsx(
-                            Text$4,
+                            Text$6,
                             {
                               strong: true,
                               style: {
@@ -89324,7 +90247,7 @@ const Command = () => {
                             }
                           ),
                           /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                            Text$4,
+                            Text$6,
                             {
                               style: {
                                 fontSize: 20,
@@ -89428,12 +90351,12 @@ const Command = () => {
     )
   ] });
 };
-const Container$d = st.div`
+const Container$h = st.div`
   width: 100%;
   height: 100vh;
   padding: 20px;
 `;
-const Header$1 = st.div`
+const Header$2 = st.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -89603,7 +90526,7 @@ const CategoryProductModal = ({
   );
 };
 const { confirm } = Modal$1;
-const CategoryProducts = () => {
+const CategoryProducts$1 = () => {
   const [categories, setCategories] = reactExports.useState([]);
   const [isLoading, setIsLoading] = reactExports.useState(false);
   const [isModalOpen, setIsModalOpen] = reactExports.useState(false);
@@ -89715,8 +90638,8 @@ const CategoryProducts = () => {
     setIsModalOpen(true);
   };
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$d, { children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(Header$1, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", flexDirection: "row", gap: "16px" }, children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$h, { children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Header$2, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", flexDirection: "row", gap: "16px" }, children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           Button$2,
           {
@@ -89768,7 +90691,7 @@ function LoginRoute() {
   const auth = isAuthenticated();
   return !auth ? /* @__PURE__ */ jsxRuntimeExports.jsx(Outlet, {}) : /* @__PURE__ */ jsxRuntimeExports.jsx(Navigate, { to: "/dashboard" });
 }
-const Container$c = st.div`
+const Container$g = st.div`
   width: 100%;
   height: 100%;
   padding: 20px;
@@ -89789,7 +90712,7 @@ const CommandCard = st.div`
     transition: ease-in-out 0.3s;
   }
 `;
-const { Title: Title$6 } = Typography$1;
+const { Title: Title$c } = Typography$1;
 const Table = () => {
   const [table, setTable] = reactExports.useState({});
   const [isLoading, setIsLoading] = reactExports.useState(false);
@@ -89843,7 +90766,7 @@ const Table = () => {
   const handleSwitchChange = (value) => {
     setTable({ ...table, active: value });
   };
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$c, { children: [
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$g, { children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx(
       Breadcrumb$1,
       {
@@ -89894,7 +90817,7 @@ const Table = () => {
                     }
                   ) }),
                   /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", flexDirection: "column" }, children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsxs(Title$6, { level: 4, style: { margin: "0" }, children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs(Title$c, { level: 4, style: { margin: "0" }, children: [
                       "Mesa ",
                       table.title
                     ] }),
@@ -89911,7 +90834,7 @@ const Table = () => {
                   ] })
                 ] }),
                 table.bills?.length > 0 ? table.bills.map((bill) => /* @__PURE__ */ jsxRuntimeExports.jsxs(CommandCard, { onClick: () => navigate(`/comandas/${bill.id}/`), children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs(Title$6, { level: 5, style: { margin: "0" }, children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(Title$c, { level: 5, style: { margin: "0" }, children: [
                     "Comanda ",
                     bill.number
                   ] }),
@@ -89945,7 +90868,7 @@ const Table = () => {
                   Empty$1,
                   {
                     image: Empty$1.PRESENTED_IMAGE_SIMPLE,
-                    description: /* @__PURE__ */ jsxRuntimeExports.jsx(Title$6, { level: 3, style: { color: "#2FAA54" }, children: "Mesa sem vinculos com comandas" })
+                    description: /* @__PURE__ */ jsxRuntimeExports.jsx(Title$c, { level: 3, style: { color: "#2FAA54" }, children: "Mesa sem vinculos com comandas" })
                   }
                 )
               ]
@@ -90062,7 +90985,7 @@ const Table = () => {
     ) })
   ] });
 };
-const Container$b = st.div`
+const Container$f = st.div`
   width: 100%;
   height: 100%;
   padding: 20px;
@@ -90324,8 +91247,8 @@ const ModalCashier = () => {
     }
   );
 };
-const { Text: Text$3, Title: Title$5 } = Typography$1;
-const columns$4 = [
+const { Text: Text$5, Title: Title$b } = Typography$1;
+const columns$5 = [
   {
     title: "MÉTODO DE PAGAMENTO",
     dataIndex: "methodPayment",
@@ -90356,11 +91279,8 @@ const columns$4 = [
   }
 ];
 const CashierPage = () => {
-  const { getCashier, transactions, cashier, setOpenCashierModal, isLoading } = useCashier();
-  reactExports.useEffect(() => {
-    getCashier(true);
-  }, []);
-  const mapTypePayment = (type4) => {
+  const { transactions, cashier, setOpenCashierModal, isLoading } = useCashier();
+  const mapTypePayment2 = (type4) => {
     switch (type4) {
       case "BILL":
         return "Comanda";
@@ -90382,23 +91302,19 @@ const CashierPage = () => {
           tax: formatCurrency(Number(transaction.tip)),
           date: new Date(transaction.created).toLocaleString(),
           value: formatCurrency(Number(payment.value)),
-          type: mapTypePayment(transaction.type)
+          type: mapTypePayment2(transaction.type)
         };
       });
     }).flatMap((payment) => payment);
   }
   const totalCashier = transactions.map((transaction) => Number(transaction.total)).reduce((acc, curr) => acc + Number(curr), 0) + Number(cashier?.initial_value);
-  console.log(
-    "tax",
-    transactions.map((transaction) => Number(transaction.tip)).reduce((acc, curr) => acc + Number(curr), 0).toFixed(2)
-  );
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$b, { children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$f, { children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx(CardInfo$1, { children: cashier?.open ? /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
         " ",
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            Text$3,
+            Text$5,
             {
               type: "secondary",
               style: {
@@ -90426,7 +91342,7 @@ const CashierPage = () => {
             }
           ),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
-            Text$3,
+            Text$5,
             {
               strong: true,
               style: {
@@ -90447,11 +91363,11 @@ const CashierPage = () => {
               gap: "5px"
             },
             children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsxs(Text$3, { type: "secondary", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(Text$5, { type: "secondary", children: [
                 "Caixa aberto por: ",
                 cashier.opened_by_name || "Usuário sem nome"
               ] }),
-              /* @__PURE__ */ jsxRuntimeExports.jsxs(Text$3, { type: "secondary", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(Text$5, { type: "secondary", children: [
                 "em ",
                 new Date(cashier.created).toLocaleString()
               ] }),
@@ -90506,7 +91422,7 @@ const CashierPage = () => {
                         }
                       ),
                       /* @__PURE__ */ jsxRuntimeExports.jsx(
-                        Title$5,
+                        Title$b,
                         {
                           level: 1,
                           style: {
@@ -90519,7 +91435,7 @@ const CashierPage = () => {
                   }
                 ),
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  Text$3,
+                  Text$5,
                   {
                     type: "secondary",
                     style: {
@@ -90538,7 +91454,7 @@ const CashierPage = () => {
       /* @__PURE__ */ jsxRuntimeExports.jsxs(CardsInfoFinance$2, { children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs(CardInfoFinance$2, { children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            Text$3,
+            Text$5,
             {
               type: "secondary",
               style: {
@@ -90568,7 +91484,7 @@ const CashierPage = () => {
             }
           ),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
-            Text$3,
+            Text$5,
             {
               strong: true,
               style: {
@@ -90587,7 +91503,7 @@ const CashierPage = () => {
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs(CardInfoFinance$2, { children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            Text$3,
+            Text$5,
             {
               type: "secondary",
               style: {
@@ -90617,7 +91533,7 @@ const CashierPage = () => {
             }
           ),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
-            Text$3,
+            Text$5,
             {
               strong: true,
               style: {
@@ -90636,7 +91552,7 @@ const CashierPage = () => {
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs(CardInfoFinance$2, { children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            Text$3,
+            Text$5,
             {
               type: "secondary",
               style: {
@@ -90666,7 +91582,7 @@ const CashierPage = () => {
             }
           ),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
-            Text$3,
+            Text$5,
             {
               strong: true,
               style: {
@@ -90685,7 +91601,7 @@ const CashierPage = () => {
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs(CardInfoFinance$2, { children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            Text$3,
+            Text$5,
             {
               type: "secondary",
               style: {
@@ -90715,7 +91631,7 @@ const CashierPage = () => {
             }
           ),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
-            Text$3,
+            Text$5,
             {
               strong: true,
               style: {
@@ -90734,7 +91650,7 @@ const CashierPage = () => {
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs(CardInfoFinance$2, { children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            Text$3,
+            Text$5,
             {
               type: "secondary",
               style: {
@@ -90764,7 +91680,7 @@ const CashierPage = () => {
             }
           ),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
-            Text$3,
+            Text$5,
             {
               strong: true,
               style: {
@@ -90783,7 +91699,7 @@ const CashierPage = () => {
       /* @__PURE__ */ jsxRuntimeExports.jsx(
         Table$2,
         {
-          columns: columns$4,
+          columns: columns$5,
           dataSource: mapPaymentsToTableData(),
           pagination: false,
           scroll: { y: 555 },
@@ -90796,7 +91712,7 @@ const CashierPage = () => {
     /* @__PURE__ */ jsxRuntimeExports.jsx(ModalCashier, {})
   ] });
 };
-const Container$a = st.div`
+const Container$e = st.div`
   width: 100%;
   height: 100vh;
   padding: 20px;
@@ -90871,7 +91787,7 @@ const EmployersPage = () => {
   const filteredEmployers = employers.filter((employer) => {
     return employer.first_name.toLowerCase().startsWith(search.toLowerCase());
   });
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$a, { children: [
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$e, { children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs(
       "div",
       {
@@ -90920,13 +91836,13 @@ const EmployersPage = () => {
     )
   ] });
 };
-const Container$9 = st.div`
+const Container$d = st.div`
   width: 100%;
   height: calc(100vh - 70px);
   padding: 20px;
   overflow-y: scroll;
 `;
-const Container$8 = st.div`
+const Container$c = st.div`
   width: 100%;
   height: auto;
   padding: 35px 25px;
@@ -91008,7 +91924,7 @@ const FormEmployer = ({ type: type4, employerId }) => {
     navigate("/colaboradores/");
     message$1.success("Cancelou cadastro");
   };
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(Container$8, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(Spin$1, { spinning: isLoading, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Form$1, { layout: "vertical", onFinish, form, children: [
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Container$c, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(Spin$1, { spinning: isLoading, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Form$1, { layout: "vertical", onFinish, form, children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx(Divider$1, { orientation: "left", children: "Dados do colaborador" }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs(
       "div",
@@ -91408,9 +92324,9 @@ const FormEmployer = ({ type: type4, employerId }) => {
   ] }) }) });
 };
 const EmployerRegisterPage = () => {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(Container$9, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(FormEmployer, { type: "create" }) });
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Container$d, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(FormEmployer, { type: "create" }) });
 };
-const Container$7 = st.div`
+const Container$b = st.div`
   width: 100%;
   height: calc(100vh - 70px);
   padding: 20px;
@@ -91418,7 +92334,7 @@ const Container$7 = st.div`
 `;
 const EmployerViewPage = () => {
   const { id: id2 } = useParams();
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(Container$7, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(FormEmployer, { type: "edit", employerId: id2 }) });
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Container$b, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(FormEmployer, { type: "edit", employerId: id2 }) });
 };
 const BillCard = ({ bill }) => {
   const { setCurrentTab, fetchBill } = useTerminal();
@@ -92745,7 +93661,7 @@ const Terminal = () => {
     }
   );
 };
-const Container$6 = st.div`
+const Container$a = st.div`
   width: 100%;
   padding: 20px 20px;
 `;
@@ -92793,7 +93709,7 @@ const BillClosedPage = () => {
       errorActions(error);
     });
   }
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$6, { children: [
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$a, { children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx(HeaderFilter, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
       "div",
       {
@@ -92825,7 +93741,7 @@ const BillClosedPage = () => {
     }) })
   ] });
 };
-const Container$5 = st.div`
+const Container$9 = st.div`
   width: 100%;
   padding: 20px;
   display: flex;
@@ -92837,7 +93753,7 @@ st.div`
   flex-direction: row;
 `;
 st.div``;
-const columns$3 = [
+const columns$4 = [
   {
     title: "",
     dataIndex: "number",
@@ -92901,10 +93817,10 @@ const PastCashiers = () => {
       hasUpdate.current = true;
     }
   }, [fecthCashiers]);
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(Container$5, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Container$9, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
     Table$2,
     {
-      columns: columns$3,
+      columns: columns$4,
       dataSource: cashiers,
       onChange: onChange$1,
       pagination: {
@@ -92915,7 +93831,7 @@ const PastCashiers = () => {
     }
   ) });
 };
-const Container$4 = st.div`
+const Container$8 = st.div`
   width: 100%;
   padding: 20px;
   display: flex;
@@ -92955,8 +93871,8 @@ const CardInfoFinance$1 = st.div`
   flex-direction: column;
   gap: 10px;
 `;
-const { Text: Text$2 } = Typography$1;
-const columns$2 = [
+const { Text: Text$4 } = Typography$1;
+const columns$3 = [
   {
     title: "type",
     dataIndex: "type",
@@ -93007,6 +93923,18 @@ const columns$2 = [
 const onChange = (pagination, filters, sorter2, extra) => {
   console.log("params", pagination, filters, sorter2, extra);
 };
+const mapTypePayment = (type4) => {
+  switch (type4) {
+    case "BILL":
+      return "Comanda";
+    case "TAKEOUT":
+      return "Balcão";
+    case "DELIVERY":
+      return "Delivery";
+    default:
+      return "Não identificado";
+  }
+};
 const CashierDetail = () => {
   const [cashier, setCashiers] = React.useState(null);
   const [payments, setPayments] = React.useState([]);
@@ -93029,7 +93957,7 @@ const CashierDetail = () => {
             total: formatCurrency(Number(payment.total)),
             created: payment.created,
             tip: formatCurrency(Number(payment.tip)),
-            type: payment.type === "BILL" ? "Comanda" : "Pedido"
+            type: mapTypePayment(payment.type)
           };
         })
       );
@@ -93065,12 +93993,12 @@ const CashierDetail = () => {
         children: "Voltar"
       }
     ) }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$4, { children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$8, { children: [
       /* @__PURE__ */ jsxRuntimeExports.jsx(Spin$1, { spinning: loading, children: /* @__PURE__ */ jsxRuntimeExports.jsx(CardInfo, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
         " ",
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            Text$2,
+            Text$4,
             {
               type: "secondary",
               style: {
@@ -93098,7 +94026,7 @@ const CashierDetail = () => {
             }
           ),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
-            Text$2,
+            Text$4,
             {
               strong: true,
               style: {
@@ -93111,7 +94039,7 @@ const CashierDetail = () => {
             }
           ),
           /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            Text$2,
+            Text$4,
             {
               type: "secondary",
               style: {
@@ -93138,21 +94066,21 @@ const CashierDetail = () => {
               gap: "5px"
             },
             children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsxs(Text$2, { type: "secondary", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(Text$4, { type: "secondary", children: [
                 "Caixa aberto por:",
                 " ",
                 cashier?.opened_by?.first_name ? `${cashier?.opened_by?.first_name} ${cashier?.opened_by?.last_name}` : cashier?.opened_by_name
               ] }),
-              /* @__PURE__ */ jsxRuntimeExports.jsxs(Text$2, { type: "secondary", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(Text$4, { type: "secondary", children: [
                 "em ",
                 hooks(cashier?.created).format("DD/MM/YYYY HH:mm:ss")
               ] }),
-              cashier?.closed_at && /* @__PURE__ */ jsxRuntimeExports.jsxs(Text$2, { type: "secondary", children: [
+              cashier?.closed_at && /* @__PURE__ */ jsxRuntimeExports.jsxs(Text$4, { type: "secondary", children: [
                 "Caixa fechado por:",
                 " ",
                 cashier?.closed_by?.first_name ? `${cashier?.closed_by?.first_name} ${cashier?.closed_by?.last_name}` : cashier?.closed_by_name
               ] }),
-              cashier?.closed_at && /* @__PURE__ */ jsxRuntimeExports.jsxs(Text$2, { type: "secondary", children: [
+              cashier?.closed_at && /* @__PURE__ */ jsxRuntimeExports.jsxs(Text$4, { type: "secondary", children: [
                 "em ",
                 hooks(cashier?.closed_at).format("DD/MM/YYYY HH:mm:ss")
               ] })
@@ -93163,7 +94091,7 @@ const CashierDetail = () => {
       /* @__PURE__ */ jsxRuntimeExports.jsxs(CardsInfoFinance$1, { children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs(CardInfoFinance$1, { children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            Text$2,
+            Text$4,
             {
               type: "secondary",
               style: {
@@ -93193,7 +94121,7 @@ const CashierDetail = () => {
             }
           ),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
-            Text$2,
+            Text$4,
             {
               strong: true,
               style: {
@@ -93212,7 +94140,7 @@ const CashierDetail = () => {
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs(CardInfoFinance$1, { children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            Text$2,
+            Text$4,
             {
               type: "secondary",
               style: {
@@ -93242,7 +94170,7 @@ const CashierDetail = () => {
             }
           ),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
-            Text$2,
+            Text$4,
             {
               strong: true,
               style: {
@@ -93261,7 +94189,7 @@ const CashierDetail = () => {
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs(CardInfoFinance$1, { children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            Text$2,
+            Text$4,
             {
               type: "secondary",
               style: {
@@ -93291,7 +94219,7 @@ const CashierDetail = () => {
             }
           ),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
-            Text$2,
+            Text$4,
             {
               strong: true,
               style: {
@@ -93310,7 +94238,7 @@ const CashierDetail = () => {
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs(CardInfoFinance$1, { children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            Text$2,
+            Text$4,
             {
               type: "secondary",
               style: {
@@ -93340,7 +94268,7 @@ const CashierDetail = () => {
             }
           ),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
-            Text$2,
+            Text$4,
             {
               strong: true,
               style: {
@@ -93359,7 +94287,7 @@ const CashierDetail = () => {
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs(CardInfoFinance$1, { children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            Text$2,
+            Text$4,
             {
               type: "secondary",
               style: {
@@ -93389,7 +94317,7 @@ const CashierDetail = () => {
             }
           ),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
-            Text$2,
+            Text$4,
             {
               strong: true,
               style: {
@@ -93406,7 +94334,7 @@ const CashierDetail = () => {
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsxs(CardInfoFinance$1, { children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            Text$2,
+            Text$4,
             {
               type: "secondary",
               style: {
@@ -93436,7 +94364,7 @@ const CashierDetail = () => {
             }
           ),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
-            Text$2,
+            Text$4,
             {
               strong: true,
               style: {
@@ -93458,7 +94386,7 @@ const CashierDetail = () => {
         Table$2,
         {
           loading: loadingP,
-          columns: columns$2,
+          columns: columns$3,
           dataSource: paymentsData,
           onChange,
           pagination: false,
@@ -93468,7 +94396,522 @@ const CashierDetail = () => {
     ] })
   ] });
 };
-const Container$3 = st.div`
+const Container$7 = st.div`
+  padding: 20px;
+  width: 100%;
+
+  ::-webkit-scrollbar {
+    width: 0 !important;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: transparent !important;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: transparent !important;
+    border-radius: 0;
+  }
+`;
+const Header$1 = st.div`
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 15px;
+  margin-bottom: 30px;
+`;
+const ContentProducts = st.div`
+  width: 70%;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.05);
+  overflow-y: scroll;
+`;
+st.h3`
+  &:hover {
+    cursor: pointer;
+    color: #2faa54;
+    transition: ease 0.5s;
+  }
+`;
+const CardProduct = st.div`
+  cursor: pointer;
+  width: 170px;
+  /* height: 240px; */
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+`;
+const CountProduct = st.div`
+  width: 30px;
+  cursor: pointer;
+  height: 30px;
+  border-radius: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #f2f2f2;
+
+  &:hover {
+    background-color: #ea2c2c;
+    color: #fff;
+  }
+`;
+const CategoryProducts = st.div`
+  max-width: 100%;
+  overflow-x: scroll;
+  border-bottom: 1px solid #fff;
+  background-color: #f2f2f2;
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+`;
+const ContentInfo = st.div`
+  width: 30%;
+  border-radius: 10px;
+  background-color: #fff;
+  box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.05);
+`;
+const NotImage = "" + new URL("sem-imagem-d1e5e376.png", import.meta.url).href;
+function RiDeleteBin5Fill(props) {
+  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 24 24" }, "child": [{ "tag": "path", "attr": { "d": "M4 8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8ZM7 5V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V5H22V7H2V5H7ZM9 4V5H15V4H9ZM9 12V18H11V12H9ZM13 12V18H15V12H13Z" } }] })(props);
+}
+function IoMdArrowDropright(props) {
+  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 512 512" }, "child": [{ "tag": "path", "attr": { "d": "M192 128l128 128-128 128z" } }] })(props);
+}
+const CartEmpty = "" + new URL("carrinho-5e3f314d.png", import.meta.url).href;
+const { Title: Title$a, Paragraph: Paragraph$5 } = Typography$1;
+const Takeout = () => {
+  const { categories, products, fetchProducts, fetchCategories } = useProducts();
+  const [categorySelected, setCategorySelected] = reactExports.useState("");
+  const navigate = useNavigate();
+  const { addProductToTakeout, clearTakeout, productsSelected, removeProductToTakeout } = useTakeout();
+  reactExports.useEffect(() => {
+    fetchCategories();
+    fetchProducts();
+  }, []);
+  const handleChange = (newValue) => {
+    setCategorySelected(newValue);
+  };
+  const info = () => {
+    Modal$1.info({
+      title: "Você tem certeza que deseja limpar o carrinho ?",
+      content: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Ao deletar o carrinho, você não conseguirar recuperá-lo!" }) }),
+      onOk() {
+        clearTakeout();
+      }
+    });
+  };
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$7, { children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(Header$1, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(Input$1.Search, { size: "large", placeholder: "Buscar" }) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "div",
+      {
+        style: {
+          display: "flex",
+          flexDirection: "column",
+          gap: "10px"
+        },
+        children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "div",
+          {
+            style: {
+              width: "100%",
+              display: "flex",
+              gap: "20px",
+              height: "calc(100vh - 230px)"
+            },
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(ContentProducts, { children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(CategoryProducts, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Select$1,
+                  {
+                    showSearch: true,
+                    onChange: handleChange,
+                    size: "large",
+                    style: { width: "100%" },
+                    placeholder: "Filtre os produtos por categoria",
+                    optionFilterProp: "children",
+                    filterOption: (input, option) => (option?.label ?? "").toLowerCase().startsWith(input.toLowerCase()),
+                    filterSort: (optionA, optionB) => (optionA?.label ?? "").toLowerCase().localeCompare((optionB?.label ?? "").toLowerCase()),
+                    options: [
+                      { value: "", label: "Todas" },
+                      ...categories.map((c2) => ({ label: c2.title, value: c2.title }))
+                    ]
+                  }
+                ) }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Spin$1, { spinning: products.length === 0 ? true : false, size: "large", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "div",
+                  {
+                    style: {
+                      padding: "20px",
+                      display: "grid",
+                      gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
+                      rowGap: "20px",
+                      height: "calc(100vh - 310px)",
+                      overflowY: "scroll"
+                    },
+                    children: categorySelected === "" ? products.map((product) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      Badge$1,
+                      {
+                        color: "#2faa54",
+                        count: productsSelected.find((x2) => x2.id === product.id)?.quantity,
+                        children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                          CardProduct,
+                          {
+                            onClick: () => {
+                              console.log(product);
+                              addProductToTakeout(product);
+                              console.log(productsSelected);
+                            },
+                            children: [
+                              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                Image$2,
+                                {
+                                  src: product.photo || NotImage,
+                                  preview: false,
+                                  style: {
+                                    width: "100%",
+                                    height: "50%",
+                                    borderRadius: "10px 10px 0 0"
+                                  }
+                                }
+                              ),
+                              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                                "div",
+                                {
+                                  style: {
+                                    padding: "10px",
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    gap: "10px"
+                                  },
+                                  children: [
+                                    /* @__PURE__ */ jsxRuntimeExports.jsx(Paragraph$5, { strong: true, ellipsis: true, children: product.title }),
+                                    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: formatCurrency(Number(product.price)) })
+                                  ]
+                                }
+                              )
+                            ]
+                          },
+                          product.id
+                        )
+                      },
+                      product.id
+                    )) : products.filter((x2) => x2.category.title === categorySelected).map((product) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      Badge$1,
+                      {
+                        color: "#2faa54",
+                        count: productsSelected.find((x2) => x2.id === product.id)?.quantity,
+                        children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                          CardProduct,
+                          {
+                            onClick: () => {
+                              console.log(product);
+                              addProductToTakeout(product);
+                            },
+                            children: [
+                              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                Image$2,
+                                {
+                                  src: product.photo || NotImage,
+                                  preview: false,
+                                  style: {
+                                    width: "100%",
+                                    height: "40%",
+                                    borderRadius: "10px 10px 0 0"
+                                  }
+                                }
+                              ),
+                              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                                "div",
+                                {
+                                  style: {
+                                    padding: "10px",
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    gap: "10px"
+                                  },
+                                  children: [
+                                    /* @__PURE__ */ jsxRuntimeExports.jsx("h4", { children: product.title }),
+                                    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: formatCurrency(Number(product.price)) })
+                                  ]
+                                }
+                              )
+                            ]
+                          },
+                          product.id
+                        )
+                      },
+                      product.id
+                    ))
+                  }
+                ) })
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(ContentInfo, { children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "header",
+                  {
+                    style: {
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "flex-end"
+                    },
+                    children: /* @__PURE__ */ jsxRuntimeExports.jsx(Button$2, { type: "link", size: "large", children: "+ Selecionar cliente" })
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "div",
+                  {
+                    style: {
+                      display: "flex",
+                      flexDirection: "column",
+                      width: "100%",
+                      height: "70%",
+                      overflowY: "scroll",
+                      paddingBottom: "20px"
+                    },
+                    children: productsSelected.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                      "div",
+                      {
+                        style: {
+                          display: "flex",
+                          height: "100%",
+                          flexDirection: "column",
+                          justifyContent: "center",
+                          alignItems: "center"
+                        },
+                        children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(
+                            "img",
+                            {
+                              src: CartEmpty,
+                              style: {
+                                width: "200px"
+                              }
+                            }
+                          ),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(Title$a, { level: 3, children: "Seu carrinho está vazio." }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(Paragraph$5, { children: "Clique nos produtos para adicioná-los à venda." })
+                        ]
+                      }
+                    ) : productsSelected.map((product) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                      "div",
+                      {
+                        style: {
+                          padding: "10px",
+                          borderBottom: "1px solid #f2f2f2",
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "space-between",
+                          flexDirection: "row",
+                          gap: "10px"
+                        },
+                        children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                            "div",
+                            {
+                              style: {
+                                display: "flex",
+                                alignItems: "center",
+                                gap: "10px"
+                              },
+                              children: [
+                                /* @__PURE__ */ jsxRuntimeExports.jsx(CountProduct, { onClick: () => removeProductToTakeout(product.id), children: product.quantity }),
+                                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                  "p",
+                                  {
+                                    style: {
+                                      fontSize: "1rem"
+                                    },
+                                    children: product.title
+                                  }
+                                )
+                              ]
+                            }
+                          ),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: formatCurrency(product.total) })
+                        ]
+                      },
+                      product.id
+                    ))
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Divider$1,
+                  {
+                    style: {
+                      margin: 0
+                    }
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "div",
+                  {
+                    style: {
+                      display: "flex",
+                      flexDirection: "column",
+                      width: "100%"
+                    },
+                    children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      "div",
+                      {
+                        style: {
+                          margin: 0,
+                          padding: "10px"
+                        },
+                        children: productsSelected.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+                          " ",
+                          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                            "div",
+                            {
+                              style: {
+                                width: "100%",
+                                display: "flex",
+                                justifyContent: "space-between"
+                              },
+                              children: [
+                                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                  Paragraph$5,
+                                  {
+                                    style: {
+                                      margin: 0,
+                                      fontSize: "1rem",
+                                      color: "rgb(54, 63, 77)"
+                                    },
+                                    children: productsSelected.length > 1 ? `${productsSelected.length} itens` : `${productsSelected.length} item`
+                                  }
+                                ),
+                                /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                                  Paragraph$5,
+                                  {
+                                    style: {
+                                      margin: 0,
+                                      fontSize: "1rem",
+                                      color: "rgb(54, 63, 77)"
+                                    },
+                                    children: [
+                                      "SubTotal:",
+                                      " ",
+                                      /* @__PURE__ */ jsxRuntimeExports.jsx("b", { children: formatCurrency(
+                                        productsSelected.map((x2) => x2.total).reduce((a, b2) => a + b2, 0)
+                                      ) })
+                                    ]
+                                  }
+                                )
+                              ]
+                            }
+                          ),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(
+                            "div",
+                            {
+                              style: {
+                                width: "100%",
+                                display: "flex",
+                                justifyContent: "flex-end"
+                              },
+                              children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                Button$2,
+                                {
+                                  type: "default",
+                                  size: "large",
+                                  style: {
+                                    padding: "0",
+                                    fontWeight: "bold",
+                                    color: "#2faa54",
+                                    backgroundColor: "transparent",
+                                    border: "none",
+                                    boxShadow: "none"
+                                  },
+                                  children: "Aplicar desconto"
+                                }
+                              )
+                            }
+                          ),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(
+                            "div",
+                            {
+                              style: {
+                                width: "100%",
+                                display: "flex",
+                                justifyContent: "flex-end"
+                              },
+                              children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                                Title$a,
+                                {
+                                  level: 4,
+                                  style: {
+                                    color: "rgb(54, 63, 77)"
+                                  },
+                                  children: [
+                                    "Total:",
+                                    " ",
+                                    formatCurrency(
+                                      productsSelected.map((x2) => x2.total).reduce((a, b2) => a + b2, 0)
+                                    )
+                                  ]
+                                }
+                              )
+                            }
+                          )
+                        ] })
+                      }
+                    )
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                  "div",
+                  {
+                    style: {
+                      display: "flex",
+                      gap: "15px",
+                      padding: "0 10px 10px 10px",
+                      alignItems: "flex-end",
+                      height: `${productsSelected.length === 0 ? "170px" : "70px"}`
+                    },
+                    children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        Button$2,
+                        {
+                          style: {},
+                          danger: true,
+                          type: "default",
+                          disabled: productsSelected.length === 0,
+                          onClick: info,
+                          size: "large",
+                          icon: /* @__PURE__ */ jsxRuntimeExports.jsx(RiDeleteBin5Fill, {})
+                        }
+                      ),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        Button$2,
+                        {
+                          type: "primary",
+                          style: {
+                            flex: 1,
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "center",
+                            flexDirection: "row-reverse"
+                          },
+                          size: "large",
+                          onClick: () => navigate("/pedidos-balcao/pagamentos/"),
+                          disabled: productsSelected.length === 0,
+                          icon: /* @__PURE__ */ jsxRuntimeExports.jsx(IoMdArrowDropright, { size: 22 }),
+                          children: "Ir para pagamentos"
+                        }
+                      )
+                    ]
+                  }
+                )
+              ] })
+            ]
+          }
+        )
+      }
+    )
+  ] });
+};
+const Container$6 = st.div`
   width: 100%;
   height: 100%;
   padding: 40px 20px;
@@ -93526,7 +94969,7 @@ function GiFullMotorcycleHelmet(props) {
 function SlOptionsVertical(props) {
   return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 1024 1024" }, "child": [{ "tag": "path", "attr": { "d": "M388.8 896.4v-27.198c.6-2.2 1.6-4.2 2-6.4 8.8-57.2 56.4-102.4 112.199-106.2 62.4-4.4 115.2 31.199 132.4 89.199 2.2 7.6 3.8 15.6 5.8 23.4v27.2c-.6 1.8-1.6 3.399-1.8 5.399-8.6 52.8-46.6 93-98.6 104.4-4 .8-8 2-12 3h-27.2c-1.8-.6-3.6-1.6-5.4-1.8-52-8.4-91.599-45.4-103.6-96.8-1.2-5-2.6-9.6-3.8-14.2zm252.4-768.797l-.001 27.202c-.6 2.2-1.6 4.2-1.8 6.4-9 57.6-56.8 102.6-113.2 106.2-62.2 4-114.8-32-131.8-90.2-2.2-7.401-3.8-15-5.6-22.401v-27.2c.6-1.8 1.6-3.4 2-5.2 9.6-52 39.8-86 90.2-102.2 6.6-2.2 13.6-3.4 20.4-5.2h27.2c1.8.6 3.6 1.6 5.4 1.8 52.2 8.6 91.6 45.4 103.6 96.8 1.201 4.8 2.401 9.4 3.601 13.999zm-.001 370.801v27.2c-.6 2.2-1.6 4.2-2 6.4-9 57.4-58.6 103.6-114.6 106-63 2.8-116.4-35.2-131.4-93.8-1.6-6.2-3-12.4-4.4-18.6v-27.2c.6-2.2 1.6-4.2 2-6.4 8.8-57.4 58.6-103.601 114.6-106.2 63-3 116.4 35.2 131.4 93.8 1.6 6.4 3 12.6 4.4 18.8z" } }] })(props);
 }
-const Container$2 = st.div`
+const Container$5 = st.div`
   width: 300px;
   display: flex;
   flex-direction: column;
@@ -93551,8 +94994,8 @@ const OrderInfo = st.div`
   display: flex;
   flex-direction: column;
 `;
-const { Title: Title$4, Paragraph: Paragraph$1 } = Typography$1;
-const CardOrder = () => {
+const { Title: Title$9, Paragraph: Paragraph$4 } = Typography$1;
+const CardOrder = ({ onClick }) => {
   const items2 = [
     {
       label: /* @__PURE__ */ jsxRuntimeExports.jsxs("p", { children: [
@@ -93590,8 +95033,8 @@ const CardOrder = () => {
       key: "5"
     }
   ];
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(Dropdown$1, { menu: { items: items2 }, trigger: ["contextMenu"], children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$2, { children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs(
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Dropdown$1, { menu: { items: items2 }, trigger: ["contextMenu"], children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$5, { onClick, children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
       "header",
       {
         style: {
@@ -93600,30 +95043,12 @@ const CardOrder = () => {
           alignItems: "center",
           padding: "0 10px"
         },
-        children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Title$4, { level: 5, style: { margin: 0 }, children: "#0001" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Dropdown$1, { menu: { items: items2 }, trigger: ["click"], children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-            Button$2,
-            {
-              size: "small",
-              type: "default",
-              icon: /* @__PURE__ */ jsxRuntimeExports.jsx(SlOptionsVertical, {}),
-              style: {
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center",
-                borderColor: "transparent",
-                backgroundColor: "transparent",
-                padding: "5px"
-              }
-            }
-          ) })
-        ]
+        children: /* @__PURE__ */ jsxRuntimeExports.jsx(Title$9, { level: 5, style: { margin: 0 }, children: "#0001" })
       }
     ),
     /* @__PURE__ */ jsxRuntimeExports.jsxs(OrderInfo, { children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs(
-        Paragraph$1,
+        Paragraph$4,
         {
           style: {
             fontSize: "1rem",
@@ -93637,7 +95062,7 @@ const CardOrder = () => {
         }
       ),
       /* @__PURE__ */ jsxRuntimeExports.jsxs(
-        Paragraph$1,
+        Paragraph$4,
         {
           style: {
             fontSize: "1rem",
@@ -93651,7 +95076,7 @@ const CardOrder = () => {
         }
       ),
       /* @__PURE__ */ jsxRuntimeExports.jsxs(
-        Paragraph$1,
+        Paragraph$4,
         {
           style: {
             fontSize: "1rem",
@@ -93680,7 +95105,7 @@ const CardOrder = () => {
         },
         children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(
-            Paragraph$1,
+            Paragraph$4,
             {
               style: {
                 fontSize: "0.85rem",
@@ -93691,7 +95116,7 @@ const CardOrder = () => {
             }
           ),
           /* @__PURE__ */ jsxRuntimeExports.jsx(
-            Paragraph$1,
+            Paragraph$4,
             {
               style: {
                 fontSize: "1.15rem",
@@ -93707,6 +95132,236 @@ const CardOrder = () => {
     )
   ] }) });
 };
+const { Title: Title$8, Paragraph: Paragraph$3 } = Typography$1;
+const columns$2 = [
+  {
+    title: "Qtd",
+    dataIndex: "quantity",
+    key: "quantity"
+  },
+  {
+    title: "Produto",
+    dataIndex: "item",
+    key: "item"
+  },
+  {
+    title: "Cód.",
+    dataIndex: "code",
+    key: "code"
+  },
+  {
+    title: "Preços",
+    dataIndex: "price",
+    key: "price"
+  }
+];
+const data = [
+  {
+    key: "1",
+    quantity: 5,
+    item: "Hamburguer de Frango",
+    code: 123,
+    price: 10.99
+  },
+  {
+    key: "2",
+    quantity: 3,
+    item: "Pizza Margherita",
+    code: 456,
+    price: 7.49
+  },
+  {
+    key: "3",
+    quantity: 8,
+    item: "Salmão Grelhado",
+    code: 789,
+    price: 14.99
+  },
+  {
+    key: "4",
+    quantity: 2,
+    item: "Massa Carbonara",
+    code: 321,
+    price: 5.99
+  },
+  {
+    key: "5",
+    quantity: 6,
+    item: "Tacos de Carne Asada",
+    code: 654,
+    price: 12.49
+  },
+  {
+    key: "6",
+    quantity: 4,
+    item: "Sopa de Tomate",
+    code: 987,
+    price: 9.99
+  },
+  {
+    key: "7",
+    quantity: 7,
+    item: "Salada Caesar",
+    code: 234,
+    price: 8.99
+  },
+  {
+    key: "8",
+    quantity: 1,
+    item: "Sanduíche de Peito de Peru",
+    code: 567,
+    price: 6.49
+  },
+  {
+    key: "9",
+    quantity: 10,
+    item: "Tigela de Ramen",
+    code: 876,
+    price: 19.99
+  },
+  {
+    key: "10",
+    quantity: 3,
+    item: "Sobremesa Cheesecake",
+    code: 432,
+    price: 11.49
+  }
+];
+const ModalOrder = ({ isModalOpen, onCancel }) => {
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    Modal$1,
+    {
+      width: 750,
+      title: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        "div",
+        {
+          style: {
+            display: "flex",
+            flexDirection: "row",
+            gap: "30%"
+          },
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Title$8, { level: 5, style: { color: "rgb(72, 84, 96)", margin: 0 }, children: "#0001" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Paragraph$3,
+              {
+                style: {
+                  color: "rgb(72, 84, 96)",
+                  margin: 0
+                },
+                children: "Recebido há 4 min"
+              }
+            )
+          ]
+        }
+      ),
+      open: isModalOpen,
+      onCancel,
+      footer: null,
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Divider$1, { style: { marginTop: 0, marginBottom: 8 } }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "div",
+          {
+            style: {
+              width: "100%",
+              border: "1px solid rgb(224, 224, 224)",
+              borderRadius: "5px",
+              padding: "8px"
+            },
+            children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              "div",
+              {
+                style: {
+                  display: "flex",
+                  flexDirection: "row",
+                  justifyContent: "space-between"
+                },
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    "div",
+                    {
+                      style: {
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "space-between",
+                        gap: "10px"
+                      },
+                      children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs(Paragraph$3, { style: { margin: 0, fontSize: "1rem" }, children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(UserOutlined$1, {}),
+                          " Lucas Carvalho"
+                        ] }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs(Paragraph$3, { style: { margin: 0, fontSize: "1rem" }, children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(ShoppingOutlined$1, {}),
+                          " Retirada"
+                        ] })
+                      ]
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    "div",
+                    {
+                      style: {
+                        display: "flex",
+                        flexDirection: "column",
+                        justifyContent: "space-between",
+                        gap: "10px"
+                      },
+                      children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs(Paragraph$3, { style: { margin: 0, fontSize: "1rem" }, children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(PhoneOutlined$1, {}),
+                          " +55 11 99999-9999"
+                        ] }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs(Paragraph$3, { style: { margin: 0, fontSize: "1rem" }, children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(WalletOutlined$1, {}),
+                          " Dinheiro (Sem troco)"
+                        ] })
+                      ]
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { display: "flex", flexDirection: "column", justifyContent: "flex-end" }, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Paragraph$3, { style: { margin: 0, fontSize: "1rem" }, children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(CalendarOutlined$1, {}),
+                    " 03/10/2023 - 21:44"
+                  ] }) })
+                ]
+              }
+            )
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          Table$2,
+          {
+            columns: columns$2,
+            scroll: { y: 240 },
+            pagination: false,
+            style: {
+              margin: "15px 0"
+            },
+            dataSource: data
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "div",
+          {
+            style: {
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-between"
+            },
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Button$2, { children: "Imprimir pedido" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", gap: "10px" }, children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Button$2, { type: "default", danger: true, onClick: onCancel, children: "Recusar" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Button$2, { type: "primary", style: { marginRight: "10px" }, children: "Aceitar" })
+              ] })
+            ]
+          }
+        )
+      ]
+    }
+  );
+};
 const items = [
   {
     label: "Transferir Pendentes para concluido",
@@ -93714,140 +95369,138 @@ const items = [
   }
 ];
 const OrdersManager = () => {
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$3, { children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs(HeaderContainer, { children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs(
-        "div",
-        {
-          style: {
-            display: "flex",
-            flexDirection: "row"
-          },
-          children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              TagStatus,
-              {
-                icon: /* @__PURE__ */ jsxRuntimeExports.jsx(AiOutlineCoffee, {}),
-                bgColor: "rgba(219, 154, 0, 0.1)",
-                borderColor: "rgb(219, 154, 0)",
-                children: "Pendentes"
-              }
-            ),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              TagStatus,
-              {
-                icon: /* @__PURE__ */ jsxRuntimeExports.jsx(AiOutlineCheck, {}),
-                borderColor: "rgb(110, 6, 214)",
-                bgColor: "rgba(110, 6, 214, 0.1)",
-                children: "Aceito"
-              }
-            ),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              TagStatus,
-              {
-                icon: /* @__PURE__ */ jsxRuntimeExports.jsx(AiFillClockCircle, {}),
-                borderColor: "rgb(255, 130, 102)",
-                bgColor: "rgba(255, 130, 102, 0.1)",
-                children: "Em preparo"
-              }
-            ),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              TagStatus,
-              {
-                icon: /* @__PURE__ */ jsxRuntimeExports.jsx(GiFullMotorcycleHelmet, {}),
-                borderColor: "rgb(102, 136, 255)",
-                bgColor: "rgba(102, 136, 255, 0.1)",
-                children: "Esperando o entregador"
-              }
-            ),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              TagStatus,
-              {
-                icon: /* @__PURE__ */ jsxRuntimeExports.jsx(FaMotorcycle, {}),
-                borderColor: "rgb(0, 165, 121)",
-                bgColor: "rgba(0, 165, 121, 0.1)",
-                children: "Saiu para entrega"
-              }
-            ),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              TagStatus,
-              {
-                icon: /* @__PURE__ */ jsxRuntimeExports.jsx(FaConciergeBell, {}),
-                borderColor: "rgb(28, 175, 28)",
-                bgColor: "rgba(28, 175, 28, 0.1)",
-                children: "Concluido"
-              }
-            )
-          ]
-        }
-      ),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs(
-        "div",
-        {
-          style: {
-            display: "flex",
-            flexDirection: "row",
-            gap: "10px"
-          },
-          children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Input$1.Search, { placeholder: "Buscar pelo nº do pedido ou comanda", size: "large" }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              Button$2,
-              {
-                size: "large",
-                type: "default",
-                icon: /* @__PURE__ */ jsxRuntimeExports.jsx(AiTwotoneSetting, {}),
-                style: {
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: "1.25rem",
-                  padding: "5px"
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$6, { children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(HeaderContainer, { children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "div",
+          {
+            style: {
+              display: "flex",
+              flexDirection: "row"
+            },
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                TagStatus,
+                {
+                  icon: /* @__PURE__ */ jsxRuntimeExports.jsx(AiOutlineCoffee, {}),
+                  bgColor: "rgba(219, 154, 0, 0.1)",
+                  borderColor: "rgb(219, 154, 0)",
+                  children: "Pendentes"
                 }
-              }
-            ),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Dropdown$1, { menu: { items }, trigger: ["click"], children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-              Button$2,
-              {
-                size: "large",
-                type: "default",
-                icon: /* @__PURE__ */ jsxRuntimeExports.jsx(SlOptionsVertical, {}),
-                style: {
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: "1.25rem",
-                  padding: "5px"
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                TagStatus,
+                {
+                  icon: /* @__PURE__ */ jsxRuntimeExports.jsx(AiOutlineCheck, {}),
+                  borderColor: "rgb(110, 6, 214)",
+                  bgColor: "rgba(110, 6, 214, 0.1)",
+                  children: "Aceito"
                 }
-              }
-            ) })
-          ]
-        }
-      )
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                TagStatus,
+                {
+                  icon: /* @__PURE__ */ jsxRuntimeExports.jsx(AiFillClockCircle, {}),
+                  borderColor: "rgb(255, 130, 102)",
+                  bgColor: "rgba(255, 130, 102, 0.1)",
+                  children: "Em preparo"
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                TagStatus,
+                {
+                  icon: /* @__PURE__ */ jsxRuntimeExports.jsx(GiFullMotorcycleHelmet, {}),
+                  borderColor: "rgb(102, 136, 255)",
+                  bgColor: "rgba(102, 136, 255, 0.1)",
+                  children: "Esperando o entregador"
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                TagStatus,
+                {
+                  icon: /* @__PURE__ */ jsxRuntimeExports.jsx(FaMotorcycle, {}),
+                  borderColor: "rgb(0, 165, 121)",
+                  bgColor: "rgba(0, 165, 121, 0.1)",
+                  children: "Saiu para entrega"
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                TagStatus,
+                {
+                  icon: /* @__PURE__ */ jsxRuntimeExports.jsx(FaConciergeBell, {}),
+                  borderColor: "rgb(28, 175, 28)",
+                  bgColor: "rgba(28, 175, 28, 0.1)",
+                  children: "Concluido"
+                }
+              )
+            ]
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "div",
+          {
+            style: {
+              display: "flex",
+              flexDirection: "row",
+              gap: "10px"
+            },
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Input$1.Search, { placeholder: "Buscar pelo nº do pedido ou comanda", size: "large" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Button$2,
+                {
+                  size: "large",
+                  type: "default",
+                  icon: /* @__PURE__ */ jsxRuntimeExports.jsx(AiTwotoneSetting, {}),
+                  style: {
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontSize: "1.25rem",
+                    padding: "5px"
+                  }
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Dropdown$1, { menu: { items }, trigger: ["click"], children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Button$2,
+                {
+                  size: "large",
+                  type: "default",
+                  icon: /* @__PURE__ */ jsxRuntimeExports.jsx(SlOptionsVertical, {}),
+                  style: {
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    fontSize: "1.25rem",
+                    padding: "5px"
+                  }
+                }
+              ) })
+            ]
+          }
+        )
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(OrdersContainer, { children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(CardOrder, { onClick: () => setIsModalOpen(true) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(CardOrder, { onClick: () => setIsModalOpen(true) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(CardOrder, { onClick: () => setIsModalOpen(true) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(CardOrder, { onClick: () => setIsModalOpen(true) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(CardOrder, { onClick: () => setIsModalOpen(true) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(CardOrder, { onClick: () => setIsModalOpen(true) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(CardOrder, { onClick: () => setIsModalOpen(true) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(CardOrder, { onClick: () => setIsModalOpen(true) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(CardOrder, { onClick: () => setIsModalOpen(true) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(CardOrder, { onClick: () => setIsModalOpen(true) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(CardOrder, { onClick: () => setIsModalOpen(true) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(CardOrder, { onClick: () => setIsModalOpen(true) })
+      ] })
     ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs(OrdersContainer, { children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(CardOrder, {}),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(CardOrder, {}),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(CardOrder, {}),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(CardOrder, {}),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(CardOrder, {}),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(CardOrder, {}),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(CardOrder, {}),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(CardOrder, {}),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(CardOrder, {}),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(CardOrder, {}),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(CardOrder, {}),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(CardOrder, {}),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(CardOrder, {}),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(CardOrder, {}),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(CardOrder, {}),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(CardOrder, {}),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(CardOrder, {}),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(CardOrder, {})
-    ] })
+    /* @__PURE__ */ jsxRuntimeExports.jsx(ModalOrder, { isModalOpen, onCancel: () => setIsModalOpen(false) })
   ] });
 };
-const Container$1 = st.div`
+const Container$4 = st.div`
   width: 100%;
   height: calc(100vh - 50px);
   padding: 20px;
@@ -103015,7 +104668,7 @@ var plugin_legend = {
     }
   }
 };
-let Title$3 = class Title extends Element$1 {
+let Title$7 = class Title extends Element$1 {
   constructor(config) {
     super();
     this.chart = config.chart;
@@ -103107,7 +104760,7 @@ let Title$3 = class Title extends Element$1 {
   }
 };
 function createTitle(chart, titleOpts) {
-  const title = new Title$3({
+  const title = new Title$7({
     ctx: chart.ctx,
     options: titleOpts,
     chart
@@ -103118,7 +104771,7 @@ function createTitle(chart, titleOpts) {
 }
 var plugin_title = {
   id: "title",
-  _element: Title$3,
+  _element: Title$7,
   start(chart, _args, options2) {
     createTitle(chart, options2);
   },
@@ -105951,7 +107604,7 @@ const CardInfoFinance = st.div`
   flex-direction: column;
   gap: 10px;
 `;
-const { Text: Text$1 } = Typography$1;
+const { Text: Text$3 } = Typography$1;
 const colors$1 = [
   {
     color: "#4C0677",
@@ -105996,7 +107649,7 @@ const PaymentsCards = ({ data: data2, serviceFee }) => {
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(CardsInfoFinance, { children: [
     data2.map((item, key) => /* @__PURE__ */ jsxRuntimeExports.jsxs(CardInfoFinance, { children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs(
-        Text$1,
+        Text$3,
         {
           type: "secondary",
           style: {
@@ -106027,7 +107680,7 @@ const PaymentsCards = ({ data: data2, serviceFee }) => {
         }
       ),
       /* @__PURE__ */ jsxRuntimeExports.jsx(
-        Text$1,
+        Text$3,
         {
           strong: true,
           style: {
@@ -106050,7 +107703,7 @@ const PaymentsCards = ({ data: data2, serviceFee }) => {
     ] }, item.label)),
     /* @__PURE__ */ jsxRuntimeExports.jsxs(CardInfoFinance, { children: [
       /* @__PURE__ */ jsxRuntimeExports.jsxs(
-        Text$1,
+        Text$3,
         {
           type: "secondary",
           style: {
@@ -106080,7 +107733,7 @@ const PaymentsCards = ({ data: data2, serviceFee }) => {
         }
       ),
       /* @__PURE__ */ jsxRuntimeExports.jsx(
-        Text$1,
+        Text$3,
         {
           strong: true,
           style: {
@@ -106489,7 +108142,7 @@ dayjs.extend(localeData);
 dayjs.extend(weekOfYear);
 dayjs.extend(weekYear);
 const DATE_FORMAT = "DD/MM/YYYY HH:mm";
-const { Title: Title$2, Paragraph } = Typography$1;
+const { Title: Title$6, Paragraph: Paragraph$2 } = Typography$1;
 function organizePayments(payments) {
   const groupedPayments = {};
   for (const payment of payments) {
@@ -106631,7 +108284,7 @@ const FinancialStats = () => {
   const onChange2 = (pagination, filters, sorter2, extra) => {
     console.log("params", pagination, filters, sorter2, extra);
   };
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$1, { children: [
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$4, { children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx(
       Form$1,
       {
@@ -106713,7 +108366,7 @@ const FinancialStats = () => {
             }
           }
         ) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(Title$2, { level: 5, style: { margin: "0", color: "#A0AEC0" }, italic: true, children: "Faturamento Total" })
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Title$6, { level: 5, style: { margin: "0", color: "#A0AEC0" }, italic: true, children: "Faturamento Total" })
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsx(
         "div",
@@ -106724,7 +108377,7 @@ const FinancialStats = () => {
             alignItems: "flex-start",
             gap: "0.5rem"
           },
-          children: /* @__PURE__ */ jsxRuntimeExports.jsx(Paragraph, { strong: true, style: { margin: "0", fontSize: "1.75rem", color: "#31AB56" }, children: formatCurrency(
+          children: /* @__PURE__ */ jsxRuntimeExports.jsx(Paragraph$2, { strong: true, style: { margin: "0", fontSize: "1.75rem", color: "#31AB56" }, children: formatCurrency(
             payments.reduce((acc, curr) => {
               return acc + Number(curr.total);
             }, 0)
@@ -106822,7 +108475,7 @@ const FinancialStats = () => {
                         }
                       }
                     ) }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(Title$2, { level: 5, style: { margin: "0", color: "#A0AEC0" }, italic: true, children: "Dia que mais faturou" })
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(Title$6, { level: 5, style: { margin: "0", color: "#A0AEC0" }, italic: true, children: "Dia que mais faturou" })
                   ] }),
                   /* @__PURE__ */ jsxRuntimeExports.jsxs(
                     "div",
@@ -106834,7 +108487,7 @@ const FinancialStats = () => {
                       },
                       children: [
                         /* @__PURE__ */ jsxRuntimeExports.jsx(
-                          Paragraph,
+                          Paragraph$2,
                           {
                             strong: true,
                             style: { margin: "0", opacity: 0.7, fontSize: "1rem", color: "#31AB56" },
@@ -106845,7 +108498,7 @@ const FinancialStats = () => {
                           }
                         ),
                         /* @__PURE__ */ jsxRuntimeExports.jsx(
-                          Paragraph,
+                          Paragraph$2,
                           {
                             strong: true,
                             style: { margin: "0", fontWeight: "bold", fontSize: "1.75rem", color: "#31AB56" },
@@ -106877,7 +108530,7 @@ const FinancialStats = () => {
                         }
                       }
                     ) }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(Title$2, { level: 5, style: { margin: "0", color: "#A0AEC0" }, italic: true, children: "Faturamento médio/dia" })
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(Title$6, { level: 5, style: { margin: "0", color: "#A0AEC0" }, italic: true, children: "Faturamento médio/dia" })
                   ] }),
                   /* @__PURE__ */ jsxRuntimeExports.jsx(
                     "div",
@@ -106888,7 +108541,7 @@ const FinancialStats = () => {
                         alignItems: "flex-start"
                       },
                       children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                        Paragraph,
+                        Paragraph$2,
                         {
                           strong: true,
                           style: { margin: "0", fontWeight: "bold", fontSize: "1.75rem", color: "#31AB56" },
@@ -106927,7 +108580,372 @@ const FinancialStats = () => {
     )
   ] });
 };
-const Container = st.div`
+const Container$3 = st.div`
+  width: 100%;
+  padding: 20px 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  height: calc(100vh - 60px);
+  overflow-y: scroll;
+`;
+const Spacer = st.div`
+  background-color: #fff;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px #0000000d;
+  padding: 15px;
+`;
+const { Title: Title$5, Paragraph: Paragraph$1 } = Typography$1;
+const ItemCard = ({ data: data2 }) => {
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    "div",
+    {
+      style: {
+        width: "100%",
+        backgroundColor: "#f5f5f5",
+        borderRadius: "8px",
+        marginBottom: "8px",
+        padding: "10px",
+        display: "flex",
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between"
+      },
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "div",
+          {
+            style: {
+              display: "flex",
+              flexDirection: "row",
+              gap: "15px",
+              alignItems: "center"
+            },
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Title$5, { level: 5, style: { margin: 0 }, children: [
+                data2?.quantity,
+                "x"
+              ] }) }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Title$5, { level: 5, style: { margin: 0 }, children: data2?.title }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Paragraph$1, { style: { margin: 0 }, children: formatCurrency(data2?.price) })
+              ] })
+            ]
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(Title$5, { level: 4, style: { margin: 0 }, children: formatCurrency(data2?.total) }) })
+      ]
+    }
+  );
+};
+const { Title: Title$4, Paragraph } = Typography$1;
+const TakeoutPayment = () => {
+  const [, contextHolder] = notification$1.useNotification();
+  const [formOfPayment, setFormOfPayment] = reactExports.useState([]);
+  const [form] = Form$1.useForm();
+  const { productsSelected, clearTakeout } = useTakeout();
+  const navigate = useNavigate();
+  const [formOfPayments, setFormOfPayments] = reactExports.useState([]);
+  const onFinish = (values) => {
+    console.log(values.payments_methods);
+  };
+  function fetchFormOfPayments() {
+    api.get(`/payment-method/`).then((response) => {
+      setFormOfPayment(response.data);
+    }).catch((error) => {
+      errorActions(error);
+    });
+  }
+  const info = () => {
+    Modal$1.info({
+      title: "Você tem certeza que deseja limpar o carrinho ?",
+      content: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Ao deletar o carrinho, você não conseguirar recuperá-lo!" }) }),
+      onOk() {
+        handleCancelOrder();
+      }
+    });
+  };
+  function handleCancelOrder() {
+    clearTakeout();
+    navigate("/pedidos-balcao/");
+  }
+  function brlToNumber2(value) {
+    return Number(value.replace("R$", "").replace(".", "").replace(",", "."));
+  }
+  const items2 = [
+    {
+      key: "1",
+      label: productsSelected?.length > 1 ? `${productsSelected?.length} Items` : `${productsSelected?.length} Item`,
+      children: productsSelected.map((product) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+        ItemCard,
+        {
+          data: {
+            id: product.id,
+            title: product.title,
+            quantity: product.quantity,
+            price: product.price,
+            total: product.total
+          }
+        },
+        product.id
+      ))
+    }
+  ];
+  reactExports.useEffect(() => {
+    fetchFormOfPayments();
+    if (productsSelected.length === 0) {
+      handleCancelOrder();
+    }
+  }, []);
+  const [notes, setNotes] = reactExports.useState("");
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+    contextHolder,
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$3, { children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(Link$2, { to: "/pedidos-balcao/", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Button$2, { size: "large", type: "link", icon: /* @__PURE__ */ jsxRuntimeExports.jsx(LeftOutlined$1, {}), children: "Voltar" }) }) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        "div",
+        {
+          style: {
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr",
+            gridGap: "1rem"
+          },
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(Spacer, { children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                "div",
+                {
+                  style: {
+                    width: "100%",
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between"
+                  },
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(Title$4, { level: 4, style: { color: "rgb(54, 63, 77)" }, children: "Resumo do pedido" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      Button$2,
+                      {
+                        type: "default",
+                        icon: /* @__PURE__ */ jsxRuntimeExports.jsx(CloseOutlined$1, {}),
+                        danger: true,
+                        onClick: info,
+                        style: {
+                          backgroundColor: "transparent",
+                          border: "none",
+                          boxShadow: "none"
+                        },
+                        children: "Cancelar pedido"
+                      }
+                    )
+                  ]
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Collapse$1, { bordered: false, size: "large", expandIconPosition: "right", items: items2 }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                "div",
+                {
+                  style: {
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    margin: "10px 0"
+                  },
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(Paragraph, { style: { color: "rgb(54, 63, 77)", fontSize: "1rem", margin: 0 }, children: "Subtotal dos produtos:" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(Title$4, { level: 4, style: { margin: 0, color: "rgb(54, 63, 77)" }, children: formatCurrency(productsSelected.reduce((acc, item) => acc + item.total, 0)) })
+                  ]
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "div",
+                {
+                  style: {
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    alignItems: "center"
+                  },
+                  children: /* @__PURE__ */ jsxRuntimeExports.jsx(Paragraph, { style: { color: "rgb(54, 63, 77)", fontSize: "1rem", margin: 0 }, children: "Descontos:" })
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Divider$1, {}),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                "div",
+                {
+                  style: {
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    alignItems: "center"
+                  },
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(Title$4, { level: 3, style: { color: "rgb(54, 63, 77)", margin: 0 }, children: "Total" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(Title$4, { level: 4, style: { margin: 0, color: "rgb(54, 63, 77)" }, children: formatCurrency(productsSelected.reduce((acc, item) => acc + item.total, 0)) })
+                  ]
+                }
+              )
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(Spacer, { children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Title$4, { level: 4, style: { color: "rgb(54, 63, 77)" }, children: "Formas de pagamento" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(Form$1, { form, onFinish, children: [
+                formOfPayments.map((form2, key) => /* @__PURE__ */ jsxRuntimeExports.jsxs(Space$1, { style: { display: "flex", marginBottom: 8 }, align: "baseline", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    Select$1,
+                    {
+                      size: "large",
+                      showSearch: true,
+                      placeholder: "Selecione a forma de pagamento",
+                      optionFilterProp: "children",
+                      value: form2.id,
+                      onChange: (value) => {
+                        setFormOfPayments((prev2) => {
+                          const newFormOfPayments = [...prev2];
+                          newFormOfPayments[key].id = value;
+                          return newFormOfPayments;
+                        });
+                      },
+                      style: {
+                        width: "250px"
+                      },
+                      filterOption: (input, option) => (option?.label ?? "").includes(input),
+                      filterSort: (optionA, optionB) => (optionA?.label ?? "").toLowerCase().localeCompare((optionB?.label ?? "").toLowerCase()),
+                      options: formOfPayment.map((f2) => ({
+                        label: f2.title,
+                        value: f2.id
+                      }))
+                    }
+                  ) }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { rules: [{ required: true, message: "Informe o valor pago!" }], children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    Input$1,
+                    {
+                      placeholder: "Valor",
+                      size: "large",
+                      style: {
+                        width: "100%"
+                      },
+                      value: form2.value,
+                      onChange: (e2) => {
+                        setFormOfPayments((prev2) => {
+                          const newFormOfPayments = [...prev2];
+                          newFormOfPayments[key].value = formatToBRL(e2.target.value);
+                          return newFormOfPayments;
+                        });
+                      }
+                    }
+                  ) }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    MinusCircleOutlined$1,
+                    {
+                      onClick: () => {
+                        setFormOfPayments((prev2) => {
+                          const newFormOfPayments = [...prev2];
+                          newFormOfPayments.splice(key, 1);
+                          return newFormOfPayments;
+                        });
+                      }
+                    }
+                  )
+                ] }, form2.id)),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Button$2,
+                  {
+                    type: "dashed",
+                    onClick: () => {
+                      setFormOfPayments([...formOfPayments, { id: "", value: "" }]);
+                    },
+                    block: true,
+                    icon: /* @__PURE__ */ jsxRuntimeExports.jsx(PlusOutlined$1, {}),
+                    children: "Adicionar Pagamento"
+                  }
+                ) }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Form$1.Item,
+                  {
+                    style: {
+                      marginTop: "3rem"
+                    },
+                    children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      Button$2,
+                      {
+                        type: "primary",
+                        size: "large",
+                        block: true,
+                        icon: /* @__PURE__ */ jsxRuntimeExports.jsx(FaCashRegister, {}),
+                        onClick: () => {
+                          const order_items = productsSelected.map((product) => ({
+                            product_id: product.id,
+                            quantity: product.quantity,
+                            notes: "",
+                            product_title: product.title,
+                            complements: []
+                          }));
+                          const payment_methods = formOfPayments.map((form2) => ({
+                            id: form2.id,
+                            value: brlToNumber2(form2.value)
+                          }));
+                          api.post("/take-out/", {
+                            order_items,
+                            payment_methods,
+                            notes
+                          }).then(() => {
+                            clearTakeout();
+                            navigate("/pedidos-balcao/");
+                            notification$1.success({
+                              message: "Pedido realizado com sucesso!",
+                              placement: "topRight",
+                              duration: 3
+                            });
+                          }).catch((error) => {
+                            errorActions(error);
+                            notification$1.error({
+                              message: "Erro ao realizar pedido!",
+                              placement: "topRight",
+                              duration: 3
+                            });
+                          });
+                        },
+                        disabled: productsSelected.length === 0 || formOfPayments.length === 0 || formOfPayments.reduce((acc, item) => acc + brlToNumber2(item.value), 0) < brlToNumber2(
+                          formatCurrency(productsSelected.reduce((acc, item) => acc + item.total, 0))
+                        ),
+                        children: "Finalizar Venda"
+                      }
+                    )
+                  }
+                )
+              ] })
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(Spacer, { children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Title$4, { level: 4, style: { color: "rgb(54, 63, 77)" }, children: "Observações" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Input$1.TextArea,
+                {
+                  placeholder: "Alguma observação para o pedido",
+                  rows: 4,
+                  value: notes,
+                  onChange: (e2) => {
+                    setNotes(e2.target.value);
+                  }
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Checkbox$1,
+                {
+                  style: {
+                    marginTop: "1rem"
+                  },
+                  children: "Exibir na impressão"
+                }
+              )
+            ] })
+          ]
+        }
+      )
+    ] })
+  ] });
+};
+const Container$2 = st.div`
   width: 100%;
 `;
 const Header = st.header`
@@ -110763,7 +112781,7 @@ const TableComplemts = ({
     }
   ) });
 };
-const { Title: Title$1, Text } = Typography$1;
+const { Title: Title$3, Text: Text$2 } = Typography$1;
 const SelectCard = ({
   items: items2,
   selected = "",
@@ -110781,7 +112799,7 @@ const SelectCard = ({
       },
       children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Text,
+          Text$2,
           {
             style: {
               marginBottom: 10
@@ -110825,7 +112843,7 @@ const SelectCard = ({
                     }
                   ),
                   /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    Title$1,
+                    Title$3,
                     {
                       level: 5,
                       style: {
@@ -110836,7 +112854,7 @@ const SelectCard = ({
                     }
                   ),
                   /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    Text,
+                    Text$2,
                     {
                       style: {
                         textAlign: "center",
@@ -110856,7 +112874,7 @@ const SelectCard = ({
     }
   );
 };
-const { Title: Title2 } = Typography$1;
+const { Title: Title$2, Text: Text$1 } = Typography$1;
 const Complements = () => {
   const [complements, setComplements] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
@@ -110954,7 +112972,7 @@ const Complements = () => {
     },
     [input_type, max_value, min_value, required4, business_rules]
   );
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Container, { children: [
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$2, { children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx(Header, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
       Button$2,
       {
@@ -111202,14 +113220,118 @@ const Complements = () => {
               {
                 label: "Items",
                 disabled: complementToEdit === null,
-                children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", {}),
+                children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(Card$3, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Form$1, { layout: "vertical", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    Space$1,
+                    {
+                      style: {
+                        width: "100%",
+                        alignItems: "flex-end",
+                        gap: "1rem"
+                      },
+                      children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          Form$1.Item,
+                          {
+                            style: {
+                              width: "100%"
+                            },
+                            label: "Título",
+                            children: /* @__PURE__ */ jsxRuntimeExports.jsx(Input$1, {})
+                          }
+                        ),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          Form$1.Item,
+                          {
+                            label: "Preço",
+                            style: {
+                              width: "100%"
+                            },
+                            children: /* @__PURE__ */ jsxRuntimeExports.jsx(Input$1, {})
+                          }
+                        ),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          Form$1.Item,
+                          {
+                            label: "Quantidade mínima",
+                            style: {
+                              width: "100%"
+                            },
+                            children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                              InputNumber$1,
+                              {
+                                style: {
+                                  width: "100%"
+                                },
+                                min: 0
+                              }
+                            )
+                          }
+                        ),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          Form$1.Item,
+                          {
+                            label: "Quantidade máxima",
+                            style: {
+                              width: "100%"
+                            },
+                            children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                              InputNumber$1,
+                              {
+                                style: {
+                                  width: "100%"
+                                },
+                                min: 0
+                              }
+                            )
+                          }
+                        ),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          Form$1.Item,
+                          {
+                            style: {
+                              width: "100%"
+                            },
+                            children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                              Button$2,
+                              {
+                                size: "large",
+                                icon: /* @__PURE__ */ jsxRuntimeExports.jsx(DeleteOutlined$1, {}),
+                                shape: "circle",
+                                danger: true
+                              }
+                            )
+                          }
+                        ),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          Form$1.Item,
+                          {
+                            style: {
+                              width: "100%"
+                            },
+                            children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                              Button$2,
+                              {
+                                size: "large",
+                                icon: /* @__PURE__ */ jsxRuntimeExports.jsx(SaveOutlined$1, {}),
+                                shape: "circle",
+                                type: "primary"
+                              }
+                            )
+                          }
+                        )
+                      ]
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(Text$1, { children: "Este Item possui preços diferente em outros cardápios?" })
+                ] }) }) }),
                 key: "2"
               },
               {
                 disabled: complementToEdit === null,
                 label: "Produtos",
                 children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(Title2, { level: 5, children: "Selecione os produtos que usarão este complemento." }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(Title$2, { level: 5, children: "Selecione os produtos que usarão este complemento." }),
                   /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
                     Transfer$1,
                     {
@@ -111285,6 +113407,651 @@ const Complements = () => {
     )
   ] }) });
 };
+const Container$1 = st.div`
+  width: 100%;
+  height: calc(100vh - 50px);
+  padding: 20px;
+  overflow-y: scroll;
+`;
+st.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-gap: 20px;
+`;
+st.div`
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #f2f2f2;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  height: 130px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+st.div`
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 10px;
+`;
+const { Title: Title$1 } = Typography$1;
+const Catalogs = () => {
+  const [loadingP, setLoadingP] = React.useState(false);
+  const hasUpdate = React.useRef(false);
+  const [catalogs, setCatalogs] = reactExports.useState([]);
+  const [loading, setLoading] = reactExports.useState(false);
+  const [restaurant, setRestaurant] = reactExports.useState(null);
+  const [loadingDelete, setLoadingDelete] = reactExports.useState([]);
+  const [loadingAdd, setLoadingAdd] = reactExports.useState(false);
+  const navigate = useNavigate();
+  const fetchcatalogs = reactExports.useCallback(() => {
+    setLoading(true);
+    api.get(`/catalog-crud/`).then((response) => {
+      setCatalogs(response.data);
+    }).finally(() => {
+      setLoading(false);
+    });
+  }, []);
+  const fetchRestaurant = reactExports.useCallback(() => {
+    api.get(`/restaurant/`).then((response) => {
+      setRestaurant(response?.data[0]);
+    });
+  }, []);
+  reactExports.useEffect(() => {
+    if (!hasUpdate.current) {
+      fetchcatalogs();
+      fetchRestaurant();
+      hasUpdate.current = true;
+    }
+  }, []);
+  const sendCatalog = reactExports.useCallback((values) => {
+    setLoadingAdd(true);
+    api.post(`/catalog-crud/`, values).then((response) => {
+      message$1.success("Cardápio adicionado com sucesso");
+      navigate("/cardapios/" + response.data.id + "/");
+      setVisible(false);
+    }).catch((err) => {
+      if (err.response?.data?.detail) {
+        message$1.error(err.response.data.detail);
+      } else {
+        message$1.error("Erro ao adicionar cardápio");
+      }
+    }).finally(() => {
+      setLoadingAdd(false);
+    });
+  }, []);
+  const [visible, setVisible] = reactExports.useState(false);
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$1, { children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      Space$1,
+      {
+        style: {
+          width: "100%",
+          justifyContent: "flex-end"
+        },
+        children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+          Button$2,
+          {
+            size: "large",
+            type: "primary",
+            icon: /* @__PURE__ */ jsxRuntimeExports.jsx(BookOutlined$1, {}),
+            onClick: () => setVisible(true),
+            children: "Adicionar cardápio"
+          }
+        )
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(Spin$1, { spinning: loading, size: "large", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+      Space$1,
+      {
+        style: {
+          gap: "1rem",
+          flexWrap: "wrap"
+        },
+        children: catalogs.map((catalog) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          Card$3,
+          {
+            style: {
+              padding: 0,
+              marginTop: "3rem"
+            },
+            bodyStyle: {
+              display: "flex",
+              flexDirection: "column",
+              gap: "0.5rem",
+              alignItems: "center",
+              padding: "0rem 1rem",
+              minWidth: "200px",
+              margin: "0"
+            },
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Avatar$1,
+                {
+                  size: 64,
+                  style: {
+                    marginTop: "-38px",
+                    backgroundColor: theme.tokens.colorPrimary
+                  },
+                  icon: /* @__PURE__ */ jsxRuntimeExports.jsx(BookOutlined$1, {}),
+                  src: catalog?.photo ?? void 0
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Title$1,
+                {
+                  style: {
+                    padding: "0",
+                    margin: "0",
+                    maxWidth: "230px"
+                  },
+                  level: 4,
+                  ellipsis: {
+                    rows: 1,
+                    tooltip: catalog.title
+                  },
+                  children: catalog.title
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Switch$1,
+                {
+                  checkedChildren: "Ativo",
+                  unCheckedChildren: "Inativo",
+                  defaultChecked: catalog.active,
+                  loading: loadingP,
+                  onChange: (checked) => {
+                    setLoadingP(true);
+                    api.patch(`/catalog-crud/${catalog.id}/`, {
+                      active: checked
+                    }).catch(() => {
+                      message$1.error("Erro ao atualizar cardápio");
+                      fetchcatalogs();
+                    }).finally(() => {
+                      setLoadingP(false);
+                    });
+                  }
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                Space$1,
+                {
+                  style: {
+                    margin: "0.5rem 0"
+                  },
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      Popconfirm$1,
+                      {
+                        title: "Tem certeza que dejesa excluir este cardápio?",
+                        description: "Após exluir este cardápio não será possível recuperá-lo",
+                        placement: "bottom",
+                        okButtonProps: {
+                          loading: loadingDelete.includes(catalog.id),
+                          danger: true
+                        },
+                        onConfirm: () => {
+                          setLoadingDelete((previous) => [...previous, catalog.id]);
+                          api.delete(`/catalog-crud/${catalog.id}/`).then(() => {
+                            message$1.success("Cardápio excluído com sucesso");
+                            fetchcatalogs();
+                          }).finally(() => {
+                            setLoadingDelete((previous) => previous.filter((id2) => id2 !== catalog.id));
+                          });
+                        },
+                        okText: "Excluir",
+                        cancelText: "Cancelar",
+                        children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          Button$2,
+                          {
+                            loading: loadingDelete.includes(catalog.id),
+                            type: "default",
+                            icon: /* @__PURE__ */ jsxRuntimeExports.jsx(DeleteOutlined$1, {}),
+                            danger: true,
+                            shape: "circle"
+                          }
+                        )
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip$2, { title: "Editar cardápio", placement: "bottom", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Link$2, { to: `/cardapios/${catalog.id}/`, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Button$2, { type: "primary", icon: /* @__PURE__ */ jsxRuntimeExports.jsx(EditOutlined$1, {}), shape: "circle" }) }) }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip$2, { title: "Abrir cardápio", placement: "bottom", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      Button$2,
+                      {
+                        href: `https://peditz.me/${catalog.restaurant.slug}/${catalog.slug}`,
+                        type: "default",
+                        target: "_blank",
+                        icon: /* @__PURE__ */ jsxRuntimeExports.jsx(ExportOutlined$1, {}),
+                        shape: "circle"
+                      }
+                    ) }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip$2, { title: "copiar link do cardápio", placement: "bottom", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      Button$2,
+                      {
+                        type: "link",
+                        icon: /* @__PURE__ */ jsxRuntimeExports.jsx(LinkOutlined$1, {}),
+                        shape: "circle",
+                        onClick: () => {
+                          navigator.clipboard.writeText(
+                            `https://peditz.me/${catalog.restaurant.slug}/${catalog.slug}`
+                          );
+                          message$1.success("Link copiado para área de transferência");
+                        }
+                      }
+                    ) })
+                  ]
+                }
+              )
+            ]
+          },
+          catalog.id
+        ))
+      }
+    ) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      Drawer$1,
+      {
+        title: "Adicionar Cardápio",
+        width: 500,
+        onClose: () => setVisible(false),
+        open: loadingAdd || visible,
+        children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Form$1, { layout: "vertical", onFinish: sendCatalog, children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Form$1.Item,
+            {
+              label: "Título do cardápio",
+              rules: [
+                {
+                  required: true,
+                  message: "Por favor, insira o título do cardápio"
+                }
+              ],
+              name: "title",
+              children: /* @__PURE__ */ jsxRuntimeExports.jsx(Input$1, { size: "large" })
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { label: "Descrição", name: "description", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Input$1.TextArea, { size: "large" }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Form$1.Item,
+            {
+              label: "Link",
+              name: "slug",
+              rules: [
+                {
+                  required: true,
+                  message: "Por favor, insira o link do cardápio"
+                },
+                {
+                  pattern: new RegExp(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
+                  message: "O link deve conter apenas letras minúsculas e números"
+                }
+              ],
+              children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Input$1,
+                {
+                  size: "large",
+                  addonBefore: `www.peditz.me/${restaurant?.slug}`,
+                  placeholder: "cardapio"
+                }
+              )
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Form$1.Item,
+            {
+              style: {
+                display: "flex",
+                justifyContent: "flex-end",
+                marginTop: "3rem"
+              },
+              children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Button$2,
+                {
+                  htmlType: "submit",
+                  loading: loadingAdd,
+                  type: "primary",
+                  size: "large",
+                  icon: /* @__PURE__ */ jsxRuntimeExports.jsx(SaveOutlined$1, {}),
+                  children: "Adicionar"
+                }
+              )
+            }
+          )
+        ] })
+      }
+    )
+  ] });
+};
+const { Title: Title2, Text } = Typography$1;
+const Catalog = () => {
+  const [loadingP, setLoadingP] = React.useState(false);
+  const hasUpdate = React.useRef(false);
+  const [catalog, setCatalog] = reactExports.useState(null);
+  const props = {
+    multiple: false,
+    customRequest(options2) {
+      const data2 = new FormData();
+      const { file } = options2;
+      data2.append("photo", file);
+      setLoadingP(true);
+      api.patch(`/catalog-crud/${catalog?.id}/`, data2, {
+        headers: {
+          "Content-Type": "multipart/form-data"
+        }
+      }).then((response) => {
+        updateIframe(`https://peditz.me/${response.data.restaurant.slug}/${response.data.slug}`);
+        options2.onSuccess && options2?.onSuccess({});
+      }).finally(() => {
+        setLoadingP(false);
+      });
+    }
+  };
+  const form = React.useRef(null);
+  const [loading, setLoading] = reactExports.useState(false);
+  const iframeRef = React.useRef(null);
+  const { Dragger: Dragger2 } = Upload$1;
+  const updateIframe = reactExports.useCallback((url2) => {
+    if (iframeRef.current) {
+      setLoadingP(true);
+      iframeRef.current.src = url2;
+      setTimeout(() => {
+        setLoadingP(false);
+      }, 500);
+    }
+  }, []);
+  const fecthCatalog = reactExports.useCallback((id22) => {
+    setLoading(true);
+    api.get(`/catalog-crud/${id22}/`).then((response) => {
+      setCatalog(response.data);
+      updateIframe(`https://peditz.me/${response.data.restaurant.slug}/${response.data.slug}`);
+      form.current?.setFieldsValue(response.data);
+    }).finally(() => {
+      setTimeout(() => {
+        setLoading(false);
+      }, 1e3);
+    });
+  }, []);
+  const { id: id2 } = useParams();
+  reactExports.useEffect(() => {
+    if (!hasUpdate.current && id2) {
+      fecthCatalog(id2);
+      hasUpdate.current = true;
+    }
+  }, []);
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Container$1, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    "div",
+    {
+      style: {
+        display: "grid",
+        gridTemplateColumns: "1fr 0.5fr",
+        gap: "1rem"
+      },
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Spin$1, { spinning: loading, size: "large", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Card$3, { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Title2, { level: 4, children: "Organize seu cardápio" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(Form$1, { ref: form, layout: "vertical", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(ImgCrop, { rotationSlider: true, aspect: 371 / 118, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              Dragger2,
+              {
+                disabled: loading || !catalog || loadingP,
+                ...props,
+                style: {
+                  width: "100%",
+                  height: "50px",
+                  marginBottom: "1rem",
+                  padding: "0"
+                },
+                showUploadList: false,
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    CameraOutlined$1,
+                    {
+                      style: {
+                        fontSize: "1.6rem",
+                        color: theme.tokens.colorPrimary
+                      }
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "ant-upload-text", children: "Clique ou arraste uma foto para seu cardápio" })
+                ]
+              }
+            ) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Form$1.Item,
+              {
+                label: "Título do cardápio",
+                name: "title",
+                rules: [
+                  {
+                    required: true,
+                    message: "Digite o título do cardápio"
+                  }
+                ],
+                children: /* @__PURE__ */ jsxRuntimeExports.jsx(Input$1, { size: "large" })
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { label: "Descrição", name: "description", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Input$1.TextArea, { size: "large" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Form$1.Item,
+              {
+                label: "Link",
+                name: "slug",
+                rules: [
+                  {
+                    required: true,
+                    message: "Digite o link do cardápio"
+                  },
+                  {
+                    pattern: new RegExp(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
+                    message: "O link deve conter apenas letras minúsculas e números"
+                  }
+                ],
+                children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Input$1,
+                  {
+                    size: "large",
+                    addonBefore: `www.peditz.me/${catalog?.restaurant?.slug ?? ""}/`,
+                    placeholder: "cardapio"
+                  }
+                )
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              Space$1,
+              {
+                style: {
+                  justifyContent: "center",
+                  width: "100%",
+                  padding: "4rem 0",
+                  gap: "1rem"
+                },
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(Button$2, { size: "large", children: "Editar prodtuos" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(Button$2, { size: "large", children: "Editar Complementos" })
+                ]
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Space$1,
+              {
+                style: {
+                  justifyContent: "flex-end",
+                  width: "100%",
+                  padding: "1rem 0 0 0"
+                },
+                children: /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(Button$2, { size: "large", type: "primary", icon: /* @__PURE__ */ jsxRuntimeExports.jsx(SaveOutlined$1, {}), children: "Salvar" }) })
+              }
+            )
+          ] })
+        ] }) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Spin$1, { spinning: loadingP, size: "large", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          Card$3,
+          {
+            style: {
+              backgroundColor: "#fff"
+            },
+            bodyStyle: {
+              padding: "1rem",
+              display: "flex",
+              alignItems: "center",
+              flexDirection: "column"
+            },
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                Space$1,
+                {
+                  style: {
+                    marginBottom: "1rem",
+                    justifyContent: "center",
+                    width: "100%"
+                  },
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs(Text, { children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(MobileOutlined$1, {}),
+                      " Pre-vizualização"
+                    ] }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      Button$2,
+                      {
+                        onClick: () => {
+                          updateIframe(`https://peditz.me/${catalog?.restaurant.slug}/${catalog?.slug}`);
+                        },
+                        icon: /* @__PURE__ */ jsxRuntimeExports.jsx(ReloadOutlined$1, {}),
+                        shape: "circle"
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      Button$2,
+                      {
+                        onClick: () => {
+                          if (iframeRef.current) {
+                            iframeRef.current.src = "https://peditz.me/taurus";
+                          }
+                        },
+                        icon: /* @__PURE__ */ jsxRuntimeExports.jsx(ExportOutlined$1, {}),
+                        shape: "circle",
+                        type: "primary"
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      Button$2,
+                      {
+                        onClick: () => {
+                          if (iframeRef.current) {
+                            iframeRef.current.src = "https://peditz.me/taurus";
+                          }
+                        },
+                        icon: /* @__PURE__ */ jsxRuntimeExports.jsx(LinkOutlined$1, {}),
+                        shape: "circle",
+                        type: "link"
+                      }
+                    )
+                  ]
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "iframe",
+                {
+                  style: {
+                    border: "2px solid #ccc",
+                    borderRadius: "1rem",
+                    boxShadow: "0 0 5px #ccc"
+                  },
+                  ref: iframeRef,
+                  width: "375px",
+                  height: "667px"
+                }
+              )
+            ]
+          }
+        ) })
+      ]
+    }
+  ) });
+};
+const Container = st.div`
+  width: 100%;
+  height: calc(100vh - 50px);
+  padding: 20px;
+  overflow-y: scroll;
+`;
+st.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-gap: 20px;
+`;
+st.div`
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #f2f2f2;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  height: 130px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+st.div`
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 10px;
+`;
+const Colunm = [
+  {
+    title: "numero",
+    dataIndex: "numero",
+    align: "center",
+    key: "mumero"
+  },
+  {
+    title: "Data",
+    dataIndex: "data_emissao",
+    align: "center",
+    render: (nota) => dayjs(nota).format("DD/MM/YYYY HH:mm:ss")
+  },
+  {
+    title: "Status",
+    dataIndex: "note",
+    align: "center",
+    render: (nota) => nota?.status
+  },
+  {
+    title: "Ações",
+    dataIndex: "note",
+    align: "center",
+    render: (nota) => /* @__PURE__ */ jsxRuntimeExports.jsx(Button$2, { icon: /* @__PURE__ */ jsxRuntimeExports.jsx(FilePdfOutlined$1, {}), href: nota.url, target: "_blank", children: "Abrir" })
+  }
+];
+const Notas = () => {
+  const [loadingP, setLoadingP] = React.useState(false);
+  const hasUpdate = React.useRef(false);
+  const [notes, setNotes] = React.useState([]);
+  reactExports.useEffect(() => {
+    if (!hasUpdate.current) {
+      fecthPayments();
+      hasUpdate.current = true;
+    }
+  }, []);
+  const fecthPayments = reactExports.useCallback(() => {
+    setLoadingP(true);
+    api.get(`/notes/`).then((response) => {
+      setNotes(response.data);
+    }).finally(() => {
+      setLoadingP(false);
+    });
+  }, []);
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Container, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+    Table$2,
+    {
+      columns: Colunm,
+      dataSource: notes,
+      loading: loadingP,
+      pagination: false,
+      scroll: { y: "calc(100vh - 220px)" }
+    }
+  ) });
+};
 function Navigation() {
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(Routes, { children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/comandas-fechadas/", element: /* @__PURE__ */ jsxRuntimeExports.jsx(PrivateRoute, {}), children: /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -111316,6 +114083,27 @@ function Navigation() {
         element: /* @__PURE__ */ jsxRuntimeExports.jsx(AddSidebar, { titleHeader: "Dashboard", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Dashboard, {}) })
       }
     ) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/cardapios/", element: /* @__PURE__ */ jsxRuntimeExports.jsx(PrivateRoute, {}), children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+      Route,
+      {
+        path: "/cardapios/",
+        element: /* @__PURE__ */ jsxRuntimeExports.jsx(AddSidebar, { titleHeader: "Cardápios", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Catalogs, {}) })
+      }
+    ) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/cardapios/:id", element: /* @__PURE__ */ jsxRuntimeExports.jsx(PrivateRoute, {}), children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+      Route,
+      {
+        path: "/cardapios/:id",
+        element: /* @__PURE__ */ jsxRuntimeExports.jsx(AddSidebar, { titleHeader: "Cardápios", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Catalog, {}) })
+      }
+    ) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/notas/", element: /* @__PURE__ */ jsxRuntimeExports.jsx(PrivateRoute, {}), children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+      Route,
+      {
+        path: "/notas/",
+        element: /* @__PURE__ */ jsxRuntimeExports.jsx(AddSidebar, { titleHeader: "Notas fiscais", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Notas, {}) })
+      }
+    ) }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/comandas/", element: /* @__PURE__ */ jsxRuntimeExports.jsx(PrivateRoute, {}), children: /* @__PURE__ */ jsxRuntimeExports.jsx(
       Route,
       {
@@ -111335,6 +114123,20 @@ function Navigation() {
       {
         path: "/comandas/:id/",
         element: /* @__PURE__ */ jsxRuntimeExports.jsx(AddSidebar, { titleHeader: "Comanda", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Command, {}) })
+      }
+    ) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/pedidos-balcao/", element: /* @__PURE__ */ jsxRuntimeExports.jsx(PrivateRoute, {}), children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+      Route,
+      {
+        path: "/pedidos-balcao/",
+        element: /* @__PURE__ */ jsxRuntimeExports.jsx(AddSidebar, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(Takeout, {}) })
+      }
+    ) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/pedidos-balcao/pagamentos/", element: /* @__PURE__ */ jsxRuntimeExports.jsx(PrivateRoute, {}), children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+      Route,
+      {
+        path: "/pedidos-balcao/pagamentos/",
+        element: /* @__PURE__ */ jsxRuntimeExports.jsx(AddSidebar, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(TakeoutPayment, {}) })
       }
     ) }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/pedidos/", element: /* @__PURE__ */ jsxRuntimeExports.jsx(PrivateRoute, {}), children: /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -111404,7 +114206,7 @@ function Navigation() {
       Route,
       {
         path: "/produtos/categorias/",
-        element: /* @__PURE__ */ jsxRuntimeExports.jsx(AddSidebar, { titleHeader: "Categorias dos produtos", children: /* @__PURE__ */ jsxRuntimeExports.jsx(CategoryProducts, {}) })
+        element: /* @__PURE__ */ jsxRuntimeExports.jsx(AddSidebar, { titleHeader: "Categorias dos produtos", children: /* @__PURE__ */ jsxRuntimeExports.jsx(CategoryProducts$1, {}) })
       }
     ) }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/integracoes/", element: /* @__PURE__ */ jsxRuntimeExports.jsx(PrivateRoute, {}), children: /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -111505,7 +114307,7 @@ function App() {
         },
         children: /* @__PURE__ */ jsxRuntimeExports.jsx(SocketProvider, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Xe, { theme, children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(GlobalStyle, {}),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(CashierProvider, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(ProductsProvider, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(PrinterProvider, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(BillProvider, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(Navigation, {}) }) }) }) })
+          /* @__PURE__ */ jsxRuntimeExports.jsx(CashierProvider, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(ProductsProvider, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(PrinterProvider, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(BillProvider, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(TakeoutProvider, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(Navigation, {}) }) }) }) }) })
         ] }) })
       }
     )

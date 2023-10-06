@@ -1,5 +1,4 @@
 import { ReactNode, createContext, useContext, useState } from 'react'
-import { useProducts } from './useProducts'
 import { Product } from '@renderer/types'
 
 interface TakeoutProviderProps {
@@ -23,10 +22,10 @@ type ProductSelected = {
   total: number
 }
 
-export function TakeoutProvider({ children }: TakeoutProviderProps) {
+export function TakeoutProvider({ children }: TakeoutProviderProps): JSX.Element {
   const [productsSelected, setProductsSelected] = useState<ProductSelected[]>([])
 
-  function addProductToTakeout(product: Product) {
+  function addProductToTakeout(product: Product): void {
     const productSelected = productsSelected.find((p) => p.id === product.id)
 
     if (productSelected) {
@@ -45,7 +44,7 @@ export function TakeoutProvider({ children }: TakeoutProviderProps) {
     }
   }
 
-  function removeProductToTakeout(id: string) {
+  function removeProductToTakeout(id: string): void {
     const productExists = productsSelected.find((x) => x.id === id)
     if (productExists && productExists.quantity > 1) {
       productExists.quantity -= 1
@@ -56,7 +55,7 @@ export function TakeoutProvider({ children }: TakeoutProviderProps) {
     }
   }
 
-  function clearTakeout() {
+  function clearTakeout(): void {
     setProductsSelected([])
   }
 
@@ -74,7 +73,7 @@ export function TakeoutProvider({ children }: TakeoutProviderProps) {
   )
 }
 
-export function useTakeout() {
+export function useTakeout(): TakeoutContextData {
   const context = useContext(TakeoutContext)
   return context
 }

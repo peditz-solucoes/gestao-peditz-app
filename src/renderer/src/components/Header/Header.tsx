@@ -5,13 +5,7 @@ import { ColorList } from '../../utils/ColorList'
 import { Link } from 'react-router-dom'
 import { MdRestaurantMenu } from 'react-icons/md'
 import { CgMenuOreos } from 'react-icons/cg'
-import {
-  LogoutOutlined,
-  TeamOutlined,
-  UserOutlined,
-  ReloadOutlined,
-  PoweroffOutlined
-} from '@ant-design/icons'
+import { LogoutOutlined, TeamOutlined, UserOutlined, ReloadOutlined } from '@ant-design/icons'
 import { setLogout } from '../../services/auth'
 import { useCashier } from '@renderer/hooks'
 import { useSocket } from '@renderer/hooks/useSocket'
