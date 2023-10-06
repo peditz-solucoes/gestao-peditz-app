@@ -22,7 +22,8 @@ import { IoAdd, IoCheckboxOutline, IoRadioButtonOn } from 'react-icons/io5'
 import { FaDivide } from 'react-icons/fa'
 import { CgArrowTopRight } from 'react-icons/cg'
 import { TransferDirection } from 'antd/es/transfer'
-import { SelectCard } from './SelectCard'
+import { SelectCard } from '@renderer/components/SelectCard/SelectCard'
+
 const { Title } = Typography
 
 export const Complements: React.FC = () => {

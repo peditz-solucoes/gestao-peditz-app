@@ -289,3 +289,19 @@ export enum StatusWebSocket {
   CONNECTED = 'CONNECTED',
   DISCONNECTED = 'DISCONNECTED'
 }
+
+export type Stock = {
+  id?: string
+  title: string
+  description: string
+  barcode: string
+  product_type: string
+  minimum_stock: string
+  stock: string
+  category: string
+}
+
+export type CategoryStock = {
+  id: string
+  title: string
+}

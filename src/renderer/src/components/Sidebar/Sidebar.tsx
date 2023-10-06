@@ -5,7 +5,7 @@ import {
   DesktopOutlined,
   PieChartOutlined,
   ReconciliationOutlined,
-  // ShoppingOutlined,
+  ShoppingOutlined,
   SolutionOutlined,
   WalletOutlined,
   ShopOutlined
@@ -165,14 +165,14 @@ export const SideBar: React.FC<SideBarProps> = ({ collapsed }) => {
       }
     }),
 
-    // getItem({
-    //   key: '8',
-    //   label: <Link to={'/estoque'}>Estoques</Link>,
-    //   icon: <ShoppingOutlined />,
-    //   style: {
-    //     display: userPermissions.includes('Estoques') ? 'flex' : 'none'
-    //   }
-    // }),
+    getItem({
+      key: '8',
+      label: <Link to={'/estoque'}>Estoques</Link>,
+      icon: <ShoppingOutlined />,
+      style: {
+        display: userPermissions.includes('Estoques') ? 'flex' : 'none'
+      }
+    }),
 
     getItem({
       key: '9',
@@ -185,12 +185,12 @@ export const SideBar: React.FC<SideBarProps> = ({ collapsed }) => {
       children: [
         getItem({
           key: '9.1',
-          label: <Link to={'/relatorios/financeiro'}>Vendas por período</Link>
+          label: <Link to={'/relatorios/vendas-periodo/'}>Vendas por período</Link>
         }),
-        // getItem({
-        //   key: '9.2',
-        //   label: 'Vendas por produto'
-        // }),
+        getItem({
+          key: '9.2',
+          label: <Link to={'/relatorios/vendas-produto/'}>Vendas por produtos</Link>
+        }),
         // getItem({
         //   key: '9.3',
         //   label: 'Relatório geral'

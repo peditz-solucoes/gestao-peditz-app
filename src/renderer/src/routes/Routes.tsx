@@ -27,6 +27,7 @@ import { OrdersManager } from '@renderer/pages/OrdersManager'
 import { FinancialStats } from '@renderer/pages/FinancialStats'
 import { TakeoutPayment } from '@renderer/pages/TakeoutPayment/TakeoutPayment'
 import { Complements } from '@renderer/pages/Complements'
+import { ReportSalesProduct } from '@renderer/pages/ReportSalesProduct'
 
 export function Navigation(): JSX.Element {
   return (
@@ -164,9 +165,9 @@ export function Navigation(): JSX.Element {
           }
         />
       </Route>
-      <Route path="/relatorios/financeiro/" element={<PrivateRoute />}>
+      <Route path="/relatorios/vendas-periodo/" element={<PrivateRoute />}>
         <Route
-          path="/relatorios/financeiro/"
+          path="/relatorios/vendas-periodo/"
           element={
             <AddSidebar titleHeader="Relatório por período">
               <FinancialStats />
@@ -174,12 +175,24 @@ export function Navigation(): JSX.Element {
           }
         />
       </Route>
+
       <Route path="/relatorios/caixas-passados/:id" element={<PrivateRoute />}>
         <Route
           path="/relatorios/caixas-passados/:id"
           element={
             <AddSidebar titleHeader="Relatório de caixa">
               <CashierDetail />
+            </AddSidebar>
+          }
+        />
+      </Route>
+
+      <Route path="/relatorios/vendas-produto/" element={<PrivateRoute />}>
+        <Route
+          path="/relatorios/vendas-produto/"
+          element={
+            <AddSidebar titleHeader="Relatório de vendas por produtos">
+              <ReportSalesProduct />
             </AddSidebar>
           }
         />

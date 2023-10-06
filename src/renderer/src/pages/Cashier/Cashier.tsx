@@ -69,10 +69,6 @@ const columns: ColumnsType<payment> = [
 export const CashierPage: React.FC = () => {
   const { transactions, cashier, setOpenCashierModal, isLoading } = useCashier()
 
-  // useEffect(() => {
-  //   getCashier(true)
-  // }, [])
-
   const mapTypePayment = (type: string) => {
     switch (type) {
       case 'BILL':
