@@ -22,7 +22,6 @@ import { UserPermissions } from '@renderer/types'
 import api from '@renderer/services/api'
 import { AxiosError } from 'axios'
 import { errorActions } from '@renderer/utils/errorActions'
-import { PiNotepadBold } from 'react-icons/pi'
 import { FaBookOpen } from 'react-icons/fa'
 
 const { Sider } = Layout

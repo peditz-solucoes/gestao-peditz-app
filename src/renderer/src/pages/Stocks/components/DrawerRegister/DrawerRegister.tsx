@@ -1,14 +1,11 @@
-import { SelectCard } from '@renderer/components/SelectCard/SelectCard'
 import { theme } from '@renderer/theme'
 import {
   Alert,
   Button,
   Card,
-  Checkbox,
   Form,
   Input,
   InputNumber,
-  Modal,
   Select,
   Typography,
   Drawer,
@@ -22,7 +19,6 @@ import { BsArrowDownSquareFill } from 'react-icons/bs'
 import api from '@renderer/services/api'
 import { PlusOutlined } from '@ant-design/icons'
 import { CategoryStock, Stock } from '@renderer/types'
-import { on } from 'events'
 import { brlToNumber, formatToBRL } from '@renderer/utils'
 
 const { Title, Text } = Typography
@@ -40,7 +36,6 @@ export const DrawerRegister: React.FC<RegisterStocksProps> = ({ onClose, visible
   const [stocks, setStocks] = React.useState<Stock[]>([])
   const [name, setName] = useState('')
   const [form] = Form.useForm()
-  const [childrenDrawer, setChildrenDrawer] = useState(false)
 
   useEffect(() => {
     getStock()
@@ -74,12 +69,11 @@ export const DrawerRegister: React.FC<RegisterStocksProps> = ({ onClose, visible
   }
 
   function createNewStock(data: Stock): void {
-    api.post('/item-stock/', data).then((response) => {
+    api.post('/item-stock/', data).then(() => {
       onClose()
       form.resetFields()
       onUpdate()
       getCategories()
-      setChildrenDrawer(true)
     })
   }
 
@@ -90,7 +84,7 @@ export const DrawerRegister: React.FC<RegisterStocksProps> = ({ onClose, visible
     notes: string
     item: string
   }): void {
-    api.post('/item-stock-transaction/', data).then((response) => {
+    api.post('/item-stock-transaction/', data).then(() => {
       form.resetFields()
       onClose()
       onUpdate()
@@ -485,15 +479,6 @@ export const DrawerRegister: React.FC<RegisterStocksProps> = ({ onClose, visible
           </div>
         </Form>
       </div>
-      {/* <Drawer
-        title="Adicionar ingredientes para esse estoque"
-        width={600}
-        closable={true}
-        onClose={() => setChildrenDrawer(false)}
-        open={childrenDrawer}
-      >
-        
-      </Drawer> */}
     </Drawer>
   )
 }

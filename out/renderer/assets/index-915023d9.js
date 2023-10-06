@@ -45657,7 +45657,7 @@ const Paragraph$c = (props) => {
   }, rowList);
 };
 const Paragraph$d = Paragraph$c;
-const Title$n = (_ref) => {
+const Title$o = (_ref) => {
   let {
     prefixCls,
     className,
@@ -45671,7 +45671,7 @@ const Title$n = (_ref) => {
     }, style2)
   });
 };
-const Title$o = Title$n;
+const Title$p = Title$o;
 function getComponentProps(prop) {
   if (prop && typeof prop === "object") {
     return prop;
@@ -45756,7 +45756,7 @@ const Skeleton = (props) => {
         const titleProps = Object.assign(Object.assign({
           prefixCls: `${prefixCls}-title`
         }, getTitleBasicProps(hasAvatar, hasParagraph)), getComponentProps(title));
-        $title = /* @__PURE__ */ reactExports.createElement(Title$o, Object.assign({}, titleProps));
+        $title = /* @__PURE__ */ reactExports.createElement(Title$p, Object.assign({}, titleProps));
       }
       let paragraphNode;
       if (hasParagraph) {
@@ -73983,7 +73983,7 @@ var __rest$4 = globalThis && globalThis.__rest || function(s, e2) {
     }
   return t2;
 };
-const Text$b = (_a, ref) => {
+const Text$c = (_a, ref) => {
   var {
     ellipsis
   } = _a, restProps = __rest$4(_a, ["ellipsis"]);
@@ -74000,7 +74000,7 @@ const Text$b = (_a, ref) => {
     component: "span"
   }));
 };
-const Text$c = /* @__PURE__ */ reactExports.forwardRef(Text$b);
+const Text$d = /* @__PURE__ */ reactExports.forwardRef(Text$c);
 var __rest$3 = globalThis && globalThis.__rest || function(s, e2) {
   var t2 = {};
   for (var p2 in s)
@@ -74014,7 +74014,7 @@ var __rest$3 = globalThis && globalThis.__rest || function(s, e2) {
   return t2;
 };
 const TITLE_ELE_LIST = [1, 2, 3, 4, 5];
-const Title$l = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
+const Title$m = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
   const {
     level = 1
   } = props, restProps = __rest$3(props, ["level"]);
@@ -74030,11 +74030,11 @@ const Title$l = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     component
   }));
 });
-const Title$m = Title$l;
+const Title$n = Title$m;
 const Typography = OriginTypography;
-Typography.Text = Text$c;
+Typography.Text = Text$d;
 Typography.Link = Link$1;
-Typography.Title = Title$m;
+Typography.Title = Title$n;
 Typography.Paragraph = Paragraph$b;
 const Typography$1 = Typography;
 function getError(option, xhr) {
@@ -77953,8 +77953,8 @@ const setLogout = () => {
   localStorage.removeItem(TOKEN_KEY);
 };
 const api = axios$1.create({
-  // baseURL: 'https://api.peditz.com/api/v1/',
-  baseURL: "http://localhost:8000/api/v1/",
+  baseURL: "https://api.peditz.com/api/v1/",
+  // baseURL: 'http://localhost:8000/api/v1/',
   // baseURL: 'https://api-hml.peditz.com/api/v1/',
   headers: {
     "Content-Type": "application/json;charset=UTF-8"
@@ -79217,7 +79217,7 @@ var dayjs_min = { exports: {} };
 })(dayjs_min);
 var dayjs_minExports = dayjs_min.exports;
 const dayjs = /* @__PURE__ */ getDefaultExportFromCjs(dayjs_minExports);
-const { Title: Title$k, Paragraph: Paragraph$8 } = Typography$1;
+const { Title: Title$l, Paragraph: Paragraph$8 } = Typography$1;
 const Dashboard = () => {
   const [loadingP, setLoadingP] = React.useState(false);
   const [payments, setPayments] = React.useState([]);
@@ -79254,7 +79254,7 @@ const Dashboard = () => {
             }
           }
         ) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(Title$k, { level: 5, style: { margin: "0", color: "#A0AEC0" }, italic: true, children: "Pedidos Recebidos" })
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Title$l, { level: 5, style: { margin: "0", color: "#A0AEC0" }, italic: true, children: "Pedidos Recebidos" })
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs(
         "div",
@@ -79296,7 +79296,7 @@ const Dashboard = () => {
             }
           }
         ) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(Title$k, { level: 5, style: { margin: "0", color: "#A0AEC0" }, italic: true, children: "Rendimento Total" })
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Title$l, { level: 5, style: { margin: "0", color: "#A0AEC0" }, italic: true, children: "Rendimento Total" })
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs(
         "div",
@@ -79337,7 +79337,7 @@ const Dashboard = () => {
             }
           }
         ) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(Title$k, { level: 5, style: { margin: "0", color: "#A0AEC0" }, italic: true, children: "Visitas diárias" })
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Title$l, { level: 5, style: { margin: "0", color: "#A0AEC0" }, italic: true, children: "Visitas diárias" })
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs(
         "div",
@@ -79379,7 +79379,7 @@ const Dashboard = () => {
             }
           }
         ) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(Title$k, { level: 5, style: { margin: "0", color: "#A0AEC0" }, italic: true, children: "Gastos com estoque" })
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Title$l, { level: 5, style: { margin: "0", color: "#A0AEC0" }, italic: true, children: "Gastos com estoque" })
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs(
         "div",
@@ -79705,7 +79705,7 @@ st.div`
   justify-content: center;
   padding: 5px;
 `;
-const { Title: Title$j, Text: Text$a } = Typography$1;
+const { Title: Title$k, Text: Text$b } = Typography$1;
 const CardBill = (props) => {
   const navigate = useNavigate();
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$o, { onClick: () => navigate(`/comandas/${props.data.id}`), children: [
@@ -79720,18 +79720,18 @@ const CardBill = (props) => {
           icon: /* @__PURE__ */ jsxRuntimeExports.jsx(DollarOutlined$1, { style: { color: "#2FAA54" } })
         }
       ) }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(Title$j, { level: 3, children: props.data.number }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs(Text$a, { strong: true, style: { fontSize: "18px" }, children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Title$k, { level: 3, children: props.data.number }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(Text$b, { strong: true, style: { fontSize: "18px" }, children: [
         " ",
         "Mesa: ",
         props.data.table_datail.title
       ] }),
-      props.data.client_name && /* @__PURE__ */ jsxRuntimeExports.jsxs(Text$a, { strong: true, style: { fontSize: "18px" }, children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(Text$a, { underline: true, style: { fontSize: "18px" }, children: "Cliente:" }),
+      props.data.client_name && /* @__PURE__ */ jsxRuntimeExports.jsxs(Text$b, { strong: true, style: { fontSize: "18px" }, children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Text$b, { underline: true, style: { fontSize: "18px" }, children: "Cliente:" }),
         " ",
         props.data.client_name.split(" ").length > 2 ? `${props.data.client_name.split(" ")[0]} ${props.data.client_name.split(" ")[1]}` : `${props.data.client_name}`
       ] }),
-      props.data.opened_by_name && /* @__PURE__ */ jsxRuntimeExports.jsxs(Text$a, { strong: true, style: { fontSize: "18px" }, children: [
+      props.data.opened_by_name && /* @__PURE__ */ jsxRuntimeExports.jsxs(Text$b, { strong: true, style: { fontSize: "18px" }, children: [
         "Aberto por: ",
         props.data.opened_by_name
       ] })
@@ -79810,219 +79810,583 @@ const Header$6 = st.div`
   align-items: center;
   margin-bottom: 20px;
 `;
+function TbNewSection(props) {
+  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 24 24", "strokeWidth": "2", "stroke": "currentColor", "fill": "none", "strokeLinecap": "round", "strokeLinejoin": "round" }, "child": [{ "tag": "path", "attr": { "stroke": "none", "d": "M0 0h24v24H0z", "fill": "none" } }, { "tag": "path", "attr": { "d": "M9 12l6 0" } }, { "tag": "path", "attr": { "d": "M12 9l0 6" } }, { "tag": "path", "attr": { "d": "M4 6v-1a1 1 0 0 1 1 -1h1m5 0h2m5 0h1a1 1 0 0 1 1 1v1m0 5v2m0 5v1a1 1 0 0 1 -1 1h-1m-5 0h-2m-5 0h-1a1 1 0 0 1 -1 -1v-1m0 -5v-2m0 -5" } }] })(props);
+}
+function FaBoxesPacking(props) {
+  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 640 512" }, "child": [{ "tag": "path", "attr": { "d": "M256 48c0-26.5 21.5-48 48-48H592c26.5 0 48 21.5 48 48V464c0 26.5-21.5 48-48 48H381.3c1.8-5 2.7-10.4 2.7-16V253.3c18.6-6.6 32-24.4 32-45.3V176c0-26.5-21.5-48-48-48H256V48zM571.3 347.3c6.2-6.2 6.2-16.4 0-22.6l-64-64c-6.2-6.2-16.4-6.2-22.6 0l-64 64c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0L480 310.6V432c0 8.8 7.2 16 16 16s16-7.2 16-16V310.6l36.7 36.7c6.2 6.2 16.4 6.2 22.6 0zM0 176c0-8.8 7.2-16 16-16H368c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H16c-8.8 0-16-7.2-16-16V176zm352 80V480c0 17.7-14.3 32-32 32H64c-17.7 0-32-14.3-32-32V256H352zM144 320c-8.8 0-16 7.2-16 16s7.2 16 16 16h96c8.8 0 16-7.2 16-16s-7.2-16-16-16H144z" } }] })(props);
+}
+function BsFillDatabaseFill(props) {
+  return GenIcon({ "tag": "svg", "attr": { "fill": "currentColor", "viewBox": "0 0 16 16" }, "child": [{ "tag": "path", "attr": { "d": "M3.904 1.777C4.978 1.289 6.427 1 8 1s3.022.289 4.096.777C13.125 2.245 14 2.993 14 4s-.875 1.755-1.904 2.223C11.022 6.711 9.573 7 8 7s-3.022-.289-4.096-.777C2.875 5.755 2 5.007 2 4s.875-1.755 1.904-2.223Z" } }, { "tag": "path", "attr": { "d": "M2 6.161V7c0 1.007.875 1.755 1.904 2.223C4.978 9.71 6.427 10 8 10s3.022-.289 4.096-.777C13.125 8.755 14 8.007 14 7v-.839c-.457.432-1.004.751-1.49.972C11.278 7.693 9.682 8 8 8s-3.278-.307-4.51-.867c-.486-.22-1.033-.54-1.49-.972Z" } }, { "tag": "path", "attr": { "d": "M2 9.161V10c0 1.007.875 1.755 1.904 2.223C4.978 12.711 6.427 13 8 13s3.022-.289 4.096-.777C13.125 11.755 14 11.007 14 10v-.839c-.457.432-1.004.751-1.49.972-1.232.56-2.828.867-4.51.867s-3.278-.307-4.51-.867c-.486-.22-1.033-.54-1.49-.972Z" } }, { "tag": "path", "attr": { "d": "M2 12.161V13c0 1.007.875 1.755 1.904 2.223C4.978 15.711 6.427 16 8 16s3.022-.289 4.096-.777C13.125 14.755 14 14.007 14 13v-.839c-.457.432-1.004.751-1.49.972-1.232.56-2.828.867-4.51.867s-3.278-.307-4.51-.867c-.486-.22-1.033-.54-1.49-.972Z" } }] })(props);
+}
+function BsArrowDownSquareFill(props) {
+  return GenIcon({ "tag": "svg", "attr": { "fill": "currentColor", "viewBox": "0 0 16 16" }, "child": [{ "tag": "path", "attr": { "d": "M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5a.5.5 0 0 1 1 0z" } }] })(props);
+}
+function BsCashCoin(props) {
+  return GenIcon({ "tag": "svg", "attr": { "fill": "currentColor", "viewBox": "0 0 16 16" }, "child": [{ "tag": "path", "attr": { "fillRule": "evenodd", "d": "M11 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm5-4a5 5 0 1 1-10 0 5 5 0 0 1 10 0z" } }, { "tag": "path", "attr": { "d": "M9.438 11.944c.047.596.518 1.06 1.363 1.116v.44h.375v-.443c.875-.061 1.386-.529 1.386-1.207 0-.618-.39-.936-1.09-1.1l-.296-.07v-1.2c.376.043.614.248.671.532h.658c-.047-.575-.54-1.024-1.329-1.073V8.5h-.375v.45c-.747.073-1.255.522-1.255 1.158 0 .562.378.92 1.007 1.066l.248.061v1.272c-.384-.058-.639-.27-.696-.563h-.668zm1.36-1.354c-.369-.085-.569-.26-.569-.522 0-.294.216-.514.572-.578v1.1h-.003zm.432.746c.449.104.655.272.655.569 0 .339-.257.571-.709.614v-1.195l.054.012z" } }, { "tag": "path", "attr": { "d": "M1 0a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h4.083c.058-.344.145-.678.258-1H3a2 2 0 0 0-2-2V3a2 2 0 0 0 2-2h10a2 2 0 0 0 2 2v3.528c.38.34.717.728 1 1.154V1a1 1 0 0 0-1-1H1z" } }, { "tag": "path", "attr": { "d": "M9.998 5.083 10 5a2 2 0 1 0-3.132 1.65 5.982 5.982 0 0 1 3.13-1.567z" } }] })(props);
+}
+function BsCash(props) {
+  return GenIcon({ "tag": "svg", "attr": { "fill": "currentColor", "viewBox": "0 0 16 16" }, "child": [{ "tag": "path", "attr": { "d": "M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" } }, { "tag": "path", "attr": { "d": "M0 4a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V4zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V6a2 2 0 0 1-2-2H3z" } }] })(props);
+}
+function BsPlus(props) {
+  return GenIcon({ "tag": "svg", "attr": { "fill": "currentColor", "viewBox": "0 0 16 16" }, "child": [{ "tag": "path", "attr": { "d": "M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" } }] })(props);
+}
+const { Title: Title$j, Text: Text$a } = Typography$1;
+const DrawerRegister = ({ onClose, visible, onUpdate }) => {
+  const [newStock, setNewStock] = React.useState(false);
+  const [typeOfMovement, setTypeOfMovement] = React.useState("input");
+  const [categories, setCategories] = reactExports.useState([]);
+  const [stocks, setStocks] = React.useState([]);
+  const [name, setName] = reactExports.useState("");
+  const [form] = Form$1.useForm();
+  reactExports.useEffect(() => {
+    getStock();
+    getCategories();
+  }, [visible]);
+  const onFinish = (values) => {
+    if (newStock) {
+      createNewStock(values);
+    } else {
+      createNewTransaction({
+        ...values,
+        unit_price: values.unit_price ? brlToNumber(values.unit_price) : 0,
+        total: !values.unit_price ? 0 : brlToNumber(values.unit_price) * values.quantity,
+        quantity: typeOfMovement === "input" ? values.quantity : -values.quantity
+      });
+    }
+  };
+  const onNameChange = (event) => {
+    setName(event.target.value);
+  };
+  const addItem = (e2) => {
+    e2.preventDefault();
+    setCategories([...categories, { id: name, title: name }]);
+    setName("");
+  };
+  function createNewStock(data2) {
+    api.post("/item-stock/", data2).then(() => {
+      onClose();
+      form.resetFields();
+      onUpdate();
+      getCategories();
+    });
+  }
+  function createNewTransaction(data2) {
+    api.post("/item-stock-transaction/", data2).then(() => {
+      form.resetFields();
+      onClose();
+      onUpdate();
+      getCategories();
+    });
+  }
+  function getStock() {
+    api.get("/item-stock/").then((response) => {
+      setStocks(response.data);
+    });
+  }
+  function getCategories() {
+    api.get("/item-stock-category/").then((response) => {
+      setCategories(response.data);
+    });
+  }
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    Drawer$1,
+    {
+      title: "Registrar estoque ou movimentação",
+      placement: "right",
+      width: 600,
+      closable: true,
+      onClose,
+      open: visible,
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          Alert$1,
+          {
+            type: "info",
+            style: {
+              display: "flex",
+              alignItems: "center"
+            },
+            description: "Por favor, informe se se trata de um estoque novo ou de um estoque já existente.",
+            showIcon: true,
+            closable: true
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "div",
+          {
+            style: {
+              width: "100%",
+              display: "flex",
+              flexDirection: "row",
+              gap: "16px",
+              justifyContent: "center",
+              padding: "16px 0"
+            },
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                Card$3,
+                {
+                  onClick: () => setNewStock(true),
+                  style: {
+                    width: "100%",
+                    height: "100%",
+                    flex: 1,
+                    border: (newStock ? "1.5px" : "1px") + " solid " + (newStock ? theme.tokens.colorPrimary : "#ebebeb"),
+                    cursor: "pointer"
+                  },
+                  bodyStyle: {
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    padding: "1rem",
+                    flex: 1,
+                    height: "100%"
+                  },
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(TbNewSection, { color: newStock ? theme.tokens.colorPrimary : "#ebebeb" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      Title$j,
+                      {
+                        level: 5,
+                        style: {
+                          color: newStock ? theme.tokens.colorPrimary : "#a2a2a2",
+                          userSelect: "none"
+                        },
+                        children: "Novo Estoque"
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      Text$a,
+                      {
+                        style: {
+                          textAlign: "center",
+                          fontSize: 13,
+                          color: "#666666"
+                        },
+                        children: "Estoque que não foi registrado no sistema."
+                      }
+                    )
+                  ]
+                },
+                "1"
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                Card$3,
+                {
+                  onClick: () => setNewStock(false),
+                  style: {
+                    width: "100%",
+                    height: "100%",
+                    flex: 1,
+                    border: (!newStock ? "1.5px" : "1px") + " solid " + (!newStock ? theme.tokens.colorPrimary : "#ebebeb"),
+                    cursor: "pointer"
+                  },
+                  bodyStyle: {
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "center",
+                    padding: "1rem",
+                    flex: 1,
+                    height: "100%"
+                  },
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(FaBoxesPacking, { color: !newStock ? theme.tokens.colorPrimary : "#ebebeb" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      Title$j,
+                      {
+                        level: 5,
+                        style: {
+                          color: !newStock ? theme.tokens.colorPrimary : "#a2a2a2",
+                          userSelect: "none"
+                        },
+                        children: "Atualizar Estoque"
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      Text$a,
+                      {
+                        style: {
+                          textAlign: "center",
+                          fontSize: 13,
+                          color: "#666666"
+                        },
+                        children: "Estoque que já foi registrado no sistema."
+                      }
+                    )
+                  ]
+                },
+                "1"
+              )
+            ]
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Form$1, { layout: "vertical", onFinish, form, children: [
+          newStock ? /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { label: "Nome", name: "title", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Input$1, { placeholder: "Digite o nome do estoque." }) }) : /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { label: "Selecione o estoque", name: "item", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Select$1,
+            {
+              placeholder: "Digite o nome ou escolha as opções.",
+              options: stocks.map((x2) => ({ value: x2.id, label: x2.title }))
+            }
+          ) }),
+          newStock && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { label: "Categoria", name: "category", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Select$1,
+              {
+                style: { flex: 1 },
+                placeholder: "Busque a categoria ou adicione uma nova.",
+                dropdownRender: (menu) => /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+                  menu,
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(Divider$1, { style: { margin: "8px 0" } }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(Space$1, { style: { padding: "0 8px 4px" }, children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      Input$1,
+                      {
+                        placeholder: "nova categoria.",
+                        style: { width: "100%" },
+                        value: name,
+                        onChange: onNameChange
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(Button$2, { type: "text", icon: /* @__PURE__ */ jsxRuntimeExports.jsx(PlusOutlined$1, {}), onClick: addItem, children: "Add nova categoria" })
+                  ] })
+                ] }),
+                options: categories.map((item) => ({ label: item.title, value: item.title }))
+              }
+            ) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { label: "Descrição", name: "description", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Input$1.TextArea, { placeholder: "Descrição do estoque" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { label: "Codigo de barras", name: "barcode", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Input$1, { placeholder: "Descrição do estoque" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              "div",
+              {
+                style: {
+                  display: "grid",
+                  gridTemplateColumns: "1fr 1fr 1fr",
+                  gridGap: "16px"
+                },
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { label: "Quantidade minima", name: "minimum_stock", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Input$1, { placeholder: "0" }) }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { label: "Estoque disponivel", name: "stock", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Input$1, { placeholder: "0" }) }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { label: "Tipo de medida", name: "product_type", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    Select$1,
+                    {
+                      placeholder: "Unidade de medida",
+                      options: [
+                        {
+                          label: "KG",
+                          value: "KG"
+                        },
+                        {
+                          label: "Litros",
+                          value: "L"
+                        },
+                        {
+                          label: "Unidade",
+                          value: "UN"
+                        },
+                        {
+                          label: "Caixa",
+                          value: "CX"
+                        },
+                        {
+                          label: "Pacote",
+                          value: "PCT"
+                        }
+                      ]
+                    }
+                  ) })
+                ]
+              }
+            )
+          ] }),
+          !newStock && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              "div",
+              {
+                style: {
+                  width: "100%",
+                  display: "flex",
+                  flexDirection: "row",
+                  gap: "16px",
+                  justifyContent: "center",
+                  padding: "16px 0"
+                },
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    "div",
+                    {
+                      onClick: () => setTypeOfMovement("input"),
+                      style: {
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        padding: "10px",
+                        border: (typeOfMovement === "input" ? "1.5px" : "1px") + " solid " + (typeOfMovement === "input" ? theme.tokens.colorPrimary : "#ebebeb"),
+                        borderRadius: "8px",
+                        cursor: "pointer"
+                      },
+                      children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          TbNewSection,
+                          {
+                            color: typeOfMovement === "input" ? theme.tokens.colorPrimary : "#a2a2a2"
+                          }
+                        ),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          Title$j,
+                          {
+                            level: 5,
+                            style: {
+                              color: typeOfMovement === "input" ? theme.tokens.colorPrimary : "#a2a2a2",
+                              userSelect: "none",
+                              margin: 0
+                            },
+                            children: "Entrada"
+                          }
+                        ),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          Text$a,
+                          {
+                            style: {
+                              textAlign: "center",
+                              fontSize: 13,
+                              color: typeOfMovement === "input" ? theme.tokens.colorPrimary : "#666666",
+                              margin: 0
+                            },
+                            children: "Registrar entrada de estoque."
+                          }
+                        )
+                      ]
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    "div",
+                    {
+                      onClick: () => setTypeOfMovement("output"),
+                      style: {
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        padding: "10px",
+                        border: (typeOfMovement === "output" ? "1.5px" : "1px") + " solid " + (typeOfMovement === "output" ? "#ed4747" : "#ebebeb"),
+                        borderRadius: "8px",
+                        cursor: "pointer"
+                      },
+                      children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          BsArrowDownSquareFill,
+                          {
+                            color: typeOfMovement === "output" ? "#ed4747" : "#a2a2a2"
+                          }
+                        ),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          Title$j,
+                          {
+                            level: 5,
+                            style: {
+                              color: typeOfMovement === "output" ? "#ed4747" : "#a2a2a2",
+                              userSelect: "none",
+                              margin: 0
+                            },
+                            children: "Saída"
+                          }
+                        ),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          Text$a,
+                          {
+                            style: {
+                              textAlign: "center",
+                              fontSize: 13,
+                              color: typeOfMovement === "output" ? "#ed4747" : "#666666",
+                              margin: 0
+                            },
+                            children: "Registrar saída de estoque."
+                          }
+                        )
+                      ]
+                    }
+                  )
+                ]
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              "div",
+              {
+                style: {
+                  display: "flex",
+                  flexDirection: "row",
+                  gap: "15px"
+                },
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    Form$1.Item,
+                    {
+                      label: "Movimento do estoque",
+                      name: "quantity",
+                      tooltip: "A quantidade de produtos que você está movimentando nessa transação, seja entrada ou saida.",
+                      children: typeOfMovement === "input" ? /* @__PURE__ */ jsxRuntimeExports.jsx(InputNumber$1, { placeholder: "0", addonBefore: "+" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(InputNumber$1, { placeholder: "0", addonBefore: "-" })
+                    }
+                  ),
+                  typeOfMovement === "input" && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    Form$1.Item,
+                    {
+                      name: "unit_price",
+                      label: "Valor unitario",
+                      tooltip: "O quanto você está pagando por cada unidade.",
+                      children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        Input$1,
+                        {
+                          onChange: (e2) => {
+                            form.setFieldsValue({
+                              unit_price: formatToBRL(e2.target.value)
+                            });
+                          }
+                        }
+                      )
+                    }
+                  )
+                ]
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Form$1.Item,
+              {
+                label: "Anotação",
+                name: "notes",
+                tooltip: "Caso precise informar algo sobre o estoque que está entrando.",
+                children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Input$1.TextArea,
+                  {
+                    rows: 3,
+                    placeholder: "Deixe alguma notificação para essa remessa."
+                  }
+                )
+              }
+            ) })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            "div",
+            {
+              style: {
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
+                width: "100%",
+                gap: "10px",
+                position: "absolute",
+                bottom: 0
+              },
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(Button$2, { danger: true, type: "default", size: "large", style: { width: 200 }, children: "cancelar" }) }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(Button$2, { type: "primary", htmlType: "submit", size: "large", style: { width: 200 }, children: "Registrar" }) })
+              ]
+            }
+          )
+        ] }) })
+      ]
+    },
+    "right"
+  );
+};
 const columns$6 = [
   {
     title: "Nome",
-    dataIndex: "name",
-    key: "name",
+    dataIndex: "title",
+    key: "title",
     align: "center"
   },
   {
     title: "Quantidade",
-    dataIndex: "amount",
-    key: "amount",
+    dataIndex: "stock",
+    key: "stock",
     align: "center"
   },
   {
     title: "Quantidade mínima",
-    dataIndex: "minimumAmount",
-    key: "minimumAmount",
+    dataIndex: "minimum_stock",
+    key: "minimum_stock",
     align: "center"
   },
   {
     title: "EAN",
-    dataIndex: "ean",
-    key: "ean",
+    dataIndex: "barcode",
+    key: "barcode",
     align: "center"
   },
   {
     title: "Unidade de medida",
-    dataIndex: "unitMeasure",
-    key: "unitMeasure",
+    dataIndex: "product_type",
+    key: "product_type",
     align: "center"
-  },
-  {
-    title: "Ações",
-    key: "action",
-    align: "center",
-    render: () => /* @__PURE__ */ jsxRuntimeExports.jsxs(
-      "div",
-      {
-        style: {
-          display: "flex",
-          flexDirection: "row",
-          gap: "8px",
-          justifyContent: "center"
-        },
-        children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Button$2, { type: "primary", size: "small", children: "Editar" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Button$2, { type: "primary", danger: true, size: "small", children: "Excluir" })
-        ]
-      }
-    )
   }
-];
-const data$1 = [
-  {
-    key: "1",
-    name: "Arroz",
-    amount: 10,
-    minimumAmount: 5,
-    ean: "123456789",
-    unitMeasure: "kg"
-  },
-  {
-    key: "2",
-    name: "Feijão",
-    amount: 10,
-    minimumAmount: 5,
-    ean: "123456789",
-    unitMeasure: "kg"
-  },
-  {
-    key: "3",
-    name: "Macarrão",
-    amount: 10,
-    minimumAmount: 5,
-    ean: "123456789",
-    unitMeasure: "kg"
-  },
-  {
-    key: "4",
-    name: "Açúcar",
-    amount: 10,
-    minimumAmount: 5,
-    ean: "123456789",
-    unitMeasure: "kg"
-  },
-  {
-    key: "5",
-    name: "Sal",
-    amount: 10,
-    minimumAmount: 5,
-    ean: "123456789",
-    unitMeasure: "kg"
-  },
-  {
-    key: "6",
-    name: "Óleo",
-    amount: 10,
-    minimumAmount: 5,
-    ean: "123456789",
-    unitMeasure: "kg"
-  },
-  {
-    key: "7",
-    name: "Farinha de trigo",
-    amount: 10,
-    minimumAmount: 5,
-    ean: "123456789",
-    unitMeasure: "kg"
-  },
-  {
-    key: "8",
-    name: "Farinha de mandioca",
-    amount: 10,
-    minimumAmount: 5,
-    ean: "123456789",
-    unitMeasure: "kg"
-  },
-  {
-    key: "9",
-    name: "Café",
-    amount: 10,
-    minimumAmount: 5,
-    ean: "123456789",
-    unitMeasure: "g"
-  },
-  {
-    key: "10",
-    name: "Leite em pó",
-    amount: 10,
-    minimumAmount: 5,
-    ean: "123456789",
-    unitMeasure: "g"
-  },
-  {
-    key: "11",
-    name: "Leite condensado",
-    amount: 10,
-    minimumAmount: 5,
-    ean: "123456789",
-    unitMeasure: "g"
-  },
-  {
-    key: "12",
-    name: "Creme de leite",
-    amount: 10,
-    minimumAmount: 5,
-    ean: "123456789",
-    unitMeasure: "g"
-  },
-  {
-    key: "13",
-    name: "Molho de tomate",
-    amount: 10,
-    minimumAmount: 5,
-    ean: "123456789",
-    unitMeasure: "g"
-  },
-  {
-    key: "14",
-    name: "Extrato de tomate",
-    amount: 10,
-    minimumAmount: 5,
-    ean: "123456789",
-    unitMeasure: "g"
-  },
-  {
-    key: "15",
-    name: "Milho verde em conserva",
-    amount: 10,
-    minimumAmount: 5,
-    ean: "123456789",
-    unitMeasure: "g"
-  },
-  {
-    key: "16",
-    name: "Ervilha em conserva",
-    amount: 10,
-    minimumAmount: 5,
-    ean: "123456789",
-    unitMeasure: "g"
-  },
-  {
-    key: "17",
-    name: "Sardinha em conserva",
-    amount: 10,
-    minimumAmount: 5,
-    ean: "123456789",
-    unitMeasure: "g"
-  }
+  // {
+  //   title: 'Ações',
+  //   key: 'action',
+  //   align: 'center',
+  //   render: () => (
+  //     <div
+  //       style={{
+  //         display: 'flex',
+  //         flexDirection: 'row',
+  //         gap: '8px',
+  //         justifyContent: 'center'
+  //       }}
+  //     >
+  //       <Button type="primary" size="small">
+  //         Editar
+  //       </Button>
+  //       <Button type="primary" danger size="small">
+  //         Excluir
+  //       </Button>
+  //     </div>
+  //   )
+  // }
 ];
 const Stocks = () => {
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$n, { children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx(Header$6, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
-      "div",
-      {
-        style: {
-          display: "flex",
-          flexDirection: "row",
-          gap: "16px"
-        },
-        children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Button$2, { type: "primary", size: "large", icon: /* @__PURE__ */ jsxRuntimeExports.jsx(PlusOutlined$1, {}), children: "Adicionar estoque" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(Input$1.Search, { placeholder: "Nome do estoque", size: "large" })
-        ]
-      }
-    ) }),
+  const [visibleModalRegister, setVisibleModalRegister] = React.useState(false);
+  const [stocks, setStocks] = React.useState([]);
+  reactExports.useEffect(() => {
+    getStock();
+  }, []);
+  function getStock() {
+    api.get("/item-stock/").then((response) => {
+      setStocks(response.data);
+    });
+  }
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$n, { children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Header$6, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        "div",
+        {
+          style: {
+            display: "flex",
+            flexDirection: "row",
+            gap: "16px"
+          },
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Button$2,
+              {
+                type: "primary",
+                size: "large",
+                icon: /* @__PURE__ */ jsxRuntimeExports.jsx(PlusOutlined$1, {}),
+                onClick: () => setVisibleModalRegister(true),
+                children: "Adicionar estoque"
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Input$1.Search, { placeholder: "Nome do estoque", size: "large" })
+          ]
+        }
+      ) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Table$2, { columns: columns$6, dataSource: stocks, pagination: false, scroll: { y: 700 } })
+    ] }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(
-      Table$2,
+      DrawerRegister,
       {
-        columns: columns$6,
-        dataSource: data$1,
-        pagination: false,
-        scroll: { y: 700 }
+        visible: visibleModalRegister,
+        onClose: () => setVisibleModalRegister(false),
+        onUpdate: () => getStock()
       }
     )
   ] });
@@ -87264,18 +87628,6 @@ const ProductComplement = () => {
     }
   );
 };
-function BsFillDatabaseFill(props) {
-  return GenIcon({ "tag": "svg", "attr": { "fill": "currentColor", "viewBox": "0 0 16 16" }, "child": [{ "tag": "path", "attr": { "d": "M3.904 1.777C4.978 1.289 6.427 1 8 1s3.022.289 4.096.777C13.125 2.245 14 2.993 14 4s-.875 1.755-1.904 2.223C11.022 6.711 9.573 7 8 7s-3.022-.289-4.096-.777C2.875 5.755 2 5.007 2 4s.875-1.755 1.904-2.223Z" } }, { "tag": "path", "attr": { "d": "M2 6.161V7c0 1.007.875 1.755 1.904 2.223C4.978 9.71 6.427 10 8 10s3.022-.289 4.096-.777C13.125 8.755 14 8.007 14 7v-.839c-.457.432-1.004.751-1.49.972C11.278 7.693 9.682 8 8 8s-3.278-.307-4.51-.867c-.486-.22-1.033-.54-1.49-.972Z" } }, { "tag": "path", "attr": { "d": "M2 9.161V10c0 1.007.875 1.755 1.904 2.223C4.978 12.711 6.427 13 8 13s3.022-.289 4.096-.777C13.125 11.755 14 11.007 14 10v-.839c-.457.432-1.004.751-1.49.972-1.232.56-2.828.867-4.51.867s-3.278-.307-4.51-.867c-.486-.22-1.033-.54-1.49-.972Z" } }, { "tag": "path", "attr": { "d": "M2 12.161V13c0 1.007.875 1.755 1.904 2.223C4.978 15.711 6.427 16 8 16s3.022-.289 4.096-.777C13.125 14.755 14 14.007 14 13v-.839c-.457.432-1.004.751-1.49.972-1.232.56-2.828.867-4.51.867s-3.278-.307-4.51-.867c-.486-.22-1.033-.54-1.49-.972Z" } }] })(props);
-}
-function BsCashCoin(props) {
-  return GenIcon({ "tag": "svg", "attr": { "fill": "currentColor", "viewBox": "0 0 16 16" }, "child": [{ "tag": "path", "attr": { "fillRule": "evenodd", "d": "M11 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm5-4a5 5 0 1 1-10 0 5 5 0 0 1 10 0z" } }, { "tag": "path", "attr": { "d": "M9.438 11.944c.047.596.518 1.06 1.363 1.116v.44h.375v-.443c.875-.061 1.386-.529 1.386-1.207 0-.618-.39-.936-1.09-1.1l-.296-.07v-1.2c.376.043.614.248.671.532h.658c-.047-.575-.54-1.024-1.329-1.073V8.5h-.375v.45c-.747.073-1.255.522-1.255 1.158 0 .562.378.92 1.007 1.066l.248.061v1.272c-.384-.058-.639-.27-.696-.563h-.668zm1.36-1.354c-.369-.085-.569-.26-.569-.522 0-.294.216-.514.572-.578v1.1h-.003zm.432.746c.449.104.655.272.655.569 0 .339-.257.571-.709.614v-1.195l.054.012z" } }, { "tag": "path", "attr": { "d": "M1 0a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h4.083c.058-.344.145-.678.258-1H3a2 2 0 0 0-2-2V3a2 2 0 0 0 2-2h10a2 2 0 0 0 2 2v3.528c.38.34.717.728 1 1.154V1a1 1 0 0 0-1-1H1z" } }, { "tag": "path", "attr": { "d": "M9.998 5.083 10 5a2 2 0 1 0-3.132 1.65 5.982 5.982 0 0 1 3.13-1.567z" } }] })(props);
-}
-function BsCash(props) {
-  return GenIcon({ "tag": "svg", "attr": { "fill": "currentColor", "viewBox": "0 0 16 16" }, "child": [{ "tag": "path", "attr": { "d": "M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" } }, { "tag": "path", "attr": { "d": "M0 4a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V4zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V6a2 2 0 0 1-2-2H3z" } }] })(props);
-}
-function BsPlus(props) {
-  return GenIcon({ "tag": "svg", "attr": { "fill": "currentColor", "viewBox": "0 0 16 16" }, "child": [{ "tag": "path", "attr": { "d": "M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" } }] })(props);
-}
 function CgArrowTopRight(props) {
   return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 24 24", "fill": "none" }, "child": [{ "tag": "path", "attr": { "d": "M10.5253 5.49475L10.5206 7.49475L15.0782 7.50541L5.47473 17.0896L6.88752 18.5052L16.5173 8.89479L16.5065 13.5088L18.5065 13.5134L18.5253 5.51345L10.5253 5.49475Z", "fill": "currentColor" } }] })(props);
 }
@@ -88385,9 +88737,6 @@ function IoRadioButtonOn(props) {
 }
 const logo = "" + new URL("logo-branca-ecee0344.png", import.meta.url).href;
 const miniLogo = "" + new URL("peditz-b44a92a1.jpeg", import.meta.url).href;
-function PiNotepadBold(props) {
-  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 256 256", "fill": "currentColor" }, "child": [{ "tag": "path", "attr": { "d": "M172,124a12,12,0,0,1-12,12H96a12,12,0,0,1,0-24h64A12,12,0,0,1,172,124Zm-12,28H96a12,12,0,0,0,0,24h64a12,12,0,0,0,0-24ZM220,48V200a36,36,0,0,1-36,36H72a36,36,0,0,1-36-36V48A20,20,0,0,1,56,28H72V24a12,12,0,0,1,24,0v4h20V24a12,12,0,0,1,24,0v4h20V24a12,12,0,0,1,24,0v4h16A20,20,0,0,1,220,48Zm-24,4H184v4a12,12,0,0,1-24,0V52H140v4a12,12,0,0,1-24,0V52H96v4a12,12,0,0,1-24,0V52H60V200a12,12,0,0,0,12,12H184a12,12,0,0,0,12-12Z" } }] })(props);
-}
 const { Sider } = Layout$1;
 function getItem({ key, label, children, icon, style: style2, type: type4 }) {
   return {
@@ -88439,15 +88788,15 @@ const SideBar = ({ collapsed }) => {
       //   flexDirection: 'column'
       // },
     }),
-    getItem({
-      key: "4",
-      label: /* @__PURE__ */ jsxRuntimeExports.jsx(Link$2, { to: "/pedidos/", children: "Gerenciador de pedidos" }),
-      icon: /* @__PURE__ */ jsxRuntimeExports.jsx(PiNotepadBold, {})
-      // style: {
-      //   display: userPermissions.includes('Balcão') ? 'flex' : 'none',
-      //   flexDirection: 'column'
-      // },
-    }),
+    // getItem({
+    //   key: '4',
+    //   label: <Link to={'/pedidos/'}>Gerenciador de pedidos</Link>,
+    //   icon: <PiNotepadBold />
+    //   // style: {
+    //   //   display: userPermissions.includes('Balcão') ? 'flex' : 'none',
+    //   //   flexDirection: 'column'
+    //   // },
+    // }),
     getItem({
       key: "5",
       label: "Produtos",
@@ -88507,14 +88856,14 @@ const SideBar = ({ collapsed }) => {
         display: userPermissions.includes("Mesas") ? "flex" : "none"
       }
     }),
-    // getItem({
-    //   key: '8',
-    //   label: <Link to={'/estoque'}>Estoques</Link>,
-    //   icon: <ShoppingOutlined />,
-    //   style: {
-    //     display: userPermissions.includes('Estoques') ? 'flex' : 'none'
-    //   }
-    // }),
+    getItem({
+      key: "8",
+      label: /* @__PURE__ */ jsxRuntimeExports.jsx(Link$2, { to: "/estoque", children: "Estoques" }),
+      icon: /* @__PURE__ */ jsxRuntimeExports.jsx(ShoppingOutlined$1, {}),
+      style: {
+        display: userPermissions.includes("Estoques") ? "flex" : "none"
+      }
+    }),
     getItem({
       key: "9",
       label: "Relatórios",
@@ -88526,12 +88875,12 @@ const SideBar = ({ collapsed }) => {
       children: [
         getItem({
           key: "9.1",
-          label: /* @__PURE__ */ jsxRuntimeExports.jsx(Link$2, { to: "/relatorios/financeiro", children: "Vendas por período" })
+          label: /* @__PURE__ */ jsxRuntimeExports.jsx(Link$2, { to: "/relatorios/vendas-periodo/", children: "Vendas por período" })
         }),
-        // getItem({
-        //   key: '9.2',
-        //   label: 'Vendas por produto'
-        // }),
+        getItem({
+          key: "9.2",
+          label: /* @__PURE__ */ jsxRuntimeExports.jsx(Link$2, { to: "/relatorios/vendas-produto/", children: "Vendas por produtos" })
+        }),
         // getItem({
         //   key: '9.3',
         //   label: 'Relatório geral'
@@ -113407,6 +113756,9 @@ const Complements = () => {
     )
   ] }) });
 };
+const ReportSalesProduct = () => {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: "ReportSalesProduct" });
+};
 const Container$1 = st.div`
   width: 100%;
   height: calc(100vh - 50px);
@@ -114153,10 +114505,10 @@ function Navigation() {
         element: /* @__PURE__ */ jsxRuntimeExports.jsx(AddSidebar, { titleHeader: "Caixas passados", children: /* @__PURE__ */ jsxRuntimeExports.jsx(PastCashiers, {}) })
       }
     ) }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/relatorios/financeiro/", element: /* @__PURE__ */ jsxRuntimeExports.jsx(PrivateRoute, {}), children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+    /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/relatorios/vendas-periodo/", element: /* @__PURE__ */ jsxRuntimeExports.jsx(PrivateRoute, {}), children: /* @__PURE__ */ jsxRuntimeExports.jsx(
       Route,
       {
-        path: "/relatorios/financeiro/",
+        path: "/relatorios/vendas-periodo/",
         element: /* @__PURE__ */ jsxRuntimeExports.jsx(AddSidebar, { titleHeader: "Relatório por período", children: /* @__PURE__ */ jsxRuntimeExports.jsx(FinancialStats, {}) })
       }
     ) }),
@@ -114165,6 +114517,13 @@ function Navigation() {
       {
         path: "/relatorios/caixas-passados/:id",
         element: /* @__PURE__ */ jsxRuntimeExports.jsx(AddSidebar, { titleHeader: "Relatório de caixa", children: /* @__PURE__ */ jsxRuntimeExports.jsx(CashierDetail, {}) })
+      }
+    ) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/relatorios/vendas-produto/", element: /* @__PURE__ */ jsxRuntimeExports.jsx(PrivateRoute, {}), children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+      Route,
+      {
+        path: "/relatorios/vendas-produto/",
+        element: /* @__PURE__ */ jsxRuntimeExports.jsx(AddSidebar, { titleHeader: "Relatório de vendas por produtos", children: /* @__PURE__ */ jsxRuntimeExports.jsx(ReportSalesProduct, {}) })
       }
     ) }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/estoque/", element: /* @__PURE__ */ jsxRuntimeExports.jsx(PrivateRoute, {}), children: /* @__PURE__ */ jsxRuntimeExports.jsx(
