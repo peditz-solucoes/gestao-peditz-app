@@ -23,11 +23,11 @@ export const Takeout: React.FC = () => {
     fetchProducts()
   }, [])
 
-  const handleChange = (newValue: string) => {
+  const handleChange = (newValue: string): void => {
     setCategorySelected(newValue)
   }
 
-  const info = () => {
+  const info = (): void => {
     Modal.info({
       title: 'Você tem certeza que deseja limpar o carrinho ?',
       content: (
@@ -84,7 +84,7 @@ export const Takeout: React.FC = () => {
                 ]}
               />
             </S.CategoryProducts>
-            <Spin spinning={products.length === 0 ? true : false} size='large'>
+            <Spin spinning={products.length === 0 ? true : false} size="large">
               <div
                 style={{
                   padding: '20px',
@@ -382,7 +382,7 @@ export const Takeout: React.FC = () => {
                   flexDirection: 'row-reverse'
                 }}
                 size="large"
-                onClick={() => navigate('/pedidos-balcao/pagamentos/')}
+                onClick={(): void => navigate('/pedidos-balcao/pagamentos/')}
                 disabled={productsSelected.length === 0}
                 icon={<IoMdArrowDropright size={22} />}
               >

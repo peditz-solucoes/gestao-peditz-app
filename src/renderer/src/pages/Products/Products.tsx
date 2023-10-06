@@ -192,9 +192,9 @@ export const Products: React.FC = () => {
             }}
           >
             {!visibleCardProduct ? (
-              groupProductsByCategory().map((category, k) => {
+              groupProductsByCategory().map((category) => {
                 return (
-                  <div key={k}>
+                  <div key={category.category}>
                     <S.TitleCategory>
                       {category.category} <Divider type="horizontal" />
                     </S.TitleCategory>

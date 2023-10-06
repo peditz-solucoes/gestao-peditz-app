@@ -140,6 +140,18 @@ const onChange: TableProps<DataType>['onChange'] = (pagination, filters, sorter,
   console.log('params', pagination, filters, sorter, extra)
 }
 
+const mapTypePayment = (type: string): string => {
+  switch (type) {
+    case 'BILL':
+      return 'Comanda'
+    case 'TAKEOUT':
+      return 'Balcão'
+    case 'DELIVERY':
+      return 'Delivery'
+    default:
+      return 'Não identificado'
+  }
+}
 export const CashierDetail: React.FC = () => {
   const [cashier, setCashiers] = React.useState<CashierType | null>(null)
   const [payments, setPayments] = React.useState<PaymentType[]>([])
@@ -164,7 +176,7 @@ export const CashierDetail: React.FC = () => {
               total: formatCurrency(Number(payment.total)),
               created: payment.created,
               tip: formatCurrency(Number(payment.tip)),
-              type: payment.type === 'BILL' ? 'Comanda' : 'Pedido'
+              type: mapTypePayment(payment.type)
             }
           })
         )

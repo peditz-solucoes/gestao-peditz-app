@@ -1,4 +1,3 @@
-import { useEffect } from 'react'
 import * as S from './styles'
 import {
   FaCashRegister,

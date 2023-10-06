@@ -1,7 +1,6 @@
 import React from 'react'
 import * as S from './styles'
-import { Button, Dropdown, MenuProps, Typography } from 'antd'
-import { SlOptionsVertical } from 'react-icons/sl'
+import { Dropdown, MenuProps, Typography } from 'antd'
 import { UserOutlined, ShoppingOutlined } from '@ant-design/icons'
 import { BsCash } from 'react-icons/bs'
 import { formatCurrency } from '@renderer/utils'

@@ -305,3 +305,21 @@ export type CategoryStock = {
   id: string
   title: string
 }
+
+interface CatalogType {
+  id: string
+  created: string
+  modified: string
+  title: string
+  description: string
+  slug: string
+  order: number
+  active: boolean
+  photo: string | null
+  delivery: boolean
+  restaurant: {
+    id: string
+    name: string
+    slug: string
+  }
+}

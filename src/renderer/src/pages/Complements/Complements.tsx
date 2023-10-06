@@ -2,6 +2,7 @@ import React, { ReactElement, useCallback, useEffect, useState } from 'react'
 import * as S from './styles'
 import {
   Button,
+  Card,
   Drawer,
   Form,
   FormInstance,
@@ -13,7 +14,7 @@ import {
   Transfer,
   Typography
 } from 'antd'
-import { ShoppingOutlined } from '@ant-design/icons'
+import { DeleteOutlined, SaveOutlined, ShoppingOutlined } from '@ant-design/icons'
 import { Product, ProductComplement } from '../../types'
 import { useProducts } from '../../hooks'
 import api from '@renderer/services/api'
@@ -24,7 +25,7 @@ import { CgArrowTopRight } from 'react-icons/cg'
 import { TransferDirection } from 'antd/es/transfer'
 import { SelectCard } from '@renderer/components/SelectCard/SelectCard'
 
-const { Title } = Typography
+const { Title, Text } = Typography
 
 export const Complements: React.FC = () => {
   const [complements, setComplements] = React.useState<ProductComplement[]>([])
@@ -371,7 +372,89 @@ export const Complements: React.FC = () => {
               {
                 label: 'Items',
                 disabled: complementToEdit === null,
-                children: <div>{/* <TableComplemts /> */}</div>,
+                children: (
+                  <div>
+                    <Card>
+                      <Form layout="vertical">
+                        <Space
+                          style={{
+                            width: '100%',
+                            alignItems: 'flex-end',
+                            gap: '1rem'
+                          }}
+                        >
+                          <Form.Item
+                            style={{
+                              width: '100%'
+                            }}
+                            label="Título"
+                          >
+                            <Input />
+                          </Form.Item>
+                          <Form.Item
+                            label="Preço"
+                            style={{
+                              width: '100%'
+                            }}
+                          >
+                            <Input />
+                          </Form.Item>
+                          <Form.Item
+                            label="Quantidade mínima"
+                            style={{
+                              width: '100%'
+                            }}
+                          >
+                            <InputNumber
+                              style={{
+                                width: '100%'
+                              }}
+                              min={0}
+                            />
+                          </Form.Item>
+                          <Form.Item
+                            label="Quantidade máxima"
+                            style={{
+                              width: '100%'
+                            }}
+                          >
+                            <InputNumber
+                              style={{
+                                width: '100%'
+                              }}
+                              min={0}
+                            />
+                          </Form.Item>
+                          <Form.Item
+                            style={{
+                              width: '100%'
+                            }}
+                          >
+                            <Button
+                              size="large"
+                              icon={<DeleteOutlined />}
+                              shape="circle"
+                              danger
+                            ></Button>
+                          </Form.Item>
+                          <Form.Item
+                            style={{
+                              width: '100%'
+                            }}
+                          >
+                            <Button
+                              size="large"
+                              icon={<SaveOutlined />}
+                              shape="circle"
+                              type="primary"
+                            ></Button>
+                          </Form.Item>
+                        </Space>
+                        <Text>Este Item possui preços diferente em outros cardápios?</Text>
+                      </Form>
+                    </Card>
+                  </div>
+                ),
                 key: '2'
               },
               {
