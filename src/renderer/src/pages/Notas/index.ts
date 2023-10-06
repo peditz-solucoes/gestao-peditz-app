@@ -1,0 +1,1 @@
+export { Notas } from './Notas'

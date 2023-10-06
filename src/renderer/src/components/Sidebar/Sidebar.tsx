@@ -8,7 +8,8 @@ import {
   // ShoppingOutlined,
   SolutionOutlined,
   WalletOutlined,
-  ShopOutlined
+  ShopOutlined,
+  FileTextOutlined
 } from '@ant-design/icons'
 import { IoFastFood } from 'react-icons//io5'
 import { Layout, Menu, MenuProps } from 'antd'
@@ -22,6 +23,7 @@ import api from '@renderer/services/api'
 import { AxiosError } from 'axios'
 import { errorActions } from '@renderer/utils/errorActions'
 import { PiNotepadBold } from 'react-icons/pi'
+import { FaBookOpen } from 'react-icons/fa'
 
 const { Sider } = Layout
 
@@ -135,6 +137,15 @@ export const SideBar: React.FC<SideBarProps> = ({ collapsed }) => {
         })
       ]
     }),
+    getItem({
+      key: '4',
+      label: <Link to={'/cardapios/'}>Cardápios</Link>,
+      icon: <FaBookOpen />
+      // style: {
+      //   display: userPermissions.includes('Balcão') ? 'flex' : 'none',
+      //   flexDirection: 'column'
+      // },
+    }),
 
     getItem({
       key: '6',
@@ -215,6 +226,14 @@ export const SideBar: React.FC<SideBarProps> = ({ collapsed }) => {
     //   }
     // }),
 
+    getItem({
+      key: '11',
+      label: <Link to={'/notas'}>Notas Fiscais</Link>,
+      icon: <FileTextOutlined />
+      // style: {
+      //   display: userPermissions.includes('Integracoes') ? 'flex' : 'none'
+      // }
+    }),
     getItem({
       key: '11',
       label: <Link to={'/integracoes'}>Integrações</Link>,

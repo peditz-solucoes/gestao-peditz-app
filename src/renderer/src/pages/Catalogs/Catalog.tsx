@@ -1,0 +1,245 @@
+import React, { useCallback, useEffect, useState } from 'react'
+import * as S from './styles'
+import { Button, Card, Form, Input, Space, Spin, Typography, Upload, FormInstance } from 'antd'
+import {
+  MobileOutlined,
+  ReloadOutlined,
+  CameraOutlined,
+  ExportOutlined,
+  LinkOutlined,
+  SaveOutlined
+} from '@ant-design/icons'
+import api from '@renderer/services/api'
+import ImgCrop from 'antd-img-crop'
+import type { UploadProps } from 'antd/es/upload/interface'
+import { theme } from '@renderer/theme'
+import { useParams } from 'react-router-dom'
+import { CatalogType } from '@renderer/types'
+
+const { Title, Text } = Typography
+
+export const Catalog: React.FC = () => {
+  const [loadingP, setLoadingP] = React.useState(false)
+  const hasUpdate = React.useRef(false)
+  const [catalog, setCatalog] = useState<CatalogType | null>(null)
+  const props: UploadProps = {
+    multiple: false,
+    customRequest(options) {
+      const data = new FormData()
+      const { file } = options
+      data.append('photo', file)
+      setLoadingP(true)
+      api
+        .patch(`/catalog-crud/${catalog?.id}/`, data, {
+          headers: {
+            'Content-Type': 'multipart/form-data'
+          }
+        })
+        .then((response) => {
+          updateIframe(`https://peditz.me/${response.data.restaurant.slug}/${response.data.slug}`)
+          options.onSuccess && options?.onSuccess({})
+        })
+        .finally(() => {
+          setLoadingP(false)
+        })
+    }
+  }
+
+  const form = React.useRef<FormInstance>(null)
+  const [loading, setLoading] = useState(false)
+  const iframeRef = React.useRef<HTMLIFrameElement>(null)
+  const { Dragger } = Upload
+  const updateIframe = useCallback((url: string) => {
+    if (iframeRef.current) {
+      setLoadingP(true)
+      iframeRef.current.src = url
+      setTimeout(() => {
+        setLoadingP(false)
+      }, 500)
+    }
+  }, [])
+  const fecthCatalog = useCallback((id: string) => {
+    setLoading(true)
+    api
+      .get(`/catalog-crud/${id}/`)
+      .then((response) => {
+        setCatalog(response.data)
+        updateIframe(`https://peditz.me/${response.data.restaurant.slug}/${response.data.slug}`)
+        form.current?.setFieldsValue(response.data)
+      })
+      .finally(() => {
+        setTimeout(() => {
+          setLoading(false)
+        }, 1000)
+      })
+  }, [])
+  const { id } = useParams<{ id: string }>()
+  useEffect(() => {
+    if (!hasUpdate.current && id) {
+      fecthCatalog(id)
+      hasUpdate.current = true
+    }
+  }, [])
+
+  return (
+    <S.Container>
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: '1fr 0.5fr',
+          gap: '1rem'
+        }}
+      >
+        <Spin spinning={loading} size="large">
+          <Card>
+            <Title level={4}>Organize seu cardápio</Title>
+            <Form ref={form} layout="vertical">
+              <ImgCrop rotationSlider aspect={371 / 118}>
+                <Dragger
+                  disabled={loading || !catalog || loadingP}
+                  {...props}
+                  style={{
+                    width: '100%',
+                    height: '50px',
+                    marginBottom: '1rem',
+                    padding: '0'
+                  }}
+                  showUploadList={false}
+                >
+                  <CameraOutlined
+                    style={{
+                      fontSize: '1.6rem',
+                      color: theme.tokens.colorPrimary
+                    }}
+                  />
+                  <p className="ant-upload-text">Clique ou arraste uma foto para seu cardápio</p>
+                </Dragger>
+              </ImgCrop>
+              <Form.Item
+                label="Título do cardápio"
+                name="title"
+                rules={[
+                  {
+                    required: true,
+                    message: 'Digite o título do cardápio'
+                  }
+                ]}
+              >
+                <Input size="large" />
+              </Form.Item>
+              <Form.Item label="Descrição" name="description">
+                <Input.TextArea size="large" />
+              </Form.Item>
+              <Form.Item
+                label="Link"
+                name="slug"
+                rules={[
+                  {
+                    required: true,
+                    message: 'Digite o link do cardápio'
+                  },
+                  {
+                    pattern: new RegExp(/^[a-z0-9]+(?:-[a-z0-9]+)*$/),
+                    message: 'O link deve conter apenas letras minúsculas e números'
+                  }
+                ]}
+              >
+                <Input
+                  size="large"
+                  addonBefore={`www.peditz.me/${catalog?.restaurant?.slug ?? ''}/`}
+                  placeholder="cardapio"
+                />
+              </Form.Item>
+              <Space
+                style={{
+                  justifyContent: 'center',
+                  width: '100%',
+                  padding: '4rem 0',
+                  gap: '1rem'
+                }}
+              >
+                <Button size="large">Editar prodtuos</Button>
+                <Button size="large">Editar Complementos</Button>
+              </Space>
+              <Space
+                style={{
+                  justifyContent: 'flex-end',
+                  width: '100%',
+                  padding: '1rem 0 0 0'
+                }}
+              >
+                <Form.Item>
+                  <Button size="large" type="primary" icon={<SaveOutlined />}>
+                    Salvar
+                  </Button>
+                </Form.Item>
+              </Space>
+            </Form>
+          </Card>
+        </Spin>
+        <Spin spinning={loadingP} size="large">
+          <Card
+            style={{
+              backgroundColor: '#fff'
+            }}
+            bodyStyle={{
+              padding: '1rem',
+              display: 'flex',
+              alignItems: 'center',
+              flexDirection: 'column'
+            }}
+          >
+            <Space
+              style={{
+                marginBottom: '1rem',
+                justifyContent: 'center',
+                width: '100%'
+              }}
+            >
+              <Text>
+                <MobileOutlined /> Pre-vizualização
+              </Text>
+              <Button
+                onClick={(): void => {
+                  updateIframe(`https://peditz.me/${catalog?.restaurant.slug}/${catalog?.slug}`)
+                }}
+                icon={<ReloadOutlined />}
+                shape="circle"
+              ></Button>
+              <Button
+                onClick={(): void => {
+                  if (iframeRef.current) {
+                    iframeRef.current.src = 'https://peditz.me/taurus'
+                  }
+                }}
+                icon={<ExportOutlined />}
+                shape="circle"
+                type="primary"
+              ></Button>
+              <Button
+                onClick={(): void => {
+                  if (iframeRef.current) {
+                    iframeRef.current.src = 'https://peditz.me/taurus'
+                  }
+                }}
+                icon={<LinkOutlined />}
+                shape="circle"
+                type="link"
+              ></Button>
+            </Space>
+            <iframe
+              style={{
+                border: '2px solid #ccc',
+                borderRadius: '1rem',
+                boxShadow: '0 0 5px #ccc'
+              }}
+              ref={iframeRef}
+              width="375px"
+              height="667px"
+            />
+          </Card>
+        </Spin>
+      </div>
+    </S.Container>
+  )
+}

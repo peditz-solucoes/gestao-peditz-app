@@ -27,6 +27,8 @@ import { OrdersManager } from '@renderer/pages/OrdersManager'
 import { FinancialStats } from '@renderer/pages/FinancialStats'
 import { TakeoutPayment } from '@renderer/pages/TakeoutPayment/TakeoutPayment'
 import { Complements } from '@renderer/pages/Complements'
+import { Catalog, Catalogs } from '@renderer/pages/Catalogs'
+import { Notas } from '@renderer/pages/Notas'
 
 export function Navigation(): JSX.Element {
   return (
@@ -79,6 +81,36 @@ export function Navigation(): JSX.Element {
           element={
             <AddSidebar titleHeader="Dashboard">
               <Dashboard />
+            </AddSidebar>
+          }
+        />
+      </Route>
+      <Route path="/cardapios/" element={<PrivateRoute />}>
+        <Route
+          path="/cardapios/"
+          element={
+            <AddSidebar titleHeader="Cardápios">
+              <Catalogs />
+            </AddSidebar>
+          }
+        />
+      </Route>
+      <Route path="/cardapios/:id" element={<PrivateRoute />}>
+        <Route
+          path="/cardapios/:id"
+          element={
+            <AddSidebar titleHeader="Cardápios">
+              <Catalog />
+            </AddSidebar>
+          }
+        />
+      </Route>
+      <Route path="/notas/" element={<PrivateRoute />}>
+        <Route
+          path="/notas/"
+          element={
+            <AddSidebar titleHeader="Notas fiscais">
+              <Notas />
             </AddSidebar>
           }
         />
