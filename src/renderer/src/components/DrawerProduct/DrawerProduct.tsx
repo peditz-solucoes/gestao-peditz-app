@@ -1,9 +1,8 @@
 import { Drawer, FormInstance, Tabs, TabsProps } from 'antd'
 import React, { useEffect } from 'react'
-import { useProducts } from '../../hooks'
+import { usePrinter, useProducts } from '../../hooks'
 import { ProductInfo } from './components/ProductInfo'
 import { ProductFiscal } from './components/ProductFiscal'
-import { ProductComplement } from './components/ProductComplement'
 import { Prices } from './components/Prices'
 import { formatToBRL } from '@renderer/utils'
 
@@ -15,11 +14,13 @@ interface DrawerProductProps {
 export const DrawerProduct: React.FC<DrawerProductProps> = ({ onClose, visible }) => {
   const { fetchCategories, currentTab, selectedProduct, setSelectedProduct, setCurrentTab } =
     useProducts()
+  const { fetchPrinters } = usePrinter()
   const formRef = React.useRef<FormInstance>(null)
   const formFiscalRef = React.useRef<FormInstance>(null)
 
   useEffect(() => {
     fetchCategories()
+    fetchPrinters()
     if (selectedProduct) {
       formRef.current?.setFieldsValue({
         title: selectedProduct.title,
@@ -44,12 +45,7 @@ export const DrawerProduct: React.FC<DrawerProductProps> = ({ onClose, visible }
       children: <ProductInfo formRef={formRef} />,
       disabled: `${currentTab}` !== '1' && selectedProduct == null
     },
-    {
-      key: '4',
-      label: <h4>Preços</h4>,
-      children: <Prices />,
-      disabled: `${currentTab}` !== '4' && selectedProduct == null
-    },
+
     {
       key: '2',
       label: <h4>Fiscal</h4>,
@@ -58,8 +54,8 @@ export const DrawerProduct: React.FC<DrawerProductProps> = ({ onClose, visible }
     },
     {
       key: '3',
-      label: <h4>Complementos</h4>,
-      children: <ProductComplement />,
+      label: <h4>Preços</h4>,
+      children: <Prices />,
       disabled: `${currentTab}` !== '3' && selectedProduct == null
     }
   ]

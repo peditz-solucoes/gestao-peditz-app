@@ -16,12 +16,11 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ formRef }) => {
   const [fileList, setFileList] = useState<UploadFile[]>([])
   const [active, setActive] = useState(false)
   const [listed, setListed] = useState(false)
-  const { printers, fetchPrinters } = usePrinter()
+  const { printers } = usePrinter()
   useEffect(() => {
     if (selectedProduct) {
       setActive(selectedProduct?.active ?? true)
       setListed(selectedProduct?.listed ?? true)
-      fetchPrinters()
     }
   }, [selectedProduct])
 

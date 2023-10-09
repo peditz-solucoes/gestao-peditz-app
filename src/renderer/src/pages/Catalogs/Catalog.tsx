@@ -1,6 +1,18 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import * as S from './styles'
-import { Button, Card, Form, Input, Space, Spin, Typography, Upload, FormInstance } from 'antd'
+import {
+  Button,
+  Card,
+  Form,
+  Input,
+  Space,
+  Spin,
+  Typography,
+  Upload,
+  FormInstance,
+  Drawer,
+  Table
+} from 'antd'
 import {
   MobileOutlined,
   ReloadOutlined,
@@ -15,12 +27,78 @@ import type { UploadProps } from 'antd/es/upload/interface'
 import { theme } from '@renderer/theme'
 import { useParams } from 'react-router-dom'
 import { CatalogType } from '@renderer/types'
+import { ColumnsType, Key } from 'antd/es/table/interface'
 
 const { Title, Text } = Typography
+interface ProductInPrice {
+  id: string
+  title: string
+  description: string
+  price: string
+  listed: true
+  type_of_sale: string
+  codigo_produto: string
+  photo: null
+  product_category: {
+    id: string
+    title: string
+  }
+  complement_categories: []
+}
+interface ProductPrice {
+  id: string
+  product_detail: ProductInPrice
+  created: string
+  modified: string
+  price: string
+  tag: string
+  product: string
+  key: string
+}
+
+const columns: ColumnsType<ProductPrice> = [
+  {
+    title: 'Produto',
+    dataIndex: 'product_detail',
+    render: (product: ProductInPrice) => <a>{product.title}</a>
+  },
+  {
+    title: 'Categoria',
+    dataIndex: 'product_detail',
+    key: 'category',
+    render: (product: ProductInPrice) => <a>{product?.product_category?.title}</a>
+  },
+  {
+    title: 'Preço',
+    dataIndex: 'price'
+  },
+  {
+    title: 'Identificador',
+    dataIndex: 'tag',
+    filters: [
+      {
+        text: 'Cardapio Digital',
+        value: 'cardapio_digital'
+      },
+      {
+        text: 'Delivery',
+        value: 'Category 1'
+      }
+    ],
+    onFilter: (value: string | number | boolean, record: ProductPrice): boolean => {
+      if (typeof value === 'string') {
+        return record.tag.includes(value)
+      }
+      return false
+    }
+  }
+]
 
 export const Catalog: React.FC = () => {
   const [loadingP, setLoadingP] = React.useState(false)
   const hasUpdate = React.useRef(false)
+  const [addProductsDrawer, setAddProductsDrawer] = useState(false)
+  const [productPrices, setProductPrices] = useState<ProductPrice[]>([])
   const [catalog, setCatalog] = useState<CatalogType | null>(null)
   const props: UploadProps = {
     multiple: false,
@@ -58,6 +136,14 @@ export const Catalog: React.FC = () => {
       }, 500)
     }
   }, [])
+  const fecthProductsPrices = useCallback(() => {
+    api.get('/product-price/').then((response) => {
+      setProductPrices(response.data)
+    })
+  }, [])
+  const [selectedProducts, setSelectedProducts] = useState<ProductPrice[]>()
+  const [selectedProductsKey, setSelectedProductsKey] = useState<string[]>()
+
   const fecthCatalog = useCallback((id: string) => {
     setLoading(true)
     api
@@ -65,6 +151,7 @@ export const Catalog: React.FC = () => {
       .then((response) => {
         setCatalog(response.data)
         updateIframe(`https://peditz.me/${response.data.restaurant.slug}/${response.data.slug}`)
+        setSelectedProductsKey(response.data.products_prices)
         form.current?.setFieldsValue(response.data)
       })
       .finally(() => {
@@ -77,10 +164,36 @@ export const Catalog: React.FC = () => {
   useEffect(() => {
     if (!hasUpdate.current && id) {
       fecthCatalog(id)
+      fecthProductsPrices()
       hasUpdate.current = true
     }
   }, [])
+  const saveCatalog = useCallback((values): void => {
+    setLoading(true)
+    api
+      .patch(`/catalog-crud/${id}/`, values)
+      .then((response) => {
+        updateIframe(`https://peditz.me/${response.data.restaurant.slug}/${response.data.slug}`)
+      })
+      .finally(() => {
+        setLoading(false)
+      })
+  }, [])
 
+  const rowSelection = {
+    onChange: (keys: Key[], selectedRows: ProductPrice[]): void => {
+      setSelectedProducts(selectedRows)
+      setSelectedProductsKey(keys as string[])
+    },
+    getCheckboxProps: (record: ProductPrice) => ({
+      disabled:
+        selectedProducts?.find((p) => p.product_detail.id === record.product_detail.id) &&
+        selectedProducts?.find((p) => p.product_detail.id === record.product_detail.id)?.id !==
+          record.id,
+      name: record.product_detail.id
+    })
+  }
+  const [windowHeight] = React.useState(window.innerHeight)
   return (
     <S.Container>
       <div
@@ -93,7 +206,7 @@ export const Catalog: React.FC = () => {
         <Spin spinning={loading} size="large">
           <Card>
             <Title level={4}>Organize seu cardápio</Title>
-            <Form ref={form} layout="vertical">
+            <Form ref={form} layout="vertical" onFinish={saveCatalog}>
               <ImgCrop rotationSlider aspect={371 / 118}>
                 <Dragger
                   disabled={loading || !catalog || loadingP}
@@ -158,7 +271,9 @@ export const Catalog: React.FC = () => {
                   gap: '1rem'
                 }}
               >
-                <Button size="large">Editar prodtuos</Button>
+                <Button size="large" onClick={(): void => setAddProductsDrawer(true)}>
+                  Editar prodtuos
+                </Button>
                 <Button size="large">Editar Complementos</Button>
               </Space>
               <Space
@@ -169,7 +284,13 @@ export const Catalog: React.FC = () => {
                 }}
               >
                 <Form.Item>
-                  <Button size="large" type="primary" icon={<SaveOutlined />}>
+                  <Button
+                    loading={loading}
+                    size="large"
+                    type="primary"
+                    icon={<SaveOutlined />}
+                    htmlType="submit"
+                  >
                     Salvar
                   </Button>
                 </Form.Item>
@@ -239,6 +360,49 @@ export const Catalog: React.FC = () => {
             />
           </Card>
         </Spin>
+        <Drawer
+          open={addProductsDrawer}
+          width={700}
+          onClose={(): void => setAddProductsDrawer(false)}
+          title="Adicione Produtos ao seu cardápio"
+        >
+          <Table
+            rowSelection={{
+              type: 'checkbox',
+              selectedRowKeys: selectedProductsKey,
+              ...rowSelection
+            }}
+            columns={columns}
+            pagination={false}
+            dataSource={productPrices.map((p) => ({
+              ...p,
+              key: p.id
+            }))}
+            scroll={{ y: windowHeight - 250 }}
+          />
+          <Button
+            size="large"
+            type="primary"
+            onClick={(): void => {
+              setLoading(true)
+              api
+                .patch(`catalog-crud/${id}/`, {
+                  products_prices: selectedProductsKey
+                })
+                .then((response) => {
+                  updateIframe(
+                    `https://peditz.me/${response.data.restaurant.slug}/${response.data.slug}`
+                  )
+                  setAddProductsDrawer(false)
+                })
+                .finally(() => {
+                  setLoading(false)
+                })
+            }}
+          >
+            Salvar
+          </Button>
+        </Drawer>
       </div>
     </S.Container>
   )
