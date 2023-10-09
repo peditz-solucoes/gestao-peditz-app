@@ -1,4 +1,15 @@
-import { Button, Divider, Form, FormInstance, Input, Space, Spin, Tooltip, Typography } from 'antd'
+import {
+  Button,
+  Divider,
+  Form,
+  FormInstance,
+  Input,
+  Select,
+  Space,
+  Spin,
+  Tooltip,
+  Typography
+} from 'antd'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import { useProducts } from '../../../hooks'
 import { MdCheckCircleOutline, MdDeleteOutline } from 'react-icons/md'
@@ -129,10 +140,20 @@ export const Prices: React.FC = () => {
                   name="tag"
                   initialValue={price.tag}
                 >
-                  <Input
+                  <Select
                     style={{ width: '100%' }}
                     size="large"
                     placeholder="ex: Cardapio Digital"
+                    options={[
+                      {
+                        label: 'Cardápio Digital',
+                        value: 'cardapio_digital'
+                      },
+                      {
+                        label: 'Devlivery',
+                        value: 'delivery'
+                      }
+                    ]}
                   />
                 </Form.Item>
                 <Form.Item>
@@ -237,7 +258,21 @@ export const Prices: React.FC = () => {
                   }
                 ]}
               >
-                <Input style={{ width: '100%' }} size="large" placeholder="ex: Cardapio Digital" />
+                <Select
+                  style={{ width: '100%' }}
+                  size="large"
+                  placeholder="ex: Cardapio Digital"
+                  options={[
+                    {
+                      label: 'Cardápio Digital',
+                      value: 'cardapio_digital'
+                    },
+                    {
+                      label: 'Devlivery',
+                      value: 'delivery'
+                    }
+                  ]}
+                />
               </Form.Item>
               <Form.Item>
                 <Button
