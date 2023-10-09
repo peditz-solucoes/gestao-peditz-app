@@ -1,17 +1,25 @@
-import { Button, Form, FormInstance, Input, InputNumber, Select, Space, Switch } from 'antd'
+import { Button, Form, FormInstance, Input, InputNumber, Select, Space, Spin, Switch } from 'antd'
 import React, { useEffect, useState } from 'react'
 import { usePrinter, useProducts } from '../../../hooks'
 import { ProductFormData } from '../../../hooks/useProducts'
 import Upload, { RcFile, UploadFile, UploadProps } from 'antd/es/upload'
 import ImgCrop from 'antd-img-crop'
 import { formatToBRL } from '@renderer/utils'
+import api from '@renderer/services/api'
 
 interface ProductInfoProps {
   formRef: React.RefObject<FormInstance>
 }
 
 export const ProductInfo: React.FC<ProductInfoProps> = ({ formRef }) => {
-  const { categories, createProduct, selectedProduct, patchProduct } = useProducts()
+  const {
+    categories,
+    createProduct,
+    selectedProduct,
+    patchProduct,
+    setSelectedProduct,
+    fetchProducts
+  } = useProducts()
   const [loading, setLoading] = useState(false)
   const [fileList, setFileList] = useState<UploadFile[]>([])
   const [active, setActive] = useState(false)
@@ -21,6 +29,18 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ formRef }) => {
     if (selectedProduct) {
       setActive(selectedProduct?.active ?? true)
       setListed(selectedProduct?.listed ?? true)
+      setFileList(
+        selectedProduct.photo
+          ? [
+              {
+                uid: '-1',
+                name: 'image.png',
+                status: 'done',
+                url: selectedProduct.photo
+              }
+            ]
+          : []
+      )
     }
   }, [selectedProduct])
 
@@ -61,19 +81,48 @@ export const ProductInfo: React.FC<ProductInfoProps> = ({ formRef }) => {
     <>
       <Form layout="vertical" name="product_info" onFinish={onFinish} ref={formRef}>
         <Space>
-          <Form.Item name="photo" label="Imagens do produto">
-            <ImgCrop rotationSlider>
-              <Upload
-                action="https://www.mocky.io/v2/5cc8019d300000980a055e76"
-                listType="picture-card"
-                fileList={fileList}
-                onChange={onChange}
-                onPreview={onPreview}
-              >
-                {fileList.length < 5 && '+ Adicionar'}
-              </Upload>
-            </ImgCrop>
-          </Form.Item>
+          <Spin spinning={loading}>
+            <Form.Item name="photo" label="Imagens do produto">
+              <ImgCrop rotationSlider>
+                <Upload
+                  customRequest={(options): void => {
+                    const data = new FormData()
+                    const { file } = options
+                    data.append('photo', file)
+                    setLoading(true)
+                    api
+                      .patch(`/product/${selectedProduct?.id}/`, data, {
+                        headers: {
+                          'Content-Type': 'multipart/form-data'
+                        }
+                      })
+                      .then((response) => {
+                        setFileList([
+                          {
+                            uid: '-1',
+                            name: 'image.png',
+                            status: 'done',
+                            url: response.data.photo
+                          }
+                        ])
+                        setSelectedProduct(response.data)
+                        fetchProducts()
+                        options.onSuccess && options?.onSuccess({})
+                      })
+                      .finally(() => {
+                        setLoading(false)
+                      })
+                  }}
+                  listType="picture-card"
+                  fileList={fileList}
+                  onChange={onChange}
+                  onPreview={onPreview}
+                >
+                  {fileList.length < 1 && '+ Adicionar'}
+                </Upload>
+              </ImgCrop>
+            </Form.Item>
+          </Spin>
         </Space>
         <Space
           direction="vertical"
