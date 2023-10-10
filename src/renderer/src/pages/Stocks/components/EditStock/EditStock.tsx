@@ -1,7 +1,7 @@
 import { PlusOutlined } from '@ant-design/icons'
 import { useStock } from '@renderer/hooks'
 import api from '@renderer/services/api'
-import { Button, Divider, Form, FormInstance, Input, Select, Space, Spin, Tooltip } from 'antd'
+import { Button, Divider, Form, FormInstance, Input, Select, Space, Tooltip } from 'antd'
 import React, { useEffect, useRef, useState } from 'react'
 import { BsPlus } from 'react-icons/bs'
 import { CgClose } from 'react-icons/cg'

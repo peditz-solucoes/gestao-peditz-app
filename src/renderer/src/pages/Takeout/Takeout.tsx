@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import * as S from './styles'
-import { Badge, Button, Divider, Image, Input, Modal, Select, Spin, Typography } from 'antd'
+import { Badge, Button, Divider, Image, Modal, Select, Spin, Typography } from 'antd'
 import { useProducts, useTakeout } from '@renderer/hooks'
 import NotImage from '../../assets/sem-imagem.png'
 import { formatCurrency } from '@renderer/utils'

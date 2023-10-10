@@ -22,7 +22,7 @@ const tabComponents = {
   '3': <EditStock />
 }
 
-export const DrawerRegister: React.FC<RegisterStocksProps> = ({ onClose, visible, onUpdate }) => {
+export const DrawerRegister: React.FC<RegisterStocksProps> = ({ onClose, visible }) => {
   const { currentTab, setCurrentTab, getCategoriesStock, getStock } = useStock()
 
   useEffect(() => {

@@ -35628,7 +35628,7 @@ const Layout$2 = generator({
   tagName: "div",
   displayName: "Layout"
 })(BasicLayout);
-const Header$a = generator({
+const Header$9 = generator({
   suffixCls: "header",
   tagName: "header",
   displayName: "Header"
@@ -39672,7 +39672,7 @@ function DateBody(props) {
 var HIDDEN_STYLE$1 = {
   visibility: "hidden"
 };
-function Header$9(_ref) {
+function Header$8(_ref) {
   var prefixCls = _ref.prefixCls, _ref$prevIcon = _ref.prevIcon, prevIcon = _ref$prevIcon === void 0 ? "‹" : _ref$prevIcon, _ref$nextIcon = _ref.nextIcon, nextIcon = _ref$nextIcon === void 0 ? "›" : _ref$nextIcon, _ref$superPrevIcon = _ref.superPrevIcon, superPrevIcon = _ref$superPrevIcon === void 0 ? "«" : _ref$superPrevIcon, _ref$superNextIcon = _ref.superNextIcon, superNextIcon = _ref$superNextIcon === void 0 ? "»" : _ref$superNextIcon, onSuperPrev = _ref.onSuperPrev, onSuperNext = _ref.onSuperNext, onPrev = _ref.onPrev, onNext = _ref.onNext, children = _ref.children;
   var _React$useContext = reactExports.useContext(PanelContext), hideNextBtn = _React$useContext.hideNextBtn, hidePrevBtn = _React$useContext.hidePrevBtn;
   return /* @__PURE__ */ reactExports.createElement("div", {
@@ -39737,7 +39737,7 @@ function DateHeader(props) {
     generateConfig: generateConfig2
   }) : monthsLocale[month]);
   var monthYearNodes = locale2.monthBeforeYear ? [monthNode, yearNode] : [yearNode, monthNode];
-  return /* @__PURE__ */ reactExports.createElement(Header$9, _extends$1({}, props, {
+  return /* @__PURE__ */ reactExports.createElement(Header$8, _extends$1({}, props, {
     prefixCls: headerPrefixCls,
     onSuperPrev: onPrevYear,
     onPrev: onPrevMonth,
@@ -39818,7 +39818,7 @@ function TimeHeader(props) {
   }
   var prefixCls = props.prefixCls, generateConfig2 = props.generateConfig, locale2 = props.locale, value = props.value, format3 = props.format;
   var headerPrefixCls = "".concat(prefixCls, "-header");
-  return /* @__PURE__ */ reactExports.createElement(Header$9, {
+  return /* @__PURE__ */ reactExports.createElement(Header$8, {
     prefixCls: headerPrefixCls
   }, value ? formatValue(value, {
     locale: locale2,
@@ -40254,7 +40254,7 @@ function DecadeHeader(props) {
   var yearNumber = generateConfig2.getYear(viewDate);
   var startYear = Math.floor(yearNumber / DECADE_DISTANCE_COUNT) * DECADE_DISTANCE_COUNT;
   var endYear = startYear + DECADE_DISTANCE_COUNT - 1;
-  return /* @__PURE__ */ reactExports.createElement(Header$9, _extends$1({}, props, {
+  return /* @__PURE__ */ reactExports.createElement(Header$8, _extends$1({}, props, {
     prefixCls: headerPrefixCls,
     onSuperPrev: onPrevDecades,
     onSuperNext: onNextDecades
@@ -40352,7 +40352,7 @@ function MonthHeader(props) {
     return null;
   }
   var headerPrefixCls = "".concat(prefixCls, "-header");
-  return /* @__PURE__ */ reactExports.createElement(Header$9, _extends$1({}, props, {
+  return /* @__PURE__ */ reactExports.createElement(Header$8, _extends$1({}, props, {
     prefixCls: headerPrefixCls,
     onSuperPrev: onPrevYear,
     onSuperNext: onNextYear
@@ -40475,7 +40475,7 @@ function QuarterHeader(props) {
     return null;
   }
   var headerPrefixCls = "".concat(prefixCls, "-header");
-  return /* @__PURE__ */ reactExports.createElement(Header$9, _extends$1({}, props, {
+  return /* @__PURE__ */ reactExports.createElement(Header$8, _extends$1({}, props, {
     prefixCls: headerPrefixCls,
     onSuperPrev: onPrevYear,
     onSuperNext: onNextYear
@@ -40654,7 +40654,7 @@ function YearHeader(props) {
   var yearNumber = generateConfig2.getYear(viewDate);
   var startYear = Math.floor(yearNumber / YEAR_DECADE_COUNT) * YEAR_DECADE_COUNT;
   var endYear = startYear + YEAR_DECADE_COUNT - 1;
-  return /* @__PURE__ */ reactExports.createElement(Header$9, _extends$1({}, props, {
+  return /* @__PURE__ */ reactExports.createElement(Header$8, _extends$1({}, props, {
     prefixCls: headerPrefixCls,
     onSuperPrev: onPrevDecade,
     onSuperNext: onNextDecade
@@ -45657,7 +45657,7 @@ const Paragraph$c = (props) => {
   }, rowList);
 };
 const Paragraph$d = Paragraph$c;
-const Title$o = (_ref) => {
+const Title$p = (_ref) => {
   let {
     prefixCls,
     className,
@@ -45671,7 +45671,7 @@ const Title$o = (_ref) => {
     }, style2)
   });
 };
-const Title$p = Title$o;
+const Title$q = Title$p;
 function getComponentProps(prop) {
   if (prop && typeof prop === "object") {
     return prop;
@@ -45756,7 +45756,7 @@ const Skeleton = (props) => {
         const titleProps = Object.assign(Object.assign({
           prefixCls: `${prefixCls}-title`
         }, getTitleBasicProps(hasAvatar, hasParagraph)), getComponentProps(title));
-        $title = /* @__PURE__ */ reactExports.createElement(Title$p, Object.assign({}, titleProps));
+        $title = /* @__PURE__ */ reactExports.createElement(Title$q, Object.assign({}, titleProps));
       }
       let paragraphNode;
       if (hasParagraph) {
@@ -57149,7 +57149,7 @@ const Image$1 = (props) => {
 Image$1.PreviewGroup = PreviewGroup;
 const Image$2 = Image$1;
 const Layout = InternalLayout;
-Layout.Header = Header$a;
+Layout.Header = Header$9;
 Layout.Footer = Footer$2;
 Layout.Content = Content$2;
 Layout.Sider = Sider$2;
@@ -64601,7 +64601,7 @@ function parseHeaderRows(rootColumns) {
   }
   return rows;
 }
-function Header$7(props) {
+function Header$6(props) {
   var stickyOffsets = props.stickyOffsets, columns2 = props.columns, flattenColumns = props.flattenColumns, onHeaderRow = props.onHeaderRow;
   var _useContext = useContext(TableContext, ["prefixCls", "getComponent"]), prefixCls = _useContext.prefixCls, getComponent = _useContext.getComponent;
   var rows = reactExports.useMemo(function() {
@@ -64628,7 +64628,7 @@ function Header$7(props) {
     return rowNode;
   }));
 }
-const Header$8 = responseImmutable(Header$7);
+const Header$7 = responseImmutable(Header$6);
 var _excluded$6 = ["children"], _excluded2 = ["fixed"];
 function convertChildrenToColumns(children) {
   return toArray$a(children).filter(function(node2) {
@@ -65289,7 +65289,7 @@ function Table$3(tableProps) {
     }
   });
   var renderFixedHeaderTable = reactExports.useCallback(function(fixedHolderPassProps) {
-    return /* @__PURE__ */ reactExports.createElement(reactExports.Fragment, null, /* @__PURE__ */ reactExports.createElement(Header$8, fixedHolderPassProps), fixFooter === "top" && /* @__PURE__ */ reactExports.createElement(Footer$1, fixedHolderPassProps, summaryNode));
+    return /* @__PURE__ */ reactExports.createElement(reactExports.Fragment, null, /* @__PURE__ */ reactExports.createElement(Header$7, fixedHolderPassProps), fixFooter === "top" && /* @__PURE__ */ reactExports.createElement(Footer$1, fixedHolderPassProps, summaryNode));
   }, [fixFooter, summaryNode]);
   var renderFixedFooterTable = reactExports.useCallback(function(fixedHolderPassProps) {
     return /* @__PURE__ */ reactExports.createElement(Footer$1, fixedHolderPassProps, summaryNode);
@@ -65420,7 +65420,7 @@ function Table$3(tableProps) {
       style: _objectSpread2(_objectSpread2({}, scrollTableStyle), {}, {
         tableLayout: mergedTableLayout
       })
-    }, ariaProps), captionElement, bodyColGroup, showHeader !== false && /* @__PURE__ */ reactExports.createElement(Header$8, _extends$1({}, headerProps, columnContext)), bodyTable, summaryNode && /* @__PURE__ */ reactExports.createElement(Footer$1, {
+    }, ariaProps), captionElement, bodyColGroup, showHeader !== false && /* @__PURE__ */ reactExports.createElement(Header$7, _extends$1({}, headerProps, columnContext)), bodyTable, summaryNode && /* @__PURE__ */ reactExports.createElement(Footer$1, {
       stickyOffsets,
       flattenColumns,
       columns: columns2
@@ -73983,7 +73983,7 @@ var __rest$4 = globalThis && globalThis.__rest || function(s, e2) {
     }
   return t2;
 };
-const Text$c = (_a, ref) => {
+const Text$d = (_a, ref) => {
   var {
     ellipsis
   } = _a, restProps = __rest$4(_a, ["ellipsis"]);
@@ -74000,7 +74000,7 @@ const Text$c = (_a, ref) => {
     component: "span"
   }));
 };
-const Text$d = /* @__PURE__ */ reactExports.forwardRef(Text$c);
+const Text$e = /* @__PURE__ */ reactExports.forwardRef(Text$d);
 var __rest$3 = globalThis && globalThis.__rest || function(s, e2) {
   var t2 = {};
   for (var p2 in s)
@@ -74014,7 +74014,7 @@ var __rest$3 = globalThis && globalThis.__rest || function(s, e2) {
   return t2;
 };
 const TITLE_ELE_LIST = [1, 2, 3, 4, 5];
-const Title$m = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
+const Title$n = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
   const {
     level = 1
   } = props, restProps = __rest$3(props, ["level"]);
@@ -74030,11 +74030,11 @@ const Title$m = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
     component
   }));
 });
-const Title$n = Title$m;
+const Title$o = Title$n;
 const Typography = OriginTypography;
-Typography.Text = Text$d;
+Typography.Text = Text$e;
 Typography.Link = Link$1;
-Typography.Title = Title$n;
+Typography.Title = Title$o;
 Typography.Paragraph = Paragraph$b;
 const Typography$1 = Typography;
 function getError(option, xhr) {
@@ -79217,7 +79217,7 @@ var dayjs_min = { exports: {} };
 })(dayjs_min);
 var dayjs_minExports = dayjs_min.exports;
 const dayjs = /* @__PURE__ */ getDefaultExportFromCjs(dayjs_minExports);
-const { Title: Title$l, Paragraph: Paragraph$8 } = Typography$1;
+const { Title: Title$m, Paragraph: Paragraph$8 } = Typography$1;
 const Dashboard = () => {
   const [loadingP, setLoadingP] = React.useState(false);
   const [payments, setPayments] = React.useState([]);
@@ -79254,7 +79254,7 @@ const Dashboard = () => {
             }
           }
         ) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(Title$l, { level: 5, style: { margin: "0", color: "#A0AEC0" }, italic: true, children: "Pedidos Recebidos" })
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Title$m, { level: 5, style: { margin: "0", color: "#A0AEC0" }, italic: true, children: "Pedidos Recebidos" })
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs(
         "div",
@@ -79296,7 +79296,7 @@ const Dashboard = () => {
             }
           }
         ) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(Title$l, { level: 5, style: { margin: "0", color: "#A0AEC0" }, italic: true, children: "Rendimento Total" })
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Title$m, { level: 5, style: { margin: "0", color: "#A0AEC0" }, italic: true, children: "Rendimento Total" })
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs(
         "div",
@@ -79337,7 +79337,7 @@ const Dashboard = () => {
             }
           }
         ) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(Title$l, { level: 5, style: { margin: "0", color: "#A0AEC0" }, italic: true, children: "Visitas diárias" })
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Title$m, { level: 5, style: { margin: "0", color: "#A0AEC0" }, italic: true, children: "Visitas diárias" })
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs(
         "div",
@@ -79379,7 +79379,7 @@ const Dashboard = () => {
             }
           }
         ) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(Title$l, { level: 5, style: { margin: "0", color: "#A0AEC0" }, italic: true, children: "Gastos com estoque" })
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Title$m, { level: 5, style: { margin: "0", color: "#A0AEC0" }, italic: true, children: "Gastos com estoque" })
       ] }),
       /* @__PURE__ */ jsxRuntimeExports.jsxs(
         "div",
@@ -79705,7 +79705,7 @@ st.div`
   justify-content: center;
   padding: 5px;
 `;
-const { Title: Title$k, Text: Text$b } = Typography$1;
+const { Title: Title$l, Text: Text$c } = Typography$1;
 const CardBill = (props) => {
   const navigate = useNavigate();
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$o, { onClick: () => navigate(`/comandas/${props.data.id}`), children: [
@@ -79720,18 +79720,18 @@ const CardBill = (props) => {
           icon: /* @__PURE__ */ jsxRuntimeExports.jsx(DollarOutlined$1, { style: { color: "#2FAA54" } })
         }
       ) }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(Title$k, { level: 3, children: props.data.number }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs(Text$b, { strong: true, style: { fontSize: "18px" }, children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Title$l, { level: 3, children: props.data.number }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(Text$c, { strong: true, style: { fontSize: "18px" }, children: [
         " ",
         "Mesa: ",
         props.data.table_datail.title
       ] }),
-      props.data.client_name && /* @__PURE__ */ jsxRuntimeExports.jsxs(Text$b, { strong: true, style: { fontSize: "18px" }, children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(Text$b, { underline: true, style: { fontSize: "18px" }, children: "Cliente:" }),
+      props.data.client_name && /* @__PURE__ */ jsxRuntimeExports.jsxs(Text$c, { strong: true, style: { fontSize: "18px" }, children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Text$c, { underline: true, style: { fontSize: "18px" }, children: "Cliente:" }),
         " ",
         props.data.client_name.split(" ").length > 2 ? `${props.data.client_name.split(" ")[0]} ${props.data.client_name.split(" ")[1]}` : `${props.data.client_name}`
       ] }),
-      props.data.opened_by_name && /* @__PURE__ */ jsxRuntimeExports.jsxs(Text$b, { strong: true, style: { fontSize: "18px" }, children: [
+      props.data.opened_by_name && /* @__PURE__ */ jsxRuntimeExports.jsxs(Text$c, { strong: true, style: { fontSize: "18px" }, children: [
         "Aberto por: ",
         props.data.opened_by_name
       ] })
@@ -79804,7 +79804,7 @@ const Container$n = st.div`
   height: 100vh;
   padding: 20px;
 `;
-const Header$6 = st.div`
+const Header$5 = st.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -79816,975 +79816,6 @@ function TbNewSection(props) {
 function FaBoxesPacking(props) {
   return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 640 512" }, "child": [{ "tag": "path", "attr": { "d": "M256 48c0-26.5 21.5-48 48-48H592c26.5 0 48 21.5 48 48V464c0 26.5-21.5 48-48 48H381.3c1.8-5 2.7-10.4 2.7-16V253.3c18.6-6.6 32-24.4 32-45.3V176c0-26.5-21.5-48-48-48H256V48zM571.3 347.3c6.2-6.2 6.2-16.4 0-22.6l-64-64c-6.2-6.2-16.4-6.2-22.6 0l-64 64c-6.2 6.2-6.2 16.4 0 22.6s16.4 6.2 22.6 0L480 310.6V432c0 8.8 7.2 16 16 16s16-7.2 16-16V310.6l36.7 36.7c6.2 6.2 16.4 6.2 22.6 0zM0 176c0-8.8 7.2-16 16-16H368c8.8 0 16 7.2 16 16v32c0 8.8-7.2 16-16 16H16c-8.8 0-16-7.2-16-16V176zm352 80V480c0 17.7-14.3 32-32 32H64c-17.7 0-32-14.3-32-32V256H352zM144 320c-8.8 0-16 7.2-16 16s7.2 16 16 16h96c8.8 0 16-7.2 16-16s-7.2-16-16-16H144z" } }] })(props);
 }
-function BsFillDatabaseFill(props) {
-  return GenIcon({ "tag": "svg", "attr": { "fill": "currentColor", "viewBox": "0 0 16 16" }, "child": [{ "tag": "path", "attr": { "d": "M3.904 1.777C4.978 1.289 6.427 1 8 1s3.022.289 4.096.777C13.125 2.245 14 2.993 14 4s-.875 1.755-1.904 2.223C11.022 6.711 9.573 7 8 7s-3.022-.289-4.096-.777C2.875 5.755 2 5.007 2 4s.875-1.755 1.904-2.223Z" } }, { "tag": "path", "attr": { "d": "M2 6.161V7c0 1.007.875 1.755 1.904 2.223C4.978 9.71 6.427 10 8 10s3.022-.289 4.096-.777C13.125 8.755 14 8.007 14 7v-.839c-.457.432-1.004.751-1.49.972C11.278 7.693 9.682 8 8 8s-3.278-.307-4.51-.867c-.486-.22-1.033-.54-1.49-.972Z" } }, { "tag": "path", "attr": { "d": "M2 9.161V10c0 1.007.875 1.755 1.904 2.223C4.978 12.711 6.427 13 8 13s3.022-.289 4.096-.777C13.125 11.755 14 11.007 14 10v-.839c-.457.432-1.004.751-1.49.972-1.232.56-2.828.867-4.51.867s-3.278-.307-4.51-.867c-.486-.22-1.033-.54-1.49-.972Z" } }, { "tag": "path", "attr": { "d": "M2 12.161V13c0 1.007.875 1.755 1.904 2.223C4.978 15.711 6.427 16 8 16s3.022-.289 4.096-.777C13.125 14.755 14 14.007 14 13v-.839c-.457.432-1.004.751-1.49.972-1.232.56-2.828.867-4.51.867s-3.278-.307-4.51-.867c-.486-.22-1.033-.54-1.49-.972Z" } }] })(props);
-}
-function BsArrowDownSquareFill(props) {
-  return GenIcon({ "tag": "svg", "attr": { "fill": "currentColor", "viewBox": "0 0 16 16" }, "child": [{ "tag": "path", "attr": { "d": "M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5a.5.5 0 0 1 1 0z" } }] })(props);
-}
-function BsCashCoin(props) {
-  return GenIcon({ "tag": "svg", "attr": { "fill": "currentColor", "viewBox": "0 0 16 16" }, "child": [{ "tag": "path", "attr": { "fillRule": "evenodd", "d": "M11 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm5-4a5 5 0 1 1-10 0 5 5 0 0 1 10 0z" } }, { "tag": "path", "attr": { "d": "M9.438 11.944c.047.596.518 1.06 1.363 1.116v.44h.375v-.443c.875-.061 1.386-.529 1.386-1.207 0-.618-.39-.936-1.09-1.1l-.296-.07v-1.2c.376.043.614.248.671.532h.658c-.047-.575-.54-1.024-1.329-1.073V8.5h-.375v.45c-.747.073-1.255.522-1.255 1.158 0 .562.378.92 1.007 1.066l.248.061v1.272c-.384-.058-.639-.27-.696-.563h-.668zm1.36-1.354c-.369-.085-.569-.26-.569-.522 0-.294.216-.514.572-.578v1.1h-.003zm.432.746c.449.104.655.272.655.569 0 .339-.257.571-.709.614v-1.195l.054.012z" } }, { "tag": "path", "attr": { "d": "M1 0a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h4.083c.058-.344.145-.678.258-1H3a2 2 0 0 0-2-2V3a2 2 0 0 0 2-2h10a2 2 0 0 0 2 2v3.528c.38.34.717.728 1 1.154V1a1 1 0 0 0-1-1H1z" } }, { "tag": "path", "attr": { "d": "M9.998 5.083 10 5a2 2 0 1 0-3.132 1.65 5.982 5.982 0 0 1 3.13-1.567z" } }] })(props);
-}
-function BsCash(props) {
-  return GenIcon({ "tag": "svg", "attr": { "fill": "currentColor", "viewBox": "0 0 16 16" }, "child": [{ "tag": "path", "attr": { "d": "M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" } }, { "tag": "path", "attr": { "d": "M0 4a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V4zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V6a2 2 0 0 1-2-2H3z" } }] })(props);
-}
-function BsPlus(props) {
-  return GenIcon({ "tag": "svg", "attr": { "fill": "currentColor", "viewBox": "0 0 16 16" }, "child": [{ "tag": "path", "attr": { "d": "M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" } }] })(props);
-}
-const { Title: Title$j, Text: Text$a } = Typography$1;
-const DrawerRegister = ({ onClose, visible, onUpdate }) => {
-  const [newStock, setNewStock] = React.useState(false);
-  const [typeOfMovement, setTypeOfMovement] = React.useState("input");
-  const [categories, setCategories] = reactExports.useState([]);
-  const [stocks, setStocks] = React.useState([]);
-  const [name, setName] = reactExports.useState("");
-  const [form] = Form$1.useForm();
-  reactExports.useEffect(() => {
-    getStock();
-    getCategories();
-  }, [visible]);
-  const onFinish = (values) => {
-    if (newStock) {
-      createNewStock(values);
-    } else {
-      createNewTransaction({
-        ...values,
-        unit_price: values.unit_price ? brlToNumber(values.unit_price) : 0,
-        total: !values.unit_price ? 0 : brlToNumber(values.unit_price) * values.quantity,
-        quantity: typeOfMovement === "input" ? values.quantity : -values.quantity
-      });
-    }
-  };
-  const onNameChange = (event) => {
-    setName(event.target.value);
-  };
-  const addItem = (e2) => {
-    e2.preventDefault();
-    setCategories([...categories, { id: name, title: name }]);
-    setName("");
-  };
-  function createNewStock(data2) {
-    api.post("/item-stock/", data2).then(() => {
-      onClose();
-      form.resetFields();
-      onUpdate();
-      getCategories();
-    });
-  }
-  function createNewTransaction(data2) {
-    api.post("/item-stock-transaction/", data2).then(() => {
-      form.resetFields();
-      onClose();
-      onUpdate();
-      getCategories();
-    });
-  }
-  function getStock() {
-    api.get("/item-stock/").then((response) => {
-      setStocks(response.data);
-    });
-  }
-  function getCategories() {
-    api.get("/item-stock-category/").then((response) => {
-      setCategories(response.data);
-    });
-  }
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
-    Drawer$1,
-    {
-      title: "Registrar estoque ou movimentação",
-      placement: "right",
-      width: 600,
-      closable: true,
-      onClose,
-      open: visible,
-      children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Alert$1,
-          {
-            type: "info",
-            style: {
-              display: "flex",
-              alignItems: "center"
-            },
-            description: "Por favor, informe se se trata de um estoque novo ou de um estoque já existente.",
-            showIcon: true,
-            closable: true
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs(
-          "div",
-          {
-            style: {
-              width: "100%",
-              display: "flex",
-              flexDirection: "row",
-              gap: "16px",
-              justifyContent: "center",
-              padding: "16px 0"
-            },
-            children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                Card$3,
-                {
-                  onClick: () => setNewStock(true),
-                  style: {
-                    width: "100%",
-                    height: "100%",
-                    flex: 1,
-                    border: (newStock ? "1.5px" : "1px") + " solid " + (newStock ? theme.tokens.colorPrimary : "#ebebeb"),
-                    cursor: "pointer"
-                  },
-                  bodyStyle: {
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    padding: "1rem",
-                    flex: 1,
-                    height: "100%"
-                  },
-                  children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(TbNewSection, { color: newStock ? theme.tokens.colorPrimary : "#ebebeb" }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      Title$j,
-                      {
-                        level: 5,
-                        style: {
-                          color: newStock ? theme.tokens.colorPrimary : "#a2a2a2",
-                          userSelect: "none"
-                        },
-                        children: "Novo Estoque"
-                      }
-                    ),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      Text$a,
-                      {
-                        style: {
-                          textAlign: "center",
-                          fontSize: 13,
-                          color: "#666666"
-                        },
-                        children: "Estoque que não foi registrado no sistema."
-                      }
-                    )
-                  ]
-                },
-                "1"
-              ),
-              /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                Card$3,
-                {
-                  onClick: () => setNewStock(false),
-                  style: {
-                    width: "100%",
-                    height: "100%",
-                    flex: 1,
-                    border: (!newStock ? "1.5px" : "1px") + " solid " + (!newStock ? theme.tokens.colorPrimary : "#ebebeb"),
-                    cursor: "pointer"
-                  },
-                  bodyStyle: {
-                    display: "flex",
-                    flexDirection: "column",
-                    alignItems: "center",
-                    padding: "1rem",
-                    flex: 1,
-                    height: "100%"
-                  },
-                  children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(FaBoxesPacking, { color: !newStock ? theme.tokens.colorPrimary : "#ebebeb" }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      Title$j,
-                      {
-                        level: 5,
-                        style: {
-                          color: !newStock ? theme.tokens.colorPrimary : "#a2a2a2",
-                          userSelect: "none"
-                        },
-                        children: "Atualizar Estoque"
-                      }
-                    ),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      Text$a,
-                      {
-                        style: {
-                          textAlign: "center",
-                          fontSize: 13,
-                          color: "#666666"
-                        },
-                        children: "Estoque que já foi registrado no sistema."
-                      }
-                    )
-                  ]
-                },
-                "1"
-              )
-            ]
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Form$1, { layout: "vertical", onFinish, form, children: [
-          newStock ? /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { label: "Nome", name: "title", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Input$1, { placeholder: "Digite o nome do estoque." }) }) : /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { label: "Selecione o estoque", name: "item", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-            Select$1,
-            {
-              placeholder: "Digite o nome ou escolha as opções.",
-              options: stocks.map((x2) => ({ value: x2.id, label: x2.title }))
-            }
-          ) }),
-          newStock && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { label: "Categoria", name: "category", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-              Select$1,
-              {
-                style: { flex: 1 },
-                placeholder: "Busque a categoria ou adicione uma nova.",
-                dropdownRender: (menu) => /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-                  menu,
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(Divider$1, { style: { margin: "8px 0" } }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs(Space$1, { style: { padding: "0 8px 4px" }, children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      Input$1,
-                      {
-                        placeholder: "nova categoria.",
-                        style: { width: "100%" },
-                        value: name,
-                        onChange: onNameChange
-                      }
-                    ),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(Button$2, { type: "text", icon: /* @__PURE__ */ jsxRuntimeExports.jsx(PlusOutlined$1, {}), onClick: addItem, children: "Add nova categoria" })
-                  ] })
-                ] }),
-                options: categories.map((item) => ({ label: item.title, value: item.title }))
-              }
-            ) }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { label: "Descrição", name: "description", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Input$1.TextArea, { placeholder: "Descrição do estoque" }) }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { label: "Codigo de barras", name: "barcode", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Input$1, { placeholder: "Descrição do estoque" }) }),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs(
-              "div",
-              {
-                style: {
-                  display: "grid",
-                  gridTemplateColumns: "1fr 1fr 1fr",
-                  gridGap: "16px"
-                },
-                children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { label: "Quantidade minima", name: "minimum_stock", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Input$1, { placeholder: "0" }) }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { label: "Estoque disponivel", name: "stock", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Input$1, { placeholder: "0" }) }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { label: "Tipo de medida", name: "product_type", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    Select$1,
-                    {
-                      placeholder: "Unidade de medida",
-                      options: [
-                        {
-                          label: "KG",
-                          value: "KG"
-                        },
-                        {
-                          label: "Litros",
-                          value: "L"
-                        },
-                        {
-                          label: "Unidade",
-                          value: "UN"
-                        },
-                        {
-                          label: "Caixa",
-                          value: "CX"
-                        },
-                        {
-                          label: "Pacote",
-                          value: "PCT"
-                        }
-                      ]
-                    }
-                  ) })
-                ]
-              }
-            )
-          ] }),
-          !newStock && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsxs(
-              "div",
-              {
-                style: {
-                  width: "100%",
-                  display: "flex",
-                  flexDirection: "row",
-                  gap: "16px",
-                  justifyContent: "center",
-                  padding: "16px 0"
-                },
-                children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                    "div",
-                    {
-                      onClick: () => setTypeOfMovement("input"),
-                      style: {
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                        padding: "10px",
-                        border: (typeOfMovement === "input" ? "1.5px" : "1px") + " solid " + (typeOfMovement === "input" ? theme.tokens.colorPrimary : "#ebebeb"),
-                        borderRadius: "8px",
-                        cursor: "pointer"
-                      },
-                      children: [
-                        /* @__PURE__ */ jsxRuntimeExports.jsx(
-                          TbNewSection,
-                          {
-                            color: typeOfMovement === "input" ? theme.tokens.colorPrimary : "#a2a2a2"
-                          }
-                        ),
-                        /* @__PURE__ */ jsxRuntimeExports.jsx(
-                          Title$j,
-                          {
-                            level: 5,
-                            style: {
-                              color: typeOfMovement === "input" ? theme.tokens.colorPrimary : "#a2a2a2",
-                              userSelect: "none",
-                              margin: 0
-                            },
-                            children: "Entrada"
-                          }
-                        ),
-                        /* @__PURE__ */ jsxRuntimeExports.jsx(
-                          Text$a,
-                          {
-                            style: {
-                              textAlign: "center",
-                              fontSize: 13,
-                              color: typeOfMovement === "input" ? theme.tokens.colorPrimary : "#666666",
-                              margin: 0
-                            },
-                            children: "Registrar entrada de estoque."
-                          }
-                        )
-                      ]
-                    }
-                  ),
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                    "div",
-                    {
-                      onClick: () => setTypeOfMovement("output"),
-                      style: {
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "center",
-                        padding: "10px",
-                        border: (typeOfMovement === "output" ? "1.5px" : "1px") + " solid " + (typeOfMovement === "output" ? "#ed4747" : "#ebebeb"),
-                        borderRadius: "8px",
-                        cursor: "pointer"
-                      },
-                      children: [
-                        /* @__PURE__ */ jsxRuntimeExports.jsx(
-                          BsArrowDownSquareFill,
-                          {
-                            color: typeOfMovement === "output" ? "#ed4747" : "#a2a2a2"
-                          }
-                        ),
-                        /* @__PURE__ */ jsxRuntimeExports.jsx(
-                          Title$j,
-                          {
-                            level: 5,
-                            style: {
-                              color: typeOfMovement === "output" ? "#ed4747" : "#a2a2a2",
-                              userSelect: "none",
-                              margin: 0
-                            },
-                            children: "Saída"
-                          }
-                        ),
-                        /* @__PURE__ */ jsxRuntimeExports.jsx(
-                          Text$a,
-                          {
-                            style: {
-                              textAlign: "center",
-                              fontSize: 13,
-                              color: typeOfMovement === "output" ? "#ed4747" : "#666666",
-                              margin: 0
-                            },
-                            children: "Registrar saída de estoque."
-                          }
-                        )
-                      ]
-                    }
-                  )
-                ]
-              }
-            ),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs(
-              "div",
-              {
-                style: {
-                  display: "flex",
-                  flexDirection: "row",
-                  gap: "15px"
-                },
-                children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    Form$1.Item,
-                    {
-                      label: "Movimento do estoque",
-                      name: "quantity",
-                      tooltip: "A quantidade de produtos que você está movimentando nessa transação, seja entrada ou saida.",
-                      children: typeOfMovement === "input" ? /* @__PURE__ */ jsxRuntimeExports.jsx(InputNumber$1, { placeholder: "0", addonBefore: "+" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(InputNumber$1, { placeholder: "0", addonBefore: "-" })
-                    }
-                  ),
-                  typeOfMovement === "input" && /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    Form$1.Item,
-                    {
-                      name: "unit_price",
-                      label: "Valor unitario",
-                      tooltip: "O quanto você está pagando por cada unidade.",
-                      children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                        Input$1,
-                        {
-                          onChange: (e2) => {
-                            form.setFieldsValue({
-                              unit_price: formatToBRL(e2.target.value)
-                            });
-                          }
-                        }
-                      )
-                    }
-                  )
-                ]
-              }
-            ),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-              Form$1.Item,
-              {
-                label: "Anotação",
-                name: "notes",
-                tooltip: "Caso precise informar algo sobre o estoque que está entrando.",
-                children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  Input$1.TextArea,
-                  {
-                    rows: 3,
-                    placeholder: "Deixe alguma notificação para essa remessa."
-                  }
-                )
-              }
-            ) })
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            "div",
-            {
-              style: {
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "center",
-                width: "100%",
-                gap: "10px",
-                position: "absolute",
-                bottom: 0
-              },
-              children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(Button$2, { danger: true, type: "default", size: "large", style: { width: 200 }, children: "cancelar" }) }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(Button$2, { type: "primary", htmlType: "submit", size: "large", style: { width: 200 }, children: "Registrar" }) })
-              ]
-            }
-          )
-        ] }) })
-      ]
-    },
-    "right"
-  );
-};
-const columns$6 = [
-  {
-    title: "Nome",
-    dataIndex: "title",
-    key: "title",
-    align: "center"
-  },
-  {
-    title: "Quantidade",
-    dataIndex: "stock",
-    key: "stock",
-    align: "center"
-  },
-  {
-    title: "Quantidade mínima",
-    dataIndex: "minimum_stock",
-    key: "minimum_stock",
-    align: "center"
-  },
-  {
-    title: "EAN",
-    dataIndex: "barcode",
-    key: "barcode",
-    align: "center"
-  },
-  {
-    title: "Unidade de medida",
-    dataIndex: "product_type",
-    key: "product_type",
-    align: "center"
-  }
-  // {
-  //   title: 'Ações',
-  //   key: 'action',
-  //   align: 'center',
-  //   render: () => (
-  //     <div
-  //       style={{
-  //         display: 'flex',
-  //         flexDirection: 'row',
-  //         gap: '8px',
-  //         justifyContent: 'center'
-  //       }}
-  //     >
-  //       <Button type="primary" size="small">
-  //         Editar
-  //       </Button>
-  //       <Button type="primary" danger size="small">
-  //         Excluir
-  //       </Button>
-  //     </div>
-  //   )
-  // }
-];
-const Stocks = () => {
-  const [visibleModalRegister, setVisibleModalRegister] = React.useState(false);
-  const [stocks, setStocks] = React.useState([]);
-  reactExports.useEffect(() => {
-    getStock();
-  }, []);
-  function getStock() {
-    api.get("/item-stock/").then((response) => {
-      setStocks(response.data);
-    });
-  }
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$n, { children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(Header$6, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
-        "div",
-        {
-          style: {
-            display: "flex",
-            flexDirection: "row",
-            gap: "16px"
-          },
-          children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              Button$2,
-              {
-                type: "primary",
-                size: "large",
-                icon: /* @__PURE__ */ jsxRuntimeExports.jsx(PlusOutlined$1, {}),
-                onClick: () => setVisibleModalRegister(true),
-                children: "Adicionar estoque"
-              }
-            ),
-            /* @__PURE__ */ jsxRuntimeExports.jsx(Input$1.Search, { placeholder: "Nome do estoque", size: "large" })
-          ]
-        }
-      ) }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(Table$2, { columns: columns$6, dataSource: stocks, pagination: false, scroll: { y: 700 } })
-    ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(
-      DrawerRegister,
-      {
-        visible: visibleModalRegister,
-        onClose: () => setVisibleModalRegister(false),
-        onUpdate: () => getStock()
-      }
-    )
-  ] });
-};
-const Container$m = st.div`
-  width: 100%;
-  height: 100%;
-  padding: 20px;
-`;
-const Header$5 = st.div`
-  width: 100%;
-  padding: 10px 0;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  flex-direction: row;
-`;
-const ContentTable = st.div`
-  width: 100%;
-  height: calc(100vh - 150px);
-  overflow-y: auto;
-  overflow-x: hidden;
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 250px));
-  gap: 30px;
-  justify-content: center;
-`;
-const CardTable = st.div`
-  width: 250px;
-  max-height: 250px;
-  padding: 20px 10px;
-  border-radius: 10px;
-  background-color: #fff;
-
-  &:hover {
-    cursor: pointer;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    transition: all 0.2s ease-in-out;
-  }
-`;
-const CreateTable = ({ onCancel, onFetch, visible }) => {
-  const [form] = Form$1.useForm();
-  const [title, setTitle] = React.useState("");
-  const [isLoad, setIsLoad] = React.useState(false);
-  function onFinish() {
-    registerTable();
-  }
-  function registerTable() {
-    setIsLoad(true);
-    api.post("/tables/", form.getFieldsValue()).then(() => {
-      onFetch();
-      form.resetFields();
-      onCancel();
-    }).catch((error) => {
-      errorActions(error);
-    }).finally(() => {
-      setIsLoad(false);
-    });
-  }
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(
-    Modal$1,
-    {
-      title: "Criar Categoria",
-      onCancel: () => {
-        onCancel();
-        form.resetFields();
-      },
-      open: visible,
-      footer: null,
-      children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Form$1, { layout: "vertical", onFinish, name: "table_edit", form, children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Form$1.Item,
-          {
-            label: "Nome da mesa",
-            name: "title",
-            tooltip: "O nome da mesa pode ser expresso em palavras ou numeros",
-            children: /* @__PURE__ */ jsxRuntimeExports.jsx(Input$1, { placeholder: "Nome da mesa", onChange: (e2) => setTitle(e2.target.value) })
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { label: "Descrição", name: "description", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Input$1.TextArea,
-          {
-            placeholder: "Descrição",
-            rows: 3,
-            style: {
-              resize: "none"
-            }
-          }
-        ) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs(
-          "div",
-          {
-            style: {
-              display: "flex",
-              flexDirection: "row",
-              gap: "20px"
-            },
-            children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                Form$1.Item,
-                {
-                  label: "Order",
-                  name: "order",
-                  initialValue: 0,
-                  tooltip: "Mostra a capacidade de pessoas que podem ocupar a mesa",
-                  children: /* @__PURE__ */ jsxRuntimeExports.jsx(InputNumber$1, { placeholder: "Ordem", defaultValue: 0 })
-                }
-              ),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { label: "Capacidade da mesa", name: "capacity", initialValue: 4, children: /* @__PURE__ */ jsxRuntimeExports.jsx(InputNumber$1, { placeholder: "capacidade", defaultValue: 4 }) }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                Form$1.Item,
-                {
-                  label: "Mesa ativa",
-                  name: "active",
-                  tooltip: "Se a mesa não estiver ativa, não será exibida para os colaboradores",
-                  initialValue: true,
-                  children: /* @__PURE__ */ jsxRuntimeExports.jsx(Switch$1, { checkedChildren: "sim", unCheckedChildren: "não", checked: true })
-                }
-              )
-            ]
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "div",
-          {
-            style: {
-              display: "flex",
-              flexDirection: "row",
-              justifyContent: "space-between",
-              gap: "10px"
-            },
-            children: /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { style: { flex: 1 }, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-              Button$2,
-              {
-                type: "primary",
-                htmlType: "submit",
-                size: "large",
-                style: { flex: 1, width: "100%" },
-                disabled: title.length === 0 ? true : false,
-                loading: isLoad,
-                children: "Salvar Alterações"
-              }
-            ) })
-          }
-        )
-      ] })
-    }
-  );
-};
-function MdBalance(props) {
-  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 24 24" }, "child": [{ "tag": "path", "attr": { "fill": "none", "d": "M0 0h24v24H0z" } }, { "tag": "path", "attr": { "d": "M13 7.83c.85-.3 1.53-.98 1.83-1.83H18l-3 7c0 1.66 1.57 3 3.5 3s3.5-1.34 3.5-3l-3-7h2V4h-6.17c-.41-1.17-1.52-2-2.83-2s-2.42.83-2.83 2H3v2h2l-3 7c0 1.66 1.57 3 3.5 3S9 14.66 9 13L6 6h3.17c.3.85.98 1.53 1.83 1.83V19H2v2h20v-2h-9V7.83zM20.37 13h-3.74l1.87-4.36L20.37 13zm-13 0H3.63L5.5 8.64 7.37 13zM12 6c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z" } }] })(props);
-}
-function MdCheckCircleOutline(props) {
-  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 24 24" }, "child": [{ "tag": "path", "attr": { "fill": "none", "d": "M0 0h24v24H0V0zm0 0h24v24H0V0z" } }, { "tag": "path", "attr": { "d": "M16.59 7.58L10 14.17l-3.59-3.58L5 12l5 5 8-8zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z" } }] })(props);
-}
-function MdDeleteOutline(props) {
-  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 24 24" }, "child": [{ "tag": "path", "attr": { "fill": "none", "d": "M0 0h24v24H0V0z" } }, { "tag": "path", "attr": { "d": "M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9zm7.5-5l-1-1h-5l-1 1H5v2h14V4z" } }] })(props);
-}
-function MdRestaurantMenu(props) {
-  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 24 24" }, "child": [{ "tag": "path", "attr": { "fill": "none", "d": "M0 0h24v24H0z" } }, { "tag": "path", "attr": { "d": "M8.1 13.34l2.83-2.83L3.91 3.5a4.008 4.008 0 000 5.66l4.19 4.18zm6.78-1.81c1.53.71 3.68.21 5.27-1.38 1.91-1.91 2.28-4.65.81-6.12-1.46-1.46-4.2-1.1-6.12.81-1.59 1.59-2.09 3.74-1.38 5.27L3.7 19.87l1.41 1.41L12 14.41l6.88 6.88 1.41-1.41L13.41 13l1.47-1.47z" } }] })(props);
-}
-function MdTableRestaurant(props) {
-  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 24 24" }, "child": [{ "tag": "path", "attr": { "fill": "none", "d": "M0 0h24v24H0z" } }, { "tag": "path", "attr": { "d": "M21.96 9.73l-1.43-5a.996.996 0 00-.96-.73H4.43c-.45 0-.84.3-.96.73l-1.43 5c-.18.63.3 1.27.96 1.27h2.2L4 20h2l.67-5h10.67l.66 5h2l-1.2-9H21c.66 0 1.14-.64.96-1.27zM6.93 13l.27-2h9.6l.27 2H6.93z" } }] })(props);
-}
-const { Title: Title$i, Text: Text$9 } = Typography$1;
-const TablesPage = () => {
-  const navigate = useNavigate();
-  const [tables, setTables] = reactExports.useState([]);
-  const [isVisibleCreateTable, setIsVisibleCreateTable] = reactExports.useState(false);
-  reactExports.useEffect(() => {
-    fetchTables();
-  }, []);
-  function fetchTables() {
-    api.get("/tables").then((response) => {
-      setTables(response.data);
-    }).catch((error) => {
-      errorActions(error);
-    });
-  }
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$m, { children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(Header$5, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-        Button$2,
-        {
-          type: "primary",
-          icon: /* @__PURE__ */ jsxRuntimeExports.jsx(PlusOutlined$1, {}),
-          onClick: () => setIsVisibleCreateTable(true),
-          children: "Nova mesa"
-        }
-      ) }),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(ContentTable, { children: tables.map((table) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-        Badge$1.Ribbon,
-        {
-          text: table.bills.length > 0 ? "Mesa Ocupada" : "Mesa livre",
-          color: table.bills.length > 0 ? "red" : "green",
-          children: /* @__PURE__ */ jsxRuntimeExports.jsx(CardTable, { onClick: () => navigate(`/mesas/${table.id}/`), children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
-            "div",
-            {
-              style: {
-                display: "flex",
-                flexDirection: "column",
-                justifyContent: "center",
-                alignItems: "center"
-              },
-              children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  Avatar$1,
-                  {
-                    size: "large",
-                    style: {
-                      display: "flex",
-                      justifyContent: "center",
-                      alignItems: "center",
-                      backgroundColor: "#E2E8F0"
-                    },
-                    icon: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      MdTableRestaurant,
-                      {
-                        size: 32,
-                        style: {
-                          color: "#718096"
-                        }
-                      }
-                    )
-                  }
-                ),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs(Title$i, { level: 4, children: [
-                  "Mesa ",
-                  table.title
-                ] }),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs(Text$9, { type: "secondary", children: [
-                  table.capacity,
-                  " lugares"
-                ] })
-              ]
-            }
-          ) })
-        },
-        table.id
-      )) })
-    ] }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(
-      CreateTable,
-      {
-        visible: isVisibleCreateTable,
-        onCancel: () => setIsVisibleCreateTable(false),
-        onFetch: () => fetchTables()
-      }
-    )
-  ] });
-};
-const Apps = () => {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx("webview", { src: "https://www.google.com" });
-};
-const Container$l = st.div`
-  width: 100%;
-`;
-const Header$4 = st.header`
-  width: 100%;
-  height: 50px;
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  padding: 0 20px;
-  gap: 20px;
-`;
-const TitleCategory = st.h1`
-  padding: 10px 40px;
-  width: 95%;
-  gap: 10px;
-  font-size: 24px;
-  font-weight: 500;
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  font-weight: bold;
-`;
-st.div`
-  width: 100%;
-  max-width: 100%;
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  padding: 20px 40px;
-  gap: 10px;
-  overflow-x: auto;
-`;
-const RowProduct = st.div`
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); /* Ajusta automaticamente com um mínimo de 200px */
-  gap: 15px;
-  padding: 0 30px;
-`;
-const Container$k = st.div`
-  width: 320px;
-  min-width: 320px;
-  height: 390px;
-  min-height: 390px;
-  border-radius: 15px;
-  background-color: #fff;
-  padding: 15px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-
-  &:hover {
-    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
-  }
-`;
-const ContainerImage = st.div`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 10px;
-`;
-const ButtonGroup = st.div`
-  /* flex-grow: 1; */
-  display: flex;
-  justify-content: center;
-  align-items: flex-end;
-  gap: 15px;
-`;
-function truncateText(text, limit, simbol = "...") {
-  if (text.length <= limit) {
-    return text;
-  } else {
-    return text.substring(0, limit) + simbol;
-  }
-}
-const NotImage$1 = "" + new URL("Image_not_available-1998827c.png", import.meta.url).href;
-const { Paragraph: Paragraph$7, Title: Title$h } = Typography$1;
-const CardProducts = ({ data: data2, onUpdate, onEditClick }) => {
-  const [isLoading, setIsLoading] = reactExports.useState(false);
-  function handleDeleteProduct() {
-    setIsLoading(true);
-    api.delete(`/product/${data2.id}`).then(() => {
-      onUpdate();
-    }).catch((error) => {
-      console.log(error);
-    }).finally(() => {
-      setIsLoading(false);
-    });
-  }
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$k, { children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsxs(ContainerImage, { children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(
-        Image$2,
-        {
-          src: data2.photo || NotImage$1,
-          preview: data2.photo ? { src: data2.photo } : false,
-          style: {
-            width: 120,
-            height: 120,
-            borderRadius: "50%",
-            objectFit: "contain"
-          }
-        }
-      ),
-      /* @__PURE__ */ jsxRuntimeExports.jsx(Title$h, { level: 5, italic: true, children: truncateText(data2.title, 30, "...") })
-    ] }),
-    data2.description ? /* @__PURE__ */ jsxRuntimeExports.jsx(Paragraph$7, { children: truncateText(data2.description, 100, "...") }) : /* @__PURE__ */ jsxRuntimeExports.jsx(Paragraph$7, { children: "Sem descrição disponível. Detalhes do prato são essenciais para guiar a sua escolha e proporcionar uma experiência deliciosa." }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(
-      "div",
-      {
-        style: {
-          width: "100%",
-          height: "60px",
-          display: "flex",
-          justifyContent: "center",
-          alignItems: "center"
-        },
-        children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Tag$1,
-          {
-            color: "green",
-            style: {
-              fontSize: "1.25rem",
-              padding: "10px"
-            },
-            children: formatCurrency(Number(data2.price))
-          }
-        )
-      }
-    ),
-    /* @__PURE__ */ jsxRuntimeExports.jsxs(ButtonGroup, { children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs(Button$2, { type: "primary", danger: true, onClick: handleDeleteProduct, loading: isLoading, children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(DeleteOutlined$1, {}),
-        " Deletar"
-      ] }),
-      /* @__PURE__ */ jsxRuntimeExports.jsxs(Button$2, { type: "primary", onClick: () => onEditClick(data2), children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(EditOutlined$1, {}),
-        " Editar"
-      ] })
-    ] })
-  ] }) });
-};
 const ProductsContext = reactExports.createContext({});
 function ProductsProvider({ children }) {
   const [currentTab, setCurrentTab] = reactExports.useState(1);
@@ -85406,6 +84437,1452 @@ function useTakeout() {
   const context = reactExports.useContext(TakeoutContext);
   return context;
 }
+const StockContext = reactExports.createContext({});
+function StockProvider({ children }) {
+  const [stocks, setStocks] = reactExports.useState([]);
+  const [categoriesStock, setCategoriesStock] = reactExports.useState([]);
+  const [stockRegisteredId, setStockRegisteredId] = reactExports.useState(void 0);
+  const [stockSelected, setStockSelected] = reactExports.useState(void 0);
+  const [currentTab, setCurrentTab] = reactExports.useState("1");
+  function getStock() {
+    api.get("/item-stock/").then((response) => {
+      setStocks(response.data);
+    }).catch((error) => {
+      errorActions(error);
+    });
+  }
+  function getCategoriesStock() {
+    api.get("/item-stock-category/").then((response) => {
+      setCategoriesStock(response.data);
+    }).catch((error) => {
+      errorActions(error);
+    });
+  }
+  function addItemsToStock(data2) {
+    api.post("/item-ingredient/", {
+      ...data2,
+      item: stockRegisteredId
+    }).then(() => {
+      getStock();
+      getCategoriesStock();
+    });
+  }
+  function getOneStock(id2) {
+    return new Promise((resolve2, reject) => {
+      api.get(`/item-stock/${id2}/`).then((response) => {
+        setStockSelected(response.data);
+        resolve2(response.data);
+      }).catch((error) => {
+        errorActions(error);
+        reject(error);
+      });
+    });
+  }
+  function deleteStock(id2) {
+    api.delete(`/item-stock/${id2}/`).then(() => {
+      getStock();
+      getCategoriesStock();
+    }).catch((error) => {
+      errorActions(error);
+    });
+  }
+  function createNewStock(data2, containsIngredients) {
+    return new Promise((resolve2, reject) => {
+      api.post("/item-stock/", data2).then((response) => {
+        getOneStock(response.data.id);
+        if (containsIngredients) {
+          setCurrentTab("3");
+        }
+        getStock();
+        resolve2(response.data);
+      }).catch((error) => {
+        errorActions(error);
+        reject(error);
+      });
+    });
+  }
+  function updateStock(data2) {
+    return new Promise((resolve2, reject) => {
+      api.patch(`/item-stock/${data2.id}/`, data2).then((response) => {
+        getOneStock(response.data.id);
+        getStock();
+        resolve2(response.data);
+      }).catch((error) => {
+        errorActions(error);
+        reject(error);
+      });
+    });
+  }
+  function createNewTransaction(data2) {
+    return new Promise((resolve2, reject) => {
+      api.post("/item-stock-transaction/", data2).then((response) => {
+        getStock();
+        getCategoriesStock();
+        resolve2(response.data);
+      }).catch((error) => {
+        errorActions(error);
+        reject(error);
+      });
+    });
+  }
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    StockContext.Provider,
+    {
+      value: {
+        stocks,
+        categoriesStock,
+        stockRegisteredId,
+        setStockRegisteredId,
+        getStock,
+        getCategoriesStock,
+        addItemsToStock,
+        setCategoriesStock,
+        setCurrentTab,
+        createNewStock,
+        createNewTransaction,
+        currentTab,
+        stockSelected,
+        getOneStock,
+        deleteStock,
+        updateStock
+      },
+      children
+    }
+  );
+}
+function useStock() {
+  const context = reactExports.useContext(StockContext);
+  return context;
+}
+const NewStock = () => {
+  const { categoriesStock, setCategoriesStock, createNewStock } = useStock();
+  const [name, setName] = reactExports.useState("");
+  const [form] = Form$1.useForm();
+  const onNameChange = (event) => {
+    setName(event.target.value);
+  };
+  const addItem = (e2) => {
+    e2.preventDefault();
+    setCategoriesStock([...categoriesStock, { id: name, title: name }]);
+    setName("");
+  };
+  const onFinish = (values) => {
+    createNewStock(values, true);
+  };
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(Form$1, { layout: "vertical", onFinish, form, children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { label: "Nome", name: "title", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Input$1, { placeholder: "Digite o nome do estoque." }) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { label: "Categoria", name: "category", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+      Select$1,
+      {
+        style: { flex: 1 },
+        placeholder: "Busque a categoria ou adicione uma nova.",
+        dropdownRender: (menu) => /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+          menu,
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Divider$1, { style: { margin: "8px 0" } }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(Space$1, { style: { padding: "0 8px 4px" }, children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Input$1,
+              {
+                placeholder: "nova categoria.",
+                style: { width: "100%" },
+                value: name,
+                onChange: onNameChange
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Button$2, { type: "text", icon: /* @__PURE__ */ jsxRuntimeExports.jsx(PlusOutlined$1, {}), onClick: addItem, children: "Add nova categoria" })
+          ] })
+        ] }),
+        options: categoriesStock.map((item) => ({ label: item.title, value: item.title }))
+      }
+    ) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { label: "Descrição", name: "description", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Input$1.TextArea, { placeholder: "Descrição do estoque" }) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { label: "Codigo de barras", name: "barcode", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Input$1, { placeholder: "Descrição do estoque" }) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      "div",
+      {
+        style: {
+          display: "grid",
+          gridTemplateColumns: "1fr 1fr 1fr",
+          gridGap: "16px"
+        },
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { label: "Quantidade minima", name: "minimum_stock", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Input$1, { placeholder: "0" }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { label: "Estoque disponivel", name: "stock", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Input$1, { placeholder: "0" }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { label: "Tipo de medida", name: "product_type", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Select$1,
+            {
+              placeholder: "Unidade de medida",
+              options: [
+                {
+                  label: "KG",
+                  value: "KG"
+                },
+                {
+                  label: "Litros",
+                  value: "L"
+                },
+                {
+                  label: "Unidade",
+                  value: "UN"
+                },
+                {
+                  label: "Caixa",
+                  value: "CX"
+                },
+                {
+                  label: "Pacote",
+                  value: "PCT"
+                }
+              ]
+            }
+          ) })
+        ]
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      "div",
+      {
+        style: {
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "center",
+          width: "100%",
+          gap: "10px",
+          position: "absolute",
+          bottom: 0
+        },
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(Button$2, { danger: true, type: "default", size: "large", style: { width: 200 }, children: "cancelar" }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(Button$2, { type: "primary", htmlType: "submit", size: "large", style: { width: 200 }, children: "Registrar" }) })
+        ]
+      }
+    )
+  ] });
+};
+function BsFillDatabaseFill(props) {
+  return GenIcon({ "tag": "svg", "attr": { "fill": "currentColor", "viewBox": "0 0 16 16" }, "child": [{ "tag": "path", "attr": { "d": "M3.904 1.777C4.978 1.289 6.427 1 8 1s3.022.289 4.096.777C13.125 2.245 14 2.993 14 4s-.875 1.755-1.904 2.223C11.022 6.711 9.573 7 8 7s-3.022-.289-4.096-.777C2.875 5.755 2 5.007 2 4s.875-1.755 1.904-2.223Z" } }, { "tag": "path", "attr": { "d": "M2 6.161V7c0 1.007.875 1.755 1.904 2.223C4.978 9.71 6.427 10 8 10s3.022-.289 4.096-.777C13.125 8.755 14 8.007 14 7v-.839c-.457.432-1.004.751-1.49.972C11.278 7.693 9.682 8 8 8s-3.278-.307-4.51-.867c-.486-.22-1.033-.54-1.49-.972Z" } }, { "tag": "path", "attr": { "d": "M2 9.161V10c0 1.007.875 1.755 1.904 2.223C4.978 12.711 6.427 13 8 13s3.022-.289 4.096-.777C13.125 11.755 14 11.007 14 10v-.839c-.457.432-1.004.751-1.49.972-1.232.56-2.828.867-4.51.867s-3.278-.307-4.51-.867c-.486-.22-1.033-.54-1.49-.972Z" } }, { "tag": "path", "attr": { "d": "M2 12.161V13c0 1.007.875 1.755 1.904 2.223C4.978 15.711 6.427 16 8 16s3.022-.289 4.096-.777C13.125 14.755 14 14.007 14 13v-.839c-.457.432-1.004.751-1.49.972-1.232.56-2.828.867-4.51.867s-3.278-.307-4.51-.867c-.486-.22-1.033-.54-1.49-.972Z" } }] })(props);
+}
+function BsArrowDownSquareFill(props) {
+  return GenIcon({ "tag": "svg", "attr": { "fill": "currentColor", "viewBox": "0 0 16 16" }, "child": [{ "tag": "path", "attr": { "d": "M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm6.5 4.5v5.793l2.146-2.147a.5.5 0 0 1 .708.708l-3 3a.5.5 0 0 1-.708 0l-3-3a.5.5 0 1 1 .708-.708L7.5 10.293V4.5a.5.5 0 0 1 1 0z" } }] })(props);
+}
+function BsCashCoin(props) {
+  return GenIcon({ "tag": "svg", "attr": { "fill": "currentColor", "viewBox": "0 0 16 16" }, "child": [{ "tag": "path", "attr": { "fillRule": "evenodd", "d": "M11 15a4 4 0 1 0 0-8 4 4 0 0 0 0 8zm5-4a5 5 0 1 1-10 0 5 5 0 0 1 10 0z" } }, { "tag": "path", "attr": { "d": "M9.438 11.944c.047.596.518 1.06 1.363 1.116v.44h.375v-.443c.875-.061 1.386-.529 1.386-1.207 0-.618-.39-.936-1.09-1.1l-.296-.07v-1.2c.376.043.614.248.671.532h.658c-.047-.575-.54-1.024-1.329-1.073V8.5h-.375v.45c-.747.073-1.255.522-1.255 1.158 0 .562.378.92 1.007 1.066l.248.061v1.272c-.384-.058-.639-.27-.696-.563h-.668zm1.36-1.354c-.369-.085-.569-.26-.569-.522 0-.294.216-.514.572-.578v1.1h-.003zm.432.746c.449.104.655.272.655.569 0 .339-.257.571-.709.614v-1.195l.054.012z" } }, { "tag": "path", "attr": { "d": "M1 0a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h4.083c.058-.344.145-.678.258-1H3a2 2 0 0 0-2-2V3a2 2 0 0 0 2-2h10a2 2 0 0 0 2 2v3.528c.38.34.717.728 1 1.154V1a1 1 0 0 0-1-1H1z" } }, { "tag": "path", "attr": { "d": "M9.998 5.083 10 5a2 2 0 1 0-3.132 1.65 5.982 5.982 0 0 1 3.13-1.567z" } }] })(props);
+}
+function BsCash(props) {
+  return GenIcon({ "tag": "svg", "attr": { "fill": "currentColor", "viewBox": "0 0 16 16" }, "child": [{ "tag": "path", "attr": { "d": "M8 10a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" } }, { "tag": "path", "attr": { "d": "M0 4a1 1 0 0 1 1-1h14a1 1 0 0 1 1 1v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V4zm3 0a2 2 0 0 1-2 2v4a2 2 0 0 1 2 2h10a2 2 0 0 1 2-2V6a2 2 0 0 1-2-2H3z" } }] })(props);
+}
+function BsPlus(props) {
+  return GenIcon({ "tag": "svg", "attr": { "fill": "currentColor", "viewBox": "0 0 16 16" }, "child": [{ "tag": "path", "attr": { "d": "M8 4a.5.5 0 0 1 .5.5v3h3a.5.5 0 0 1 0 1h-3v3a.5.5 0 0 1-1 0v-3h-3a.5.5 0 0 1 0-1h3v-3A.5.5 0 0 1 8 4z" } }] })(props);
+}
+const { Title: Title$k, Text: Text$b } = Typography$1;
+const TransactionStock = () => {
+  const [typeOfMovement, setTypeOfMovement] = React.useState("input");
+  const { createNewTransaction, stocks } = useStock();
+  const [form] = Form$1.useForm();
+  const onFinish = (values) => {
+    createNewTransaction({
+      ...values,
+      unit_price: values.unit_price ? brlToNumber(values.unit_price) : 0,
+      total: !values.unit_price ? 0 : brlToNumber(values.unit_price) * values.quantity,
+      quantity: typeOfMovement === "input" ? values.quantity : -values.quantity
+    });
+  };
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(Form$1, { layout: "vertical", onFinish, form, children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { label: "Selecione o estoque", name: "item", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+      Select$1,
+      {
+        placeholder: "Digite o nome ou escolha as opções.",
+        options: stocks.map((x2) => ({ value: x2.id, label: x2.title }))
+      }
+    ) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      "div",
+      {
+        style: {
+          width: "100%",
+          display: "flex",
+          flexDirection: "row",
+          gap: "16px",
+          justifyContent: "center",
+          padding: "16px 0"
+        },
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            "div",
+            {
+              onClick: () => setTypeOfMovement("input"),
+              style: {
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                padding: "10px",
+                border: (typeOfMovement === "input" ? "1.5px" : "1px") + " solid " + (typeOfMovement === "input" ? theme.tokens.colorPrimary : "#ebebeb"),
+                borderRadius: "8px",
+                cursor: "pointer"
+              },
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  TbNewSection,
+                  {
+                    color: typeOfMovement === "input" ? theme.tokens.colorPrimary : "#a2a2a2"
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Title$k,
+                  {
+                    level: 5,
+                    style: {
+                      color: typeOfMovement === "input" ? theme.tokens.colorPrimary : "#a2a2a2",
+                      userSelect: "none",
+                      margin: 0
+                    },
+                    children: "Entrada"
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Text$b,
+                  {
+                    style: {
+                      textAlign: "center",
+                      fontSize: 13,
+                      color: typeOfMovement === "input" ? theme.tokens.colorPrimary : "#666666",
+                      margin: 0
+                    },
+                    children: "Registrar entrada de estoque."
+                  }
+                )
+              ]
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            "div",
+            {
+              onClick: () => setTypeOfMovement("output"),
+              style: {
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+                padding: "10px",
+                border: (typeOfMovement === "output" ? "1.5px" : "1px") + " solid " + (typeOfMovement === "output" ? "#ed4747" : "#ebebeb"),
+                borderRadius: "8px",
+                cursor: "pointer"
+              },
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(BsArrowDownSquareFill, { color: typeOfMovement === "output" ? "#ed4747" : "#a2a2a2" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Title$k,
+                  {
+                    level: 5,
+                    style: {
+                      color: typeOfMovement === "output" ? "#ed4747" : "#a2a2a2",
+                      userSelect: "none",
+                      margin: 0
+                    },
+                    children: "Saída"
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Text$b,
+                  {
+                    style: {
+                      textAlign: "center",
+                      fontSize: 13,
+                      color: typeOfMovement === "output" ? "#ed4747" : "#666666",
+                      margin: 0
+                    },
+                    children: "Registrar saída de estoque."
+                  }
+                )
+              ]
+            }
+          )
+        ]
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      "div",
+      {
+        style: {
+          display: "flex",
+          flexDirection: "row",
+          gap: "15px"
+        },
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Form$1.Item,
+            {
+              label: "Movimento do estoque",
+              name: "quantity",
+              tooltip: "A quantidade de produtos que você está movimentando nessa transação, seja entrada ou saida.",
+              children: typeOfMovement === "input" ? /* @__PURE__ */ jsxRuntimeExports.jsx(InputNumber$1, { placeholder: "0", addonBefore: "+" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(InputNumber$1, { placeholder: "0", addonBefore: "-" })
+            }
+          ),
+          typeOfMovement === "input" && /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Form$1.Item,
+            {
+              name: "unit_price",
+              label: "Valor unitario",
+              tooltip: "O quanto você está pagando por cada unidade.",
+              children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Input$1,
+                {
+                  onChange: (e2) => {
+                    form.setFieldsValue({
+                      unit_price: formatToBRL(e2.target.value)
+                    });
+                  }
+                }
+              )
+            }
+          )
+        ]
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+      Form$1.Item,
+      {
+        label: "Anotação",
+        name: "notes",
+        tooltip: "Caso precise informar algo sobre o estoque que está entrando.",
+        children: /* @__PURE__ */ jsxRuntimeExports.jsx(Input$1.TextArea, { rows: 3, placeholder: "Deixe alguma notificação para essa remessa." })
+      }
+    ) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      "div",
+      {
+        style: {
+          display: "flex",
+          flexDirection: "row",
+          alignItems: "center",
+          justifyContent: "center",
+          width: "100%",
+          gap: "10px",
+          position: "absolute",
+          bottom: 0
+        },
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(Button$2, { danger: true, type: "default", size: "large", style: { width: 200 }, children: "cancelar" }) }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(Button$2, { type: "primary", htmlType: "submit", size: "large", style: { width: 200 }, children: "Registrar" }) })
+        ]
+      }
+    )
+  ] });
+};
+function CgArrowTopRight(props) {
+  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 24 24", "fill": "none" }, "child": [{ "tag": "path", "attr": { "d": "M10.5253 5.49475L10.5206 7.49475L15.0782 7.50541L5.47473 17.0896L6.88752 18.5052L16.5173 8.89479L16.5065 13.5088L18.5065 13.5134L18.5253 5.51345L10.5253 5.49475Z", "fill": "currentColor" } }] })(props);
+}
+function CgChevronLeft(props) {
+  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 24 24", "fill": "none" }, "child": [{ "tag": "path", "attr": { "d": "M16.2426 6.34317L14.8284 4.92896L7.75739 12L14.8285 19.0711L16.2427 17.6569L10.5858 12L16.2426 6.34317Z", "fill": "currentColor" } }] })(props);
+}
+function CgClose(props) {
+  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 24 24", "fill": "none" }, "child": [{ "tag": "path", "attr": { "d": "M6.2253 4.81108C5.83477 4.42056 5.20161 4.42056 4.81108 4.81108C4.42056 5.20161 4.42056 5.83477 4.81108 6.2253L10.5858 12L4.81114 17.7747C4.42062 18.1652 4.42062 18.7984 4.81114 19.1889C5.20167 19.5794 5.83483 19.5794 6.22535 19.1889L12 13.4142L17.7747 19.1889C18.1652 19.5794 18.7984 19.5794 19.1889 19.1889C19.5794 18.7984 19.5794 18.1652 19.1889 17.7747L13.4142 12L19.189 6.2253C19.5795 5.83477 19.5795 5.20161 19.189 4.81108C18.7985 4.42056 18.1653 4.42056 17.7748 4.81108L12 10.5858L6.2253 4.81108Z", "fill": "currentColor" } }] })(props);
+}
+function CgMenuOreos(props) {
+  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 24 24", "fill": "none" }, "child": [{ "tag": "path", "attr": { "d": "M7 3C5.34315 3 4 4.34315 4 6H20C20 4.34315 18.6569 3 17 3H7Z", "fill": "currentColor" } }, { "tag": "path", "attr": { "d": "M7 11C5.34315 11 4 9.65685 4 8H20C20 9.65685 18.6569 11 17 11H7Z", "fill": "currentColor" } }, { "tag": "path", "attr": { "d": "M7 13C5.34315 13 4 14.3431 4 16H20C20 14.3431 18.6569 13 17 13H7Z", "fill": "currentColor" } }, { "tag": "path", "attr": { "d": "M7 21C5.34315 21 4 19.6569 4 18H20C20 19.6569 18.6569 21 17 21H7Z", "fill": "currentColor" } }] })(props);
+}
+function MdBalance(props) {
+  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 24 24" }, "child": [{ "tag": "path", "attr": { "fill": "none", "d": "M0 0h24v24H0z" } }, { "tag": "path", "attr": { "d": "M13 7.83c.85-.3 1.53-.98 1.83-1.83H18l-3 7c0 1.66 1.57 3 3.5 3s3.5-1.34 3.5-3l-3-7h2V4h-6.17c-.41-1.17-1.52-2-2.83-2s-2.42.83-2.83 2H3v2h2l-3 7c0 1.66 1.57 3 3.5 3S9 14.66 9 13L6 6h3.17c.3.85.98 1.53 1.83 1.83V19H2v2h20v-2h-9V7.83zM20.37 13h-3.74l1.87-4.36L20.37 13zm-13 0H3.63L5.5 8.64 7.37 13zM12 6c-.55 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1z" } }] })(props);
+}
+function MdCheckCircleOutline(props) {
+  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 24 24" }, "child": [{ "tag": "path", "attr": { "fill": "none", "d": "M0 0h24v24H0V0zm0 0h24v24H0V0z" } }, { "tag": "path", "attr": { "d": "M16.59 7.58L10 14.17l-3.59-3.58L5 12l5 5 8-8zM12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8z" } }] })(props);
+}
+function MdDeleteOutline(props) {
+  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 24 24" }, "child": [{ "tag": "path", "attr": { "fill": "none", "d": "M0 0h24v24H0V0z" } }, { "tag": "path", "attr": { "d": "M6 19c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7H6v12zM8 9h8v10H8V9zm7.5-5l-1-1h-5l-1 1H5v2h14V4z" } }] })(props);
+}
+function MdRestaurantMenu(props) {
+  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 24 24" }, "child": [{ "tag": "path", "attr": { "fill": "none", "d": "M0 0h24v24H0z" } }, { "tag": "path", "attr": { "d": "M8.1 13.34l2.83-2.83L3.91 3.5a4.008 4.008 0 000 5.66l4.19 4.18zm6.78-1.81c1.53.71 3.68.21 5.27-1.38 1.91-1.91 2.28-4.65.81-6.12-1.46-1.46-4.2-1.1-6.12.81-1.59 1.59-2.09 3.74-1.38 5.27L3.7 19.87l1.41 1.41L12 14.41l6.88 6.88 1.41-1.41L13.41 13l1.47-1.47z" } }] })(props);
+}
+function MdTableRestaurant(props) {
+  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 24 24" }, "child": [{ "tag": "path", "attr": { "fill": "none", "d": "M0 0h24v24H0z" } }, { "tag": "path", "attr": { "d": "M21.96 9.73l-1.43-5a.996.996 0 00-.96-.73H4.43c-.45 0-.84.3-.96.73l-1.43 5c-.18.63.3 1.27.96 1.27h2.2L4 20h2l.67-5h10.67l.66 5h2l-1.2-9H21c.66 0 1.14-.64.96-1.27zM6.93 13l.27-2h9.6l.27 2H6.93z" } }] })(props);
+}
+const EditStock = () => {
+  const {
+    categoriesStock,
+    setCategoriesStock,
+    stockSelected,
+    stockRegisteredId,
+    getOneStock,
+    stocks,
+    updateStock
+  } = useStock();
+  const [name, setName] = reactExports.useState("");
+  const [form] = Form$1.useForm();
+  const [add2, setAdd] = reactExports.useState(false);
+  const formAdd = reactExports.useRef(null);
+  reactExports.useEffect(() => {
+    if (stockSelected) {
+      form.setFieldsValue({ ...stockSelected, category: stockSelected?.category_detail?.title });
+    }
+  }, [stockSelected]);
+  const onNameChange = (event) => {
+    setName(event.target.value);
+  };
+  const addItem = (e2) => {
+    e2.preventDefault();
+    setCategoriesStock([...categoriesStock, { id: name, title: name }]);
+    setName("");
+  };
+  function deleteIngredient(id2) {
+    api.delete(`/item-ingredient/${id2}/`).then(() => {
+      getOneStock(stockRegisteredId);
+    });
+  }
+  const onFinish = (values) => {
+    console.log(values);
+    updateStock({ ...values, id: stockSelected?.id });
+  };
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(Form$1, { layout: "vertical", onFinish, form, children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { label: "Nome", name: "title", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Input$1, { placeholder: "Digite o nome do estoque." }) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { label: "Categoria", name: "category", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+        Select$1,
+        {
+          style: { flex: 1 },
+          placeholder: "Busque a categoria ou adicione uma nova.",
+          dropdownRender: (menu) => /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+            menu,
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Divider$1, { style: { margin: "8px 0" } }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(Space$1, { style: { padding: "0 8px 4px" }, children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Input$1,
+                {
+                  placeholder: "nova categoria.",
+                  style: { width: "100%" },
+                  value: name,
+                  onChange: onNameChange
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Button$2, { type: "text", icon: /* @__PURE__ */ jsxRuntimeExports.jsx(PlusOutlined$1, {}), onClick: addItem, children: "Add nova categoria" })
+            ] })
+          ] }),
+          options: categoriesStock.map((item) => ({ label: item.title, value: item.title }))
+        }
+      ) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { label: "Descrição", name: "description", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Input$1.TextArea, { placeholder: "Descrição do estoque" }) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { label: "Codigo de barras", name: "barcode", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Input$1, { placeholder: "Descrição do estoque" }) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        "div",
+        {
+          style: {
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr 1fr",
+            gridGap: "16px"
+          },
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { label: "Quantidade minima", name: "minimum_stock", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Input$1, { placeholder: "0" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { label: "Estoque disponivel", name: "stock", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Input$1, { placeholder: "0" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { label: "Tipo de medida", name: "product_type", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Select$1,
+              {
+                placeholder: "Unidade de medida",
+                options: [
+                  {
+                    label: "KG",
+                    value: "KG"
+                  },
+                  {
+                    label: "Litros",
+                    value: "L"
+                  },
+                  {
+                    label: "Unidade",
+                    value: "UN"
+                  },
+                  {
+                    label: "Caixa",
+                    value: "CX"
+                  },
+                  {
+                    label: "Pacote",
+                    value: "PCT"
+                  }
+                ]
+              }
+            ) })
+          ]
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        "div",
+        {
+          style: {
+            display: "flex",
+            flexDirection: "row",
+            alignItems: "center",
+            justifyContent: "center",
+            width: "100%",
+            gap: "10px"
+            // position: 'absolute',
+            // bottom: 0
+          },
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(Button$2, { danger: true, type: "default", size: "large", style: { width: 200 }, children: "cancelar" }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(Button$2, { type: "primary", htmlType: "submit", size: "large", style: { width: 200 }, children: "Registrar" }) })
+          ]
+        }
+      )
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(Divider$1, { children: "Ingredientes do item" }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: stockSelected?.ingredients?.map((ingredient) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+      Form$1,
+      {
+        layout: "vertical",
+        initialValues: {
+          ingredient: ingredient.ingredient,
+          quantity: ingredient.quantity
+        },
+        onFinish: (e2) => {
+          console.log(e2);
+        },
+        children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            Space$1,
+            {
+              style: {
+                gap: "1rem",
+                alignItems: "flex-end"
+              },
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { label: "Ingrediente", name: "ingredient", initialValue: ingredient.ingredient, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Select$1,
+                  {
+                    size: "large",
+                    defaultValue: { value: ingredient.id, label: ingredient.item },
+                    style: { width: 200 },
+                    options: stocks.map((x2) => ({ label: x2.title, value: x2.id }))
+                  }
+                ) }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Form$1.Item,
+                  {
+                    label: "Quantidade",
+                    tooltip: "Quantidate de ingredientes para a receita",
+                    name: "quantity",
+                    initialValue: ingredient.quantity,
+                    children: /* @__PURE__ */ jsxRuntimeExports.jsx(Input$1, { size: "large" })
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Button$2,
+                  {
+                    size: "large",
+                    onClick: () => {
+                      deleteIngredient(ingredient.id);
+                    },
+                    shape: "circle",
+                    icon: /* @__PURE__ */ jsxRuntimeExports.jsx(MdDeleteOutline, {}),
+                    style: {
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center"
+                    },
+                    danger: true
+                  }
+                ) }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Button$2,
+                  {
+                    htmlType: "submit",
+                    style: {
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center"
+                    },
+                    icon: /* @__PURE__ */ jsxRuntimeExports.jsx(MdCheckCircleOutline, {}),
+                    size: "large",
+                    shape: "circle",
+                    type: "primary"
+                  }
+                ) })
+              ]
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Divider$1, {})
+        ]
+      },
+      stockSelected.id
+    )) }),
+    add2 ? /* @__PURE__ */ jsxRuntimeExports.jsx(
+      Form$1,
+      {
+        layout: "vertical",
+        ref: formAdd,
+        onFinish: (e2) => {
+          console.log(e2);
+          api.post("/item-ingredient/", {
+            ingredient: e2.ingredient,
+            quantity: e2.quantity,
+            item: stockSelected?.id
+          }).then(() => {
+            setAdd(false);
+            getOneStock(stockSelected?.id);
+          });
+        },
+        children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          Space$1,
+          {
+            style: {
+              gap: "1rem",
+              alignItems: "flex-end"
+            },
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Form$1.Item,
+                {
+                  label: "Ingrediente",
+                  name: "ingredient",
+                  rules: [
+                    {
+                      required: true,
+                      message: "Por favor, selecione o ingrediente"
+                    }
+                  ],
+                  children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    Select$1,
+                    {
+                      size: "large",
+                      style: { width: 200 },
+                      options: stocks.map((x2) => ({ label: x2.title, value: x2.id }))
+                    }
+                  )
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Form$1.Item,
+                {
+                  label: "Quantidade",
+                  tooltip: "Quantidate de ingredientes para a receita",
+                  name: "quantity",
+                  rules: [
+                    {
+                      required: true,
+                      message: "Por favor, selecione o ingrediente"
+                    }
+                  ],
+                  children: /* @__PURE__ */ jsxRuntimeExports.jsx(Input$1, { size: "large" })
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Button$2,
+                {
+                  onClick: () => {
+                    setAdd(false);
+                  },
+                  size: "large",
+                  icon: /* @__PURE__ */ jsxRuntimeExports.jsx(CgClose, { size: 17 }),
+                  style: {
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center"
+                  },
+                  shape: "circle"
+                }
+              ) }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip$2, { title: "Adicionar preço", placement: "right", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Button$2,
+                {
+                  htmlType: "submit",
+                  style: {
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center"
+                  },
+                  icon: /* @__PURE__ */ jsxRuntimeExports.jsx(MdCheckCircleOutline, {}),
+                  size: "large",
+                  shape: "circle",
+                  type: "primary"
+                }
+              ) }) })
+            ]
+          }
+        )
+      }
+    ) : /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "div",
+      {
+        style: {
+          display: "flex",
+          justifyContent: "center"
+        },
+        children: /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip$2, { title: "Adicionar novo preço", placement: "right", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+          Button$2,
+          {
+            onClick: () => setAdd(true),
+            size: "large",
+            icon: /* @__PURE__ */ jsxRuntimeExports.jsx(BsPlus, { size: 30 }),
+            style: {
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center"
+            },
+            shape: "circle"
+          }
+        ) })
+      }
+    )
+  ] });
+};
+const { Title: Title$j, Text: Text$a } = Typography$1;
+const tabComponents = {
+  "1": /* @__PURE__ */ jsxRuntimeExports.jsx(NewStock, {}),
+  "2": /* @__PURE__ */ jsxRuntimeExports.jsx(TransactionStock, {}),
+  "3": /* @__PURE__ */ jsxRuntimeExports.jsx(EditStock, {})
+};
+const DrawerRegister = ({ onClose, visible }) => {
+  const { currentTab, setCurrentTab, getCategoriesStock, getStock } = useStock();
+  reactExports.useEffect(() => {
+    getCategoriesStock();
+    getStock();
+  }, []);
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    Drawer$1,
+    {
+      title: currentTab === "1" ? "Novo Estoque" : currentTab === "2" ? "Movimentar Estoque" : "Editar Estoque",
+      placement: "right",
+      width: 600,
+      closable: true,
+      onClose,
+      open: visible,
+      children: [
+        currentTab !== "3" && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            Alert$1,
+            {
+              type: "info",
+              style: {
+                display: "flex",
+                alignItems: "center"
+              },
+              description: "Por favor, informe se se trata de um estoque novo ou de um estoque já existente.",
+              showIcon: true,
+              closable: true
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            "div",
+            {
+              style: {
+                width: "100%",
+                display: "flex",
+                flexDirection: "row",
+                gap: "16px",
+                justifyContent: "center",
+                padding: "16px 0"
+              },
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                  Card$3,
+                  {
+                    onClick: () => setCurrentTab("1"),
+                    style: {
+                      width: "100%",
+                      height: "100%",
+                      flex: 1,
+                      border: (currentTab === "1" ? "1.5px" : "1px") + " solid " + (currentTab === "1" ? theme.tokens.colorPrimary : "#ebebeb"),
+                      cursor: "pointer"
+                    },
+                    bodyStyle: {
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      padding: "1rem",
+                      flex: 1,
+                      height: "100%"
+                    },
+                    children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(TbNewSection, { color: currentTab === "1" ? theme.tokens.colorPrimary : "#ebebeb" }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        Title$j,
+                        {
+                          level: 5,
+                          style: {
+                            color: currentTab === "1" ? theme.tokens.colorPrimary : "#a2a2a2",
+                            userSelect: "none"
+                          },
+                          children: "Novo Estoque"
+                        }
+                      ),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        Text$a,
+                        {
+                          style: {
+                            textAlign: "center",
+                            fontSize: 13,
+                            color: "#666666"
+                          },
+                          children: "Estoque que não foi registrado no sistema."
+                        }
+                      )
+                    ]
+                  },
+                  "1"
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                  Card$3,
+                  {
+                    onClick: () => setCurrentTab("2"),
+                    style: {
+                      width: "100%",
+                      height: "100%",
+                      flex: 1,
+                      border: (currentTab === "2" ? "1.5px" : "1px") + " solid " + (currentTab === "2" ? theme.tokens.colorPrimary : "#ebebeb"),
+                      cursor: "pointer"
+                    },
+                    bodyStyle: {
+                      display: "flex",
+                      flexDirection: "column",
+                      alignItems: "center",
+                      padding: "1rem",
+                      flex: 1,
+                      height: "100%"
+                    },
+                    children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(FaBoxesPacking, { color: currentTab === "2" ? theme.tokens.colorPrimary : "#ebebeb" }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        Title$j,
+                        {
+                          level: 5,
+                          style: {
+                            color: currentTab === "2" ? theme.tokens.colorPrimary : "#a2a2a2",
+                            userSelect: "none"
+                          },
+                          children: "Atualizar Estoque"
+                        }
+                      ),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        Text$a,
+                        {
+                          style: {
+                            textAlign: "center",
+                            fontSize: 13,
+                            color: "#666666"
+                          },
+                          children: "Estoque que já foi registrado no sistema."
+                        }
+                      )
+                    ]
+                  },
+                  "1"
+                )
+              ]
+            }
+          )
+        ] }),
+        tabComponents[currentTab]
+      ]
+    },
+    "right"
+  );
+};
+const Stocks = () => {
+  const [visibleModalRegister, setVisibleModalRegister] = React.useState(false);
+  const { getStock, stocks, deleteStock, setCurrentTab, setStockRegisteredId, getOneStock } = useStock();
+  reactExports.useEffect(() => {
+    getStock();
+  }, []);
+  const columns2 = [
+    {
+      title: "Nome",
+      dataIndex: "title",
+      key: "title",
+      align: "center"
+    },
+    {
+      title: "Quantidade",
+      dataIndex: "stock",
+      key: "stock",
+      align: "center"
+    },
+    {
+      title: "Quantidade mínima",
+      dataIndex: "minimum_stock",
+      key: "minimum_stock",
+      align: "center"
+    },
+    {
+      title: "EAN",
+      dataIndex: "barcode",
+      key: "barcode",
+      align: "center"
+    },
+    {
+      title: "Unidade de medida",
+      dataIndex: "product_type",
+      key: "product_type",
+      align: "center"
+    },
+    {
+      title: "Ações",
+      key: "action",
+      align: "center",
+      render: (record) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        "div",
+        {
+          style: {
+            display: "flex",
+            flexDirection: "row",
+            gap: "8px",
+            justifyContent: "center"
+          },
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Button$2,
+              {
+                type: "primary",
+                size: "small",
+                onClick: () => {
+                  getOneStock(record.id);
+                  setCurrentTab("3");
+                  setVisibleModalRegister(true);
+                },
+                children: "Editar"
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Button$2,
+              {
+                type: "primary",
+                danger: true,
+                size: "small",
+                onClick: () => {
+                  Modal$1.confirm({
+                    title: "Deseja excluir este estoque?",
+                    content: "Esta ação não poderá ser desfeita.",
+                    okText: "Excluir",
+                    cancelText: "Cancelar",
+                    onOk: () => deleteStock(record.id),
+                    okType: "danger"
+                  });
+                },
+                children: "Excluir"
+              }
+            )
+          ]
+        }
+      )
+    }
+  ];
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$n, { children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Header$5, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        "div",
+        {
+          style: {
+            display: "flex",
+            flexDirection: "row",
+            gap: "16px"
+          },
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Button$2,
+              {
+                type: "primary",
+                size: "large",
+                icon: /* @__PURE__ */ jsxRuntimeExports.jsx(PlusOutlined$1, {}),
+                onClick: () => setVisibleModalRegister(true),
+                children: "Adicionar estoque"
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Input$1.Search, { placeholder: "Nome do estoque", size: "large" })
+          ]
+        }
+      ) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Table$2, { columns: columns2, dataSource: stocks, pagination: false, scroll: { y: 700 } })
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      DrawerRegister,
+      {
+        visible: visibleModalRegister,
+        onClose: () => {
+          setStockRegisteredId(void 0);
+          setCurrentTab("1");
+          setVisibleModalRegister(false);
+        },
+        onUpdate: () => getStock()
+      }
+    )
+  ] });
+};
+const Container$m = st.div`
+  width: 100%;
+  height: 100%;
+  padding: 20px;
+`;
+const Header$4 = st.div`
+  width: 100%;
+  padding: 10px 0;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  flex-direction: row;
+`;
+const ContentTable = st.div`
+  width: 100%;
+  height: calc(100vh - 150px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 250px));
+  gap: 30px;
+  justify-content: center;
+`;
+const CardTable = st.div`
+  width: 250px;
+  max-height: 250px;
+  padding: 20px 10px;
+  border-radius: 10px;
+  background-color: #fff;
+
+  &:hover {
+    cursor: pointer;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.2s ease-in-out;
+  }
+`;
+const CreateTable = ({ onCancel, onFetch, visible }) => {
+  const [form] = Form$1.useForm();
+  const [title, setTitle] = React.useState("");
+  const [isLoad, setIsLoad] = React.useState(false);
+  function onFinish() {
+    registerTable();
+  }
+  function registerTable() {
+    setIsLoad(true);
+    api.post("/tables/", form.getFieldsValue()).then(() => {
+      onFetch();
+      form.resetFields();
+      onCancel();
+    }).catch((error) => {
+      errorActions(error);
+    }).finally(() => {
+      setIsLoad(false);
+    });
+  }
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(
+    Modal$1,
+    {
+      title: "Criar Categoria",
+      onCancel: () => {
+        onCancel();
+        form.resetFields();
+      },
+      open: visible,
+      footer: null,
+      children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Form$1, { layout: "vertical", onFinish, name: "table_edit", form, children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          Form$1.Item,
+          {
+            label: "Nome da mesa",
+            name: "title",
+            tooltip: "O nome da mesa pode ser expresso em palavras ou numeros",
+            children: /* @__PURE__ */ jsxRuntimeExports.jsx(Input$1, { placeholder: "Nome da mesa", onChange: (e2) => setTitle(e2.target.value) })
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { label: "Descrição", name: "description", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+          Input$1.TextArea,
+          {
+            placeholder: "Descrição",
+            rows: 3,
+            style: {
+              resize: "none"
+            }
+          }
+        ) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "div",
+          {
+            style: {
+              display: "flex",
+              flexDirection: "row",
+              gap: "20px"
+            },
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Form$1.Item,
+                {
+                  label: "Order",
+                  name: "order",
+                  initialValue: 0,
+                  tooltip: "Mostra a capacidade de pessoas que podem ocupar a mesa",
+                  children: /* @__PURE__ */ jsxRuntimeExports.jsx(InputNumber$1, { placeholder: "Ordem", defaultValue: 0 })
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { label: "Capacidade da mesa", name: "capacity", initialValue: 4, children: /* @__PURE__ */ jsxRuntimeExports.jsx(InputNumber$1, { placeholder: "capacidade", defaultValue: 4 }) }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Form$1.Item,
+                {
+                  label: "Mesa ativa",
+                  name: "active",
+                  tooltip: "Se a mesa não estiver ativa, não será exibida para os colaboradores",
+                  initialValue: true,
+                  children: /* @__PURE__ */ jsxRuntimeExports.jsx(Switch$1, { checkedChildren: "sim", unCheckedChildren: "não", checked: true })
+                }
+              )
+            ]
+          }
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(
+          "div",
+          {
+            style: {
+              display: "flex",
+              flexDirection: "row",
+              justifyContent: "space-between",
+              gap: "10px"
+            },
+            children: /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { style: { flex: 1 }, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+              Button$2,
+              {
+                type: "primary",
+                htmlType: "submit",
+                size: "large",
+                style: { flex: 1, width: "100%" },
+                disabled: title.length === 0 ? true : false,
+                loading: isLoad,
+                children: "Salvar Alterações"
+              }
+            ) })
+          }
+        )
+      ] })
+    }
+  );
+};
+const { Title: Title$i, Text: Text$9 } = Typography$1;
+const TablesPage = () => {
+  const navigate = useNavigate();
+  const [tables, setTables] = reactExports.useState([]);
+  const [isVisibleCreateTable, setIsVisibleCreateTable] = reactExports.useState(false);
+  reactExports.useEffect(() => {
+    fetchTables();
+  }, []);
+  function fetchTables() {
+    api.get("/tables").then((response) => {
+      setTables(response.data);
+    }).catch((error) => {
+      errorActions(error);
+    });
+  }
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$m, { children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Header$4, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+        Button$2,
+        {
+          type: "primary",
+          icon: /* @__PURE__ */ jsxRuntimeExports.jsx(PlusOutlined$1, {}),
+          onClick: () => setIsVisibleCreateTable(true),
+          children: "Nova mesa"
+        }
+      ) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(ContentTable, { children: tables.map((table) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+        Badge$1.Ribbon,
+        {
+          text: table.bills.length > 0 ? "Mesa Ocupada" : "Mesa livre",
+          color: table.bills.length > 0 ? "red" : "green",
+          children: /* @__PURE__ */ jsxRuntimeExports.jsx(CardTable, { onClick: () => navigate(`/mesas/${table.id}/`), children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            "div",
+            {
+              style: {
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+                alignItems: "center"
+              },
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Avatar$1,
+                  {
+                    size: "large",
+                    style: {
+                      display: "flex",
+                      justifyContent: "center",
+                      alignItems: "center",
+                      backgroundColor: "#E2E8F0"
+                    },
+                    icon: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      MdTableRestaurant,
+                      {
+                        size: 32,
+                        style: {
+                          color: "#718096"
+                        }
+                      }
+                    )
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(Title$i, { level: 4, children: [
+                  "Mesa ",
+                  table.title
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(Text$9, { type: "secondary", children: [
+                  table.capacity,
+                  " lugares"
+                ] })
+              ]
+            }
+          ) })
+        },
+        table.id
+      )) })
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      CreateTable,
+      {
+        visible: isVisibleCreateTable,
+        onCancel: () => setIsVisibleCreateTable(false),
+        onFetch: () => fetchTables()
+      }
+    )
+  ] });
+};
+const Apps = () => {
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("webview", { src: "https://www.google.com" });
+};
+const Container$l = st.div`
+  width: 100%;
+`;
+const Header$3 = st.header`
+  width: 100%;
+  height: 50px;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0 20px;
+  gap: 20px;
+`;
+const TitleCategory = st.h1`
+  padding: 10px 40px;
+  width: 95%;
+  gap: 10px;
+  font-size: 24px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  font-weight: bold;
+`;
+st.div`
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  padding: 20px 40px;
+  gap: 10px;
+  overflow-x: auto;
+`;
+const RowProduct = st.div`
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); /* Ajusta automaticamente com um mínimo de 200px */
+  gap: 15px;
+  padding: 0 30px;
+`;
+const Container$k = st.div`
+  width: 320px;
+  min-width: 320px;
+  height: 390px;
+  min-height: 390px;
+  border-radius: 15px;
+  background-color: #fff;
+  padding: 15px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+
+  &:hover {
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+  }
+`;
+const ContainerImage = st.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+`;
+const ButtonGroup = st.div`
+  /* flex-grow: 1; */
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 15px;
+`;
+function truncateText(text, limit, simbol = "...") {
+  if (text.length <= limit) {
+    return text;
+  } else {
+    return text.substring(0, limit) + simbol;
+  }
+}
+const NotImage$1 = "" + new URL("Image_not_available-1998827c.png", import.meta.url).href;
+const { Paragraph: Paragraph$7, Title: Title$h } = Typography$1;
+const CardProducts = ({ data: data2, onUpdate, onEditClick }) => {
+  const [isLoading, setIsLoading] = reactExports.useState(false);
+  function handleDeleteProduct() {
+    setIsLoading(true);
+    api.delete(`/product/${data2.id}`).then(() => {
+      onUpdate();
+    }).catch((error) => {
+      console.log(error);
+    }).finally(() => {
+      setIsLoading(false);
+    });
+  }
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$k, { children: [
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(ContainerImage, { children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(
+        Image$2,
+        {
+          src: data2.photo || NotImage$1,
+          preview: data2.photo ? { src: data2.photo } : false,
+          style: {
+            width: 120,
+            height: 120,
+            borderRadius: "50%",
+            objectFit: "contain"
+          }
+        }
+      ),
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Title$h, { level: 5, italic: true, children: truncateText(data2.title, 30, "...") })
+    ] }),
+    data2.description ? /* @__PURE__ */ jsxRuntimeExports.jsx(Paragraph$7, { children: truncateText(data2.description, 100, "...") }) : /* @__PURE__ */ jsxRuntimeExports.jsx(Paragraph$7, { children: "Sem descrição disponível. Detalhes do prato são essenciais para guiar a sua escolha e proporcionar uma experiência deliciosa." }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      "div",
+      {
+        style: {
+          width: "100%",
+          height: "60px",
+          display: "flex",
+          justifyContent: "center",
+          alignItems: "center"
+        },
+        children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+          Tag$1,
+          {
+            color: "green",
+            style: {
+              fontSize: "1.25rem",
+              padding: "10px"
+            },
+            children: formatCurrency(Number(data2.price))
+          }
+        )
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs(ButtonGroup, { children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(Button$2, { type: "primary", danger: true, onClick: handleDeleteProduct, loading: isLoading, children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(DeleteOutlined$1, {}),
+        " Deletar"
+      ] }),
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(Button$2, { type: "primary", onClick: () => onEditClick(data2), children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx(EditOutlined$1, {}),
+        " Editar"
+      ] })
+    ] })
+  ] }) });
+};
 const DrawerFilterProducts = ({ visible, onClose }) => {
   const [open2, setOpen] = reactExports.useState(false);
   const [form] = Form$1.useForm();
@@ -86926,17 +87403,33 @@ const ImgCrop = reactExports.forwardRef((props, cropperRef) => {
   return jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [uploadComponent, modalImage && jsxRuntimeExports.jsx(Modal$1, Object.assign({}, modalProps, modalBaseProps, { [openProp]: true }, { title, onCancel: onCancel.current, onOk: onOk.current, wrapClassName, maskClosable: false, destroyOnClose: true }, { children: jsxRuntimeExports.jsx(EasyCrop$1, { ref: easyCropRef, cropperRef, zoomSlider, rotationSlider, aspectSlider, showReset, resetBtnText, modalImage, aspect, minZoom, maxZoom, cropShape, showGrid, cropperProps }) }))] });
 });
 const ProductInfo = ({ formRef }) => {
-  const { categories, createProduct, selectedProduct, patchProduct } = useProducts();
+  const {
+    categories,
+    createProduct,
+    selectedProduct,
+    patchProduct,
+    setSelectedProduct,
+    fetchProducts
+  } = useProducts();
   const [loading, setLoading] = reactExports.useState(false);
   const [fileList, setFileList] = reactExports.useState([]);
   const [active, setActive] = reactExports.useState(false);
   const [listed, setListed] = reactExports.useState(false);
-  const { printers, fetchPrinters } = usePrinter();
+  const { printers } = usePrinter();
   reactExports.useEffect(() => {
     if (selectedProduct) {
       setActive(selectedProduct?.active ?? true);
       setListed(selectedProduct?.listed ?? true);
-      fetchPrinters();
+      setFileList(
+        selectedProduct.photo ? [
+          {
+            uid: "-1",
+            name: "image.png",
+            status: "done",
+            url: selectedProduct.photo
+          }
+        ] : []
+      );
     }
   }, [selectedProduct]);
   const onChange2 = ({ fileList: newFileList }) => {
@@ -86968,17 +87461,41 @@ const ProductInfo = ({ formRef }) => {
     }).finally(() => setLoading(false));
   };
   return /* @__PURE__ */ jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Form$1, { layout: "vertical", name: "product_info", onFinish, ref: formRef, children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx(Space$1, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { name: "photo", label: "Imagens do produto", children: /* @__PURE__ */ jsxRuntimeExports.jsx(ImgCrop, { rotationSlider: true, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+    /* @__PURE__ */ jsxRuntimeExports.jsx(Space$1, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(Spin$1, { spinning: loading, children: /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { name: "photo", label: "Imagens do produto", children: /* @__PURE__ */ jsxRuntimeExports.jsx(ImgCrop, { rotationSlider: true, children: /* @__PURE__ */ jsxRuntimeExports.jsx(
       Upload$1,
       {
-        action: "https://www.mocky.io/v2/5cc8019d300000980a055e76",
+        customRequest: (options2) => {
+          const data2 = new FormData();
+          const { file } = options2;
+          data2.append("photo", file);
+          setLoading(true);
+          api.patch(`/product/${selectedProduct?.id}/`, data2, {
+            headers: {
+              "Content-Type": "multipart/form-data"
+            }
+          }).then((response) => {
+            setFileList([
+              {
+                uid: "-1",
+                name: "image.png",
+                status: "done",
+                url: response.data.photo
+              }
+            ]);
+            setSelectedProduct(response.data);
+            fetchProducts();
+            options2.onSuccess && options2?.onSuccess({});
+          }).finally(() => {
+            setLoading(false);
+          });
+        },
         listType: "picture-card",
         fileList,
         onChange: onChange2,
         onPreview,
-        children: fileList.length < 5 && "+ Adicionar"
+        children: fileList.length < 1 && "+ Adicionar"
       }
-    ) }) }) }),
+    ) }) }) }) }),
     /* @__PURE__ */ jsxRuntimeExports.jsxs(
       Space$1,
       {
@@ -87274,372 +87791,6 @@ const ProductFiscal = ({
     )
   ] }) });
 };
-const InputIncrement = () => {
-  const [value, setValue] = React.useState(0);
-  function increment() {
-    setValue(value + 1);
-  }
-  function decrement() {
-    setValue(value - 1);
-  }
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
-    "div",
-    {
-      style: {
-        display: "flex",
-        alignItems: "center",
-        gap: "6px"
-      },
-      children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Button$2,
-          {
-            onClick: decrement,
-            disabled: value <= 0,
-            icon: /* @__PURE__ */ jsxRuntimeExports.jsx(
-              MinusOutlined$1,
-              {
-                style: {
-                  fontSize: "12px"
-                }
-              }
-            )
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(InputNumber$1, { controls: false, value, min: 0 }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Button$2,
-          {
-            onClick: increment,
-            icon: /* @__PURE__ */ jsxRuntimeExports.jsx(
-              PlusOutlined$1,
-              {
-                style: {
-                  fontSize: "12px"
-                }
-              }
-            )
-          }
-        )
-      ]
-    }
-  );
-};
-const ComplementItemForm = () => {
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
-    "div",
-    {
-      style: {
-        width: "100%",
-        padding: "5px 10px",
-        backgroundColor: "#fff",
-        borderRadius: "8px"
-      },
-      children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "div",
-          {
-            style: {
-              width: "100%",
-              display: "flex",
-              justifyContent: "flex-end"
-            },
-            children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-              Button$2,
-              {
-                icon: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  DeleteOutlined$1,
-                  {
-                    style: {
-                      color: "#ff4d4f"
-                    }
-                  }
-                ),
-                type: "default"
-              }
-            )
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1, { layout: "vertical", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
-          "div",
-          {
-            style: {
-              display: "flex",
-              // justifyContent: 'space-between',
-              alignItems: "center",
-              gap: "20px",
-              flexDirection: "row"
-            },
-            children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(Input$1, { placeholder: "Nome do item" }) }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                Form$1.Item,
-                {
-                  name: "price",
-                  initialValue: "0",
-                  children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    InputNumber$1,
-                    {
-                      size: "large",
-                      min: "0",
-                      formatter: (value) => `$ ${value}`.replace(/\B(?=(\d{3})+(?!\d))/g, ","),
-                      parser: (value) => value.replace(/\$\s?|(,*)/g, "")
-                    }
-                  )
-                }
-              ),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { label: "Minimo:", children: /* @__PURE__ */ jsxRuntimeExports.jsx(InputIncrement, {}) }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { label: "Maximo:", children: /* @__PURE__ */ jsxRuntimeExports.jsx(InputIncrement, {}) })
-            ]
-          }
-        ) })
-      ]
-    }
-  );
-};
-const ComplementForm = ({
-  complement,
-  onDelete,
-  OnChangeAddItem
-}) => {
-  return /* @__PURE__ */ jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-    "div",
-    {
-      style: {
-        width: "100%",
-        padding: "10px 20px",
-        borderRadius: "8px",
-        border: "1px solid #d9d9d9",
-        backgroundColor: "#EDF2F7"
-      },
-      children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Form$1, { layout: "vertical", children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsxs(
-          Space$1,
-          {
-            direction: "horizontal",
-            style: {
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "flex-start"
-            },
-            children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                Input$1,
-                {
-                  style: {
-                    width: "500px"
-                  }
-                }
-              ) }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                Button$2,
-                {
-                  onClick: () => onDelete(complement.id),
-                  icon: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    DeleteOutlined$1,
-                    {
-                      style: {
-                        color: "#ff4d4f"
-                      }
-                    }
-                  ),
-                  type: "default"
-                }
-              )
-            ]
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs(
-          Space$1,
-          {
-            direction: "horizontal",
-            style: {
-              display: "flex",
-              gap: "20px"
-            },
-            children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { label: "Quantidade minima:", children: /* @__PURE__ */ jsxRuntimeExports.jsx(InputIncrement, {}) }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { label: "Quantidade maxima:", children: /* @__PURE__ */ jsxRuntimeExports.jsx(InputIncrement, {}) }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                Form$1.Item,
-                {
-                  label: "Tipo",
-                  tooltip: "Tipo de seleção dos itens de complementos",
-                  children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    Select$1,
-                    {
-                      defaultValue: "tipos",
-                      style: { width: 120 },
-                      options: [
-                        { value: "radio", label: "radio" },
-                        { value: "increment", label: "incremento" },
-                        { value: "check box", label: "check box" }
-                      ]
-                    }
-                  )
-                }
-              ),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                Form$1.Item,
-                {
-                  label: "Formula",
-                  tooltip: "Formula de calculo dos itens de complementos",
-                  children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    Select$1,
-                    {
-                      defaultValue: "formulas",
-                      style: { width: 120 },
-                      options: [
-                        { value: "maior", label: "maior" },
-                        { value: "media", label: "media" },
-                        { value: "soma", label: "soma" }
-                      ]
-                    }
-                  )
-                }
-              )
-            ]
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "div",
-          {
-            style: {
-              display: "flex",
-              flexDirection: "column",
-              gap: "10px",
-              overflowY: "auto",
-              maxHeight: "150px",
-              marginBottom: "20px"
-            },
-            children: complement.complement_items && complement.complement_items.length > 0 && complement.complement_items.map((item, index2) => {
-              console.log(item);
-              return /* @__PURE__ */ jsxRuntimeExports.jsx(ComplementItemForm, {}, index2);
-            })
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Button$2,
-          {
-            type: "primary",
-            style: {
-              width: "100%"
-            },
-            onClick: () => OnChangeAddItem(complement.id),
-            children: "Adicionar item"
-          }
-        ) })
-      ] })
-    }
-  ) });
-};
-const ProductComplement = () => {
-  const [complements, setComplements] = reactExports.useState([]);
-  function addComplements() {
-    setComplements([
-      ...complements,
-      {
-        id: crypto.randomUUID(),
-        product: "",
-        order: 0,
-        title: "",
-        active: false,
-        input_type: "checkbox",
-        business_rules: "maior",
-        max_value: 0,
-        min_value: 0,
-        products: []
-      }
-    ]);
-  }
-  function addComplementItem(complementId) {
-    const updatedComplements = [...complements];
-    const complementIndex = updatedComplements.findIndex(
-      (complement) => complement.id === complementId
-    );
-    if (complementIndex !== -1) {
-      const newComplementItem = {
-        title: "Novo Complemento",
-        // Defina os valores do novo complement_item conforme necessário
-        order: 1,
-        active: true,
-        price: "0.00",
-        max_value: 0,
-        min_value: 0
-      };
-      if (!updatedComplements[complementIndex].complement_items) {
-        updatedComplements[complementIndex].complement_items = [newComplementItem];
-      } else {
-        updatedComplements[complementIndex].complement_items?.push(newComplementItem);
-      }
-      setComplements(updatedComplements);
-    }
-  }
-  function handleDelete(id2) {
-    setComplements(complements.filter((complement) => complement.id !== id2));
-  }
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
-    "div",
-    {
-      style: {
-        display: "flex",
-        flexDirection: "column",
-        justifyContent: "space-between",
-        alignItems: "center",
-        overflow: "hidden"
-      },
-      children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          "div",
-          {
-            style: {
-              width: "100%",
-              display: "flex",
-              flexDirection: "column",
-              alignItems: "center",
-              overflowY: "auto",
-              height: "calc(100vh - 190px)",
-              gap: "10px"
-            },
-            children: complements.length > 0 ? complements.map((complement) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-              ComplementForm,
-              {
-                complement,
-                onDelete: (id2) => handleDelete(id2),
-                OnChangeAddItem: (complementId) => addComplementItem(complementId)
-              },
-              complement.id
-            )) : /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { children: "Nenhum complemento criado" })
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(
-          Button$2,
-          {
-            type: "primary",
-            style: {
-              width: "50%",
-              margin: "10px 0"
-            },
-            onClick: addComplements,
-            children: "Criar complemento"
-          }
-        )
-      ]
-    }
-  );
-};
-function CgArrowTopRight(props) {
-  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 24 24", "fill": "none" }, "child": [{ "tag": "path", "attr": { "d": "M10.5253 5.49475L10.5206 7.49475L15.0782 7.50541L5.47473 17.0896L6.88752 18.5052L16.5173 8.89479L16.5065 13.5088L18.5065 13.5134L18.5253 5.51345L10.5253 5.49475Z", "fill": "currentColor" } }] })(props);
-}
-function CgChevronLeft(props) {
-  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 24 24", "fill": "none" }, "child": [{ "tag": "path", "attr": { "d": "M16.2426 6.34317L14.8284 4.92896L7.75739 12L14.8285 19.0711L16.2427 17.6569L10.5858 12L16.2426 6.34317Z", "fill": "currentColor" } }] })(props);
-}
-function CgClose(props) {
-  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 24 24", "fill": "none" }, "child": [{ "tag": "path", "attr": { "d": "M6.2253 4.81108C5.83477 4.42056 5.20161 4.42056 4.81108 4.81108C4.42056 5.20161 4.42056 5.83477 4.81108 6.2253L10.5858 12L4.81114 17.7747C4.42062 18.1652 4.42062 18.7984 4.81114 19.1889C5.20167 19.5794 5.83483 19.5794 6.22535 19.1889L12 13.4142L17.7747 19.1889C18.1652 19.5794 18.7984 19.5794 19.1889 19.1889C19.5794 18.7984 19.5794 18.1652 19.1889 17.7747L13.4142 12L19.189 6.2253C19.5795 5.83477 19.5795 5.20161 19.189 4.81108C18.7985 4.42056 18.1653 4.42056 17.7748 4.81108L12 10.5858L6.2253 4.81108Z", "fill": "currentColor" } }] })(props);
-}
-function CgMenuOreos(props) {
-  return GenIcon({ "tag": "svg", "attr": { "viewBox": "0 0 24 24", "fill": "none" }, "child": [{ "tag": "path", "attr": { "d": "M7 3C5.34315 3 4 4.34315 4 6H20C20 4.34315 18.6569 3 17 3H7Z", "fill": "currentColor" } }, { "tag": "path", "attr": { "d": "M7 11C5.34315 11 4 9.65685 4 8H20C20 9.65685 18.6569 11 17 11H7Z", "fill": "currentColor" } }, { "tag": "path", "attr": { "d": "M7 13C5.34315 13 4 14.3431 4 16H20C20 14.3431 18.6569 13 17 13H7Z", "fill": "currentColor" } }, { "tag": "path", "attr": { "d": "M7 21C5.34315 21 4 19.6569 4 18H20C20 19.6569 18.6569 21 17 21H7Z", "fill": "currentColor" } }] })(props);
-}
 const { Text: Text$8 } = Typography$1;
 const Prices = () => {
   const { selectedProduct } = useProducts();
@@ -87743,11 +87894,21 @@ const Prices = () => {
                         name: "tag",
                         initialValue: price.tag,
                         children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                          Input$1,
+                          Select$1,
                           {
                             style: { width: "100%" },
                             size: "large",
-                            placeholder: "ex: Cardapio Digital"
+                            placeholder: "ex: Cardapio Digital",
+                            options: [
+                              {
+                                label: "Cardápio Digital",
+                                value: "cardapio_digital"
+                              },
+                              {
+                                label: "Devlivery",
+                                value: "delivery"
+                              }
+                            ]
                           }
                         )
                       }
@@ -87861,7 +88022,24 @@ const Prices = () => {
                           message: "Por favor, insira a tag do preço"
                         }
                       ],
-                      children: /* @__PURE__ */ jsxRuntimeExports.jsx(Input$1, { style: { width: "100%" }, size: "large", placeholder: "ex: Cardapio Digital" })
+                      children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        Select$1,
+                        {
+                          style: { width: "100%" },
+                          size: "large",
+                          placeholder: "ex: Cardapio Digital",
+                          options: [
+                            {
+                              label: "Cardápio Digital",
+                              value: "cardapio_digital"
+                            },
+                            {
+                              label: "Devlivery",
+                              value: "delivery"
+                            }
+                          ]
+                        }
+                      )
                     }
                   ),
                   /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -87931,10 +88109,12 @@ const Prices = () => {
 };
 const DrawerProduct = ({ onClose, visible }) => {
   const { fetchCategories, currentTab, selectedProduct, setSelectedProduct, setCurrentTab } = useProducts();
+  const { fetchPrinters } = usePrinter();
   const formRef = React.useRef(null);
   const formFiscalRef = React.useRef(null);
   reactExports.useEffect(() => {
     fetchCategories();
+    fetchPrinters();
     if (selectedProduct) {
       formRef.current?.setFieldsValue({
         title: selectedProduct.title,
@@ -87959,12 +88139,6 @@ const DrawerProduct = ({ onClose, visible }) => {
       disabled: `${currentTab}` !== "1" && selectedProduct == null
     },
     {
-      key: "4",
-      label: /* @__PURE__ */ jsxRuntimeExports.jsx("h4", { children: "Preços" }),
-      children: /* @__PURE__ */ jsxRuntimeExports.jsx(Prices, {}),
-      disabled: `${currentTab}` !== "4" && selectedProduct == null
-    },
-    {
       key: "2",
       label: /* @__PURE__ */ jsxRuntimeExports.jsx("h4", { children: "Fiscal" }),
       children: /* @__PURE__ */ jsxRuntimeExports.jsx(ProductFiscal, { formRef: formFiscalRef }),
@@ -87972,8 +88146,8 @@ const DrawerProduct = ({ onClose, visible }) => {
     },
     {
       key: "3",
-      label: /* @__PURE__ */ jsxRuntimeExports.jsx("h4", { children: "Complementos" }),
-      children: /* @__PURE__ */ jsxRuntimeExports.jsx(ProductComplement, {}),
+      label: /* @__PURE__ */ jsxRuntimeExports.jsx("h4", { children: "Preços" }),
+      children: /* @__PURE__ */ jsxRuntimeExports.jsx(Prices, {}),
       disabled: `${currentTab}` !== "3" && selectedProduct == null
     }
   ];
@@ -88140,7 +88314,7 @@ const Products$1 = () => {
   ];
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$l, { children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsxs(Header$4, { children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsxs(Header$3, { children: [
         /* @__PURE__ */ jsxRuntimeExports.jsxs(
           Button$2,
           {
@@ -89104,7 +89278,7 @@ const items$1 = [
     key: "3"
   }
 ];
-const Header$3 = ({ titleHeader, setCollapsed, collapsedValue }) => {
+const Header$2 = ({ titleHeader, setCollapsed, collapsedValue }) => {
   const [color2, setColor] = reactExports.useState(ColorList[0]);
   const [status, setStatus] = reactExports.useState(false);
   const { getCashier, cashier } = useCashier();
@@ -89121,7 +89295,7 @@ const Header$3 = ({ titleHeader, setCollapsed, collapsedValue }) => {
     return ColorList[randomIndex];
   }
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(
-    Header$a,
+    Header$9,
     {
       style: {
         width: "100%",
@@ -89259,7 +89433,7 @@ const AddSidebar = ({ children, titleHeader }) => {
             },
             children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx(
-                Header$3,
+                Header$2,
                 {
                   titleHeader,
                   setCollapsed: toggleCollapsed,
@@ -90705,7 +90879,7 @@ const Container$h = st.div`
   height: 100vh;
   padding: 20px;
 `;
-const Header$2 = st.div`
+const Header$1 = st.div`
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -90988,7 +91162,7 @@ const CategoryProducts$1 = () => {
   };
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
     /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$h, { children: [
-      /* @__PURE__ */ jsxRuntimeExports.jsx(Header$2, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", flexDirection: "row", gap: "16px" }, children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx(Header$1, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", flexDirection: "row", gap: "16px" }, children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           Button$2,
           {
@@ -91597,7 +91771,7 @@ const ModalCashier = () => {
   );
 };
 const { Text: Text$5, Title: Title$b } = Typography$1;
-const columns$5 = [
+const columns$6 = [
   {
     title: "MÉTODO DE PAGAMENTO",
     dataIndex: "methodPayment",
@@ -92048,7 +92222,7 @@ const CashierPage = () => {
       /* @__PURE__ */ jsxRuntimeExports.jsx(
         Table$2,
         {
-          columns: columns$5,
+          columns: columns$6,
           dataSource: mapPaymentsToTableData(),
           pagination: false,
           scroll: { y: 555 },
@@ -94102,7 +94276,7 @@ st.div`
   flex-direction: row;
 `;
 st.div``;
-const columns$4 = [
+const columns$5 = [
   {
     title: "",
     dataIndex: "number",
@@ -94169,7 +94343,7 @@ const PastCashiers = () => {
   return /* @__PURE__ */ jsxRuntimeExports.jsx(Container$9, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
     Table$2,
     {
-      columns: columns$4,
+      columns: columns$5,
       dataSource: cashiers,
       onChange: onChange$1,
       pagination: {
@@ -94221,7 +94395,7 @@ const CardInfoFinance$1 = st.div`
   gap: 10px;
 `;
 const { Text: Text$4 } = Typography$1;
-const columns$3 = [
+const columns$4 = [
   {
     title: "type",
     dataIndex: "type",
@@ -94735,7 +94909,7 @@ const CashierDetail = () => {
         Table$2,
         {
           loading: loadingP,
-          columns: columns$3,
+          columns: columns$4,
           dataSource: paymentsData,
           onChange,
           pagination: false,
@@ -94762,7 +94936,7 @@ const Container$7 = st.div`
     border-radius: 0;
   }
 `;
-const Header$1 = st.div`
+st.div`
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -94851,414 +95025,411 @@ const Takeout = () => {
       }
     });
   };
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(Container$7, { children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx(Header$1, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(Input$1.Search, { size: "large", placeholder: "Buscar" }) }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(
-      "div",
-      {
-        style: {
-          display: "flex",
-          flexDirection: "column",
-          gap: "10px"
-        },
-        children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
-          "div",
-          {
-            style: {
-              width: "100%",
-              display: "flex",
-              gap: "20px",
-              height: "calc(100vh - 230px)"
-            },
-            children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsxs(ContentProducts, { children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(CategoryProducts, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  Select$1,
-                  {
-                    showSearch: true,
-                    onChange: handleChange,
-                    size: "large",
-                    style: { width: "100%" },
-                    placeholder: "Filtre os produtos por categoria",
-                    optionFilterProp: "children",
-                    filterOption: (input, option) => (option?.label ?? "").toLowerCase().startsWith(input.toLowerCase()),
-                    filterSort: (optionA, optionB) => (optionA?.label ?? "").toLowerCase().localeCompare((optionB?.label ?? "").toLowerCase()),
-                    options: [
-                      { value: "", label: "Todas" },
-                      ...categories.map((c2) => ({ label: c2.title, value: c2.title }))
-                    ]
-                  }
-                ) }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx(Spin$1, { spinning: products.length === 0 ? true : false, size: "large", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "div",
-                  {
-                    style: {
-                      padding: "20px",
-                      display: "grid",
-                      gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
-                      rowGap: "20px",
-                      height: "calc(100vh - 310px)",
-                      overflowY: "scroll"
-                    },
-                    children: categorySelected === "" ? products.map((product) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      Badge$1,
-                      {
-                        color: "#2faa54",
-                        count: productsSelected.find((x2) => x2.id === product.id)?.quantity,
-                        children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                          CardProduct,
-                          {
-                            onClick: () => {
-                              console.log(product);
-                              addProductToTakeout(product);
-                              console.log(productsSelected);
-                            },
-                            children: [
-                              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                                Image$2,
-                                {
-                                  src: product.photo || NotImage,
-                                  preview: false,
-                                  style: {
-                                    width: "100%",
-                                    height: "50%",
-                                    borderRadius: "10px 10px 0 0"
-                                  }
-                                }
-                              ),
-                              /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                                "div",
-                                {
-                                  style: {
-                                    padding: "10px",
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    gap: "10px"
-                                  },
-                                  children: [
-                                    /* @__PURE__ */ jsxRuntimeExports.jsx(Paragraph$5, { strong: true, ellipsis: true, children: product.title }),
-                                    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: formatCurrency(Number(product.price)) })
-                                  ]
-                                }
-                              )
-                            ]
+  return /* @__PURE__ */ jsxRuntimeExports.jsx(Container$7, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+    "div",
+    {
+      style: {
+        display: "flex",
+        flexDirection: "column",
+        gap: "10px"
+      },
+      children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        "div",
+        {
+          style: {
+            width: "100%",
+            display: "flex",
+            gap: "20px",
+            height: "calc(100vh - 230px)"
+          },
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(ContentProducts, { children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(CategoryProducts, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Select$1,
+                {
+                  showSearch: true,
+                  onChange: handleChange,
+                  size: "large",
+                  style: { width: "100%" },
+                  placeholder: "Filtre os produtos por categoria",
+                  optionFilterProp: "children",
+                  filterOption: (input, option) => (option?.label ?? "").toLowerCase().startsWith(input.toLowerCase()),
+                  filterSort: (optionA, optionB) => (optionA?.label ?? "").toLowerCase().localeCompare((optionB?.label ?? "").toLowerCase()),
+                  options: [
+                    { value: "", label: "Todas" },
+                    ...categories.map((c2) => ({ label: c2.title, value: c2.title }))
+                  ]
+                }
+              ) }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Spin$1, { spinning: products.length === 0 ? true : false, size: "large", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "div",
+                {
+                  style: {
+                    padding: "20px",
+                    display: "grid",
+                    gridTemplateColumns: "repeat(auto-fill, minmax(200px, 1fr))",
+                    rowGap: "20px",
+                    height: "calc(100vh - 310px)",
+                    overflowY: "scroll"
+                  },
+                  children: categorySelected === "" ? products.map((product) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    Badge$1,
+                    {
+                      color: "#2faa54",
+                      count: productsSelected.find((x2) => x2.id === product.id)?.quantity,
+                      children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                        CardProduct,
+                        {
+                          onClick: () => {
+                            console.log(product);
+                            addProductToTakeout(product);
+                            console.log(productsSelected);
                           },
-                          product.id
-                        )
-                      },
-                      product.id
-                    )) : products.filter((x2) => x2.category.title === categorySelected).map((product) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      Badge$1,
-                      {
-                        color: "#2faa54",
-                        count: productsSelected.find((x2) => x2.id === product.id)?.quantity,
-                        children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                          CardProduct,
-                          {
-                            onClick: () => {
-                              console.log(product);
-                              addProductToTakeout(product);
-                            },
-                            children: [
-                              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                                Image$2,
-                                {
-                                  src: product.photo || NotImage,
-                                  preview: false,
-                                  style: {
-                                    width: "100%",
-                                    height: "40%",
-                                    borderRadius: "10px 10px 0 0"
-                                  }
+                          children: [
+                            /* @__PURE__ */ jsxRuntimeExports.jsx(
+                              Image$2,
+                              {
+                                src: product.photo || NotImage,
+                                preview: false,
+                                style: {
+                                  width: "100%",
+                                  height: "50%",
+                                  borderRadius: "10px 10px 0 0"
                                 }
-                              ),
-                              /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                                "div",
-                                {
-                                  style: {
-                                    padding: "10px",
-                                    display: "flex",
-                                    flexDirection: "column",
-                                    gap: "10px"
-                                  },
-                                  children: [
-                                    /* @__PURE__ */ jsxRuntimeExports.jsx("h4", { children: product.title }),
-                                    /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: formatCurrency(Number(product.price)) })
-                                  ]
-                                }
-                              )
-                            ]
-                          },
-                          product.id
-                        )
-                      },
-                      product.id
-                    ))
-                  }
-                ) })
-              ] }),
-              /* @__PURE__ */ jsxRuntimeExports.jsxs(ContentInfo, { children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "header",
-                  {
-                    style: {
-                      display: "flex",
-                      alignItems: "center",
-                      justifyContent: "flex-end"
-                    },
-                    children: /* @__PURE__ */ jsxRuntimeExports.jsx(Button$2, { type: "link", size: "large", children: "+ Selecionar cliente" })
-                  }
-                ),
-                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "div",
-                  {
-                    style: {
-                      display: "flex",
-                      flexDirection: "column",
-                      width: "100%",
-                      height: "70%",
-                      overflowY: "scroll",
-                      paddingBottom: "20px"
-                    },
-                    children: productsSelected.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                      "div",
-                      {
-                        style: {
-                          display: "flex",
-                          height: "100%",
-                          flexDirection: "column",
-                          justifyContent: "center",
-                          alignItems: "center"
-                        },
-                        children: [
-                          /* @__PURE__ */ jsxRuntimeExports.jsx(
-                            "img",
-                            {
-                              src: CartEmpty,
-                              style: {
-                                width: "200px"
                               }
-                            }
-                          ),
-                          /* @__PURE__ */ jsxRuntimeExports.jsx(Title$a, { level: 3, children: "Seu carrinho está vazio." }),
-                          /* @__PURE__ */ jsxRuntimeExports.jsx(Paragraph$5, { children: "Clique nos produtos para adicioná-los à venda." })
-                        ]
-                      }
-                    ) : productsSelected.map((product) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                      "div",
-                      {
-                        style: {
-                          padding: "10px",
-                          borderBottom: "1px solid #f2f2f2",
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "space-between",
-                          flexDirection: "row",
-                          gap: "10px"
+                            ),
+                            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                              "div",
+                              {
+                                style: {
+                                  padding: "10px",
+                                  display: "flex",
+                                  flexDirection: "column",
+                                  gap: "10px"
+                                },
+                                children: [
+                                  /* @__PURE__ */ jsxRuntimeExports.jsx(Paragraph$5, { strong: true, ellipsis: true, children: product.title }),
+                                  /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: formatCurrency(Number(product.price)) })
+                                ]
+                              }
+                            )
+                          ]
                         },
-                        children: [
-                          /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                            "div",
-                            {
-                              style: {
-                                display: "flex",
-                                alignItems: "center",
-                                gap: "10px"
-                              },
-                              children: [
-                                /* @__PURE__ */ jsxRuntimeExports.jsx(CountProduct, { onClick: () => removeProductToTakeout(product.id), children: product.quantity }),
-                                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                                  "p",
-                                  {
-                                    style: {
-                                      fontSize: "1rem"
-                                    },
-                                    children: product.title
-                                  }
-                                )
-                              ]
-                            }
-                          ),
-                          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: formatCurrency(product.total) })
-                        ]
-                      },
-                      product.id
-                    ))
-                  }
-                ),
-                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  Divider$1,
-                  {
-                    style: {
-                      margin: 0
-                    }
-                  }
-                ),
-                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "div",
-                  {
-                    style: {
-                      display: "flex",
-                      flexDirection: "column",
-                      width: "100%"
+                        product.id
+                      )
                     },
-                    children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      "div",
-                      {
-                        style: {
-                          margin: 0,
-                          padding: "10px"
+                    product.id
+                  )) : products.filter((x2) => x2.category.title === categorySelected).map((product) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    Badge$1,
+                    {
+                      color: "#2faa54",
+                      count: productsSelected.find((x2) => x2.id === product.id)?.quantity,
+                      children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                        CardProduct,
+                        {
+                          onClick: () => {
+                            console.log(product);
+                            addProductToTakeout(product);
+                          },
+                          children: [
+                            /* @__PURE__ */ jsxRuntimeExports.jsx(
+                              Image$2,
+                              {
+                                src: product.photo || NotImage,
+                                preview: false,
+                                style: {
+                                  width: "100%",
+                                  height: "40%",
+                                  borderRadius: "10px 10px 0 0"
+                                }
+                              }
+                            ),
+                            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                              "div",
+                              {
+                                style: {
+                                  padding: "10px",
+                                  display: "flex",
+                                  flexDirection: "column",
+                                  gap: "10px"
+                                },
+                                children: [
+                                  /* @__PURE__ */ jsxRuntimeExports.jsx("h4", { children: product.title }),
+                                  /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: formatCurrency(Number(product.price)) })
+                                ]
+                              }
+                            )
+                          ]
                         },
-                        children: productsSelected.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-                          " ",
-                          /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                            "div",
-                            {
-                              style: {
-                                width: "100%",
-                                display: "flex",
-                                justifyContent: "space-between"
-                              },
-                              children: [
-                                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                                  Paragraph$5,
-                                  {
-                                    style: {
-                                      margin: 0,
-                                      fontSize: "1rem",
-                                      color: "rgb(54, 63, 77)"
-                                    },
-                                    children: productsSelected.length > 1 ? `${productsSelected.length} itens` : `${productsSelected.length} item`
-                                  }
-                                ),
-                                /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                                  Paragraph$5,
-                                  {
-                                    style: {
-                                      margin: 0,
-                                      fontSize: "1rem",
-                                      color: "rgb(54, 63, 77)"
-                                    },
-                                    children: [
-                                      "SubTotal:",
-                                      " ",
-                                      /* @__PURE__ */ jsxRuntimeExports.jsx("b", { children: formatCurrency(
-                                        productsSelected.map((x2) => x2.total).reduce((a, b2) => a + b2, 0)
-                                      ) })
-                                    ]
-                                  }
-                                )
-                              ]
+                        product.id
+                      )
+                    },
+                    product.id
+                  ))
+                }
+              ) })
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(ContentInfo, { children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "header",
+                {
+                  style: {
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "flex-end"
+                  },
+                  children: /* @__PURE__ */ jsxRuntimeExports.jsx(Button$2, { type: "link", size: "large", children: "+ Selecionar cliente" })
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "div",
+                {
+                  style: {
+                    display: "flex",
+                    flexDirection: "column",
+                    width: "100%",
+                    height: "70%",
+                    overflowY: "scroll",
+                    paddingBottom: "20px"
+                  },
+                  children: productsSelected.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    "div",
+                    {
+                      style: {
+                        display: "flex",
+                        height: "100%",
+                        flexDirection: "column",
+                        justifyContent: "center",
+                        alignItems: "center"
+                      },
+                      children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          "img",
+                          {
+                            src: CartEmpty,
+                            style: {
+                              width: "200px"
                             }
-                          ),
-                          /* @__PURE__ */ jsxRuntimeExports.jsx(
-                            "div",
-                            {
-                              style: {
-                                width: "100%",
-                                display: "flex",
-                                justifyContent: "flex-end"
-                              },
-                              children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                                Button$2,
+                          }
+                        ),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(Title$a, { level: 3, children: "Seu carrinho está vazio." }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(Paragraph$5, { children: "Clique nos produtos para adicioná-los à venda." })
+                      ]
+                    }
+                  ) : productsSelected.map((product) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    "div",
+                    {
+                      style: {
+                        padding: "10px",
+                        borderBottom: "1px solid #f2f2f2",
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "space-between",
+                        flexDirection: "row",
+                        gap: "10px"
+                      },
+                      children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                          "div",
+                          {
+                            style: {
+                              display: "flex",
+                              alignItems: "center",
+                              gap: "10px"
+                            },
+                            children: [
+                              /* @__PURE__ */ jsxRuntimeExports.jsx(CountProduct, { onClick: () => removeProductToTakeout(product.id), children: product.quantity }),
+                              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                "p",
                                 {
-                                  type: "default",
-                                  size: "large",
                                   style: {
-                                    padding: "0",
-                                    fontWeight: "bold",
-                                    color: "#2faa54",
-                                    backgroundColor: "transparent",
-                                    border: "none",
-                                    boxShadow: "none"
+                                    fontSize: "1rem"
                                   },
-                                  children: "Aplicar desconto"
+                                  children: product.title
                                 }
                               )
-                            }
-                          ),
-                          /* @__PURE__ */ jsxRuntimeExports.jsx(
-                            "div",
-                            {
-                              style: {
-                                width: "100%",
-                                display: "flex",
-                                justifyContent: "flex-end"
-                              },
-                              children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                                Title$a,
+                            ]
+                          }
+                        ),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: formatCurrency(product.total) })
+                      ]
+                    },
+                    product.id
+                  ))
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Divider$1,
+                {
+                  style: {
+                    margin: 0
+                  }
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "div",
+                {
+                  style: {
+                    display: "flex",
+                    flexDirection: "column",
+                    width: "100%"
+                  },
+                  children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "div",
+                    {
+                      style: {
+                        margin: 0,
+                        padding: "10px"
+                      },
+                      children: productsSelected.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+                        " ",
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                          "div",
+                          {
+                            style: {
+                              width: "100%",
+                              display: "flex",
+                              justifyContent: "space-between"
+                            },
+                            children: [
+                              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                                Paragraph$5,
                                 {
-                                  level: 4,
                                   style: {
+                                    margin: 0,
+                                    fontSize: "1rem",
+                                    color: "rgb(54, 63, 77)"
+                                  },
+                                  children: productsSelected.length > 1 ? `${productsSelected.length} itens` : `${productsSelected.length} item`
+                                }
+                              ),
+                              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                                Paragraph$5,
+                                {
+                                  style: {
+                                    margin: 0,
+                                    fontSize: "1rem",
                                     color: "rgb(54, 63, 77)"
                                   },
                                   children: [
-                                    "Total:",
+                                    "SubTotal:",
                                     " ",
-                                    formatCurrency(
+                                    /* @__PURE__ */ jsxRuntimeExports.jsx("b", { children: formatCurrency(
                                       productsSelected.map((x2) => x2.total).reduce((a, b2) => a + b2, 0)
-                                    )
+                                    ) })
                                   ]
                                 }
                               )
-                            }
-                          )
-                        ] })
+                            ]
+                          }
+                        ),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          "div",
+                          {
+                            style: {
+                              width: "100%",
+                              display: "flex",
+                              justifyContent: "flex-end"
+                            },
+                            children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                              Button$2,
+                              {
+                                type: "default",
+                                size: "large",
+                                style: {
+                                  padding: "0",
+                                  fontWeight: "bold",
+                                  color: "#2faa54",
+                                  backgroundColor: "transparent",
+                                  border: "none",
+                                  boxShadow: "none"
+                                },
+                                children: "Aplicar desconto"
+                              }
+                            )
+                          }
+                        ),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          "div",
+                          {
+                            style: {
+                              width: "100%",
+                              display: "flex",
+                              justifyContent: "flex-end"
+                            },
+                            children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                              Title$a,
+                              {
+                                level: 4,
+                                style: {
+                                  color: "rgb(54, 63, 77)"
+                                },
+                                children: [
+                                  "Total:",
+                                  " ",
+                                  formatCurrency(
+                                    productsSelected.map((x2) => x2.total).reduce((a, b2) => a + b2, 0)
+                                  )
+                                ]
+                              }
+                            )
+                          }
+                        )
+                      ] })
+                    }
+                  )
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                "div",
+                {
+                  style: {
+                    display: "flex",
+                    gap: "15px",
+                    padding: "0 10px 10px 10px",
+                    alignItems: "flex-end",
+                    height: `${productsSelected.length === 0 ? "170px" : "70px"}`
+                  },
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      Button$2,
+                      {
+                        style: {},
+                        danger: true,
+                        type: "default",
+                        disabled: productsSelected.length === 0,
+                        onClick: info,
+                        size: "large",
+                        icon: /* @__PURE__ */ jsxRuntimeExports.jsx(RiDeleteBin5Fill, {})
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      Button$2,
+                      {
+                        type: "primary",
+                        style: {
+                          flex: 1,
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          flexDirection: "row-reverse"
+                        },
+                        size: "large",
+                        onClick: () => navigate("/pedidos-balcao/pagamentos/"),
+                        disabled: productsSelected.length === 0,
+                        icon: /* @__PURE__ */ jsxRuntimeExports.jsx(IoMdArrowDropright, { size: 22 }),
+                        children: "Ir para pagamentos"
                       }
                     )
-                  }
-                ),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                  "div",
-                  {
-                    style: {
-                      display: "flex",
-                      gap: "15px",
-                      padding: "0 10px 10px 10px",
-                      alignItems: "flex-end",
-                      height: `${productsSelected.length === 0 ? "170px" : "70px"}`
-                    },
-                    children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(
-                        Button$2,
-                        {
-                          style: {},
-                          danger: true,
-                          type: "default",
-                          disabled: productsSelected.length === 0,
-                          onClick: info,
-                          size: "large",
-                          icon: /* @__PURE__ */ jsxRuntimeExports.jsx(RiDeleteBin5Fill, {})
-                        }
-                      ),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(
-                        Button$2,
-                        {
-                          type: "primary",
-                          style: {
-                            flex: 1,
-                            display: "flex",
-                            alignItems: "center",
-                            justifyContent: "center",
-                            flexDirection: "row-reverse"
-                          },
-                          size: "large",
-                          onClick: () => navigate("/pedidos-balcao/pagamentos/"),
-                          disabled: productsSelected.length === 0,
-                          icon: /* @__PURE__ */ jsxRuntimeExports.jsx(IoMdArrowDropright, { size: 22 }),
-                          children: "Ir para pagamentos"
-                        }
-                      )
-                    ]
-                  }
-                )
-              ] })
-            ]
-          }
-        )
-      }
-    )
-  ] });
+                  ]
+                }
+              )
+            ] })
+          ]
+        }
+      )
+    }
+  ) });
 };
 const Container$6 = st.div`
   width: 100%;
@@ -95482,7 +95653,7 @@ const CardOrder = ({ onClick }) => {
   ] }) });
 };
 const { Title: Title$8, Paragraph: Paragraph$3 } = Typography$1;
-const columns$2 = [
+const columns$3 = [
   {
     title: "Qtd",
     dataIndex: "quantity",
@@ -95681,7 +95852,7 @@ const ModalOrder = ({ isModalOpen, onCancel }) => {
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           Table$2,
           {
-            columns: columns$2,
+            columns: columns$3,
             scroll: { y: 240 },
             pagination: false,
             style: {
@@ -108533,7 +108704,7 @@ function organizePaymentsByMethod(payments) {
   }
   return paymentSummary;
 }
-const columns$1 = [
+const columns$2 = [
   {
     title: "type",
     dataIndex: "type",
@@ -108917,7 +109088,7 @@ const FinancialStats = () => {
       Table$2,
       {
         loading: loadingP,
-        columns: columns$1,
+        columns: columns$2,
         dataSource: paymentsData,
         onChange: onChange2,
         pagination: false,
@@ -112999,7 +113170,7 @@ function normalizeLocalDisabled(localDisabled, globalDisabled) {
   };
 }
 [KeyboardCode.Down, KeyboardCode.Right, KeyboardCode.Up, KeyboardCode.Left];
-const columns = [
+const columns$1 = [
   {
     key: "sort",
     width: "5%"
@@ -113121,7 +113292,7 @@ const TableComplemts = ({
           },
           loading: loading || isLoading,
           rowKey: "key",
-          columns,
+          columns: columns$1,
           pagination: false,
           dataSource,
           scroll: { y: "calc(100vh - 220px)" }
@@ -114075,9 +114246,48 @@ const Catalogs = () => {
   ] });
 };
 const { Title: Title2, Text } = Typography$1;
+const columns = [
+  {
+    title: "Produto",
+    dataIndex: "product_detail",
+    render: (product) => /* @__PURE__ */ jsxRuntimeExports.jsx("a", { children: product.title })
+  },
+  {
+    title: "Categoria",
+    dataIndex: "product_detail",
+    key: "category",
+    render: (product) => /* @__PURE__ */ jsxRuntimeExports.jsx("a", { children: product?.product_category?.title })
+  },
+  {
+    title: "Preço",
+    dataIndex: "price"
+  },
+  {
+    title: "Identificador",
+    dataIndex: "tag",
+    filters: [
+      {
+        text: "Cardapio Digital",
+        value: "cardapio_digital"
+      },
+      {
+        text: "Delivery",
+        value: "Category 1"
+      }
+    ],
+    onFilter: (value, record) => {
+      if (typeof value === "string") {
+        return record.tag.includes(value);
+      }
+      return false;
+    }
+  }
+];
 const Catalog = () => {
   const [loadingP, setLoadingP] = React.useState(false);
   const hasUpdate = React.useRef(false);
+  const [addProductsDrawer, setAddProductsDrawer] = reactExports.useState(false);
+  const [productPrices, setProductPrices] = reactExports.useState([]);
   const [catalog, setCatalog] = reactExports.useState(null);
   const props = {
     multiple: false,
@@ -114111,11 +114321,19 @@ const Catalog = () => {
       }, 500);
     }
   }, []);
+  const fecthProductsPrices = reactExports.useCallback(() => {
+    api.get("/product-price/").then((response) => {
+      setProductPrices(response.data);
+    });
+  }, []);
+  const [selectedProducts, setSelectedProducts] = reactExports.useState();
+  const [selectedProductsKey, setSelectedProductsKey] = reactExports.useState();
   const fecthCatalog = reactExports.useCallback((id22) => {
     setLoading(true);
     api.get(`/catalog-crud/${id22}/`).then((response) => {
       setCatalog(response.data);
       updateIframe(`https://peditz.me/${response.data.restaurant.slug}/${response.data.slug}`);
+      setSelectedProductsKey(response.data.products_prices);
       form.current?.setFieldsValue(response.data);
     }).finally(() => {
       setTimeout(() => {
@@ -114127,9 +114345,29 @@ const Catalog = () => {
   reactExports.useEffect(() => {
     if (!hasUpdate.current && id2) {
       fecthCatalog(id2);
+      fecthProductsPrices();
       hasUpdate.current = true;
     }
   }, []);
+  const saveCatalog = reactExports.useCallback((values) => {
+    setLoading(true);
+    api.patch(`/catalog-crud/${id2}/`, values).then((response) => {
+      updateIframe(`https://peditz.me/${response.data.restaurant.slug}/${response.data.slug}`);
+    }).finally(() => {
+      setLoading(false);
+    });
+  }, []);
+  const rowSelection = {
+    onChange: (keys2, selectedRows) => {
+      setSelectedProducts(selectedRows);
+      setSelectedProductsKey(keys2);
+    },
+    getCheckboxProps: (record) => ({
+      disabled: selectedProducts?.find((p2) => p2.product_detail.id === record.product_detail.id) && selectedProducts?.find((p2) => p2.product_detail.id === record.product_detail.id)?.id !== record.id,
+      name: record.product_detail.id
+    })
+  };
+  const [windowHeight] = React.useState(window.innerHeight);
   return /* @__PURE__ */ jsxRuntimeExports.jsx(Container$1, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
     "div",
     {
@@ -114141,7 +114379,7 @@ const Catalog = () => {
       children: [
         /* @__PURE__ */ jsxRuntimeExports.jsx(Spin$1, { spinning: loading, size: "large", children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Card$3, { children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(Title2, { level: 4, children: "Organize seu cardápio" }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs(Form$1, { ref: form, layout: "vertical", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs(Form$1, { ref: form, layout: "vertical", onFinish: saveCatalog, children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(ImgCrop, { rotationSlider: true, aspect: 371 / 118, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
               Dragger2,
               {
@@ -114218,7 +114456,7 @@ const Catalog = () => {
                   gap: "1rem"
                 },
                 children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(Button$2, { size: "large", children: "Editar prodtuos" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(Button$2, { size: "large", onClick: () => setAddProductsDrawer(true), children: "Editar produtos" }),
                   /* @__PURE__ */ jsxRuntimeExports.jsx(Button$2, { size: "large", children: "Editar Complementos" })
                 ]
               }
@@ -114231,7 +114469,17 @@ const Catalog = () => {
                   width: "100%",
                   padding: "1rem 0 0 0"
                 },
-                children: /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(Button$2, { size: "large", type: "primary", icon: /* @__PURE__ */ jsxRuntimeExports.jsx(SaveOutlined$1, {}), children: "Salvar" }) })
+                children: /* @__PURE__ */ jsxRuntimeExports.jsx(Form$1.Item, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Button$2,
+                  {
+                    loading,
+                    size: "large",
+                    type: "primary",
+                    icon: /* @__PURE__ */ jsxRuntimeExports.jsx(SaveOutlined$1, {}),
+                    htmlType: "submit",
+                    children: "Salvar"
+                  }
+                ) })
               }
             )
           ] })
@@ -114277,7 +114525,7 @@ const Catalog = () => {
                       {
                         onClick: () => {
                           if (iframeRef.current) {
-                            iframeRef.current.src = "https://peditz.me/taurus";
+                            iframeRef.current.src = `https://peditz.me/${catalog?.restaurant.slug}/${catalog?.slug}`;
                           }
                         },
                         icon: /* @__PURE__ */ jsxRuntimeExports.jsx(ExportOutlined$1, {}),
@@ -114290,7 +114538,7 @@ const Catalog = () => {
                       {
                         onClick: () => {
                           if (iframeRef.current) {
-                            iframeRef.current.src = "https://peditz.me/taurus";
+                            iframeRef.current.src = `https://peditz.me/${catalog?.restaurant.slug}/${catalog?.slug}`;
                           }
                         },
                         icon: /* @__PURE__ */ jsxRuntimeExports.jsx(LinkOutlined$1, {}),
@@ -114316,7 +114564,56 @@ const Catalog = () => {
               )
             ]
           }
-        ) })
+        ) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          Drawer$1,
+          {
+            open: addProductsDrawer,
+            width: 700,
+            onClose: () => setAddProductsDrawer(false),
+            title: "Adicione Produtos ao seu cardápio",
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Table$2,
+                {
+                  rowSelection: {
+                    type: "checkbox",
+                    selectedRowKeys: selectedProductsKey,
+                    ...rowSelection
+                  },
+                  columns,
+                  pagination: false,
+                  dataSource: productPrices.map((p2) => ({
+                    ...p2,
+                    key: p2.id
+                  })),
+                  scroll: { y: windowHeight - 250 }
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                Button$2,
+                {
+                  size: "large",
+                  type: "primary",
+                  onClick: () => {
+                    setLoading(true);
+                    api.patch(`catalog-crud/${id2}/`, {
+                      products_prices: selectedProductsKey
+                    }).then((response) => {
+                      updateIframe(
+                        `https://peditz.me/${response.data.restaurant.slug}/${response.data.slug}`
+                      );
+                      setAddProductsDrawer(false);
+                    }).finally(() => {
+                      setLoading(false);
+                    });
+                  },
+                  children: "Salvar"
+                }
+              )
+            ]
+          }
+        )
       ]
     }
   ) });
@@ -114666,7 +114963,7 @@ function App() {
         },
         children: /* @__PURE__ */ jsxRuntimeExports.jsx(SocketProvider, { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Xe, { theme, children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(GlobalStyle, {}),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(CashierProvider, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(ProductsProvider, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(PrinterProvider, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(BillProvider, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(TakeoutProvider, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(Navigation, {}) }) }) }) }) })
+          /* @__PURE__ */ jsxRuntimeExports.jsx(CashierProvider, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(ProductsProvider, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(PrinterProvider, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(BillProvider, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(TakeoutProvider, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(StockProvider, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(Navigation, {}) }) }) }) }) }) })
         ] }) })
       }
     )

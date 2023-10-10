@@ -5,7 +5,6 @@ import { PlusOutlined } from '@ant-design/icons'
 import { ColumnsType } from 'antd/es/table'
 import { DrawerRegister } from './components/DrawerRegister/DrawerRegister'
 import { Stock } from '@renderer/types'
-import api from '@renderer/services/api'
 import { useStock } from '@renderer/hooks'
 
 export const Stocks: React.FC = () => {
@@ -65,7 +64,7 @@ export const Stocks: React.FC = () => {
             type="primary"
             size="small"
             onClick={() => {
-              getOneStock(record.id)
+              getOneStock(record.id as string)
               setCurrentTab('3')
               setVisibleModalRegister(true)
             }}
