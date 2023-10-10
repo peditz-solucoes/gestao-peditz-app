@@ -23,10 +23,10 @@ export const EditStock: React.FC = () => {
   const formAdd = useRef<FormInstance>(null)
 
   useEffect(() => {
-    getOneStock(stockRegisteredId as string).then(() => {
+    if (stockSelected) {
       form.setFieldsValue({ ...stockSelected, category: stockSelected?.category_detail?.title })
-    })
-  }, [stockRegisteredId])
+    }
+  }, [stockSelected])
 
   const onNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setName(event.target.value)

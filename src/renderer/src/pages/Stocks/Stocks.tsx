@@ -10,7 +10,8 @@ import { useStock } from '@renderer/hooks'
 
 export const Stocks: React.FC = () => {
   const [visibleModalRegister, setVisibleModalRegister] = React.useState(false)
-  const { getStock, stocks, deleteStock, setCurrentTab, setStockRegisteredId } = useStock()
+  const { getStock, stocks, deleteStock, setCurrentTab, setStockRegisteredId, getOneStock } =
+    useStock()
 
   useEffect(() => {
     getStock()
@@ -64,7 +65,7 @@ export const Stocks: React.FC = () => {
             type="primary"
             size="small"
             onClick={() => {
-              setStockRegisteredId(record.id as string)
+              getOneStock(record.id)
               setCurrentTab('3')
               setVisibleModalRegister(true)
             }}
