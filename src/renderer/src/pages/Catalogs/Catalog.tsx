@@ -272,7 +272,7 @@ export const Catalog: React.FC = () => {
                 }}
               >
                 <Button size="large" onClick={(): void => setAddProductsDrawer(true)}>
-                  Editar prodtuos
+                  Editar produtos
                 </Button>
                 <Button size="large">Editar Complementos</Button>
               </Space>
@@ -330,7 +330,7 @@ export const Catalog: React.FC = () => {
               <Button
                 onClick={(): void => {
                   if (iframeRef.current) {
-                    iframeRef.current.src = 'https://peditz.me/taurus'
+                    iframeRef.current.src = `https://peditz.me/${catalog?.restaurant.slug}/${catalog?.slug}`
                   }
                 }}
                 icon={<ExportOutlined />}
@@ -340,7 +340,7 @@ export const Catalog: React.FC = () => {
               <Button
                 onClick={(): void => {
                   if (iframeRef.current) {
-                    iframeRef.current.src = 'https://peditz.me/taurus'
+                    iframeRef.current.src = `https://peditz.me/${catalog?.restaurant.slug}/${catalog?.slug}`
                   }
                 }}
                 icon={<LinkOutlined />}

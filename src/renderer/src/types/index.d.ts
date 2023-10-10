@@ -298,7 +298,15 @@ export type Stock = {
   product_type: string
   minimum_stock: string
   stock: string
-  category: string
+  category_detail: { title: string; id: string }
+  ingredients?: Ingredients[]
+}
+
+export type Ingredients = {
+  id?: string
+  item: string
+  ingredient?: string
+  quantity: string
 }
 
 export type CategoryStock = {

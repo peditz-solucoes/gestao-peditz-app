@@ -43,9 +43,6 @@ export const Takeout: React.FC = () => {
 
   return (
     <S.Container>
-      <S.Header>
-        <Input.Search size="large" placeholder="Buscar" />
-      </S.Header>
       <div
         style={{
           display: 'flex',

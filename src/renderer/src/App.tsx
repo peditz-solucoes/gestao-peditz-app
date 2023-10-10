@@ -4,7 +4,13 @@ import { Navigation } from './routes/Routes'
 import { HashRouter as Router } from 'react-router-dom'
 import GlobalStyle from './theme/GlobalStyles'
 import { ConfigProvider, message } from 'antd'
-import { BillProvider, PrinterProvider, ProductsProvider, TakeoutProvider } from './hooks'
+import {
+  BillProvider,
+  PrinterProvider,
+  ProductsProvider,
+  StockProvider,
+  TakeoutProvider
+} from './hooks'
 import { CashierProvider } from './hooks'
 import { SocketProvider } from './hooks/useSocket'
 
@@ -27,7 +33,9 @@ function App(): JSX.Element {
                 <PrinterProvider>
                   <BillProvider>
                     <TakeoutProvider>
-                      <Navigation />
+                      <StockProvider>
+                        <Navigation />
+                      </StockProvider>
                     </TakeoutProvider>
                   </BillProvider>
                 </PrinterProvider>
