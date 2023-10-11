@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import * as S from './styles'
 import { PrinterOutlined, ScanOutlined } from '@ant-design/icons'
 import { CardHabilitated } from './Components/CardHabilitated'
@@ -7,9 +7,11 @@ import { SiIfood } from 'react-icons/si'
 import { FaWhatsapp } from 'react-icons/fa'
 import { usePrinter } from '@renderer/hooks'
 import { PrinterModal } from '@renderer/components/PrinterModal/PrinterModal'
+import { DrawerIfood } from './Components/DrawerIfood'
 
 export const Integrations: React.FC = () => {
   const { setShowModal } = usePrinter()
+  const [visibleDrawerIfood, setVisibleDrawerIfood] = useState(false)
 
   return (
     <>
@@ -107,8 +109,8 @@ export const Integrations: React.FC = () => {
               button={{
                 text: 'Habilitar',
                 type: 'primary',
-                onClick: () => console.log('click'),
-                disabled: true
+                onClick: () => setVisibleDrawerIfood(true),
+                // disabled: true
               }}
               style={{
                 backgroundColor: '#F5F5F5'
@@ -153,6 +155,7 @@ export const Integrations: React.FC = () => {
         </S.Title>
       </S.Container>
       <PrinterModal />
+      <DrawerIfood open={visibleDrawerIfood} onClose={() => setVisibleDrawerIfood(false)} />
     </>
   )
 }
