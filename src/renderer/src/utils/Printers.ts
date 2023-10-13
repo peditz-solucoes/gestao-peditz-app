@@ -297,6 +297,7 @@ interface ItemsOrdersProps {
       item_id: string
     }[]
   }[]
+  product_price?: string
   notes: string
   product_title: string
   printer_name?: string
@@ -413,4 +414,186 @@ export function Order(
     `
     )
   }
+}
+
+
+export function OrderTakeOut(
+  restaurant: string,
+  code: string,
+  items: ItemsOrdersProps[],
+  obs:string,
+  operator: string,
+  date: string
+): void {
+  // console.log(items)
+  const grouped: { [key: string]: ItemsOrdersProps[] } = {}
+  for (const i of items) {
+    const printerName = i.printer_name || 'caixa'
+    if (printerName !== null) {
+      if (!grouped[printerName]) {
+        grouped[printerName] = []
+      }
+      grouped[printerName].push(i)
+    }
+  }
+  for (const i in grouped) {
+    window.electronBridge.printLine(
+      i,
+      `
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>Novo pedido</title>
+          <style>
+            * {
+              font-family: sans-serif;
+              font-size: 18px;
+            }
+            @page {
+              size: 80mm auto;
+              margin: 6mm;
+              padding: 0mm,
+            }
+          </style>
+        </head>
+        <body>
+          <h2
+            style="
+              margin-bottom: 5px;
+              text-transform: uppercase;
+              font-size: 24px;
+              text-align: center;
+            "
+          >
+            Novo pedido!
+          </h2>
+          <hr style="border-style: dashed" />
+          <h4 style="margin: 0; text-align: center;">${moment(date).format(
+            'DD/MM/YYYY HH:mm:ss'
+          )}</h4>
+          <h4 style="margin: 0; text-align: center; margin-top: 5px">SENHA ${code}</h4>
+          <h4 style="margin: 0; text-align: center; margin-top: 5px">Responsável ${operator}</h4>
+          <hr style="border-style: dashed" />
+          <ul style="padding: 0; font-size: 24px">
+          ${addOrderItemInString(grouped[i])}
+          </ul>
+          <p>${obs}</p>
+          <hr style="border-style: dashed" />
+          <div
+            style="margin-top: 10px ; font-size: 14px;"
+          >
+            <strong style="font-size: 14px;">Impressora:</strong>
+            <span style="font-size: 14px;">${i}</span>
+          </div>
+          <br>
+          <p style="margin: 0; text-align: center; font-size: 12px">
+            ${restaurant}
+          </p>
+        </body>
+      </html>
+    `
+    )
+  }
+}
+
+
+interface ResumTakeOutProps {
+  number: string
+  code: string
+  date: string
+  total: number
+  recebido: string
+  payment: string
+  atendente: string
+  items: ItemsOrdersProps[],
+}
+
+function renderTKItem(item: ItemsOrdersProps[]){
+  let row = ''
+  for (const product of item) {
+    row += `
+    <li style="list-style: none; margin-top: 10px">
+      <div style="display: flex; justify-content: space-between">
+        <strong>${product.quantity}x ${product.product_title}</strong>
+        <span>${formatCurrency(Number(product?.product_price)*product.quantity || 0)}</span>
+      </div>
+  `
+
+    row += `
+    </li>
+  `
+  }
+
+  return row
+}
+
+export function ResumTakeout(props: ResumTakeOutProps): void {
+  const restaurant = JSON.parse(localStorage.getItem('restaurant-info') || '{}')
+  const html = `<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Impressão</title>
+      <style>
+        * {
+          font-family: sans-serif;
+          font-size: 14px;
+        }
+        @page {
+          size: 80mm auto;
+          margin: 0 3mm;
+          padding: 0mm;
+        }
+      </style>
+    </head>
+    <body>
+      <h3 style="margin-bottom: 5px">${restaurant?.title}</h3>
+      <p style="margin: 0; margin-bottom: 2px">${restaurant?.street}, ${restaurant?.number}</p>
+      <p style="margin: 0; margin-bottom: 2px">${restaurant?.zip_code}, ${restaurant?.complement} ${
+    restaurant?.city
+  }/${restaurant?.state}</p>
+      <p style="margin: 0; margin-bottom: 2px">${formatPhoneNumber(restaurant.phone)}</p>
+      <p style="margin: 0; margin-bottom: 2px">${restaurant?.email}</p>
+      <hr style="border-style: dashed" />
+
+      <h4 style="margin: 0">Nº DO PEDIDO: ${props.number}</h4>
+      <h4 style="margin: 0">DATA DE IMPRESSÃO: ${new Date().toLocaleString()}</h4>
+      <h4 style="margin-top: 10px">RESUMO</h4>
+      <ul style="padding: 0">
+        ${renderTKItem(props.items)}
+      </ul>
+
+      <hr style="border-style: dashed" />
+      <div style="display: flex; justify-content: space-between; margin-top: 10px;">
+        <strong>TOTAL:</strong>
+        <span>${formatCurrency(props.total)}</span>
+      </div>
+      <div style="display: flex; justify-content: space-between; margin-top: 10px;">
+        <strong>VALOR RECEBIDO:</strong>
+        <span>${props.recebido}</span>
+      </div>
+      <div style="display: flex; justify-content: space-between; margin-top: 10px;">
+        <strong>FORMA DE PAGAMENTO:</strong>
+        <span>${props.payment}</span>
+      </div>
+      <hr style="border-style: dashed" />
+      <div style="display: flex; justify-content: space-between; margin-top: 10px;">
+        <strong>SENHA:</strong>
+        <span>${props.code}</span>
+      </div>
+      <hr style="border-style: dashed" />
+      <br>
+      <br>
+      <p style="margin: 0; text-align: center; font-size: 12px;">
+        Desenvolvido por @peditz.br
+      </p>
+      <p style="margin: 0; text-align: center; font-size: 12px;">
+        wwww.peditz.com.br
+      </p>
+    </body>
+  </html>`
+  window.electronBridge.printLine('caixa', html)
 }

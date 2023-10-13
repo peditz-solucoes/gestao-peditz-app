@@ -24,6 +24,8 @@ import { useTakeout } from '@renderer/hooks'
 import { ItemCard } from './components/ItemCard'
 import { Link, useNavigate } from 'react-router-dom'
 import { FaCashRegister } from 'react-icons/fa'
+import { Order, OrderTakeOut, ResumTakeout } from '@renderer/utils/Printers'
+import dayjs from 'dayjs'
 
 const { Title, Paragraph } = Typography
 
@@ -318,8 +320,35 @@ export const TakeoutPayment: React.FC = () => {
                         payment_methods,
                         notes
                       })
-                      .then(() => {
+                      .then((response) => {
+                        OrderTakeOut(
+                          response.data.restaurant.title,
+                          '123',
+                          response.data.order_items,
+                          notes,
+                          response.data?.collaborator_name || '',
+                          response.data?.created || ''
+                        )
+                        setTimeout(
+                          ()=>{
+                            
+                        ResumTakeout(
+                          {
+                            number: String(response.data.order_number),
+                            code: '123',
+                            date: dayjs().format('DD/MM/YYYY'),
+                            total: Number(response.data.total),
+                            recebido: formatCurrency(formOfPayments.reduce((acc, item) => acc + brlToNumber(item.value), 0)),
+                            payment: formOfPayments.map(f=> formOfPayment.find(pm=> pm.id=== f.id).title).join(', '),
+                            items: response.data.order_items,
+                            atendente: response.data?.collaborator_name || '',
+                          }
+                        )
+                        
+                          }, 300
+                        )
                         clearTakeout()
+
                         navigate('/pedidos-balcao/')
                         notification.success({
                           message: 'Pedido realizado com sucesso!',
