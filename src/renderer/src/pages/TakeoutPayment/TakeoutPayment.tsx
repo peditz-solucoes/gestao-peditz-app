@@ -386,7 +386,7 @@ export const TakeoutPayment: React.FC = () => {
                       .then((response) => {
                         OrderTakeOut(
                           response.data.restaurant.title,
-                          '123',
+                          response.data.takeout_order.padStart(6, '0'),
                           response.data.order_items,
                           notes,
                           response.data?.collaborator_name || '',
@@ -395,7 +395,7 @@ export const TakeoutPayment: React.FC = () => {
                         setTimeout(() => {
                           ResumTakeout({
                             number: String(response.data.order_number),
-                            code: '123',
+                            code: response.data.takeout_order.padStart(6, '0'),
                             date: dayjs().format('DD/MM/YYYY'),
                             total: Number(response.data.total),
                             recebido: formatCurrency(
@@ -410,7 +410,7 @@ export const TakeoutPayment: React.FC = () => {
                           if (printAgain) {
                             ResumTakeout({
                               number: String(response.data.order_number),
-                              code: '123',
+                              code: response.data.takeout_order.padStart(6, '0'),
                               date: dayjs().format('DD/MM/YYYY'),
                               total: Number(response.data.total),
                               recebido: formatCurrency(
