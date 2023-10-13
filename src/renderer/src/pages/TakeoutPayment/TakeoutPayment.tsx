@@ -32,7 +32,7 @@ import { useTakeout } from '@renderer/hooks'
 import { ItemCard } from './components/ItemCard'
 import { Link, useNavigate } from 'react-router-dom'
 import { FaCashRegister } from 'react-icons/fa'
-import { Order, OrderTakeOut, ResumTakeout } from '@renderer/utils/Printers'
+import { OrderTakeOut, ResumTakeout } from '@renderer/utils/Printers'
 import dayjs from 'dayjs'
 
 const { Title, Paragraph } = Typography
