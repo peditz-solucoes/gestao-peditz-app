@@ -10,10 +10,18 @@ import {
   Modal,
   Select,
   Space,
+  Switch,
+  Tooltip,
   Typography,
   notification
 } from 'antd'
-import { CloseOutlined, MinusCircleOutlined, PlusOutlined, LeftOutlined } from '@ant-design/icons'
+import {
+  CloseOutlined,
+  MinusCircleOutlined,
+  PlusOutlined,
+  LeftOutlined,
+  PrinterOutlined
+} from '@ant-design/icons'
 import { formatCurrency, formatToBRL } from '@renderer/utils'
 import { useEffect, useState } from 'react'
 import { errorActions } from '@renderer/utils/errorActions'
@@ -33,9 +41,13 @@ export const TakeoutPayment: React.FC = () => {
   const [, contextHolder] = notification.useNotification()
   const [formOfPayment, setFormOfPayment] = useState<FormOfPayment[]>([] as FormOfPayment[])
   const [form] = Form.useForm()
+  const [loading, setLoading] = useState(false)
   // const [error, setError] = useState<string>('')
   const { productsSelected, clearTakeout } = useTakeout()
   const navigate = useNavigate()
+  const [printAgain, setPrintAgain] = useState(
+    localStorage.getItem('peditz-print-reciept') === 'ativo'
+  )
   const [formOfPayments, setFormOfPayments] = useState<
     {
       id: string
@@ -128,12 +140,61 @@ export const TakeoutPayment: React.FC = () => {
     <>
       {contextHolder}
       <S.Container>
-        <div>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between'
+          }}
+        >
           <Link to={'/pedidos-balcao/'}>
             <Button size="large" type="link" icon={<LeftOutlined />}>
               Voltar
             </Button>
           </Link>
+          <Space>
+            <Tooltip title="Imprimir 2 vias do comprovante">
+              <Switch
+                checkedChildren={'Sim'}
+                unCheckedChildren="Não"
+                onChange={(e): void => {
+                  localStorage.setItem('peditz-print-reciept', e ? 'ativo' : 'FALSO')
+                  setPrintAgain(e)
+                }}
+                checked={printAgain}
+              />
+            </Tooltip>
+            <Button
+              size="large"
+              type="primary"
+              icon={<PrinterOutlined />}
+              onClick={(): void => {
+                ResumTakeout({
+                  number: 'Pédido não finalizado',
+                  code: '---',
+                  date: dayjs().format('DD/MM/YYYY'),
+                  total: productsSelected.reduce((acc, item) => acc + item.total, 0),
+                  recebido: formatCurrency(
+                    formOfPayments.reduce((acc, item) => acc + brlToNumber(item.value), 0)
+                  ),
+                  payment: formOfPayments
+                    .map((f) => formOfPayment.find((pm) => pm.id === f.id)?.title)
+                    .join(', '),
+                  items: productsSelected.map((p) => ({
+                    items: [],
+                    product_price: String(p.price),
+                    notes: '',
+                    product_title: p.title,
+                    printer_name: 'caixa',
+                    product_id: p.id,
+                    quantity: p.quantity
+                  })),
+                  atendente: ''
+                })
+              }}
+            >
+              Imprimir
+            </Button>
+          </Space>
         </div>
         <div
           style={{
@@ -302,6 +363,7 @@ export const TakeoutPayment: React.FC = () => {
                   size="large"
                   block
                   icon={<FaCashRegister />}
+                  loading={loading}
                   onClick={(): void => {
                     const order_items = productsSelected.map((product) => ({
                       product_id: product.id,
@@ -314,6 +376,7 @@ export const TakeoutPayment: React.FC = () => {
                       id: form.id,
                       value: brlToNumber(form.value)
                     }))
+                    setLoading(true)
                     api
                       .post('/take-out/', {
                         order_items,
@@ -329,24 +392,41 @@ export const TakeoutPayment: React.FC = () => {
                           response.data?.collaborator_name || '',
                           response.data?.created || ''
                         )
-                        setTimeout(
-                          ()=>{
-                            
-                        ResumTakeout(
-                          {
+                        setTimeout(() => {
+                          ResumTakeout({
                             number: String(response.data.order_number),
                             code: '123',
                             date: dayjs().format('DD/MM/YYYY'),
                             total: Number(response.data.total),
-                            recebido: formatCurrency(formOfPayments.reduce((acc, item) => acc + brlToNumber(item.value), 0)),
-                            payment: formOfPayments.map(f=> formOfPayment.find(pm=> pm.id=== f.id).title).join(', '),
+                            recebido: formatCurrency(
+                              formOfPayments.reduce((acc, item) => acc + brlToNumber(item.value), 0)
+                            ),
+                            payment: formOfPayments
+                              .map((f) => formOfPayment.find((pm) => pm.id === f.id)?.title)
+                              .join(', '),
                             items: response.data.order_items,
-                            atendente: response.data?.collaborator_name || '',
+                            atendente: response.data?.collaborator_name || ''
+                          })
+                          if (printAgain) {
+                            ResumTakeout({
+                              number: String(response.data.order_number),
+                              code: '123',
+                              date: dayjs().format('DD/MM/YYYY'),
+                              total: Number(response.data.total),
+                              recebido: formatCurrency(
+                                formOfPayments.reduce(
+                                  (acc, item) => acc + brlToNumber(item.value),
+                                  0
+                                )
+                              ),
+                              payment: formOfPayments
+                                .map((f) => formOfPayment.find((pm) => pm.id === f.id)?.title)
+                                .join(', '),
+                              items: response.data.order_items,
+                              atendente: response.data?.collaborator_name || ''
+                            })
                           }
-                        )
-                        
-                          }, 300
-                        )
+                        }, 300)
                         clearTakeout()
 
                         navigate('/pedidos-balcao/')
@@ -363,6 +443,9 @@ export const TakeoutPayment: React.FC = () => {
                           placement: 'topRight',
                           duration: 3
                         })
+                      })
+                      .finally(() => {
+                        setLoading(false)
                       })
                   }}
                   disabled={

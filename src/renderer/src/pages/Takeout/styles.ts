@@ -44,7 +44,7 @@ export const Title = styled.h3`
 
 export const CardProduct = styled.div`
   cursor: pointer;
-  width: 170px;
+  /* width: 170px; */
   /* height: 240px; */
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
   border-radius: 10px;

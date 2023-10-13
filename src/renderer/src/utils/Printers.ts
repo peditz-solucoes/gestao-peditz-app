@@ -416,12 +416,11 @@ export function Order(
   }
 }
 
-
 export function OrderTakeOut(
   restaurant: string,
   code: string,
   items: ItemsOrdersProps[],
-  obs:string,
+  obs: string,
   operator: string,
   date: string
 ): void {
@@ -498,7 +497,6 @@ export function OrderTakeOut(
   }
 }
 
-
 interface ResumTakeOutProps {
   number: string
   code: string
@@ -507,17 +505,17 @@ interface ResumTakeOutProps {
   recebido: string
   payment: string
   atendente: string
-  items: ItemsOrdersProps[],
+  items: ItemsOrdersProps[]
 }
 
-function renderTKItem(item: ItemsOrdersProps[]){
+function renderTKItem(item: ItemsOrdersProps[]) {
   let row = ''
   for (const product of item) {
     row += `
     <li style="list-style: none; margin-top: 10px">
       <div style="display: flex; justify-content: space-between">
         <strong>${product.quantity}x ${product.product_title}</strong>
-        <span>${formatCurrency(Number(product?.product_price)*product.quantity || 0)}</span>
+        <span>${formatCurrency(Number(product?.product_price) * product.quantity || 0)}</span>
       </div>
   `
 

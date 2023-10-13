@@ -55,7 +55,7 @@ export const Takeout: React.FC = () => {
             width: '100%',
             display: 'flex',
             gap: '20px',
-            height: 'calc(100vh - 230px)'
+            height: 'calc(100vh - 120px)'
           }}
         >
           <S.ContentProducts>
@@ -86,9 +86,10 @@ export const Takeout: React.FC = () => {
                 style={{
                   padding: '20px',
                   display: 'grid',
-                  gridTemplateColumns: 'repeat(auto-fill, minmax(200px, 1fr))',
+                  gap: '1rem',
+                  gridTemplateColumns: 'repeat(auto-fill, minmax(150px, 1fr))',
                   rowGap: '20px',
-                  height: 'calc(100vh - 310px)',
+                  height: 'calc(100vh - 210px)',
                   overflowY: 'scroll'
                 }}
               >
@@ -124,8 +125,8 @@ export const Takeout: React.FC = () => {
                               gap: '10px'
                             }}
                           >
-                            <Paragraph strong ellipsis>
-                              {product.title}
+                            <Paragraph strong>
+                              {product?.codigo_produto} - {product.title}
                             </Paragraph>
                             <p>{formatCurrency(Number(product.price))}</p>
                           </div>
@@ -143,7 +144,6 @@ export const Takeout: React.FC = () => {
                           <S.CardProduct
                             key={product.id}
                             onClick={() => {
-                              console.log(product)
                               addProductToTakeout(product)
                             }}
                           >
