@@ -81,5 +81,7 @@ export const ContentInfo = styled.div`
   width: 30%;
   border-radius: 10px;
   background-color: #fff;
+  display: flex;
+  flex-direction: column;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.05);
 `
