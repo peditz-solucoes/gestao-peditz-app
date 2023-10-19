@@ -53,7 +53,7 @@ export function Navigation(): JSX.Element {
 
       {/* Rota de comandas fechadas */}
       <Route path="/" element={<PrivateRoute />}>
-        <Route path="/" element={<Navigate to={routeDefault[permissions[0]]} replace />} />
+        <Route path="/" element={<Navigate to={routeDefault[permissions[0]]} />} />
       </Route>
 
       {/* Rota de login */}
