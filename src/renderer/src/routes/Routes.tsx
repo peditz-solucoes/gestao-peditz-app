@@ -1,4 +1,4 @@
-import { Route, Routes } from 'react-router-dom'
+import { Navigate, Route, Routes } from 'react-router-dom'
 import { LoginPage } from '../pages/Login'
 import { Dashboard } from '../pages/Dashboard'
 import { Commands } from '../pages/Commands'
@@ -30,8 +30,13 @@ import { Complements } from '@renderer/pages/Complements'
 import { ReportSalesProduct } from '@renderer/pages/ReportSalesProduct'
 import { Catalog, Catalogs } from '@renderer/pages/Catalogs'
 import { Notas } from '@renderer/pages/Notas'
+import { routeDefault } from '@renderer/utils/defaultRoute'
 
 export function Navigation(): JSX.Element {
+  const storedPermissions = localStorage.getItem('userPermissions')
+
+  const permissions = storedPermissions ? JSON.parse(storedPermissions) : []
+
   return (
     <Routes>
       {/* Rota de comandas fechadas */}
@@ -46,16 +51,9 @@ export function Navigation(): JSX.Element {
         />
       </Route>
 
-      {/* Rota raiz / */}
+      {/* Rota de comandas fechadas */}
       <Route path="/" element={<PrivateRoute />}>
-        <Route
-          path="/"
-          element={
-            <AddSidebar>
-              <Dashboard />
-            </AddSidebar>
-          }
-        />
+        <Route path="/" element={<Navigate to={routeDefault[permissions[0]]} replace />} />
       </Route>
 
       {/* Rota de login */}

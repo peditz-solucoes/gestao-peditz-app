@@ -274,6 +274,29 @@ export const TakeoutPayment: React.FC = () => {
                 {formatCurrency(productsSelected.reduce((acc, item) => acc + item.total, 0))}
               </Title>
             </div>
+            {formOfPayments.reduce((acc, item) => acc + brlToNumber(item.value), 0) -
+              productsSelected.reduce((acc, item) => acc + item.total, 0) >
+              0 && (
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'row',
+                  justifyContent: 'space-between',
+                  alignItems: 'center'
+                }}
+              >
+                <Title level={4} style={{ color: 'rgb(54, 63, 77)', margin: 0 }}>
+                  Troco
+                </Title>
+
+                <Title level={4} style={{ margin: 0, color: 'rgb(54, 63, 77)' }}>
+                  {formatCurrency(
+                    formOfPayments.reduce((acc, item) => acc + brlToNumber(item.value), 0) -
+                      productsSelected.reduce((acc, item) => acc + item.total, 0)
+                  )}
+                </Title>
+              </div>
+            )}
           </S.Spacer>
           <S.Spacer>
             <Title level={4} style={{ color: 'rgb(54, 63, 77)' }}>

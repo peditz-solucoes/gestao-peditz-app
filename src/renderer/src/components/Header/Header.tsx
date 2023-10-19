@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 import { MdRestaurantMenu } from 'react-icons/md'
 import { CgMenuOreos } from 'react-icons/cg'
 import { LogoutOutlined, TeamOutlined, UserOutlined, ReloadOutlined } from '@ant-design/icons'
-import { setLogout } from '../../services/auth'
+import { getUser, setLogout } from '../../services/auth'
 import { useCashier } from '@renderer/hooks'
 import { useSocket } from '@renderer/hooks/useSocket'
 
@@ -62,6 +62,8 @@ export const Header: React.FC<HeaderProps> = ({ titleHeader, setCollapsed, colla
     const randomIndex = Math.floor(Math.random() * ColorList.length)
     return ColorList[randomIndex]
   }
+
+  const user = getUser()
 
   return (
     <HeaderAnt
@@ -148,7 +150,7 @@ export const Header: React.FC<HeaderProps> = ({ titleHeader, setCollapsed, colla
             {cashier?.restaurant?.title}
           </Title>
           <Dropdown menu={{ items }} trigger={['click']} placement="bottomRight">
-            <Tooltip title={cashier?.opened_by_name} placement="left">
+            <Tooltip title={user?.first_name + ' ' + user?.last_name} placement="left">
               <Avatar
                 style={{
                   backgroundColor: color,
@@ -158,9 +160,7 @@ export const Header: React.FC<HeaderProps> = ({ titleHeader, setCollapsed, colla
                 }}
                 size="large"
               >
-                {cashier?.opened_by?.first_name[0] + cashier?.opened_by?.last_name[0] || (
-                  <UserOutlined />
-                )}
+                {user?.first_name[0] + user?.last_name[0] || <UserOutlined />}
               </Avatar>
             </Tooltip>
           </Dropdown>

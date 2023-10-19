@@ -1,3 +1,4 @@
+import api from '@renderer/services/api'
 import { Alert, Button, Drawer, Input, Space, Switch } from 'antd'
 import React from 'react'
 import { SiIfood } from 'react-icons/si'
@@ -7,8 +8,46 @@ interface DrawerIfoodProps {
   onClose: () => void
 }
 
+interface IfoodAuthCode {
+  userCode: string
+  verificationUrl: string
+  expiresIn: number
+  verificationUrlComplete: string
+  authorizationCodeVerifier: string
+}
+
 export const DrawerIfood: React.FC<DrawerIfoodProps> = ({ open, onClose }) => {
-  const [link, setLink] = React.useState<boolean>(true)
+  const [authCode, setAuthCode] = React.useState<IfoodAuthCode | undefined>(undefined)
+  const [loadingRequstCode, setLoadingRequestCode] = React.useState<boolean>(false)
+  const [loadingRequestToken, setLoadingRequestToken] = React.useState<boolean>(false)
+  const [inputChange, setInputChange] = React.useState<string>('')
+
+  function requestCode() {
+    setLoadingRequestCode(true)
+    api
+      .post('/ifood-auth-code/')
+      .then((response) => {
+        setAuthCode(response.data)
+      })
+      .finally(() => {
+        setLoadingRequestCode(false)
+      })
+  }
+
+  function requestToken() {
+    setLoadingRequestToken(true)
+    api
+      .post('/ifood-auth-token/', {
+        authorizationCode: inputChange,
+        authorizationCodeVerifier: authCode?.authorizationCodeVerifier
+      })
+      .then((response) => {
+        console.log(response.data)
+      })
+      .finally(() => {
+        setLoadingRequestToken(false)
+      })
+  }
 
   return (
     <Drawer
@@ -61,13 +100,14 @@ export const DrawerIfood: React.FC<DrawerIfoodProps> = ({ open, onClose }) => {
           marginTop: 20
         }}
       >
-        {!link ? (
+        {!authCode ? (
           <>
             <Button
               type="primary"
               size="large"
               icon={<SiIfood />}
-              onClick={() => setLink(true)}
+              onClick={() => requestCode()}
+              loading={loadingRequstCode}
               style={{
                 backgroundColor: '#F7001A',
                 height: 50
@@ -82,7 +122,7 @@ export const DrawerIfood: React.FC<DrawerIfoodProps> = ({ open, onClose }) => {
               type="primary"
               size="large"
               icon={<SiIfood />}
-              onClick={() => setLink(false)}
+              onClick={() => requestCode()}
               style={{
                 backgroundColor: '#F7001A',
                 height: 50
@@ -117,7 +157,7 @@ export const DrawerIfood: React.FC<DrawerIfoodProps> = ({ open, onClose }) => {
                     conclusão desse processo, você poderá copiar o código de autorização gerado e
                     colá-lo no campo designado logo abaixo.
                   </p>
-                  <Button type="primary" style={{}}>
+                  <Button type="primary" href={authCode.verificationUrlComplete} target="_blank">
                     Autorizar no iFood
                   </Button>
                 </div>
@@ -126,8 +166,18 @@ export const DrawerIfood: React.FC<DrawerIfoodProps> = ({ open, onClose }) => {
 
             <div>
               <Space.Compact style={{ width: '100%' }}>
-                <Input size="large" placeholder="Codigo de autorização" />
-                <Button size="large" type="primary">
+                <Input
+                  size="large"
+                  placeholder="Codigo de autorização"
+                  onChange={(e) => setInputChange(e.target.value)}
+                  value={inputChange}
+                />
+                <Button
+                  size="large"
+                  type="primary"
+                  onClick={requestToken}
+                  loading={loadingRequestToken}
+                >
                   Salvar
                 </Button>
               </Space.Compact>

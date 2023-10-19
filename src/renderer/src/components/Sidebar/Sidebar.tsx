@@ -76,7 +76,7 @@ export const SideBar: React.FC<SideBarProps> = ({ collapsed }) => {
 
   const items: MenuItem[] = [
     getItem({
-      key: '1',
+      key: 'Dashboard',
       label: <Link to={'/dashboard'}>Dashboard</Link>,
       icon: <PieChartOutlined />,
       style: {
@@ -85,7 +85,7 @@ export const SideBar: React.FC<SideBarProps> = ({ collapsed }) => {
     }),
 
     getItem({
-      key: '2',
+      key: 'Caixa',
       label: <Link to={'/caixa'}>Caixa</Link>,
       icon: <DesktopOutlined />,
       style: {
@@ -94,13 +94,12 @@ export const SideBar: React.FC<SideBarProps> = ({ collapsed }) => {
     }),
 
     getItem({
-      key: '3',
+      key: 'Balcao',
       label: <Link to={'/pedidos-balcao/'}>Pedidos de balcão</Link>,
-      icon: <ShopOutlined />
-      // style: {
-      //   display: userPermissions.includes('Balcão') ? 'flex' : 'none',
-      //   flexDirection: 'column'
-      // },
+      icon: <ShopOutlined />,
+      style: {
+        display: userPermissions.includes('Balcao') ? 'flex' : 'none',
+      },
     }),
 
     // getItem({
@@ -114,7 +113,7 @@ export const SideBar: React.FC<SideBarProps> = ({ collapsed }) => {
     // }),
 
     getItem({
-      key: '5',
+      key: 'Produtos',
       label: 'Produtos',
       icon: <IoFastFood />,
       style: {
@@ -137,17 +136,16 @@ export const SideBar: React.FC<SideBarProps> = ({ collapsed }) => {
       ]
     }),
     getItem({
-      key: '4',
+      key: 'Cardapios',
       label: <Link to={'/cardapios/'}>Cardápios</Link>,
-      icon: <FaBookOpen />
-      // style: {
-      //   display: userPermissions.includes('Balcão') ? 'flex' : 'none',
-      //   flexDirection: 'column'
-      // },
+      icon: <FaBookOpen />,
+      style: {
+        display: userPermissions.includes('Cardapios') ? 'flex' : 'none',
+      },
     }),
 
     getItem({
-      key: '6',
+      key: 'Comandas',
       label: 'Comandas',
       icon: <WalletOutlined />,
       style: {
@@ -167,7 +165,7 @@ export const SideBar: React.FC<SideBarProps> = ({ collapsed }) => {
     }),
 
     getItem({
-      key: '7',
+      key: 'Mesas',
       label: <Link to={'/mesas'}>Mesas</Link>,
       icon: <BlockOutlined />,
       style: {
@@ -176,7 +174,7 @@ export const SideBar: React.FC<SideBarProps> = ({ collapsed }) => {
     }),
 
     getItem({
-      key: '8',
+      key: 'Estoques',
       label: <Link to={'/estoque'}>Estoques</Link>,
       icon: <ShoppingOutlined />,
       style: {
@@ -185,11 +183,11 @@ export const SideBar: React.FC<SideBarProps> = ({ collapsed }) => {
     }),
 
     getItem({
-      key: '9',
+      key: 'Relatorios',
       label: 'Relatórios',
       icon: <SolutionOutlined />,
       style: {
-        display: userPermissions.includes('Produtos') ? 'flex' : 'none',
+        display: userPermissions.includes('Relatorios') ? 'flex' : 'none',
         flexDirection: 'column'
       },
       children: [
@@ -197,10 +195,10 @@ export const SideBar: React.FC<SideBarProps> = ({ collapsed }) => {
           key: '9.1',
           label: <Link to={'/relatorios/vendas-periodo/'}>Vendas por período</Link>
         }),
-        getItem({
-          key: '9.2',
-          label: <Link to={'/relatorios/vendas-produto/'}>Vendas por produtos</Link>
-        }),
+        // getItem({
+        //   key: '9.2',
+        //   label: <Link to={'/relatorios/vendas-produto/'}>Vendas por produtos</Link>
+        // }),
         // getItem({
         //   key: '9.3',
         //   label: 'Relatório geral'
@@ -226,15 +224,15 @@ export const SideBar: React.FC<SideBarProps> = ({ collapsed }) => {
     // }),
 
     getItem({
-      key: '11',
+      key: 'Fiscal',
       label: <Link to={'/notas'}>Notas Fiscais</Link>,
-      icon: <FileTextOutlined />
-      // style: {
-      //   display: userPermissions.includes('Integracoes') ? 'flex' : 'none'
-      // }
+      icon: <FileTextOutlined />,
+      style: {
+        display: userPermissions.includes('Fiscal') ? 'flex' : 'none'
+      }
     }),
     getItem({
-      key: '11',
+      key: 'Integracoes',
       label: <Link to={'/integracoes'}>Integrações</Link>,
       icon: <ApiOutlined />,
       style: {
@@ -242,7 +240,7 @@ export const SideBar: React.FC<SideBarProps> = ({ collapsed }) => {
       }
     }),
     getItem({
-      key: '12',
+      key: 'Terminal',
       label: <Link to={'/terminal'}>Terminal de pedidos</Link>,
       icon: <ReconciliationOutlined />,
       style: {
@@ -295,7 +293,7 @@ export const SideBar: React.FC<SideBarProps> = ({ collapsed }) => {
         )}
       </div>
       <Menu
-        defaultSelectedKeys={['1']}
+        defaultSelectedKeys={[userPermissions[0]]}
         style={{
           width: '100%',
           backgroundColor: '#47aa54',

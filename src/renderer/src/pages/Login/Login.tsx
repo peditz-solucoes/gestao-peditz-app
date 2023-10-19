@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import * as S from './styles'
 import { Alert, Button, Checkbox, Form, Image, Input, Typography } from 'antd'
 import { Link, useNavigate } from 'react-router-dom'
@@ -6,6 +6,9 @@ import api from '../../services/api'
 import { AxiosError, AxiosResponse } from 'axios'
 import { setLogin } from '../../services/auth'
 import logo from '../../assets/logo-green.png'
+import { UserPermissions } from '@renderer/types'
+import { errorActions } from '@renderer/utils/errorActions'
+import { routeDefault } from '@renderer/utils/defaultRoute'
 
 
 const { Paragraph } = Typography
@@ -26,6 +29,21 @@ export const LoginPage: React.FC = () => {
   const [error, setError] = useState<errorType | null>(null)
   const navigate = useNavigate()
 
+  function fetchUserPermission(): void {
+    api
+      .get('/user-permissions/')
+      .then((response) => {
+        const permissions = (response.data as UserPermissions[])
+          .map((permission) => permission.sidebar_permissions.map((sidebar) => sidebar.title))
+          .flat()
+        localStorage.setItem('userPermissions', JSON.stringify(permissions))
+        navigate(routeDefault[permissions[0]])
+      })
+      .catch((error: AxiosError) => {
+        errorActions(error)
+      })
+  }
+
   function getErrorMessage() {
     if (error?.type === 'invalid') {
       return <Alert message={error.message} type="error" />
@@ -41,13 +59,13 @@ export const LoginPage: React.FC = () => {
     api
       .post('/auth/login/', { email, password })
       .then((response: AxiosResponse) => {
-        setLogin(response.data.access)
+        setLogin(response.data.access, response.data.user)
         api.get('/restaurant/')
         .then(response => {
           localStorage.setItem('restaurant-info', JSON.stringify(response.data[0]))
-          navigate('/dashboard')
+          
         })
-        // navigate('/dashboard')
+        fetchUserPermission()
       })
       .catch((error: AxiosError) => {
         if (error.response?.status === 400) {
