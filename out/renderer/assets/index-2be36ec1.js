@@ -77946,16 +77946,19 @@ const axios$1 = axios;
 const TOKEN_KEY = "@Peditz-gestao-token";
 const isAuthenticated = () => localStorage.getItem(TOKEN_KEY) !== null;
 const getToken = () => localStorage.getItem(TOKEN_KEY);
-const setLogin = (token2) => {
+const getUser = () => JSON.parse(localStorage.getItem("user") || "{}");
+const setLogin = (token2, user) => {
   localStorage.setItem(TOKEN_KEY, token2);
+  localStorage.setItem("user", JSON.stringify(user));
 };
 const setLogout = () => {
   localStorage.removeItem(TOKEN_KEY);
+  localStorage.removeItem("user");
 };
 const api = axios$1.create({
   baseURL: "https://api.peditz.com/api/v1/",
   // baseURL: 'http://localhost:8000/api/v1/',
-  //baseURL: 'https://api-hml.peditz.com/api/v1/',
+  // baseURL: 'https://api-hml.peditz.com/api/v1/',
   headers: {
     "Content-Type": "application/json;charset=UTF-8"
   }
@@ -77976,11 +77979,40 @@ api.interceptors.request.use(async (config) => {
   return config;
 });
 const logo$1 = "" + new URL("logo-green-24b4ae3d.png", import.meta.url).href;
+function errorActions(error) {
+  if (error.response?.status === 401) {
+    setLogout();
+    window.location.reload();
+  }
+}
+const routeDefault = {
+  "Dashboard": "/dashboard",
+  "Caixa": "/caixa",
+  "Balcao": "/pedidos-balcao/",
+  "Produtos": "/produtos",
+  "Cardapios": "/cardapios",
+  "Comandas": "/comandas",
+  "Mesas": "/mesas",
+  "Estoques": "/estoque",
+  "Relatorios": "/relatorios/vendas-periodo/",
+  "Fiscal": "/notas",
+  "Integracoes": "/integracoes",
+  "Terminal": "/terminal"
+};
 const { Paragraph: Paragraph$9 } = Typography$1;
 const LoginPage = () => {
   const [isLoading, setIsLoading] = reactExports.useState(false);
   const [error, setError] = reactExports.useState(null);
   const navigate = useNavigate();
+  function fetchUserPermission() {
+    api.get("/user-permissions/").then((response) => {
+      const permissions = response.data.map((permission) => permission.sidebar_permissions.map((sidebar) => sidebar.title)).flat();
+      localStorage.setItem("userPermissions", JSON.stringify(permissions));
+      navigate(routeDefault[permissions[0]]);
+    }).catch((error2) => {
+      errorActions(error2);
+    });
+  }
   function getErrorMessage() {
     if (error?.type === "invalid") {
       return /* @__PURE__ */ jsxRuntimeExports.jsx(Alert$1, { message: error.message, type: "error" });
@@ -77992,11 +78024,11 @@ const LoginPage = () => {
   const onFinish = ({ email: email2, password }) => {
     setIsLoading(true);
     api.post("/auth/login/", { email: email2, password }).then((response) => {
-      setLogin(response.data.access);
+      setLogin(response.data.access, response.data.user);
       api.get("/restaurant/").then((response2) => {
         localStorage.setItem("restaurant-info", JSON.stringify(response2.data[0]));
-        navigate("/dashboard");
       });
+      fetchUserPermission();
     }).catch((error2) => {
       if (error2.response?.status === 400) {
         setError({
@@ -78305,57 +78337,21 @@ function formatCurrency(value, locale2 = "pt-BR", currency = "BRL") {
   return formattedValue;
 }
 const ColorList = [
-  "#FF0000",
-  "#FFA500",
-  "#FFFF00",
-  "#008000",
-  "#0000FF",
-  "#4B0082",
-  "#EE82EE",
-  "#FFC0CB",
-  "#800000",
-  "#808080",
-  "#FFFFFF",
-  "#000000",
-  "#FF7F50",
-  "#DC143C",
-  "#FFD700",
-  "#ADFF2F",
-  "#7B68EE",
-  "#DDA0DD",
-  "#FF69B4",
-  "#8B4513",
-  "#A9A9A9",
-  "#F5F5F5",
+  "#B0C4DE",
+  "#8FBC8F",
+  "#90EE90",
+  "#3CB371",
   "#2E8B57",
-  "#000080",
-  "#9370DB",
-  "#FF8C00",
-  "#FFDAB9",
-  "#228B22",
-  "#1E90FF",
-  "#FF00FF",
-  "#556B2F",
-  "#D2B48C",
-  "#A52A2A",
-  "#808000",
-  "#D3D3D3",
-  "#F8F8FF",
+  "#5F9EA0",
+  "#4682B4",
+  "#00CED1",
+  "#20B2AA",
+  "#008B8B",
+  "#008080",
   "#006400",
-  "#8B008B",
-  "#D2691E",
-  "#2F4F4F",
-  "#C0C0C0",
-  "#FFFACD",
-  "#7FFF00",
-  "#4169E1",
-  "#FF00FF",
-  "#B8860B",
-  "#FAFAD2",
-  "#32CD32",
-  "#00008B",
-  "#FF1493"
-  // Adicione mais cores aqui
+  "#556B2F",
+  "#808000",
+  "#556B2F"
 ];
 var IconContext = /* @__PURE__ */ reactExports.createContext({});
 const Context$1 = IconContext;
@@ -79445,12 +79441,6 @@ const formatPhoneNumber = (value) => {
     return value;
   return value.replace(/(\d{2})(\d{5})(\d{4})/, "($1) $2-$3");
 };
-function errorActions(error) {
-  if (error.response?.status === 401) {
-    setLogout();
-    window.location.reload();
-  }
-}
 const TerminalContext = reactExports.createContext({});
 function TerminalProvider({ children }) {
   const [bills, setBills] = reactExports.useState([]);
@@ -88887,7 +88877,29 @@ const PrinterModal = () => {
   );
 };
 const DrawerIfood = ({ open: open2, onClose }) => {
-  const [link, setLink] = React.useState(true);
+  const [authCode, setAuthCode] = React.useState(void 0);
+  const [loadingRequstCode, setLoadingRequestCode] = React.useState(false);
+  const [loadingRequestToken, setLoadingRequestToken] = React.useState(false);
+  const [inputChange, setInputChange] = React.useState("");
+  function requestCode() {
+    setLoadingRequestCode(true);
+    api.post("/ifood-auth-code/").then((response) => {
+      setAuthCode(response.data);
+    }).finally(() => {
+      setLoadingRequestCode(false);
+    });
+  }
+  function requestToken() {
+    setLoadingRequestToken(true);
+    api.post("/ifood-auth-token/", {
+      authorizationCode: inputChange,
+      authorizationCodeVerifier: authCode?.authorizationCodeVerifier
+    }).then((response) => {
+      console.log(response.data);
+    }).finally(() => {
+      setLoadingRequestToken(false);
+    });
+  }
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(
     Drawer$1,
     {
@@ -88950,13 +88962,14 @@ const DrawerIfood = ({ open: open2, onClose }) => {
               gap: 20,
               marginTop: 20
             },
-            children: !link ? /* @__PURE__ */ jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+            children: !authCode ? /* @__PURE__ */ jsxRuntimeExports.jsx(jsxRuntimeExports.Fragment, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
               Button$2,
               {
                 type: "primary",
                 size: "large",
                 icon: /* @__PURE__ */ jsxRuntimeExports.jsx(SiIfood, {}),
-                onClick: () => setLink(true),
+                onClick: () => requestCode(),
+                loading: loadingRequstCode,
                 style: {
                   backgroundColor: "#F7001A",
                   height: 50
@@ -88970,7 +88983,7 @@ const DrawerIfood = ({ open: open2, onClose }) => {
                   type: "primary",
                   size: "large",
                   icon: /* @__PURE__ */ jsxRuntimeExports.jsx(SiIfood, {}),
-                  onClick: () => setLink(false),
+                  onClick: () => requestCode(),
                   style: {
                     backgroundColor: "#F7001A",
                     height: 50
@@ -89009,15 +89022,32 @@ const DrawerIfood = ({ open: open2, onClose }) => {
                             children: "Certifique-se de clicar no botão fornecido abaixo para acessar a plataforma do iFood e conceder a autorização necessária para integrar os sistemas. Após a conclusão desse processo, você poderá copiar o código de autorização gerado e colá-lo no campo designado logo abaixo."
                           }
                         ),
-                        /* @__PURE__ */ jsxRuntimeExports.jsx(Button$2, { type: "primary", style: {}, children: "Autorizar no iFood" })
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(Button$2, { type: "primary", href: authCode.verificationUrlComplete, target: "_blank", children: "Autorizar no iFood" })
                       ]
                     }
                   )
                 }
               ),
               /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: /* @__PURE__ */ jsxRuntimeExports.jsxs(Space$1.Compact, { style: { width: "100%" }, children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx(Input$1, { size: "large", placeholder: "Codigo de autorização" }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx(Button$2, { size: "large", type: "primary", children: "Salvar" })
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Input$1,
+                  {
+                    size: "large",
+                    placeholder: "Codigo de autorização",
+                    onChange: (e2) => setInputChange(e2.target.value),
+                    value: inputChange
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  Button$2,
+                  {
+                    size: "large",
+                    type: "primary",
+                    onClick: requestToken,
+                    loading: loadingRequestToken,
+                    children: "Salvar"
+                  }
+                )
               ] }) })
             ] })
           }
@@ -89234,7 +89264,7 @@ const SideBar = ({ collapsed }) => {
   }
   const items2 = [
     getItem({
-      key: "1",
+      key: "Dashboard",
       label: /* @__PURE__ */ jsxRuntimeExports.jsx(Link$2, { to: "/dashboard", children: "Dashboard" }),
       icon: /* @__PURE__ */ jsxRuntimeExports.jsx(PieChartOutlined$1, {}),
       style: {
@@ -89242,7 +89272,7 @@ const SideBar = ({ collapsed }) => {
       }
     }),
     getItem({
-      key: "2",
+      key: "Caixa",
       label: /* @__PURE__ */ jsxRuntimeExports.jsx(Link$2, { to: "/caixa", children: "Caixa" }),
       icon: /* @__PURE__ */ jsxRuntimeExports.jsx(DesktopOutlined$1, {}),
       style: {
@@ -89250,13 +89280,12 @@ const SideBar = ({ collapsed }) => {
       }
     }),
     getItem({
-      key: "3",
+      key: "Balcao",
       label: /* @__PURE__ */ jsxRuntimeExports.jsx(Link$2, { to: "/pedidos-balcao/", children: "Pedidos de balcão" }),
-      icon: /* @__PURE__ */ jsxRuntimeExports.jsx(ShopOutlined$1, {})
-      // style: {
-      //   display: userPermissions.includes('Balcão') ? 'flex' : 'none',
-      //   flexDirection: 'column'
-      // },
+      icon: /* @__PURE__ */ jsxRuntimeExports.jsx(ShopOutlined$1, {}),
+      style: {
+        display: userPermissions.includes("Balcao") ? "flex" : "none"
+      }
     }),
     // getItem({
     //   key: '4',
@@ -89268,7 +89297,7 @@ const SideBar = ({ collapsed }) => {
     //   // },
     // }),
     getItem({
-      key: "5",
+      key: "Produtos",
       label: "Produtos",
       icon: /* @__PURE__ */ jsxRuntimeExports.jsx(IoFastFood, {}),
       style: {
@@ -89291,16 +89320,15 @@ const SideBar = ({ collapsed }) => {
       ]
     }),
     getItem({
-      key: "4",
+      key: "Cardapios",
       label: /* @__PURE__ */ jsxRuntimeExports.jsx(Link$2, { to: "/cardapios/", children: "Cardápios" }),
-      icon: /* @__PURE__ */ jsxRuntimeExports.jsx(FaBookOpen, {})
-      // style: {
-      //   display: userPermissions.includes('Balcão') ? 'flex' : 'none',
-      //   flexDirection: 'column'
-      // },
+      icon: /* @__PURE__ */ jsxRuntimeExports.jsx(FaBookOpen, {}),
+      style: {
+        display: userPermissions.includes("Cardapios") ? "flex" : "none"
+      }
     }),
     getItem({
-      key: "6",
+      key: "Comandas",
       label: "Comandas",
       icon: /* @__PURE__ */ jsxRuntimeExports.jsx(WalletOutlined$1, {}),
       style: {
@@ -89319,7 +89347,7 @@ const SideBar = ({ collapsed }) => {
       ]
     }),
     getItem({
-      key: "7",
+      key: "Mesas",
       label: /* @__PURE__ */ jsxRuntimeExports.jsx(Link$2, { to: "/mesas", children: "Mesas" }),
       icon: /* @__PURE__ */ jsxRuntimeExports.jsx(BlockOutlined$1, {}),
       style: {
@@ -89327,7 +89355,7 @@ const SideBar = ({ collapsed }) => {
       }
     }),
     getItem({
-      key: "8",
+      key: "Estoques",
       label: /* @__PURE__ */ jsxRuntimeExports.jsx(Link$2, { to: "/estoque", children: "Estoques" }),
       icon: /* @__PURE__ */ jsxRuntimeExports.jsx(ShoppingOutlined$1, {}),
       style: {
@@ -89335,11 +89363,11 @@ const SideBar = ({ collapsed }) => {
       }
     }),
     getItem({
-      key: "9",
+      key: "Relatorios",
       label: "Relatórios",
       icon: /* @__PURE__ */ jsxRuntimeExports.jsx(SolutionOutlined$1, {}),
       style: {
-        display: userPermissions.includes("Produtos") ? "flex" : "none",
+        display: userPermissions.includes("Relatorios") ? "flex" : "none",
         flexDirection: "column"
       },
       children: [
@@ -89347,10 +89375,10 @@ const SideBar = ({ collapsed }) => {
           key: "9.1",
           label: /* @__PURE__ */ jsxRuntimeExports.jsx(Link$2, { to: "/relatorios/vendas-periodo/", children: "Vendas por período" })
         }),
-        getItem({
-          key: "9.2",
-          label: /* @__PURE__ */ jsxRuntimeExports.jsx(Link$2, { to: "/relatorios/vendas-produto/", children: "Vendas por produtos" })
-        }),
+        // getItem({
+        //   key: '9.2',
+        //   label: <Link to={'/relatorios/vendas-produto/'}>Vendas por produtos</Link>
+        // }),
         // getItem({
         //   key: '9.3',
         //   label: 'Relatório geral'
@@ -89374,15 +89402,15 @@ const SideBar = ({ collapsed }) => {
     //   }
     // }),
     getItem({
-      key: "11",
+      key: "Fiscal",
       label: /* @__PURE__ */ jsxRuntimeExports.jsx(Link$2, { to: "/notas", children: "Notas Fiscais" }),
-      icon: /* @__PURE__ */ jsxRuntimeExports.jsx(FileTextOutlined$1, {})
-      // style: {
-      //   display: userPermissions.includes('Integracoes') ? 'flex' : 'none'
-      // }
+      icon: /* @__PURE__ */ jsxRuntimeExports.jsx(FileTextOutlined$1, {}),
+      style: {
+        display: userPermissions.includes("Fiscal") ? "flex" : "none"
+      }
     }),
     getItem({
-      key: "11",
+      key: "Integracoes",
       label: /* @__PURE__ */ jsxRuntimeExports.jsx(Link$2, { to: "/integracoes", children: "Integrações" }),
       icon: /* @__PURE__ */ jsxRuntimeExports.jsx(ApiOutlined$1, {}),
       style: {
@@ -89390,7 +89418,7 @@ const SideBar = ({ collapsed }) => {
       }
     }),
     getItem({
-      key: "12",
+      key: "Terminal",
       label: /* @__PURE__ */ jsxRuntimeExports.jsx(Link$2, { to: "/terminal", children: "Terminal de pedidos" }),
       icon: /* @__PURE__ */ jsxRuntimeExports.jsx(ReconciliationOutlined$1, {}),
       style: {
@@ -89449,7 +89477,7 @@ const SideBar = ({ collapsed }) => {
         /* @__PURE__ */ jsxRuntimeExports.jsx(
           Menu$1,
           {
-            defaultSelectedKeys: ["1"],
+            defaultSelectedKeys: [userPermissions[0]],
             style: {
               width: "100%",
               backgroundColor: "#47aa54",
@@ -89590,6 +89618,7 @@ const Header$2 = ({ titleHeader, setCollapsed, collapsedValue }) => {
     const randomIndex = Math.floor(Math.random() * ColorList.length);
     return ColorList[randomIndex];
   }
+  const user = getUser();
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(
     Header$9,
     {
@@ -89680,7 +89709,7 @@ const Header$2 = ({ titleHeader, setCollapsed, collapsedValue }) => {
                   },
                   children: [
                     /* @__PURE__ */ jsxRuntimeExports.jsx(Title$f, { level: 5, style: { margin: 0, color: "rgb(91, 101, 117)" }, children: cashier?.restaurant?.title }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(Dropdown$1, { menu: { items: items$1 }, trigger: ["click"], placement: "bottomRight", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip$2, { title: cashier?.opened_by_name, placement: "left", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(Dropdown$1, { menu: { items: items$1 }, trigger: ["click"], placement: "bottomRight", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip$2, { title: user?.first_name + " " + user?.last_name, placement: "left", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
                       Avatar$1,
                       {
                         style: {
@@ -89690,7 +89719,7 @@ const Header$2 = ({ titleHeader, setCollapsed, collapsedValue }) => {
                           cursor: "pointer"
                         },
                         size: "large",
-                        children: cashier?.opened_by?.first_name[0] + cashier?.opened_by?.last_name[0] || /* @__PURE__ */ jsxRuntimeExports.jsx(UserOutlined$1, {})
+                        children: user?.first_name[0] + user?.last_name[0] || /* @__PURE__ */ jsxRuntimeExports.jsx(UserOutlined$1, {})
                       }
                     ) }) })
                   ]
@@ -109667,6 +109696,23 @@ const TakeoutPayment = () => {
                     /* @__PURE__ */ jsxRuntimeExports.jsx(Title$4, { level: 4, style: { margin: 0, color: "rgb(54, 63, 77)" }, children: formatCurrency(productsSelected.reduce((acc, item) => acc + item.total, 0)) })
                   ]
                 }
+              ),
+              formOfPayments.reduce((acc, item) => acc + brlToNumber2(item.value), 0) - productsSelected.reduce((acc, item) => acc + item.total, 0) > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                "div",
+                {
+                  style: {
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "space-between",
+                    alignItems: "center"
+                  },
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(Title$4, { level: 4, style: { color: "rgb(54, 63, 77)", margin: 0 }, children: "Troco" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(Title$4, { level: 4, style: { margin: 0, color: "rgb(54, 63, 77)" }, children: formatCurrency(
+                      formOfPayments.reduce((acc, item) => acc + brlToNumber2(item.value), 0) - productsSelected.reduce((acc, item) => acc + item.total, 0)
+                    ) })
+                  ]
+                }
               )
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsxs(Spacer, { children: [
@@ -115107,6 +115153,8 @@ const Notas = () => {
   ) });
 };
 function Navigation() {
+  const storedPermissions = localStorage.getItem("userPermissions");
+  const permissions = storedPermissions ? JSON.parse(storedPermissions) : [];
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(Routes, { children: [
     /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/comandas-fechadas/", element: /* @__PURE__ */ jsxRuntimeExports.jsx(PrivateRoute, {}), children: /* @__PURE__ */ jsxRuntimeExports.jsx(
       Route,
@@ -115115,13 +115163,7 @@ function Navigation() {
         element: /* @__PURE__ */ jsxRuntimeExports.jsx(AddSidebar, { titleHeader: "Comandas fechadas", children: /* @__PURE__ */ jsxRuntimeExports.jsx(BillClosedPage, {}) })
       }
     ) }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/", element: /* @__PURE__ */ jsxRuntimeExports.jsx(PrivateRoute, {}), children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-      Route,
-      {
-        path: "/",
-        element: /* @__PURE__ */ jsxRuntimeExports.jsx(AddSidebar, { children: /* @__PURE__ */ jsxRuntimeExports.jsx(Dashboard, {}) })
-      }
-    ) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/", element: /* @__PURE__ */ jsxRuntimeExports.jsx(PrivateRoute, {}), children: /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/", element: /* @__PURE__ */ jsxRuntimeExports.jsx(Navigate, { to: routeDefault[permissions[0]], replace: true }) }) }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/login/", element: /* @__PURE__ */ jsxRuntimeExports.jsx(LoginRoute, {}), children: /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/login/", element: /* @__PURE__ */ jsxRuntimeExports.jsx(LoginPage, {}) }) }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/caixa/", element: /* @__PURE__ */ jsxRuntimeExports.jsx(PrivateRoute, {}), children: /* @__PURE__ */ jsxRuntimeExports.jsx(
       Route,
