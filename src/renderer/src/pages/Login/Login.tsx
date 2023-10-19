@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import * as S from './styles'
 import { Alert, Button, Checkbox, Form, Image, Input, Typography } from 'antd'
 import { Link, useNavigate } from 'react-router-dom'
@@ -9,7 +9,6 @@ import logo from '../../assets/logo-green.png'
 import { UserPermissions } from '@renderer/types'
 import { errorActions } from '@renderer/utils/errorActions'
 import { routeDefault } from '@renderer/utils/defaultRoute'
-
 
 const { Paragraph } = Typography
 
@@ -60,10 +59,8 @@ export const LoginPage: React.FC = () => {
       .post('/auth/login/', { email, password })
       .then((response: AxiosResponse) => {
         setLogin(response.data.access, response.data.user)
-        api.get('/restaurant/')
-        .then(response => {
+        api.get('/restaurant/').then((response) => {
           localStorage.setItem('restaurant-info', JSON.stringify(response.data[0]))
-          
         })
         fetchUserPermission()
       })
