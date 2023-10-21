@@ -45845,7 +45845,7 @@ function TabPanelList(_ref) {
     });
   })));
 }
-var DEFAULT_SIZE$1 = {
+var DEFAULT_SIZE$2 = {
   width: 0,
   height: 0,
   left: 0,
@@ -45855,14 +45855,14 @@ function useOffsets(tabs, tabSizes, holderScrollWidth) {
   return reactExports.useMemo(function() {
     var _tabs$;
     var map2 = /* @__PURE__ */ new Map();
-    var lastOffset = tabSizes.get((_tabs$ = tabs[0]) === null || _tabs$ === void 0 ? void 0 : _tabs$.key) || DEFAULT_SIZE$1;
+    var lastOffset = tabSizes.get((_tabs$ = tabs[0]) === null || _tabs$ === void 0 ? void 0 : _tabs$.key) || DEFAULT_SIZE$2;
     var rightOffset = lastOffset.left + lastOffset.width;
     for (var i2 = 0; i2 < tabs.length; i2 += 1) {
       var key = tabs[i2].key;
       var data2 = tabSizes.get(key);
       if (!data2) {
         var _tabs;
-        data2 = tabSizes.get((_tabs = tabs[i2 - 1]) === null || _tabs === void 0 ? void 0 : _tabs.key) || DEFAULT_SIZE$1;
+        data2 = tabSizes.get((_tabs = tabs[i2 - 1]) === null || _tabs === void 0 ? void 0 : _tabs.key) || DEFAULT_SIZE$2;
       }
       var entity = map2.get(key) || _objectSpread2({}, data2);
       entity.right = rightOffset - entity.left - entity.width;
@@ -46040,7 +46040,7 @@ function useUpdateState(defaultState) {
   }
   return [state.current, updater];
 }
-var DEFAULT_SIZE = {
+var DEFAULT_SIZE$1 = {
   width: 0,
   height: 0,
   left: 0,
@@ -46068,7 +46068,7 @@ function useVisibleRange(tabOffsets, visibleTabContentValue, transform, tabConte
     var len = tabs.length;
     var endIndex = len;
     for (var i2 = 0; i2 < len; i2 += 1) {
-      var offset2 = tabOffsets.get(tabs[i2].key) || DEFAULT_SIZE;
+      var offset2 = tabOffsets.get(tabs[i2].key) || DEFAULT_SIZE$1;
       if (offset2[position2] + offset2[charUnit] > transformSize + visibleTabContentValue) {
         endIndex = i2 - 1;
         break;
@@ -46076,7 +46076,7 @@ function useVisibleRange(tabOffsets, visibleTabContentValue, transform, tabConte
     }
     var startIndex = 0;
     for (var _i = len - 1; _i >= 0; _i -= 1) {
-      var _offset = tabOffsets.get(tabs[_i].key) || DEFAULT_SIZE;
+      var _offset = tabOffsets.get(tabs[_i].key) || DEFAULT_SIZE$1;
       if (_offset[position2] < transformSize) {
         startIndex = _i + 1;
         break;
@@ -61801,6 +61801,860 @@ const Progress = /* @__PURE__ */ reactExports.forwardRef((props, ref) => {
 const Progress$1 = Progress;
 var ReloadOutlined$2 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M909.1 209.3l-56.4 44.1C775.8 155.1 656.2 92 521.9 92 290 92 102.3 279.5 102 511.5 101.7 743.7 289.8 932 521.9 932c181.3 0 335.8-115 394.6-276.1 1.5-4.2-.7-8.9-4.9-10.3l-56.7-19.5a8 8 0 00-10.1 4.8c-1.8 5-3.8 10-5.9 14.9-17.3 41-42.1 77.8-73.7 109.4A344.77 344.77 0 01655.9 829c-42.3 17.9-87.4 27-133.8 27-46.5 0-91.5-9.1-133.8-27A341.5 341.5 0 01279 755.2a342.16 342.16 0 01-73.7-109.4c-17.9-42.4-27-87.4-27-133.9s9.1-91.5 27-133.9c17.3-41 42.1-77.8 73.7-109.4 31.6-31.6 68.4-56.4 109.3-73.8 42.3-17.9 87.4-27 133.8-27 46.5 0 91.5 9.1 133.8 27a341.5 341.5 0 01109.3 73.8c9.9 9.9 19.2 20.4 27.8 31.4l-60.2 47a8 8 0 003 14.1l175.6 43c5 1.2 9.9-2.6 9.9-7.7l.8-180.9c-.1-6.6-7.8-10.3-13-6.2z" } }] }, "name": "reload", "theme": "outlined" };
 const ReloadOutlinedSvg = ReloadOutlined$2;
+var __defProp = Object.defineProperty;
+var __getOwnPropSymbols = Object.getOwnPropertySymbols;
+var __hasOwnProp = Object.prototype.hasOwnProperty;
+var __propIsEnum = Object.prototype.propertyIsEnumerable;
+var __defNormalProp = (obj, key, value) => key in obj ? __defProp(obj, key, { enumerable: true, configurable: true, writable: true, value }) : obj[key] = value;
+var __spreadValues = (a, b2) => {
+  for (var prop in b2 || (b2 = {}))
+    if (__hasOwnProp.call(b2, prop))
+      __defNormalProp(a, prop, b2[prop]);
+  if (__getOwnPropSymbols)
+    for (var prop of __getOwnPropSymbols(b2)) {
+      if (__propIsEnum.call(b2, prop))
+        __defNormalProp(a, prop, b2[prop]);
+    }
+  return a;
+};
+var __objRest = (source, exclude) => {
+  var target = {};
+  for (var prop in source)
+    if (__hasOwnProp.call(source, prop) && exclude.indexOf(prop) < 0)
+      target[prop] = source[prop];
+  if (source != null && __getOwnPropSymbols)
+    for (var prop of __getOwnPropSymbols(source)) {
+      if (exclude.indexOf(prop) < 0 && __propIsEnum.call(source, prop))
+        target[prop] = source[prop];
+    }
+  return target;
+};
+/**
+ * @license QR Code generator library (TypeScript)
+ * Copyright (c) Project Nayuki.
+ * SPDX-License-Identifier: MIT
+ */
+var qrcodegen;
+((qrcodegen2) => {
+  const _QrCode = class {
+    constructor(version2, errorCorrectionLevel, dataCodewords, msk) {
+      this.version = version2;
+      this.errorCorrectionLevel = errorCorrectionLevel;
+      this.modules = [];
+      this.isFunction = [];
+      if (version2 < _QrCode.MIN_VERSION || version2 > _QrCode.MAX_VERSION)
+        throw new RangeError("Version value out of range");
+      if (msk < -1 || msk > 7)
+        throw new RangeError("Mask value out of range");
+      this.size = version2 * 4 + 17;
+      let row = [];
+      for (let i2 = 0; i2 < this.size; i2++)
+        row.push(false);
+      for (let i2 = 0; i2 < this.size; i2++) {
+        this.modules.push(row.slice());
+        this.isFunction.push(row.slice());
+      }
+      this.drawFunctionPatterns();
+      const allCodewords = this.addEccAndInterleave(dataCodewords);
+      this.drawCodewords(allCodewords);
+      if (msk == -1) {
+        let minPenalty = 1e9;
+        for (let i2 = 0; i2 < 8; i2++) {
+          this.applyMask(i2);
+          this.drawFormatBits(i2);
+          const penalty = this.getPenaltyScore();
+          if (penalty < minPenalty) {
+            msk = i2;
+            minPenalty = penalty;
+          }
+          this.applyMask(i2);
+        }
+      }
+      assert(0 <= msk && msk <= 7);
+      this.mask = msk;
+      this.applyMask(msk);
+      this.drawFormatBits(msk);
+      this.isFunction = [];
+    }
+    static encodeText(text, ecl) {
+      const segs = qrcodegen2.QrSegment.makeSegments(text);
+      return _QrCode.encodeSegments(segs, ecl);
+    }
+    static encodeBinary(data2, ecl) {
+      const seg = qrcodegen2.QrSegment.makeBytes(data2);
+      return _QrCode.encodeSegments([seg], ecl);
+    }
+    static encodeSegments(segs, ecl, minVersion = 1, maxVersion = 40, mask = -1, boostEcl = true) {
+      if (!(_QrCode.MIN_VERSION <= minVersion && minVersion <= maxVersion && maxVersion <= _QrCode.MAX_VERSION) || mask < -1 || mask > 7)
+        throw new RangeError("Invalid value");
+      let version2;
+      let dataUsedBits;
+      for (version2 = minVersion; ; version2++) {
+        const dataCapacityBits2 = _QrCode.getNumDataCodewords(version2, ecl) * 8;
+        const usedBits = QrSegment.getTotalBits(segs, version2);
+        if (usedBits <= dataCapacityBits2) {
+          dataUsedBits = usedBits;
+          break;
+        }
+        if (version2 >= maxVersion)
+          throw new RangeError("Data too long");
+      }
+      for (const newEcl of [_QrCode.Ecc.MEDIUM, _QrCode.Ecc.QUARTILE, _QrCode.Ecc.HIGH]) {
+        if (boostEcl && dataUsedBits <= _QrCode.getNumDataCodewords(version2, newEcl) * 8)
+          ecl = newEcl;
+      }
+      let bb2 = [];
+      for (const seg of segs) {
+        appendBits(seg.mode.modeBits, 4, bb2);
+        appendBits(seg.numChars, seg.mode.numCharCountBits(version2), bb2);
+        for (const b2 of seg.getData())
+          bb2.push(b2);
+      }
+      assert(bb2.length == dataUsedBits);
+      const dataCapacityBits = _QrCode.getNumDataCodewords(version2, ecl) * 8;
+      assert(bb2.length <= dataCapacityBits);
+      appendBits(0, Math.min(4, dataCapacityBits - bb2.length), bb2);
+      appendBits(0, (8 - bb2.length % 8) % 8, bb2);
+      assert(bb2.length % 8 == 0);
+      for (let padByte = 236; bb2.length < dataCapacityBits; padByte ^= 236 ^ 17)
+        appendBits(padByte, 8, bb2);
+      let dataCodewords = [];
+      while (dataCodewords.length * 8 < bb2.length)
+        dataCodewords.push(0);
+      bb2.forEach((b2, i2) => dataCodewords[i2 >>> 3] |= b2 << 7 - (i2 & 7));
+      return new _QrCode(version2, ecl, dataCodewords, mask);
+    }
+    getModule(x2, y2) {
+      return 0 <= x2 && x2 < this.size && 0 <= y2 && y2 < this.size && this.modules[y2][x2];
+    }
+    getModules() {
+      return this.modules;
+    }
+    drawFunctionPatterns() {
+      for (let i2 = 0; i2 < this.size; i2++) {
+        this.setFunctionModule(6, i2, i2 % 2 == 0);
+        this.setFunctionModule(i2, 6, i2 % 2 == 0);
+      }
+      this.drawFinderPattern(3, 3);
+      this.drawFinderPattern(this.size - 4, 3);
+      this.drawFinderPattern(3, this.size - 4);
+      const alignPatPos = this.getAlignmentPatternPositions();
+      const numAlign = alignPatPos.length;
+      for (let i2 = 0; i2 < numAlign; i2++) {
+        for (let j2 = 0; j2 < numAlign; j2++) {
+          if (!(i2 == 0 && j2 == 0 || i2 == 0 && j2 == numAlign - 1 || i2 == numAlign - 1 && j2 == 0))
+            this.drawAlignmentPattern(alignPatPos[i2], alignPatPos[j2]);
+        }
+      }
+      this.drawFormatBits(0);
+      this.drawVersion();
+    }
+    drawFormatBits(mask) {
+      const data2 = this.errorCorrectionLevel.formatBits << 3 | mask;
+      let rem = data2;
+      for (let i2 = 0; i2 < 10; i2++)
+        rem = rem << 1 ^ (rem >>> 9) * 1335;
+      const bits = (data2 << 10 | rem) ^ 21522;
+      assert(bits >>> 15 == 0);
+      for (let i2 = 0; i2 <= 5; i2++)
+        this.setFunctionModule(8, i2, getBit(bits, i2));
+      this.setFunctionModule(8, 7, getBit(bits, 6));
+      this.setFunctionModule(8, 8, getBit(bits, 7));
+      this.setFunctionModule(7, 8, getBit(bits, 8));
+      for (let i2 = 9; i2 < 15; i2++)
+        this.setFunctionModule(14 - i2, 8, getBit(bits, i2));
+      for (let i2 = 0; i2 < 8; i2++)
+        this.setFunctionModule(this.size - 1 - i2, 8, getBit(bits, i2));
+      for (let i2 = 8; i2 < 15; i2++)
+        this.setFunctionModule(8, this.size - 15 + i2, getBit(bits, i2));
+      this.setFunctionModule(8, this.size - 8, true);
+    }
+    drawVersion() {
+      if (this.version < 7)
+        return;
+      let rem = this.version;
+      for (let i2 = 0; i2 < 12; i2++)
+        rem = rem << 1 ^ (rem >>> 11) * 7973;
+      const bits = this.version << 12 | rem;
+      assert(bits >>> 18 == 0);
+      for (let i2 = 0; i2 < 18; i2++) {
+        const color2 = getBit(bits, i2);
+        const a = this.size - 11 + i2 % 3;
+        const b2 = Math.floor(i2 / 3);
+        this.setFunctionModule(a, b2, color2);
+        this.setFunctionModule(b2, a, color2);
+      }
+    }
+    drawFinderPattern(x2, y2) {
+      for (let dy = -4; dy <= 4; dy++) {
+        for (let dx = -4; dx <= 4; dx++) {
+          const dist = Math.max(Math.abs(dx), Math.abs(dy));
+          const xx = x2 + dx;
+          const yy = y2 + dy;
+          if (0 <= xx && xx < this.size && 0 <= yy && yy < this.size)
+            this.setFunctionModule(xx, yy, dist != 2 && dist != 4);
+        }
+      }
+    }
+    drawAlignmentPattern(x2, y2) {
+      for (let dy = -2; dy <= 2; dy++) {
+        for (let dx = -2; dx <= 2; dx++)
+          this.setFunctionModule(x2 + dx, y2 + dy, Math.max(Math.abs(dx), Math.abs(dy)) != 1);
+      }
+    }
+    setFunctionModule(x2, y2, isDark) {
+      this.modules[y2][x2] = isDark;
+      this.isFunction[y2][x2] = true;
+    }
+    addEccAndInterleave(data2) {
+      const ver = this.version;
+      const ecl = this.errorCorrectionLevel;
+      if (data2.length != _QrCode.getNumDataCodewords(ver, ecl))
+        throw new RangeError("Invalid argument");
+      const numBlocks = _QrCode.NUM_ERROR_CORRECTION_BLOCKS[ecl.ordinal][ver];
+      const blockEccLen = _QrCode.ECC_CODEWORDS_PER_BLOCK[ecl.ordinal][ver];
+      const rawCodewords = Math.floor(_QrCode.getNumRawDataModules(ver) / 8);
+      const numShortBlocks = numBlocks - rawCodewords % numBlocks;
+      const shortBlockLen = Math.floor(rawCodewords / numBlocks);
+      let blocks = [];
+      const rsDiv = _QrCode.reedSolomonComputeDivisor(blockEccLen);
+      for (let i2 = 0, k2 = 0; i2 < numBlocks; i2++) {
+        let dat = data2.slice(k2, k2 + shortBlockLen - blockEccLen + (i2 < numShortBlocks ? 0 : 1));
+        k2 += dat.length;
+        const ecc = _QrCode.reedSolomonComputeRemainder(dat, rsDiv);
+        if (i2 < numShortBlocks)
+          dat.push(0);
+        blocks.push(dat.concat(ecc));
+      }
+      let result = [];
+      for (let i2 = 0; i2 < blocks[0].length; i2++) {
+        blocks.forEach((block, j2) => {
+          if (i2 != shortBlockLen - blockEccLen || j2 >= numShortBlocks)
+            result.push(block[i2]);
+        });
+      }
+      assert(result.length == rawCodewords);
+      return result;
+    }
+    drawCodewords(data2) {
+      if (data2.length != Math.floor(_QrCode.getNumRawDataModules(this.version) / 8))
+        throw new RangeError("Invalid argument");
+      let i2 = 0;
+      for (let right = this.size - 1; right >= 1; right -= 2) {
+        if (right == 6)
+          right = 5;
+        for (let vert = 0; vert < this.size; vert++) {
+          for (let j2 = 0; j2 < 2; j2++) {
+            const x2 = right - j2;
+            const upward = (right + 1 & 2) == 0;
+            const y2 = upward ? this.size - 1 - vert : vert;
+            if (!this.isFunction[y2][x2] && i2 < data2.length * 8) {
+              this.modules[y2][x2] = getBit(data2[i2 >>> 3], 7 - (i2 & 7));
+              i2++;
+            }
+          }
+        }
+      }
+      assert(i2 == data2.length * 8);
+    }
+    applyMask(mask) {
+      if (mask < 0 || mask > 7)
+        throw new RangeError("Mask value out of range");
+      for (let y2 = 0; y2 < this.size; y2++) {
+        for (let x2 = 0; x2 < this.size; x2++) {
+          let invert;
+          switch (mask) {
+            case 0:
+              invert = (x2 + y2) % 2 == 0;
+              break;
+            case 1:
+              invert = y2 % 2 == 0;
+              break;
+            case 2:
+              invert = x2 % 3 == 0;
+              break;
+            case 3:
+              invert = (x2 + y2) % 3 == 0;
+              break;
+            case 4:
+              invert = (Math.floor(x2 / 3) + Math.floor(y2 / 2)) % 2 == 0;
+              break;
+            case 5:
+              invert = x2 * y2 % 2 + x2 * y2 % 3 == 0;
+              break;
+            case 6:
+              invert = (x2 * y2 % 2 + x2 * y2 % 3) % 2 == 0;
+              break;
+            case 7:
+              invert = ((x2 + y2) % 2 + x2 * y2 % 3) % 2 == 0;
+              break;
+            default:
+              throw new Error("Unreachable");
+          }
+          if (!this.isFunction[y2][x2] && invert)
+            this.modules[y2][x2] = !this.modules[y2][x2];
+        }
+      }
+    }
+    getPenaltyScore() {
+      let result = 0;
+      for (let y2 = 0; y2 < this.size; y2++) {
+        let runColor = false;
+        let runX = 0;
+        let runHistory = [0, 0, 0, 0, 0, 0, 0];
+        for (let x2 = 0; x2 < this.size; x2++) {
+          if (this.modules[y2][x2] == runColor) {
+            runX++;
+            if (runX == 5)
+              result += _QrCode.PENALTY_N1;
+            else if (runX > 5)
+              result++;
+          } else {
+            this.finderPenaltyAddHistory(runX, runHistory);
+            if (!runColor)
+              result += this.finderPenaltyCountPatterns(runHistory) * _QrCode.PENALTY_N3;
+            runColor = this.modules[y2][x2];
+            runX = 1;
+          }
+        }
+        result += this.finderPenaltyTerminateAndCount(runColor, runX, runHistory) * _QrCode.PENALTY_N3;
+      }
+      for (let x2 = 0; x2 < this.size; x2++) {
+        let runColor = false;
+        let runY = 0;
+        let runHistory = [0, 0, 0, 0, 0, 0, 0];
+        for (let y2 = 0; y2 < this.size; y2++) {
+          if (this.modules[y2][x2] == runColor) {
+            runY++;
+            if (runY == 5)
+              result += _QrCode.PENALTY_N1;
+            else if (runY > 5)
+              result++;
+          } else {
+            this.finderPenaltyAddHistory(runY, runHistory);
+            if (!runColor)
+              result += this.finderPenaltyCountPatterns(runHistory) * _QrCode.PENALTY_N3;
+            runColor = this.modules[y2][x2];
+            runY = 1;
+          }
+        }
+        result += this.finderPenaltyTerminateAndCount(runColor, runY, runHistory) * _QrCode.PENALTY_N3;
+      }
+      for (let y2 = 0; y2 < this.size - 1; y2++) {
+        for (let x2 = 0; x2 < this.size - 1; x2++) {
+          const color2 = this.modules[y2][x2];
+          if (color2 == this.modules[y2][x2 + 1] && color2 == this.modules[y2 + 1][x2] && color2 == this.modules[y2 + 1][x2 + 1])
+            result += _QrCode.PENALTY_N2;
+        }
+      }
+      let dark = 0;
+      for (const row of this.modules)
+        dark = row.reduce((sum, color2) => sum + (color2 ? 1 : 0), dark);
+      const total = this.size * this.size;
+      const k2 = Math.ceil(Math.abs(dark * 20 - total * 10) / total) - 1;
+      assert(0 <= k2 && k2 <= 9);
+      result += k2 * _QrCode.PENALTY_N4;
+      assert(0 <= result && result <= 2568888);
+      return result;
+    }
+    getAlignmentPatternPositions() {
+      if (this.version == 1)
+        return [];
+      else {
+        const numAlign = Math.floor(this.version / 7) + 2;
+        const step = this.version == 32 ? 26 : Math.ceil((this.version * 4 + 4) / (numAlign * 2 - 2)) * 2;
+        let result = [6];
+        for (let pos = this.size - 7; result.length < numAlign; pos -= step)
+          result.splice(1, 0, pos);
+        return result;
+      }
+    }
+    static getNumRawDataModules(ver) {
+      if (ver < _QrCode.MIN_VERSION || ver > _QrCode.MAX_VERSION)
+        throw new RangeError("Version number out of range");
+      let result = (16 * ver + 128) * ver + 64;
+      if (ver >= 2) {
+        const numAlign = Math.floor(ver / 7) + 2;
+        result -= (25 * numAlign - 10) * numAlign - 55;
+        if (ver >= 7)
+          result -= 36;
+      }
+      assert(208 <= result && result <= 29648);
+      return result;
+    }
+    static getNumDataCodewords(ver, ecl) {
+      return Math.floor(_QrCode.getNumRawDataModules(ver) / 8) - _QrCode.ECC_CODEWORDS_PER_BLOCK[ecl.ordinal][ver] * _QrCode.NUM_ERROR_CORRECTION_BLOCKS[ecl.ordinal][ver];
+    }
+    static reedSolomonComputeDivisor(degree) {
+      if (degree < 1 || degree > 255)
+        throw new RangeError("Degree out of range");
+      let result = [];
+      for (let i2 = 0; i2 < degree - 1; i2++)
+        result.push(0);
+      result.push(1);
+      let root2 = 1;
+      for (let i2 = 0; i2 < degree; i2++) {
+        for (let j2 = 0; j2 < result.length; j2++) {
+          result[j2] = _QrCode.reedSolomonMultiply(result[j2], root2);
+          if (j2 + 1 < result.length)
+            result[j2] ^= result[j2 + 1];
+        }
+        root2 = _QrCode.reedSolomonMultiply(root2, 2);
+      }
+      return result;
+    }
+    static reedSolomonComputeRemainder(data2, divisor) {
+      let result = divisor.map((_2) => 0);
+      for (const b2 of data2) {
+        const factor = b2 ^ result.shift();
+        result.push(0);
+        divisor.forEach((coef, i2) => result[i2] ^= _QrCode.reedSolomonMultiply(coef, factor));
+      }
+      return result;
+    }
+    static reedSolomonMultiply(x2, y2) {
+      if (x2 >>> 8 != 0 || y2 >>> 8 != 0)
+        throw new RangeError("Byte out of range");
+      let z2 = 0;
+      for (let i2 = 7; i2 >= 0; i2--) {
+        z2 = z2 << 1 ^ (z2 >>> 7) * 285;
+        z2 ^= (y2 >>> i2 & 1) * x2;
+      }
+      assert(z2 >>> 8 == 0);
+      return z2;
+    }
+    finderPenaltyCountPatterns(runHistory) {
+      const n2 = runHistory[1];
+      assert(n2 <= this.size * 3);
+      const core = n2 > 0 && runHistory[2] == n2 && runHistory[3] == n2 * 3 && runHistory[4] == n2 && runHistory[5] == n2;
+      return (core && runHistory[0] >= n2 * 4 && runHistory[6] >= n2 ? 1 : 0) + (core && runHistory[6] >= n2 * 4 && runHistory[0] >= n2 ? 1 : 0);
+    }
+    finderPenaltyTerminateAndCount(currentRunColor, currentRunLength, runHistory) {
+      if (currentRunColor) {
+        this.finderPenaltyAddHistory(currentRunLength, runHistory);
+        currentRunLength = 0;
+      }
+      currentRunLength += this.size;
+      this.finderPenaltyAddHistory(currentRunLength, runHistory);
+      return this.finderPenaltyCountPatterns(runHistory);
+    }
+    finderPenaltyAddHistory(currentRunLength, runHistory) {
+      if (runHistory[0] == 0)
+        currentRunLength += this.size;
+      runHistory.pop();
+      runHistory.unshift(currentRunLength);
+    }
+  };
+  let QrCode = _QrCode;
+  QrCode.MIN_VERSION = 1;
+  QrCode.MAX_VERSION = 40;
+  QrCode.PENALTY_N1 = 3;
+  QrCode.PENALTY_N2 = 3;
+  QrCode.PENALTY_N3 = 40;
+  QrCode.PENALTY_N4 = 10;
+  QrCode.ECC_CODEWORDS_PER_BLOCK = [
+    [-1, 7, 10, 15, 20, 26, 18, 20, 24, 30, 18, 20, 24, 26, 30, 22, 24, 28, 30, 28, 28, 28, 28, 30, 30, 26, 28, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30],
+    [-1, 10, 16, 26, 18, 24, 16, 18, 22, 22, 26, 30, 22, 22, 24, 24, 28, 28, 26, 26, 26, 26, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28, 28],
+    [-1, 13, 22, 18, 26, 18, 24, 18, 22, 20, 24, 28, 26, 24, 20, 30, 24, 28, 28, 26, 30, 28, 30, 30, 30, 30, 28, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30],
+    [-1, 17, 28, 22, 16, 22, 28, 26, 26, 24, 28, 24, 28, 22, 24, 24, 30, 28, 28, 26, 28, 30, 24, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30, 30]
+  ];
+  QrCode.NUM_ERROR_CORRECTION_BLOCKS = [
+    [-1, 1, 1, 1, 1, 1, 2, 2, 2, 2, 4, 4, 4, 4, 4, 6, 6, 6, 6, 7, 8, 8, 9, 9, 10, 12, 12, 12, 13, 14, 15, 16, 17, 18, 19, 19, 20, 21, 22, 24, 25],
+    [-1, 1, 1, 1, 2, 2, 4, 4, 4, 5, 5, 5, 8, 9, 9, 10, 10, 11, 13, 14, 16, 17, 17, 18, 20, 21, 23, 25, 26, 28, 29, 31, 33, 35, 37, 38, 40, 43, 45, 47, 49],
+    [-1, 1, 1, 2, 2, 4, 4, 6, 6, 8, 8, 8, 10, 12, 16, 12, 17, 16, 18, 21, 20, 23, 23, 25, 27, 29, 34, 34, 35, 38, 40, 43, 45, 48, 51, 53, 56, 59, 62, 65, 68],
+    [-1, 1, 1, 2, 4, 4, 4, 5, 6, 8, 8, 11, 11, 16, 16, 18, 16, 19, 21, 25, 25, 25, 34, 30, 32, 35, 37, 40, 42, 45, 48, 51, 54, 57, 60, 63, 66, 70, 74, 77, 81]
+  ];
+  qrcodegen2.QrCode = QrCode;
+  function appendBits(val, len, bb2) {
+    if (len < 0 || len > 31 || val >>> len != 0)
+      throw new RangeError("Value out of range");
+    for (let i2 = len - 1; i2 >= 0; i2--)
+      bb2.push(val >>> i2 & 1);
+  }
+  function getBit(x2, i2) {
+    return (x2 >>> i2 & 1) != 0;
+  }
+  function assert(cond) {
+    if (!cond)
+      throw new Error("Assertion error");
+  }
+  const _QrSegment = class {
+    constructor(mode, numChars, bitData) {
+      this.mode = mode;
+      this.numChars = numChars;
+      this.bitData = bitData;
+      if (numChars < 0)
+        throw new RangeError("Invalid argument");
+      this.bitData = bitData.slice();
+    }
+    static makeBytes(data2) {
+      let bb2 = [];
+      for (const b2 of data2)
+        appendBits(b2, 8, bb2);
+      return new _QrSegment(_QrSegment.Mode.BYTE, data2.length, bb2);
+    }
+    static makeNumeric(digits) {
+      if (!_QrSegment.isNumeric(digits))
+        throw new RangeError("String contains non-numeric characters");
+      let bb2 = [];
+      for (let i2 = 0; i2 < digits.length; ) {
+        const n2 = Math.min(digits.length - i2, 3);
+        appendBits(parseInt(digits.substr(i2, n2), 10), n2 * 3 + 1, bb2);
+        i2 += n2;
+      }
+      return new _QrSegment(_QrSegment.Mode.NUMERIC, digits.length, bb2);
+    }
+    static makeAlphanumeric(text) {
+      if (!_QrSegment.isAlphanumeric(text))
+        throw new RangeError("String contains unencodable characters in alphanumeric mode");
+      let bb2 = [];
+      let i2;
+      for (i2 = 0; i2 + 2 <= text.length; i2 += 2) {
+        let temp = _QrSegment.ALPHANUMERIC_CHARSET.indexOf(text.charAt(i2)) * 45;
+        temp += _QrSegment.ALPHANUMERIC_CHARSET.indexOf(text.charAt(i2 + 1));
+        appendBits(temp, 11, bb2);
+      }
+      if (i2 < text.length)
+        appendBits(_QrSegment.ALPHANUMERIC_CHARSET.indexOf(text.charAt(i2)), 6, bb2);
+      return new _QrSegment(_QrSegment.Mode.ALPHANUMERIC, text.length, bb2);
+    }
+    static makeSegments(text) {
+      if (text == "")
+        return [];
+      else if (_QrSegment.isNumeric(text))
+        return [_QrSegment.makeNumeric(text)];
+      else if (_QrSegment.isAlphanumeric(text))
+        return [_QrSegment.makeAlphanumeric(text)];
+      else
+        return [_QrSegment.makeBytes(_QrSegment.toUtf8ByteArray(text))];
+    }
+    static makeEci(assignVal) {
+      let bb2 = [];
+      if (assignVal < 0)
+        throw new RangeError("ECI assignment value out of range");
+      else if (assignVal < 1 << 7)
+        appendBits(assignVal, 8, bb2);
+      else if (assignVal < 1 << 14) {
+        appendBits(2, 2, bb2);
+        appendBits(assignVal, 14, bb2);
+      } else if (assignVal < 1e6) {
+        appendBits(6, 3, bb2);
+        appendBits(assignVal, 21, bb2);
+      } else
+        throw new RangeError("ECI assignment value out of range");
+      return new _QrSegment(_QrSegment.Mode.ECI, 0, bb2);
+    }
+    static isNumeric(text) {
+      return _QrSegment.NUMERIC_REGEX.test(text);
+    }
+    static isAlphanumeric(text) {
+      return _QrSegment.ALPHANUMERIC_REGEX.test(text);
+    }
+    getData() {
+      return this.bitData.slice();
+    }
+    static getTotalBits(segs, version2) {
+      let result = 0;
+      for (const seg of segs) {
+        const ccbits = seg.mode.numCharCountBits(version2);
+        if (seg.numChars >= 1 << ccbits)
+          return Infinity;
+        result += 4 + ccbits + seg.bitData.length;
+      }
+      return result;
+    }
+    static toUtf8ByteArray(str) {
+      str = encodeURI(str);
+      let result = [];
+      for (let i2 = 0; i2 < str.length; i2++) {
+        if (str.charAt(i2) != "%")
+          result.push(str.charCodeAt(i2));
+        else {
+          result.push(parseInt(str.substr(i2 + 1, 2), 16));
+          i2 += 2;
+        }
+      }
+      return result;
+    }
+  };
+  let QrSegment = _QrSegment;
+  QrSegment.NUMERIC_REGEX = /^[0-9]*$/;
+  QrSegment.ALPHANUMERIC_REGEX = /^[A-Z0-9 $%*+.\/:-]*$/;
+  QrSegment.ALPHANUMERIC_CHARSET = "0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ $%*+-./:";
+  qrcodegen2.QrSegment = QrSegment;
+})(qrcodegen || (qrcodegen = {}));
+((qrcodegen2) => {
+  ((QrCode2) => {
+    const _Ecc = class {
+      constructor(ordinal2, formatBits) {
+        this.ordinal = ordinal2;
+        this.formatBits = formatBits;
+      }
+    };
+    let Ecc = _Ecc;
+    Ecc.LOW = new _Ecc(0, 1);
+    Ecc.MEDIUM = new _Ecc(1, 0);
+    Ecc.QUARTILE = new _Ecc(2, 3);
+    Ecc.HIGH = new _Ecc(3, 2);
+    QrCode2.Ecc = Ecc;
+  })(qrcodegen2.QrCode || (qrcodegen2.QrCode = {}));
+})(qrcodegen || (qrcodegen = {}));
+((qrcodegen2) => {
+  ((QrSegment2) => {
+    const _Mode = class {
+      constructor(modeBits, numBitsCharCount) {
+        this.modeBits = modeBits;
+        this.numBitsCharCount = numBitsCharCount;
+      }
+      numCharCountBits(ver) {
+        return this.numBitsCharCount[Math.floor((ver + 7) / 17)];
+      }
+    };
+    let Mode = _Mode;
+    Mode.NUMERIC = new _Mode(1, [10, 12, 14]);
+    Mode.ALPHANUMERIC = new _Mode(2, [9, 11, 13]);
+    Mode.BYTE = new _Mode(4, [8, 16, 16]);
+    Mode.KANJI = new _Mode(8, [8, 10, 12]);
+    Mode.ECI = new _Mode(7, [0, 0, 0]);
+    QrSegment2.Mode = Mode;
+  })(qrcodegen2.QrSegment || (qrcodegen2.QrSegment = {}));
+})(qrcodegen || (qrcodegen = {}));
+var qrcodegen_default = qrcodegen;
+/**
+ * @license qrcode.react
+ * Copyright (c) Paul O'Shannessy
+ * SPDX-License-Identifier: ISC
+ */
+var ERROR_LEVEL_MAP = {
+  L: qrcodegen_default.QrCode.Ecc.LOW,
+  M: qrcodegen_default.QrCode.Ecc.MEDIUM,
+  Q: qrcodegen_default.QrCode.Ecc.QUARTILE,
+  H: qrcodegen_default.QrCode.Ecc.HIGH
+};
+var DEFAULT_SIZE = 128;
+var DEFAULT_LEVEL = "L";
+var DEFAULT_BGCOLOR = "#FFFFFF";
+var DEFAULT_FGCOLOR = "#000000";
+var DEFAULT_INCLUDEMARGIN = false;
+var MARGIN_SIZE = 4;
+var DEFAULT_IMG_SCALE = 0.1;
+function generatePath(modules, margin = 0) {
+  const ops = [];
+  modules.forEach(function(row, y2) {
+    let start = null;
+    row.forEach(function(cell, x2) {
+      if (!cell && start !== null) {
+        ops.push(`M${start + margin} ${y2 + margin}h${x2 - start}v1H${start + margin}z`);
+        start = null;
+        return;
+      }
+      if (x2 === row.length - 1) {
+        if (!cell) {
+          return;
+        }
+        if (start === null) {
+          ops.push(`M${x2 + margin},${y2 + margin} h1v1H${x2 + margin}z`);
+        } else {
+          ops.push(`M${start + margin},${y2 + margin} h${x2 + 1 - start}v1H${start + margin}z`);
+        }
+        return;
+      }
+      if (cell && start === null) {
+        start = x2;
+      }
+    });
+  });
+  return ops.join("");
+}
+function excavateModules(modules, excavation) {
+  return modules.slice().map((row, y2) => {
+    if (y2 < excavation.y || y2 >= excavation.y + excavation.h) {
+      return row;
+    }
+    return row.map((cell, x2) => {
+      if (x2 < excavation.x || x2 >= excavation.x + excavation.w) {
+        return cell;
+      }
+      return false;
+    });
+  });
+}
+function getImageSettings(cells, size, includeMargin, imageSettings) {
+  if (imageSettings == null) {
+    return null;
+  }
+  const margin = includeMargin ? MARGIN_SIZE : 0;
+  const numCells = cells.length + margin * 2;
+  const defaultSize = Math.floor(size * DEFAULT_IMG_SCALE);
+  const scale = numCells / size;
+  const w2 = (imageSettings.width || defaultSize) * scale;
+  const h3 = (imageSettings.height || defaultSize) * scale;
+  const x2 = imageSettings.x == null ? cells.length / 2 - w2 / 2 : imageSettings.x * scale;
+  const y2 = imageSettings.y == null ? cells.length / 2 - h3 / 2 : imageSettings.y * scale;
+  let excavation = null;
+  if (imageSettings.excavate) {
+    let floorX = Math.floor(x2);
+    let floorY = Math.floor(y2);
+    let ceilW = Math.ceil(w2 + x2 - floorX);
+    let ceilH = Math.ceil(h3 + y2 - floorY);
+    excavation = { x: floorX, y: floorY, w: ceilW, h: ceilH };
+  }
+  return { x: x2, y: y2, h: h3, w: w2, excavation };
+}
+var SUPPORTS_PATH2D = function() {
+  try {
+    new Path2D().addPath(new Path2D());
+  } catch (e2) {
+    return false;
+  }
+  return true;
+}();
+function QRCodeCanvas(props) {
+  const _a = props, {
+    value,
+    size = DEFAULT_SIZE,
+    level = DEFAULT_LEVEL,
+    bgColor = DEFAULT_BGCOLOR,
+    fgColor = DEFAULT_FGCOLOR,
+    includeMargin = DEFAULT_INCLUDEMARGIN,
+    style: style2,
+    imageSettings
+  } = _a, otherProps = __objRest(_a, [
+    "value",
+    "size",
+    "level",
+    "bgColor",
+    "fgColor",
+    "includeMargin",
+    "style",
+    "imageSettings"
+  ]);
+  const imgSrc = imageSettings == null ? void 0 : imageSettings.src;
+  const _canvas = reactExports.useRef(null);
+  const _image = reactExports.useRef(null);
+  const [isImgLoaded, setIsImageLoaded] = reactExports.useState(false);
+  reactExports.useEffect(() => {
+    if (_canvas.current != null) {
+      const canvas = _canvas.current;
+      const ctx = canvas.getContext("2d");
+      if (!ctx) {
+        return;
+      }
+      let cells = qrcodegen_default.QrCode.encodeText(value, ERROR_LEVEL_MAP[level]).getModules();
+      const margin = includeMargin ? MARGIN_SIZE : 0;
+      const numCells = cells.length + margin * 2;
+      const calculatedImageSettings = getImageSettings(cells, size, includeMargin, imageSettings);
+      const image = _image.current;
+      const haveImageToRender = calculatedImageSettings != null && image !== null && image.complete && image.naturalHeight !== 0 && image.naturalWidth !== 0;
+      if (haveImageToRender) {
+        if (calculatedImageSettings.excavation != null) {
+          cells = excavateModules(cells, calculatedImageSettings.excavation);
+        }
+      }
+      const pixelRatio = window.devicePixelRatio || 1;
+      canvas.height = canvas.width = size * pixelRatio;
+      const scale = size / numCells * pixelRatio;
+      ctx.scale(scale, scale);
+      ctx.fillStyle = bgColor;
+      ctx.fillRect(0, 0, numCells, numCells);
+      ctx.fillStyle = fgColor;
+      if (SUPPORTS_PATH2D) {
+        ctx.fill(new Path2D(generatePath(cells, margin)));
+      } else {
+        cells.forEach(function(row, rdx) {
+          row.forEach(function(cell, cdx) {
+            if (cell) {
+              ctx.fillRect(cdx + margin, rdx + margin, 1, 1);
+            }
+          });
+        });
+      }
+      if (haveImageToRender) {
+        ctx.drawImage(image, calculatedImageSettings.x + margin, calculatedImageSettings.y + margin, calculatedImageSettings.w, calculatedImageSettings.h);
+      }
+    }
+  });
+  reactExports.useEffect(() => {
+    setIsImageLoaded(false);
+  }, [imgSrc]);
+  const canvasStyle = __spreadValues({ height: size, width: size }, style2);
+  let img = null;
+  if (imgSrc != null) {
+    img = /* @__PURE__ */ React.createElement("img", {
+      src: imgSrc,
+      key: imgSrc,
+      style: { display: "none" },
+      onLoad: () => {
+        setIsImageLoaded(true);
+      },
+      ref: _image
+    });
+  }
+  return /* @__PURE__ */ React.createElement(React.Fragment, null, /* @__PURE__ */ React.createElement("canvas", __spreadValues({
+    style: canvasStyle,
+    height: size,
+    width: size,
+    ref: _canvas
+  }, otherProps)), img);
+}
+function QRCodeSVG(props) {
+  const _a = props, {
+    value,
+    size = DEFAULT_SIZE,
+    level = DEFAULT_LEVEL,
+    bgColor = DEFAULT_BGCOLOR,
+    fgColor = DEFAULT_FGCOLOR,
+    includeMargin = DEFAULT_INCLUDEMARGIN,
+    imageSettings
+  } = _a, otherProps = __objRest(_a, [
+    "value",
+    "size",
+    "level",
+    "bgColor",
+    "fgColor",
+    "includeMargin",
+    "imageSettings"
+  ]);
+  let cells = qrcodegen_default.QrCode.encodeText(value, ERROR_LEVEL_MAP[level]).getModules();
+  const margin = includeMargin ? MARGIN_SIZE : 0;
+  const numCells = cells.length + margin * 2;
+  const calculatedImageSettings = getImageSettings(cells, size, includeMargin, imageSettings);
+  let image = null;
+  if (imageSettings != null && calculatedImageSettings != null) {
+    if (calculatedImageSettings.excavation != null) {
+      cells = excavateModules(cells, calculatedImageSettings.excavation);
+    }
+    image = /* @__PURE__ */ React.createElement("image", {
+      xlinkHref: imageSettings.src,
+      height: calculatedImageSettings.h,
+      width: calculatedImageSettings.w,
+      x: calculatedImageSettings.x + margin,
+      y: calculatedImageSettings.y + margin,
+      preserveAspectRatio: "none"
+    });
+  }
+  const fgPath = generatePath(cells, margin);
+  return /* @__PURE__ */ React.createElement("svg", __spreadValues({
+    height: size,
+    width: size,
+    viewBox: `0 0 ${numCells} ${numCells}`
+  }, otherProps), /* @__PURE__ */ React.createElement("path", {
+    fill: bgColor,
+    d: `M0,0 h${numCells}v${numCells}H0z`,
+    shapeRendering: "crispEdges"
+  }), /* @__PURE__ */ React.createElement("path", {
+    fill: fgColor,
+    d: fgPath,
+    shapeRendering: "crispEdges"
+  }), image);
+}
+var QRCode = (props) => {
+  const _a = props, { renderAs } = _a, otherProps = __objRest(_a, ["renderAs"]);
+  if (renderAs === "svg") {
+    return /* @__PURE__ */ React.createElement(QRCodeSVG, __spreadValues({}, otherProps));
+  }
+  return /* @__PURE__ */ React.createElement(QRCodeCanvas, __spreadValues({}, otherProps));
+};
 var SliderContext = /* @__PURE__ */ reactExports.createContext({
   min: 0,
   max: 0,
@@ -77979,40 +78833,11 @@ api.interceptors.request.use(async (config) => {
   return config;
 });
 const logo$1 = "" + new URL("logo-green-24b4ae3d.png", import.meta.url).href;
-function errorActions(error) {
-  if (error.response?.status === 401) {
-    setLogout();
-    window.location.reload();
-  }
-}
-const routeDefault = {
-  "Dashboard": "/dashboard",
-  "Caixa": "/caixa",
-  "Balcao": "/pedidos-balcao/",
-  "Produtos": "/produtos",
-  "Cardapios": "/cardapios",
-  "Comandas": "/comandas",
-  "Mesas": "/mesas",
-  "Estoques": "/estoque",
-  "Relatorios": "/relatorios/vendas-periodo/",
-  "Fiscal": "/notas",
-  "Integracoes": "/integracoes",
-  "Terminal": "/terminal"
-};
 const { Paragraph: Paragraph$9 } = Typography$1;
 const LoginPage = () => {
   const [isLoading, setIsLoading] = reactExports.useState(false);
   const [error, setError] = reactExports.useState(null);
   const navigate = useNavigate();
-  function fetchUserPermission() {
-    api.get("/user-permissions/").then((response) => {
-      const permissions = response.data.map((permission) => permission.sidebar_permissions.map((sidebar) => sidebar.title)).flat();
-      localStorage.setItem("userPermissions", JSON.stringify(permissions));
-      navigate(routeDefault[permissions[0]]);
-    }).catch((error2) => {
-      errorActions(error2);
-    });
-  }
   function getErrorMessage() {
     if (error?.type === "invalid") {
       return /* @__PURE__ */ jsxRuntimeExports.jsx(Alert$1, { message: error.message, type: "error" });
@@ -78028,7 +78853,7 @@ const LoginPage = () => {
       api.get("/restaurant/").then((response2) => {
         localStorage.setItem("restaurant-info", JSON.stringify(response2.data[0]));
       });
-      fetchUserPermission();
+      navigate("/caixa/");
     }).catch((error2) => {
       if (error2.response?.status === 400) {
         setError({
@@ -78817,6 +79642,15 @@ var PrinterOutlined = function PrinterOutlined2(props, ref) {
   }));
 };
 const PrinterOutlined$1 = /* @__PURE__ */ reactExports.forwardRef(PrinterOutlined);
+var QrcodeOutlined$2 = { "icon": { "tag": "svg", "attrs": { "viewBox": "64 64 896 896", "focusable": "false" }, "children": [{ "tag": "path", "attrs": { "d": "M468 128H160c-17.7 0-32 14.3-32 32v308c0 4.4 3.6 8 8 8h332c4.4 0 8-3.6 8-8V136c0-4.4-3.6-8-8-8zm-56 284H192V192h220v220zm-138-74h56c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm194 210H136c-4.4 0-8 3.6-8 8v308c0 17.7 14.3 32 32 32h308c4.4 0 8-3.6 8-8V556c0-4.4-3.6-8-8-8zm-56 284H192V612h220v220zm-138-74h56c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm590-630H556c-4.4 0-8 3.6-8 8v332c0 4.4 3.6 8 8 8h332c4.4 0 8-3.6 8-8V160c0-17.7-14.3-32-32-32zm-32 284H612V192h220v220zm-138-74h56c4.4 0 8-3.6 8-8v-56c0-4.4-3.6-8-8-8h-56c-4.4 0-8 3.6-8 8v56c0 4.4 3.6 8 8 8zm194 210h-48c-4.4 0-8 3.6-8 8v134h-78V556c0-4.4-3.6-8-8-8H556c-4.4 0-8 3.6-8 8v332c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8V644h78v102c0 4.4 3.6 8 8 8h190c4.4 0 8-3.6 8-8V556c0-4.4-3.6-8-8-8zM746 832h-48c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8zm142 0h-48c-4.4 0-8 3.6-8 8v48c0 4.4 3.6 8 8 8h48c4.4 0 8-3.6 8-8v-48c0-4.4-3.6-8-8-8z" } }] }, "name": "qrcode", "theme": "outlined" };
+const QrcodeOutlinedSvg = QrcodeOutlined$2;
+var QrcodeOutlined = function QrcodeOutlined2(props, ref) {
+  return /* @__PURE__ */ reactExports.createElement(AntdIcon, _extends$1({}, props, {
+    ref,
+    icon: QrcodeOutlinedSvg
+  }));
+};
+const QrcodeOutlined$1 = /* @__PURE__ */ reactExports.forwardRef(QrcodeOutlined);
 var QuestionCircleOutlined2 = function QuestionCircleOutlined3(props, ref) {
   return /* @__PURE__ */ reactExports.createElement(AntdIcon, _extends$1({}, props, {
     ref,
@@ -79441,6 +80275,12 @@ const formatPhoneNumber = (value) => {
     return value;
   return value.replace(/(\d{2})(\d{5})(\d{4})/, "($1) $2-$3");
 };
+function errorActions(error) {
+  if (error.response?.status === 401) {
+    setLogout();
+    window.location.reload();
+  }
+}
 const TerminalContext = reactExports.createContext({});
 function TerminalProvider({ children }) {
   const [bills, setBills] = reactExports.useState([]);
@@ -114418,6 +115258,7 @@ const Catalogs = () => {
   const [restaurant, setRestaurant] = reactExports.useState(null);
   const [loadingDelete, setLoadingDelete] = reactExports.useState([]);
   const [loadingAdd, setLoadingAdd] = reactExports.useState(false);
+  const [visibleQr, setVisibleQr] = reactExports.useState(false);
   const navigate = useNavigate();
   const fetchcatalogs = reactExports.useCallback(() => {
     setLoading(true);
@@ -114432,6 +115273,18 @@ const Catalogs = () => {
       setRestaurant(response?.data[0]);
     });
   }, []);
+  const handleDownloadQRCode = () => {
+    const qrCodeCanvas = document.querySelector(".qrcode canvas");
+    if (qrCodeCanvas) {
+      const qrCodeDataURL = qrCodeCanvas.toDataURL("image/png");
+      const downloadLink = document.createElement("a");
+      downloadLink.href = qrCodeDataURL;
+      downloadLink.download = "qrcode.png";
+      document.body.appendChild(downloadLink);
+      downloadLink.click();
+      document.body.removeChild(downloadLink);
+    }
+  };
   reactExports.useEffect(() => {
     if (!hasUpdate.current) {
       fetchcatalogs();
@@ -114599,6 +115452,15 @@ const Catalogs = () => {
                         shape: "circle"
                       }
                     ) }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip$2, { title: "Qrcode do cardápio", placement: "bottom", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      Button$2,
+                      {
+                        type: "default",
+                        onClick: () => setVisibleQr(true),
+                        icon: /* @__PURE__ */ jsxRuntimeExports.jsx(QrcodeOutlined$1, {}),
+                        shape: "circle"
+                      }
+                    ) }),
                     /* @__PURE__ */ jsxRuntimeExports.jsx(Tooltip$2, { title: "copiar link do cardápio", placement: "bottom", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
                       Button$2,
                       {
@@ -114692,6 +115554,29 @@ const Catalogs = () => {
             }
           )
         ] })
+      }
+    ),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(
+      Modal$1,
+      {
+        title: "QR code do cardápio",
+        onCancel: () => setVisibleQr(false),
+        open: visibleQr,
+        footer: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Button$2, { onClick: () => handleDownloadQRCode(), children: "Download" }, "download"),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Button$2, { onClick: () => setVisibleQr(false), children: "Cancelar" }, "cancel")
+        ],
+        style: {
+          display: "flex",
+          justifyContent: "center"
+        },
+        children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+          QRCode,
+          {
+            value: `https://peditz.me/${restaurant?.slug}/${catalogs[0]?.slug}`,
+            size: 256
+          }
+        ) })
       }
     )
   ] });
@@ -115152,6 +116037,20 @@ const Notas = () => {
     }
   ) });
 };
+const routeDefault = {
+  // 'Dashboard': '/dashboard',
+  "Caixa": "/caixa",
+  "Balcao": "/pedidos-balcao/",
+  "Produtos": "/produtos",
+  "Cardapios": "/cardapios",
+  "Comandas": "/comandas",
+  "Mesas": "/mesas",
+  "Estoques": "/estoque",
+  "Relatorios": "/relatorios/vendas-periodo/",
+  "Fiscal": "/notas",
+  // 'Integracoes': '/integracoes',
+  "Terminal": "/terminal"
+};
 function Navigation() {
   const storedPermissions = localStorage.getItem("userPermissions");
   const permissions = storedPermissions ? JSON.parse(storedPermissions) : [];
@@ -115163,7 +116062,7 @@ function Navigation() {
         element: /* @__PURE__ */ jsxRuntimeExports.jsx(AddSidebar, { titleHeader: "Comandas fechadas", children: /* @__PURE__ */ jsxRuntimeExports.jsx(BillClosedPage, {}) })
       }
     ) }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/", element: /* @__PURE__ */ jsxRuntimeExports.jsx(PrivateRoute, {}), children: /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/", element: /* @__PURE__ */ jsxRuntimeExports.jsx(Navigate, { to: routeDefault[permissions[0]], replace: true }) }) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/", element: /* @__PURE__ */ jsxRuntimeExports.jsx(PrivateRoute, {}), children: /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/", element: /* @__PURE__ */ jsxRuntimeExports.jsx(Navigate, { to: routeDefault[permissions[0]] }) }) }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/login/", element: /* @__PURE__ */ jsxRuntimeExports.jsx(LoginRoute, {}), children: /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/login/", element: /* @__PURE__ */ jsxRuntimeExports.jsx(LoginPage, {}) }) }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/caixa/", element: /* @__PURE__ */ jsxRuntimeExports.jsx(PrivateRoute, {}), children: /* @__PURE__ */ jsxRuntimeExports.jsx(
       Route,

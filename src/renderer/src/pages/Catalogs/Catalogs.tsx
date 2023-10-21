@@ -13,7 +13,8 @@ import {
   message,
   Tooltip,
   Popconfirm,
-  Drawer
+  Drawer,
+  Modal
 } from 'antd'
 import {
   EditOutlined,
@@ -21,12 +22,14 @@ import {
   BookOutlined,
   DeleteOutlined,
   ExportOutlined,
-  SaveOutlined
+  SaveOutlined,
+  QrcodeOutlined
 } from '@ant-design/icons'
 import api from '@renderer/services/api'
 import { theme } from '@renderer/theme'
 import { Link, useNavigate } from 'react-router-dom'
 import { CatalogType } from '@renderer/types'
+import QRCodeCanvas from 'qrcode.react'
 
 const { Title } = Typography
 
@@ -42,7 +45,7 @@ export const Catalogs: React.FC = () => {
   } | null>(null)
   const [loadingDelete, setLoadingDelete] = useState<string[]>([])
   const [loadingAdd, setLoadingAdd] = useState(false)
-
+  const [visibleQr, setVisibleQr] = useState(false)
   const navigate = useNavigate()
 
   const fetchcatalogs = useCallback(() => {
@@ -62,6 +65,25 @@ export const Catalogs: React.FC = () => {
       setRestaurant(response?.data[0])
     })
   }, [])
+
+  const handleDownloadQRCode = () => {
+    const qrCodeCanvas = document.querySelector('.qrcode canvas') as HTMLCanvasElement
+    if (qrCodeCanvas) {
+      const qrCodeDataURL = qrCodeCanvas.toDataURL('image/png')
+
+      // Crie um link temporário
+      const downloadLink = document.createElement('a')
+      downloadLink.href = qrCodeDataURL
+      downloadLink.download = 'qrcode.png'
+
+      // Simule um clique no link para iniciar o download
+      document.body.appendChild(downloadLink) // Adicione o link temporário ao corpo do documento
+      downloadLink.click()
+
+      // Remova o link temporário do corpo do documento
+      document.body.removeChild(downloadLink)
+    }
+  }
 
   useEffect(() => {
     if (!hasUpdate.current) {
@@ -228,6 +250,15 @@ export const Catalogs: React.FC = () => {
                   />
                 </Tooltip>
 
+                <Tooltip title="Qrcode do cardápio" placement="bottom">
+                  <Button
+                    type="default"
+                    onClick={() => setVisibleQr(true)}
+                    icon={<QrcodeOutlined />}
+                    shape="circle"
+                  />
+                </Tooltip>
+
                 <Tooltip title="copiar link do cardápio" placement="bottom">
                   <Button
                     type="link"
@@ -307,6 +338,30 @@ export const Catalogs: React.FC = () => {
           </Form.Item>
         </Form>
       </Drawer>
+      <Modal
+        title="QR code do cardápio"
+        onCancel={() => setVisibleQr(false)}
+        open={visibleQr}
+        footer={[
+          <Button key="download" onClick={() => handleDownloadQRCode()}>
+            Download
+          </Button>,
+          <Button key="cancel" onClick={() => setVisibleQr(false)}>
+            Cancelar
+          </Button>
+        ]}
+        style={{
+          display: 'flex',
+          justifyContent: 'center'
+        }}
+      >
+        <div>
+          <QRCodeCanvas
+            value={`https://peditz.me/${restaurant?.slug}/${catalogs[0]?.slug}`}
+            size={256}
+          />
+        </div>
+      </Modal>
     </S.Container>
   )
 }

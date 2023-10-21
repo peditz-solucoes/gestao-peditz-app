@@ -6,9 +6,9 @@ import api from '../../services/api'
 import { AxiosError, AxiosResponse } from 'axios'
 import { setLogin } from '../../services/auth'
 import logo from '../../assets/logo-green.png'
-import { UserPermissions } from '@renderer/types'
-import { errorActions } from '@renderer/utils/errorActions'
-import { routeDefault } from '@renderer/utils/defaultRoute'
+// import { UserPermissions } from '@renderer/types'
+// import { errorActions } from '@renderer/utils/errorActions'
+// import { routeDefault } from '@renderer/utils/defaultRoute'
 
 const { Paragraph } = Typography
 
@@ -28,20 +28,20 @@ export const LoginPage: React.FC = () => {
   const [error, setError] = useState<errorType | null>(null)
   const navigate = useNavigate()
 
-  function fetchUserPermission(): void {
-    api
-      .get('/user-permissions/')
-      .then((response) => {
-        const permissions = (response.data as UserPermissions[])
-          .map((permission) => permission.sidebar_permissions.map((sidebar) => sidebar.title))
-          .flat()
-        localStorage.setItem('userPermissions', JSON.stringify(permissions))
-        navigate(routeDefault[permissions[0]])
-      })
-      .catch((error: AxiosError) => {
-        errorActions(error)
-      })
-  }
+  // function fetchUserPermission(): void {
+  //   api
+  //     .get('/user-permissions/')
+  //     .then((response) => {
+  //       const permissions = (response.data as UserPermissions[])
+  //         .map((permission) => permission.sidebar_permissions.map((sidebar) => sidebar.title))
+  //         .flat()
+  //       localStorage.setItem('userPermissions', JSON.stringify(permissions))
+  //       navigate(routeDefault[permissions[0]])
+  //     })
+  //     .catch((error: AxiosError) => {
+  //       errorActions(error)
+  //     })
+  // }
 
   function getErrorMessage() {
     if (error?.type === 'invalid') {
@@ -62,7 +62,7 @@ export const LoginPage: React.FC = () => {
         api.get('/restaurant/').then((response) => {
           localStorage.setItem('restaurant-info', JSON.stringify(response.data[0]))
         })
-        fetchUserPermission()
+        navigate('/caixa/')
       })
       .catch((error: AxiosError) => {
         if (error.response?.status === 400) {

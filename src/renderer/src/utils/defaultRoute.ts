@@ -1,4 +1,5 @@
 export const routeDefault = {
+  // 'Dashboard': '/dashboard',
   'Caixa': '/caixa',
   'Balcao': '/pedidos-balcao/',
   'Produtos': '/produtos',
@@ -8,4 +9,6 @@ export const routeDefault = {
   'Estoques': '/estoque',
   'Relatorios': '/relatorios/vendas-periodo/',
   'Fiscal': '/notas',
+  // 'Integracoes': '/integracoes',
+  'Terminal': '/terminal',
 }
