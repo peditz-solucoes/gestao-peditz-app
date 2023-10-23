@@ -98,8 +98,8 @@ export const SideBar: React.FC<SideBarProps> = ({ collapsed }) => {
       label: <Link to={'/pedidos-balcao/'}>Pedidos de balcão</Link>,
       icon: <ShopOutlined />,
       style: {
-        display: userPermissions.includes('Balcao') ? 'flex' : 'none',
-      },
+        display: userPermissions.includes('Balcao') ? 'flex' : 'none'
+      }
     }),
 
     // getItem({
@@ -140,8 +140,8 @@ export const SideBar: React.FC<SideBarProps> = ({ collapsed }) => {
       label: <Link to={'/cardapios/'}>Cardápios</Link>,
       icon: <FaBookOpen />,
       style: {
-        display: userPermissions.includes('Cardapios') ? 'flex' : 'none',
-      },
+        display: userPermissions.includes('Cardapios') ? 'flex' : 'none'
+      }
     }),
 
     getItem({
@@ -195,14 +195,14 @@ export const SideBar: React.FC<SideBarProps> = ({ collapsed }) => {
           key: '9.1',
           label: <Link to={'/relatorios/vendas-periodo/'}>Vendas por período</Link>
         }),
-        // getItem({
-        //   key: '9.2',
-        //   label: <Link to={'/relatorios/vendas-produto/'}>Vendas por produtos</Link>
-        // }),
-        // getItem({
-        //   key: '9.3',
-        //   label: 'Relatório geral'
-        // }),
+        getItem({
+          key: '9.2',
+          label: <Link to={'/relatorios/vendas-produto/'}>Vendas por produtos</Link>
+        }),
+        getItem({
+          key: '9.3',
+          label: 'Relatório geral'
+        }),
         getItem({
           key: '9.4',
           label: <Link to={'/relatorios/caixas-passados'}>Caixas Passados</Link>
