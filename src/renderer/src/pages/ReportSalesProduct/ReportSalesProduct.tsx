@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import * as S from './styles'
-import { Button, DatePicker, Form, Typography, Table } from 'antd'
+import { Button, DatePicker, Form, Typography, Table, Select } from 'antd'
 import { useProducts } from '@renderer/hooks'
 import { ColumnsType } from 'antd/es/table'
 import dayjs from 'dayjs'
@@ -9,7 +9,7 @@ import { formatCurrency } from '@renderer/utils'
 const { RangePicker } = DatePicker
 
 const { Title } = Typography
-const DATE_FORMAT = 'DD/MM/YYYY HH:mm'
+const DATE_FORMAT = 'YYYY-MM-DD HH:mm:ss'
 
 interface DataTypeProductsSales {
   product_id: string
@@ -23,7 +23,7 @@ const columns: ColumnsType<DataTypeProductsSales> = [
   {
     title: 'NOME',
     dataIndex: 'product_title',
-    key: 'product_title',
+    key: 'product_title'
   },
   {
     title: 'QUANTIDADE',
@@ -45,28 +45,34 @@ const columns: ColumnsType<DataTypeProductsSales> = [
 ]
 
 export const ReportSalesProduct: React.FC = () => {
-  const { fetchProducts } = useProducts()
+  const { fetchProducts, categories, fetchCategories } = useProducts()
   const [dataProductsSale, setDataProductsSale] = useState<DataTypeProductsSales[]>([])
   const [loading, setLoading] = useState<boolean>(false)
 
   useEffect(() => {
     fetchProducts()
+    fetchCategories()
   }, [])
 
-  function fetchReportSalesProduct(initialDate: string, finalDate: string): void {
+  function fetchReportSalesProduct(
+    initialDate: string,
+    finalDate: string,
+    categoryId: string
+  ): void {
     setLoading(true)
     api
       .get('/product-stats/', {
         params: {
-          initial_date: initialDate,
-          final_date: finalDate
+          initialDate: initialDate,
+          finalDate: finalDate,
+          categoryId: categoryId
         }
       })
       .then((response) => {
         setDataProductsSale(response.data)
       })
-      .catch((error) => {
-        console.log(error)
+      .catch(() => {
+        console.log('error => ao buscar o relatorio de vendas por produto')
       })
       .finally(() => {
         setLoading(false)
@@ -87,10 +93,12 @@ export const ReportSalesProduct: React.FC = () => {
         </Title>
         <Form
           // ref={formSearch}
-          onFinish={(e: { date: [string, string]; cashier: string }): void => {
+          onFinish={(e: { date: [string, string]; categoryId: string }): void => {
+            console.log(e)
             fetchReportSalesProduct(
-              dayjs(e.date[0]).startOf('day').format(),
-              dayjs(e.date[1]).endOf('day').format()
+              dayjs(e.date[0]).startOf('day').format(DATE_FORMAT),
+              dayjs(e.date[1]).endOf('day').format(DATE_FORMAT),
+              e.categoryId
             )
           }}
           initialValues={{
@@ -117,7 +125,30 @@ export const ReportSalesProduct: React.FC = () => {
                 allowClear={false}
               />
             </Form.Item>
-            <Form.Item name="cashier">
+            <Form.Item name="categoryId">
+              <Select
+                style={{
+                  width: '300px'
+                }}
+                showSearch
+                placeholder="Busque e selecione uma categoria"
+                optionFilterProp="children"
+                filterOption={(input, option): boolean =>
+                  (option?.label ?? '').toLowerCase().startsWith(input.toLowerCase())
+                }
+                filterSort={(optionA, optionB): number =>
+                  (optionA?.label ?? '')
+                    .toLowerCase()
+                    .localeCompare((optionB?.label ?? '').toLowerCase())
+                }
+                size="middle"
+                options={[
+                  { label: 'Todas', value: '' },
+                  ...categories.map((category) => ({ label: category.title, value: category.id }))
+                ]}
+              />
+            </Form.Item>
+            <Form.Item>
               <Button
                 htmlType="submit"
                 type="primary"
@@ -136,6 +167,7 @@ export const ReportSalesProduct: React.FC = () => {
             loading={loading}
             columns={columns}
             dataSource={dataProductsSale}
+            pagination={false}
             scroll={{ y: 'calc(100vh - 30em)' }}
           />
         </S.TableContainer>
