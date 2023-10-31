@@ -5,7 +5,7 @@ import { ColorList } from '../../utils/ColorList'
 import { Link } from 'react-router-dom'
 import { MdRestaurantMenu } from 'react-icons/md'
 import { CgMenuOreos } from 'react-icons/cg'
-import { LogoutOutlined, TeamOutlined, UserOutlined, ReloadOutlined } from '@ant-design/icons'
+import { LogoutOutlined, TeamOutlined, UserOutlined, ReloadOutlined, SettingOutlined } from '@ant-design/icons'
 import { getUser, setLogout } from '../../services/auth'
 import { useCashier } from '@renderer/hooks'
 import { useSocket } from '@renderer/hooks/useSocket'
@@ -22,6 +22,11 @@ const items: MenuProps['items'] = [
     label: <Link to="/colaboradores/">Usuários</Link>,
     icon: <TeamOutlined />,
     key: '1'
+  },
+  {
+    label: <Link to="/configuracoes/">Configurações</Link>,
+    icon: <SettingOutlined />,
+    key: '2'
   },
   {
     label: (
