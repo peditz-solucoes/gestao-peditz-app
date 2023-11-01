@@ -7,6 +7,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: column;
   gap: 20px;
+  overflow-y: auto;
 `
 export const ResumeCommand = styled.div<{ billOpen: boolean }>`
   width: ${(props) => (props.billOpen ? '65%' : '100%')};
