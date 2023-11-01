@@ -228,7 +228,6 @@ export const Products: React.FC = () => {
                   columns={columns}
                   dataSource={products}
                   pagination={false}
-                  scroll={{ y: 'calc(100vh - 220px)' }}
                 />
               </div>
             )}

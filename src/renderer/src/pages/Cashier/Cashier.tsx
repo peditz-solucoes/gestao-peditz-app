@@ -450,16 +450,20 @@ export const CashierPage: React.FC = () => {
             </Text>
           </S.CardInfoFinance>
         </S.CardsInfoFinance>
-
-        <Table
-          columns={columns}
-          dataSource={mapPaymentsToTableData()}
-          pagination={false}
-          scroll={{ y: 555 }}
-          size="middle"
-          loading={isLoading}
-          rowKey={(row) => row.id}
-        />
+        <S.TableContainer>
+          <Table
+            columns={columns}
+            dataSource={mapPaymentsToTableData()}
+            pagination={false}
+            scroll={{ y: 'calc(100vh - 30em)' }}
+            size="middle"
+            loading={isLoading}
+            rowKey={(row) => row.id}
+            // style={{
+            //   width: 'calc(100vw - 320px)'
+            // }}
+          />
+        </S.TableContainer>
       </S.Container>
       <ModalCashier />
     </>

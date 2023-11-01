@@ -11,7 +11,7 @@ interface AddSidebarProps {
 const { Content } = Layout
 
 export const AddSidebar: React.FC<AddSidebarProps> = ({ children, titleHeader }) => {
-  const [collapsed, setCollapsed] = useState(true)
+  const [collapsed, setCollapsed] = useState(false)
 
   function toggleCollapsed(): void {
     setCollapsed(!collapsed)

@@ -20,7 +20,8 @@ import {
   MinusCircleOutlined,
   PlusOutlined,
   LeftOutlined,
-  PrinterOutlined
+  PrinterOutlined,
+  FileTextOutlined
 } from '@ant-design/icons'
 import { formatCurrency, formatToBRL } from '@renderer/utils'
 import { useEffect, useState } from 'react'
@@ -34,6 +35,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { FaCashRegister } from 'react-icons/fa'
 import { OrderTakeOut, ResumTakeout } from '@renderer/utils/Printers'
 import dayjs from 'dayjs'
+import { CheckboxValueType } from 'antd/es/checkbox/Group'
 
 const { Title, Paragraph } = Typography
 
@@ -54,6 +56,7 @@ export const TakeoutPayment: React.FC = () => {
       value: string
     }[]
   >([])
+  const [checkedList, setCheckedList] = useState<CheckboxValueType[]>([])
 
   // function handleRedirectWpp() {
   //   window.open('https://api.whatsapp.com/send?phone=559981248041&text=', '_blank')
@@ -106,25 +109,53 @@ export const TakeoutPayment: React.FC = () => {
     return Number(value.replace('R$', '').replace('.', '').replace(',', '.'))
   }
 
+  const onChange = (checkedValues: CheckboxValueType[]) => {
+    setCheckedList(checkedValues)
+    console.log(checkedList)
+  }
+
   const items: CollapseProps['items'] = [
     {
       key: '1',
-      label:
-        productsSelected?.length > 1
-          ? `${productsSelected?.length} Items`
-          : `${productsSelected?.length} Item`,
-      children: productsSelected.map((product) => (
-        <ItemCard
-          key={product.id}
-          data={{
-            id: product.id,
-            title: product.title,
-            quantity: product.quantity,
-            price: product.price,
-            total: product.total
-          }}
-        />
-      ))
+      label: (
+        <div>
+          <h4>
+            {productsSelected?.length > 1
+              ? `${productsSelected?.length} Items`
+              : `${productsSelected?.length} Item`}
+          </h4>
+        </div>
+      ),
+      children: (
+        <>
+          <Checkbox.Group
+            style={{ width: '100%', display: 'flex', flexDirection: 'column' }}
+            onChange={onChange}
+          >
+            {productsSelected.map((product) => (
+              <div
+                style={{
+                  width: '100%',
+                  display: 'flex',
+                  gap: '1rem'
+                }}
+              >
+                <Checkbox value={product.id} />
+                <ItemCard
+                  key={product.id}
+                  data={{
+                    id: product.id,
+                    title: product.title,
+                    quantity: product.quantity,
+                    price: product.price,
+                    total: product.total
+                  }}
+                />
+              </div>
+            ))}
+          </Checkbox.Group>
+        </>
+      )
     }
   ]
 
@@ -194,6 +225,18 @@ export const TakeoutPayment: React.FC = () => {
             >
               Imprimir
             </Button>
+            {checkedList.length > 0 && (
+              <Button
+                size="large"
+                type="primary"
+                icon={<FileTextOutlined />}
+                // onClick={(): void => {
+
+                // }}
+              >
+                Emitir NFC-e
+              </Button>
+            )}
           </Space>
         </div>
         <div
