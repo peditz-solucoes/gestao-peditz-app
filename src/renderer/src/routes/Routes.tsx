@@ -33,9 +33,9 @@ import { Notas } from '@renderer/pages/Notas'
 // import { routeDefault } from '@renderer/utils/defaultRoute'
 
 export function Navigation(): JSX.Element {
-  const storedPermissions = localStorage.getItem('userPermissions')
+  // const storedPermissions = localStorage.getItem('userPermissions')
 
-  const permissions = storedPermissions ? JSON.parse(storedPermissions) : []
+  // const permissions = storedPermissions ? JSON.parse(storedPermissions) : []
 
   return (
     <Routes>
