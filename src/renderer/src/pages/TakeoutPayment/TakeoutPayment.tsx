@@ -50,6 +50,9 @@ export const TakeoutPayment: React.FC = () => {
   const [printAgain, setPrintAgain] = useState(
     localStorage.getItem('peditz-print-reciept') === 'ativo'
   )
+  const [printOrder, setPrintOrder] = useState(
+    localStorage.getItem('peditz-print-order') === 'ativo'
+  )
   const [formOfPayments, setFormOfPayments] = useState<
     {
       id: string
@@ -192,6 +195,17 @@ export const TakeoutPayment: React.FC = () => {
                   setPrintAgain(e)
                 }}
                 checked={printAgain}
+              />
+            </Tooltip>
+            <Tooltip title="Imprimir via da cozinha">
+              <Switch
+                checkedChildren={'Sim'}
+                unCheckedChildren="Não"
+                onChange={(e): void => {
+                  localStorage.setItem('peditz-print-order', e ? 'ativo' : 'FALSO')
+                  setPrintOrder(e)
+                }}
+                checked={printOrder}
               />
             </Tooltip>
             <Button
@@ -450,14 +464,16 @@ export const TakeoutPayment: React.FC = () => {
                         notes
                       })
                       .then((response) => {
-                        OrderTakeOut(
-                          response.data.restaurant.title,
-                          String(response.data?.takeout_order).padStart(4, '0'),
-                          response.data.order_items,
-                          notes,
-                          response.data?.collaborator_name || '',
-                          response.data?.created || ''
-                        )
+                        if (printOrder) {
+                          OrderTakeOut(
+                            response.data.restaurant.title,
+                            String(response.data?.takeout_order).padStart(4, '0'),
+                            response.data.order_items,
+                            notes,
+                            response.data?.collaborator_name || '',
+                            response.data?.created || ''
+                          )
+                        }
                         setTimeout(() => {
                           ResumTakeout({
                             number: String(response.data.order_number),

@@ -1,4 +1,4 @@
-export const TOKEN_KEY = '@Peditz-gestao-token'
+export const TOKEN_KEY = '@Peditz-gestao-token-01'
 export const isAuthenticated = () => localStorage.getItem(TOKEN_KEY) !== null
 export const getToken = () => localStorage.getItem(TOKEN_KEY)
 export const getUser = () => JSON.parse(localStorage.getItem('user') || '{}')

@@ -30,12 +30,12 @@ import { Complements } from '@renderer/pages/Complements'
 import { ReportSalesProduct } from '@renderer/pages/ReportSalesProduct'
 import { Catalog, Catalogs } from '@renderer/pages/Catalogs'
 import { Notas } from '@renderer/pages/Notas'
-import { routeDefault } from '@renderer/utils/defaultRoute'
+// import { routeDefault } from '@renderer/utils/defaultRoute'
 
 export function Navigation(): JSX.Element {
-  const storedPermissions = localStorage.getItem('userPermissions')
+  // const storedPermissions = localStorage.getItem('userPermissions')
 
-  const permissions = storedPermissions ? JSON.parse(storedPermissions) : []
+  // const permissions = storedPermissions ? JSON.parse(storedPermissions) : []
 
   return (
     <Routes>
@@ -53,7 +53,7 @@ export function Navigation(): JSX.Element {
 
       {/* Rota de comandas fechadas */}
       <Route path="/" element={<PrivateRoute />}>
-        <Route path="/" element={<Navigate to={routeDefault[permissions[0]]} />} />
+        <Route path="/" element={<Navigate to="/caixa" />} />
       </Route>
 
       {/* Rota de login */}
