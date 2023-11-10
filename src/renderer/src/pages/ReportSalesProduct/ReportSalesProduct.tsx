@@ -96,8 +96,8 @@ export const ReportSalesProduct: React.FC = () => {
           onFinish={(e: { date: [string, string]; categoryId: string }): void => {
             console.log(e)
             fetchReportSalesProduct(
-              dayjs(e.date[0]).startOf('day').format(DATE_FORMAT),
-              dayjs(e.date[1]).endOf('day').format(DATE_FORMAT),
+              dayjs(e.date[0]).format(DATE_FORMAT),
+              dayjs(e.date[1]).format(DATE_FORMAT),
               e.categoryId
             )
           }}
