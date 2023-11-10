@@ -5,6 +5,7 @@ export const Container = styled.div`
   min-width: 320px;
   height: 390px;
   min-height: 390px;
+  max-height: 390px;
   border-radius: 15px;
   background-color: #fff;
   padding: 15px 20px;

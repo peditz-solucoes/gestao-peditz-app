@@ -177,7 +177,7 @@ export const NfceEmitModal: React.FC<NfceEmitModalProps> = ({ data, onClose, vis
                 placeholder="Digite o cpf"
                 onChange={(e): void => {
                   form.setFieldsValue({
-                    cpf_cnpj: formatCPFOrCNPJ(e.target.value)
+                    cpf: formatCPFOrCNPJ(e.target.value)
                   })
                 }}
               />
@@ -193,7 +193,7 @@ export const NfceEmitModal: React.FC<NfceEmitModalProps> = ({ data, onClose, vis
                 placeholder="Digite o cnpj"
                 onChange={(e): void => {
                   form.setFieldsValue({
-                    cpf_cnpj: formatCPFOrCNPJ(e.target.value)
+                    cnpj: formatCPFOrCNPJ(e.target.value)
                   })
                 }}
               />

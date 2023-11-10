@@ -27,3 +27,14 @@ export const TableContainer = styled.div`
   max-width: 100%;
   max-height: 100%;
 `
+
+export const ResumeContainer = styled.div`
+  display: flex;
+  justify-content: flex-end;
+  padding: 20px;
+`
+
+export const ResumeItem = styled.div`
+  display: flex;
+  gap: 10px;
+`

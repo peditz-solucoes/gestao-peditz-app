@@ -8,6 +8,8 @@ import {
   Form,
   Input,
   Modal,
+  Radio,
+  RadioChangeEvent,
   Select,
   Space,
   Switch,
@@ -35,7 +37,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { FaCashRegister } from 'react-icons/fa'
 import { OrderTakeOut, ResumTakeout } from '@renderer/utils/Printers'
 import dayjs from 'dayjs'
-import { CheckboxValueType } from 'antd/es/checkbox/Group'
+import { CheckboxChangeEvent } from 'antd/es/checkbox'
 
 const { Title, Paragraph } = Typography
 
@@ -44,7 +46,12 @@ export const TakeoutPayment: React.FC = () => {
   const [formOfPayment, setFormOfPayment] = useState<FormOfPayment[]>([] as FormOfPayment[])
   const [form] = Form.useForm()
   const [loading, setLoading] = useState(false)
-  // const [error, setError] = useState<string>('')
+  const [error, setError] = useState<string>('')
+  const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [valueRadio, setValueRadio] = useState<string>('Nenhum')
+  const [emitNfce, setEmitNfce] = useState<boolean>(false)
+  const [cpf, setCpf] = useState<string>('')
+  const [cnpj, setCnpj] = useState<string>('')
   const { productsSelected, clearTakeout } = useTakeout()
   const navigate = useNavigate()
   const [printAgain, setPrintAgain] = useState(
@@ -59,7 +66,6 @@ export const TakeoutPayment: React.FC = () => {
       value: string
     }[]
   >([])
-  const [checkedList, setCheckedList] = useState<CheckboxValueType[]>([])
 
   // function handleRedirectWpp() {
   //   window.open('https://api.whatsapp.com/send?phone=559981248041&text=', '_blank')
@@ -112,9 +118,17 @@ export const TakeoutPayment: React.FC = () => {
     return Number(value.replace('R$', '').replace('.', '').replace(',', '.'))
   }
 
-  const onChange = (checkedValues: CheckboxValueType[]) => {
-    setCheckedList(checkedValues)
-    console.log(checkedList)
+  // const onChange = (checkedValues: CheckboxValueType[]) => {
+  //   setCheckedList(checkedValues)
+  //   console.log(checkedList)
+  // }
+
+  const onChange = (e: RadioChangeEvent) => {
+    setValueRadio(e.target.value)
+  }
+
+  const onChangeCheck = (e: CheckboxChangeEvent) => {
+    setEmitNfce(e.target.checked)
   }
 
   const items: CollapseProps['items'] = [
@@ -131,32 +145,32 @@ export const TakeoutPayment: React.FC = () => {
       ),
       children: (
         <>
-          <Checkbox.Group
+          {/* <Checkbox.Group
             style={{ width: '100%', display: 'flex', flexDirection: 'column' }}
             onChange={onChange}
-          >
-            {productsSelected.map((product) => (
-              <div
-                style={{
-                  width: '100%',
-                  display: 'flex',
-                  gap: '1rem'
+          > */}
+          {productsSelected.map((product) => (
+            <div
+              style={{
+                width: '100%',
+                display: 'flex',
+                gap: '1rem'
+              }}
+            >
+              {/* <Checkbox value={product.id} /> */}
+              <ItemCard
+                key={product.id}
+                data={{
+                  id: product.id,
+                  title: product.title,
+                  quantity: product.quantity,
+                  price: product.price,
+                  total: product.total
                 }}
-              >
-                <Checkbox value={product.id} />
-                <ItemCard
-                  key={product.id}
-                  data={{
-                    id: product.id,
-                    title: product.title,
-                    quantity: product.quantity,
-                    price: product.price,
-                    total: product.total
-                  }}
-                />
-              </div>
-            ))}
-          </Checkbox.Group>
+              />
+            </div>
+          ))}
+          {/* </Checkbox.Group> */}
         </>
       )
     }
@@ -170,16 +184,45 @@ export const TakeoutPayment: React.FC = () => {
   }, [])
   const [notes, setNotes] = useState<string>('')
 
+  function handleEmitNfce(data: any) {
+    const items = data.order_items.map(x=> {
+      return {
+        product_id: x.id,
+        quantity: x.quantity
+      }
+    })
+    setIsLoading(true)
+    api
+      .post('/tax/', {
+        tax_items: items,
+        payments_methods: formOfPayments.map((form) => ({
+          forma_pagamento: formOfPayment.find((x)=> x.id === form.id)?.method,
+          valor_pagamento: brlToNumber(form.value)
+        })),
+        cpf: valueRadio === 'CPF' ? cpf : null,
+        cnpj: valueRadio === 'CNPJ' ? cnpj : null
+      })
+      .then((response) => {
+        setError('')
+        // setLinkNfce(response.data.link)
+        window.open(response.data.link, '_blank')
+      })
+      .catch((error: AxiosError) => {
+        if (error.response?.data as { detail: string }) {
+          setError((error.response?.data as { detail: string }).detail)
+        }
+        errorActions(error)
+      })
+      .finally(() => {
+        setIsLoading(false)
+      })
+  }
+
   return (
     <>
       {contextHolder}
       <S.Container>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between'
-          }}
-        >
+        <S.Header>
           <Link to={'/pedidos-balcao/'}>
             <Button size="large" type="link" icon={<LeftOutlined />}>
               Voltar
@@ -208,6 +251,15 @@ export const TakeoutPayment: React.FC = () => {
                 checked={printOrder}
               />
             </Tooltip>
+            <Checkbox
+              onChange={onChangeCheck}
+              value={emitNfce}
+              style={{
+                fontSize: '1rem'
+              }}
+            >
+              Emitir NFC-e
+            </Checkbox>
             <Button
               size="large"
               type="primary"
@@ -239,20 +291,8 @@ export const TakeoutPayment: React.FC = () => {
             >
               Imprimir
             </Button>
-            {checkedList.length > 0 && (
-              <Button
-                size="large"
-                type="primary"
-                icon={<FileTextOutlined />}
-                // onClick={(): void => {
-
-                // }}
-              >
-                Emitir NFC-e
-              </Button>
-            )}
           </Space>
-        </div>
+        </S.Header>
         <div
           style={{
             display: 'grid',
@@ -464,6 +504,9 @@ export const TakeoutPayment: React.FC = () => {
                         notes
                       })
                       .then((response) => {
+                        if(emitNfce) {
+                          handleEmitNfce(response.data)
+                        }
                         if (printOrder) {
                           OrderTakeOut(
                             response.data.restaurant.title,
@@ -564,6 +607,50 @@ export const TakeoutPayment: React.FC = () => {
               Exibir na impressão
             </Checkbox>
           </S.Spacer>
+          {formOfPayments.reduce((acc, item) => acc + brlToNumber(item.value), 0) ===
+            brlToNumber(
+              formatCurrency(productsSelected.reduce((acc, item) => acc + item.total, 0))
+            ) && (
+            <S.Spacer>
+              <Title level={4} style={{ color: 'rgb(54, 63, 77)' }}>
+                CPF/CNPJ na nota ?
+              </Title>
+              <div
+                style={{
+                  marginBottom: '10px'
+                }}
+              >
+                <Radio.Group onChange={onChange} value={valueRadio}>
+                  <Radio value={'CPF'}>CPF</Radio>
+                  <Radio value={'CNPJ'}>CNPJ</Radio>
+                  <Radio value="Nenhum">Nenhum</Radio>
+                </Radio.Group>
+              </div>
+              {valueRadio === 'Nenhum' && null}
+              {valueRadio === 'CPF' && (
+                <Form.Item
+                  name="cpf"
+                  label="CPF:"
+                  tooltip="Para informar se a nota será emitida no cpf ou cnpj do solicitante."
+                >
+                  <Input
+                    placeholder="Digite o cpf"
+                    onChange={(e): void => {
+                      setCpf(e.target.value)
+                    }}
+                  />
+                </Form.Item>
+              )}
+              {valueRadio === 'CNPJ' && (
+                <Input
+                  placeholder="Digite o cnpj"
+                  onChange={(e): void => {
+                    setCnpj(e.target.value)
+                  }}
+                />
+              )}
+            </S.Spacer>
+          )}
         </div>
       </S.Container>
     </>

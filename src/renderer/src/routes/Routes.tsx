@@ -30,6 +30,7 @@ import { Complements } from '@renderer/pages/Complements'
 import { ReportSalesProduct } from '@renderer/pages/ReportSalesProduct'
 import { Catalog, Catalogs } from '@renderer/pages/Catalogs'
 import { Notas } from '@renderer/pages/Notas'
+import { Settings } from '@renderer/pages/Settings/Settings'
 // import { routeDefault } from '@renderer/utils/defaultRoute'
 
 export function Navigation(): JSX.Element {
@@ -350,6 +351,17 @@ export function Navigation(): JSX.Element {
             <TerminalProvider>
               <Terminal />
             </TerminalProvider>
+          }
+        />
+      </Route>
+
+      <Route path="/configuracoes/" element={<PrivateRoute />}>
+        <Route
+          path="/configuracoes/"
+          element={
+            <AddSidebar titleHeader="Configurações">
+              <Settings />
+            </AddSidebar>
           }
         />
       </Route>

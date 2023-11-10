@@ -8,7 +8,7 @@ import api from '@renderer/services/api'
 import { formatCurrency } from '@renderer/utils'
 const { RangePicker } = DatePicker
 
-const { Title } = Typography
+const { Title, Text } = Typography
 const DATE_FORMAT = 'YYYY-MM-DD HH:mm:ss'
 
 interface DataTypeProductsSales {
@@ -31,7 +31,7 @@ const columns: ColumnsType<DataTypeProductsSales> = [
     key: 'quantity_total'
   },
   {
-    title: 'CUSTO',
+    title: 'VALOR UNITÁRIO',
     key: 'unite_price',
     dataIndex: 'unite_price',
     render: (text: string) => <span>{formatCurrency(Number(text))}</span>
@@ -171,85 +171,19 @@ export const ReportSalesProduct: React.FC = () => {
             scroll={{ y: 'calc(100vh - 30em)' }}
           />
         </S.TableContainer>
+        <S.ResumeContainer>
+          <S.ResumeItem>
+            <Title level={5}>Total faturado: </Title>{' '}
+            <Text>
+              {formatCurrency(
+                dataProductsSale
+                  .map((x) => Number(x.value_total))
+                  .reduce((acc, add) => acc + add, 0)
+              )}
+            </Text>
+          </S.ResumeItem>
+        </S.ResumeContainer>
       </S.InfoContainer>
-      {/* <S.InfoContainer>
-        <Title
-          level={4}
-          style={{
-            color: 'rgb(62, 62, 62)'
-          }}
-        >
-          Vendas por Produto do periodo 26/09/2023 à 20/10/2023
-        </Title>
-        <Form
-        // ref={formSearch}
-        // onFinish={(e: { date: [string, string]; cashier: string }): void => {
-        //   if (e.cashier) {
-        //     fecthPayments('', '', e.cashier)
-        //   } else {
-        //     fecthPayments(
-        //       dayjs(e.date[0]).startOf('day').format(),
-        //       dayjs(e.date[1]).endOf('day').format(),
-        //       ''
-        //     )
-        //   }
-        // }}
-        // initialValues={{
-        //   date: [
-        //     dayjs(dayjs().subtract(6, 'day').startOf('day'), DATE_FORMAT),
-        //     dayjs(dayjs().endOf('day'), DATE_FORMAT)
-        //   ],
-        //   cashier: undefined
-        // }}
-        >
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'row',
-              alignItems: 'center',
-              gap: '1rem'
-            }}
-          >
-            <Form.Item name="date">
-              <RangePicker
-                format={'DD/MM/YYYY HH:mm'}
-                placeholder={['Data inicial', 'Data final']}
-                showTime
-                size="middle"
-                allowClear={false}
-              />
-            </Form.Item>
-            <Form.Item name="product">
-              <Select
-                showSearch
-                size="middle"
-                placeholder="Buscar pelo produto"
-                style={{ width: '300px' }}
-                allowClear
-                filterOption={(input, option): boolean =>
-                  (option?.label ?? '').toLowerCase().startsWith(input.toLowerCase())
-                }
-                options={products.map((product) => ({
-                  label: product.title,
-                  value: product.id
-                }))}
-              />
-            </Form.Item>
-            <Form.Item name="cashier">
-              <Button
-                htmlType="submit"
-                type="primary"
-                size="middle"
-                style={{
-                  borderRadius: '25px'
-                }}
-              >
-                Buscar
-              </Button>
-            </Form.Item>
-          </div>
-        </Form>
-      </S.InfoContainer> */}
     </S.Container>
   )
 }
