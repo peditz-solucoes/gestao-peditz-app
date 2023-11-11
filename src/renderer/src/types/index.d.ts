@@ -183,6 +183,7 @@ export type OrderList = {
     title: string
     price: string
   }
+  collaborator_name?: string
   complements: OrderComplementList[]
 }
 

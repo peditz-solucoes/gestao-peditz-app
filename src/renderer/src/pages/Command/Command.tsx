@@ -5,7 +5,7 @@ import { AiFillPrinter, AiOutlineCheckCircle } from 'react-icons/ai'
 import { ImBin } from 'react-icons/im'
 import Table, { ColumnsType } from 'antd/es/table'
 import { brlToNumber, formatCurrency, formatToBRL } from '../../utils'
-import { PlusOutlined, DeleteOutlined } from '@ant-design/icons'
+import { PlusOutlined, DeleteOutlined, UserOutlined } from '@ant-design/icons'
 import { BsCashCoin, BsFillDatabaseFill } from 'react-icons/bs'
 import { FaBookReader, FaUserAlt, FaUserTie, FaWallet } from 'react-icons/fa'
 import { MdTableRestaurant } from 'react-icons/md'
@@ -95,7 +95,25 @@ export const Command: React.FC = () => {
 
   const columns: ColumnsType<OrderList> = [
     {
-      title: 'Nome',
+      title: 'Qtd',
+      dataIndex: 'quantity',
+      key: 'quantity',
+      align: 'center',
+      width: 80,
+      render: (amount) => (
+        <Tag
+          color="blue"
+          style={{
+            fontSize: '1rem',
+            padding: '0.25rem'
+          }}
+        >
+          {Number(amount)}
+        </Tag>
+      )
+    },
+    {
+      title: 'Produto',
       dataIndex: 'product_title',
       key: 'product_title',
       align: 'center'
@@ -117,33 +135,13 @@ export const Command: React.FC = () => {
         </Tag>
       )
     },
+
     {
-      title: 'Qtd',
-      dataIndex: 'quantity',
-      key: 'quantity',
+      title: 'Responsável',
+      key: 'collaborator_name',
       align: 'center',
-      render: (amount) => (
-        <Tag
-          color="blue"
-          style={{
-            fontSize: '1rem',
-            padding: '0.25rem'
-          }}
-        >
-          {Number(amount)}
-        </Tag>
-      )
+      render: (r) => <Tag icon={<UserOutlined />}>{r.collaborator_name}</Tag>
     },
-    // {
-    //   title: 'Comanda',
-    //   key: 'bill',
-    //   align: 'center',
-    //   render: (r) => (
-    //     <Tag>
-    //       {r}
-    //     </Tag>
-    //   )
-    // },
     {
       title: 'Ações',
       key: 'action',
@@ -159,9 +157,7 @@ export const Command: React.FC = () => {
               setSelectExcluseItem(r)
               setVisibleModal(true)
             }}
-          >
-            Cancelar
-          </Button>
+          ></Button>
         </Space>
       )
     }
@@ -243,7 +239,12 @@ export const Command: React.FC = () => {
   }
 
   const dataTable = orders.flatMap((order) => {
-    return order.orders
+    return order.orders.flatMap((product) => {
+      return {
+        ...product,
+        collaborator_name: order.collaborator_name
+      }
+    })
   })
 
   // Resume finance
