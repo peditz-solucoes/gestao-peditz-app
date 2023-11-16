@@ -169,6 +169,17 @@ export type OrderGroupList = {
   order_number: number
   type: string
   orders: OrderList[]
+  status?: {
+    id: string
+    status: string
+  } | null
+  modified?: string | null
+  bill?: {
+    id: string | null
+    client_name: string | null
+    table: string | null
+    number: number | null
+  } | null
 }
 
 export type OrderList = {

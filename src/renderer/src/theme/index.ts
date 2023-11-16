@@ -2,7 +2,7 @@ export const theme = {
   tokens: {
     colorPrimary: '#2FAA54',
     colorPrimaryBase: '#557CF2',
-    fontFamily: 'Roboto, sans-serif',
+    // fontFamily: 'Roboto, sans-serif',
     colorPrimaryBg: '#EEF2FE',
     colorBgTextHover: 'rgba(0, 0, 0, 0.06)',
     colorIcon: 'rgba(0, 0, 0, 0.45)',

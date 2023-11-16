@@ -23,6 +23,7 @@ import api from '@renderer/services/api'
 import { AxiosError } from 'axios'
 import { errorActions } from '@renderer/utils/errorActions'
 import { FaBookOpen } from 'react-icons/fa'
+import { PiNotepadBold } from 'react-icons/pi'
 
 const { Sider } = Layout
 
@@ -102,15 +103,15 @@ export const SideBar: React.FC<SideBarProps> = ({ collapsed }) => {
       }
     }),
 
-    // getItem({
-    //   key: '4',
-    //   label: <Link to={'/pedidos/'}>Gerenciador de pedidos</Link>,
-    //   icon: <PiNotepadBold />
-    //   // style: {
-    //   //   display: userPermissions.includes('Balcão') ? 'flex' : 'none',
-    //   //   flexDirection: 'column'
-    //   // },
-    // }),
+    getItem({
+      key: '4',
+      label: <Link to={'/pedidos/'}>Gerenciador de pedidos</Link>,
+      icon: <PiNotepadBold />
+      // style: {
+      //   display: userPermissions.includes('Balcão') ? 'flex' : 'none',
+      //   flexDirection: 'column'
+      // },
+    }),
 
     getItem({
       key: 'Produtos',

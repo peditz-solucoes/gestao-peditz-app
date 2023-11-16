@@ -54,6 +54,8 @@ export const TakeoutPayment: React.FC = () => {
   const [cnpj, setCnpj] = useState<string>('')
   const { productsSelected, clearTakeout } = useTakeout()
   const navigate = useNavigate()
+  const [calcTroco, setCalcTroco] = useState<boolean>(false)
+  const [trocoMethod, setTrocoMethod] = useState<string>('')
   const [printAgain, setPrintAgain] = useState(
     localStorage.getItem('peditz-print-reciept') === 'ativo'
   )
@@ -185,7 +187,7 @@ export const TakeoutPayment: React.FC = () => {
   const [notes, setNotes] = useState<string>('')
 
   function handleEmitNfce(data: any) {
-    const items = data.order_items.map(x=> {
+    const items = data.order_items.map((x) => {
       return {
         product_id: x.id,
         quantity: x.quantity
@@ -196,7 +198,7 @@ export const TakeoutPayment: React.FC = () => {
       .post('/tax/', {
         tax_items: items,
         payments_methods: formOfPayments.map((form) => ({
-          forma_pagamento: formOfPayment.find((x)=> x.id === form.id)?.method,
+          forma_pagamento: formOfPayment.find((x) => x.id === form.id)?.method,
           valor_pagamento: brlToNumber(form.value)
         })),
         cpf: valueRadio === 'CPF' ? cpf : null,
@@ -445,6 +447,18 @@ export const TakeoutPayment: React.FC = () => {
                         setFormOfPayments((prev) => {
                           const newFormOfPayments = [...prev]
                           newFormOfPayments[key].value = formatToBRL(e.target.value)
+                          if (
+                            newFormOfPayments.reduce(
+                              (acc, item) => acc + brlToNumber(item.value),
+                              0
+                            ) -
+                              productsSelected.reduce((acc, item) => acc + item.total, 0) >
+                            0
+                          ) {
+                            setCalcTroco(true)
+                          } else {
+                            setCalcTroco(false)
+                          }
                           return newFormOfPayments
                         })
                       }}
@@ -473,6 +487,46 @@ export const TakeoutPayment: React.FC = () => {
                   Adicionar Pagamento
                 </Button>
               </Form.Item>
+              <Divider />
+              {formOfPayments.reduce((acc, item) => acc + brlToNumber(item.value), 0) -
+                productsSelected.reduce((acc, item) => acc + item.total, 0) >
+                0 && (
+                <Form.Item
+                  style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    gap: '1rem'
+                  }}
+                >
+                  <Tooltip title="Registrar saída de troco">
+                    <Checkbox
+                      checked={calcTroco}
+                      onClick={(e): void => setCalcTroco(!calcTroco)}
+                    ></Checkbox>
+                  </Tooltip>
+                  <Select
+                    size="large"
+                    value={trocoMethod}
+                    onChange={(value): void => {
+                      setTrocoMethod(value)
+                    }}
+                    placeholder="Selecione a forma de troco"
+                    style={{
+                      width: '250px',
+                      margin: '0 1rem'
+                    }}
+                    disabled={!calcTroco}
+                    options={formOfPayment.map((f) => ({
+                      label: f.title,
+                      value: f.id
+                    }))}
+                  />
+                  {formatCurrency(
+                    formOfPayments.reduce((acc, item) => acc + brlToNumber(item.value), 0) -
+                      productsSelected.reduce((acc, item) => acc + item.total, 0)
+                  )}
+                </Form.Item>
+              )}
               <Form.Item
                 style={{
                   marginTop: '3rem'
@@ -500,11 +554,29 @@ export const TakeoutPayment: React.FC = () => {
                     api
                       .post('/take-out/', {
                         order_items,
-                        payment_methods,
+                        payment_methods: calcTroco
+                          ? [
+                              ...payment_methods,
+                              {
+                                id: trocoMethod,
+                                value:
+                                  brlToNumber(
+                                    formatCurrency(
+                                      formOfPayments.reduce(
+                                        (acc, item) => acc + brlToNumber(item.value),
+                                        0
+                                      ) -
+                                        productsSelected.reduce((acc, item) => acc + item.total, 0)
+                                    )
+                                  ) * -1,
+                                type: 'CHARGEBACK'
+                              }
+                            ]
+                          : payment_methods,
                         notes
                       })
                       .then((response) => {
-                        if(emitNfce) {
+                        if (emitNfce) {
                           handleEmitNfce(response.data)
                         }
                         if (printOrder) {
@@ -579,7 +651,10 @@ export const TakeoutPayment: React.FC = () => {
                     formOfPayments.reduce((acc, item) => acc + brlToNumber(item.value), 0) <
                       brlToNumber(
                         formatCurrency(productsSelected.reduce((acc, item) => acc + item.total, 0))
-                      )
+                      ) ||
+                    loading ||
+                    (calcTroco && trocoMethod === '') ||
+                    formOfPayments.find((f) => f.id === '') !== undefined
                   }
                 >
                   Finalizar Venda
