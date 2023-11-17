@@ -22,8 +22,7 @@ import {
   MinusCircleOutlined,
   PlusOutlined,
   LeftOutlined,
-  PrinterOutlined,
-  FileTextOutlined
+  PrinterOutlined
 } from '@ant-design/icons'
 import { formatCurrency, formatToBRL } from '@renderer/utils'
 import { useEffect, useState } from 'react'
@@ -46,8 +45,8 @@ export const TakeoutPayment: React.FC = () => {
   const [formOfPayment, setFormOfPayment] = useState<FormOfPayment[]>([] as FormOfPayment[])
   const [form] = Form.useForm()
   const [loading, setLoading] = useState(false)
-  const [error, setError] = useState<string>('')
-  const [isLoading, setIsLoading] = useState<boolean>(false)
+  const [, setError] = useState<string>('')
+  const [, setIsLoading] = useState<boolean>(false)
   const [valueRadio, setValueRadio] = useState<string>('Nenhum')
   const [emitNfce, setEmitNfce] = useState<boolean>(false)
   const [cpf, setCpf] = useState<string>('')
@@ -501,7 +500,7 @@ export const TakeoutPayment: React.FC = () => {
                   <Tooltip title="Registrar saída de troco">
                     <Checkbox
                       checked={calcTroco}
-                      onClick={(e): void => setCalcTroco(!calcTroco)}
+                      onClick={(): void => setCalcTroco(!calcTroco)}
                     ></Checkbox>
                   </Tooltip>
                   <Select

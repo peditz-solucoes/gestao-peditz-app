@@ -9,7 +9,7 @@ import {
   CalendarOutlined
 } from '@ant-design/icons'
 import { ColumnsType } from 'antd/es/table'
-import { OrderGroupList } from '@renderer/types'
+import { OrderGroupList, OrderList } from '@renderer/types'
 import dayjs from 'dayjs'
 import { formatCurrency } from '@renderer/utils'
 import moment from 'moment'
@@ -24,15 +24,8 @@ interface ModalOrderProps {
   onCancel: () => void
 }
 
-interface DataType {
-  key: string
-  quantity: number
-  item: string
-  code: number
-  price: number
-}
 
-const columns: ColumnsType<DataType> = [
+const columns: ColumnsType<OrderList> = [
   {
     title: 'Qtd',
     dataIndex: 'quantity',

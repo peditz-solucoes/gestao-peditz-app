@@ -1,29 +1,19 @@
 import React, { useCallback, useEffect, useRef } from 'react'
 import * as S from './styles'
-import {
-  AiOutlineCheck,
-  AiOutlineCoffee,
-  AiFillClockCircle,
-  AiTwotoneSetting
-} from 'react-icons/ai'
-import { GiFullMotorcycleHelmet } from 'react-icons/gi'
-import { FaConciergeBell, FaMotorcycle } from 'react-icons/fa'
+import { AiOutlineCoffee } from 'react-icons/ai'
 import {
   Button,
   Card,
-  Dropdown,
   Form,
   FormInstance,
   Input,
-  MenuProps,
+  // MenuProps,
   Select,
   Spin,
   Tag,
   Tooltip,
   Typography
 } from 'antd'
-import { SlOptionsVertical } from 'react-icons/sl'
-import { CardOrder } from '@renderer/components/CardOrder'
 import { ModalOrder } from './components/ModalOrder/ModalOrder'
 import { ClockCircleOutlined } from '@ant-design/icons'
 import api from '@renderer/services/api'
@@ -32,13 +22,14 @@ import dayjs from 'dayjs'
 import { formatCurrency } from '@renderer/utils'
 import { CgNotes } from 'react-icons/cg'
 import { IoStorefrontOutline } from 'react-icons/io5'
-const { Title, Text } = Typography
-const items: MenuProps['items'] = [
-  {
-    label: 'Transferir Pendentes para concluido',
-    key: '0'
-  }
-]
+import { FaMotorcycle } from 'react-icons/fa'
+const { Text } = Typography
+// const items: MenuProps['items'] = [
+//   {
+//     label: 'Transferir Pendentes para concluido',
+//     key: '0'
+//   }
+// ]
 
 function FormatType(type: 'DELIVERY' | 'TAKEOUT' | 'BILL'): { icon: JSX.Element; text: string } {
   switch (type) {
@@ -78,7 +69,7 @@ interface StatusProps {
 }
 
 export const OrdersManager: React.FC = () => {
-  const [isModalOpen, setIsModalOpen] = React.useState(false)
+  // const [isModalOpen, setIsModalOpen] = React.useState(false)
   const [status, setStatus] = React.useState<StatusProps[]>([])
   const [cashiers, setCashiers] = React.useState<Cashier[]>([])
   const [loadingCashiers, setLoadingCashiers] = React.useState(false)
@@ -409,7 +400,9 @@ export const OrdersManager: React.FC = () => {
                                     marginLeft: '0.5rem'
                                   }}
                                 >
-                                  {orderGroup?.bill.number}
+                                  {orderGroup.bill
+                                    ? `Pedido #${orderGroup.bill.number}`
+                                    : `Não identificado`}
                                 </Tag>
                               )}
                             </Text>
