@@ -20,7 +20,7 @@ export function SocketProvider({ children }: SocketProviderProps): JSX.Element {
   const [loadingConnectSocket, setLoadingConnectSocket] = useState<boolean>(false)
   const [isConnected, setIsConnected] = useState<boolean>(false)
   const hasUpdated = useRef<boolean>(false)
-  
+
   function handleConnectionWs(value = false): void {
     if (value) {
       connectSocket()
@@ -45,7 +45,9 @@ export function SocketProvider({ children }: SocketProviderProps): JSX.Element {
       .get('/restaurant/')
       .then((response: AxiosResponse) => {
         if (!socket) {
-          const newSocket = new WebSocket(`wss://api.peditz.com/ws/pedidos/${response.data[0].id}/`)
+          const newSocket = new WebSocket(
+            `wss://api-peditz-gestao.up.railway.app/ws/pedidos/${response.data[0].id}/`
+          )
 
           newSocket.onopen = (): void => {
             console.log('Conectado ao WebSocket')
