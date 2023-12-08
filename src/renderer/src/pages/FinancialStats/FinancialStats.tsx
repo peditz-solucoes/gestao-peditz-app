@@ -29,6 +29,9 @@ import weekOfYear from 'dayjs/plugin/weekOfYear'
 import weekYear from 'dayjs/plugin/weekYear'
 import { PieChart } from './components/PieChat'
 import { ColumnsType, TableProps } from 'antd/es/table'
+import * as XLSX from 'xlsx'
+import { FileOutlined } from '@ant-design/icons'
+
 dayjs.locale('pt-br')
 dayjs.extend(customParseFormat)
 dayjs.extend(advancedFormat)
@@ -150,7 +153,13 @@ function organizePaymentsByMethod(payments: PaymentType[]): Resumo[] {
 
 interface DataType {
   id: string
-  payments: string
+  payments: {
+    payment_method_title: string
+    value: string
+    note: string | null
+    created: string
+    id: string
+  }[]
   bills: {
     id: string
     number?: number
@@ -223,6 +232,58 @@ export const FinancialStats: React.FC = () => {
   const [loading, setLoading] = React.useState(false)
   const [loadingP, setLoadingP] = React.useState(false)
   const [paymentsData, setPaymentsData] = React.useState<DataType[]>([])
+
+  const convertToCSV = (objArray: DataType[]): void => {
+    console.log(objArray)
+    const data = objArray.map((item) => {
+      return {
+        data: dayjs(item.created).format('DD/MM/YYYY HH:mm'),
+        forma_de_pagamento: item.payments
+          .map(
+            (payment) =>
+              payment.payment_method_title + ': ' + formatCurrency(Number(payment.value)) + ' '
+          )
+          .join('\n'),
+        taxa_de_servico: item.tip.replace('R$ ', ''),
+        total: item.total.replace('R$ ', '')
+      }
+    })
+    const formatedToAoa = data.map((item) => Object.values(item))
+    const worksheet = XLSX.utils.aoa_to_sheet([
+      ['Data', 'Formas de pagamento', 'Taxa de serviço', 'Total', ' ', ' ', ' ', ' ', ' '],
+      ...formatedToAoa
+    ])
+    worksheet['F4'] = { v: 'Taxa de serviço total', t: 's', s: { font: { bold: true } } }
+    worksheet['G4'] = {
+      v: formatCurrency(payments.reduce((acc, curr) => acc + Number(curr.tip), 0)),
+      t: 's'
+    }
+    worksheet['F5'] = { v: 'Valor Total', t: 's', s: { font: { bold: true } } }
+    worksheet['G5'] = {
+      v: formatCurrency(payments.reduce((acc, curr) => acc + Number(curr.total), 0)),
+      t: 's'
+    }
+    const workbook = XLSX.utils.book_new()
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'Dados')
+    worksheet['!cols'] = [
+      { wch: 20 }, // Coluna 'Data'
+      { wch: 30 }, // Coluna 'Forma de Pagamento'
+      { wch: 15 }, // Coluna 'Taxa de Serviço'
+      { wch: 10 }, // Coluna 'Total'
+      { wch: 5 }, // Coluna 'Taxa de Serviço'
+      { wch: 20 }, // Coluna 'Taxa de Serviço'
+      { wch: 15 }, // Coluna 'Taxa de Serviço'
+      { wch: 15 }, // Coluna 'Taxa de Serviço'
+      { wch: 15 } // Coluna 'Taxa de Serviço'
+    ]
+    XLSX.writeFile(
+      workbook,
+      `relatorio_${dayjs(formSearch.current?.getFieldValue('date')[0]).format(
+        'DD_MM_YYYY_HH_mm'
+      )}_fim_${dayjs(formSearch.current?.getFieldValue('date')[1]).format('DD_MM_YYYY_HH_mm')}.xlsx`
+    )
+  }
+
   const fecthPayments = useCallback((startdate: string, endDate: string, cashier?: string) => {
     setLoadingP(true)
     api
@@ -277,68 +338,87 @@ export const FinancialStats: React.FC = () => {
   }
   return (
     <S.Container>
-      <Form
-        ref={formSearch}
-        onFinish={(e: { date: [string, string]; cashier: string }): void => {
-          if (e.cashier) {
-            fecthPayments('', '', e.cashier)
-          } else {
-            fecthPayments(
-              dayjs(e.date[0]).startOf('day').format(),
-              dayjs(e.date[1]).endOf('day').format(),
-              ''
-            )
-          }
-        }}
-        initialValues={{
-          date: [
-            dayjs(dayjs().subtract(6, 'day').startOf('day'), DATE_FORMAT),
-            dayjs(dayjs().endOf('day'), DATE_FORMAT)
-          ],
-          cashier: undefined
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          justifyContent: 'space-between',
+          gap: '1rem'
         }}
       >
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'row',
-            alignItems: 'center',
-            gap: '1rem'
+        <Form
+          ref={formSearch}
+          onFinish={(e: { date: [string, string]; cashier: string }): void => {
+            if (e.cashier) {
+              fecthPayments('', '', e.cashier)
+            } else {
+              fecthPayments(
+                dayjs(e.date[0]).startOf('day').format(),
+                dayjs(e.date[1]).endOf('day').format(),
+                ''
+              )
+            }
+          }}
+          initialValues={{
+            date: [
+              dayjs(dayjs().subtract(6, 'day').startOf('day'), DATE_FORMAT),
+              dayjs(dayjs().endOf('day'), DATE_FORMAT)
+            ],
+            cashier: undefined
           }}
         >
-          <Form.Item name="date">
-            <RangePicker
-              format={DATE_FORMAT}
-              placeholder={['Data inicial', 'Data final']}
-              showTime
-              size="large"
-              allowClear={false}
-              disabled={loading || loadingP}
-            />
-          </Form.Item>
-          <Form.Item name="cashier">
-            <Select
-              loading={loading || loadingP}
-              disabled={loading || loadingP}
-              showSearch
-              size="large"
-              placeholder="Buscar por caixa"
-              style={{ width: '200px' }}
-              allowClear
-              filterOption={filterOption}
-              options={cashiers.map((cashier) => ({
-                label: cashier.identifier + ' ' + dayjs(cashier.created).format('DD/MM/YYYY HH:mm'),
-                value: cashier.id
-              }))}
-            />
-          </Form.Item>
-          <Form.Item name="cashier">
-            <Button htmlType="submit" size="large" loading={loadingP}>
-              Buscar
-            </Button>
-          </Form.Item>
-        </div>
-      </Form>
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'row',
+              alignItems: 'center',
+              gap: '1rem'
+            }}
+          >
+            <Form.Item name="date">
+              <RangePicker
+                format={DATE_FORMAT}
+                placeholder={['Data inicial', 'Data final']}
+                showTime
+                size="large"
+                allowClear={false}
+                disabled={loading || loadingP}
+              />
+            </Form.Item>
+            <Form.Item name="cashier">
+              <Select
+                loading={loading || loadingP}
+                disabled={loading || loadingP}
+                showSearch
+                size="large"
+                placeholder="Buscar por caixa"
+                style={{ width: '200px' }}
+                allowClear
+                filterOption={filterOption}
+                options={cashiers.map((cashier) => ({
+                  label:
+                    cashier.identifier + ' ' + dayjs(cashier.created).format('DD/MM/YYYY HH:mm'),
+                  value: cashier.id
+                }))}
+              />
+            </Form.Item>
+            <Form.Item name="cashier">
+              <Button htmlType="submit" size="large" loading={loadingP}>
+                Buscar
+              </Button>
+            </Form.Item>
+          </div>
+        </Form>
+        <Button
+          type="primary"
+          size="large"
+          onClick={(): void => convertToCSV(paymentsData)}
+          icon={<FileOutlined />}
+          loading={loadingP}
+        >
+          Exportar Relatório
+        </Button>
+      </div>
       <S.RowMetrics>
         <Spin spinning={loadingP}>
           <S.Card>
