@@ -190,8 +190,8 @@ export const OrdersManager: React.FC = () => {
   }, [])
 
   const [socket, setSocket] = React.useState<WebSocket | null>(null)
-  const [connectedWs, setConnectedWs] = React.useState(false)
-  const [loadingConnectSocket, setLoadingConnectSocket] = React.useState(false)
+  const [, setConnectedWs] = React.useState(false)
+  const [, setLoadingConnectSocket] = React.useState(false)
   const playAudio = (): void => {
     // Tocar um arquivo de áudio
     const audio = new Audio(audioa)
@@ -328,7 +328,7 @@ export const OrdersManager: React.FC = () => {
             style={{
               transform: 'rotate(90deg)'
             }}
-            onClick={(e): void => {
+            onClick={(): void => {
               const reverse = deliveryOrders.reverse()
               setDeliveryOrders([...reverse])
             }}

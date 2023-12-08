@@ -122,7 +122,7 @@ export const ModalOrderDelivery: React.FC<ModalOrderProps> = ({
           })),
           order: selectedOrder?.id
         })
-        .then((response) => {
+        .then(() => {
           update()
         })
         .catch((error: AxiosError) => {
