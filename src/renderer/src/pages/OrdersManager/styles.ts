@@ -7,16 +7,16 @@ export const Container = styled.div`
   padding: 40px 20px;
 
   ::-webkit-scrollbar {
-    width: 0 !important;
+    width: 5 !important;
   }
 
   ::-webkit-scrollbar-track {
-    background-color: transparent !important;
+    background-color: #f4f4f4 !important;
   }
 
   ::-webkit-scrollbar-thumb {
-    background-color: transparent !important; 
-    border-radius: 0; 
+    background-color: #e3e3e3 !important;
+    border-radius: 0;
   }
 `
 

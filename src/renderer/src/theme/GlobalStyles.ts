@@ -43,6 +43,23 @@ html {
   overflow-y: hidden;
 }
 
+.scrollbar{
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background-color: rgba(0, 0, 0, 0.02);
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background-color: #2FAA54;
+    border-radius: 5px;
+  }
+
+
+}
+
 body {
   -webkit-font-smoothing: antialiased;
   height: 100%;

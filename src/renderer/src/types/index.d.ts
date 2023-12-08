@@ -1,3 +1,5 @@
+import { CgExport } from 'react-icons/cg'
+
 export type ProductCategory = {
   id?: string
   created?: string
@@ -342,4 +344,43 @@ interface CatalogType {
     name: string
     slug: string
   }
+}
+export type StatusDelivery = 'WAITING' | 'IN_PROGRESS' | 'IN_ROUTE' | 'DELIVERED' | 'CANCELED'
+export interface DeliveryOrder {
+  id: string
+  status: {
+    id: string
+    created: string
+    modified: string
+    title: StatusDelivery
+    order: string
+  }[]
+  payment_method: {
+    method: string
+    title: string
+    active: boolean
+    id: string
+    restaurant: string
+    needs_change: boolean
+  }
+  order_group: OrderGroupList
+  created: string
+  modified: string
+  client_name: string
+  client_phone: string
+  street: string
+  number: string
+  complement: string
+  neighborhood: string
+  city: string
+  state: string
+  postal_code: string
+  type: string
+  delivery_price: string
+  payment_method_title: string
+  troco: string
+  canceled: boolean
+  takeaway: boolean
+  client: string
+  payment_group: Payments
 }

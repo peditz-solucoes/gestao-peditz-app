@@ -14,6 +14,7 @@ interface SocketContextData {
 }
 
 export const SocketContext = createContext({} as SocketContextData)
+import audioa from '../assets/audio.mp3'
 
 export function SocketProvider({ children }: SocketProviderProps): JSX.Element {
   const [socket, setSocket] = useState<WebSocket | null>(null)
@@ -59,6 +60,7 @@ export function SocketProvider({ children }: SocketProviderProps): JSX.Element {
           newSocket.onmessage = (event): void => {
             const eventParse = JSON.parse(event.data)
             const order = JSON.parse(eventParse?.order)
+            const delivery = JSON.parse(eventParse?.delivery)
             if (order) {
               Order(
                 order.restaurant.title,
@@ -68,6 +70,10 @@ export function SocketProvider({ children }: SocketProviderProps): JSX.Element {
                 order?.collaborator_name || '',
                 order?.created || ''
               )
+            }
+            if (delivery) {
+              const audio = new Audio(audioa)
+              audio.play()
             }
           }
 
