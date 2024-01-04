@@ -179,13 +179,19 @@ export const ModalOrderDelivery: React.FC<ModalOrderProps> = ({
       selectedOrder?.state
     )
   }
+  function truncateString(str: string, num: number, suffix = '...'): string {
+    if (str.length <= num) {
+      return str
+    }
+    return str.slice(0, num) + suffix
+  }
 
   const printOrder = (): void => {
     const restaurant = JSON.parse(localStorage.getItem('restaurant-info') || '{}')
     const orderOrganized = selectedOrder?.order_group.orders.map((order_item) => {
       return {
         notes: order_item.note || ' ',
-        product_title: order_item.product.title,
+        product_title: truncateString(order_item.product.title, 18),
         printer_name: 'caixa',
         product_id: order_item.product.id,
         quantity: Number(order_item.quantity),
@@ -193,7 +199,7 @@ export const ModalOrderDelivery: React.FC<ModalOrderProps> = ({
         items: order_item.complements.map((c_item) => {
           return {
             complement_id: c_item.id as string,
-            complement_title: c_item.complement_group_title,
+            complement_title: truncateString(c_item.complement_group_title, 10),
             items: c_item.items.map((c_item_item) => {
               return {
                 item_title: c_item_item.complement_title,

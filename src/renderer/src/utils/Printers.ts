@@ -340,7 +340,7 @@ function addOrderItemInStringDelivery(itens: ItemsOrdersProps[]): string {
   let row = ''
   for (const i of itens) {
     row += `<li style="list-style: none">
-    <div style="font-size: 13px; display: flex; width: 100%; justfy-content: space-between;">
+    <div style="font-size: 13px; display: flex; width: 100%; justify-content: space-between;">
       <strong style="font-size: 13px">${i.quantity}x ${i.product_title}</strong>
       <strong style="font-size: 13px">${i.product_price}</strong>
     </div>
@@ -356,7 +356,7 @@ function addOrderItemInStringDelivery(itens: ItemsOrdersProps[]): string {
       for (const j of i.items) {
         row += `<ul style="padding: 2px 0 0 5mm">`
         for (const k of j.items) {
-          row += `<li style="list-style: none; display: flex; width: 100%; justfy-content: space-between;">`
+          row += `<li style="list-style: none; display: flex; width: 100%; justify-content: space-between;">`
           row += `<span style="font-size: 13px">- ${k.item_title}</span>`
           row += `<span style="font-size: 13px">${k.price}</span>`
           row += `</li>`
@@ -701,7 +701,7 @@ export function OrderDelivery(
           <h6 style="margin: 0; margin-top: 14px; font-size: 14px;">Forma de pagamento: ${forma_pagamento}</h6>
           <h6 style="margin: 0; margin-top: 5px; font-size: 14px;">Valor para receber: ${total}</h6>
           <div
-            style="margin-top: 10px ; font-size: 14px;"
+            style="margin-top: 10px ; font-size: 14px; text-align: center; "
           >
             <strong style="font-size: 10px;">Impressora: caixa</strong>
           </div>
