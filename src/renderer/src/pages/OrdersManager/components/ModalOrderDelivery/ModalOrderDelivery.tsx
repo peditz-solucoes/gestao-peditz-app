@@ -218,7 +218,7 @@ export const ModalOrderDelivery: React.FC<ModalOrderProps> = ({
 
     OrderDelivery(
       restaurant?.title || '',
-      selectedOrder?.number || '',
+      String(selectedOrder?.order_group?.order_number) || '',
       selectedOrder?.payment_method_title || '',
       orderOrganized as [],
       formatCurrency(totalorder),
