@@ -644,7 +644,9 @@ export function OrderDelivery(
     city: string
     cep: string
     district: string
-  }
+  },
+  total_items,
+  total_frete
 ): void {
   window.electronBridge.printLine(
     'caixa',
@@ -696,7 +698,16 @@ export function OrderDelivery(
           <hr style="border-style: dashed" />
           <ul style="padding: 0; font-size: 24px">
           ${addOrderItemInStringDelivery(items)}
+
           </ul>
+          <div style="font-size: 13px; display: flex; width: 100%; justify-content: space-between;">
+        <strong style="font-size: 13px">Total</strong>
+        <strong style="font-size: 13px">${total_items}</strong>
+      </div>
+      <div style="font-size: 13px; display: flex; width: 100%; justify-content: space-between;">
+        <strong style="font-size: 13px">Taxa de entrega</strong>
+        <strong style="font-size: 13px">${total_frete}</strong>
+      </div>
           <hr style="border-style: dashed" />
           <h6 style="margin: 0; margin-top: 14px; font-size: 14px;">Forma de pagamento: ${forma_pagamento}</h6>
           <h6 style="margin: 0; margin-top: 5px; font-size: 14px;">Valor para receber: ${total}</h6>

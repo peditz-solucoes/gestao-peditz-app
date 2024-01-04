@@ -231,7 +231,9 @@ export const ModalOrderDelivery: React.FC<ModalOrderProps> = ({
         cep: selectedOrder?.postal_code || ' ',
         phone: selectedOrder?.client_phone || ' ',
         city: selectedOrder?.city || ''
-      }
+      },
+      formatCurrency(Number(selectedOrder?.order_group.total || 0)),
+      formatCurrency(Number(selectedOrder?.delivery_price || 0))
     )
   }
 
