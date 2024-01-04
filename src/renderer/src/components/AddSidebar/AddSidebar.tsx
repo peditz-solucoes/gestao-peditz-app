@@ -1,6 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react'
 import { SideBar } from '../Sidebar'
-import { Button, Card, Layout, Typography } from 'antd'
+import { Button, Card, Layout, Spin, Typography } from 'antd'
 import { Header } from '../Header'
 import api from '@renderer/services/api'
 import { WarningOutlined, WhatsAppOutlined } from '@ant-design/icons'
@@ -61,7 +61,7 @@ export const AddSidebar: React.FC<AddSidebarProps> = ({ children, titleHeader })
         <Content>
           {restaurant?.active ? (
             children
-          ) : (
+          ) : restaurant !== null ? (
             <div style={{ padding: '1rem' }}>
               <Card style={{ textAlign: 'center' }}>
                 <WarningOutlined
@@ -93,6 +93,18 @@ export const AddSidebar: React.FC<AddSidebarProps> = ({ children, titleHeader })
                   Suporte WhatsApp
                 </Button>
               </Card>
+            </div>
+          ) : (
+            <div
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                width: '100%',
+                height: '100%'
+              }}
+            >
+              <Spin size="large"></Spin>
             </div>
           )}
         </Content>
