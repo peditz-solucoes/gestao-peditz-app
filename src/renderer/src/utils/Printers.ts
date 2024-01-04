@@ -295,6 +295,7 @@ interface ItemsOrdersProps {
       item_title: string
       quantity: number
       item_id: string
+      price?: string
     }[]
   }[]
   product_price?: string
@@ -339,8 +340,9 @@ function addOrderItemInStringDelivery(itens: ItemsOrdersProps[]): string {
   let row = ''
   for (const i of itens) {
     row += `<li style="list-style: none">
-    <div style="font-size: 13px">
+    <div style="font-size: 13px; display: flex; width: 100%; justfy-content: space-between;">
       <strong style="font-size: 13px">${i.quantity}x ${i.product_title}</strong>
+      <strong style="font-size: 13px">${i.product_price}</strong>
     </div>
     ${
       i.notes
@@ -354,8 +356,9 @@ function addOrderItemInStringDelivery(itens: ItemsOrdersProps[]): string {
       for (const j of i.items) {
         row += `<ul style="padding: 2px 0 0 5mm">`
         for (const k of j.items) {
-          row += `<li style="list-style: none; display: flex">`
+          row += `<li style="list-style: none; display: flex; width: 100%; justfy-content: space-between;">`
           row += `<span style="font-size: 13px">- ${k.item_title}</span>`
+          row += `<span style="font-size: 13px">${k.price}</span>`
           row += `</li>`
         }
         row += `</ul>`
@@ -658,8 +661,7 @@ export function OrderDelivery(
               font-size: 14px;
             }
             @page {
-              size: 80mm auto;
-              margin: 1.5mm;
+              margin: 0mm 1.5mm;
               padding: 0mm,
             }
           </style>
@@ -694,15 +696,15 @@ export function OrderDelivery(
           <hr style="border-style: dashed" />
           <ul style="padding: 0; font-size: 24px">
           ${addOrderItemInStringDelivery(items)}
+          </ul>
           <hr style="border-style: dashed" />
           <h6 style="margin: 0; margin-top: 14px; font-size: 14px;">Forma de pagamento: ${forma_pagamento}</h6>
           <h6 style="margin: 0; margin-top: 5px; font-size: 14px;">Valor para receber: ${total}</h6>
           <div
             style="margin-top: 10px ; font-size: 14px;"
           >
-            <strong style="font-size: 14px;">Impressora: caixa</strong>
+            <strong style="font-size: 10px;">Impressora: caixa</strong>
           </div>
-          <br>
           <br>
           <h6 style="text-align: center; font-size: 12px;">www.peditz.com 🛵</h6>
         </body>

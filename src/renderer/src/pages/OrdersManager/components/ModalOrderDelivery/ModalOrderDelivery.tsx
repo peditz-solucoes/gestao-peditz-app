@@ -184,12 +184,12 @@ export const ModalOrderDelivery: React.FC<ModalOrderProps> = ({
     const restaurant = JSON.parse(localStorage.getItem('restaurant-info') || '{}')
     const orderOrganized = selectedOrder?.order_group.orders.map((order_item) => {
       return {
-        product_price: order_item.product.price,
         notes: order_item.note || ' ',
         product_title: order_item.product.title,
         printer_name: 'caixa',
         product_id: order_item.product.id,
         quantity: Number(order_item.quantity),
+        product_price: formatCurrency(Number(order_item.unit_price) * Number(order_item.quantity)),
         items: order_item.complements.map((c_item) => {
           return {
             complement_id: c_item.id as string,
@@ -198,7 +198,8 @@ export const ModalOrderDelivery: React.FC<ModalOrderProps> = ({
               return {
                 item_title: c_item_item.complement_title,
                 quantity: c_item_item.quantity,
-                item_id: c_item_item.id
+                item_id: c_item_item.id,
+                price: formatCurrency(Number(c_item_item.unit_price) * Number(c_item_item.quantity))
               }
             })
           }
