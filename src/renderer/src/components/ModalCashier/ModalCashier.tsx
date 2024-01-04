@@ -195,7 +195,7 @@ export const ModalCashier: React.FC = () => {
               >
                 <Input.Password size="large" placeholder="Senha" visibilityToggle />
               </Form.Item>
-              
+
               {errorMessage && (
                 <div
                   style={{
