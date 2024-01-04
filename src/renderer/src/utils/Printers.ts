@@ -339,8 +339,8 @@ function addOrderItemInStringDelivery(itens: ItemsOrdersProps[]): string {
   let row = ''
   for (const i of itens) {
     row += `<li style="list-style: none">
-    <div style="font-size: 16px">
-      <strong style="font-size: 16px">${i.quantity}x ${i.product_title}</strong>
+    <div style="font-size: 13px">
+      <strong style="font-size: 13px">${i.quantity}x ${i.product_title}</strong>
     </div>
     ${
       i.notes
@@ -355,7 +355,7 @@ function addOrderItemInStringDelivery(itens: ItemsOrdersProps[]): string {
         row += `<ul style="padding: 2px 0 0 5mm">`
         for (const k of j.items) {
           row += `<li style="list-style: none; display: flex">`
-          row += `<span style="font-size: 14px">- ${k.item_title}</span>`
+          row += `<span style="font-size: 13px">- ${k.item_title}</span>`
           row += `</li>`
         }
         row += `</ul>`
@@ -676,35 +676,35 @@ export function OrderDelivery(
             Pedido Delivery - #${numeroPedido}
           </h2>
           <hr style="border-style: dashed" />
-          <p style="margin: 0; margin-top: 5px; font-size: 12px;">Restaurante: ${restaurant}</p>
-          <p style="margin: 0; margin-top: 5px; font-size: 12px;">Data: ${moment(date).format(
+          <h6 style="margin: 0; margin-top: 5px; font-size: 12px;">Restaurante: ${restaurant}</h6>
+          <h6 style="margin: 0; margin-top: 5px; font-size: 12px;">Data: ${moment(date).format(
             'DD/MM/YYYY HH:mm:ss'
-          )}</p>
+          )}</h6>
           <br>
+          <h6 style="margin: 0; margin-top: 6px; font-size: 13px;">Dados do cliente</h6>
+          <h6 style="margin: 0; margin-top: 6px; font-size: 13px;">Nome: ${client_name}</h6>
+          <h6 style="margin: 0; margin-top: 6px; font-size: 13px;">Telefone: ${client.phone}</h6>
+          <h6 style="margin: 0; margin-top: 6px; font-size: 13px;">Endereço: ${client.adress}</h6>
+          <h6 style="margin: 0; margin-top: 6px; font-size: 13px;">Bairro: ${client.district}</h6>
+          <h6 style="margin: 0; margin-top: 6px; font-size: 13px;">Comp: ${client.complement}</h6>
+          <h6 style="margin: 0; margin-top: 6px; font-size: 13px;">Cidade: ${client.city}</h6>
+          <h6 style="margin: 0; margin-top: 6px; font-size: 13px;">CEP: ${client.cep}</h6>
           <br>
-          <br>
-          <p style="margin: 0; margin-top: 14px; font-size: 14px;">Dados do cliente</p>
-          <p style="margin: 0; margin-top: 14px; font-size: 14px;">Nome: ${client_name}</p>
-          <p style="margin: 0; margin-top: 14px; font-size: 14px;">Telefone: ${client.phone}</p>
-          <p style="margin: 0; margin-top: 14px; font-size: 14px;">Endereço: ${client.adress}</p>
-          <p style="margin: 0; margin-top: 14px; font-size: 14px;">Bairro: ${client.district}</p>
-          <p style="margin: 0; margin-top: 14px; font-size: 14px;">Comp: ${client.complement}</p>
-          <p style="margin: 0; margin-top: 14px; font-size: 14px;">Cidade: ${client.city}</p>
-          <p style="margin: 0; margin-top: 14px; font-size: 14px;">CEP: ${client.cep}</p>
-          <br>
-          <br>
+          <h6 style="margin: 0; margin-top: 12px; font-size: 14px;">Items</h6>
           <hr style="border-style: dashed" />
           <ul style="padding: 0; font-size: 24px">
           ${addOrderItemInStringDelivery(items)}
           <hr style="border-style: dashed" />
           <h6 style="margin: 0; margin-top: 14px; font-size: 14px;">Forma de pagamento: ${forma_pagamento}</h6>
-          <h6 style="margin: 0; margin-top: 5px; font-size: 14px;">Valor de pagamento: ${total}</h6>
+          <h6 style="margin: 0; margin-top: 5px; font-size: 14px;">Valor para receber: ${total}</h6>
           <div
             style="margin-top: 10px ; font-size: 14px;"
           >
             <strong style="font-size: 14px;">Impressora: caixa</strong>
           </div>
           <br>
+          <br>
+          <h6 style="text-align: center; font-size: 12px;">www.peditz.com 🛵</h6>
         </body>
       </html>
     `

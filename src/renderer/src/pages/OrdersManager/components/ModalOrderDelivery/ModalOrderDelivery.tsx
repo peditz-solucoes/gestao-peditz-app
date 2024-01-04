@@ -189,7 +189,7 @@ export const ModalOrderDelivery: React.FC<ModalOrderProps> = ({
         product_title: order_item.product.title,
         printer_name: 'caixa',
         product_id: order_item.product.id,
-        quantity: order_item.quantity,
+        quantity: Number(order_item.quantity),
         items: order_item.complements.map((c_item) => {
           return {
             complement_id: c_item.id as string,
