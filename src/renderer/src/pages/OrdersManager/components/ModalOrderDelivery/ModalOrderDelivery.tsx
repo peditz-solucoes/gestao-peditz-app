@@ -41,6 +41,7 @@ import { FaMoneyBill, FaMotorcycle } from 'react-icons/fa'
 import api from '@renderer/services/api'
 import { errorActions } from '@renderer/utils/errorActions'
 import { AxiosError } from 'axios'
+import { OrderDelivery } from '@renderer/utils/Printers'
 
 moment.locale('pt-br')
 
@@ -180,7 +181,30 @@ export const ModalOrderDelivery: React.FC<ModalOrderProps> = ({
   }
 
   const printOrder = (): void => {
-    alert('Imprimir pedido')
+    const orderOrganized = selectedOrder?.order_group.orders.map((order_item) => {
+      return {
+        product_price: order_item.product.price,
+        notes: order_item.note || ' ',
+        product_title: order_item.product.title,
+        printer_name: 'caixa',
+        product_id: order_item.product.id,
+        quantity: order_item.quantity,
+        items: order_item.complements.map((c_item) => {
+          return {
+            complement_id: c_item.id as string,
+            complement_title: c_item.complement_group_title,
+            items: c_item.items.map((c_item_item) => {
+              return {
+                item_title: c_item_item.complement_title,
+                quantity: c_item_item.quantity,
+                item_id: c_item_item.id
+              }
+            })
+          }
+        })
+      }
+    })
+    OrderDelivery('Teste', 'mesa', 'comanda', orderOrganized as [], 'Operador', 'data')
   }
 
   useEffect(() => {

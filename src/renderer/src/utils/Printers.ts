@@ -595,3 +595,83 @@ export function ResumTakeout(props: ResumTakeOutProps): void {
   </html>`
   window.electronBridge.printLine('caixa', html)
 }
+
+export function OrderDelivery(
+  restaurant: string,
+  table: string,
+  command: string,
+  items: ItemsOrdersProps[],
+  operator: string,
+  date: string
+): void {
+  console.log(items)
+  const grouped: { [key: string]: ItemsOrdersProps[] } = {}
+  for (const i of items) {
+    const printerName = i.printer_name || 'caixa'
+    if (printerName !== null) {
+      if (!grouped[printerName]) {
+        grouped[printerName] = []
+      }
+      grouped[printerName].push(i)
+    }
+  }
+  for (const i in grouped) {
+    window.electronBridge.printLine(
+      i,
+      `
+        <!DOCTYPE html>
+        <html>
+        <head>
+          <meta charset="utf-8">
+          <meta name="viewport" content="width=device-width, initial-scale=1.0">
+          <title>Novo pedido</title>
+          <style>
+            * {
+              font-family: sans-serif;
+              font-size: 18px;
+            }
+            @page {
+              size: 80mm auto;
+              margin: 6mm;
+              padding: 0mm,
+            }
+          </style>
+        </head>
+        <body>
+          <h2
+            style="
+              margin-bottom: 5px;
+              text-transform: uppercase;
+              font-size: 24px;
+              text-align: center;
+            "
+          >
+            Novo pedido!
+          </h2>
+          <hr style="border-style: dashed" />
+          <h4 style="margin: 0; text-align: center;">${moment(date).format(
+            'DD/MM/YYYY HH:mm:ss'
+          )}</h4>
+          <h4 style="margin: 0; text-align: center; margin-top: 5px">COMANDA ${command}</h4>
+          <h4 style="margin: 0; text-align: center; margin-top: 5px">MESA ${table}</h4>
+          <h4 style="margin: 0; text-align: center; margin-top: 5px">Responsável ${operator}</h4>
+          <hr style="border-style: dashed" />
+          <ul style="padding: 0; font-size: 24px">
+          ${addOrderItemInString(grouped[i])}
+          <hr style="border-style: dashed" />
+          <div
+            style="margin-top: 10px ; font-size: 14px;"
+          >
+            <strong style="font-size: 14px;">Impressora:</strong>
+            <span style="font-size: 14px;">${i}</span>
+          </div>
+          <br>
+          <p style="margin: 0; text-align: center; font-size: 12px">
+            ${restaurant}
+          </p>
+        </body>
+      </html>
+    `
+    )
+  }
+}
