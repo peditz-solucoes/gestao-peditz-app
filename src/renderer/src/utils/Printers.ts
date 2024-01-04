@@ -655,11 +655,11 @@ export function OrderDelivery(
           <style>
             * {
               font-family: sans-serif;
-              font-size: 18px;
+              font-size: 14px;
             }
             @page {
               size: 80mm auto;
-              margin: 3mm;
+              margin: 1.5mm;
               padding: 0mm,
             }
           </style>
@@ -676,22 +676,21 @@ export function OrderDelivery(
             Pedido Delivery - #${numeroPedido}
           </h2>
           <hr style="border-style: dashed" />
-          <h6 style="margin: 0; margin-top: 5px; font-size: 14px;">Restaurante: ${restaurant}</h6>
-          <h6 style="margin: 0; margin-top: 5px; font-size: 14px;">Data: ${moment(date).format(
+          <p style="margin: 0; margin-top: 5px; font-size: 12px;">Restaurante: ${restaurant}</p>
+          <p style="margin: 0; margin-top: 5px; font-size: 12px;">Data: ${moment(date).format(
             'DD/MM/YYYY HH:mm:ss'
-          )}</h6>
+          )}</p>
           <br>
           <br>
           <br>
-          <h6 style="margin: 0; margin-top: 14px; font-size: 14px;">Dados do cliente</h6>
-          <h6 style="margin: 0; margin-top: 14px; font-size: 14px;">Nome: ${client_name}</h6>
-          <h6 style="margin: 0; margin-top: 14px; font-size: 14px;">Telefone: ${client.phone}</h6>
-          <h6 style="margin: 0; margin-top: 14px; font-size: 14px;">Endereço: ${client.adress}</h6>
-          <h6 style="margin: 0; margin-top: 14px; font-size: 14px;">Bairro: ${client.district}</h6>
-          <h6 style="margin: 0; margin-top: 14px; font-size: 14px;">Comp: ${client.complement}</h6>
-          <h6 style="margin: 0; margin-top: 14px; font-size: 14px;">Cidade: ${client.city}</h6>
-          <h6 style="margin: 0; margin-top: 14px; font-size: 14px;">CEP: ${client.cep}</h6>
-          <br>
+          <p style="margin: 0; margin-top: 14px; font-size: 14px;">Dados do cliente</p>
+          <p style="margin: 0; margin-top: 14px; font-size: 14px;">Nome: ${client_name}</p>
+          <p style="margin: 0; margin-top: 14px; font-size: 14px;">Telefone: ${client.phone}</p>
+          <p style="margin: 0; margin-top: 14px; font-size: 14px;">Endereço: ${client.adress}</p>
+          <p style="margin: 0; margin-top: 14px; font-size: 14px;">Bairro: ${client.district}</p>
+          <p style="margin: 0; margin-top: 14px; font-size: 14px;">Comp: ${client.complement}</p>
+          <p style="margin: 0; margin-top: 14px; font-size: 14px;">Cidade: ${client.city}</p>
+          <p style="margin: 0; margin-top: 14px; font-size: 14px;">CEP: ${client.cep}</p>
           <br>
           <br>
           <hr style="border-style: dashed" />

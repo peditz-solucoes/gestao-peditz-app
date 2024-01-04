@@ -205,12 +205,16 @@ export const ModalOrderDelivery: React.FC<ModalOrderProps> = ({
         })
       }
     })
+    const totalorder = selectedOrder
+      ? Number(selectedOrder.order_group.total) + Number(selectedOrder.delivery_price)
+      : 0
+
     OrderDelivery(
       restaurant?.title || '',
       selectedOrder?.number || '',
       selectedOrder?.payment_method_title || '',
       orderOrganized as [],
-      selectedOrder?.order_group.total || ' ',
+      formatCurrency(totalorder),
       selectedOrder?.created || '',
       selectedOrder?.client_name || '',
       {
