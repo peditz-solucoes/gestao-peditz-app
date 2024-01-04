@@ -632,7 +632,16 @@ export function OrderDelivery(
   forma_pagamento: string,
   items: ItemsOrdersProps[],
   total: string,
-  date: string
+  date: string,
+  client_name: string,
+  client: {
+    phone: string
+    adress: string
+    complement: string
+    city: string
+    cep: string
+    district: string
+  }
 ): void {
   window.electronBridge.printLine(
     'caixa',
@@ -650,7 +659,7 @@ export function OrderDelivery(
             }
             @page {
               size: 80mm auto;
-              margin: 4mm;
+              margin: 3mm;
               padding: 0mm,
             }
           </style>
@@ -660,23 +669,37 @@ export function OrderDelivery(
             style="
               margin-bottom: 5px;
               text-transform: uppercase;
-              font-size: 16px;
+              font-size: 14px;
               text-align: center;
             "
           >
             Pedido Delivery - #${numeroPedido}
           </h2>
           <hr style="border-style: dashed" />
-          <h6 style="margin: 0; margin-top: 5px">Restaurante: ${restaurant}</h6>
-          <h6 style="margin: 0; margin-top: 5px">Data: ${moment(date).format(
+          <h6 style="margin: 0; margin-top: 5px; font-size: 14px;">Restaurante: ${restaurant}</h6>
+          <h6 style="margin: 0; margin-top: 5px; font-size: 14px;">Data: ${moment(date).format(
             'DD/MM/YYYY HH:mm:ss'
           )}</h6>
+          <br>
+          <br>
+          <br>
+          <h6 style="margin: 0; margin-top: 14px; font-size: 14px;">Dados do cliente</h6>
+          <h6 style="margin: 0; margin-top: 14px; font-size: 14px;">Nome: ${client_name}</h6>
+          <h6 style="margin: 0; margin-top: 14px; font-size: 14px;">Telefone: ${client.phone}</h6>
+          <h6 style="margin: 0; margin-top: 14px; font-size: 14px;">Endereço: ${client.adress}</h6>
+          <h6 style="margin: 0; margin-top: 14px; font-size: 14px;">Bairro: ${client.district}</h6>
+          <h6 style="margin: 0; margin-top: 14px; font-size: 14px;">Comp: ${client.complement}</h6>
+          <h6 style="margin: 0; margin-top: 14px; font-size: 14px;">Cidade: ${client.city}</h6>
+          <h6 style="margin: 0; margin-top: 14px; font-size: 14px;">CEP: ${client.cep}</h6>
+          <br>
+          <br>
+          <br>
           <hr style="border-style: dashed" />
           <ul style="padding: 0; font-size: 24px">
           ${addOrderItemInStringDelivery(items)}
           <hr style="border-style: dashed" />
-          <h6 style="margin: 0; margin-top: 5px">Forma de pagamento: ${forma_pagamento}</h6>
-          <h6 style="margin: 0; margin-top: 5px">Valor de pagamento: ${total}</h6>
+          <h6 style="margin: 0; margin-top: 14px; font-size: 14px;">Forma de pagamento: ${forma_pagamento}</h6>
+          <h6 style="margin: 0; margin-top: 5px; font-size: 14px;">Valor de pagamento: ${total}</h6>
           <div
             style="margin-top: 10px ; font-size: 14px;"
           >

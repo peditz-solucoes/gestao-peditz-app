@@ -181,6 +181,7 @@ export const ModalOrderDelivery: React.FC<ModalOrderProps> = ({
   }
 
   const printOrder = (): void => {
+    const restaurant = JSON.parse(localStorage.getItem('restaurant-info') || '{}')
     const orderOrganized = selectedOrder?.order_group.orders.map((order_item) => {
       return {
         product_price: order_item.product.price,
@@ -204,7 +205,23 @@ export const ModalOrderDelivery: React.FC<ModalOrderProps> = ({
         })
       }
     })
-    OrderDelivery('Teste', 'mesa', 'comanda', orderOrganized as [], 'Operador', 'data')
+    OrderDelivery(
+      restaurant?.title || '',
+      selectedOrder?.number || '',
+      selectedOrder?.payment_method_title || '',
+      orderOrganized as [],
+      selectedOrder?.order_group.total || ' ',
+      selectedOrder?.created || '',
+      selectedOrder?.client_name || '',
+      {
+        adress: selectedOrder?.street + ', ' + selectedOrder?.number,
+        district: selectedOrder?.neighborhood || ' ',
+        complement: selectedOrder?.complement || ' ',
+        cep: selectedOrder?.postal_code || ' ',
+        phone: selectedOrder?.client_phone || ' ',
+        city: selectedOrder?.city || ''
+      }
+    )
   }
 
   useEffect(() => {
