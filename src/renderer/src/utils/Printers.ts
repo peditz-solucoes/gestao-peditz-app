@@ -335,6 +335,36 @@ function addOrderItemInString(itens: ItemsOrdersProps[]): string {
   }
   return row
 }
+function addOrderItemInStringDelivery(itens: ItemsOrdersProps[]): string {
+  let row = ''
+  for (const i of itens) {
+    row += `<li style="list-style: none">
+    <div style="font-size: 16px">
+      <strong style="font-size: 16px">${i.quantity}x ${i.product_title}</strong>
+    </div>
+    ${
+      i.notes
+        ? `<div style="padding: 2px 0 0 5mm">
+      <span style="font-size: 16px">${i.notes}</span>
+    </div>`
+        : ''
+    }
+    `
+    if (i.items.length > 0) {
+      for (const j of i.items) {
+        row += `<ul style="padding: 2px 0 0 5mm">`
+        for (const k of j.items) {
+          row += `<li style="list-style: none; display: flex">`
+          row += `<span style="font-size: 14px">- ${k.item_title}</span>`
+          row += `</li>`
+        }
+        row += `</ul>`
+      }
+    }
+    row += `</li>`
+  }
+  return row
+}
 
 export function Order(
   restaurant: string,
@@ -598,33 +628,21 @@ export function ResumTakeout(props: ResumTakeOutProps): void {
 
 export function OrderDelivery(
   restaurant: string,
-  table: string,
-  command: string,
+  numeroPedido: string,
+  forma_pagamento: string,
   items: ItemsOrdersProps[],
-  operator: string,
+  total: string,
   date: string
 ): void {
-  console.log(items)
-  const grouped: { [key: string]: ItemsOrdersProps[] } = {}
-  for (const i of items) {
-    const printerName = i.printer_name || 'caixa'
-    if (printerName !== null) {
-      if (!grouped[printerName]) {
-        grouped[printerName] = []
-      }
-      grouped[printerName].push(i)
-    }
-  }
-  for (const i in grouped) {
-    window.electronBridge.printLine(
-      i,
-      `
+  window.electronBridge.printLine(
+    'caixa',
+    `
         <!DOCTYPE html>
         <html>
         <head>
           <meta charset="utf-8">
           <meta name="viewport" content="width=device-width, initial-scale=1.0">
-          <title>Novo pedido</title>
+          <title>Novo pedido delivery</title>
           <style>
             * {
               font-family: sans-serif;
@@ -632,7 +650,7 @@ export function OrderDelivery(
             }
             @page {
               size: 80mm auto;
-              margin: 6mm;
+              margin: 4mm;
               padding: 0mm,
             }
           </style>
@@ -642,36 +660,31 @@ export function OrderDelivery(
             style="
               margin-bottom: 5px;
               text-transform: uppercase;
-              font-size: 24px;
+              font-size: 16px;
               text-align: center;
             "
           >
-            Novo pedido!
+            Pedido Delivery - #${numeroPedido}
           </h2>
           <hr style="border-style: dashed" />
-          <h4 style="margin: 0; text-align: center;">${moment(date).format(
+          <h6 style="margin: 0; margin-top: 5px">Restaurante: ${restaurant}</h6>
+          <h6 style="margin: 0; margin-top: 5px">Data: ${moment(date).format(
             'DD/MM/YYYY HH:mm:ss'
-          )}</h4>
-          <h4 style="margin: 0; text-align: center; margin-top: 5px">COMANDA ${command}</h4>
-          <h4 style="margin: 0; text-align: center; margin-top: 5px">MESA ${table}</h4>
-          <h4 style="margin: 0; text-align: center; margin-top: 5px">Responsável ${operator}</h4>
+          )}</h6>
           <hr style="border-style: dashed" />
           <ul style="padding: 0; font-size: 24px">
-          ${addOrderItemInString(grouped[i])}
+          ${addOrderItemInStringDelivery(items)}
           <hr style="border-style: dashed" />
+          <h6 style="margin: 0; margin-top: 5px">Forma de pagamento: ${forma_pagamento}</h6>
+          <h6 style="margin: 0; margin-top: 5px">Valor de pagamento: ${total}</h6>
           <div
             style="margin-top: 10px ; font-size: 14px;"
           >
-            <strong style="font-size: 14px;">Impressora:</strong>
-            <span style="font-size: 14px;">${i}</span>
+            <strong style="font-size: 14px;">Impressora: caixa</strong>
           </div>
           <br>
-          <p style="margin: 0; text-align: center; font-size: 12px">
-            ${restaurant}
-          </p>
         </body>
       </html>
     `
-    )
-  }
+  )
 }
