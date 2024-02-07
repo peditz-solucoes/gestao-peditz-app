@@ -25,6 +25,7 @@ export const ModalConfirmDeleteItem: React.FC<ModalConfirmDeleteItemProps> = ({
   data
 }) => {
   const [operatorCode, setOperatorCode] = React.useState('')
+  const [reason, setReason] = React.useState('')
   const [errorMessage, setErrorMessage] = React.useState('')
   const [isLoading, setIsLoading] = React.useState(false)
   const { setOrders } = useBill()
@@ -34,7 +35,8 @@ export const ModalConfirmDeleteItem: React.FC<ModalConfirmDeleteItemProps> = ({
     api
       .post(`/order-delete/`, {
         operator_code: operatorCode,
-        order_id: data.id
+        order_id: data.id,
+        reason: reason
       })
       .then(() => {
         setOrders((old) =>
@@ -75,7 +77,7 @@ export const ModalConfirmDeleteItem: React.FC<ModalConfirmDeleteItemProps> = ({
       okButtonProps={{
         loading: isLoading,
         danger: true,
-        disabled: operatorCode.length > 0 ? false : true
+        disabled: operatorCode.length > 0 && reason ? false : true
       }}
     >
       <div
@@ -109,6 +111,16 @@ export const ModalConfirmDeleteItem: React.FC<ModalConfirmDeleteItemProps> = ({
             value={operatorCode}
             onChange={(e) => {
               setOperatorCode(e.target.value)
+            }}
+          />
+          <Input.TextArea
+            style={{
+              marginTop: '10px'
+            }}
+            placeholder="Insira o motivo"
+            value={reason}
+            onChange={(e) => {
+              setReason(e.target.value)
             }}
           />
         </div>

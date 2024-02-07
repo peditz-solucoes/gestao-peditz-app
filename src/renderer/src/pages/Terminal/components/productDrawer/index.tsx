@@ -311,6 +311,7 @@ export const ProductDrawer: React.FC<ProductDrawerProps> = ({ onClose, visible }
               setCart([...cart, dataToadd])
               onClose()
             }}
+            disabled={productLoading}
             ref={buttonRef}
             type="primary"
             size="large"

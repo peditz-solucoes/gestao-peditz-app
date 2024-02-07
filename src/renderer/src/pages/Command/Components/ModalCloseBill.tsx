@@ -20,13 +20,15 @@ export const ModalCloseBill: React.FC<ModalCloseBillProps> = ({
   const [operatorCode, setOperatorCode] = React.useState('')
   const [loading, setLoading] = React.useState(false)
   const [error, setError] = React.useState('')
+  const [reason, setReason] = React.useState('')
 
   function handleCloseBill() {
     setLoading(true)
     api
       .post('/close-bill/', {
         bill_id: billId,
-        operator_code: operatorCode
+        operator_code: operatorCode,
+        reason: reason
       })
       .then(() => {
         onFetch()
@@ -56,7 +58,7 @@ export const ModalCloseBill: React.FC<ModalCloseBillProps> = ({
       onCancel={onReset}
       cancelText="Cancelar"
       okText="Fechar a comanda"
-      okButtonProps={{ disabled: !operatorCode, loading: loading }}
+      okButtonProps={{ disabled: !operatorCode || !reason, loading: loading }}
       cancelButtonProps={{ danger: true }}
       onOk={handleCloseBill}
     >
@@ -71,10 +73,17 @@ export const ModalCloseBill: React.FC<ModalCloseBillProps> = ({
           margin: '20px 0'
         }}
       >
-        <Input
+        <Input.Password
           placeholder="Codigo do operador"
           value={operatorCode}
+          size="large"
           onChange={(e) => setOperatorCode(e.target.value)}
+        />
+        <p style={{ marginTop: 10 }}>Motivo:</p>
+        <Input.TextArea
+          placeholder="Motivo"
+          size="large"
+          onChange={(e) => setReason(e.target.value)}
         />
       </div>
 
