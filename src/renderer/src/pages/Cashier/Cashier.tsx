@@ -13,6 +13,9 @@ import { ColumnsType } from 'antd/es/table'
 import { ModalCashier } from '../../components/ModalCashier/ModalCashier'
 import { formatCurrency } from '../../utils'
 import { useCashier } from '@renderer/hooks'
+import api from '@renderer/services/api'
+import { useCallback, useState } from 'react'
+import { printStats } from '@renderer/utils/Printers'
 
 const { Text, Title } = Typography
 
@@ -103,6 +106,19 @@ export const CashierPage: React.FC = () => {
     transactions
       .map((transaction) => Number(transaction.total))
       .reduce((acc, curr) => acc + Number(curr), 0) + Number(cashier?.initial_value)
+  const [cashierStatsLoading, setCashierStatsLoading] = useState(false)
+  const fetchStats = useCallback(() => {
+    setCashierStatsLoading(true)
+    api
+      .get(`/cashier-stats/${cashier?.id}`)
+      .then((response) => {
+        console.log(response.data)
+        printStats(response.data)
+      })
+      .finally(() => {
+        setCashierStatsLoading(false)
+      })
+  }, [])
 
   return (
     <>
@@ -157,6 +173,9 @@ export const CashierPage: React.FC = () => {
                 <Text type="secondary">em {new Date(cashier.created).toLocaleString()}</Text>
                 <S.ButtonBox type="primary" danger onClick={() => setOpenCashierModal(true)}>
                   Fechar Caixa
+                </S.ButtonBox>
+                <S.ButtonBox onClick={fetchStats} loading={cashierStatsLoading}>
+                  Relatório
                 </S.ButtonBox>
               </div>
             </>

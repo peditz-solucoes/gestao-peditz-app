@@ -2,6 +2,202 @@ import moment from 'moment'
 import { formatCurrency } from './formatCurrency'
 import { formatPhoneNumber } from './formatPhone'
 
+interface StatsProps {
+  id: string
+  open: boolean
+  identifier: string
+  initial_value: string
+  opened_by_name: string
+  closed_by_name: string
+  created: string
+  modified: string
+  closed_at: string
+  cancelation_reasons: {
+    title: string
+    reason: string
+    created: string
+    id: string
+    type: string
+    operator_name: string
+    product_title: string
+    quantity: string
+    bill_number: number
+  }[]
+  payment_groups: {
+    id: string
+    payments: {
+      payment_method_title: string
+      value: string
+      note: string
+      created: string
+      id: string
+      type: string
+    }[]
+    bills: {
+      id: string
+      number: number
+    }[]
+    created: string
+    modified: string
+    type: string
+    tip: string
+    total: string
+    cashier: string
+  }[]
+}
+
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+function renderReasosn(reasons: StatsProps['cancelation_reasons']) {
+  let reasonsHTML = ''
+
+  for (const reason of reasons) {
+    reasonsHTML += `
+      <div style="display: flex;">
+        <strong>${reason.title}</strong>
+      </div>
+    `
+    reasonsHTML += `
+    <div style="display: flex; flex-direction: column">
+      <strong>Responsável: ${reason.operator_name}</strong>
+    </div>
+    `
+    if (reason.type === 'ORDER') {
+      reasonsHTML += `
+      <div style="display: flex; margin-bottom: 10px; flex-direction: column">
+        <strong>${reason.quantity}x ${reason.product_title}</strong>
+        <span>${reason.reason}</span>
+        ${reason.bill_number ? `<span>Comanda: ${reason.bill_number}</span>` : ''}
+      </div>
+    `
+    } else {
+      reasonsHTML += `
+      <div style="display: flex; margin-bottom: 10px; flex-direction: column">
+        <strong>Comanda: ${reason.bill_number}</strong>
+        <span>${reason.reason}</span>
+      </div>
+    `
+    }
+    reasonsHTML += `
+      <hr/>
+      `
+  }
+
+  return reasonsHTML
+}
+
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+function renderPayments(payments: StatsProps['payment_groups'][0]['payments']) {
+  let paymentsHTML = ''
+
+  for (const payment of payments) {
+    paymentsHTML += `
+      <div style="display: flex; justify-content: space-between; margin-bottom: 10px">
+        <strong>${payment.payment_method_title}</strong>
+        <strong>${formatCurrency(Number(payment.value))}</strong>
+      </div>
+    `
+    paymentsHTML += `
+      <div style="display: flex; justify-content: space-between; margin-bottom: 10px">
+        <strong>${moment(payment.created).format('DD/MM/YYYY HH:mm:ss')}</strong>
+      </div>
+      <hr/>
+      `
+  }
+
+  return paymentsHTML
+}
+
+// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
+function resumPayments(payments: StatsProps['payment_groups'][0]['payments']) {
+  // return object payments types and values like {"type": "pix", "value": 100.00}
+  const agrupado = payments.reduce((acc, payment) => {
+    if (!acc[payment.payment_method_title]) {
+      acc[payment.payment_method_title] = 0
+    }
+    acc[payment.payment_method_title] += Number(payment.value)
+    return acc
+  }, {} as { [key: string]: number })
+
+  const agrupadoArray = Object.entries(agrupado).map(([key, value]) => {
+    return { type: key, value }
+  })
+
+  let resumHtml = ''
+
+  for (const payment of agrupadoArray) {
+    resumHtml += `
+      <div style="display: flex; justify-content: space-between; margin-bottom: 10px">
+        <strong>${payment.type}</strong>
+        <strong>${formatCurrency(payment.value)}</strong>
+      </div>
+    `
+  }
+
+  return resumHtml
+}
+
+export function printStats(props: StatsProps): void {
+  const restaurant = JSON.parse(localStorage.getItem('restaurant-info') || '{}')
+  const html = `<!DOCTYPE html>
+  <html>
+    <head>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>Impressão</title>
+      <style>
+        * {
+          font-family: sans-serif;
+          font-size: 14px;
+        }
+        @page {
+          size: 80mm auto;
+          margin: 6mm;
+          padding: 0mm;
+        }
+      </style>
+    </head>
+    <body>
+      <h3 style="margin-bottom: 5px">${restaurant?.title}</h3>
+      <center>
+        <h3 style="margin-bottom: 5px">Relatório de caixa</h3>
+      </center>
+      <hr style="border-style: dashed" />
+      <center>
+        <h3 style="margin-bottom: 5px">Cancelamentos</h3>
+      </center>
+      <ul style="padding: 0; list-style: none">
+        ${renderReasosn(props.cancelation_reasons)}
+      </ul>
+      <hr style="border-style: dashed" />
+      <center>
+        <h3 style="margin-bottom: 5px">Pagamentos</h3>
+      </center>
+      <ul style="padding: 0; list-style: none">
+        ${renderPayments(props.payment_groups[0].payments)}
+      </ul>
+      <hr style="border-style: dashed" />
+      <center>
+        <h3 style="margin-bottom: 5px">Resumo</h3>
+      </center>
+      <ul style="padding: 0; list-style: none">
+        ${resumPayments(props.payment_groups[0].payments)}
+      </ul>
+      <h4 style="margin: 0">DATA DE IMPRESSÃO: ${new Date().toLocaleString()}</h4>
+      <ul style="padding: 0">
+      </ul>
+      <br>
+      <br>
+      <p style="margin: 0; text-align: center; font-size: 12px;">
+        Desenvolvido por @peditz.br
+      </p>
+      <p style="margin: 0; text-align: center; font-size: 12px;">
+        wwww.peditz.com.br
+      </p>
+    </body>
+  </html>`
+  window.electronBridge.printLine('caixa', html)
+}
+
 interface OpenCashierProps {
   data: {
     initial_value: string
