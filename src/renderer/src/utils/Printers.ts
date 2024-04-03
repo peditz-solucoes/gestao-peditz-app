@@ -86,28 +86,6 @@ function renderReasosn(reasons: StatsProps['cancelation_reasons']) {
 }
 
 // eslint-disable-next-line @typescript-eslint/explicit-function-return-type
-function renderPayments(payments: StatsProps['payment_groups'][0]['payments']) {
-  let paymentsHTML = ''
-
-  for (const payment of payments) {
-    paymentsHTML += `
-      <div style="display: flex; justify-content: space-between; margin-bottom: 10px">
-        <strong>${payment.payment_method_title}</strong>
-        <strong>${formatCurrency(Number(payment.value))}</strong>
-      </div>
-    `
-    paymentsHTML += `
-      <div style="display: flex; justify-content: space-between; margin-bottom: 10px">
-        <strong>${moment(payment.created).format('DD/MM/YYYY HH:mm:ss')}</strong>
-      </div>
-      <hr/>
-      `
-  }
-
-  return paymentsHTML
-}
-
-// eslint-disable-next-line @typescript-eslint/explicit-function-return-type
 function resumPayments(payments: StatsProps['payment_groups'][0]['payments']) {
   // return object payments types and values like {"type": "pix", "value": 100.00}
   const agrupado = payments.reduce((acc, payment) => {

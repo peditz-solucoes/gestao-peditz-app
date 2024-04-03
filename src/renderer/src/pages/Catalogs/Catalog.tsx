@@ -85,7 +85,7 @@ const columns: ColumnsType<ProductPrice> = [
         value: 'Category 1'
       }
     ],
-    onFilter: (value: string | number | boolean, record: ProductPrice): boolean => {
+    onFilter: (value: string | number | boolean | bigint, record: ProductPrice): boolean => {
       if (typeof value === 'string') {
         return record.tag.includes(value)
       }

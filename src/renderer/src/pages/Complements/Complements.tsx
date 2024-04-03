@@ -24,6 +24,7 @@ import { FaDivide } from 'react-icons/fa'
 import { CgArrowTopRight } from 'react-icons/cg'
 import { TransferDirection } from 'antd/es/transfer'
 import { SelectCard } from '@renderer/components/SelectCard/SelectCard'
+import { Key } from 'antd/es/table/interface'
 
 const { Title } = Typography
 
@@ -734,8 +735,8 @@ export const Complements: React.FC = () => {
                         option.title.toLowerCase().trim().includes(inputValue.toLowerCase().trim())
                       }
                       targetKeys={targetKeys}
-                      onChange={(newTargetKeys: string[]): void => {
-                        setTargetKeys(newTargetKeys)
+                      onChange={(targetKeys: Key[]): void => {
+                        return setTargetKeys(targetKeys as string[])
                       }}
                       onSearch={(dir: TransferDirection, value: string): void => {
                         console.log('search:', dir, value)
