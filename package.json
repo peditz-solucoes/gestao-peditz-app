@@ -40,7 +40,8 @@
     "react-chartjs-2": "^5.2.0",
     "react-icons": "^4.10.1",
     "react-router-dom": "^6.15.0",
-    "styled-components": "^6.0.7"
+    "styled-components": "^6.0.7",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@electron-toolkit/tsconfig": "^1.0.1",

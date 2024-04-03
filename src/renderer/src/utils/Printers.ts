@@ -132,7 +132,12 @@ function resumPayments(payments: StatsProps['payment_groups'][0]['payments']) {
       </div>
     `
   }
-
+  resumHtml += `
+      <div style="display: flex; justify-content: space-between; margin-bottom: 10px">
+        <strong>Total: </strong>
+        <strong>${formatCurrency(agrupadoArray.reduce((acc, curr) => acc + curr.value, 0))}</strong>
+      </div>
+    `
   return resumHtml
 }
 
@@ -157,6 +162,18 @@ export function printStats(props: StatsProps): void {
       </style>
     </head>
     <body>
+      <div style="display: flex; margin-bottom: 10px">
+        <strong>Aberto por: </strong>
+        <strong>${props.opened_by_name}</strong>
+      </div>
+      <div style="display: flex;   margin-bottom: 10px">
+        <strong>Aberto em: </strong>
+        <strong>${moment(props.created).format('DD/MM/YYYY HH:mm:ss')}</strong>
+      </div>
+      <div style="display: flex;   margin-bottom: 10px">
+        <strong>Caixa: </strong>
+        <strong>${props.identifier}</strong>
+      </div>
       <h3 style="margin-bottom: 5px">${restaurant?.title}</h3>
       <center>
         <h3 style="margin-bottom: 5px">Relatório de caixa</h3>
@@ -170,18 +187,15 @@ export function printStats(props: StatsProps): void {
       </ul>
       <hr style="border-style: dashed" />
       <center>
-        <h3 style="margin-bottom: 5px">Pagamentos</h3>
-      </center>
-      <ul style="padding: 0; list-style: none">
-        ${renderPayments(props.payment_groups[0].payments)}
-      </ul>
-      <hr style="border-style: dashed" />
-      <center>
         <h3 style="margin-bottom: 5px">Resumo</h3>
       </center>
       <ul style="padding: 0; list-style: none">
-        ${resumPayments(props.payment_groups[0].payments)}
+        ${resumPayments(props.payment_groups.map((pg) => pg.payments).flat())}
       </ul>
+      <div style="display: flex; justify-content: space-between; margin-bottom: 10px">
+        <strong>Saldo inicial:</strong>
+        <strong>${formatCurrency(Number(props.initial_value))}</strong>
+      </div>
       <h4 style="margin: 0">DATA DE IMPRESSÃO: ${new Date().toLocaleString()}</h4>
       <ul style="padding: 0">
       </ul>
