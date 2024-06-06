@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import * as S from './styles'
-import { Avatar, Badge, Button, Empty, Input, Select, Space, Tag, Typography } from 'antd'
+import { Avatar, Badge, Button, Empty, Input, Select, Space, Tag, Typography, message } from 'antd'
 import { AiFillPrinter, AiOutlineCheckCircle } from 'react-icons/ai'
 import { ImBin } from 'react-icons/im'
 import Table, { ColumnsType } from 'antd/es/table'
@@ -22,6 +22,13 @@ import { BillPrinter } from '@renderer/utils/Printers'
 import { NfceEmitModal } from './Components/NfceEmitModal'
 import { Option } from 'antd/es/mentions'
 import { ModalCloseBill } from './Components/ModalCloseBill'
+
+const discounts = [
+  {
+    code: 'DESC10',
+    value: 10
+  }
+]
 
 const { Text, Title } = Typography
 
@@ -179,7 +186,8 @@ export const Command: React.FC = () => {
     api
       .post('/payment/', {
         bills: selectedBills.map((bill) => bill.id),
-        pyments_methods: payments.map((payment) => ({ id: payment.id, value: payment.value }))
+        pyments_methods: payments.map((payment) => ({ id: payment.id, value: payment.value })),
+        discount: Number(discount.toFixed(2))
       })
       .then(() => {
         window.location.reload()
@@ -194,6 +202,7 @@ export const Command: React.FC = () => {
 
   function handlePrint(): void {
     BillPrinter({
+      discount: discount,
       number: `${selectedBills.map((bill) => bill.number).join(', ')}`,
       serviceTax: onTip,
       total: Number((total - onTip).toFixed(2)),
@@ -247,11 +256,13 @@ export const Command: React.FC = () => {
     })
   })
 
+  const [discount, setDiscount] = useState<number>(0)
   // Resume finance
   const subTotal = orders.map((o) => Number(o.total)).reduce((a, b) => a + b, 0)
-  const total = orders.map((o) => Number(o.total)).reduce((a, b) => a + b, 0) + onTip
+  const total = orders.map((o) => Number(o.total)).reduce((a, b) => a + b, 0) + onTip - discount
   const paid = payments.map((p) => Number(p.value)).reduce((a, b) => a + b, 0)
   const missing = Number((total - paid).toFixed(2))
+  const [discountCode, setDiscountCode] = useState<string>('')
 
   function handleTip(): void {
     const input = brlToNumber(tipInput)
@@ -611,6 +622,37 @@ export const Command: React.FC = () => {
                     <Badge count={<BsFillDatabaseFill style={{ color: '#a49d16' }} />} />
                   </Text>
                 </div>
+                {discount > 0 && (
+                  <div
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'row',
+                      justifyContent: 'space-between'
+                    }}
+                  >
+                    <Text
+                      strong
+                      style={{
+                        fontSize: 20
+                      }}
+                    >
+                      Desconto:
+                    </Text>
+                    <Text
+                      style={{
+                        fontSize: 20,
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '5px',
+                        color: 'red'
+                      }}
+                    >
+                      -{formatCurrency(discount)}{' '}
+                      <Badge count={<BsFillDatabaseFill style={{ color: '#a49d16' }} />} />
+                    </Text>
+                  </div>
+                )}
+
                 <div
                   style={{
                     display: 'flex',
@@ -667,6 +709,31 @@ export const Command: React.FC = () => {
                     <Badge count={<FaWallet style={{ color: '#2FAA54' }} />} />
                   </Text>
                 </div>
+                <Input
+                  placeholder="Desconto"
+                  value={discountCode}
+                  onChange={(e): void => {
+                    setDiscount(0)
+                    setDiscountCode(e.target.value)
+                  }}
+                  suffix={
+                    <Button
+                      size="small"
+                      onClick={(): void => {
+                        const discontValue = discounts.find((d) => d.code === discountCode)?.value
+                        if (!discontValue) {
+                          message.error('Código de desconto inválido')
+                          return
+                        }
+                        const dis = (discontValue / 100) * total
+                        setDiscount(dis > total ? total : dis)
+                      }}
+                      disabled={discount > 0 || !discountCode}
+                    >
+                      Aplicar
+                    </Button>
+                  }
+                />
               </div>
               <div>
                 <Table

@@ -360,6 +360,7 @@ export function ClosedCashier(): void {
 }
 
 interface BillPrinterProps {
+  discount: number
   number: string
   subtotal: number
   serviceTax: number
@@ -451,6 +452,13 @@ export function BillPrinter(props: BillPrinterProps): void {
         <strong>Taxa de serviço:</strong>
         <span>${formatCurrency(props.serviceTax)}</span>
       </div>
+      ${
+        props.discount > 0 &&
+        `<div style="display: flex; justify-content: space-between; margin-top: 10px;">
+         <strong>Desconto:</strong>
+         <span>${formatCurrency(props.discount)}</span>
+       </div>`
+      }
       <div style="display: flex; justify-content: space-between; margin-top: 10px;">
         <strong>Total:</strong>
         <span>${formatCurrency(props.subtotal)}</span>
