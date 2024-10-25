@@ -205,7 +205,7 @@ export const Command: React.FC = () => {
       discount: discount,
       number: `${selectedBills.map((bill) => bill.number).join(', ')}`,
       serviceTax: onTip,
-      total: Number((total - onTip).toFixed(2)),
+      total: Number((total - onTip + discount).toFixed(2)),
       subtotal: Number(total.toFixed(2)),
       permanenceTime: selectedBills[0].created,
       products: orders

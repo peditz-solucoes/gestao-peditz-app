@@ -453,11 +453,12 @@ export function BillPrinter(props: BillPrinterProps): void {
         <span>${formatCurrency(props.serviceTax)}</span>
       </div>
       ${
-        props.discount > 0 &&
-        `<div style="display: flex; justify-content: space-between; margin-top: 10px;">
+        props.discount > 0
+          ? `<div style="display: flex; justify-content: space-between; margin-top: 10px;">
          <strong>Desconto:</strong>
          <span>${formatCurrency(props.discount)}</span>
        </div>`
+          : ''
       }
       <div style="display: flex; justify-content: space-between; margin-top: 10px;">
         <strong>Total:</strong>
